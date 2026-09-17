@@ -1,0 +1,84 @@
+name: Publish Tool packages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: npm-tool-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          version: 9.15.4
+
+      - name: Install Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 20.19.0
+          registry-url: https://registry.npmjs.org
+          scope: '@firedrill-tools'
+
+      - name: Verify reproducible release catalog
+        run: pnpm package:catalog --output-dir "$RUNNER_TEMP/firedrill-tools"
+
+      - name: Publish missing immutable versions
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_FETCH_RETRIES: 0
+          NPM_CONFIG_PROVENANCE: 'true'
+        run: |
+          set -euo pipefail
+          [[ -n "$NODE_AUTH_TOKEN" ]] || { echo "NPM_TOKEN is not configured" >&2; exit 1; }
+
+          find packages -mindepth 1 -maxdepth 1 -type d -print0 | sort -z | while IFS= read -r -d '' directory; do
+            package="$(node -p "require('./$directory/package.json').name")"
+            version="$(node -p "require('./$directory/package.json').version")"
+            if npm view "$package@$version" version --json >/dev/null 2>&1; then
+              echo "Already published: $package@$version"
+              continue
+            fi
+
+            echo "Publishing $package@$version"
+            published=false
+            for attempt in $(seq 1 15); do
+              if (cd "$directory" && npm publish --access public --ignore-scripts) >"$RUNNER_TEMP/npm-publish.log" 2>&1; then
+                published=true
+                break
+              fi
+              if ! grep -qE 'E429|429 Too Many Requests' "$RUNNER_TEMP/npm-publish.log"; then
+                cat "$RUNNER_TEMP/npm-publish.log" >&2
+                exit 1
+              fi
+              echo "npm throttled $package@$version; retry $attempt/15 in 60 seconds"
+              sleep 60
+            done
+            [[ "$published" == true ]] || { cat "$RUNNER_TEMP/npm-publish.log" >&2; exit 1; }
+            npm view "$package@$version" version --json >/dev/null
+            sleep 20
+          done
+
+      - name: Verify every catalog version is public
+        run: |
+          set -euo pipefail
+          find packages -mindepth 1 -maxdepth 1 -type d -print0 | sort -z | while IFS= read -r -d '' directory; do
+            package="$(node -p "require('./$directory/package.json').name")"
+            version="$(node -p "require('./$directory/package.json').version")"
+            actual="$(npm view "$package@$version" version --json | tr -d '"')"
+            [[ "$actual" == "$version" ]] || { echo "$package@$version is unavailable" >&2; exit 1; }
+          done
