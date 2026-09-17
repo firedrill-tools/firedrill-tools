@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "limit-reached",
+  "title": "Northwind Legal is on a 50-document monthly limit and has used all 50",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "teams",
+      "rowId": "0000000001",
+      "value": {
+        "id": 1,
+        "name": "Northwind Legal",
+        "url": "northwind-legal",
+        "plan": "team",
+        "monthlyDocumentLimit": 50
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "usage",
+      "rowId": "0000000001/2026-09",
+      "value": {
+        "teamId": 1,
+        "month": "2026-09",
+        "documentsCreated": 50
+      }
+    }
+  ]
+}

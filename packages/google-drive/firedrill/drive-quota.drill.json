@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "id": "drive-quota",
+  "title": "Ravi's 4 KiB quota: link/domain/direct visibility only, copyRequiresWriterPermission blocks copy and download, uploads and content growth hit STORAGE_QUOTA_EXCEEDED naturally, delete frees the quota",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "intern",
+  "task": {
+    "instruction": "Run the quota conformance flow against the synthetic Google Drive Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "about-get-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "about.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-create-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-create-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-tool_error-equals-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-read-content-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.read-content"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-download-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.download"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "file-rows-unchanged",
+      "kind": "state.count",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 31
+      }
+    },
+    {
+      "id": "event-file-deleted-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-drive",
+        "eventId": "file.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-file-created-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-drive",
+        "eventId": "file.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

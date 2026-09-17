@@ -1,0 +1,252 @@
+/* Persistent chrome added around the Tool screens: Calendar/Tasks switch, side panel, people search, booking pages,
+   year view, description toolbar and editor extras. */
+
+.gc-switch {
+  display: inline-flex;
+  height: 40px;
+  border: 1px solid var(--gc-outline);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0 4px 0 0;
+}
+.gc-switch-btn {
+  width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gc-text-2);
+}
+.gc-switch-btn + .gc-switch-btn {
+  border-left: 1px solid var(--gc-outline);
+}
+.gc-switch-btn .icon {
+  width: 20px;
+  height: 20px;
+}
+.gc-switch-btn:hover {
+  background: var(--gc-hover);
+}
+.gc-switch-btn.is-selected {
+  background: var(--gc-secondary-container);
+  color: #001d35;
+}
+
+/* Right side panel (Keep, Tasks, Contacts, Maps, add-ons) */
+.gc-side-panel {
+  width: 56px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 16px;
+  margin-left: -16px;
+}
+.gc-side-apps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.gc-side-app {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gc-text-2);
+}
+.gc-side-app .icon {
+  width: 20px;
+  height: 20px;
+}
+.gc-side-app:hover,
+.gc-side-app[aria-expanded="true"] {
+  background: var(--gc-hover);
+}
+.gc-side-app:focus-visible {
+  outline: 2px solid var(--gc-primary);
+}
+.gc-side-divider {
+  width: 20px;
+  height: 1px;
+  background: var(--gc-line);
+}
+.gc.side-panel-closed .gc-side-apps {
+  display: none;
+}
+.gc.side-panel-closed .gc-side-panel {
+  justify-content: flex-end;
+}
+.gc.side-panel-closed .gc-side-hide .icon {
+  transform: rotate(180deg);
+}
+.gc-main {
+  margin-right: 16px;
+}
+
+/* Sidebar: people search and booking pages */
+.gc-people-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  margin: 8px 8px 4px 0;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: var(--gc-search);
+  color: var(--gc-text-2);
+  font-size: 14px;
+  text-align: left;
+}
+.gc-people-search .icon {
+  width: 20px;
+  height: 20px;
+}
+.gc-people-search:hover {
+  background: #dde3ea;
+}
+.gc-group-title {
+  flex: 1;
+  padding: 8px 0 8px 8px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: var(--gc-text);
+}
+.gc-booking .gc-group-head-row {
+  align-items: center;
+}
+.gc-group-head {
+  flex: 1;
+}
+.gc-group-head .label {
+  flex: 1;
+  text-align: left;
+}
+
+/* Not simulated card */
+.gc-ns-card {
+  width: 300px;
+  padding: 16px 16px 8px;
+}
+.gc-ns-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.gc-ns-head .icon {
+  color: var(--gc-text-3);
+  width: 20px;
+  height: 20px;
+}
+.gc-ns-card p {
+  color: var(--gc-text-2);
+  margin: 0 0 8px;
+  line-height: 20px;
+}
+.gc-ns-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 1024px) {
+  .gc-side-panel {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .gc-switch,
+  #apps-btn {
+    display: none;
+  }
+}
+
+/* Year view */
+.gc-year {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px 40px;
+  padding: 24px 32px;
+  align-content: start;
+}
+.gc-year-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gc-text);
+  margin: 0 0 8px 8px;
+}
+
+/* Drag-to-create ghost */
+.gc-drag-ghost {
+  --chip-bg: #039be5;
+  --chip-fg: #ffffff;
+  left: 0;
+  width: calc(100% - 6px);
+  z-index: 20;
+  pointer-events: none;
+  box-shadow: var(--gc-shadow-2);
+}
+
+/* Create menu (Event / Task / Appointment schedule) */
+.gc-create-menu {
+  min-width: 200px;
+}
+.gc-create-menu .menu-icon {
+  display: none;
+}
+
+/* Editor extras */
+.gc-editor-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 8px;
+  padding: 0 8px 0 16px;
+}
+.gc-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.gc-desc-toolbar {
+  display: flex;
+  gap: 2px;
+  padding: 2px 4px;
+  background: var(--gc-field);
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid var(--gc-line);
+}
+.gc-desc-toolbar .icon-btn:disabled {
+  opacity: 0.55;
+}
+.gc-desc textarea {
+  border-radius: 0 0 4px 4px;
+}
+.gc-guest-tabs {
+  margin: -4px 0 12px;
+}
+.gc-cal-fixed {
+  gap: 12px;
+  align-items: center;
+}
+.gc-cal-group > .gc-group-head {
+  width: 100%;
+  display: flex;
+}
+.gc-group-head .gc-group-arrow {
+  margin-left: auto;
+}
+.gc-form-row-body.gc-desc {
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+.gc-desc .gc-desc-toolbar {
+  width: 100%;
+  align-self: stretch;
+}

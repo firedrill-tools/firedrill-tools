@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "id": "check-read-only",
+  "title": "A read_only key reads but cannot write or preview",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "viewer",
+  "task": {
+    "instruction": "Run the read-only conformance flow against the synthetic Check Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "payrolls-list-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-get-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-preview-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.preview"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "employees-update-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-create-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "count-payroll-items-22",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "comparison": {
+        "operator": "equals",
+        "value": 22
+      }
+    },
+    {
+      "id": "j3-not-previewed",
+      "kind": "state.value",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_9KwRxHvvOUypb6MK3MPW",
+      "path": [
+        "preview"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "id": "salesforce-write-committed-lost",
+  "title": "Fault write-committed-lost: inserts commit (rows and record.created exist) while the caller sees 503; a retry hits DUPLICATE_VALUE or duplicates silently",
+  "targetId": "conformance-agent",
+  "scenarioId": "write-committed-lost",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the write-committed-lost conformance flow against the synthetic Salesforce Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "records-create-tool-error-eq-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "records-create-ok-eq-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "records-upsert-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.upsert"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-create-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-upsert-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.upsert"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-update-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "query-execute-ok-ge-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "query.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "event-record-created-eq-5",
+      "kind": "event.count",
+      "event": {
+        "packageId": "salesforce",
+        "eventId": "record.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "accounts-count-12",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "accounts",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "contacts-count-16",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "leads-count-9",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "leads",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "lost-phone",
+      "kind": "state.value",
+      "packageId": "salesforce",
+      "namespace": "accounts",
+      "rowId": "001Fd0000001001IAA",
+      "path": [
+        "fields",
+        "Phone"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "1"
+      }
+    }
+  ]
+}

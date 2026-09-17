@@ -1,0 +1,535 @@
+{
+  "schemaVersion": 1,
+  "id": "check-resource-limits",
+  "title": "A one-row scan bound and an exhausted id space answer 500 without committing anything",
+  "targetId": "conformance-agent",
+  "scenarioId": "resource-limits",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the resource-limits conformance flow against the synthetic Check Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "companies-list-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workplaces-list-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "workplaces.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "employees-list-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "earning-rates-list-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "earning_rates.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pay-schedules-list-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "pay_schedules.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-list-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-get-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-preview-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.preview"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-reopen-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.reopen"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-delete-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-list-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-update-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workplaces-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "workplaces.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "employees-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "earning-rates-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "earning_rates.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pay-schedules-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "pay_schedules.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workplaces-create-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "workplaces.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "employees-create-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "earning-rates-create-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "earning_rates.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "pay-schedules-create-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "pay_schedules.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payrolls-create-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payroll-items-create-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payrolls-reopen-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.reopen"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payrolls-delete-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payroll-items-update-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "companies-get-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "companies.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "employees-get-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-payroll-reopened-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "check",
+        "eventId": "payroll.reopened"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "count-workplaces-12",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "workplaces",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "count-employees-19",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "employees",
+      "comparison": {
+        "operator": "equals",
+        "value": 19
+      }
+    },
+    {
+      "id": "count-earning-rates-20",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "comparison": {
+        "operator": "equals",
+        "value": 20
+      }
+    },
+    {
+      "id": "count-pay-schedules-10",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "pay_schedules",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "count-payrolls-7",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "count-payroll-items-22",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "comparison": {
+        "operator": "equals",
+        "value": 22
+      }
+    },
+    {
+      "id": "h1-still-pending",
+      "kind": "state.value",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_2MWIwicegE3YG9CibvDh",
+      "path": [
+        "stored_status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "pending"
+      }
+    }
+  ]
+}

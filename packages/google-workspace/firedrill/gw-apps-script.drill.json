@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-apps-script",
+  "title": "Projects, content, versions, deployments, a computed run and process filters",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ada",
+  "task": {
+    "instruction": "Run the apps-script flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "project-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-projects.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "project-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-projects.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "project-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-projects.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "content-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-projects.get-content"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "content-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-projects.update-content"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "content-update-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-projects.update-content"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "version-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-versions.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "deployment-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "deployments.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "deployment-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "deployments.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "deployment-list-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "deployments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "run-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "scripts.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "run-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "scripts.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "processes-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "processes.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "script-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-workspace",
+        "eventId": "script.executed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "projects",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "script-projects",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "versions",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "script-versions",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "script-order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "google-workspace",
+              "operationId": "script-projects.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-workspace",
+              "operationId": "script-projects.update-content"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-workspace",
+              "operationId": "script-versions.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-workspace",
+              "operationId": "deployments.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-workspace",
+              "operationId": "scripts.run"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

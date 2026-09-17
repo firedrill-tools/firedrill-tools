@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 1,
+  "id": "box-denied",
+  "title": "An actor without Firedrill grants is denied before the Tool runs",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-me-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "users.get-me"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-list-items-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.list-items"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-create-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-update-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-copy-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.copy"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-version-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload-version"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-download-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.download"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-versions-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.list-versions"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-restore-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.restore"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-query-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "search.query"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collaborations-create-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "collaborations.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collaborations-list-for-folder-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "collaborations.list-for-folder"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collaborations-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "collaborations.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-create-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-for-file-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "comments.list-for-file"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-list-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "folders-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "folders",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    }
+  ]
+}

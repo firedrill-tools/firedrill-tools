@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-rate-limited",
+  "title": "general.partition answers 429 with Retry-After: 1 under the partition-rate-limited fault; nothing is logged",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "analyst",
+  "task": {
+    "instruction": "Run the rate-limited flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "general-partition-tool_error-94",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "general-partition-ok-95",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "partition-log-count-96",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "partition-completed-events-97",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unstructured",
+        "eventId": "partition.completed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

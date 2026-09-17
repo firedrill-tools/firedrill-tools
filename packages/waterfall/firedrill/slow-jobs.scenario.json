@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "slow-jobs",
+  "title": "Asynchronous jobs take 30 virtual seconds: finders answer RUNNING until virtual time advances",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "meta",
+      "rowId": "account",
+      "value": {
+        "name": "Northwind Labs",
+        "master_api_key": "00000001-0000-4000-8000-000000000001",
+        "balance_remaining_micros": 250000000,
+        "job_delay_us": 30000000,
+        "price_micros": {
+          "prospector_persons": 138000,
+          "prospector_persons_phones": 320000,
+          "enrichment_contact_persons": 138000,
+          "enrichment_contact_persons_phones": 320000,
+          "enrichment_phone_phones": 320000,
+          "enrichment_company_companies": 100000,
+          "search_contact_found": 40000,
+          "search_company_found": 50000,
+          "company_reveal_found": 0,
+          "company_titles_found": 0,
+          "job_change_found": 100000,
+          "verify_email_verified": 20000
+        }
+      }
+    }
+  ]
+}

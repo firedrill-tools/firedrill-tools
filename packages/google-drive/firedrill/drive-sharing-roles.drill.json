@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "id": "drive-sharing-roles",
+  "title": "Sam's roles: inherited writer on the Billing v2 subtree (content update, create, share), commenter on the expense report, link and domain access, owner-only trash/delete/transfer refused",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "colleague",
+  "task": {
+    "instruction": "Run the sharing-roles conformance flow against the synthetic Google Drive Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "files-list-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-tool_error-equals-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-delete-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-create-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-create-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-create-tool_error-equals-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "permissions-list-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "about-get-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "about.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-modified-by-sam",
+      "kind": "state.value",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000003",
+      "path": [
+        "lastModifyingUser"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "sam.okafor@example.test"
+      }
+    },
+    {
+      "id": "notes-still-owned-by-dana",
+      "kind": "state.value",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000003",
+      "path": [
+        "ownerEmail"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "dana.reyes@example.test"
+      }
+    },
+    {
+      "id": "notes-version-bumped",
+      "kind": "state.value",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000003",
+      "path": [
+        "version"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "permission-rows-after-sharing",
+      "kind": "state.count",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "comparison": {
+        "operator": "equals",
+        "value": 46
+      }
+    },
+    {
+      "id": "file-rows-after-sharing",
+      "kind": "state.count",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 33
+      }
+    },
+    {
+      "id": "event-file-changed-greater_than_or_equal-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-drive",
+        "eventId": "file.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "event-file-created-equals-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-drive",
+        "eventId": "file.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

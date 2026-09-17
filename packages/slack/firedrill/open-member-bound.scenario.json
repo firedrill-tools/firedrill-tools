@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "open-member-bound",
+  "title": "The workspace row limits every conversation to 2 members: conversations.open refuses a three-person group DM before allocating an id, then a two-person IM and a new channel get the next ids",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "workspace",
+      "rowId": "team",
+      "value": {
+        "id": "T01EXAMPLE0",
+        "name": "Example Team",
+        "domain": "example-team",
+        "url": "https://example-team.slack.com/",
+        "id_sequence": 50,
+        "message_sequence": 300,
+        "limits": {
+          "members": 2
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "calendar-backend-error",
+  "title": "Backend outage: listing, search, free/busy and event creation fail with 500 backendError before any state change; other reads keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "backend-error",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the backend-error conformance flow against the synthetic Google Calendar Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "events-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-search-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "freebusy-query-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "freebusy.query"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-insert-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.insert"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "insert-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.insert"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "events-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "calendar-list-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendar-list.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "no-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "baseline-untouched",
+      "kind": "state.count",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "comparison": {
+        "operator": "equals",
+        "value": 27
+      }
+    }
+  ]
+}

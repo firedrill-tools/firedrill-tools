@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "id": "gmail-isolation",
+  "title": "A second mailbox sees only its own rows, colliding ids stay separate, sending delivers one INBOX copy",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "colleague",
+  "task": {
+    "instruction": "Run the isolation conformance flow against the synthetic Gmail Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "profile-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "profile-forbidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "messages-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "threads-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "threads-get-not-found",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "modify-not-found",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.modify"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "modify-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.modify"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "send-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sent-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gmail",
+        "eventId": "message.sent"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "dana-received-one-copy",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "where": {
+        "mailbox": "dana.reyes@example.test"
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 21
+      }
+    },
+    {
+      "id": "sam-has-four",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "where": {
+        "mailbox": "sam.okafor@example.test"
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "dana-copy-labels",
+      "kind": "state.value",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:190000000000012d",
+      "path": [
+        "labelIds"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "INBOX",
+          "UNREAD"
+        ]
+      }
+    },
+    {
+      "id": "dana-original-untouched",
+      "kind": "state.value",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000201",
+      "path": [
+        "labelIds"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "INBOX",
+          "CATEGORY_UPDATES",
+          "Label_2"
+        ]
+      }
+    },
+    {
+      "id": "sam-marked-read",
+      "kind": "state.value",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "sam.okafor@example.test:18f0000000000103",
+      "path": [
+        "labelIds"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "INBOX",
+          "Label_1"
+        ]
+      }
+    },
+    {
+      "id": "no-row-recipient-gets-no-mailbox",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "mailboxes",
+      "where": {
+        "emailAddress": "marcus.lindqvist@example.test"
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "no-row-recipient-gets-no-copy",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "where": {
+        "mailbox": "marcus.lindqvist@example.test"
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "id": "check-people-writes",
+  "title": "Create workplaces, employees, earning rates and pay schedules; update and terminate",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the people-writes conformance flow against the synthetic Check Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "workplaces-create-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "workplaces.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workplaces-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "workplaces.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "employees-create-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "employees-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "employees-update-ok-min2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "employees-update-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "earning-rates-create-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "earning_rates.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "earning-rates-update-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "earning_rates.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "earning-rates-update-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "earning_rates.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pay-schedules-create-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "pay_schedules.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pay-schedules-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "pay_schedules.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-workplaces-5",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "workplaces",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "count-employees-12",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "employees",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "count-earning-rates-13",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "count-pay-schedules-3",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "pay_schedules",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "new-employee-ssn-last-four",
+      "kind": "state.value",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_0lywRT18xZMrYG2gvcfj",
+      "path": [
+        "ssn_last_four"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "6789"
+      }
+    },
+    {
+      "id": "new-employee-terminated",
+      "kind": "state.value",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_0lywRT18xZMrYG2gvcfj",
+      "path": [
+        "termination_date"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "2026-10-02"
+      }
+    }
+  ]
+}

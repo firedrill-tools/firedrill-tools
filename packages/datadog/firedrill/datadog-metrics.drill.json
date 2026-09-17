@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "id": "datadog-metrics",
+  "title": "Metric intake re-evaluates monitors; queries, active metrics and metadata compute from points",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "standard",
+  "task": {
+    "instruction": "Run the metrics flow against the synthetic Datadog Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "metrics-submit-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.submit"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "metrics-submit-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.submit"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "metrics-query-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "metrics-query-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.query"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "metrics-list_active-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.list_active"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "metrics-list_active-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.list_active"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "metrics-get_metadata-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.get_metadata"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "metrics-get_metadata-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.get_metadata"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "state-changes",
+      "kind": "event.count",
+      "event": {
+        "packageId": "datadog",
+        "eventId": "monitor.state_changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "metrics-meta-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "metrics-meta",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "events-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "events",
+      "comparison": {
+        "operator": "equals",
+        "value": 15
+      }
+    },
+    {
+      "id": "latency-still-alert",
+      "kind": "state.value",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500001",
+      "path": [
+        "overallState"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Alert"
+      }
+    }
+  ]
+}

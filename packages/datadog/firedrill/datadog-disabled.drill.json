@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "datadog-disabled",
+  "title": "Disabled user: operations are FORBIDDEN",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "disabled",
+  "task": {
+    "instruction": "Run the disabled flow against the synthetic Datadog Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "org-context-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "org.context"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "monitors-search-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "dashboards-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "dashboards.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

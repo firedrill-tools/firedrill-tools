@@ -1,0 +1,131 @@
+/* Design tokens, bundled face and the shared form/button vocabulary of the NetSuite application shell. */
+@font-face {
+  font-family: "NS Sans";
+  src: url("../assets/fonts/open-sans-latin.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "NS Sans";
+  src: url("../assets/fonts/open-sans-latin-ext.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+1E00-1E9F, U+2020, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --bar: #16283c;
+  --bar-2: #1d3450;
+  --menu: #2c4f7c;
+  --menu-hover: #3d6494;
+  --ground: #eef0f3;
+  --panel: #ffffff;
+  --line: #c3cbd6;
+  --line-soft: #dde2e9;
+  --band: #dfe7f0;
+  --band-2: #eef2f7;
+  --ink: #1f2933;
+  --ink-soft: #55606d;
+  --link: #14538e;
+  --link-hover: #0b3c6b;
+  --red: #b3231f;
+  --amber: #a56200;
+  --green: #1f7a3d;
+  --teal: #0f6d78;
+  --grey: #6b7683;
+  --focus: #1a73c8;
+  --radius: 2px;
+  --font: "NS Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 12px;
+  line-height: 1.45;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); text-decoration: underline; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.skip { position: absolute; left: -9999px; top: 0; background: #fff; padding: 8px 12px; z-index: 40; }
+.skip:focus { left: 8px; top: 8px; }
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+/* ---- buttons: NetSuite's small grey gradient control ---- */
+.btn {
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1d2b3a;
+  background: linear-gradient(#fdfdfd, #e3e7ec);
+  border: 1px solid #9fabb9;
+  border-radius: var(--radius);
+  padding: 3px 11px;
+  min-height: 22px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:hover { background: linear-gradient(#ffffff, #d5dbe3); }
+.btn:active { background: linear-gradient(#d5dbe3, #e8ecf1); }
+.btn[disabled] { color: #94a0ad; cursor: default; background: #f1f3f5; }
+.btn.primary[disabled], .btn.danger[disabled] { color: #f0f2f4; background: linear-gradient(#a8b4c1, #8e9cab); border-color: #8795a4; }
+.btn.primary { color: #fff; background: linear-gradient(#3f76b4, #28598f); border-color: #1e4770; }
+.btn.primary:hover { background: linear-gradient(#4a83c3, #2f6299); }
+.btn.danger { color: #fff; background: linear-gradient(#c8403c, #a71f1b); border-color: #8c1a16; }
+.btn.link { background: none; border: none; color: var(--link); padding: 0; font-weight: 400; }
+.btn.link:hover { text-decoration: underline; background: none; }
+.btn-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+
+.icon-btn {
+  background: none; border: none; cursor: pointer; color: inherit;
+  padding: 2px; display: inline-flex; align-items: center; border-radius: var(--radius);
+}
+.icon-btn:hover { background: rgba(0, 0, 0, 0.07); }
+.ic { vertical-align: middle; }
+
+/* ---- fields ---- */
+label.fl { display: block; font-size: 11px; color: #3a4654; margin-bottom: 2px; }
+label.fl .req { color: var(--red); margin-left: 2px; }
+input[type="text"], input[type="search"], input[type="email"], input[type="tel"],
+input[type="number"], input[type="date"], select, textarea {
+  font: inherit;
+  font-size: 12px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #8f9daa;
+  border-radius: var(--radius);
+  padding: 2px 5px;
+  min-height: 22px;
+  width: 100%;
+}
+textarea { min-height: 54px; resize: vertical; }
+input[readonly], input[disabled], select[disabled], textarea[disabled] { background: #eef0f3; color: #626d7a; }
+.field { margin-bottom: 10px; }
+.field.inline { display: flex; align-items: center; gap: 6px; }
+.field.inline input[type="checkbox"] { width: auto; min-height: 0; }
+.field-error { color: var(--red); font-size: 11px; margin-top: 2px; }
+.muted { color: var(--ink-soft); }
+.mono { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: 11px; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }

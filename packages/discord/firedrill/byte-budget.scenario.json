@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "byte-budget",
+  "title": "meta.limits.response_bytes lowered to 1500: lists page by response size, unpaginated lists and single oversized entries fail instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "meta",
+      "rowId": "service",
+      "value": {
+        "default_user_id": "1379036823552000007",
+        "last_snowflake": "1549064680243200037",
+        "limits": {
+          "scan_rows": 5000,
+          "response_bytes": 1500
+        }
+      }
+    }
+  ]
+}

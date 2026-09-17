@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "over-bound",
+  "title": "meta.limits tightened below the starter data (files 10, children 1, permissions 2, depth 2): whole-Drive reads and bounded writes refuse with 400 badRequest; point reads keep working.",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "files": 10,
+        "children": 1,
+        "permissions": 2,
+        "depth": 2
+      }
+    }
+  ]
+}

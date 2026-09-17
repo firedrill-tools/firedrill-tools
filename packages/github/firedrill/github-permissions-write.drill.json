@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "id": "github-permissions-write",
+  "title": "A write collaborator sees only public and own repositories, may merge but not approve own pulls",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "contributor",
+  "task": {
+    "instruction": "Run the permissions-write conformance flow against the synthetic GitHub Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "merge-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.merge"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-read-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.read"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-create-review-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.create-review"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pull-45-merged-by",
+      "kind": "state.value",
+      "packageId": "github",
+      "namespace": "pulls",
+      "rowId": "acme-robotics/telemetry-service#00045",
+      "path": [
+        "merged_by"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "priya-nair"
+      }
+    },
+    {
+      "id": "issue-36-closed",
+      "kind": "state.value",
+      "packageId": "github",
+      "namespace": "issues",
+      "rowId": "acme-robotics/telemetry-service#00036",
+      "path": [
+        "state"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "closed"
+      }
+    },
+    {
+      "id": "issues",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "branches",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "branches",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    }
+  ]
+}

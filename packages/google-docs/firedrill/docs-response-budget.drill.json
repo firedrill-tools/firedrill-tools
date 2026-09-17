@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-response-budget",
+  "title": "Scenario response-budget: oversized documents, exports, threads and list entries answer declared errors; pages end early by bytes; a refused batch commits nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "response-budget",
+  "actorId": "dana",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `response-budget` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-get-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-batch-update-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-batch-update-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-export-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.export"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-export-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.export"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "replies-create-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "replies.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "replies-create-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "replies.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-ok-greater_than_or_equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-list-ok-greater_than_or_equal-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "state-documents-equals-21",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 21
+      }
+    },
+    {
+      "id": "state-revisions-equals-25",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "revisions",
+      "comparison": {
+        "operator": "equals",
+        "value": 25
+      }
+    }
+  ]
+}

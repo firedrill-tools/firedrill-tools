@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "id": "qbo-payments",
+  "title": "Receive payment applied to invoices, over-application, stale updates, void and delete",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the payments conformance flow against the synthetic QuickBooks Online Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "payments-post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "payments.post"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "payments.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-post-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "payments.post"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "payments.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-count",
+      "kind": "state.count",
+      "packageId": "quickbooks",
+      "namespace": "payments",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "invoice-1041-balance",
+      "kind": "state.value",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001041",
+      "path": [
+        "Balance"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1800
+      }
+    },
+    {
+      "id": "payment-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "quickbooks",
+        "eventId": "payment.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    }
+  ]
+}

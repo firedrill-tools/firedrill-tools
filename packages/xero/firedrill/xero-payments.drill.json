@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "id": "xero-payments",
+  "title": "Payments: filters, full payment marks PAID, overpayment, invalid targets, MCP create-payment and delete rules",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "[payments] Run the payments conformance flow against the synthetic Xero Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "payments-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-record-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.record"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-list-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-create-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-record-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.record"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-delete-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "inv-1006-authorised",
+      "kind": "state.value",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000006",
+      "path": [
+        "Status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "AUTHORISED"
+      }
+    },
+    {
+      "id": "inv-1006-paid-amount",
+      "kind": "state.value",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000006",
+      "path": [
+        "AmountPaid"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2000
+      }
+    },
+    {
+      "id": "inv-1008-part-paid",
+      "kind": "state.value",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000008",
+      "path": [
+        "AmountPaid"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 100
+      }
+    },
+    {
+      "id": "payments-count",
+      "kind": "state.count",
+      "packageId": "xero",
+      "namespace": "payments",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "invoice-changed-equals",
+      "kind": "event.count",
+      "event": {
+        "packageId": "xero",
+        "eventId": "invoice.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    }
+  ]
+}

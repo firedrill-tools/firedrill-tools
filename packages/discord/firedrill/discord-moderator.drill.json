@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-moderator",
+  "title": "A Moderator deletes others' messages and reactions and posts in a locked thread",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "maya",
+  "task": {
+    "instruction": "Run flow:moderator against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "message-deleted",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "message-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reaction-added",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "reaction.added"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    },
+    {
+      "id": "reaction-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "remove-other",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

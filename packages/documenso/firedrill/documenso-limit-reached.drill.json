@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-limit-reached",
+  "title": "At the monthly document limit create, duplicate and template use fail and write nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "limit-reached",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the limit-reached flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-duplicate-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.duplicate"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-use-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.use"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-count",
+      "kind": "state.count",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    }
+  ]
+}

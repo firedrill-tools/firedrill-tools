@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dropbox (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/dropbox.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles-views.css" />
+    <link rel="stylesheet" href="./styles-extra.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="db" id="app">
+      <aside class="db-rail" id="rail" aria-label="Dropbox navigation">
+        <a class="db-rail-logo" href="#/home" aria-label="Dropbox home" title="Dropbox"><img src="./assets/dropbox.svg" alt="" width="32" height="27" /></a>
+        <nav class="db-rail-nav" id="rail-nav" aria-label="Products"></nav>
+        <div class="db-rail-foot" id="rail-foot"></div>
+      </aside>
+      <aside class="db-side" id="side" aria-label="Section navigation">
+        <div class="db-side-head" id="side-head"></div>
+        <nav class="db-side-nav" id="side-nav" aria-label="Files"></nav>
+        <div class="db-side-foot" id="storage"></div>
+      </aside>
+      <div class="db-main">
+        <header class="db-top">
+          <button type="button" class="db-icon-btn db-menu-btn" id="menu-toggle" aria-label="Open navigation" title="Menu"><span data-icon="menu"></span></button>
+          <form class="db-search" id="search-form" role="search">
+            <span class="db-search-icon" data-icon="search"></span>
+            <label class="visually-hidden" for="search">Search</label>
+            <input id="search" type="search" placeholder="Search" autocomplete="off" spellcheck="false" />
+          </form>
+          <div class="db-top-end">
+            <button type="button" class="db-upgrade" id="upgrade-btn" data-unsim="Plans and upgrades">Upgrade</button>
+            <button type="button" class="db-icon-btn" id="help-btn" aria-label="Help" title="Help" data-unsim="Help center"><span data-icon="help"></span></button>
+            <button type="button" class="db-icon-btn" id="bell-btn" aria-label="Notifications" title="Notifications" data-unsim="Notifications"><span data-icon="bell"></span></button>
+            <button type="button" class="db-icon-btn" id="apps-btn" aria-label="Apps" title="Apps" data-unsim="Dropbox apps"><span data-icon="apps"></span></button>
+            <button type="button" class="db-avatar-btn" id="account-btn" aria-label="Account menu" aria-haspopup="menu" aria-expanded="false" title="Account"><span class="db-avatar" id="account-avatar" aria-hidden="true"></span></button>
+          </div>
+          <div class="db-progress" id="loading" role="progressbar" aria-label="Loading" hidden></div>
+        </header>
+        <div class="db-banner" id="banner" role="status" hidden></div>
+        <main class="db-content" id="content" tabindex="-1"></main>
+      </div>
+    </div>
+    <div class="db-toast" id="toast" role="status" aria-live="polite" hidden>
+      <span id="toast-text"></span>
+      <button type="button" class="db-toast-action" id="toast-action" hidden></button>
+      <button type="button" class="db-icon-btn db-toast-close" id="toast-close" aria-label="Dismiss"><span data-icon="close"></span></button>
+    </div>
+    <div id="layer"></div>
+  </body>
+</html>

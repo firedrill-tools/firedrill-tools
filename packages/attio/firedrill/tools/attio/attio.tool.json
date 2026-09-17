@@ -1,0 +1,6208 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "ui": {
+    "root": "app/site",
+    "entry": "index.html"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "attio",
+    "version": "0.1.0",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "attributes",
+        "schema": {
+          "type": "object",
+          "required": [
+            "attribute_id",
+            "target",
+            "parent_id",
+            "title",
+            "description",
+            "api_slug",
+            "type",
+            "is_system_attribute",
+            "is_writable",
+            "is_required",
+            "is_unique",
+            "is_multiselect",
+            "is_default_value_enabled",
+            "is_archived",
+            "default_value",
+            "relationship",
+            "config",
+            "options",
+            "statuses",
+            "position",
+            "created_at"
+          ],
+          "properties": {
+            "attribute_id": {
+              "type": "string"
+            },
+            "target": {
+              "type": "string",
+              "enum": [
+                "objects",
+                "lists"
+              ]
+            },
+            "parent_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "api_slug": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "text",
+                "number",
+                "checkbox",
+                "currency",
+                "date",
+                "timestamp",
+                "select",
+                "status",
+                "record-reference",
+                "actor-reference",
+                "domain",
+                "email-address",
+                "phone-number",
+                "personal-name"
+              ]
+            },
+            "is_system_attribute": {
+              "type": "boolean"
+            },
+            "is_writable": {
+              "type": "boolean"
+            },
+            "is_required": {
+              "type": "boolean"
+            },
+            "is_unique": {
+              "type": "boolean"
+            },
+            "is_multiselect": {
+              "type": "boolean"
+            },
+            "is_default_value_enabled": {
+              "type": "boolean"
+            },
+            "is_archived": {
+              "type": "boolean"
+            },
+            "default_value": {
+              "type": "null"
+            },
+            "relationship": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "object",
+                    "attribute"
+                  ],
+                  "properties": {
+                    "object": {
+                      "type": "string"
+                    },
+                    "attribute": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "config": {
+              "type": "object",
+              "required": [
+                "currency",
+                "record_reference"
+              ],
+              "properties": {
+                "currency": {
+                  "type": "object",
+                  "required": [
+                    "default_currency_code",
+                    "display_type"
+                  ],
+                  "properties": {
+                    "default_currency_code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "display_type": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "record_reference": {
+                  "type": "object",
+                  "required": [
+                    "allowed_object_ids"
+                  ],
+                  "properties": {
+                    "allowed_object_ids": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "option_id",
+                  "title",
+                  "is_archived"
+                ],
+                "properties": {
+                  "option_id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "is_archived": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "statuses": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status_id",
+                  "title",
+                  "is_archived",
+                  "celebration_enabled",
+                  "target_time_in_status"
+                ],
+                "properties": {
+                  "status_id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "is_archived": {
+                    "type": "boolean"
+                  },
+                  "celebration_enabled": {
+                    "type": "boolean"
+                  },
+                  "target_time_in_status": {
+                    "type": "null"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "position": {
+              "type": "integer"
+            },
+            "created_at": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Attribute definitions keyed `{objects|lists}/{parent slug}/{api_slug}`."
+      },
+      {
+        "namespace": "companies",
+        "schema": {
+          "type": "object",
+          "required": [
+            "record_id",
+            "created_at",
+            "created_by_actor",
+            "values"
+          ],
+          "properties": {
+            "record_id": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by_actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "values": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "active_from",
+                    "active_until",
+                    "created_by_actor"
+                  ],
+                  "properties": {
+                    "active_from": {
+                      "type": "string"
+                    },
+                    "active_until": {
+                      "type": "null"
+                    },
+                    "created_by_actor": {
+                      "type": "object",
+                      "required": [
+                        "type",
+                        "id"
+                      ],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "api-token",
+                            "workspace-member",
+                            "system"
+                          ]
+                        },
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "currency_value": {
+                      "type": "number"
+                    },
+                    "currency_code": {
+                      "type": "string"
+                    },
+                    "option_id": {
+                      "type": "string"
+                    },
+                    "status_id": {
+                      "type": "string"
+                    },
+                    "target_object": {
+                      "type": "string"
+                    },
+                    "target_record_id": {
+                      "type": "string"
+                    },
+                    "referenced_actor_type": {
+                      "type": "string"
+                    },
+                    "referenced_actor_id": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "root_domain": {
+                      "type": "string"
+                    },
+                    "original_email_address": {
+                      "type": "string"
+                    },
+                    "email_address": {
+                      "type": "string"
+                    },
+                    "email_domain": {
+                      "type": "string"
+                    },
+                    "email_root_domain": {
+                      "type": "string"
+                    },
+                    "email_local_specifier": {
+                      "type": "string"
+                    },
+                    "original_phone_number": {
+                      "type": "string"
+                    },
+                    "phone_number": {
+                      "type": "string"
+                    },
+                    "country_code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "full_name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "companies records keyed by record id; values hold writable attributes only."
+      },
+      {
+        "namespace": "deals",
+        "schema": {
+          "type": "object",
+          "required": [
+            "record_id",
+            "created_at",
+            "created_by_actor",
+            "values"
+          ],
+          "properties": {
+            "record_id": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by_actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "values": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "active_from",
+                    "active_until",
+                    "created_by_actor"
+                  ],
+                  "properties": {
+                    "active_from": {
+                      "type": "string"
+                    },
+                    "active_until": {
+                      "type": "null"
+                    },
+                    "created_by_actor": {
+                      "type": "object",
+                      "required": [
+                        "type",
+                        "id"
+                      ],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "api-token",
+                            "workspace-member",
+                            "system"
+                          ]
+                        },
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "currency_value": {
+                      "type": "number"
+                    },
+                    "currency_code": {
+                      "type": "string"
+                    },
+                    "option_id": {
+                      "type": "string"
+                    },
+                    "status_id": {
+                      "type": "string"
+                    },
+                    "target_object": {
+                      "type": "string"
+                    },
+                    "target_record_id": {
+                      "type": "string"
+                    },
+                    "referenced_actor_type": {
+                      "type": "string"
+                    },
+                    "referenced_actor_id": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "root_domain": {
+                      "type": "string"
+                    },
+                    "original_email_address": {
+                      "type": "string"
+                    },
+                    "email_address": {
+                      "type": "string"
+                    },
+                    "email_domain": {
+                      "type": "string"
+                    },
+                    "email_root_domain": {
+                      "type": "string"
+                    },
+                    "email_local_specifier": {
+                      "type": "string"
+                    },
+                    "original_phone_number": {
+                      "type": "string"
+                    },
+                    "phone_number": {
+                      "type": "string"
+                    },
+                    "country_code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "full_name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "deals records keyed by record id; values hold writable attributes only."
+      },
+      {
+        "namespace": "entries",
+        "schema": {
+          "type": "object",
+          "required": [
+            "entry_id",
+            "list_id",
+            "parent_object",
+            "parent_record_id",
+            "created_at",
+            "created_by_actor",
+            "entry_values"
+          ],
+          "properties": {
+            "entry_id": {
+              "type": "string"
+            },
+            "list_id": {
+              "type": "string"
+            },
+            "parent_object": {
+              "type": "string"
+            },
+            "parent_record_id": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by_actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "entry_values": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "active_from",
+                    "active_until",
+                    "created_by_actor"
+                  ],
+                  "properties": {
+                    "active_from": {
+                      "type": "string"
+                    },
+                    "active_until": {
+                      "type": "null"
+                    },
+                    "created_by_actor": {
+                      "type": "object",
+                      "required": [
+                        "type",
+                        "id"
+                      ],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "api-token",
+                            "workspace-member",
+                            "system"
+                          ]
+                        },
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "currency_value": {
+                      "type": "number"
+                    },
+                    "currency_code": {
+                      "type": "string"
+                    },
+                    "option_id": {
+                      "type": "string"
+                    },
+                    "status_id": {
+                      "type": "string"
+                    },
+                    "target_object": {
+                      "type": "string"
+                    },
+                    "target_record_id": {
+                      "type": "string"
+                    },
+                    "referenced_actor_type": {
+                      "type": "string"
+                    },
+                    "referenced_actor_id": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "root_domain": {
+                      "type": "string"
+                    },
+                    "original_email_address": {
+                      "type": "string"
+                    },
+                    "email_address": {
+                      "type": "string"
+                    },
+                    "email_domain": {
+                      "type": "string"
+                    },
+                    "email_root_domain": {
+                      "type": "string"
+                    },
+                    "email_local_specifier": {
+                      "type": "string"
+                    },
+                    "original_phone_number": {
+                      "type": "string"
+                    },
+                    "phone_number": {
+                      "type": "string"
+                    },
+                    "country_code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "full_name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "List entries keyed `{list_id}/{entry_id}`."
+      },
+      {
+        "namespace": "lists",
+        "schema": {
+          "type": "object",
+          "required": [
+            "list_id",
+            "api_slug",
+            "name",
+            "parent_object",
+            "workspace_access",
+            "workspace_member_access",
+            "created_by_actor",
+            "created_at"
+          ],
+          "properties": {
+            "list_id": {
+              "type": "string"
+            },
+            "api_slug": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "parent_object": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "maxItems": 1
+            },
+            "workspace_access": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "full-access",
+                    "read-and-write",
+                    "read-only"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "workspace_member_access": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "workspace_member_id",
+                  "level"
+                ],
+                "properties": {
+                  "workspace_member_id": {
+                    "type": "string"
+                  },
+                  "level": {
+                    "type": "string",
+                    "enum": [
+                      "full-access",
+                      "read-and-write",
+                      "read-only"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "created_by_actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "created_at": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Lists keyed by list id."
+      },
+      {
+        "namespace": "meta",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "nextSeq": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxScanRows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1
+        },
+        "description": "Row `counters` ({nextSeq}) allocates ids; optional row `limits` ({maxScanRows}) sets the scan bound (default 5000)."
+      },
+      {
+        "namespace": "notes",
+        "schema": {
+          "type": "object",
+          "required": [
+            "note_id",
+            "parent_object",
+            "parent_record_id",
+            "title",
+            "format",
+            "content_plaintext",
+            "content_markdown",
+            "meeting_id",
+            "tags",
+            "created_by_actor",
+            "created_at"
+          ],
+          "properties": {
+            "note_id": {
+              "type": "string"
+            },
+            "parent_object": {
+              "type": "string"
+            },
+            "parent_record_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "plaintext",
+                "markdown"
+              ]
+            },
+            "content_plaintext": {
+              "type": "string"
+            },
+            "content_markdown": {
+              "type": "string"
+            },
+            "meeting_id": {
+              "type": "null"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 0
+            },
+            "created_by_actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "created_at": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Notes keyed by note id."
+      },
+      {
+        "namespace": "objects",
+        "schema": {
+          "type": "object",
+          "required": [
+            "object_id",
+            "api_slug",
+            "singular_noun",
+            "plural_noun",
+            "created_at"
+          ],
+          "properties": {
+            "object_id": {
+              "type": "string"
+            },
+            "api_slug": {
+              "type": "string"
+            },
+            "singular_noun": {
+              "type": "string"
+            },
+            "plural_noun": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Standard objects keyed by api_slug (people, companies, deals)."
+      },
+      {
+        "namespace": "people",
+        "schema": {
+          "type": "object",
+          "required": [
+            "record_id",
+            "created_at",
+            "created_by_actor",
+            "values"
+          ],
+          "properties": {
+            "record_id": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "created_by_actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "values": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "active_from",
+                    "active_until",
+                    "created_by_actor"
+                  ],
+                  "properties": {
+                    "active_from": {
+                      "type": "string"
+                    },
+                    "active_until": {
+                      "type": "null"
+                    },
+                    "created_by_actor": {
+                      "type": "object",
+                      "required": [
+                        "type",
+                        "id"
+                      ],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "api-token",
+                            "workspace-member",
+                            "system"
+                          ]
+                        },
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "currency_value": {
+                      "type": "number"
+                    },
+                    "currency_code": {
+                      "type": "string"
+                    },
+                    "option_id": {
+                      "type": "string"
+                    },
+                    "status_id": {
+                      "type": "string"
+                    },
+                    "target_object": {
+                      "type": "string"
+                    },
+                    "target_record_id": {
+                      "type": "string"
+                    },
+                    "referenced_actor_type": {
+                      "type": "string"
+                    },
+                    "referenced_actor_id": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "root_domain": {
+                      "type": "string"
+                    },
+                    "original_email_address": {
+                      "type": "string"
+                    },
+                    "email_address": {
+                      "type": "string"
+                    },
+                    "email_domain": {
+                      "type": "string"
+                    },
+                    "email_root_domain": {
+                      "type": "string"
+                    },
+                    "email_local_specifier": {
+                      "type": "string"
+                    },
+                    "original_phone_number": {
+                      "type": "string"
+                    },
+                    "phone_number": {
+                      "type": "string"
+                    },
+                    "country_code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "full_name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "people records keyed by record id; values hold writable attributes only."
+      },
+      {
+        "namespace": "tasks",
+        "schema": {
+          "type": "object",
+          "required": [
+            "task_id",
+            "content_plaintext",
+            "format",
+            "deadline_at",
+            "is_completed",
+            "completed_at",
+            "linked_records",
+            "assignees",
+            "created_by_actor",
+            "created_at"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string"
+            },
+            "content_plaintext": {
+              "type": "string"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "plaintext"
+              ]
+            },
+            "deadline_at": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "is_completed": {
+              "type": "boolean"
+            },
+            "completed_at": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "linked_records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "target_object_id",
+                  "target_record_id"
+                ],
+                "properties": {
+                  "target_object_id": {
+                    "type": "string"
+                  },
+                  "target_record_id": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "assignees": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "referenced_actor_type",
+                  "referenced_actor_id"
+                ],
+                "properties": {
+                  "referenced_actor_type": {
+                    "type": "string",
+                    "enum": [
+                      "workspace-member"
+                    ]
+                  },
+                  "referenced_actor_id": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "created_by_actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "created_at": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Tasks keyed by task id."
+      },
+      {
+        "namespace": "workspace",
+        "schema": {
+          "type": "object",
+          "required": [
+            "workspace_id",
+            "workspace_name",
+            "workspace_slug",
+            "workspace_logo_url",
+            "client_id",
+            "token_issued_at",
+            "created_at"
+          ],
+          "properties": {
+            "workspace_id": {
+              "type": "string"
+            },
+            "workspace_name": {
+              "type": "string"
+            },
+            "workspace_slug": {
+              "type": "string"
+            },
+            "workspace_logo_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "client_id": {
+              "type": "string"
+            },
+            "token_issued_at": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Single row `workspace`: the simulated workspace and its access token metadata."
+      },
+      {
+        "namespace": "workspace-members",
+        "schema": {
+          "type": "object",
+          "required": [
+            "workspace_member_id",
+            "first_name",
+            "last_name",
+            "avatar_url",
+            "email_address",
+            "access_level",
+            "created_at"
+          ],
+          "properties": {
+            "workspace_member_id": {
+              "type": "string"
+            },
+            "first_name": {
+              "type": "string"
+            },
+            "last_name": {
+              "type": "string"
+            },
+            "avatar_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "email_address": {
+              "type": "string"
+            },
+            "access_level": {
+              "type": "string",
+              "enum": [
+                "admin",
+                "member",
+                "suspended"
+              ]
+            },
+            "created_at": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Workspace members keyed by member id."
+      }
+    ],
+    "operations": [
+      {
+        "id": "attributes.list",
+        "description": "Attribute definitions of an object or a visible list, in column order.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "target",
+            "identifier"
+          ],
+          "properties": {
+            "target": {
+              "type": "string",
+              "enum": [
+                "objects",
+                "lists"
+              ]
+            },
+            "identifier": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "show_archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "title",
+                  "description",
+                  "api_slug",
+                  "type",
+                  "is_system_attribute",
+                  "is_writable",
+                  "is_required",
+                  "is_unique",
+                  "is_multiselect",
+                  "is_default_value_enabled",
+                  "is_archived",
+                  "default_value",
+                  "relationship",
+                  "created_at",
+                  "config"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "attribute_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "object_id": {
+                        "type": "string"
+                      },
+                      "list_id": {
+                        "type": "string"
+                      },
+                      "attribute_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "api_slug": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "text",
+                      "number",
+                      "checkbox",
+                      "currency",
+                      "date",
+                      "timestamp",
+                      "select",
+                      "status",
+                      "record-reference",
+                      "actor-reference",
+                      "domain",
+                      "email-address",
+                      "phone-number",
+                      "personal-name"
+                    ]
+                  },
+                  "is_system_attribute": {
+                    "type": "boolean"
+                  },
+                  "is_writable": {
+                    "type": "boolean"
+                  },
+                  "is_required": {
+                    "type": "boolean"
+                  },
+                  "is_unique": {
+                    "type": "boolean"
+                  },
+                  "is_multiselect": {
+                    "type": "boolean"
+                  },
+                  "is_default_value_enabled": {
+                    "type": "boolean"
+                  },
+                  "is_archived": {
+                    "type": "boolean"
+                  },
+                  "default_value": {
+                    "type": "null"
+                  },
+                  "relationship": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "object",
+                          "attribute"
+                        ],
+                        "properties": {
+                          "object": {
+                            "type": "string"
+                          },
+                          "attribute": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "config": {
+                    "type": "object",
+                    "required": [
+                      "currency",
+                      "record_reference"
+                    ],
+                    "properties": {
+                      "currency": {
+                        "type": "object",
+                        "required": [
+                          "default_currency_code",
+                          "display_type"
+                        ],
+                        "properties": {
+                          "default_currency_code": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "display_type": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "record_reference": {
+                        "type": "object",
+                        "required": [
+                          "allowed_object_ids"
+                        ],
+                        "properties": {
+                          "allowed_object_ids": {
+                            "anyOf": [
+                              {
+                                "type": "null"
+                              },
+                              {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "entries.create",
+        "description": "Add a record to a list.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "list"
+          ],
+          "properties": {
+            "list": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "data": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "parent_record_id",
+                "parent_object",
+                "created_at",
+                "entry_values"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "list_id",
+                    "entry_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "list_id": {
+                      "type": "string"
+                    },
+                    "entry_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "parent_record_id": {
+                  "type": "string"
+                },
+                "parent_object": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "entry_values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "entries.delete",
+        "description": "Remove an entry from its list.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "list",
+            "entry_id"
+          ],
+          "properties": {
+            "list": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "entry_id": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "entries.get",
+        "description": "One list entry.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "list",
+            "entry_id"
+          ],
+          "properties": {
+            "list": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "entry_id": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "parent_record_id",
+                "parent_object",
+                "created_at",
+                "entry_values"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "list_id",
+                    "entry_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "list_id": {
+                      "type": "string"
+                    },
+                    "entry_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "parent_record_id": {
+                  "type": "string"
+                },
+                "parent_object": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "entry_values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "entries.query",
+        "description": "Filter, sort and page a list's entries; path filters reach the parent record.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "list"
+          ],
+          "properties": {
+            "list": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "filter": {},
+            "sorts": {},
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "parent_record_id",
+                  "parent_object",
+                  "created_at",
+                  "entry_values"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "list_id",
+                      "entry_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "list_id": {
+                        "type": "string"
+                      },
+                      "entry_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "parent_record_id": {
+                    "type": "string"
+                  },
+                  "parent_object": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "entry_values": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "entries.update",
+        "description": "Update entry values in append (PATCH) or overwrite (PUT) mode.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "list",
+            "entry_id",
+            "mode"
+          ],
+          "properties": {
+            "list": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "entry_id": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "append",
+                "overwrite"
+              ]
+            },
+            "data": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "parent_record_id",
+                "parent_object",
+                "created_at",
+                "entry_values"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "list_id",
+                    "entry_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "list_id": {
+                      "type": "string"
+                    },
+                    "entry_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "parent_record_id": {
+                  "type": "string"
+                },
+                "parent_object": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "entry_values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "lists.list",
+        "description": "Lists the caller can see.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "api_slug",
+                  "name",
+                  "parent_object",
+                  "workspace_access",
+                  "workspace_member_access",
+                  "created_by_actor",
+                  "created_at"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "list_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "list_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "api_slug": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "parent_object": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "workspace_access": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "full-access",
+                          "read-and-write",
+                          "read-only"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "workspace_member_access": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "workspace_member_id",
+                        "level"
+                      ],
+                      "properties": {
+                        "workspace_member_id": {
+                          "type": "string"
+                        },
+                        "level": {
+                          "type": "string",
+                          "enum": [
+                            "full-access",
+                            "read-and-write",
+                            "read-only"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "created_by_actor": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "api-token",
+                          "workspace-member",
+                          "system"
+                        ]
+                      },
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "created_at": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "notes.create",
+        "description": "Create a plaintext or markdown note on a record.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "data": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "parent_object",
+                "parent_record_id",
+                "title",
+                "meeting_id",
+                "content_plaintext",
+                "content_markdown",
+                "tags",
+                "created_by_actor",
+                "created_at"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "note_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "note_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "parent_object": {
+                  "type": "string"
+                },
+                "parent_record_id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "meeting_id": {
+                  "type": "null"
+                },
+                "content_plaintext": {
+                  "type": "string"
+                },
+                "content_markdown": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "created_by_actor": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "id"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "api-token",
+                        "workspace-member",
+                        "system"
+                      ]
+                    },
+                    "id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "CONTENT_TOO_LARGE",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "notes.delete",
+        "description": "Delete a note.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "note_id"
+          ],
+          "properties": {
+            "note_id": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "notes.get",
+        "description": "One note.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "note_id"
+          ],
+          "properties": {
+            "note_id": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "parent_object",
+                "parent_record_id",
+                "title",
+                "meeting_id",
+                "content_plaintext",
+                "content_markdown",
+                "tags",
+                "created_by_actor",
+                "created_at"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "note_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "note_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "parent_object": {
+                  "type": "string"
+                },
+                "parent_record_id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "meeting_id": {
+                  "type": "null"
+                },
+                "content_plaintext": {
+                  "type": "string"
+                },
+                "content_markdown": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "created_by_actor": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "id"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "api-token",
+                        "workspace-member",
+                        "system"
+                      ]
+                    },
+                    "id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "notes.list",
+        "description": "Notes, newest first, optionally for one parent record.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "parent_object": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "parent_record_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "parent_object",
+                  "parent_record_id",
+                  "title",
+                  "meeting_id",
+                  "content_plaintext",
+                  "content_markdown",
+                  "tags",
+                  "created_by_actor",
+                  "created_at"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "note_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "note_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "parent_object": {
+                    "type": "string"
+                  },
+                  "parent_record_id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "meeting_id": {
+                    "type": "null"
+                  },
+                  "content_plaintext": {
+                    "type": "string"
+                  },
+                  "content_markdown": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "created_by_actor": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "api-token",
+                          "workspace-member",
+                          "system"
+                        ]
+                      },
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "created_at": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "objects.list",
+        "description": "The workspace's standard objects (GET /v2/objects).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "api_slug",
+                  "singular_noun",
+                  "plural_noun",
+                  "created_at"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "object_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "object_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "api_slug": {
+                    "type": "string"
+                  },
+                  "singular_noun": {
+                    "type": "string"
+                  },
+                  "plural_noun": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "records.assert",
+        "description": "Upsert by a unique matching attribute: update the one match, create when none, fail when several match.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "object"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "matching_attribute": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "data": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "created_at",
+                "web_url",
+                "values"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "object_id",
+                    "record_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "object_id": {
+                      "type": "string"
+                    },
+                    "record_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "web_url": {
+                  "type": "string"
+                },
+                "values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "MULTIPLE_MATCH_RESULTS",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "UNIQUENESS_CONFLICT",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "records.create",
+        "description": "Create a record; relationship inverses are kept in sync.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "object"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "data": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "created_at",
+                "web_url",
+                "values"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "object_id",
+                    "record_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "object_id": {
+                      "type": "string"
+                    },
+                    "record_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "web_url": {
+                  "type": "string"
+                },
+                "values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "UNIQUENESS_CONFLICT",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "records.delete",
+        "description": "Delete a record, its list entries and notes; unlink it from references and tasks.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "record_id"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "record_id": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "records.get",
+        "description": "One record with every attribute value.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "record_id"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "record_id": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "created_at",
+                "web_url",
+                "values"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "object_id",
+                    "record_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "object_id": {
+                      "type": "string"
+                    },
+                    "record_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "web_url": {
+                  "type": "string"
+                },
+                "values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "records.query",
+        "description": "Filter, sort and page people, companies or deals (POST /v2/objects/{object}/records/query).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "object"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "filter": {},
+            "sorts": {},
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "filter_view_id": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "created_at",
+                  "web_url",
+                  "values"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "object_id",
+                      "record_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "object_id": {
+                        "type": "string"
+                      },
+                      "record_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "web_url": {
+                    "type": "string"
+                  },
+                  "values": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "records.search",
+        "description": "Prefix search over names, e-mail addresses, domains and phone numbers of up to three objects.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "query": {},
+            "objects": {},
+            "request_as": {},
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "object_slug",
+                  "record_text",
+                  "record_image"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "object_id",
+                      "record_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "object_id": {
+                        "type": "string"
+                      },
+                      "record_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "object_slug": {
+                    "type": "string"
+                  },
+                  "record_text": {
+                    "type": "string"
+                  },
+                  "record_image": {
+                    "type": "null"
+                  },
+                  "email_addresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "phone_numbers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "domains": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "records.update",
+        "description": "Update a record: append adds multiselect values (PATCH), overwrite replaces them (PUT).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "record_id",
+            "mode"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "record_id": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "append",
+                "overwrite"
+              ]
+            },
+            "data": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "created_at",
+                "web_url",
+                "values"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "object_id",
+                    "record_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "object_id": {
+                      "type": "string"
+                    },
+                    "record_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "web_url": {
+                  "type": "string"
+                },
+                "values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "UNIQUENESS_CONFLICT",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "select-options.list",
+        "description": "Select options of a select attribute on an object or a visible list, in configured order; archived options only with show_archived.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "target",
+            "identifier",
+            "attribute"
+          ],
+          "properties": {
+            "target": {
+              "type": "string",
+              "enum": [
+                "objects",
+                "lists"
+              ]
+            },
+            "identifier": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "attribute": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "show_archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "title",
+                  "is_archived"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "attribute_id",
+                      "option_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "object_id": {
+                        "type": "string"
+                      },
+                      "list_id": {
+                        "type": "string"
+                      },
+                      "attribute_id": {
+                        "type": "string"
+                      },
+                      "option_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "is_archived": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "self.identify",
+        "description": "Token identity: workspace, scopes, authorizing member and the world's virtual time (GET /v2/self).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "active",
+            "scope",
+            "client_id",
+            "token_type",
+            "exp",
+            "iat",
+            "sub",
+            "aud",
+            "iss",
+            "authorized_by_workspace_member_id",
+            "workspace_id",
+            "workspace_name",
+            "workspace_slug",
+            "workspace_logo_url",
+            "server_time"
+          ],
+          "properties": {
+            "active": {
+              "type": "boolean"
+            },
+            "scope": {
+              "type": "string"
+            },
+            "client_id": {
+              "type": "string"
+            },
+            "token_type": {
+              "type": "string"
+            },
+            "exp": {
+              "type": "null"
+            },
+            "iat": {
+              "type": "integer"
+            },
+            "sub": {
+              "type": "string"
+            },
+            "aud": {
+              "type": "string"
+            },
+            "iss": {
+              "type": "string"
+            },
+            "authorized_by_workspace_member_id": {
+              "type": "string"
+            },
+            "workspace_id": {
+              "type": "string"
+            },
+            "workspace_name": {
+              "type": "string"
+            },
+            "workspace_slug": {
+              "type": "string"
+            },
+            "workspace_logo_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "server_time": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "statuses.list",
+        "description": "Statuses of a status attribute on an object or a visible list, in configured order; archived statuses only with show_archived.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "target",
+            "identifier",
+            "attribute"
+          ],
+          "properties": {
+            "target": {
+              "type": "string",
+              "enum": [
+                "objects",
+                "lists"
+              ]
+            },
+            "identifier": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "attribute": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "show_archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "title",
+                  "is_archived",
+                  "celebration_enabled",
+                  "target_time_in_status"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "attribute_id",
+                      "status_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "object_id": {
+                        "type": "string"
+                      },
+                      "list_id": {
+                        "type": "string"
+                      },
+                      "attribute_id": {
+                        "type": "string"
+                      },
+                      "status_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "is_archived": {
+                    "type": "boolean"
+                  },
+                  "celebration_enabled": {
+                    "type": "boolean"
+                  },
+                  "target_time_in_status": {
+                    "type": "null"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "tasks.create",
+        "description": "Create a task with deadline, assignees and linked records.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "data": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "content_plaintext",
+                "deadline_at",
+                "is_completed",
+                "completed_at",
+                "linked_records",
+                "assignees",
+                "created_by_actor",
+                "created_at"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "task_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "task_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content_plaintext": {
+                  "type": "string"
+                },
+                "deadline_at": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "is_completed": {
+                  "type": "boolean"
+                },
+                "completed_at": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "linked_records": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "target_object_id",
+                      "target_record_id"
+                    ],
+                    "properties": {
+                      "target_object_id": {
+                        "type": "string"
+                      },
+                      "target_record_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "assignees": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "referenced_actor_type",
+                      "referenced_actor_id"
+                    ],
+                    "properties": {
+                      "referenced_actor_type": {
+                        "type": "string",
+                        "enum": [
+                          "workspace-member"
+                        ]
+                      },
+                      "referenced_actor_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "created_by_actor": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "id"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "api-token",
+                        "workspace-member",
+                        "system"
+                      ]
+                    },
+                    "id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "tasks.delete",
+        "description": "Delete a task.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "task_id"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "tasks.list",
+        "description": "Tasks filtered by completion, assignee or linked record, sorted and paged.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sort": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "linked_object": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "linked_record_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "assignee": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "is_completed": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1024
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "content_plaintext",
+                  "deadline_at",
+                  "is_completed",
+                  "completed_at",
+                  "linked_records",
+                  "assignees",
+                  "created_by_actor",
+                  "created_at"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "task_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "task_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "content_plaintext": {
+                    "type": "string"
+                  },
+                  "deadline_at": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "is_completed": {
+                    "type": "boolean"
+                  },
+                  "completed_at": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "linked_records": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "target_object_id",
+                        "target_record_id"
+                      ],
+                      "properties": {
+                        "target_object_id": {
+                          "type": "string"
+                        },
+                        "target_record_id": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "assignees": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "referenced_actor_type",
+                        "referenced_actor_id"
+                      ],
+                      "properties": {
+                        "referenced_actor_type": {
+                          "type": "string",
+                          "enum": [
+                            "workspace-member"
+                          ]
+                        },
+                        "referenced_actor_id": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "created_by_actor": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "api-token",
+                          "workspace-member",
+                          "system"
+                        ]
+                      },
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "created_at": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "tasks.update",
+        "description": "Update a task's deadline, completion, links or assignees.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "task_id"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "data": {},
+            "request_error": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "required": [
+                "id",
+                "content_plaintext",
+                "deadline_at",
+                "is_completed",
+                "completed_at",
+                "linked_records",
+                "assignees",
+                "created_by_actor",
+                "created_at"
+              ],
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "required": [
+                    "workspace_id",
+                    "task_id"
+                  ],
+                  "properties": {
+                    "workspace_id": {
+                      "type": "string"
+                    },
+                    "task_id": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "content_plaintext": {
+                  "type": "string"
+                },
+                "deadline_at": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "is_completed": {
+                  "type": "boolean"
+                },
+                "completed_at": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "linked_records": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "target_object_id",
+                      "target_record_id"
+                    ],
+                    "properties": {
+                      "target_object_id": {
+                        "type": "string"
+                      },
+                      "target_record_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "assignees": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "referenced_actor_type",
+                      "referenced_actor_id"
+                    ],
+                    "properties": {
+                      "referenced_actor_type": {
+                        "type": "string",
+                        "enum": [
+                          "workspace-member"
+                        ]
+                      },
+                      "referenced_actor_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "created_by_actor": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "id"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "api-token",
+                        "workspace-member",
+                        "system"
+                      ]
+                    },
+                    "id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_TYPE",
+          "VALUE_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "workspace-members.list",
+        "description": "Workspace members with access levels.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "first_name",
+                  "last_name",
+                  "avatar_url",
+                  "email_address",
+                  "created_at",
+                  "access_level"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "required": [
+                      "workspace_id",
+                      "workspace_member_id"
+                    ],
+                    "properties": {
+                      "workspace_id": {
+                        "type": "string"
+                      },
+                      "workspace_member_id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "avatar_url": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "email_address": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "access_level": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "AUTHENTICATION_FAILED",
+          "FAILED_PRECONDITION",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      }
+    ],
+    "events": [
+      {
+        "id": "list-entry.created",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "parent_object_id",
+            "parent_record_id",
+            "actor"
+          ],
+          "properties": {
+            "id": {
+              "type": "object",
+              "required": [
+                "workspace_id",
+                "list_id",
+                "entry_id"
+              ],
+              "properties": {
+                "workspace_id": {
+                  "type": "string"
+                },
+                "list_id": {
+                  "type": "string"
+                },
+                "entry_id": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "parent_object_id": {
+              "type": "string"
+            },
+            "parent_record_id": {
+              "type": "string"
+            },
+            "actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "record.created",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "actor"
+          ],
+          "properties": {
+            "id": {
+              "type": "object",
+              "required": [
+                "workspace_id",
+                "object_id",
+                "record_id"
+              ],
+              "properties": {
+                "workspace_id": {
+                  "type": "string"
+                },
+                "object_id": {
+                  "type": "string"
+                },
+                "record_id": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "record.updated",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "attribute_id",
+            "actor"
+          ],
+          "properties": {
+            "id": {
+              "type": "object",
+              "required": [
+                "workspace_id",
+                "object_id",
+                "record_id"
+              ],
+              "properties": {
+                "workspace_id": {
+                  "type": "string"
+                },
+                "object_id": {
+                  "type": "string"
+                },
+                "record_id": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "attribute_id": {
+              "type": "string"
+            },
+            "actor": {
+              "type": "object",
+              "required": [
+                "type",
+                "id"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "api-token",
+                    "workspace-member",
+                    "system"
+                  ]
+                },
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "create-committed-lost",
+        "appliesTo": [
+          "records.create",
+          "tasks.create"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "Attio is temporarily unavailable. Please retry.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "rate-limited",
+        "appliesTo": [
+          "attributes.list",
+          "entries.create",
+          "entries.delete",
+          "entries.get",
+          "entries.query",
+          "entries.update",
+          "lists.list",
+          "notes.create",
+          "notes.delete",
+          "notes.get",
+          "notes.list",
+          "objects.list",
+          "records.assert",
+          "records.create",
+          "records.delete",
+          "records.get",
+          "records.query",
+          "records.search",
+          "records.update",
+          "select-options.list",
+          "self.identify",
+          "statuses.list",
+          "tasks.create",
+          "tasks.delete",
+          "tasks.list",
+          "tasks.update",
+          "workspace-members.list"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RATE_LIMITED",
+          "message": "Rate limit exceeded, please try again later",
+          "retryable": true
+        }
+      },
+      {
+        "id": "write-unavailable",
+        "appliesTo": [
+          "entries.create",
+          "entries.delete",
+          "entries.update",
+          "notes.create",
+          "notes.delete",
+          "records.assert",
+          "records.create",
+          "records.delete",
+          "records.update",
+          "tasks.create",
+          "tasks.delete",
+          "tasks.update"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "Attio is temporarily unavailable. Please retry.",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "assert-record",
+        "operationId": "records.assert",
+        "method": "PUT",
+        "path": "/v2/objects/{object}/records",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "MULTIPLE_MATCH_RESULTS",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "UNIQUENESS_CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-entry",
+        "operationId": "entries.create",
+        "method": "POST",
+        "path": "/v2/lists/{list}/entries",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-note",
+        "operationId": "notes.create",
+        "method": "POST",
+        "path": "/v2/notes",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "CONTENT_TOO_LARGE",
+              "status": 413
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-record",
+        "operationId": "records.create",
+        "method": "POST",
+        "path": "/v2/objects/{object}/records",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "UNIQUENESS_CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-task",
+        "operationId": "tasks.create",
+        "method": "POST",
+        "path": "/v2/tasks",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-entry",
+        "operationId": "entries.delete",
+        "method": "DELETE",
+        "path": "/v2/lists/{list}/entries/{entry_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-note",
+        "operationId": "notes.delete",
+        "method": "DELETE",
+        "path": "/v2/notes/{note_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-record",
+        "operationId": "records.delete",
+        "method": "DELETE",
+        "path": "/v2/objects/{object}/records/{record_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-task",
+        "operationId": "tasks.delete",
+        "method": "DELETE",
+        "path": "/v2/tasks/{task_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-entry",
+        "operationId": "entries.get",
+        "method": "GET",
+        "path": "/v2/lists/{list}/entries/{entry_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-note",
+        "operationId": "notes.get",
+        "method": "GET",
+        "path": "/v2/notes/{note_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-record",
+        "operationId": "records.get",
+        "method": "GET",
+        "path": "/v2/objects/{object}/records/{record_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "identify",
+        "operationId": "self.identify",
+        "method": "GET",
+        "path": "/v2/self",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-list-attribute-options",
+        "operationId": "select-options.list",
+        "method": "GET",
+        "path": "/v2/lists/{identifier}/attributes/{attribute}/options",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-list-attribute-statuses",
+        "operationId": "statuses.list",
+        "method": "GET",
+        "path": "/v2/lists/{identifier}/attributes/{attribute}/statuses",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-list-attributes",
+        "operationId": "attributes.list",
+        "method": "GET",
+        "path": "/v2/lists/{identifier}/attributes",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-lists",
+        "operationId": "lists.list",
+        "method": "GET",
+        "path": "/v2/lists",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-notes",
+        "operationId": "notes.list",
+        "method": "GET",
+        "path": "/v2/notes",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-object-attribute-options",
+        "operationId": "select-options.list",
+        "method": "GET",
+        "path": "/v2/objects/{identifier}/attributes/{attribute}/options",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-object-attribute-statuses",
+        "operationId": "statuses.list",
+        "method": "GET",
+        "path": "/v2/objects/{identifier}/attributes/{attribute}/statuses",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-object-attributes",
+        "operationId": "attributes.list",
+        "method": "GET",
+        "path": "/v2/objects/{identifier}/attributes",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-objects",
+        "operationId": "objects.list",
+        "method": "GET",
+        "path": "/v2/objects",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-tasks",
+        "operationId": "tasks.list",
+        "method": "GET",
+        "path": "/v2/tasks",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-workspace-members",
+        "operationId": "workspace-members.list",
+        "method": "GET",
+        "path": "/v2/workspace_members",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "query-entries",
+        "operationId": "entries.query",
+        "method": "POST",
+        "path": "/v2/lists/{list}/entries/query",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "query-records",
+        "operationId": "records.query",
+        "method": "POST",
+        "path": "/v2/objects/{object}/records/query",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "search-records",
+        "operationId": "records.search",
+        "method": "POST",
+        "path": "/v2/objects/records/search",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-entry-append",
+        "operationId": "entries.update",
+        "method": "PATCH",
+        "path": "/v2/lists/{list}/entries/{entry_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-entry-overwrite",
+        "operationId": "entries.update",
+        "method": "PUT",
+        "path": "/v2/lists/{list}/entries/{entry_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-record-append",
+        "operationId": "records.update",
+        "method": "PATCH",
+        "path": "/v2/objects/{object}/records/{record_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "UNIQUENESS_CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-record-overwrite",
+        "operationId": "records.update",
+        "method": "PUT",
+        "path": "/v2/objects/{object}/records/{record_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "UNIQUENESS_CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-task",
+        "operationId": "tasks.update",
+        "method": "PATCH",
+        "path": "/v2/tasks/{task_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "AUTHENTICATION_FAILED",
+              "status": 401
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 403
+            },
+            {
+              "code": "VALIDATION_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALUE_NOT_FOUND",
+              "status": 400
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": [],
+    "connections": [
+      {
+        "id": "attio-rest",
+        "title": "Attio REST API v2 client (base URL override)",
+        "protocol": "http",
+        "environment": {
+          "ATTIO_API_BASE_URL": "FIREDRILL_HTTP_URL",
+          "ATTIO_API_TOKEN": "FIREDRILL_HTTP_TOKEN"
+        },
+        "instructions": "Point the client's base URL at ATTIO_API_BASE_URL (it replaces https://api.attio.com; paths keep their /v2 prefix) and send ATTIO_API_TOKEN as the Bearer token. The token is the isolated Firedrill world token, never a real Attio key. Only the documented route subset exists; every other Attio path answers 404."
+      }
+    ]
+  }
+}

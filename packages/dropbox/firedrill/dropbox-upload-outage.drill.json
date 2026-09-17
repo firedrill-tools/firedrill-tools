@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "dropbox-upload-outage",
+  "title": "An upload commits but answers 500; the caller verifies before retrying",
+  "targetId": "conformance-agent",
+  "scenarioId": "upload-outage",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the upload-outage flow against the synthetic Dropbox Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "entries-count",
+      "kind": "state.count",
+      "packageId": "dropbox",
+      "namespace": "entries",
+      "comparison": {
+        "operator": "equals",
+        "value": 38
+      }
+    },
+    {
+      "id": "revisions-count",
+      "kind": "state.count",
+      "packageId": "dropbox",
+      "namespace": "revisions",
+      "comparison": {
+        "operator": "equals",
+        "value": 30
+      }
+    },
+    {
+      "id": "files-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "dropbox",
+        "eventId": "files.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

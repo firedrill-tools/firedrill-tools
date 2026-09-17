@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "trolley-partner-outage",
+  "title": "Partner outage: account creation and quotes answer 500 and change nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "partner-outage",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the partner-outage conformance flow against the synthetic Trolley Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "recipient-accounts-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-create-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "batches-generate-quote-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.generate_quote"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "batches-generate-quote-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.generate_quote"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "count-recipient-accounts",
+      "kind": "state.count",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "b2-quote-unchanged",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003G",
+      "path": [
+        "quoteExpiredAt"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "2026-09-15T12:30:00.000Z"
+      }
+    }
+  ]
+}

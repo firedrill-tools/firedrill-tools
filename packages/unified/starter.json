@@ -1,0 +1,2446 @@
+{
+  "schemaVersion": 1,
+  "virtualTimeUs": 1789549200000000,
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "next_id": 4097
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "workspaces",
+      "rowId": "68c8000000000000000000a1",
+      "value": {
+        "id": "68c8000000000000000000a1",
+        "name": "Brightline Sales Ops",
+        "region": "north-america",
+        "limits": {
+          "max_rows_per_namespace": 10000
+        },
+        "created_at": "2026-06-01T09:00:00.000Z",
+        "updated_at": "2026-06-01T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000201",
+      "value": {
+        "id": "68c800000000000000000201",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "hubspot",
+        "integration_name": "HubSpot",
+        "external_xref": "acct-brightline",
+        "permissions": [
+          "crm_contact_read",
+          "crm_contact_write",
+          "crm_company_read",
+          "crm_company_write",
+          "crm_deal_read",
+          "crm_deal_write",
+          "crm_pipeline_read"
+        ],
+        "categories": [
+          "crm"
+        ],
+        "auth": {
+          "name": "Maya Lindqvist",
+          "emails": [
+            "maya.lindqvist@brightline.example.com"
+          ],
+          "user_id": "u-maya"
+        },
+        "is_paused": false,
+        "environment": "Production",
+        "last_healthy_at": "2026-09-15T09:00:00.000Z",
+        "last_unhealthy_at": null,
+        "last_unhealthy_code": null,
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-09-15T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000202",
+      "value": {
+        "id": "68c800000000000000000202",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "pipedrive",
+        "integration_name": "Pipedrive",
+        "external_xref": "acct-northwind",
+        "permissions": [
+          "crm_contact_read"
+        ],
+        "categories": [
+          "crm"
+        ],
+        "auth": {
+          "name": null,
+          "emails": [],
+          "user_id": null
+        },
+        "is_paused": false,
+        "environment": "Production",
+        "last_healthy_at": "2026-09-15T09:00:00.000Z",
+        "last_unhealthy_at": null,
+        "last_unhealthy_code": null,
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-08-20T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000203",
+      "value": {
+        "id": "68c800000000000000000203",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "slack",
+        "integration_name": "Slack",
+        "external_xref": null,
+        "permissions": [
+          "messaging_channel_read",
+          "messaging_message_read",
+          "messaging_message_write"
+        ],
+        "categories": [
+          "messaging"
+        ],
+        "auth": {
+          "name": "Ops Bot",
+          "emails": [],
+          "user_id": "u-opsbot"
+        },
+        "is_paused": false,
+        "environment": "Production",
+        "last_healthy_at": "2026-09-15T09:00:00.000Z",
+        "last_unhealthy_at": null,
+        "last_unhealthy_code": null,
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-09-12T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000204",
+      "value": {
+        "id": "68c800000000000000000204",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "gmail",
+        "integration_name": "Gmail",
+        "external_xref": null,
+        "permissions": [
+          "messaging_channel_read",
+          "messaging_message_read",
+          "messaging_message_write"
+        ],
+        "categories": [
+          "messaging"
+        ],
+        "auth": {
+          "name": "Maya Lindqvist",
+          "emails": [
+            "maya.lindqvist@brightline.example.com"
+          ],
+          "user_id": "u-maya"
+        },
+        "is_paused": false,
+        "environment": "Production",
+        "last_healthy_at": "2026-09-15T09:00:00.000Z",
+        "last_unhealthy_at": null,
+        "last_unhealthy_code": null,
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-09-14T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000205",
+      "value": {
+        "id": "68c800000000000000000205",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "hubspot",
+        "integration_name": "HubSpot",
+        "external_xref": "acct-paused",
+        "permissions": [
+          "crm_contact_read",
+          "crm_contact_write",
+          "crm_company_read",
+          "crm_company_write",
+          "crm_deal_read",
+          "crm_deal_write",
+          "crm_pipeline_read"
+        ],
+        "categories": [
+          "crm"
+        ],
+        "auth": {
+          "name": null,
+          "emails": [],
+          "user_id": null
+        },
+        "is_paused": true,
+        "environment": "Production",
+        "last_healthy_at": "2026-09-15T09:00:00.000Z",
+        "last_unhealthy_at": null,
+        "last_unhealthy_code": null,
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-09-01T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000206",
+      "value": {
+        "id": "68c800000000000000000206",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "salesforce",
+        "integration_name": "Salesforce",
+        "external_xref": null,
+        "permissions": [
+          "crm_contact_read",
+          "crm_contact_write",
+          "crm_company_read",
+          "crm_company_write",
+          "crm_deal_read",
+          "crm_deal_write",
+          "crm_pipeline_read"
+        ],
+        "categories": [
+          "crm"
+        ],
+        "auth": {
+          "name": null,
+          "emails": [],
+          "user_id": null
+        },
+        "is_paused": false,
+        "environment": "Production",
+        "last_healthy_at": "2026-09-09T09:00:00.000Z",
+        "last_unhealthy_at": "2026-09-10T09:00:00.000Z",
+        "last_unhealthy_code": "401",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-09-10T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000207",
+      "value": {
+        "id": "68c800000000000000000207",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "bamboohr",
+        "integration_name": "BambooHR",
+        "external_xref": null,
+        "permissions": [],
+        "categories": [
+          "hris"
+        ],
+        "auth": {
+          "name": null,
+          "emails": [],
+          "user_id": null
+        },
+        "is_paused": false,
+        "environment": "Production",
+        "last_healthy_at": "2026-09-15T09:00:00.000Z",
+        "last_unhealthy_at": null,
+        "last_unhealthy_code": null,
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-07-15T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000208",
+      "value": {
+        "id": "68c800000000000000000208",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "hubspot",
+        "integration_name": "HubSpot",
+        "external_xref": "acct-sandbox",
+        "permissions": [
+          "crm_contact_read",
+          "crm_contact_write",
+          "crm_company_read",
+          "crm_company_write",
+          "crm_deal_read",
+          "crm_deal_write",
+          "crm_pipeline_read"
+        ],
+        "categories": [
+          "crm"
+        ],
+        "auth": {
+          "name": null,
+          "emails": [],
+          "user_id": null
+        },
+        "is_paused": false,
+        "environment": "Sandbox",
+        "last_healthy_at": "2026-09-15T09:00:00.000Z",
+        "last_unhealthy_at": null,
+        "last_unhealthy_code": null,
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-08-01T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "connections",
+      "rowId": "68c800000000000000000209",
+      "value": {
+        "id": "68c800000000000000000209",
+        "workspace_id": "68c8000000000000000000a1",
+        "integration_type": "hubspot",
+        "integration_name": "HubSpot",
+        "external_xref": "acct-sandbox-omni",
+        "permissions": [
+          "crm_contact_read",
+          "crm_contact_write",
+          "crm_company_read",
+          "crm_company_write",
+          "crm_deal_read",
+          "crm_deal_write",
+          "crm_pipeline_read",
+          "messaging_channel_read",
+          "messaging_message_read",
+          "messaging_message_write"
+        ],
+        "categories": [
+          "crm",
+          "messaging"
+        ],
+        "auth": {
+          "name": "Maya Lindqvist",
+          "emails": [
+            "maya.lindqvist@brightline.example.com"
+          ],
+          "user_id": "u-maya"
+        },
+        "is_paused": false,
+        "environment": "Sandbox",
+        "last_healthy_at": "2026-09-15T09:00:00.000Z",
+        "last_unhealthy_at": null,
+        "last_unhealthy_code": null,
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-08-02T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "pipelines",
+      "rowId": "68c800000000000000000201/68c800000000000000000301",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000301",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-06-02T09:00:00.000Z",
+        "name": "Sales Pipeline",
+        "is_active": true,
+        "deal_probability": null,
+        "display_order": 0,
+        "stages": [
+          {
+            "id": "68c800000000000000000311",
+            "created_at": "2026-06-02T09:00:00.000Z",
+            "updated_at": "2026-06-02T09:00:00.000Z",
+            "name": "Qualification",
+            "active": true,
+            "deal_probability": 10,
+            "is_closed": false,
+            "display_order": 0
+          },
+          {
+            "id": "68c800000000000000000312",
+            "created_at": "2026-06-02T09:00:00.000Z",
+            "updated_at": "2026-06-02T09:00:00.000Z",
+            "name": "Proposal",
+            "active": true,
+            "deal_probability": 40,
+            "is_closed": false,
+            "display_order": 1
+          },
+          {
+            "id": "68c800000000000000000313",
+            "created_at": "2026-06-02T09:00:00.000Z",
+            "updated_at": "2026-06-02T09:00:00.000Z",
+            "name": "Negotiation",
+            "active": true,
+            "deal_probability": 70,
+            "is_closed": false,
+            "display_order": 2
+          },
+          {
+            "id": "68c800000000000000000314",
+            "created_at": "2026-06-02T09:00:00.000Z",
+            "updated_at": "2026-06-02T09:00:00.000Z",
+            "name": "Closed Won",
+            "active": true,
+            "deal_probability": 100,
+            "is_closed": true,
+            "display_order": 3
+          },
+          {
+            "id": "68c800000000000000000315",
+            "created_at": "2026-06-02T09:00:00.000Z",
+            "updated_at": "2026-06-02T09:00:00.000Z",
+            "name": "Closed Lost",
+            "active": true,
+            "deal_probability": 0,
+            "is_closed": true,
+            "display_order": 4
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "pipelines",
+      "rowId": "68c800000000000000000201/68c800000000000000000302",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000302",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-07-01T09:00:00.000Z",
+        "name": "Renewals",
+        "is_active": false,
+        "deal_probability": 50,
+        "display_order": 1,
+        "stages": [
+          {
+            "id": "68c800000000000000000321",
+            "created_at": "2026-06-02T09:00:00.000Z",
+            "updated_at": "2026-06-02T09:00:00.000Z",
+            "name": "Upcoming",
+            "active": true,
+            "deal_probability": 50,
+            "is_closed": false,
+            "display_order": 0
+          },
+          {
+            "id": "68c800000000000000000322",
+            "created_at": "2026-06-02T09:00:00.000Z",
+            "updated_at": "2026-06-02T09:00:00.000Z",
+            "name": "Renewed",
+            "active": true,
+            "deal_probability": 100,
+            "is_closed": true,
+            "display_order": 1
+          },
+          {
+            "id": "68c800000000000000000323",
+            "created_at": "2026-06-02T09:00:00.000Z",
+            "updated_at": "2026-06-02T09:00:00.000Z",
+            "name": "Churned",
+            "active": true,
+            "deal_probability": 0,
+            "is_closed": true,
+            "display_order": 2
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "companies",
+      "rowId": "68c800000000000000000201/68c800000000000000000401",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000401",
+        "created_at": "2026-06-03T09:00:00.000Z",
+        "updated_at": "2026-09-12T09:00:00.000Z",
+        "name": "Northwind Traders",
+        "description": null,
+        "industry": "Wholesale",
+        "timezone": null,
+        "employees": 480,
+        "is_active": true,
+        "tags": [],
+        "websites": [
+          "https://northwind.example.org"
+        ],
+        "domains": [
+          "northwind.example.org"
+        ],
+        "emails": [],
+        "telephones": [],
+        "address": {
+          "address1": "12 Harbour Way",
+          "address2": null,
+          "city": "Bristol",
+          "region": "England",
+          "region_code": "ENG",
+          "postal_code": "BS1 4DJ",
+          "country": "United Kingdom",
+          "country_code": "GB"
+        },
+        "link_urls": [],
+        "contact_ids": [
+          "68c800000000000000000501",
+          "68c800000000000000000502"
+        ],
+        "deal_ids": [
+          "68c800000000000000000601",
+          "68c800000000000000000602"
+        ],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "companies",
+      "rowId": "68c800000000000000000201/68c800000000000000000402",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000402",
+        "created_at": "2026-06-10T09:00:00.000Z",
+        "updated_at": "2026-09-05T09:00:00.000Z",
+        "name": "Contoso Robotics",
+        "description": null,
+        "industry": "Manufacturing",
+        "timezone": null,
+        "employees": 120,
+        "is_active": true,
+        "tags": [],
+        "websites": [],
+        "domains": [
+          "contoso-robotics.example.org"
+        ],
+        "emails": [],
+        "telephones": [],
+        "address": null,
+        "link_urls": [],
+        "contact_ids": [
+          "68c800000000000000000503"
+        ],
+        "deal_ids": [
+          "68c800000000000000000603"
+        ],
+        "user_id": "u-maya",
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "companies",
+      "rowId": "68c800000000000000000201/68c800000000000000000403",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000403",
+        "created_at": "2026-06-15T09:00:00.000Z",
+        "updated_at": "2026-08-20T09:00:00.000Z",
+        "name": "Fabrikam Studio",
+        "description": null,
+        "industry": "Design",
+        "timezone": null,
+        "employees": 35,
+        "is_active": true,
+        "tags": [
+          "agency",
+          "emea"
+        ],
+        "websites": [],
+        "domains": [],
+        "emails": [],
+        "telephones": [],
+        "address": null,
+        "link_urls": [],
+        "contact_ids": [
+          "68c800000000000000000504"
+        ],
+        "deal_ids": [
+          "68c800000000000000000604"
+        ],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "companies",
+      "rowId": "68c800000000000000000201/68c800000000000000000404",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000404",
+        "created_at": "2026-06-20T09:00:00.000Z",
+        "updated_at": "2026-07-01T09:00:00.000Z",
+        "name": "Tailspin Freight",
+        "description": null,
+        "industry": "Logistics",
+        "timezone": null,
+        "employees": 900,
+        "is_active": false,
+        "tags": [],
+        "websites": [],
+        "domains": [],
+        "emails": [
+          {
+            "email": "ops@tailspin.example.org",
+            "type": "WORK"
+          }
+        ],
+        "telephones": [],
+        "address": null,
+        "link_urls": [],
+        "contact_ids": [],
+        "deal_ids": [
+          "68c800000000000000000605"
+        ],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "companies",
+      "rowId": "68c800000000000000000201/68c800000000000000000405",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000405",
+        "created_at": "2026-07-02T09:00:00.000Z",
+        "updated_at": "2026-09-14T09:00:00.000Z",
+        "name": "山田物産",
+        "description": null,
+        "industry": "貿易",
+        "timezone": "Asia/Tokyo",
+        "employees": 60,
+        "is_active": true,
+        "tags": [],
+        "websites": [],
+        "domains": [],
+        "emails": [],
+        "telephones": [],
+        "address": {
+          "address1": "千代田区丸の内1-1-1",
+          "address2": null,
+          "city": "東京",
+          "region": "東京都",
+          "region_code": "13",
+          "postal_code": "100-0005",
+          "country": "日本",
+          "country_code": "JP"
+        },
+        "link_urls": [],
+        "contact_ids": [
+          "68c800000000000000000507"
+        ],
+        "deal_ids": [],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000501",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000501",
+        "created_at": "2026-06-03T09:00:00.000Z",
+        "updated_at": "2026-09-12T09:00:00.000Z",
+        "name": "Elena Marsh",
+        "first_name": "Elena",
+        "last_name": "Marsh",
+        "title": "Head of Procurement",
+        "company": "Northwind Traders",
+        "department": null,
+        "image_url": null,
+        "user_id": null,
+        "emails": [
+          {
+            "email": "elena.marsh@northwind.example.org",
+            "type": "WORK"
+          },
+          {
+            "email": "elena@example.org",
+            "type": "HOME"
+          }
+        ],
+        "telephones": [
+          {
+            "telephone": "+44 117 496 0100",
+            "type": "MOBILE"
+          }
+        ],
+        "address": {
+          "address1": "12 Harbour Way",
+          "address2": "Floor 3",
+          "city": "Bristol",
+          "region": "England",
+          "region_code": "ENG",
+          "postal_code": "BS1 4DJ",
+          "country": "United Kingdom",
+          "country_code": "GB"
+        },
+        "company_ids": [
+          "68c800000000000000000401"
+        ],
+        "deal_ids": [
+          "68c800000000000000000601",
+          "68c800000000000000000602"
+        ],
+        "link_urls": [],
+        "metadata": [],
+        "raw": {
+          "hs_object_id": "501"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000502",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000502",
+        "created_at": "2026-06-04T09:00:00.000Z",
+        "updated_at": "2026-09-10T09:00:00.000Z",
+        "name": "Tomás Achebe",
+        "first_name": "Tomás",
+        "last_name": "Achebe",
+        "title": "Operations Director",
+        "company": "Northwind Traders",
+        "department": null,
+        "image_url": null,
+        "user_id": "u-maya",
+        "emails": [
+          {
+            "email": "tomas.achebe@northwind.example.org",
+            "type": "WORK"
+          }
+        ],
+        "telephones": [],
+        "address": null,
+        "company_ids": [
+          "68c800000000000000000401"
+        ],
+        "deal_ids": [
+          "68c800000000000000000601"
+        ],
+        "link_urls": [],
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000503",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000503",
+        "created_at": "2026-06-11T09:00:00.000Z",
+        "updated_at": "2026-09-05T09:00:00.000Z",
+        "name": "Priya Raman",
+        "first_name": "Priya",
+        "last_name": "Raman",
+        "title": "CTO",
+        "company": "Contoso Robotics",
+        "department": null,
+        "image_url": null,
+        "user_id": null,
+        "emails": [
+          {
+            "email": "priya.raman@contoso-robotics.example.org",
+            "type": "WORK"
+          }
+        ],
+        "telephones": [],
+        "address": null,
+        "company_ids": [
+          "68c800000000000000000402"
+        ],
+        "deal_ids": [
+          "68c800000000000000000603"
+        ],
+        "link_urls": [],
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000504",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000504",
+        "created_at": "2026-06-16T09:00:00.000Z",
+        "updated_at": "2026-08-20T09:00:00.000Z",
+        "name": "Jonas Weber",
+        "first_name": "Jonas",
+        "last_name": "Weber",
+        "title": null,
+        "company": "Fabrikam Studio",
+        "department": null,
+        "image_url": null,
+        "user_id": null,
+        "emails": [],
+        "telephones": [],
+        "address": null,
+        "company_ids": [
+          "68c800000000000000000403"
+        ],
+        "deal_ids": [],
+        "link_urls": [],
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000505",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000505",
+        "created_at": "2026-07-01T09:00:00.000Z",
+        "updated_at": "2026-07-01T09:00:00.000Z",
+        "name": "Ravi Iyer",
+        "first_name": "Ravi",
+        "last_name": "Iyer",
+        "title": null,
+        "company": null,
+        "department": null,
+        "image_url": null,
+        "user_id": null,
+        "emails": [
+          {
+            "email": "ravi.iyer@example.org",
+            "type": "OTHER"
+          }
+        ],
+        "telephones": [],
+        "address": null,
+        "company_ids": [],
+        "deal_ids": [],
+        "link_urls": [],
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000506",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000506",
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "updated_at": "2026-09-01T09:00:00.000Z",
+        "name": "Ana Sofía Núñez",
+        "first_name": "Ana Sofía",
+        "last_name": "Núñez",
+        "title": null,
+        "company": null,
+        "department": "Finance",
+        "image_url": null,
+        "user_id": null,
+        "emails": [
+          {
+            "email": "ana.nunez@example.org",
+            "type": "WORK"
+          }
+        ],
+        "telephones": [],
+        "address": null,
+        "company_ids": [],
+        "deal_ids": [],
+        "link_urls": [],
+        "metadata": [
+          {
+            "id": "lead_source",
+            "slug": "lead_source",
+            "namespace": null,
+            "format": "SINGLE_SELECT",
+            "value": "Webinar",
+            "extra_data": null
+          },
+          {
+            "id": "lifetime_value",
+            "slug": "lifetime_value",
+            "namespace": null,
+            "format": "NUMBER",
+            "value": 12500,
+            "extra_data": null
+          }
+        ],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000507",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000507",
+        "created_at": "2026-07-09T09:00:00.000Z",
+        "updated_at": "2026-09-14T09:00:00.000Z",
+        "name": "李伟 Li Wei",
+        "first_name": "Li",
+        "last_name": "Wei",
+        "title": "採購経理",
+        "company": "山田物産",
+        "department": null,
+        "image_url": null,
+        "user_id": null,
+        "emails": [
+          {
+            "email": "li.wei@yamada.example.org",
+            "type": "WORK"
+          }
+        ],
+        "telephones": [],
+        "address": null,
+        "company_ids": [
+          "68c800000000000000000405"
+        ],
+        "deal_ids": [],
+        "link_urls": [],
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000508",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000508",
+        "created_at": "2026-08-01T09:00:00.000Z",
+        "updated_at": "2026-09-15T09:00:00.000Z",
+        "name": "Sam Okafor",
+        "first_name": "Sam",
+        "last_name": "Okafor",
+        "title": "Founder",
+        "company": null,
+        "department": null,
+        "image_url": "https://images.example.org/avatars/sam.png",
+        "user_id": null,
+        "emails": [
+          {
+            "email": "sam@okafor.example.org",
+            "type": "WORK"
+          }
+        ],
+        "telephones": [
+          {
+            "telephone": "+1 415 555 0142",
+            "type": "WORK"
+          }
+        ],
+        "address": null,
+        "company_ids": [],
+        "deal_ids": [],
+        "link_urls": [
+          "https://social.example.org/samokafor"
+        ],
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000202/68c800000000000000000509",
+      "value": {
+        "connection_id": "68c800000000000000000202",
+        "id": "68c800000000000000000509",
+        "created_at": "2026-06-20T09:00:00.000Z",
+        "updated_at": "2026-08-15T09:00:00.000Z",
+        "name": "Dana Cole",
+        "first_name": "Dana",
+        "last_name": "Cole",
+        "title": null,
+        "company": null,
+        "department": null,
+        "image_url": null,
+        "user_id": null,
+        "emails": [
+          {
+            "email": "dana.cole@example.org",
+            "type": "WORK"
+          }
+        ],
+        "telephones": [],
+        "address": null,
+        "company_ids": [],
+        "deal_ids": [],
+        "link_urls": [],
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000208/68c800000000000000000510",
+      "value": {
+        "connection_id": "68c800000000000000000208",
+        "id": "68c800000000000000000510",
+        "created_at": "2026-08-01T09:00:00.000Z",
+        "updated_at": "2026-08-01T09:00:00.000Z",
+        "name": "Sandbox Contact",
+        "first_name": "Sandbox",
+        "last_name": "Contact",
+        "title": null,
+        "company": null,
+        "department": null,
+        "image_url": null,
+        "user_id": null,
+        "emails": [],
+        "telephones": [],
+        "address": null,
+        "company_ids": [],
+        "deal_ids": [],
+        "link_urls": [],
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000601",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000601",
+        "created_at": "2026-06-05T09:00:00.000Z",
+        "updated_at": "2026-09-12T09:00:00.000Z",
+        "name": "Northwind Q4 expansion",
+        "description": null,
+        "source": null,
+        "currency": "USD",
+        "amount": 85000,
+        "probability": 40,
+        "closed_at": null,
+        "closing_at": "2026-11-30T09:00:00.000Z",
+        "lost_reason": null,
+        "won_reason": null,
+        "tags": [],
+        "pipelines": [
+          {
+            "id": "68c800000000000000000301",
+            "name": "Sales Pipeline",
+            "type": null
+          }
+        ],
+        "stages": [
+          {
+            "id": "68c800000000000000000312",
+            "name": "Proposal",
+            "type": null
+          }
+        ],
+        "contact_ids": [
+          "68c800000000000000000501",
+          "68c800000000000000000502"
+        ],
+        "company_ids": [
+          "68c800000000000000000401"
+        ],
+        "user_id": "u-maya",
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000602",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000602",
+        "created_at": "2026-07-01T09:00:00.000Z",
+        "updated_at": "2026-09-02T09:00:00.000Z",
+        "name": "Northwind renewal 2027",
+        "description": null,
+        "source": null,
+        "currency": "USD",
+        "amount": 42000,
+        "probability": 50,
+        "closed_at": null,
+        "closing_at": null,
+        "lost_reason": null,
+        "won_reason": null,
+        "tags": [],
+        "pipelines": [
+          {
+            "id": "68c800000000000000000302",
+            "name": "Renewals",
+            "type": null
+          }
+        ],
+        "stages": [
+          {
+            "id": "68c800000000000000000321",
+            "name": "Upcoming",
+            "type": null
+          }
+        ],
+        "contact_ids": [
+          "68c800000000000000000501"
+        ],
+        "company_ids": [
+          "68c800000000000000000401"
+        ],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000603",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000603",
+        "created_at": "2026-06-12T09:00:00.000Z",
+        "updated_at": "2026-09-05T09:00:00.000Z",
+        "name": "Contoso pilot",
+        "description": null,
+        "source": null,
+        "currency": "EUR",
+        "amount": 12500,
+        "probability": 80,
+        "closed_at": null,
+        "closing_at": null,
+        "lost_reason": null,
+        "won_reason": null,
+        "tags": [
+          "pilot"
+        ],
+        "pipelines": [
+          {
+            "id": "68c800000000000000000301",
+            "name": "Sales Pipeline",
+            "type": null
+          }
+        ],
+        "stages": [
+          {
+            "id": "68c800000000000000000313",
+            "name": "Negotiation",
+            "type": null
+          }
+        ],
+        "contact_ids": [
+          "68c800000000000000000503"
+        ],
+        "company_ids": [
+          "68c800000000000000000402"
+        ],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000604",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000604",
+        "created_at": "2026-06-18T09:00:00.000Z",
+        "updated_at": "2026-08-20T09:00:00.000Z",
+        "name": "Fabrikam rebrand",
+        "description": null,
+        "source": null,
+        "currency": "USD",
+        "amount": 9000,
+        "probability": 0,
+        "closed_at": "2026-08-20T09:00:00.000Z",
+        "closing_at": null,
+        "lost_reason": "Budget",
+        "won_reason": null,
+        "tags": [],
+        "pipelines": [
+          {
+            "id": "68c800000000000000000301",
+            "name": "Sales Pipeline",
+            "type": null
+          }
+        ],
+        "stages": [
+          {
+            "id": "68c800000000000000000315",
+            "name": "Closed Lost",
+            "type": null
+          }
+        ],
+        "contact_ids": [],
+        "company_ids": [
+          "68c800000000000000000403"
+        ],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000605",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000605",
+        "created_at": "2026-06-21T09:00:00.000Z",
+        "updated_at": "2026-07-01T09:00:00.000Z",
+        "name": "Tailspin logistics",
+        "description": null,
+        "source": null,
+        "currency": "USD",
+        "amount": 150000,
+        "probability": 100,
+        "closed_at": "2026-07-01T09:00:00.000Z",
+        "closing_at": null,
+        "lost_reason": null,
+        "won_reason": "Pricing",
+        "tags": [],
+        "pipelines": [
+          {
+            "id": "68c800000000000000000301",
+            "name": "Sales Pipeline",
+            "type": null
+          }
+        ],
+        "stages": [
+          {
+            "id": "68c800000000000000000314",
+            "name": "Closed Won",
+            "type": null
+          }
+        ],
+        "contact_ids": [],
+        "company_ids": [
+          "68c800000000000000000404"
+        ],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000606",
+      "value": {
+        "connection_id": "68c800000000000000000201",
+        "id": "68c800000000000000000606",
+        "created_at": "2026-09-15T09:00:00.000Z",
+        "updated_at": "2026-09-15T09:00:00.000Z",
+        "name": "Unnamed inbound",
+        "description": null,
+        "source": "web-form",
+        "currency": null,
+        "amount": 0,
+        "probability": 10,
+        "closed_at": null,
+        "closing_at": null,
+        "lost_reason": null,
+        "won_reason": null,
+        "tags": [],
+        "pipelines": [
+          {
+            "id": "68c800000000000000000301",
+            "name": "Sales Pipeline",
+            "type": null
+          }
+        ],
+        "stages": [
+          {
+            "id": "68c800000000000000000311",
+            "name": "Qualification",
+            "type": null
+          }
+        ],
+        "contact_ids": [],
+        "company_ids": [],
+        "user_id": null,
+        "metadata": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "channels",
+      "rowId": "68c800000000000000000203/68c800000000000000000701",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000701",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-06-02T09:00:00.000Z",
+        "name": "general",
+        "description": "Company-wide announcements",
+        "parent_id": null,
+        "has_subchannels": false,
+        "members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          },
+          {
+            "user_id": "u-opsbot",
+            "email": null,
+            "name": "Ops Bot",
+            "image_url": null
+          },
+          {
+            "user_id": "u-jun",
+            "email": "jun.park@brightline.example.com",
+            "name": "Jun Park",
+            "image_url": null
+          },
+          {
+            "user_id": "u-rosa",
+            "email": "rosa.feld@brightline.example.com",
+            "name": "Rosa Feld",
+            "image_url": null
+          }
+        ],
+        "is_active": true,
+        "is_private": false,
+        "web_url": "https://chat.example.org/archives/general",
+        "alias": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "channels",
+      "rowId": "68c800000000000000000203/68c800000000000000000702",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000702",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-06-02T09:00:00.000Z",
+        "name": "sales",
+        "description": "Pipeline chatter",
+        "parent_id": null,
+        "has_subchannels": false,
+        "members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          },
+          {
+            "user_id": "u-jun",
+            "email": "jun.park@brightline.example.com",
+            "name": "Jun Park",
+            "image_url": null
+          },
+          {
+            "user_id": "u-rosa",
+            "email": "rosa.feld@brightline.example.com",
+            "name": "Rosa Feld",
+            "image_url": null
+          }
+        ],
+        "is_active": true,
+        "is_private": false,
+        "web_url": null,
+        "alias": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "channels",
+      "rowId": "68c800000000000000000203/68c800000000000000000703",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000703",
+        "created_at": "2026-06-05T09:00:00.000Z",
+        "updated_at": "2026-06-05T09:00:00.000Z",
+        "name": "exec-private",
+        "description": null,
+        "parent_id": null,
+        "has_subchannels": false,
+        "members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          },
+          {
+            "user_id": "u-rosa",
+            "email": "rosa.feld@brightline.example.com",
+            "name": "Rosa Feld",
+            "image_url": null
+          }
+        ],
+        "is_active": true,
+        "is_private": true,
+        "web_url": null,
+        "alias": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "channels",
+      "rowId": "68c800000000000000000203/68c800000000000000000704",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000704",
+        "created_at": "2026-07-10T09:00:00.000Z",
+        "updated_at": "2026-07-10T09:00:00.000Z",
+        "name": "sales-emea",
+        "description": null,
+        "parent_id": "68c800000000000000000702",
+        "has_subchannels": false,
+        "members": [
+          {
+            "user_id": "u-jun",
+            "email": "jun.park@brightline.example.com",
+            "name": "Jun Park",
+            "image_url": null
+          }
+        ],
+        "is_active": true,
+        "is_private": false,
+        "web_url": null,
+        "alias": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "channels",
+      "rowId": "68c800000000000000000204/68c800000000000000000711",
+      "value": {
+        "connection_id": "68c800000000000000000204",
+        "id": "68c800000000000000000711",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-06-02T09:00:00.000Z",
+        "name": "INBOX",
+        "description": null,
+        "parent_id": null,
+        "has_subchannels": false,
+        "members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          }
+        ],
+        "is_active": true,
+        "is_private": false,
+        "web_url": null,
+        "alias": "INBOX"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "channels",
+      "rowId": "68c800000000000000000204/68c800000000000000000712",
+      "value": {
+        "connection_id": "68c800000000000000000204",
+        "id": "68c800000000000000000712",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-06-02T09:00:00.000Z",
+        "name": "SENT",
+        "description": null,
+        "parent_id": null,
+        "has_subchannels": false,
+        "members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          }
+        ],
+        "is_active": true,
+        "is_private": false,
+        "web_url": null,
+        "alias": "SENT"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "channels",
+      "rowId": "68c800000000000000000204/68c800000000000000000713",
+      "value": {
+        "connection_id": "68c800000000000000000204",
+        "id": "68c800000000000000000713",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": "2026-06-02T09:00:00.000Z",
+        "name": "DRAFT",
+        "description": null,
+        "parent_id": null,
+        "has_subchannels": false,
+        "members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          }
+        ],
+        "is_active": true,
+        "is_private": false,
+        "web_url": null,
+        "alias": "DRAFT"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000801",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000801",
+        "created_at": "2026-09-01T08:30:00.000Z",
+        "updated_at": "2026-09-01T08:30:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": "thread-0801",
+        "author_member": {
+          "user_id": "u-maya",
+          "email": "maya.lindqvist@brightline.example.com",
+          "name": "Maya Lindqvist",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [
+          {
+            "reaction": "tada",
+            "member": {
+              "user_id": "u-jun",
+              "email": "jun.park@brightline.example.com",
+              "name": "Jun Park",
+              "image_url": null
+            }
+          },
+          {
+            "reaction": "thumbsup",
+            "member": {
+              "user_id": "u-rosa",
+              "email": "rosa.feld@brightline.example.com",
+              "name": "Rosa Feld",
+              "image_url": null
+            }
+          }
+        ],
+        "subject": null,
+        "message": "Welcome to the new quarter, team. Pipeline review is Thursday.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": true,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000802",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000802",
+        "created_at": "2026-09-01T08:45:00.000Z",
+        "updated_at": "2026-09-01T08:45:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": "68c800000000000000000801",
+        "message_thread_identifier": "thread-0801",
+        "author_member": {
+          "user_id": "u-jun",
+          "email": "jun.park@brightline.example.com",
+          "name": "Jun Park",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Thanks! I will bring the EMEA numbers.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000803",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000803",
+        "created_at": "2026-09-01T09:10:00.000Z",
+        "updated_at": "2026-09-01T09:10:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": "68c800000000000000000801",
+        "message_thread_identifier": "thread-0801",
+        "author_member": {
+          "user_id": "u-rosa",
+          "email": "rosa.feld@brightline.example.com",
+          "name": "Rosa Feld",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          }
+        ],
+        "reactions": [],
+        "subject": null,
+        "message": "@Maya can we also cover the renewal forecast?",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000804",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000804",
+        "created_at": "2026-09-01T09:20:00.000Z",
+        "updated_at": "2026-09-01T09:20:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": "68c800000000000000000801",
+        "message_thread_identifier": "thread-0801",
+        "author_member": {
+          "user_id": "u-maya",
+          "email": "maya.lindqvist@brightline.example.com",
+          "name": "Maya Lindqvist",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Yes, adding it to the agenda.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000805",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000805",
+        "created_at": "2026-09-03T06:00:00.000Z",
+        "updated_at": "2026-09-03T06:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-opsbot",
+          "email": null,
+          "name": "Ops Bot",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Deploy of crm-sync 2.4.1 finished without errors.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000806",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000806",
+        "created_at": "2026-09-08T10:00:00.000Z",
+        "updated_at": "2026-09-08T10:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-jun",
+          "email": "jun.park@brightline.example.com",
+          "name": "Jun Park",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Reminder: expense reports are due Friday.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": true,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000807",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000807",
+        "created_at": "2026-09-10T11:15:00.000Z",
+        "updated_at": "2026-09-10T11:15:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-rosa",
+          "email": "rosa.feld@brightline.example.com",
+          "name": "Rosa Feld",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Sharing the updated onboarding deck.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [
+          {
+            "filename": "onboarding-deck.pdf",
+            "content_type": "application/pdf",
+            "download_url": "https://files.example.org/onboarding-deck.pdf",
+            "content_identifier": "att-0807",
+            "message_id": null,
+            "size": 482113
+          }
+        ],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000808",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000808",
+        "created_at": "2026-09-12T14:00:00.000Z",
+        "updated_at": "2026-09-12T14:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-maya",
+          "email": "maya.lindqvist@brightline.example.com",
+          "name": "Maya Lindqvist",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Long-form notes from the offsite:\nFocus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. Focus on renewals, pilot conversions and partner-sourced pipeline. ",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000809",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000809",
+        "created_at": "2026-09-14T02:30:00.000Z",
+        "updated_at": "2026-09-14T02:30:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000701",
+            "name": "general"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-jun",
+          "email": "jun.park@brightline.example.com",
+          "name": "Jun Park",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "東京オフィスから挨拶 🎉 新しい四半期も頑張りましょう！山田物産との商談が進んでいます。",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": true,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c80000000000000000080a",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c80000000000000000080a",
+        "created_at": "2026-09-02T09:00:00.000Z",
+        "updated_at": "2026-09-02T09:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000702",
+            "name": "sales"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-maya",
+          "email": "maya.lindqvist@brightline.example.com",
+          "name": "Maya Lindqvist",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Northwind Q4 expansion moved to Proposal.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c80000000000000000080b",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c80000000000000000080b",
+        "created_at": "2026-09-05T09:30:00.000Z",
+        "updated_at": "2026-09-05T09:30:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000702",
+            "name": "sales"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-jun",
+          "email": "jun.park@brightline.example.com",
+          "name": "Jun Park",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Contoso pilot is at Negotiation, decision expected next week.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c80000000000000000080c",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c80000000000000000080c",
+        "created_at": "2026-09-06T12:00:00.000Z",
+        "updated_at": "2026-09-06T12:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000702",
+            "name": "sales"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-rosa",
+          "email": "rosa.feld@brightline.example.com",
+          "name": "Rosa Feld",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Fabrikam rebrand closed lost (budget).",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c80000000000000000080d",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c80000000000000000080d",
+        "created_at": "2026-09-07T07:00:00.000Z",
+        "updated_at": "2026-09-07T07:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000702",
+            "name": "sales"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-opsbot",
+          "email": null,
+          "name": "Ops Bot",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Weekly digest: 6 open deals, 2 closed this quarter.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [
+          {
+            "id": "open-dashboard",
+            "text": "Open dashboard",
+            "icon": null
+          },
+          {
+            "id": "snooze",
+            "text": "Snooze",
+            "icon": "clock"
+          }
+        ],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c80000000000000000080e",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c80000000000000000080e",
+        "created_at": "2026-09-13T16:45:00.000Z",
+        "updated_at": "2026-09-13T16:45:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000702",
+            "name": "sales"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-maya",
+          "email": "maya.lindqvist@brightline.example.com",
+          "name": "Maya Lindqvist",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Please update close dates before the forecast call.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c80000000000000000080f",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c80000000000000000080f",
+        "created_at": "2026-09-04T18:00:00.000Z",
+        "updated_at": "2026-09-04T18:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000703",
+            "name": "exec-private"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-rosa",
+          "email": "rosa.feld@brightline.example.com",
+          "name": "Rosa Feld",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Board pre-read draft attached tomorrow.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000810",
+      "value": {
+        "connection_id": "68c800000000000000000203",
+        "id": "68c800000000000000000810",
+        "created_at": "2026-09-11T08:00:00.000Z",
+        "updated_at": "2026-09-11T08:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000703",
+            "name": "exec-private"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-maya",
+          "email": "maya.lindqvist@brightline.example.com",
+          "name": "Maya Lindqvist",
+          "image_url": null
+        },
+        "destination_members": [],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": null,
+        "message": "Thanks, will review before Monday.",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000204/68c800000000000000000811",
+      "value": {
+        "connection_id": "68c800000000000000000204",
+        "id": "68c800000000000000000811",
+        "created_at": "2026-09-09T10:05:00.000Z",
+        "updated_at": "2026-09-09T10:05:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000711",
+            "name": "INBOX"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": null,
+          "email": "elena.marsh@northwind.example.org",
+          "name": "Elena Marsh",
+          "image_url": null
+        },
+        "destination_members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          }
+        ],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": "Revised Q4 proposal",
+        "message": "Hi Maya, can you send the revised proposal for Q4?",
+        "message_html": "<p>Hi Maya, can you send the revised proposal for Q4?</p>",
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": true,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000204/68c800000000000000000812",
+      "value": {
+        "connection_id": "68c800000000000000000204",
+        "id": "68c800000000000000000812",
+        "created_at": "2026-09-11T15:20:00.000Z",
+        "updated_at": "2026-09-11T15:20:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000711",
+            "name": "INBOX"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": null,
+          "email": "priya.raman@contoso-robotics.example.org",
+          "name": "Priya Raman",
+          "image_url": null
+        },
+        "destination_members": [
+          {
+            "user_id": "u-maya",
+            "email": "maya.lindqvist@brightline.example.com",
+            "name": "Maya Lindqvist",
+            "image_url": null
+          }
+        ],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": "Pilot kickoff",
+        "message": "Pilot kickoff notes attached.",
+        "message_html": "<p>Pilot kickoff notes attached.</p>",
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000204/68c800000000000000000813",
+      "value": {
+        "connection_id": "68c800000000000000000204",
+        "id": "68c800000000000000000813",
+        "created_at": "2026-09-10T09:40:00.000Z",
+        "updated_at": "2026-09-10T09:40:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000712",
+            "name": "SENT"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-maya",
+          "email": "maya.lindqvist@brightline.example.com",
+          "name": "Maya Lindqvist",
+          "image_url": null
+        },
+        "destination_members": [
+          {
+            "user_id": null,
+            "email": "elena.marsh@northwind.example.org",
+            "name": "Elena Marsh",
+            "image_url": null
+          }
+        ],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": "Re: Revised Q4 proposal",
+        "message": "Elena, the revised proposal is attached. Best, Maya",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000204/68c800000000000000000814",
+      "value": {
+        "connection_id": "68c800000000000000000204",
+        "id": "68c800000000000000000814",
+        "created_at": "2026-09-15T17:00:00.000Z",
+        "updated_at": "2026-09-15T17:00:00.000Z",
+        "channels": [
+          {
+            "id": "68c800000000000000000713",
+            "name": "DRAFT"
+          }
+        ],
+        "parent_id": null,
+        "message_thread_identifier": null,
+        "author_member": {
+          "user_id": "u-maya",
+          "email": "maya.lindqvist@brightline.example.com",
+          "name": "Maya Lindqvist",
+          "image_url": null
+        },
+        "destination_members": [
+          {
+            "user_id": null,
+            "email": "elena.marsh@northwind.example.org",
+            "name": "Elena Marsh",
+            "image_url": null
+          }
+        ],
+        "hidden_members": [],
+        "mentioned_members": [],
+        "reactions": [],
+        "subject": "Renewal terms 2027",
+        "message": "Draft: renewal terms for 2027",
+        "message_html": null,
+        "message_markdown": null,
+        "attachments": [],
+        "web_url": null,
+        "reference": null,
+        "has_children": false,
+        "is_unread": false,
+        "buttons": [],
+        "raw": {}
+      }
+    }
+  ]
+}

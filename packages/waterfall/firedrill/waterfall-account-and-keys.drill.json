@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "id": "waterfall-account-and-keys",
+  "title": "Account Reporter v2 intervals and errors; API-key list, create and modify with every declared error",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "master",
+  "task": {
+    "instruction": "Run the account-and-keys flow against the synthetic Waterfall Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "account-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "account.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "account-get-errors-validation_bad_request",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "account.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "api_keys-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "api_keys-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "api_keys-create-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "api_keys-modify-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.modify"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "api_keys-modify-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.modify"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "api-keys-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "api-keys",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "api-key-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "api-key.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "create-then-modify",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "waterfall",
+              "operationId": "api_keys.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "waterfall",
+              "operationId": "api_keys.modify"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

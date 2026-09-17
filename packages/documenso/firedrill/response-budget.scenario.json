@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "response-budget",
+  "title": "The response byte budget is lowered to 2,000 bytes, so ordinary pages exceed it and fail LIMIT_EXCEEDED",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 5000,
+        "responseBytes": 2000
+      }
+    }
+  ]
+}

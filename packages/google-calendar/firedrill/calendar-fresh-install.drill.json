@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "calendar-fresh-install",
+  "title": "An actor without identity attributes acts as the primary seeded user (Dana): list, settings, events and inserts are hers and no stray primary calendar appears",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "newcomer",
+  "task": {
+    "instruction": "Run the fresh-install conformance flow against the synthetic Google Calendar Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "calendar-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendar-list.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "settings-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "settings.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "insert-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.insert"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "time-now-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "time.now"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "inserted-as-dana",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:fd000000000000000000000001",
+      "path": [
+        "organizer",
+        "email"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "dana.reyes@example.test"
+      }
+    },
+    {
+      "id": "no-stray-calendar",
+      "kind": "state.count",
+      "packageId": "google-calendar",
+      "namespace": "calendars",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    }
+  ]
+}

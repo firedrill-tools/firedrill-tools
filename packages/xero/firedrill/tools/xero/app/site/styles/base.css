@@ -1,0 +1,79 @@
+/* Xero web app look: XUI palette, Inter standing in for Xero's proprietary typeface. */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("../assets/fonts/inter-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("../assets/fonts/inter-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+:root {
+  --x-blue: #13b5ea;          /* logo blue */
+  --x-action: #0078c8;        /* XUI main button, links */
+  --x-action-hover: #0069b0;
+  --x-create: #00875a;        /* XUI create/approve button */
+  --x-create-hover: #00764e;
+  --x-negative: #de0e40;
+  --x-navy: #0b2240;          /* header */
+  --x-navy-2: #16345a;
+  --x-text: #000a1e;
+  --x-text-2: #59606d;
+  --x-text-3: #8a9099;
+  --x-border: #ccced2;
+  --x-border-soft: #e1e2e5;
+  --x-ground: #f2f3f4;
+  --x-row-hover: #f5f8fb;
+  --x-selected: #e6f2fa;
+  --x-focus: #0078c8;
+  --radius: 6px;
+  --shadow: 0 1px 2px rgba(0, 10, 30, .08), 0 3px 10px rgba(0, 10, 30, .08);
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; font-size: 14px; line-height: 1.43; color: var(--x-text); background: var(--x-ground); -webkit-font-smoothing: antialiased; font-feature-settings: "tnum" 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: var(--x-action); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--x-focus); outline-offset: 2px; }
+h1, h2, h3 { margin: 0; font-weight: 700; }
+.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.muted { color: var(--x-text-2); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip-link { position: absolute; left: -999px; top: 8px; background: #fff; padding: 8px 12px; z-index: 100; }
+.skip-link:focus { left: 8px; }
+
+.page { min-height: calc(100vh - 56px); outline: none; }
+.page-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px 48px; }
+.loading { display: flex; gap: 10px; align-items: center; justify-content: center; padding: 80px 0; color: var(--x-text-2); }
+.spinner { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--x-border); border-top-color: var(--x-action); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.skeleton { height: 12px; border-radius: 4px; background: linear-gradient(90deg, #eceef0 25%, #f6f7f8 50%, #eceef0 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* buttons (XUI) */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 40px; padding: 0 16px; border-radius: var(--radius); border: 1px solid var(--x-border); background: #fff; color: var(--x-text); font-weight: 600; cursor: pointer; white-space: nowrap; }
+.btn:hover { background: #f5f6f7; border-color: #b8bcc3; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn.main { background: var(--x-action); border-color: var(--x-action); color: #fff; }
+.btn.main:hover { background: var(--x-action-hover); }
+.btn.create { background: var(--x-create); border-color: var(--x-create); color: #fff; }
+.btn.create:hover { background: var(--x-create-hover); }
+.btn.negative { background: var(--x-negative); border-color: var(--x-negative); color: #fff; }
+.btn.borderless { border-color: transparent; background: transparent; color: var(--x-action); }
+.btn.borderless:hover { background: var(--x-selected); }
+.btn.small { height: 32px; padding: 0 12px; font-size: 13px; }
+.btn-split { display: inline-flex; }
+.btn-split .btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.btn-split .btn:last-child { border-radius: 0 var(--radius) var(--radius) 0; padding: 0 10px; border-left: 1px solid rgba(255, 255, 255, .35); }
+.btn-split .btn.standard:last-child { border-left: 1px solid var(--x-border); margin-left: -1px; }
+.icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; color: var(--x-text-2); }
+.icon-btn:hover { background: #eceef0; color: var(--x-text); }
+
+/* banners, toast */
+.banner { display: flex; gap: 12px; align-items: flex-start; padding: 12px 16px; border-radius: var(--radius); border: 1px solid; margin: 16px 0; background: #fff; }
+.banner .ic { flex: none; margin-top: 1px; }
+.banner.error { border-color: #f5b5c4; background: #fdf0f3; color: #9b0a2d; }
+.banner.warn { border-color: #f5d48a; background: #fff8e6; color: #6b4a00; }
+.banner.info { border-color: #a8d4f0; background: #eef7fd; color: #064d7f; }
+.banner-title { font-weight: 600; }
+.banner-detail { color: var(--x-text); margin-top: 2px; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: var(--radius); background: #1f2b3a; color: #fff; box-shadow: var(--shadow); z-index: 60; max-width: min(560px, calc(100vw - 32px)); }
+.toast.success .ic { color: #5fd49a; }
+.toast.error .ic { color: #ff8aa5; }
+.toast button { background: transparent; border: 1px solid rgba(255, 255, 255, .5); color: #fff; border-radius: 4px; padding: 2px 10px; cursor: pointer; }

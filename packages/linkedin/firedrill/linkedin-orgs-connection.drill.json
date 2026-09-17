@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "linkedin-orgs-connection",
+  "title": "An approved administrator lists its page roles",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "connection",
+  "task": {
+    "instruction": "Run the orgs-connection flow against the synthetic LinkedIn Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "organization-acls-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "organization_acls.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

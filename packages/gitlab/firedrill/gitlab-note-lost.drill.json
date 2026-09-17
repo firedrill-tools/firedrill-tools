@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "gitlab-note-lost",
+  "title": "A note is saved but the caller receives 502; the flow verifies it and does not re-post",
+  "targetId": "conformance-agent",
+  "scenarioId": "note-lost",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the note-lost conformance flow against the synthetic GitLab Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "notes-save-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "notes.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-save-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "notes.save"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "issues-list-notes-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.list-notes"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-note-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gitlab",
+        "eventId": "note.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "rows-notes",
+      "kind": "state.count",
+      "packageId": "gitlab",
+      "namespace": "notes",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    }
+  ]
+}

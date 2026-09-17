@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-outsider",
+  "title": "A user outside Northwind Makers only sees Orbit Lab",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "lee",
+  "task": {
+    "instruction": "Run flow:outsider against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "guild-hidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "channel-hidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    }
+  ]
+}

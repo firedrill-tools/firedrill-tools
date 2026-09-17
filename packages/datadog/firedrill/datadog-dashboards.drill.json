@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "id": "datadog-dashboards",
+  "title": "Dashboards: list, get, create ordered and free, update, soft delete, restricted refusal",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "standard",
+  "task": {
+    "instruction": "Run the dashboards flow against the synthetic Datadog Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "dashboards-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "dashboards.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "dashboards-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "dashboards.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "dashboards-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "dashboards.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "dashboards-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "dashboards.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "dashboards-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "dashboards.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "dashboards-delete-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "dashboards.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "dashboards-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "dashboards.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "dashboards-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "dashboards",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "restricted-unchanged",
+      "kind": "state.value",
+      "packageId": "datadog",
+      "namespace": "dashboards",
+      "rowId": "nwc-pay-003",
+      "path": [
+        "title"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Payments (restricted)"
+      }
+    }
+  ]
+}

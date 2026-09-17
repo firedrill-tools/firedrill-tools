@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "user-bound",
+  "title": "The user bound lowered to 1: identity resolution scans more users than allowed, so every operation fails 422 instead of acting on a truncated user list",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "gitlab",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "users": 1
+      }
+    }
+  ]
+}

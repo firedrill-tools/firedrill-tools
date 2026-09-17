@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "id": "gitlab-tight-limits",
+  "title": "Lowered bounds: full sets still read, one more issue, note, branch or label fails 422 instead of truncating",
+  "targetId": "conformance-agent",
+  "scenarioId": "tight-limits",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the tight-limits conformance flow against the synthetic GitLab Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "issues-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-save-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "notes.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "branches-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "branches.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "rows-issues",
+      "kind": "state.count",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "rows-labels",
+      "kind": "state.count",
+      "packageId": "gitlab",
+      "namespace": "labels",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    }
+  ]
+}

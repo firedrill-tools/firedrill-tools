@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "check-denied",
+  "title": "Without grants the framework denies the call before the Tool runs",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "no-grants",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic Check Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "companies-list-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "check",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    }
+  ]
+}

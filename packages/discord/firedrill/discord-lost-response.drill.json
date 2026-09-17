@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-lost-response",
+  "title": "Creates commit behind a 503; nonce + enforce_nonce makes the retry safe, a nonce-less retry duplicates",
+  "targetId": "conformance-agent",
+  "scenarioId": "lost-response",
+  "actorId": "bot",
+  "task": {
+    "instruction": "Run flow:lost-response against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "creates-lost",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 26
+      }
+    },
+    {
+      "id": "nonce-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "nonces",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

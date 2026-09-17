@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Scan bound lowered to 1 row: scanning operations fail with application_error instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 1
+      }
+    }
+  ]
+}

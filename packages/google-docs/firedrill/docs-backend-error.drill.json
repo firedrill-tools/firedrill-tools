@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-backend-error",
+  "title": "Scenario backend-error: the batch update fails before anything is written, so the document is byte-identical, while two read paths fail at the same time",
+  "targetId": "conformance-agent",
+  "scenarioId": "backend-error",
+  "actorId": "dana",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `backend-error` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-get-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-batch-update-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-export-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.export"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-document-updated-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-docs",
+        "eventId": "document.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "launch-revision-unchanged",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1st00000000000000000000000000000000000000001",
+      "path": [
+        "revisionId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "ALBJ4000000000000001"
+      }
+    },
+    {
+      "id": "launch-text-unchanged",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1st00000000000000000000000000000000000000001",
+      "path": [
+        "textLength"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 424
+      }
+    },
+    {
+      "id": "state-revisions-equals-12",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "revisions",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    }
+  ]
+}

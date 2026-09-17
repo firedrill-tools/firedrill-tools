@@ -1,0 +1,63 @@
+/* Page headers, tabs, list tables and pagination in the Xero list-page style. */
+.pagehead { background: #fff; border-bottom: 1px solid var(--x-border-soft); }
+.pagehead-inner { max-width: 1280px; margin: 0 auto; padding: 16px 24px 0; }
+.crumbs { display: flex; gap: 6px; align-items: center; font-size: 13px; color: var(--x-text-2); min-height: 20px; }
+.crumbs a { color: var(--x-action); }
+.crumbs .ic { width: 14px; height: 14px; }
+.titlerow { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 4px 0 16px; }
+.titlerow h1 { font-size: 28px; line-height: 36px; letter-spacing: -.2px; }
+.titlerow .sub { display: flex; align-items: center; gap: 10px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.tabs { display: flex; gap: 4px; overflow-x: auto; margin-bottom: -1px; }
+.tab { position: relative; display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 14px; border: 0; background: transparent; color: var(--x-text-2); font-weight: 500; cursor: pointer; white-space: nowrap; text-decoration: none; }
+.tab:hover { color: var(--x-text); text-decoration: none; background: #f5f6f7; }
+.tab[aria-selected="true"] { color: var(--x-text); font-weight: 600; }
+.tab[aria-selected="true"]::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--x-action); }
+.tab:disabled { color: var(--x-text-3); cursor: not-allowed; background: transparent; }
+.tab .count { color: var(--x-text-2); font-weight: 400; }
+
+.panel { background: #fff; border: 1px solid var(--x-border-soft); border-radius: 8px; margin-top: 20px; box-shadow: 0 1px 1px rgba(0, 10, 30, .04); }
+.toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 16px; border-bottom: 1px solid var(--x-border-soft); }
+.searchfield { position: relative; flex: 1 1 320px; max-width: 460px; }
+.searchfield .ic { position: absolute; left: 10px; top: 10px; color: var(--x-text-2); width: 18px; height: 18px; }
+.searchfield input { width: 100%; height: 38px; padding: 0 12px 0 36px; border: 1px solid var(--x-border); border-radius: var(--radius); background: #fff; }
+.searchfield input:hover { border-color: #9ba1a9; }
+.selection-note { color: var(--x-text-2); font-size: 13px; }
+.table-scroll { overflow-x: auto; }
+table.xt { width: 100%; border-collapse: collapse; font-size: 14px; }
+.xt th { text-align: left; font-size: 13px; font-weight: 600; color: var(--x-text-2); padding: 10px 12px; border-bottom: 1px solid var(--x-border); white-space: nowrap; background: #fff; }
+.xt th.num { text-align: right; }
+.xt th button.sorter { display: inline-flex; align-items: center; gap: 2px; border: 0; background: transparent; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.xt th button.sorter:hover { color: var(--x-text); }
+.xt th button.sorter .ic { width: 14px; height: 14px; }
+.xt th[aria-sort="ascending"], .xt th[aria-sort="descending"] { color: var(--x-text); }
+.xt td { padding: 11px 12px; border-bottom: 1px solid var(--x-border-soft); vertical-align: middle; }
+.xt tbody tr.clickable { cursor: pointer; }
+.xt tbody tr.clickable:hover td { background: var(--x-row-hover); }
+.xt tbody tr.selected td { background: var(--x-selected); }
+.xt td.check, .xt th.check { width: 40px; padding-right: 0; }
+.xt input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--x-action); cursor: pointer; }
+.xt .primary-cell { color: var(--x-text); font-weight: 500; }
+.xt .overdue { color: var(--x-negative); }
+.xt .sent-mark { color: var(--x-create); display: inline-flex; }
+.xt tfoot td { font-weight: 600; border-bottom: 0; }
+.empty { padding: 48px 16px; text-align: center; color: var(--x-text-2); }
+.empty-title { font-size: 16px; font-weight: 600; color: var(--x-text); margin-bottom: 4px; }
+
+.pager { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 10px 16px; font-size: 13px; color: var(--x-text-2); }
+.pager-controls { display: flex; align-items: center; gap: 8px; }
+.pager select { height: 32px; border: 1px solid var(--x-border); border-radius: var(--radius); padding: 0 6px; background: #fff; }
+.pager .pg { min-width: 32px; height: 32px; border: 1px solid transparent; border-radius: var(--radius); background: transparent; cursor: pointer; color: var(--x-text); }
+.pager .pg:hover:not(:disabled) { background: #eceef0; }
+.pager .pg[aria-current="page"] { border-color: var(--x-action); color: var(--x-action); font-weight: 600; }
+.pager .pg:disabled { color: var(--x-text-3); cursor: not-allowed; }
+
+/* status tags */
+.tag { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 11px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.tag.DRAFT { background: #eceef0; color: #404756; }
+.tag.SUBMITTED { background: #fff1d6; color: #7a4f00; }
+.tag.AUTHORISED { background: #e1f0fb; color: #005a9a; }
+.tag.OVERDUE { background: #fde7ec; color: #b00b33; }
+.tag.PAID { background: #dff3e8; color: #006b3c; }
+.tag.VOIDED, .tag.DELETED, .tag.ARCHIVED { background: #eceef0; color: #6b717b; text-decoration: line-through; }
+.tag.ARCHIVED { text-decoration: none; }

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "check-funding-outage",
+  "title": "Preview and approve answer 503 without changing state",
+  "targetId": "conformance-agent",
+  "scenarioId": "funding-outage",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the funding-outage conformance flow against the synthetic Check Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "payrolls-preview-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.preview"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-approve-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.approve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-preview-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.preview"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payrolls-approve-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.approve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "j3-preview-still-null",
+      "kind": "state.value",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_9KwRxHvvOUypb6MK3MPW",
+      "path": [
+        "preview"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": null
+      }
+    },
+    {
+      "id": "event-payroll-approved-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "check",
+        "eventId": "payroll.approved"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

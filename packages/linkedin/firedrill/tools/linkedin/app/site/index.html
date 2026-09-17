@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feed | LinkedIn (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/linkedin.svg" />
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./nav.css" />
+    <link rel="stylesheet" href="./feed.css" />
+    <link rel="stylesheet" href="./post.css" />
+    <link rel="stylesheet" href="./overlay.css" />
+    <link rel="stylesheet" href="./comments.css" />
+    <link rel="stylesheet" href="./pages.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div id="boot" class="boot" role="status" aria-live="polite">
+      <img src="./assets/linkedin-wordmark.svg" alt="LinkedIn" width="168" height="42" />
+      <div class="boot-bar"><span></span></div>
+    </div>
+    <header class="global-nav" id="global-nav" hidden>
+      <div class="global-nav__content">
+        <a class="global-nav__logo" href="#/feed" aria-label="LinkedIn home" title="Home"><img src="./assets/linkedin.svg" alt="" width="34" height="34" /></a>
+        <div class="search" role="search">
+          <span class="search__icon" data-icon="search"></span>
+          <label class="visually-hidden" for="search-input">Search</label>
+          <input id="search-input" class="search__input" type="text" placeholder="Search" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="search-results" />
+          <div class="typeahead" id="search-results" role="listbox" aria-label="Search suggestions" hidden></div>
+        </div>
+        <nav class="global-nav__primary" aria-label="Primary Navigation">
+          <ul class="global-nav__items">
+            <li><a class="nav-item" href="#/feed" data-nav="feed"><span data-icon="nav-home"></span><span class="nav-item__label">Home</span></a></li>
+            <li><a class="nav-item" href="#/mynetwork" data-nav="mynetwork"><span data-icon="nav-network"></span><span class="nav-item__label">My Network</span></a></li>
+            <li><button type="button" class="nav-item" data-not-simulated="Jobs"><span data-icon="nav-jobs"></span><span class="nav-item__label">Jobs</span></button></li>
+            <li><button type="button" class="nav-item" data-not-simulated="Messaging"><span data-icon="nav-messaging"></span><span class="nav-item__label">Messaging</span></button></li>
+            <li><button type="button" class="nav-item" data-not-simulated="Notifications"><span data-icon="nav-bell"></span><span class="nav-item__label">Notifications</span></button></li>
+            <li class="nav-me">
+              <button type="button" class="nav-item" id="me-button" aria-haspopup="menu" aria-expanded="false" data-nav="me"><span class="avatar avatar--24" id="me-avatar" aria-hidden="true"></span><span class="nav-item__label">Me <span data-icon="caret-down" class="caret"></span></span></button>
+              <div class="me-menu" id="me-menu" role="menu" hidden></div>
+            </li>
+            <li class="nav-divider" aria-hidden="true"></li>
+            <li><button type="button" class="nav-item" data-not-simulated="For Business"><span data-icon="nav-grid"></span><span class="nav-item__label">For Business <span data-icon="caret-down" class="caret"></span></span></button></li>
+            <li><button type="button" class="nav-premium" data-not-simulated="Premium">Try Premium for $0</button></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="app-main" tabindex="-1" hidden></main>
+    <div id="overlay-root"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+      <span class="toast__icon" id="toast-icon"></span>
+      <span class="toast__text" id="toast-text"></span>
+      <button type="button" class="toast__action" id="toast-action" aria-label="Toast action" hidden></button>
+      <button type="button" class="icon-btn icon-btn--sm" id="toast-close" aria-label="Dismiss" title="Dismiss"><span data-icon="close-sm"></span></button>
+    </div>
+  </body>
+</html>

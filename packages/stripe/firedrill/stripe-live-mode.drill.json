@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "id": "stripe-live-mode",
+  "title": "A live-mode key: test payment method ids do not resolve and objects are stamped livemode=true",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "live-key",
+  "task": {
+    "instruction": "Run the live-mode conformance flow against the synthetic Stripe Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "payment-methods-attach-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_methods.attach"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-confirm-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.confirm"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "live-intent-livemode",
+      "kind": "state.value",
+      "packageId": "stripe",
+      "namespace": "payment_intents",
+      "rowId": "pi_0000RS2sPG8b2r",
+      "path": [
+        "livemode"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": true
+      }
+    },
+    {
+      "id": "live-intent-status",
+      "kind": "state.value",
+      "packageId": "stripe",
+      "namespace": "payment_intents",
+      "rowId": "pi_0000RS2sPG8b2r",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "requires_payment_method"
+      }
+    },
+    {
+      "id": "payment_methods-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "payment_methods",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    },
+    {
+      "id": "payment_intents-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "payment_intents",
+      "comparison": {
+        "operator": "equals",
+        "value": 22
+      }
+    }
+  ]
+}

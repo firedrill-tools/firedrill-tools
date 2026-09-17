@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "id": "sheets-drive-files-sharing",
+  "title": "Drive files.list q/orderBy/paging, get, rename/star, copy, delete, and sharing with owner-only rules, in Drive's classic error envelope",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "avery",
+  "task": {
+    "instruction": "Run the google-sheets conformance flow `drive-files-sharing` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "files-list-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-list-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "permissions.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-create-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-delete-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "permissions.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "about-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "about.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-list-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "permissions.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-create-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-delete-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "permissions.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "about-get-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "about.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "state-spreadsheets-equals-7",
+      "kind": "state.count",
+      "packageId": "google-sheets",
+      "namespace": "spreadsheets",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "pipeline-renamed",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "spreadsheets",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc",
+      "path": [
+        "title"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Customer Pipeline FY26"
+      }
+    },
+    {
+      "id": "offsite-starred",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "user-files",
+      "rowId": "avery.chen@example.test:1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+      "path": [
+        "starred"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": true
+      }
+    },
+    {
+      "id": "sam-writer",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc:10000000000000000004",
+      "path": [
+        "role"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "writer"
+      }
+    },
+    {
+      "id": "event-spreadsheet-created-equals-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "spreadsheet.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

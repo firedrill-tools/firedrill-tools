@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "id": "salesforce-row-locked",
+  "title": "Fault row-locked: the nine write operations answer 400 UNABLE_TO_LOCK_ROW and write nothing; reads keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "row-locked",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the row-locked conformance flow against the synthetic Salesforce Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "records-create-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-update-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-delete-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-upsert-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.upsert"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-create-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-update-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-delete-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-upsert-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.upsert"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "composite-execute-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "composite.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "query-execute-ok-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "query.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-retrieve-ok-ge-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "accounts-count-10",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "accounts",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "event-record-created-eq-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "salesforce",
+        "eventId": "record.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-record-updated-eq-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "salesforce",
+        "eventId": "record.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-record-deleted-eq-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "salesforce",
+        "eventId": "record.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

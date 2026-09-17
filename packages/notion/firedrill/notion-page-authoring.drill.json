@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-page-authoring",
+  "title": "Author content: create a page with blocks, append after a sibling, update and delete blocks, edit through markdown, create and reshape a database",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the page-authoring conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "pages-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "blocks-children-append-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.children.append"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "blocks-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "blocks-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-update-markdown-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.update-markdown"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "pages-retrieve-markdown-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve-markdown"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "databases-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "databases.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "data-sources-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "data-sources-query-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "append-validation-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.children.append"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "blocks-update-validation-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "markdown-validation-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.update-markdown"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "schema-validation-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "databases-plus-one",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "databases",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "data-sources-plus-one",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "data-sources",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "page-content-updated-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "page.content_updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "page-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "page.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    }
+  ]
+}

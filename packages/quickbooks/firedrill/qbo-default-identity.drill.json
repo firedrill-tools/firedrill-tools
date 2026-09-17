@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "qbo-default-identity",
+  "title": "An actor without identity attributes acts as the admin of the seeded company",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the default-identity conformance flow against the synthetic QuickBooks Online Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "company-info-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "company-info.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "customers.post"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-count",
+      "kind": "state.count",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 15
+      }
+    }
+  ]
+}

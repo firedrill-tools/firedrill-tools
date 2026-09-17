@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-create-and-edit",
+  "title": "Create a document, apply a text-and-style batch, read the change back and export it in all three text formats",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "dana",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `create-and-edit` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-create-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-create-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-batch-update-ok-greater_than_or_equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-export-ok-equals-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.export"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "files-export-tool_error-equals-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.export"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-document-created-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-docs",
+        "eventId": "document.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-document-updated-greater_than_or_equal-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-docs",
+        "eventId": "document.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "state-documents-equals-10",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "new-document-title",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1fd00000000000000000000000000000000000000001",
+      "path": [
+        "title"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Launch retrospective"
+      }
+    },
+    {
+      "id": "new-document-revision-number",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1fd00000000000000000000000000000000000000001",
+      "path": [
+        "headRevisionNumber"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    }
+  ]
+}

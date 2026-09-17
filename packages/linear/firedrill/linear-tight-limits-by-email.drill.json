@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-tight-limits-by-email",
+  "title": "An e-mail-identified actor under lowered user bounds: identity resolution scans users, so issues.archive fails FAILED_PRECONDITION",
+  "targetId": "conformance-agent",
+  "scenarioId": "tight-limits",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the tight-limits-by-email conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "issues-archive-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.archive"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-archive-ok-equals-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.archive"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "graphql-execute-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-count-equals-24",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "event-issue-updated-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

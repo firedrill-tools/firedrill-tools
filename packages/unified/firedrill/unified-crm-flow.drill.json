@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 1,
+  "id": "unified-crm-flow",
+  "title": "CRM contacts, companies, deals and pipelines: paging, filters, projection, symmetric associations, stage derivation, permissions and connection states",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the crm flow against the synthetic Unified.to Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "contacts-list-ok-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-get-ok-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-ok-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-update-ok-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-remove-ok-5",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-list-ok-6",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-get-ok-7",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-create-ok-8",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-update-ok-9",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-remove-ok-10",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-list-ok-11",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-get-ok-12",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-create-ok-13",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-update-ok-14",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-remove-ok-15",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-list-ok-16",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "pipelines.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-get-ok-17",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "pipelines.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-error-18",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-error-19",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-list-error-20",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-create-error-21",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-get-error-22",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-get-error-23",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "pipelines.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-create-error-24",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-update-error-25",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-update-error-26",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-count-27",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "companies-count-28",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "companies",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "deals-count-29",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "deals",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "contacts-value-30",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000001001",
+      "path": [
+        "name"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Lena Ortiz"
+      }
+    },
+    {
+      "id": "contacts-value-31",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "rowId": "68c800000000000000000201/68c800000000000000000504",
+      "path": [
+        "title"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Director"
+      }
+    },
+    {
+      "id": "deals-value-32",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000601",
+      "path": [
+        "closed_at"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": null
+      }
+    },
+    {
+      "id": "deals-value-33",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000601",
+      "path": [
+        "probability"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 40
+      }
+    },
+    {
+      "id": "deals-value-34",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "deals",
+      "rowId": "68c800000000000000000201/68c800000000000000000601",
+      "path": [
+        "contact_ids"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "68c800000000000000000502"
+        ]
+      }
+    },
+    {
+      "id": "companies-value-35",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "companies",
+      "rowId": "68c800000000000000000201/68c800000000000000000402",
+      "path": [
+        "contact_ids"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "68c800000000000000000503"
+        ]
+      }
+    },
+    {
+      "id": "companies-value-36",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "companies",
+      "rowId": "68c800000000000000000201/68c800000000000000000401",
+      "path": [
+        "contact_ids"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "68c800000000000000000502"
+        ]
+      }
+    },
+    {
+      "id": "object-created-events-37",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unified",
+        "eventId": "object.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "object-updated-events-38",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unified",
+        "eventId": "object.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "object-deleted-events-39",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unified",
+        "eventId": "object.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    }
+  ]
+}

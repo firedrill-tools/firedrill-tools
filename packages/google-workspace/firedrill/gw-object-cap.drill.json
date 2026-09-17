@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-object-cap",
+  "title": "At the object cap reads still work and every create answers 429 SIMULATION_OBJECT_LIMIT",
+  "targetId": "conformance-agent",
+  "scenarioId": "object-cap",
+  "actorId": "ada",
+  "task": {
+    "instruction": "Run the object-cap flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "connections-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.list-connections"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "contact-create-capped",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.create-contact"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "group-create-capped",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "contact-groups.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscription-create-capped",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "subscriptions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "project-create-capped",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-projects.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "version-create-capped",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-versions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "deployment-create-capped",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "deployments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "nothing-written",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    }
+  ]
+}

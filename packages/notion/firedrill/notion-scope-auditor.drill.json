@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-scope-auditor",
+  "title": "An actor without grants is denied by the framework over HTTP and MCP",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the scope-auditor conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "pages-retrieve-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "search-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "search"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "pages-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "users-me-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "users.me"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "pages-create-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "pages-unchanged",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "pages",
+      "comparison": {
+        "operator": "equals",
+        "value": 28
+      }
+    }
+  ]
+}

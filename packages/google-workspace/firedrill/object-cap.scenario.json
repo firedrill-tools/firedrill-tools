@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "object-cap",
+  "title": "The object counter sits exactly at the 1,500-object cap: reads work, every create fails",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-workspace",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "nextContactId": 19,
+        "nextOtherContactId": 6,
+        "nextGroupId": 4,
+        "nextSubscriptionId": 5,
+        "nextOperationId": 3,
+        "nextScriptId": 4,
+        "nextDeploymentId": 2,
+        "nextExecutionSeq": 7,
+        "objectCount": 1500
+      }
+    }
+  ]
+}

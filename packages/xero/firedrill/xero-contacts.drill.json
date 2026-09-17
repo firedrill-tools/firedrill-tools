@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "id": "xero-contacts",
+  "title": "Contacts: listing, paging, search, balances, create, duplicate names, update, archive and batch errors",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "[contacts] Run the contacts conformance flow against the synthetic Xero Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "contacts-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-save-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.save"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-save-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-update-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "contact-changed-equals",
+      "kind": "event.count",
+      "event": {
+        "packageId": "xero",
+        "eventId": "contact.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "invoice-changed-equals",
+      "kind": "event.count",
+      "event": {
+        "packageId": "xero",
+        "eventId": "invoice.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

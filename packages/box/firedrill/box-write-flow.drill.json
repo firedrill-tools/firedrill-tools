@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "id": "box-write-flow",
+  "title": "Create, upload, version, rename, move, copy, trash, restore, share and comment as Maya",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "maya",
+  "task": {
+    "instruction": "Run the write-flow flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "folders-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-copy-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.copy"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-version-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload-version"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-restore-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.restore"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "collaborations-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "collaborations.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "collaborations-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "collaborations.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "upload-before-version",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "box",
+              "operationId": "files.upload"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "box",
+              "operationId": "files.upload-version"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

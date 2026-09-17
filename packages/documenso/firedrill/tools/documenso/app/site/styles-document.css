@@ -1,0 +1,76 @@
+/* Document page, editor flow and signing page. */
+.doc-container { padding-top: 16px; }
+.back-link { display: inline-flex; align-items: center; color: var(--documenso-700); font-size: 14px; }
+.back-link:hover { opacity: 0.8; }
+.back-link .ic { width: 20px; height: 20px; margin-right: 8px; }
+.doc-title { margin: 16px 0 0; font-size: 30px; line-height: 36px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.doc-meta { margin-top: 10px; display: flex; align-items: center; gap: 24px; color: var(--muted-foreground); }
+.doc-meta .status .status-ic { color: inherit; }
+.doc-meta-recipients { display: flex; align-items: center; }
+.doc-meta-recipients > .ic { width: 20px; height: 20px; margin-right: 8px; }
+.doc-meta .stack .avatar { width: 28px; height: 28px; font-size: 10px; }
+.doc-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; align-items: start; }
+.doc-left { grid-column: span 7; }
+.doc-right { grid-column: span 5; display: flex; flex-direction: column; gap: 24px; }
+.doc-card { border-radius: 12px; padding: 1px; background: linear-gradient(135deg, hsl(95 71% 80%), var(--border) 35%, var(--border) 65%, hsl(95 71% 80%)); }
+.doc-card-inner { border-radius: 11px; background: var(--background); padding: 8px; display: flex; flex-direction: column; gap: 8px; }
+.doc-page { position: relative; aspect-ratio: 1 / 1.4142; background: #fff; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; box-shadow: 0 1px 2px rgb(0 0 0 / 0.04); }
+.doc-page.is-placing { cursor: crosshair; }
+.doc-page-text { position: absolute; inset: 0; padding: 8% 9%; font-family: Georgia, "Times New Roman", serif; font-size: 12px; line-height: 1.55; color: #1f2937; }
+.doc-page-title { margin: 0 0 8px; font-size: 18px; font-weight: 700; font-family: inherit; }
+.doc-page-text p { margin: 0; }
+.doc-page-text .doc-gap { height: 10px; }
+.field { position: absolute; display: flex; align-items: center; justify-content: center; border: 2px solid; border-radius: 6px; font-size: 12px; font-weight: 500; overflow: visible; background: hsl(var(--c) / 0.12); border-color: hsl(var(--c) / 0.9); color: hsl(var(--c) / 1); }
+.field.is-inserted { background: hsl(var(--c) / 0.06); border-style: dashed; color: #111827; }
+.field.is-dim { opacity: 0.35; }
+.field-green { --c: 100 48% 45%; }
+.field-blue { --c: 212 56% 50%; }
+.field-purple { --c: 266 100% 64%; }
+.field-orange { --c: 36 92% 48%; }
+.field-yellow { --c: 51 100% 38%; }
+.field-pink { --c: 313 65% 57%; }
+.field-label { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; }
+.field-type-signature .field-label, .field-type-initials .field-label { font-family: "Caveat", cursive; font-size: 20px; }
+.field-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 4px; }
+.field-value.is-signature { font-family: "Caveat", cursive; font-size: 24px; color: #111827; }
+.field-remove { position: absolute; top: -10px; right: -10px; width: 20px; height: 20px; border-radius: 999px; border: 1px solid var(--border); background: #fff; color: var(--foreground); display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+.field-remove .ic { width: 12px; height: 12px; }
+.field.is-clickable { cursor: pointer; }
+.field.is-clickable:hover { background: hsl(var(--c) / 0.22); }
+.widget { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 12px; background: var(--widget); padding: 16px 0; }
+.widget-head { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px 0; }
+.widget-title { margin: 0; padding: 0 16px; font-size: 16px; font-weight: 600; }
+.widget-head .widget-title { padding: 0; }
+.widget-title.big { font-size: 24px; }
+.widget-sub { margin: 8px 0 0; padding: 0 16px; color: var(--muted-foreground); font-size: 14px; }
+.widget-foot { margin-top: 16px; border-top: 1px solid var(--border); padding: 16px 16px 0; }
+.widget-foot.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-block { width: 100%; }
+.widget-list { list-style: none; margin: 12px 0 0; padding: 0; }
+.widget-row { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-top: 1px solid var(--border); }
+.widget-row:first-child { border-top: 0; }
+.grow { flex: 1; min-width: 0; }
+.row-email { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row-sub { font-size: 12px; color: var(--muted-foreground); }
+.info-row { display: flex; justify-content: space-between; gap: 16px; padding: 8px 16px; border-top: 1px solid var(--border); font-size: 14px; }
+.info-row:first-child { border-top: 0; }
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+.badge .ic { width: 14px; height: 14px; }
+.badge-green { background: hsl(95 71% 92%); color: var(--documenso-800); }
+.badge-red { background: #fee2e2; color: #b91c1c; }
+.badge-muted { background: var(--muted); color: var(--muted-foreground); }
+.pad { padding: 12px 16px; }
+.timeline { list-style: none; margin: 12px 0 0; padding: 0 16px; }
+.timeline-row { display: flex; gap: 12px; padding: 8px 0; position: relative; }
+.timeline-dot { width: 24px; height: 24px; border-radius: 999px; background: var(--background); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted-foreground); flex-shrink: 0; }
+.timeline-dot .ic { width: 14px; height: 14px; }
+.timeline-text { font-size: 14px; }
+.logs-meta { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--muted-foreground); font-size: 13px; }
+.template-preview { white-space: pre-wrap; font-family: Georgia, serif; font-size: 12px; background: var(--muted); border-radius: var(--radius); padding: 12px; max-height: 240px; overflow: auto; margin: 0; }
+.link-like { background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.link-like:hover { text-decoration: underline; }
+.field-type-checkbox .field-label span { display: none; }
+.field-type-checkbox .field-label { padding: 0; }
+.doc-meta .stack .avatar + .avatar { margin-left: -8px; }
+.field { min-width: max-content; }
+.field-label { overflow: visible; text-overflow: clip; }

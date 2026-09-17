@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "drive-large-pages",
+  "title": "Byte-bounded Drive pages: long CJK rows page under 1 MiB on REST, canonical and MCP with bounded tokens; renamed anchor skips none; forged tokens rejected; exports refused past output bounds",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the large-pages conformance flow against the synthetic Google Drive Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "files-create-ok-equals-83",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 83
+      }
+    },
+    {
+      "id": "files-list-ok-greater_than_or_equal-8",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "files-list-tool_error-greater_than_or_equal-7",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 7
+      }
+    },
+    {
+      "id": "permissions-list-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "changes-list-ok-greater_than_or_equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "changes.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-export-ok-equals-7",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.export"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "files-export-tool_error-equals-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.export"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "files-download-tool_error-equals-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.download"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "files-download-ok-equals-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.download"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "file-rows-after-flow",
+      "kind": "state.count",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 104
+      }
+    }
+  ]
+}

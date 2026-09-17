@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "id": "calendar-state-bounds",
+  "title": "Size bounds: scan-bound errors on list/delete/patch/move, byte-bounded event pages, oversized free/busy refused, no partial state",
+  "targetId": "conformance-agent",
+  "scenarioId": "state-bound",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the state-bound conformance flow against the synthetic Google Calendar Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "calendar-list-bound",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendar-list.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "calendars-delete-bound",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendars.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-patch-bound",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.patch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "events-move-bound",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.move"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "freebusy-too-large",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "freebusy.query"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "freebusy-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "freebusy.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "large-inserts",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.insert"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "no-updated",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "no-cancelled",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.cancelled"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-rows",
+      "kind": "state.count",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "comparison": {
+        "operator": "equals",
+        "value": 40
+      }
+    },
+    {
+      "id": "team-calendar-kept",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "calendars",
+      "rowId": "c_st000000000000000000000001@group.calendar.google.com",
+      "path": [
+        "id"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "c_st000000000000000000000001@group.calendar.google.com"
+      }
+    }
+  ]
+}

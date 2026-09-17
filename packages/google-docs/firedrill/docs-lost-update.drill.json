@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-lost-update",
+  "title": "Scenario lost-update: the batch update is committed but answers 503 — a blind retry duplicates the text, while a retry pinned to the read revision is refused instead",
+  "targetId": "conformance-agent",
+  "scenarioId": "lost-update",
+  "actorId": "dana",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `lost-update` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-batch-update-tool_error-equals-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "documents-batch-update-ok-equals-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-document-updated-equals-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-docs",
+        "eventId": "document.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "launch-revision-number",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1st00000000000000000000000000000000000000001",
+      "path": [
+        "headRevisionNumber"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    }
+  ]
+}

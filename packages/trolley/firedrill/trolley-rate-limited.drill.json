@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "id": "trolley-rate-limited",
+  "title": "Rate limited lists answer 429 while retrieves still work",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the rate-limited conformance flow against the synthetic Trolley Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "recipients-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-list-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "batches-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "batches-list-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payments-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "payments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-list-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "payments.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "recipients-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "id": "github-rate-limited",
+  "title": "Every write is rate limited (403 + retry-after) while reads keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "maintainer",
+  "task": {
+    "instruction": "Run the rate-limited conformance flow against the synthetic GitHub Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "repos-create-branch-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.create-branch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-create-or-update-file-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.create-or-update-file"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-write-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.write"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-add-comment-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.add-comment"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-add-labels-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.add-labels"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-remove-label-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.remove-label"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-add-assignees-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.add-assignees"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-create-review-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.create-review"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-merge-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.merge"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-read-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.read"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-read-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.read"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "no-issue-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "github",
+        "eventId": "issues.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "no-comment-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "github",
+        "eventId": "issue-comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "no-pull-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "github",
+        "eventId": "pull-request.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "issues",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 15
+      }
+    },
+    {
+      "id": "comments",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "commits",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "commits",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    }
+  ]
+}

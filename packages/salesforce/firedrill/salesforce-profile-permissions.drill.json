@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "id": "salesforce-profile-permissions",
+  "title": "Profile object permissions: a type without read access is invisible (INVALID_TYPE / NOT_FOUND), missing create/edit/delete rights fail INSUFFICIENT_ACCESS_OR_READONLY",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "sdr",
+  "task": {
+    "instruction": "Run the profile-permissions conformance flow against the synthetic Salesforce Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "query-execute-tool-error-ge-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "query.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "records-create-tool-error-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "records-create-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-retrieve-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-update-tool-error-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "records-delete-tool-error-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "records-upsert-tool-error-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.upsert"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "sobjects-basic-info-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "sobjects.basic-info"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sobjects-describe-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "sobjects.describe"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-retrieve-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-parameterized-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "search.parameterized"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-create-ok-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "composite-execute-ok-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "composite.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "accounts-count-10",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "accounts",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "leads-count-10",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "leads",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "event-record-created-eq-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "salesforce",
+        "eventId": "record.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

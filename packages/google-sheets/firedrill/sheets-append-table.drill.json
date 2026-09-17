@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "id": "sheets-append-table",
+  "title": "values.append finds the table above the gap row: INSERT_ROWS shifts rows and rewrites formulas, OVERWRITE fills the gap; the unrouted :clear method answers 404",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "avery",
+  "task": {
+    "instruction": "Run the google-sheets conformance flow `append-table` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "read-append-read",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "google-sheets",
+              "operationId": "values.get"
+            }
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-sheets",
+              "operationId": "values.append"
+            }
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-sheets",
+              "operationId": "values.get"
+            }
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "values-append-ok-equals-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.append"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "values-append-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.append"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "inserted-row",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc:0000000000:0000016",
+      "path": [
+        "cells",
+        0,
+        "value",
+        "string"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Delta Dynamics"
+      }
+    },
+    {
+      "id": "gap-filled",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc:0000000000:0000017",
+      "path": [
+        "cells",
+        0,
+        "value",
+        "string"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Nimbus Cloud"
+      }
+    },
+    {
+      "id": "last-lead-shifted",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc:0000000000:0000019",
+      "path": [
+        "cells",
+        0,
+        "value",
+        "string"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Lumen Health"
+      }
+    },
+    {
+      "id": "summary-formula-adjusted",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc:1530482212:0000001",
+      "path": [
+        "cells",
+        1,
+        "value",
+        "formula"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "=COUNTA(Leads!A2:A20)"
+      }
+    },
+    {
+      "id": "leads-grew",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "sheets",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc:0000000000",
+      "path": [
+        "rowCount"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1001
+      }
+    },
+    {
+      "id": "event-values-changed-equals-3",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "values.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-sheet-changed-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "sheet.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

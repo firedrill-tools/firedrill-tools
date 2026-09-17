@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "linkedin-visibility-stranger",
+  "title": "A non-connection cannot see a connections-only post or its thread",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "stranger",
+  "task": {
+    "instruction": "Run the visibility-stranger flow against the synthetic LinkedIn Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "posts-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "posts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "reactions.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "social-metadata-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "social_metadata.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "profile-userinfo-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "profile.userinfo"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

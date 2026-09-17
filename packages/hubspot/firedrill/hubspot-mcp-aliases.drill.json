@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "id": "hubspot-mcp-aliases",
+  "title": "HubSpot MCP server tool names over the MCP binding",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "rep",
+  "task": {
+    "instruction": "Run the mcp-aliases conformance flow against the synthetic HubSpot Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "account-get-details-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "account.get-details"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-read-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-read"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-batch-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.batch-create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-list-labels-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.list-labels"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "properties-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "properties.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "properties-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "properties.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "object-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "object.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "object-property-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "object.property-changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "association-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "association.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "companies-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "companies",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "objects.batch-create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "objects.batch-update"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "associations.batch-create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "associations.list"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

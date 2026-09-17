@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-fresh-install",
+  "title": "An actor without identity attributes acts as the seeded bot",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run flow:fresh-install against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "message-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "me",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    }
+  ]
+}

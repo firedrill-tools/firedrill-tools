@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "box-quota",
+  "title": "A nearly full account cannot exceed its quota or upload limit",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "jonah",
+  "task": {
+    "instruction": "Run the quota flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "jonah-space-after-small-upload",
+      "kind": "state.value",
+      "packageId": "box",
+      "namespace": "users",
+      "rowId": "20004",
+      "path": [
+        "spaceUsed"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 7900
+      }
+    },
+    {
+      "id": "file-uploaded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "box",
+        "eventId": "file.uploaded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

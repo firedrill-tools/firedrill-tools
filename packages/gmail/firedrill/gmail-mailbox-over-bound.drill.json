@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "id": "gmail-mailbox-over-bound",
+  "title": "Whole-mailbox reads and capacity-checked writes fail with 400 failedPrecondition on an over-bound mailbox; reads and label changes by id keep working; nothing is stored",
+  "targetId": "conformance-agent",
+  "scenarioId": "mailbox-over-bound",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the mailbox-over-bound conformance flow against the synthetic Gmail Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "labels-list-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "labels-create-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-update-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-list-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "threads-list-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "drafts-list-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-create-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "send-to-full-recipient-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "send-elsewhere-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-send-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-list-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "profile-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "threads-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "modify-by-id-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.modify"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-intact",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "labels",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "drafts-intact",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "drafts",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "messages-one-sent",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-bounds-fallback",
+  "title": "With no default identity and a scan bound of 1, the identity fallback scan fails on every operation",
+  "targetId": "conformance-agent",
+  "scenarioId": "bounds",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run flow:bounds-fallback against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "bounded-users-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-users-list-my-guilds",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.list-my-guilds"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-users-list-dm-channels",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.list-dm-channels"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-users-create-dm",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.create-dm"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-guilds-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-guilds-list-channels",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.list-channels"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-guilds-list-active-threads",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.list-active-threads"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-guild-members-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guild-members.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-guild-members-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guild-members.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-roles-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "roles.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-channels-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-messages-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-messages-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-messages-create",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-messages-edit",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.edit"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-messages-delete",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-reactions-add",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-reactions-remove",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-reactions-list-users",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.list-users"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-threads-create-from-message",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "threads.create-from-message"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "bounded-threads-create",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "threads.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    }
+  ]
+}

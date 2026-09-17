@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "id": "sheets-values-read-write",
+  "title": "Read with every render option and write with RAW/USER_ENTERED, batch reads and writes, clear and formulas; invalid ranges, grid limits and trashed files fail with Google's errors",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "avery",
+  "task": {
+    "instruction": "Run the google-sheets conformance flow `values-read-write` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "values-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-batch-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.batch-get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-update-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-update-formulas-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.update-formulas"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-batch-update-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-clear-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.clear"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-get-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-batch-get-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.batch-get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-update-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-update-formulas-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.update-formulas"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-batch-update-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-clear-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.clear"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "budget-b2-written",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1BxQ3MarketingBudgetSeedA7kLm2Np0123456789ab:0000000000:0000001",
+      "path": [
+        "cells",
+        1,
+        "value",
+        "number"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5000
+      }
+    },
+    {
+      "id": "budget-b2-keeps-currency",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1BxQ3MarketingBudgetSeedA7kLm2Np0123456789ab:0000000000:0000001",
+      "path": [
+        "cells",
+        1,
+        "format",
+        "numberFormat",
+        "type"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "CURRENCY"
+      }
+    },
+    {
+      "id": "event-values-changed-greater-than-or-equal-5",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "values.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 5
+      }
+    },
+    {
+      "id": "state-spreadsheets-equals-8",
+      "kind": "state.count",
+      "packageId": "google-sheets",
+      "namespace": "spreadsheets",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    }
+  ]
+}

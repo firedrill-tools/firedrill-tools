@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "id": "linkedin-comments",
+  "title": "Comment, reply, list, read, edit and delete as Maya",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the comments flow against the synthetic LinkedIn Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "comments-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comment-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linkedin",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "comments-count",
+      "kind": "state.count",
+      "packageId": "linkedin",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "reactions-count",
+      "kind": "state.count",
+      "packageId": "linkedin",
+      "namespace": "reactions",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    }
+  ]
+}

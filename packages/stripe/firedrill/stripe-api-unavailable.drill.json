@@ -1,0 +1,463 @@
+{
+  "schemaVersion": 1,
+  "id": "stripe-api-unavailable",
+  "title": "Writes answer HTTP 503 api_error and leave state untouched while reads keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "api-unavailable",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the api-unavailable conformance flow against the synthetic Stripe Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "customers-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoice-items-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoice_items.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-finalize-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.finalize"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-pay-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.pay"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-void-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.void"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-cancel-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.cancel"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-capture-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.capture"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-confirm-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.confirm"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-methods-attach-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_methods.attach"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-methods-detach-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_methods.detach"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "prices-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "prices.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "products-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "products.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "products-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "products.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "refunds-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "refunds.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-cancel-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.cancel"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "balance-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "balance.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "refunds-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "refunds",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "subscriptions-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "subscriptions",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "payment_intents-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "payment_intents",
+      "comparison": {
+        "operator": "equals",
+        "value": 21
+      }
+    },
+    {
+      "id": "payment_intent-succeeded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "stripe",
+        "eventId": "payment_intent.succeeded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payment_intent-declined-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "stripe",
+        "eventId": "payment_intent.declined"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "invoice-paid-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "stripe",
+        "eventId": "invoice.paid"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "charge-refunded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "stripe",
+        "eventId": "charge.refunded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "customer-subscription-deleted-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "stripe",
+        "eventId": "customer.subscription.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

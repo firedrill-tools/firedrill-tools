@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-recipients-fields",
+  "title": "Add, read, update and remove recipients and fields, with every editing rule",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the recipients-fields flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "recipients-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-create-many-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.create_many"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-create-many-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.create_many"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-create-many-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.create_many"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-create-many-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.create_many"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

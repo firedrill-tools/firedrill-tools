@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-over-capacity",
+  "title": "Past the cap every operation refuses before scanning, rather than answering a short result",
+  "targetId": "conformance-agent",
+  "scenarioId": "over-capacity",
+  "actorId": "ada",
+  "task": {
+    "instruction": "Run the over-capacity flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "connections-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.list-connections"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "groups-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "contact-groups.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "run-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "scripts.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "operations-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "operations.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "nothing-written",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    }
+  ]
+}

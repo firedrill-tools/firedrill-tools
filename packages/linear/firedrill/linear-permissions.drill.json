@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-permissions",
+  "title": "A guest sees and writes only in their own team; comment, project and workspace-label permissions",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "guest",
+  "task": {
+    "instruction": "Run the permissions conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "graphql-execute-tool-error-greater-than-or-equal-6",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "graphql-execute-ok-greater-than-or-equal-12",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 12
+      }
+    },
+    {
+      "id": "labels-create-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "labels.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-save-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "projects.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-update-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-save-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "mob-2-priority",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000010",
+      "path": [
+        "priority"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "guest-comment-edited",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-00000000000f/00000011-0000-4000-8000-000000000009",
+      "path": [
+        "editedAt"
+      ],
+      "comparison": {
+        "operator": "not_equals",
+        "value": null
+      }
+    },
+    {
+      "id": "daniel-comment-untouched",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-00000000000f/00000011-0000-4000-8000-00000000000a",
+      "path": [
+        "editedAt"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": null
+      }
+    },
+    {
+      "id": "issues-count-equals-25",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 25
+      }
+    },
+    {
+      "id": "projects-count-equals-3",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "projects",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "labels-count-equals-9",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "labels",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "event-issue-created-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-issue-updated-equals-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "event-comment-created-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

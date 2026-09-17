@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "The scan bound is 1 row: every operation that scans more than one row fails with 500 and writes nothing",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "linkedin",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 1
+      }
+    }
+  ]
+}

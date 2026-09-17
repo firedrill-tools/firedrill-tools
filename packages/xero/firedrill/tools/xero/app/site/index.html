@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Xero (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/xero.svg" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+    <link rel="stylesheet" href="./styles/tables.css" />
+    <link rel="stylesheet" href="./styles/forms.css" />
+    <link rel="stylesheet" href="./styles/pages.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#page">Skip to content</a>
+    <header class="xhdr" id="xhdr">
+      <div class="xhdr-left">
+        <button type="button" class="xhdr-icon xhdr-burger" id="menu-toggle" aria-label="Open menu" aria-expanded="false"><span data-icon="menu"></span></button>
+        <a class="xhdr-logo" href="#/home" aria-label="Xero home"><img src="./assets/xero.svg" alt="Xero" width="32" height="32" /></a>
+        <button type="button" class="xhdr-org" id="org-btn" aria-haspopup="menu" aria-expanded="false">
+          <span class="xhdr-org-name" id="org-name">Loading…</span><span data-icon="chevron" class="xhdr-caret"></span>
+        </button>
+      </div>
+      <nav class="xnav" id="xnav" aria-label="Main">
+        <a class="xnav-item" href="#/home" data-nav="home">Home</a>
+        <button type="button" class="xnav-item" data-menu="sales" aria-haspopup="menu" aria-expanded="false">Sales</button>
+        <button type="button" class="xnav-item" data-menu="purchases" aria-haspopup="menu" aria-expanded="false">Purchases</button>
+        <button type="button" class="xnav-item" data-menu="reporting" aria-haspopup="menu" aria-expanded="false">Reporting</button>
+        <button type="button" class="xnav-item" data-menu="payroll" aria-haspopup="menu" aria-expanded="false">Payroll</button>
+        <button type="button" class="xnav-item" data-menu="accounting" aria-haspopup="menu" aria-expanded="false">Accounting</button>
+        <button type="button" class="xnav-item" data-menu="tax" aria-haspopup="menu" aria-expanded="false">Tax</button>
+        <button type="button" class="xnav-item" data-menu="contacts" aria-haspopup="menu" aria-expanded="false">Contacts</button>
+        <button type="button" class="xnav-item" data-menu="projects" aria-haspopup="menu" aria-expanded="false">Projects</button>
+      </nav>
+      <div class="xhdr-right">
+        <span class="sim-chip" title="Every record here is synthetic and local to this Firedrill world">Firedrill test organisation</span>
+        <button type="button" class="xhdr-icon" id="create-btn" aria-label="Create new" title="Create new" aria-haspopup="menu" aria-expanded="false"><span data-icon="plus"></span></button>
+        <button type="button" class="xhdr-icon" id="search-btn" aria-label="Search" title="Search"><span data-icon="search"></span></button>
+        <button type="button" class="xhdr-icon" data-not-simulated="Notifications" aria-label="Notifications" title="Notifications"><span data-icon="bell"></span></button>
+        <button type="button" class="xhdr-icon" data-not-simulated="Help" aria-label="Help" title="Help"><span data-icon="help"></span></button>
+        <button type="button" class="xhdr-avatar" id="avatar-btn" aria-label="Your profile" title="Your profile" aria-haspopup="menu" aria-expanded="false">FD</button>
+      </div>
+    </header>
+    <div class="xsearch" id="xsearch" hidden>
+      <form class="xsearch-box" id="xsearch-form" role="search" autocomplete="off">
+        <span data-icon="search" class="xsearch-glyph"></span>
+        <label class="visually-hidden" for="xsearch-input">Search Xero</label>
+        <input id="xsearch-input" type="search" placeholder="Search for contacts or invoice numbers" />
+        <button type="button" class="xsearch-close" id="xsearch-close" aria-label="Close search"><span data-icon="close"></span></button>
+      </form>
+      <div class="xsearch-results" id="xsearch-results" role="listbox" aria-label="Search results"></div>
+    </div>
+    <main class="page" id="page" tabindex="-1">
+      <div class="loading"><span class="spinner" aria-hidden="true"></span><span>Loading…</span></div>
+    </main>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <div id="overlay-root"></div>
+  </body>
+</html>

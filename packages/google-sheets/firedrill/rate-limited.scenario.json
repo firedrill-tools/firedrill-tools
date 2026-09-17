@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "rate-limited",
+  "title": "Every write answers the per-user write quota error before anything is stored; reads keep working.",
+  "faults": [
+    {
+      "packageId": "google-sheets",
+      "faultId": "write-rate-limited"
+    }
+  ]
+}

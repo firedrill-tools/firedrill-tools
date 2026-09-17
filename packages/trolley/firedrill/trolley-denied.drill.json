@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "trolley-denied",
+  "title": "Actor without grants is denied by the framework before the Tool runs",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "no-grants",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic Trolley Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "recipients-list-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "batches-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "batches-start-processing-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.start_processing"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "batches-create-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "count-batches",
+      "kind": "state.count",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    }
+  ]
+}

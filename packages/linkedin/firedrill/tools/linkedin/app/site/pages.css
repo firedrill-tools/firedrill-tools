@@ -1,0 +1,78 @@
+.profile-layout { display: grid; grid-template-columns: minmax(0, 804px) 300px; gap: 24px; justify-content: center; align-items: start; }
+.profile-main > * + *, .company-main > * + * { margin-top: 8px; }
+.profile-aside > * + * { margin-top: 8px; }
+.aside-card { padding: 16px 24px; }
+.aside-card__title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+
+.profile-top { position: relative; overflow: hidden; }
+.profile-top__loading { display: flex; justify-content: center; padding: 64px; }
+.profile-top__cover { height: 201px; background: linear-gradient(120deg, #a0b4b7 0%, #c8d4d6 45%, #e6ecec 100%); }
+.profile-top__cover--company { height: 170px; background: linear-gradient(120deg, #9db3c8 0%, #c7d6e4 55%, #e3ebf2 100%); }
+.profile-top__body { position: relative; padding: 0 24px 24px; }
+.profile-top__avatar { margin-top: -112px; margin-bottom: 12px; }
+.profile-top__avatar .avatar { box-shadow: none; }
+.profile-top__edit { position: absolute; top: 12px; right: 16px; }
+.profile-top__name { font-size: 24px; line-height: 1.25; font-weight: 600; }
+.profile-top__headline { margin-top: 2px; font-size: 16px; line-height: 1.5; color: var(--text); }
+.profile-top__meta { margin-top: 8px; font-size: 14px; color: var(--text-2); }
+.profile-top__contact { padding: 0; border: 0; background: none; color: var(--blue); font-weight: 600; cursor: pointer; }
+.profile-top__contact:hover { text-decoration: underline; }
+.profile-top__connections { margin-top: 4px; font-weight: 600; }
+.profile-top__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.contact__title { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+.contact__row { display: flex; gap: 16px; margin-bottom: 16px; }
+.company-note { padding: 12px 24px; border-top: 1px solid var(--divider); color: var(--text-2); }
+
+.section-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 12px 24px 0; }
+.section-head__title { font-size: 20px; line-height: 1.4; font-weight: 600; }
+.section-head__sub { display: block; font-size: 14px; font-weight: 600; }
+.profile-activity { padding-bottom: 8px; }
+.profile-activity__empty { padding: 16px 24px; color: var(--text-2); }
+.chips { display: flex; gap: 8px; padding: 12px 24px 4px; }
+.chip { height: 32px; padding: 0 12px; border: 0; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .6); background: #fff; font-weight: 600; color: var(--text-2); cursor: pointer; }
+.chip:hover { box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .75); background: var(--hover); }
+.chip[aria-pressed="true"] { background: var(--green); color: #fff; box-shadow: none; }
+.activity-list { padding: 0 24px; }
+.activity-list > .spinner { margin: 16px auto; display: block; }
+.activity-row { padding: 12px 0; border-bottom: 1px solid var(--divider); }
+.activity-row__meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-2); }
+.activity-row__text { margin-top: 4px; white-space: pre-wrap; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.activity-row__actions { margin-top: 8px; }
+.activity-more { display: flex; justify-content: center; padding: 8px; }
+.badge { padding: 0 6px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+.badge--draft { background: #fcf0d2; color: #915907; }
+
+.company-about { padding: 16px 24px; }
+.company-about .section-head__title { margin-bottom: 8px; }
+.company-about__text { white-space: pre-wrap; margin-bottom: 12px; }
+.company-about__facts { margin: 0; }
+.company-about__facts dt { font-weight: 600; margin-top: 12px; }
+.company-about__facts dd { margin: 2px 0 0; color: var(--text-2); overflow-wrap: anywhere; }
+.company-admins__row { display: flex; gap: 12px; align-items: center; padding: 8px 0; }
+
+.network-layout { display: grid; grid-template-columns: 300px minmax(0, 804px); gap: 24px; justify-content: center; align-items: start; }
+.network-manage { padding: 12px 0; }
+.network-manage__title { padding: 0 16px 8px; font-size: 16px; font-weight: 600; }
+.network-manage__item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 16px; border: 0; background: none; font-size: 16px; font-weight: 600; color: var(--text-2); cursor: pointer; text-decoration: none !important; }
+.network-manage__item:hover { background: var(--hover); color: var(--text); }
+.network-manage__item--active { color: var(--green); box-shadow: inset 2px 0 0 var(--green); }
+.network { padding-bottom: 8px; }
+.network__count { padding: 16px 24px 8px; font-size: 20px; font-weight: 400; }
+.network__toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 0 24px 8px; border-bottom: 1px solid var(--divider); }
+.network__sort { display: flex; align-items: center; font-size: 14px; }
+.network__sort-btn { display: inline-flex; align-items: center; gap: 2px; border: 0; background: none; font-weight: 600; color: var(--text-2); cursor: pointer; }
+.network__sort-btn .icon { width: 16px; height: 16px; }
+.network__search { position: relative; display: flex; align-items: center; }
+.network__search > .icon { position: absolute; left: 8px; width: 16px; height: 16px; color: var(--text-2); }
+.network__search-input { width: 240px; height: 32px; padding: 0 8px 0 32px; border: 1px solid rgba(0, 0, 0, .6); border-radius: 4px; }
+.network__row { display: flex; align-items: center; gap: 16px; margin: 0 24px; padding: 16px 0; border-bottom: 1px solid var(--divider); }
+.network__meta { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.network__name { font-size: 16px; font-weight: 600; color: var(--text); }
+.network__name:hover { color: var(--blue); }
+.network__headline { font-size: 14px; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.network__date { margin-top: 4px; font-size: 12px; color: var(--text-2); }
+.network__actions { display: flex; align-items: center; gap: 4px; }
+.network__empty, .network__loading { padding: 32px 24px; text-align: center; }
+.network__more { display: flex; justify-content: center; padding: 8px; }
+
+@media (max-width: 991px) { .profile-layout, .network-layout { grid-template-columns: minmax(0, 1fr); } .profile-aside { display: none; } }

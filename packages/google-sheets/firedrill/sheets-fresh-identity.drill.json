@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "id": "sheets-fresh-identity",
+  "title": "An actor without identity attributes (as created by `firedrill tool add`) acts as the primary seeded user and sees the starter spreadsheets",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the google-sheets conformance flow `fresh-identity` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "about-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "about.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "spreadsheets-create-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "spreadsheets.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-spreadsheet-created-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "spreadsheet.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "state-spreadsheets-equals-8",
+      "kind": "state.count",
+      "packageId": "google-sheets",
+      "namespace": "spreadsheets",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    }
+  ]
+}

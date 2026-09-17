@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-contacts-sync",
+  "title": "Sync tokens report changes and the retained tombstone, and expire below the floor",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ada",
+  "task": {
+    "instruction": "Run the contacts-sync flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "connections-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.list-connections"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "connections-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.list-connections"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.create-contact"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "one-contact-added",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 19
+      }
+    },
+    {
+      "id": "tombstone-retained",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contact-tombstones",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

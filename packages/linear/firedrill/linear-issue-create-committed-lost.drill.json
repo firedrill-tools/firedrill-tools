@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-issue-create-committed-lost",
+  "title": "Issue creation commits but the caller sees INTERNAL_ERROR: naive retries duplicate, a keyed retry replays",
+  "targetId": "conformance-agent",
+  "scenarioId": "issue-create-committed-lost",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the issue-create-committed-lost conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "issues-create-tool-error-equals-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "issues-create-ok-equals-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "issues-save-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-update-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-issue-created-equals-4",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "event-issue-updated-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-count-equals-28",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 28
+      }
+    },
+    {
+      "id": "eng-issue-count-18",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "teams",
+      "rowId": "0000000b-0000-4000-8000-000000000001",
+      "path": [
+        "issueCount"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    }
+  ]
+}

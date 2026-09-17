@@ -1,0 +1,523 @@
+{
+  "schemaVersion": 1,
+  "id": "jira-permissions",
+  "title": "A PLAT Viewer: hidden private project, browse-only limited project, full open project, own-comment rules",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "viewer",
+  "task": {
+    "instruction": "Run the permissions conformance flow against the synthetic Jira Cloud Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "myself-get-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "myself.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-search-ok-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "projects.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-get-ok-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-get-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-update-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-update-tool-error-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "comments-list-ok-eq-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "comments-list-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-statuses-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "projects.statuses"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-search-ok-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-count-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.count"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-add-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.add"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-add-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-assign-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.assign"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-transition-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.transition"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-create-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-create-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-delete-tool-error-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "comments-update-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-update-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-delete-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-delete-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-assignable-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "users.assignable"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "boards-list-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "boards.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sprints-move-issues-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "sprints.move-issues"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sprints-move-issues-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "sprints.move-issues"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "plat-2-summary-unchanged",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010115",
+      "path": [
+        "summary"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Telemetry ingest drops packets under load"
+      }
+    },
+    {
+      "id": "plat-2-status-unchanged",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010115",
+      "path": [
+        "statusId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "3"
+      }
+    },
+    {
+      "id": "own-comment-edited",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010115/0000010260",
+      "path": [
+        "body",
+        "content",
+        0,
+        "content",
+        0,
+        "text"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "my edit"
+      }
+    },
+    {
+      "id": "sfr-11-moved",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010110",
+      "path": [
+        "sprintId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "3"
+      }
+    },
+    {
+      "id": "issues-count-23",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    },
+    {
+      "id": "comments-count-13",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "event-issue-created-eq-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "issue.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-issue-updated-eq-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "event-comment-created-eq-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

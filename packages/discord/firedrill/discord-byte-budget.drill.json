@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-byte-budget",
+  "title": "With a 1500-byte response budget, lists page by size and oversized lists or entries fail with 500 instead of truncating",
+  "targetId": "conformance-agent",
+  "scenarioId": "byte-budget",
+  "actorId": "bot",
+  "task": {
+    "instruction": "Run flow:byte-budget against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "help-paged",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "oversized-entry",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-too-large",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.list-channels"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "members-paged",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guild-members.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "single-read",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "roles-fit",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "roles.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

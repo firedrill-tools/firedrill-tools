@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "id": "dropbox-write-flow",
+  "title": "Folders, uploads, change feed, move, copy, delete, restore and shared links",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the write-flow flow against the synthetic Dropbox Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "files-create-folder-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.create-folder"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-create-folder-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.create-folder"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-move-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.move"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-move-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.move"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-restore-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.restore"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-restore-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.restore"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sharing-create-shared-link-with-settings-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "sharing.create-shared-link-with-settings"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sharing-create-shared-link-with-settings-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "sharing.create-shared-link-with-settings"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sharing-revoke-shared-link-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "sharing.revoke-shared-link"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sharing-revoke-shared-link-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "sharing.revoke-shared-link"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-search-continue-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.search-continue"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-folder-continue-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-folder-continue"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "dropbox",
+        "eventId": "files.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 15
+      }
+    },
+    {
+      "id": "shared-link-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "dropbox",
+        "eventId": "shared-link.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "shared-link-revoked-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "dropbox",
+        "eventId": "shared-link.revoked"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "shared-links-count",
+      "kind": "state.count",
+      "packageId": "dropbox",
+      "namespace": "shared_links",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "vendor-agreement-moved",
+      "kind": "state.value",
+      "packageId": "dropbox",
+      "namespace": "entries",
+      "rowId": "dbid:AAAmaya000000000000000000000000000000001/id:AAAAAAAAAAAAAAAAAAAAIA",
+      "path": [
+        "pathLower"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "/projects/atlas launch/vendor agreement v2.txt"
+      }
+    },
+    {
+      "id": "brief-untouched",
+      "kind": "state.value",
+      "packageId": "dropbox",
+      "namespace": "entries",
+      "rowId": "dbid:AAAmaya000000000000000000000000000000001/id:AAAAAAAAAAAAAAAAAAAAAw",
+      "path": [
+        "rev"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "0015f8a3c00000003"
+      }
+    }
+  ]
+}

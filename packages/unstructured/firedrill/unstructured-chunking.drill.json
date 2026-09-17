@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-chunking",
+  "title": "Chunking: basic, overlap, overlap_all, by_title with combine_under_n_chars, by_page, orig_elements gzip round trip, TableChunk, 100,000-character chunks, 20,000 tiny blocks",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "analyst",
+  "task": {
+    "instruction": "Run the chunking flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "general-partition-ok-7",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "general-partition-tool_error-8",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "partition-log-count-9",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "partition-log-value-10",
+      "kind": "state.value",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "rowId": "p_0000001000",
+      "path": [
+        "chunking_strategy"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "basic"
+      }
+    }
+  ]
+}

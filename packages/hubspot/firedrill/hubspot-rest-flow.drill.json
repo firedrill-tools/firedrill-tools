@@ -1,0 +1,963 @@
+{
+  "schemaVersion": 1,
+  "id": "hubspot-rest-flow",
+  "title": "HubSpot REST routes: every operation, error path and edge case over the provider-shaped API",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "rep",
+  "task": {
+    "instruction": "Run the rest-flow conformance flow against the synthetic HubSpot Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "account-get-details-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "account.get-details"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-archive-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.archive"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-read-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-read"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-create-default-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.create-default"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-batch-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.batch-create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-archive-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.archive"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-batch-read-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.batch-read"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-list-labels-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.list-labels"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "owners-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "owners.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "owners-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "owners.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "pipelines.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "pipelines.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-list-stages-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "pipelines.list-stages"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "properties-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "properties.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "properties-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "properties.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-archive-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.archive"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-read-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-read"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-search-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-create-default-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.create-default"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-batch-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.batch-create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-batch-read-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.batch-read"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-list-labels-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.list-labels"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "owners-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "owners.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "owners-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "owners.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "pipelines.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "pipelines.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-list-stages-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "pipelines.list-stages"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "properties-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "properties.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "properties-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "properties.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "object-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "object.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "object-property-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "object.property-changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "association-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "association.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "new-contact-archived",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "contacts",
+      "rowId": "0000001001",
+      "path": [
+        "archived"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": true
+      }
+    },
+    {
+      "id": "deal-301-amount",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "deals",
+      "rowId": "0000000301",
+      "path": [
+        "properties",
+        "amount"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "12000"
+      }
+    },
+    {
+      "id": "deal-renewed-closed-won",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "deals",
+      "rowId": "0000001004",
+      "path": [
+        "properties",
+        "hs_is_closed_won"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "true"
+      }
+    },
+    {
+      "id": "primary-removed-from-201",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "associations",
+      "rowId": "0-1/0000000101/0-2/0000000201",
+      "path": [
+        "typeIds"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          279
+        ]
+      }
+    },
+    {
+      "id": "primary-removed-from-201-inverse",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "associations",
+      "rowId": "0-2/0000000201/0-1/0000000101",
+      "path": [
+        "typeIds"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          280
+        ]
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "companies-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "companies",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "deals-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "deals",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "notes-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "notes",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "tasks-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "tasks",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "associations-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "associations",
+      "comparison": {
+        "operator": "equals",
+        "value": 54
+      }
+    },
+    {
+      "id": "order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "account.get-details"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "objects.list"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "objects.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "objects.update"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "objects.archive"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "objects.search"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "associations.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "hubspot",
+              "operationId": "associations.archive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "task-1006-timestamp-utc",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "tasks",
+      "rowId": "0000001006",
+      "path": [
+        "properties",
+        "hs_timestamp"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "2026-09-20T09:00:00.000Z"
+      }
+    }
+  ]
+}

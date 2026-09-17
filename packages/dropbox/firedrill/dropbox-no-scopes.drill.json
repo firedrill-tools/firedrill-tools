@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "id": "dropbox-no-scopes",
+  "title": "A scoped app without scopes gets 401 missing_scope from every operation",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "no-scopes",
+  "task": {
+    "instruction": "Run the no-scopes flow against the synthetic Dropbox Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-current-account-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "users.get-current-account"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-get-space-usage-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "users.get-space-usage"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-folder-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-folder"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-folder-continue-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-folder-continue"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-folder-get-latest-cursor-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-folder-get-latest-cursor"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-metadata-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.get-metadata"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-create-folder-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.create-folder"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-download-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.download"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-move-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.move"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-search-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-search-continue-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.search-continue"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-revisions-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-revisions"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-restore-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.restore"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sharing-create-shared-link-with-settings-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "sharing.create-shared-link-with-settings"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sharing-list-shared-links-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "sharing.list-shared-links"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sharing-revoke-shared-link-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "sharing.revoke-shared-link"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "entries-count",
+      "kind": "state.count",
+      "packageId": "dropbox",
+      "namespace": "entries",
+      "comparison": {
+        "operator": "equals",
+        "value": 37
+      }
+    }
+  ]
+}

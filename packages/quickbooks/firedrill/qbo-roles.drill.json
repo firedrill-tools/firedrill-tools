@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "id": "qbo-roles",
+  "title": "A customers-limited user cannot write items or read the chart of accounts",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ar-clerk",
+  "task": {
+    "instruction": "Run the roles conformance flow against the synthetic QuickBooks Online Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "customers-post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "customers.post"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "invoices.post"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "payments.post"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "items-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "items.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "items-post-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "items.post"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "accounts-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "accounts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "query-run-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "query.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "accounts-search-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "accounts.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "items-count",
+      "kind": "state.count",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "dropbox-denied",
+  "title": "An actor without Firedrill grants is denied before the Tool runs",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied flow against the synthetic Dropbox Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-current-account-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "users.get-current-account"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-folder-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-folder"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

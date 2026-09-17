@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "id": "qbo-company-query",
+  "title": "Company info, the query language, pagination and query errors",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the company-query conformance flow against the synthetic QuickBooks Online Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "company-info-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "company-info.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "query-run-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "query.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "customers.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "accounts-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "accounts.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "company-info-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "company-info.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "query-run-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "query.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "customers.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "accounts-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "accounts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-count",
+      "kind": "state.count",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    }
+  ]
+}

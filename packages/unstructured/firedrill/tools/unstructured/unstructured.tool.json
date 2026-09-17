@@ -1,0 +1,4892 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "unstructured",
+    "version": "0.1.3",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "random.draw",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "connection-checks",
+        "schema": {
+          "type": "object",
+          "required": [
+            "source_id",
+            "status",
+            "reason",
+            "created_at"
+          ],
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "SCHEDULED",
+                "SUCCESS",
+                "FAILURE"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "destinations",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "workspace_id",
+            "seq",
+            "name",
+            "type",
+            "config",
+            "key",
+            "created_at",
+            "updated_at"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workspace_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "config": {
+              "type": "object",
+              "maxProperties": 40,
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "job-files",
+        "schema": {
+          "type": "object",
+          "required": [
+            "job_id",
+            "file_id",
+            "filename",
+            "content_type",
+            "size_bytes",
+            "content"
+          ],
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "file_id": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "filename": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "content_type": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "size_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "content": {
+              "type": "string",
+              "maxLength": 1100000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "jobs",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "workspace_id",
+            "seq",
+            "workflow_id",
+            "workflow_name",
+            "job_type",
+            "created_at",
+            "cancelled_at",
+            "stop_requested",
+            "files",
+            "nodes",
+            "destination_node_id",
+            "created_by"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workspace_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "workflow_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workflow_name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "job_type": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "cancelled_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stop_requested": {
+              "type": "boolean"
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "file_id",
+                  "source_row",
+                  "filename",
+                  "path",
+                  "content_type",
+                  "size_bytes",
+                  "error"
+                ],
+                "properties": {
+                  "file_id": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "source_row": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 512
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "filename": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "path": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "content_type": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "size_bytes": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "error": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 500
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 232
+            },
+            "nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "type",
+                  "subtype",
+                  "settings"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "partition",
+                      "chunk",
+                      "embed",
+                      "prompter"
+                    ]
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "settings": {
+                    "type": "object",
+                    "maxProperties": 40,
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 16
+            },
+            "destination_node_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created_by": {
+              "type": "string",
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "meta",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "next_seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "connectors": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "workflows": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "jobs": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "files_per_source": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "source_file_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "response_bytes": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "partition-log",
+        "schema": {
+          "type": "object",
+          "required": [
+            "seq",
+            "actor_id",
+            "filenames",
+            "filetypes",
+            "strategy",
+            "chunking_strategy",
+            "output_format",
+            "element_count",
+            "page_count",
+            "input_bytes",
+            "created_at"
+          ],
+          "properties": {
+            "seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "actor_id": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "filenames": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "maxItems": 32
+            },
+            "filetypes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 100
+              },
+              "maxItems": 32
+            },
+            "strategy": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "chunking_strategy": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 20
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "output_format": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "element_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "page_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "input_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "source-files",
+        "schema": {
+          "type": "object",
+          "required": [
+            "source_id",
+            "file_id",
+            "path",
+            "filename",
+            "content_type",
+            "size_bytes",
+            "last_modified",
+            "content",
+            "error"
+          ],
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "file_id": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "path": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "filename": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "content_type": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "size_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "last_modified": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "content": {
+              "type": "string",
+              "maxLength": 262144
+            },
+            "error": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "sources",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "workspace_id",
+            "seq",
+            "name",
+            "type",
+            "config",
+            "key",
+            "created_at",
+            "updated_at"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workspace_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "config": {
+              "type": "object",
+              "maxProperties": 40,
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "workflows",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "workspace_id",
+            "seq",
+            "name",
+            "workflow_type",
+            "source_id",
+            "destination_id",
+            "status",
+            "schedule",
+            "workflow_nodes",
+            "reprocess_all",
+            "key",
+            "created_at",
+            "updated_at"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workspace_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "seq": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "workflow_type": {
+              "type": "string",
+              "enum": [
+                "auto",
+                "custom"
+              ]
+            },
+            "source_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "destination_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "active",
+                "inactive",
+                "paused"
+              ]
+            },
+            "schedule": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "workflow_nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "type",
+                  "subtype",
+                  "settings"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "partition",
+                      "chunk",
+                      "embed",
+                      "prompter"
+                    ]
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "settings": {
+                    "type": "object",
+                    "maxProperties": 40,
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 16
+            },
+            "reprocess_all": {
+              "type": "boolean"
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "workspaces",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "created_at"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "destinations.create",
+        "description": "Create a destination connector; the required configuration keys of its type must be present and secrets are masked in responses.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {},
+            "type": {},
+            "config": {},
+            "key": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "type",
+            "config",
+            "created_at",
+            "updated_at",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "config": {
+              "type": "object",
+              "maxProperties": 40,
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "destinations.delete",
+        "description": "Delete a destination connector that no running job uses.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "destination_id"
+          ],
+          "properties": {
+            "destination_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "NOT_FOUND",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "destinations.get",
+        "description": "Read one destination connector by id.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "destination_id"
+          ],
+          "properties": {
+            "destination_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "type",
+            "config",
+            "created_at",
+            "updated_at",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "config": {
+              "type": "object",
+              "maxProperties": 40,
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "destinations.list",
+        "description": "List every destination connector of the workspace, optionally filtered by destination_type; fails RESPONSE_TOO_LARGE instead of truncating when the array would pass the response budget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "destination_type": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "type",
+              "config",
+              "created_at",
+              "updated_at",
+              "key"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "type": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "config": {
+                "type": "object",
+                "maxProperties": 40,
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 2000
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "created_at": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "updated_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "key": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 63
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "maxItems": 2000
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "RESPONSE_TOO_LARGE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "destinations.update",
+        "description": "Update the name or configuration of a destination connector; the type cannot change and a masked secret keeps its stored value.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "destination_id"
+          ],
+          "properties": {
+            "destination_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {},
+            "type": {},
+            "config": {},
+            "key": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "type",
+            "config",
+            "created_at",
+            "updated_at",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "config": {
+              "type": "object",
+              "maxProperties": 40,
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "general.partition",
+        "description": "Partition one or more UTF-8 text documents (plain text, Markdown, HTML, CSV/TSV, RFC 822, XML, pre-partitioned JSON) into Unstructured elements, optionally chunked (basic, by_title, by_page). Mirrors POST /general/v0/general.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "filename",
+                  "content"
+                ],
+                "properties": {
+                  "filename": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "content_type": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "content": {
+                    "type": "string",
+                    "maxLength": 1100000
+                  },
+                  "last_modified": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "bad_transfer": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 32
+            },
+            "content_type": {},
+            "strategy": {},
+            "output_format": {},
+            "encoding": {},
+            "include_page_breaks": {},
+            "starting_page_number": {},
+            "unique_element_ids": {},
+            "xml_keep_tags": {},
+            "coordinates": {},
+            "chunking_strategy": {},
+            "max_characters": {},
+            "new_after_n_chars": {},
+            "overlap": {},
+            "overlap_all": {},
+            "combine_under_n_chars": {},
+            "multipage_sections": {},
+            "include_orig_elements": {},
+            "vlm_model": {},
+            "vlm_model_provider": {},
+            "hi_res_model_name": {},
+            "split_pdf_page": {},
+            "split_pdf_allow_failed": {},
+            "split_pdf_concurrency_level": {},
+            "split_pdf_page_range": {},
+            "include_slide_notes": {},
+            "pdf_infer_table_structure": {},
+            "languages": {},
+            "ocr_languages": {},
+            "skip_infer_table_types": {},
+            "extract_image_block_types": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "element_id",
+                  "text",
+                  "metadata"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "element_id": {
+                    "type": "string",
+                    "maxLength": 128
+                  },
+                  "text": {
+                    "type": "string",
+                    "maxLength": 100000
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "maxProperties": 200,
+                    "properties": {
+                      "filename": {
+                        "type": "string",
+                        "maxLength": 10000
+                      },
+                      "filetype": {
+                        "type": "string",
+                        "maxLength": 10000
+                      },
+                      "languages": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 100
+                        },
+                        "maxItems": 50
+                      },
+                      "page_number": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "last_modified": {
+                        "type": "string",
+                        "maxLength": 10000
+                      },
+                      "parent_id": {
+                        "type": "string",
+                        "maxLength": 10000
+                      },
+                      "category_depth": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "is_continuation": {
+                        "type": "boolean"
+                      },
+                      "text_as_html": {
+                        "type": "string",
+                        "maxLength": 10000000
+                      },
+                      "link_urls": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 1000000
+                        },
+                        "maxItems": 1000000
+                      },
+                      "link_texts": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 1000000
+                        },
+                        "maxItems": 1000000
+                      },
+                      "emphasized_text_contents": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 1000000
+                        },
+                        "maxItems": 1000000
+                      },
+                      "emphasized_text_tags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 1000000
+                        },
+                        "maxItems": 1000000
+                      },
+                      "orig_elements": {
+                        "type": "string",
+                        "maxLength": 4000000
+                      },
+                      "image_url": {
+                        "type": "string",
+                        "maxLength": 1000000
+                      },
+                      "sent_from": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 1000000
+                        },
+                        "maxItems": 1000000
+                      },
+                      "sent_to": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 1000000
+                        },
+                        "maxItems": 1000000
+                      },
+                      "cc_recipient": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 1000000
+                        },
+                        "maxItems": 1000000
+                      },
+                      "bcc_recipient": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 1000000
+                        },
+                        "maxItems": 1000000
+                      },
+                      "subject": {
+                        "type": "string",
+                        "maxLength": 1000000
+                      },
+                      "email_message_id": {
+                        "type": "string",
+                        "maxLength": 1000000
+                      }
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 10000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "maxLength": 10000
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "maxItems": 500
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 100000
+            },
+            {
+              "type": "object",
+              "required": [
+                "csv"
+              ],
+              "properties": {
+                "csv": {
+                  "type": "string",
+                  "maxLength": 1000000
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_FILE",
+          "INVALID_REQUEST",
+          "RATE_LIMITED",
+          "RESPONSE_TOO_LARGE",
+          "SERVICE_OVERLOADED",
+          "UNAUTHORIZED",
+          "UNSUPPORTED_FILE_TYPE",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "jobs.cancel",
+        "description": "Cancel a SCHEDULED or IN_PROGRESS job; it becomes STOPPED.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "job_id"
+          ],
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "status",
+            "message"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "status": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "jobs.download_output",
+        "description": "Download the partitioned (and chunked, when the workflow has a chunk node) elements of one successful file of a finished job, computed with the node settings snapshotted at run time.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "job_id"
+          ],
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "file_id": {},
+            "node_id": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "element_id",
+              "text",
+              "metadata"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "element_id": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "text": {
+                "type": "string",
+                "maxLength": 100000
+              },
+              "metadata": {
+                "type": "object",
+                "maxProperties": 200,
+                "properties": {
+                  "filename": {
+                    "type": "string",
+                    "maxLength": 10000
+                  },
+                  "filetype": {
+                    "type": "string",
+                    "maxLength": 10000
+                  },
+                  "languages": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 100
+                    },
+                    "maxItems": 50
+                  },
+                  "page_number": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "last_modified": {
+                    "type": "string",
+                    "maxLength": 10000
+                  },
+                  "parent_id": {
+                    "type": "string",
+                    "maxLength": 10000
+                  },
+                  "category_depth": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "is_continuation": {
+                    "type": "boolean"
+                  },
+                  "text_as_html": {
+                    "type": "string",
+                    "maxLength": 10000000
+                  },
+                  "link_urls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 1000000
+                    },
+                    "maxItems": 1000000
+                  },
+                  "link_texts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 1000000
+                    },
+                    "maxItems": 1000000
+                  },
+                  "emphasized_text_contents": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 1000000
+                    },
+                    "maxItems": 1000000
+                  },
+                  "emphasized_text_tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 1000000
+                    },
+                    "maxItems": 1000000
+                  },
+                  "orig_elements": {
+                    "type": "string",
+                    "maxLength": 4000000
+                  },
+                  "image_url": {
+                    "type": "string",
+                    "maxLength": 1000000
+                  },
+                  "sent_from": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 1000000
+                    },
+                    "maxItems": 1000000
+                  },
+                  "sent_to": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 1000000
+                    },
+                    "maxItems": 1000000
+                  },
+                  "cc_recipient": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 1000000
+                    },
+                    "maxItems": 1000000
+                  },
+                  "bcc_recipient": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 1000000
+                    },
+                    "maxItems": 1000000
+                  },
+                  "subject": {
+                    "type": "string",
+                    "maxLength": 1000000
+                  },
+                  "email_message_id": {
+                    "type": "string",
+                    "maxLength": 1000000
+                  }
+                },
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 10000
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 10000
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "maxItems": 500
+                    }
+                  ]
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "maxItems": 100000
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "RESPONSE_TOO_LARGE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "jobs.get",
+        "description": "Read one job with its status, runtime, input file ids and output node files derived from virtual time.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "job_id"
+          ],
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "workflow_id",
+            "workflow_name",
+            "status",
+            "stop_requested",
+            "created_at",
+            "runtime",
+            "input_file_ids",
+            "output_node_files",
+            "job_type",
+            "created_by_id",
+            "reason"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workflow_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workflow_name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "SCHEDULED",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "STOPPED",
+                "FAILED"
+              ]
+            },
+            "stop_requested": {
+              "type": "boolean"
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "runtime": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "input_file_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "maxItems": 232
+            },
+            "output_node_files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "node_id",
+                  "file_id",
+                  "node_type",
+                  "node_subtype"
+                ],
+                "properties": {
+                  "node_id": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "file_id": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "node_type": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "node_subtype": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 232
+            },
+            "job_type": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "created_by_id": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "jobs.get_details",
+        "description": "Processing status and per-node file statistics of a job.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "job_id"
+          ],
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "processing_status",
+            "node_stats",
+            "message"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "processing_status": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "node_stats": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "node_name",
+                  "node_type",
+                  "node_subtype",
+                  "ready",
+                  "in_progress",
+                  "success",
+                  "failure"
+                ],
+                "properties": {
+                  "node_name": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "node_type": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "node_subtype": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "ready": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "in_progress": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "success": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "failure": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 16
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "jobs.get_failed_files",
+        "description": "The files a job could not process, with the provider-style error text.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "job_id"
+          ],
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "failed_files"
+          ],
+          "properties": {
+            "failed_files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "document",
+                  "error"
+                ],
+                "properties": {
+                  "document": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "error": {
+                    "type": "string",
+                    "maxLength": 500
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 232
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "jobs.list",
+        "description": "List jobs of the workspace (newest first), filtered by workflow_id and derived status, page-numbered; a page that would pass the response budget fails RESPONSE_TOO_LARGE (lower page_size) instead of being shortened.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "workflow_id": {},
+            "status": {},
+            "page": {},
+            "page_size": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "workflow_id",
+              "workflow_name",
+              "status",
+              "stop_requested",
+              "created_at",
+              "runtime",
+              "input_file_ids",
+              "output_node_files",
+              "job_type",
+              "created_by_id",
+              "reason"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "workflow_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "workflow_name": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "SCHEDULED",
+                  "IN_PROGRESS",
+                  "COMPLETED",
+                  "STOPPED",
+                  "FAILED"
+                ]
+              },
+              "stop_requested": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "runtime": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "input_file_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "maxItems": 232
+              },
+              "output_node_files": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "node_id",
+                    "file_id",
+                    "node_type",
+                    "node_subtype"
+                  ],
+                  "properties": {
+                    "node_id": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "file_id": {
+                      "type": "string",
+                      "maxLength": 300
+                    },
+                    "node_type": {
+                      "type": "string",
+                      "maxLength": 20
+                    },
+                    "node_subtype": {
+                      "type": "string",
+                      "maxLength": 100
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "maxItems": 232
+              },
+              "job_type": {
+                "type": "string",
+                "maxLength": 20
+              },
+              "created_by_id": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "reason": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "maxItems": 100
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "RESPONSE_TOO_LARGE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sources.check_connection",
+        "description": "Run a synchronous connection check on a source connector: SUCCESS when its required configuration keys are set, otherwise FAILURE with the missing key.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "source_id"
+          ],
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason",
+            "created_at"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sources.create",
+        "description": "Create a source connector; the required configuration keys of its type must be present and secrets are masked in responses.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {},
+            "type": {},
+            "config": {},
+            "key": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "type",
+            "config",
+            "created_at",
+            "updated_at",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "config": {
+              "type": "object",
+              "maxProperties": 40,
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sources.delete",
+        "description": "Delete a source connector that no running job uses.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "source_id"
+          ],
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "NOT_FOUND",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sources.get",
+        "description": "Read one source connector by id.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "source_id"
+          ],
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "type",
+            "config",
+            "created_at",
+            "updated_at",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "config": {
+              "type": "object",
+              "maxProperties": 40,
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sources.get_connection_check",
+        "description": "Read the latest connection check of a source connector.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "source_id"
+          ],
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason",
+            "created_at"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sources.list",
+        "description": "List every source connector of the workspace, optionally filtered by source_type; fails RESPONSE_TOO_LARGE instead of truncating when the array would pass the response budget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "source_type": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "type",
+              "config",
+              "created_at",
+              "updated_at",
+              "key"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "type": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "config": {
+                "type": "object",
+                "maxProperties": 40,
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 2000
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "created_at": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "updated_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "key": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 63
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "maxItems": 2000
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "RESPONSE_TOO_LARGE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sources.update",
+        "description": "Update the name or configuration of a source connector; the type cannot change and a masked secret keeps its stored value.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "source_id"
+          ],
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {},
+            "type": {},
+            "config": {},
+            "key": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "type",
+            "config",
+            "created_at",
+            "updated_at",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "type": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "config": {
+              "type": "object",
+              "maxProperties": 40,
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "workflows.create",
+        "description": "Create an auto workflow (default partition + chunk_by_title nodes) or a custom workflow with validated nodes; connectors must exist in the workspace.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {},
+            "workflow_type": {},
+            "source_id": {},
+            "destination_id": {},
+            "workflow_nodes": {},
+            "schedule": {},
+            "reprocess_all": {},
+            "template_id": {},
+            "source_ids": {},
+            "destination_ids": {},
+            "skip_preflight": {},
+            "key": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "workflow_type",
+            "source_id",
+            "destination_id",
+            "status",
+            "schedule",
+            "workflow_nodes",
+            "reprocess_all",
+            "created_at",
+            "updated_at",
+            "sources",
+            "destinations",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "workflow_type": {
+              "type": "string",
+              "enum": [
+                "auto",
+                "custom"
+              ]
+            },
+            "source_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "destination_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "active",
+                "inactive",
+                "paused"
+              ]
+            },
+            "schedule": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "workflow_nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "type",
+                  "subtype",
+                  "settings"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "partition",
+                      "chunk",
+                      "embed",
+                      "prompter"
+                    ]
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "settings": {
+                    "type": "object",
+                    "maxProperties": 40,
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 16
+            },
+            "reprocess_all": {
+              "type": "boolean"
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "maxItems": 1
+            },
+            "destinations": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "maxItems": 1
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "workflows.delete",
+        "description": "Delete a workflow that has no running job; its past jobs remain.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "workflow_id"
+          ],
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "NOT_FOUND",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "workflows.get",
+        "description": "Read one workflow by id.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "workflow_id"
+          ],
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "workflow_type",
+            "source_id",
+            "destination_id",
+            "status",
+            "schedule",
+            "workflow_nodes",
+            "reprocess_all",
+            "created_at",
+            "updated_at",
+            "sources",
+            "destinations",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "workflow_type": {
+              "type": "string",
+              "enum": [
+                "auto",
+                "custom"
+              ]
+            },
+            "source_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "destination_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "active",
+                "inactive",
+                "paused"
+              ]
+            },
+            "schedule": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "workflow_nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "type",
+                  "subtype",
+                  "settings"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "partition",
+                      "chunk",
+                      "embed",
+                      "prompter"
+                    ]
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "settings": {
+                    "type": "object",
+                    "maxProperties": 40,
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 16
+            },
+            "reprocess_all": {
+              "type": "boolean"
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "maxItems": 1
+            },
+            "destinations": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "maxItems": 1
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "workflows.list",
+        "description": "List workflows of the workspace: filters source_id, destination_id, status and name, page-numbered (page, page_size 1-100) and sorted (sort_by, sort_direction); a page that would pass the response budget fails RESPONSE_TOO_LARGE (lower page_size) instead of being shortened.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "source_id": {},
+            "destination_id": {},
+            "status": {},
+            "name": {},
+            "page": {},
+            "page_size": {},
+            "sort_by": {},
+            "sort_direction": {},
+            "show_only_soft_deleted": {},
+            "show_recommender_workflows": {},
+            "dag_node_configuration_id": {},
+            "created_since": {},
+            "created_before": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "workflow_type",
+              "source_id",
+              "destination_id",
+              "status",
+              "schedule",
+              "workflow_nodes",
+              "reprocess_all",
+              "created_at",
+              "updated_at",
+              "sources",
+              "destinations",
+              "key"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "workflow_type": {
+                "type": "string",
+                "enum": [
+                  "auto",
+                  "custom"
+                ]
+              },
+              "source_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 512
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "destination_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 512
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "inactive",
+                  "paused"
+                ]
+              },
+              "schedule": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "workflow_nodes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "name",
+                    "type",
+                    "subtype",
+                    "settings"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "partition",
+                        "chunk",
+                        "embed",
+                        "prompter"
+                      ]
+                    },
+                    "subtype": {
+                      "type": "string",
+                      "maxLength": 100
+                    },
+                    "settings": {
+                      "type": "object",
+                      "maxProperties": 40,
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 2000
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "maxItems": 16
+              },
+              "reprocess_all": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "updated_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                "maxItems": 1
+              },
+              "destinations": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                "maxItems": 1
+              },
+              "key": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 63
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "maxItems": 100
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "RESPONSE_TOO_LARGE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "workflows.run",
+        "description": "Run an active workflow over the files its source connector holds plus optional runtime input_files; creates a SCHEDULED job whose progress is derived from virtual time.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "workflow_id"
+          ],
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "input_files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "filename",
+                  "content"
+                ],
+                "properties": {
+                  "filename": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "content_type": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "content": {
+                    "type": "string",
+                    "maxLength": 1100000
+                  },
+                  "last_modified": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "bad_transfer": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 32
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "workflow_id",
+            "workflow_name",
+            "status",
+            "stop_requested",
+            "created_at",
+            "runtime",
+            "input_file_ids",
+            "output_node_files",
+            "job_type",
+            "created_by_id",
+            "reason"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workflow_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "workflow_name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "SCHEDULED",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "STOPPED",
+                "FAILED"
+              ]
+            },
+            "stop_requested": {
+              "type": "boolean"
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "runtime": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "input_file_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "maxItems": 232
+            },
+            "output_node_files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "node_id",
+                  "file_id",
+                  "node_type",
+                  "node_subtype"
+                ],
+                "properties": {
+                  "node_id": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "file_id": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "node_type": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "node_subtype": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 232
+            },
+            "job_type": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "created_by_id": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INTERNAL_ERROR",
+          "NOT_FOUND",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "workflows.update",
+        "description": "Update a workflow's fields, nodes or status (active, inactive, paused).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "workflow_id"
+          ],
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {},
+            "workflow_type": {},
+            "source_id": {},
+            "destination_id": {},
+            "workflow_nodes": {},
+            "schedule": {},
+            "reprocess_all": {},
+            "template_id": {},
+            "source_ids": {},
+            "destination_ids": {},
+            "skip_preflight": {},
+            "status": {},
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "workflow_type",
+            "source_id",
+            "destination_id",
+            "status",
+            "schedule",
+            "workflow_nodes",
+            "reprocess_all",
+            "created_at",
+            "updated_at",
+            "sources",
+            "destinations",
+            "key"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "workflow_type": {
+              "type": "string",
+              "enum": [
+                "auto",
+                "custom"
+              ]
+            },
+            "source_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "destination_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "active",
+                "inactive",
+                "paused"
+              ]
+            },
+            "schedule": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "workflow_nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "type",
+                  "subtype",
+                  "settings"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "partition",
+                      "chunk",
+                      "embed",
+                      "prompter"
+                    ]
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "settings": {
+                    "type": "object",
+                    "maxProperties": 40,
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 16
+            },
+            "reprocess_all": {
+              "type": "boolean"
+            },
+            "created_at": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "updated_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "maxItems": 1
+            },
+            "destinations": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "maxItems": 1
+            },
+            "key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 63
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "NOT_FOUND",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      }
+    ],
+    "events": [
+      {
+        "id": "job.cancelled",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "job_id",
+            "workflow_id"
+          ],
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "workflow_id": {
+              "type": "string",
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "job.created",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "job_id",
+            "workflow_id",
+            "workflow_name",
+            "input_file_count",
+            "runtime_file_count"
+          ],
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "workflow_id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "workflow_name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "input_file_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "runtime_file_count": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "partition.completed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "log_id",
+            "filenames",
+            "filetypes",
+            "strategy",
+            "chunking_strategy",
+            "element_count",
+            "page_count",
+            "input_bytes"
+          ],
+          "properties": {
+            "log_id": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "filenames": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "maxItems": 32
+            },
+            "filetypes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 100
+              },
+              "maxItems": 32
+            },
+            "strategy": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "chunking_strategy": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 20
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "element_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "page_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "input_bytes": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "partition-overloaded",
+        "appliesTo": [
+          "general.partition"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "SERVICE_OVERLOADED",
+          "message": "Server is under heavy load. Please try again later.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "partition-rate-limited",
+        "appliesTo": [
+          "general.partition"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RATE_LIMITED",
+          "message": "Rate limit exceeded. Please retry after a short delay.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "run-response-lost",
+        "appliesTo": [
+          "workflows.run"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "INTERNAL_ERROR",
+          "message": "Internal Server Error",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "cancel-job",
+        "operationId": "jobs.cancel",
+        "method": "POST",
+        "path": "/api/v1/jobs/{job_id}/cancel",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-destination",
+        "operationId": "destinations.create",
+        "method": "POST",
+        "path": "/api/v1/destinations",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-source",
+        "operationId": "sources.create",
+        "method": "POST",
+        "path": "/api/v1/sources",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-source-connection-check",
+        "operationId": "sources.check_connection",
+        "method": "POST",
+        "path": "/api/v1/sources/{source_id}/connection-check",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-workflow",
+        "operationId": "workflows.create",
+        "method": "POST",
+        "path": "/api/v1/workflows",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-destination",
+        "operationId": "destinations.delete",
+        "method": "DELETE",
+        "path": "/api/v1/destinations/{destination_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-source",
+        "operationId": "sources.delete",
+        "method": "DELETE",
+        "path": "/api/v1/sources/{source_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-workflow",
+        "operationId": "workflows.delete",
+        "method": "DELETE",
+        "path": "/api/v1/workflows/{workflow_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "download-job-output",
+        "operationId": "jobs.download_output",
+        "method": "GET",
+        "path": "/api/v1/jobs/{job_id}/download",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 413
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-destination",
+        "operationId": "destinations.get",
+        "method": "GET",
+        "path": "/api/v1/destinations/{destination_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-job",
+        "operationId": "jobs.get",
+        "method": "GET",
+        "path": "/api/v1/jobs/{job_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-job-details",
+        "operationId": "jobs.get_details",
+        "method": "GET",
+        "path": "/api/v1/jobs/{job_id}/details",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-job-failed-files",
+        "operationId": "jobs.get_failed_files",
+        "method": "GET",
+        "path": "/api/v1/jobs/{job_id}/failed-files",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-source",
+        "operationId": "sources.get",
+        "method": "GET",
+        "path": "/api/v1/sources/{source_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-source-connection-check",
+        "operationId": "sources.get_connection_check",
+        "method": "GET",
+        "path": "/api/v1/sources/{source_id}/connection-check",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-workflow",
+        "operationId": "workflows.get",
+        "method": "GET",
+        "path": "/api/v1/workflows/{workflow_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-destinations",
+        "operationId": "destinations.list",
+        "method": "GET",
+        "path": "/api/v1/destinations",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 413
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-jobs",
+        "operationId": "jobs.list",
+        "method": "GET",
+        "path": "/api/v1/jobs",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 413
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-sources",
+        "operationId": "sources.list",
+        "method": "GET",
+        "path": "/api/v1/sources",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 413
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-workflows",
+        "operationId": "workflows.list",
+        "method": "GET",
+        "path": "/api/v1/workflows",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 413
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "partition",
+        "operationId": "general.partition",
+        "method": "POST",
+        "path": "/general/v0/general",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FILE",
+              "status": 422
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 413
+            },
+            {
+              "code": "SERVICE_OVERLOADED",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "UNSUPPORTED_FILE_TYPE",
+              "status": 400
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "run-workflow",
+        "operationId": "workflows.run",
+        "method": "POST",
+        "path": "/api/v1/workflows/{workflow_id}/run",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 202,
+          "errors": [
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-destination",
+        "operationId": "destinations.update",
+        "method": "PUT",
+        "path": "/api/v1/destinations/{destination_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-source",
+        "operationId": "sources.update",
+        "method": "PUT",
+        "path": "/api/v1/sources/{source_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-workflow",
+        "operationId": "workflows.update",
+        "method": "PUT",
+        "path": "/api/v1/workflows/{workflow_id}",
+        "auth": {
+          "kind": "header",
+          "name": "unstructured-api-key"
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": [],
+    "connections": [
+      {
+        "id": "unstructured-api",
+        "title": "Unstructured clients (server URL and API key overrides)",
+        "protocol": "http",
+        "environment": {
+          "UNSTRUCTURED_API_URL": "FIREDRILL_HTTP_URL",
+          "UNSTRUCTURED_API_KEY": "FIREDRILL_HTTP_TOKEN"
+        },
+        "instructions": "Point an Unstructured client at UNSTRUCTURED_API_URL with UNSTRUCTURED_API_KEY as the unstructured-api-key header value (for example unstructured-client's server_url and api_key_auth). Both the Partition Endpoint route /general/v0/general and the Workflow Endpoint routes under /api/v1 are served from this one origin; collection routes take no trailing slash. Only UTF-8 text documents can be partitioned. No official client has been verified against this Tool."
+      }
+    ]
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-read-and-search",
+  "title": "Reads and search: about, the documented q grammar, pagination and cursors, a document with astral characters, and the invisible-document 404",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "dana",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `read-and-search` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "about-get-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "about.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "about-get-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "about.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-ok-greater_than_or_equal-8",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "files-list-tool_error-greater_than_or_equal-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "files-get-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-tool_error-equals-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "documents-get-ok-greater_than_or_equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "documents-get-tool_error-equals-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "state-documents-equals-9",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "launch-unchanged",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1st00000000000000000000000000000000000000001",
+      "path": [
+        "revisionId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "ALBJ4000000000000001"
+      }
+    },
+    {
+      "id": "launch-viewed-time-unchanged-by-reads",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "user-docs",
+      "rowId": "dana.reyes@example.test:1st00000000000000000000000000000000000000001",
+      "path": [
+        "viewedByMeTime"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "2026-09-12T16:40:00.000Z"
+      }
+    }
+  ]
+}

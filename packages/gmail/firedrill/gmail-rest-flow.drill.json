@@ -1,0 +1,887 @@
+{
+  "schemaVersion": 1,
+  "id": "gmail-rest-flow",
+  "title": "Gmail REST flow: profile, labels, search and pagination, message/thread/draft mutations, synthetic send, delegation refusal",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the rest-flow conformance flow against the synthetic Gmail Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "profile-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-modify-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.modify"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-batch-modify-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.batch-modify"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-trash-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.trash"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-untrash-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.untrash"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-send-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "attachments-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "attachments.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "threads-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "threads-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "threads-modify-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.modify"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "threads-trash-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.trash"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-send-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "drafts-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-list-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-create-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "labels-update-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 5
+      }
+    },
+    {
+      "id": "labels-delete-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "messages-list-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "messages-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "messages-modify-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.modify"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 5
+      }
+    },
+    {
+      "id": "messages-batch-modify-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.batch-modify"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "messages-trash-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.trash"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "messages-untrash-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.untrash"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "messages-send-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "attachments-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "attachments.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "threads-list-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "threads-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "threads-modify-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.modify"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "threads-trash-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.trash"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "drafts-list-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "drafts-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "drafts-create-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "drafts-update-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "drafts-send-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "drafts-delete-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "profile-forbidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "sent-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gmail",
+        "eventId": "message.sent"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "trashed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gmail",
+        "eventId": "message.trashed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "labels-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gmail",
+        "eventId": "message.labels-changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "dana-messages",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "where": {
+        "mailbox": "dana.reyes@example.test"
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "sam-received-copy",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "where": {
+        "mailbox": "sam.okafor@example.test"
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "one-draft-left",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "drafts",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "vendors-label-deleted",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "labels",
+      "where": {
+        "mailbox": "dana.reyes@example.test"
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "raw-send-stored-as-sent",
+      "kind": "state.value",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:1900000000000133",
+      "path": [
+        "labelIds",
+        0
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "SENT"
+      }
+    },
+    {
+      "id": "sam-copy-in-inbox",
+      "kind": "state.value",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "sam.okafor@example.test:1900000000000015",
+      "path": [
+        "labelIds"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "INBOX",
+          "UNREAD"
+        ]
+      }
+    },
+    {
+      "id": "archived-message-left-inbox",
+      "kind": "state.value",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000402",
+      "path": [
+        "labelIds"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "STARRED",
+          "Label_3",
+          "IMPORTANT"
+        ]
+      }
+    },
+    {
+      "id": "flow-order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "gmail",
+              "operationId": "profile.get"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "gmail",
+              "operationId": "labels.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "gmail",
+              "operationId": "drafts.send"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "gmail",
+              "operationId": "messages.send"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "gmail",
+              "operationId": "labels.delete"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

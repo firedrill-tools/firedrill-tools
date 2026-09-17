@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "salesforce-large-responses",
+  "title": "Response budgets and bounded error text: wide pages resume by locator, oversized reads fail LIMIT_EXCEEDED, deep JSON 400, long caller names clipped",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the large-responses conformance flow against the synthetic Salesforce Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "query-more-ok-ge-6",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "query.more"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "query-execute-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "query.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-parameterized-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "search.parameterized"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "collections-retrieve-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "composite-execute-ok-ge-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "composite.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "collections-create-ok-eq-10",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "collections.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "records-create-tool-error-ge-6",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "accounts-count-40",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "accounts",
+      "comparison": {
+        "operator": "equals",
+        "value": 40
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 10
+      }
+    }
+  ]
+}

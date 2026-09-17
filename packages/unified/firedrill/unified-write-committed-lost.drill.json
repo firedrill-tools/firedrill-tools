@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "id": "unified-write-committed-lost",
+  "title": "messages.create commits the message and its events but answers 500; a blind retry creates a duplicate",
+  "targetId": "conformance-agent",
+  "scenarioId": "write-committed-lost",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the write-committed-lost flow against the synthetic Unified.to Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "messages-create-error-299",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "messages-create-ok-300",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "messages-count-301",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 22
+      }
+    },
+    {
+      "id": "messages-value-302",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000001001",
+      "path": [
+        "message"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Ship it"
+      }
+    },
+    {
+      "id": "messages-value-303",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000001002",
+      "path": [
+        "message"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Ship it"
+      }
+    },
+    {
+      "id": "object-created-events-304",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unified",
+        "eventId": "object.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "object-updated-events-305",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unified",
+        "eventId": "object.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

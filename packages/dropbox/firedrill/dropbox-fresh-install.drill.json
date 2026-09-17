@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "dropbox-fresh-install",
+  "title": "An actor without identity attributes sees the first seeded account",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "local-dev",
+  "task": {
+    "instruction": "Run the fresh-install flow against the synthetic Dropbox Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-current-account-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "users.get-current-account"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-folder-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-folder"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

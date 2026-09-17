@@ -1,0 +1,88 @@
+/* Detail pages, forms, modals, menus, toasts and the payroll editor. */
+.detail-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+.detail-head .avatar-lg { width: 48px; height: 48px; border-radius: 999px; background: var(--wash-2); color: var(--ink-3); font-size: 16px; font-weight: 600; display: grid; place-items: center; }
+.detail-title { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+.detail-meta { font-size: 13px; color: var(--muted-2); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); text-decoration: none; margin-bottom: 12px; }
+.back-link svg { width: 15px; height: 15px; }
+.back-link:hover { color: var(--ink); }
+.dl { display: grid; grid-template-columns: 180px 1fr; gap: 10px 18px; font-size: 13.5px; }
+.dl dt { color: var(--muted-2); }
+.dl dd { margin: 0; }
+@media (max-width: 640px) { .dl { grid-template-columns: 1fr; gap: 2px 0; } .dl dd { margin-bottom: 8px; } }
+.totals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.totals > div { padding: 14px 18px; border-right: 1px solid var(--line); }
+.totals > div:last-child { border-right: 0; }
+@media (max-width: 900px) { .totals { grid-template-columns: repeat(2, minmax(0, 1fr)); } .totals > div:nth-child(2n) { border-right: 0; } }
+.totals .stat-value { font-size: 20px; }
+
+/* Forms */
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+.field-full { grid-column: 1 / -1; }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field label { font-size: 12.5px; font-weight: 600; color: var(--ink-3); }
+.field-hint { font-size: 12px; color: var(--muted-2); }
+.field-error { font-size: 12px; color: var(--red); }
+.form-section { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-2); grid-column: 1 / -1; margin-top: 4px; }
+.checkline { display: flex; align-items: center; gap: 8px; font-size: 13.5px; }
+.checkline input { width: 16px; height: 16px; accent-color: var(--blue); }
+
+/* Modal */
+.overlay { position: fixed; inset: 0; background: rgba(19, 20, 21, 0.45); display: grid; place-items: center; padding: 20px; z-index: 50; }
+.modal { background: #fff; border-radius: var(--radius-lg); width: min(560px, 100%); max-height: 88vh; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); }
+.modal-wide { width: min(880px, 100%); }
+.modal-head { display: flex; align-items: flex-start; gap: 12px; padding: 18px 20px 14px; border-bottom: 1px solid var(--line); }
+.modal-head h2 { font-size: 16px; font-weight: 600; flex: 1; }
+.modal-head > div:first-child { flex: 1; }
+.modal-sub { margin: 4px 0 0; font-size: 13px; color: var(--muted-2); }
+.modal-body { padding: 18px 20px; overflow: auto; }
+.modal-foot { padding: 14px 20px; border-top: 1px solid var(--line); display: flex; justify-content: flex-end; gap: 8px; background: var(--wash-3); border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+
+/* Menus */
+.menu { position: absolute; z-index: 55; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 6px; min-width: 240px; max-height: 60vh; overflow: auto; }
+.menu-note { padding: 8px 10px; font-size: 12px; color: var(--muted-2); border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+.menu-item { display: flex; align-items: center; gap: 10px; width: 100%; border: 0; background: none; text-align: left; padding: 8px 10px; border-radius: 7px; font-size: 13.5px; cursor: pointer; color: var(--ink-2); }
+.menu-item:hover { background: var(--wash-2); }
+.menu-item[aria-current="true"] { font-weight: 600; }
+.menu-item .sub { display: block; font-size: 11.5px; color: var(--muted-2); }
+.menu-item svg { width: 16px; height: 16px; color: var(--muted-2); }
+
+/* Toasts */
+.toast-host { position: fixed; right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 8px; z-index: 60; }
+.toast { display: flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; padding: 10px 12px; border-radius: var(--radius); box-shadow: var(--shadow-lg); font-size: 13.5px; max-width: 420px; }
+.toast svg { width: 16px; height: 16px; }
+.toast-icon { display: flex; color: #75e0a7; }
+.toast-error { background: #7a271a; }
+.toast-error .toast-icon { color: #fda29b; }
+.toast-text { flex: 1; }
+.toast-close { border: 0; background: none; color: inherit; opacity: 0.7; cursor: pointer; display: flex; padding: 2px; }
+.toast-close:hover { opacity: 1; }
+
+/* Payroll editor */
+.editor-row td { vertical-align: top; }
+.earn-line { display: grid; grid-template-columns: 130px 120px 1fr; gap: 8px; align-items: end; margin-bottom: 8px; }
+.earn-line .drop { display: flex; align-items: center; }
+@media (max-width: 760px) { .earn-line { grid-template-columns: 1fr; } }
+.inline-tot { font-variant-numeric: tabular-nums; font-weight: 600; }
+.tax-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 8px; }
+.tax-table td { padding: 4px 0; color: var(--muted); }
+.tax-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.split { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; align-items: start; }
+@media (max-width: 1000px) { .split { grid-template-columns: 1fr; } }
+.timeline { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+.timeline li { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.timeline li:last-child { border-bottom: 0; }
+.timeline .when { color: var(--muted-2); white-space: nowrap; }
+.deadline { font-variant-numeric: tabular-nums; }
+.payday-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.payday-row:last-child { border-bottom: 0; }
+.payday-row .when { font-weight: 600; min-width: 130px; }
+.payday-row .spacer { flex: 1; }
+
+/* Earning-rate rows on the employee page: name over meta, status and action on the right. */
+.rate-line { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.rate-line:last-child { border-bottom: 0; }
+.rate-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.rate-name { font-weight: 600; color: var(--ink); }
+.rate-meta { font-size: 12.5px; color: var(--muted-2); }

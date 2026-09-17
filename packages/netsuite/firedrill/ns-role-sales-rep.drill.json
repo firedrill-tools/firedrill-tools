@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "ns-role-sales-rep",
+  "title": "The sales rep role may sell but not see invoices",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "sales-rep",
+  "task": {
+    "instruction": "Run the role-sales-rep conformance flow against the synthetic NetSuite Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "invoice-list-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "invoice.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "suiteql-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "suiteql.query"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "order-created",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "sales-order.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

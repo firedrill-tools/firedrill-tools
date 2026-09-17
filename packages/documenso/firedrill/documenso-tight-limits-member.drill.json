@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-tight-limits-member",
+  "title": "With a one-row scan bound every scanning operation fails UNKNOWN_ERROR instead of truncating",
+  "targetId": "conformance-agent",
+  "scenarioId": "tight-limits",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the tight-limits-member flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-find-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.find"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-duplicate-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.duplicate"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-distribute-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.distribute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-redistribute-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.redistribute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "envelopes-cancel-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "envelopes.cancel"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "envelopes-audit-log-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "envelopes.audit_log"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-create-many-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.create_many"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-reject-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.reject"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-create-many-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.create_many"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-use-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.use"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-find-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.find"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-count",
+      "kind": "state.count",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    },
+    {
+      "id": "audit-logs-count",
+      "kind": "state.count",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "comparison": {
+        "operator": "equals",
+        "value": 108
+      }
+    }
+  ]
+}

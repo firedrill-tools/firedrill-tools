@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "datadog-incidents-outage",
+  "title": "Incident creation commits then answers 503; a blind retry duplicates the incident",
+  "targetId": "conformance-agent",
+  "scenarioId": "incidents-outage",
+  "actorId": "standard",
+  "task": {
+    "instruction": "Run the incidents-outage flow against the synthetic Datadog Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "incidents-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "incidents.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "incidents-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "incidents",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "declared",
+      "kind": "event.count",
+      "event": {
+        "packageId": "datadog",
+        "eventId": "incident.declared"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "incidents-search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "incidents.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

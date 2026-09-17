@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-signing",
+  "title": "Open signing links, sign in order, complete a document, reject as a recipient and on behalf",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the signing flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "signing-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "signing.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "signing-complete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "signing.complete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-reject-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.reject"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "signing-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "signing.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "signing-complete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "signing.complete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-reject-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.reject"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sow-completed",
+      "kind": "state.value",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001006",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "COMPLETED"
+      }
+    },
+    {
+      "id": "document-completed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "documenso",
+        "eventId": "document.completed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "document-rejected-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "documenso",
+        "eventId": "document.rejected"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    }
+  ]
+}

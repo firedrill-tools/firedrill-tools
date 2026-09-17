@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "id": "gmail-response-budget",
+  "title": "Response byte budget: long raw headers refused 400; wide thread served in minimal, refused in larger renderings; lists sized on returned shape; 200-message thread bound refused on send and drafts",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the response-budget conformance flow against the synthetic Gmail Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "header-bounds-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "sends-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 261
+      }
+    },
+    {
+      "id": "draft-create-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "draft-update-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "draft-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "thread-renderings-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "thread-minimal-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "canonical-list-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "slim-lists-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "messages-stored",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "where": {
+        "mailbox": "dana.reyes@example.test"
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 283
+      }
+    },
+    {
+      "id": "long-thread-trashed",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.trash"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

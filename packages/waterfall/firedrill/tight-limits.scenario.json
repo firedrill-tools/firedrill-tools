@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Scan bound lowered to 3 rows (and a fourth API key): bounded scans fail with INTERNAL_UNCLASSIFIED_ERROR instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "max_scan_rows": 3,
+        "max_response_bytes": 900000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "api-keys",
+      "rowId": "00000001-0000-4000-8000-000000000004",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000004",
+        "active": true,
+        "notes": "Fourth key (tight-limits only)",
+        "master": false,
+        "per_interval": 5,
+        "interval_seconds": 60,
+        "created_at_us": 1789034400000000
+      }
+    }
+  ]
+}

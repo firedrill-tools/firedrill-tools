@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "ns-records",
+  "title": "Read every NetSuite record collection and record",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "administrator",
+  "task": {
+    "instruction": "Run the records conformance flow against the synthetic NetSuite Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "customer-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customer-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "read-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "customers-unchanged",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    }
+  ]
+}

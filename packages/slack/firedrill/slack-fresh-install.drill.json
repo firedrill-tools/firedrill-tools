@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-fresh-install",
+  "title": "An actor without identity attributes acts as the first active human member (Dana): auth.test, profile, listing, private history and posting all work as her",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "newcomer",
+  "task": {
+    "instruction": "Run the fresh-install conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "auth-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "auth.test"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "profile-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.profile.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "history-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.history"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "never-invalid-auth",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "auth.test"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "posted-as-dana",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1789376400.000001",
+      "path": [
+        "user"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "U01DANA0001"
+      }
+    }
+  ]
+}

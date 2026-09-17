@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "attio-assert-uniqueness",
+  "title": "With a second unique attribute, an assert that would duplicate another record's value answers 409",
+  "targetId": "conformance-agent",
+  "scenarioId": "unique-phones",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the assert-uniqueness conformance flow against the synthetic Attio Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "records-assert-tool_error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.assert"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-assert-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.assert"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-people-12",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "people",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "zoe-phone-added",
+      "kind": "state.value",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000111",
+      "path": [
+        "values",
+        "phone_numbers",
+        0,
+        "phone_number"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "+46701234999"
+      }
+    }
+  ]
+}

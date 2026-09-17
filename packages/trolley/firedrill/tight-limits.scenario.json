@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Scan bound lowered to 2 rows (meta/limits) so every bounded scan over more rows answers internal_server_error instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxRows": 2
+      }
+    }
+  ]
+}

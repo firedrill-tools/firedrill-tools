@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "id": "attio-records-flow",
+  "title": "Records, objects and attributes over the provider routes: query filters, sorts, paging, create, append/overwrite, assert, search and cascade delete",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the records-flow conformance flow against the synthetic Attio Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "self-identify-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "self.identify"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-list-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "objects.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "attributes-list-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "attributes.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "statuses-list-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "statuses.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "select-options-list-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "select-options.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-query-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-get-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-create-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-assert-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.assert"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-update-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-delete-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-search-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-people-13",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "people",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "count-companies-10",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "companies",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "count-entries-11",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "entries",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "count-notes-5",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "notes",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "created-person-email",
+      "kind": "state.value",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000001000",
+      "path": [
+        "values",
+        "email_addresses",
+        0,
+        "email_address"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "mira.holm@halcyonfreight.example.com"
+      }
+    },
+    {
+      "id": "event-record-created-3",
+      "kind": "event.count",
+      "event": {
+        "packageId": "attio",
+        "eventId": "record.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-record-updated-4",
+      "kind": "event.count",
+      "event": {
+        "packageId": "attio",
+        "eventId": "record.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "create-update-assert",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "attio",
+              "operationId": "records.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "attio",
+              "operationId": "records.update"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "attio",
+              "operationId": "records.assert"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

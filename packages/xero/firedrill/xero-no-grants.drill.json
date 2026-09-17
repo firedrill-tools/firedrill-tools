@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "xero-no-grants",
+  "title": "An actor without Firedrill grants is denied before the Tool runs",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "no-grants",
+  "task": {
+    "instruction": "[no-grants] Run the no-grants conformance flow against the synthetic Xero Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "invoices-list-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "invoices.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-create-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-count",
+      "kind": "state.count",
+      "packageId": "xero",
+      "namespace": "payments",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    }
+  ]
+}

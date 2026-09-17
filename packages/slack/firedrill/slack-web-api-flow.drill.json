@@ -1,0 +1,896 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-web-api-flow",
+  "title": "Slack Web API routes: every read and write method over GET and POST form",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the web-api conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "auth-test-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "auth.test"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-info-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.info"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-profile-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.profile.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-info-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.info"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-members-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.members"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-join-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.join"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-invite-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.invite"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-open-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.open"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-archive-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.archive"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-set-topic-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.set-topic"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-history-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.history"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-replies-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.replies"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-post-message-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-add-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-remove-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "reactions.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pins-add-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "pins.add"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pins-remove-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "pins.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pins-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "pins.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-messages-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "search.messages"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-info-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.info"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-profile-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.profile.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-info-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.info"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-members-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.members"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-join-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.join"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-invite-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.invite"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-open-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.open"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-archive-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.archive"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-set-topic-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.set-topic"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-history-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.history"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-replies-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.replies"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-post-message-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-delete-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-add-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-remove-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "reactions.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pins-add-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "pins.add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pins-remove-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "pins.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pins-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "pins.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-messages-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "search.messages"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-posted",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "message.posted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "messages-deleted",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "message.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "reactions-added",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "reaction.added"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "channel.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "design-joined",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01DESIGN01:U01DANA0001",
+      "path": [
+        "user"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "U01DANA0001"
+      }
+    },
+    {
+      "id": "release-notes-archived",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C000000001F",
+      "path": [
+        "is_archived"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": true
+      }
+    },
+    {
+      "id": "release-notes-name",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C000000001F",
+      "path": [
+        "name"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "release-notes"
+      }
+    },
+    {
+      "id": "tombstoned-parent",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787562900.000120",
+      "path": [
+        "subtype"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "tombstone"
+      }
+    },
+    {
+      "id": "dana-checklist-untouched",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787828400.000125",
+      "path": [
+        "text"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Deploy checklist for Thursday: freeze at 14:00 UTC, smoke tests, then announce in #general."
+      }
+    },
+    {
+      "id": "workspace-row",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "workspace",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "auth.test"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "conversations.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "chat.post-message"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "chat.delete"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "conversations.archive"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

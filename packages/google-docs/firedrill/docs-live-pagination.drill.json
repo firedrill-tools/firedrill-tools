@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-live-pagination",
+  "title": "Live pagination: the next page survives renaming or deleting the last returned file, comment or permission; no entry is dropped",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "dana",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `live-pagination` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "files-list-ok-greater_than_or_equal-8",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "files-update-ok-equals-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-delete-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-delete-ok-equals-5",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "comments.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "comments-list-ok-greater_than_or_equal-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "permissions-delete-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "permissions.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-list-ok-greater_than_or_equal-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "permissions.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "revisions-list-ok-equals-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "revisions.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "replies-list-ok-greater_than_or_equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "replies.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "state-documents-equals-9",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    }
+  ]
+}

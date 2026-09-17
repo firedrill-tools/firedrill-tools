@@ -1,0 +1,73 @@
+// Job change + e-mail verification flow (baseline scenario, master key).
+// job_change.run ok 10 / tool_error 10; job_change.get ok 1 / tool_error 3; verify.email.run ok 6 / tool_error 3;
+// jobs 22; job.launched 16, job.completed 16; usage/master/2026-09-16: job_change_found 8, verify_email_verified 5;
+// balance 250 − 0.8 − 0.1 = 249.1 USD.
+const UNKNOWN = "0badc0de-0000-4000-8000-000000000000";
+
+export async function jobChangeVerify({ api, assert, SEED }) {
+  const change = async (body) => (await api("POST", "/v1/job/change", { body })).body;
+  const changeError = (body, code) => api("POST", "/v1/job/change", { body, status: 400, code });
+  const left = await change({ contact_linkedin: "nadia-petrova" });
+  assert.equal(left.status, "SUCCEEDED");
+  assert.equal(left.output.job_change_status, "left");
+  assert.equal(left.output.person.id, SEED.PID["nadia-petrova"]);
+  assert.equal(left.output.person.company_name, null);
+  assert.equal(left.output.usage.total_usd, 0.1);
+  const moved = await change({ professional_email: "maya.rasmussen@contoso-freight.test" });
+  assert.equal(moved.output.job_change_status, "moved");
+  assert.equal(moved.output.person.company_domain, "northwind.test");
+  assert.equal((await change({ professional_email: "ada.lindqvist@northwind.test" })).output.job_change_status, "no_change");
+  assert.equal((await change({ contact_linkedin: "ada-lindqvist", company_domain: "northwind.test" })).output.job_change_status, "no_change");
+  assert.equal((await change({ contact_linkedin: "ada-lindqvist", company_linkedin: "https://www.linkedin.com/company/contoso-freight/" })).output.job_change_status, "moved");
+  assert.equal((await change({ personal_email: "elin.bergstrom@example.com", company_domain: "northwind.test" })).output.job_change_status, "no_change");
+  assert.equal((await change({ contact_full_name: "otto brandt", company_domain: "contoso-freight.test" })).output.job_change_status, "no_change");
+  const unknown = await change({ contact_full_name: "Nobody Known", company_linkedin: "fabrikam" });
+  assert.equal(unknown.output.job_change_status, "unknown");
+  assert.deepEqual(unknown.output.person, {});
+  assert.equal(unknown.output.usage.total_usd, 0);
+  assert.equal((await change({ professional_email: "unknown@northwind.test" })).output.job_change_status, "unknown");
+  assert.equal((await change({ personal_email: "nadia.petrova@example.com", company_domain: "fabrikam.example" })).output.job_change_status, "left");
+  await changeError({}, "VALIDATION_BAD_REQUEST");
+  await changeError({ personal_email: "elin.bergstrom@example.com" }, "VALIDATION_BAD_REQUEST");
+  await changeError({ contact_linkedin: "ada-lindqvist", company_domain: "northwind.test", company_linkedin: "northwind-labs" }, "VALIDATION_BAD_REQUEST");
+  await changeError({ contact_linkedin: "ada-lindqvist", professional_email: "ada.lindqvist@northwind.test" }, "VALIDATION_BAD_REQUEST");
+  await changeError({ professional_email: "info@northwind.test" }, "VALIDATION_BAD_EMAIL_ROLE");
+  await changeError({ professional_email: "bad" }, "VALIDATION_BAD_EMAIL_INVALID");
+  await changeError({ contact_linkedin: "ada-lindqvist", company_domain: "gmail.com" }, "VALIDATION_BAD_DOMAIN_EMAIL_PROVIDER");
+  await changeError({ contact_linkedin: "ada-lindqvist", company_domain: "x.com" }, "VALIDATION_BAD_DOMAIN_SOCIAL_MEDIA");
+  await changeError({ contact_linkedin: "ada-lindqvist", company_domain: "!!" }, "VALIDATION_BAD_DOMAIN");
+  await changeError(null, "VALIDATION_MISSING_BODY");
+  const stored = (await api("GET", `/v1/job/change?job_id=${left.input.task.job_id}`)).body;
+  assert.equal(stored.output.job_change_status, "left");
+  await api("GET", `/v1/job/change?job_id=${UNKNOWN}`, { status: 404, code: "NOT_FOUND_JOB_NOT_FOUND" });
+  await api("GET", "/v1/job/change", { status: 400, code: "VALIDATION_MISSING_JOB_ID_PARAMETER" });
+  await api("GET", "/v1/job/change?job_id=nope", { status: 400, code: "VALIDATION_BAD_JOB_ID" });
+
+  const verify = async (email) => (await api("POST", "/v1/verify/email", { body: { email } })).body;
+  const valid = await verify("Ada.Lindqvist@northwind.test");
+  assert.equal(valid.status, "SUCCEEDED");
+  assert.equal(valid.output.email.email, "ada.lindqvist@northwind.test");
+  assert.equal(valid.output.email.email_status, "valid");
+  assert.equal(valid.output.email.smtp_provider, "google");
+  assert.deepEqual(valid.output.email.mx_records, ["aspmx.l.google.com", "alt1.aspmx.l.google.com"]);
+  assert.equal(valid.output.usage.total_usd, 0.02);
+  assert.equal((await verify("nobody@contoso-freight.test")).output.email.email_status, "risky");
+  assert.equal((await verify("nobody@northwind.test")).output.email.email_status, "invalid");
+  const invalidTld = await verify("dana.kowalski@proseware.invalid");
+  assert.equal(invalidTld.output.email.email_status, "invalid");
+  assert.equal(invalidTld.output.email.smtp_provider, null);
+  assert.deepEqual(invalidTld.output.email.mx_records, []);
+  const unknownDomain = await verify("someone@unknown-domain.test");
+  assert.equal(unknownDomain.output.email.email_status, "unknown");
+  assert.equal(unknownDomain.output.usage.total_usd, 0);
+  assert.equal((await verify("info@northwind.test")).output.email.email_status, "invalid", "role addresses are verified, not rejected");
+  await api("POST", "/v1/verify/email", { body: { email: "not-an-email" }, status: 400, code: "VALIDATION_BAD_EMAIL_INVALID" });
+  const required = await api("POST", "/v1/verify/email", { body: {}, status: 400, code: "VALIDATION_BAD_REQUEST" });
+  assert.deepEqual(required.body.error, ["email: Field required"]);
+  await api("POST", "/v1/verify/email", { body: null, status: 400, code: "VALIDATION_MISSING_BODY" });
+  const account = (await api("GET", "/v2/account")).body;
+  assert.equal(account.key_usage.job_change_found, 8);
+  assert.equal(account.key_usage.verify_email_verified, 5);
+  assert.equal(account.key_usage.verify_email_requests, 6);
+  assert.equal(account.balance_remaining_usd, 249.1);
+}

@@ -1,0 +1,773 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-revoked-key",
+  "title": "A key naming a workspace that does not exist answers 401 API key is invalid on all 25 operations",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "revoked",
+  "task": {
+    "instruction": "Run the revoked flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "general-partition-tool_error-40",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "general-partition-ok-41",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "sources-list-tool_error-42",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-list-ok-43",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "sources-create-tool_error-44",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-create-ok-45",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "sources-get-tool_error-46",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-get-ok-47",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "sources-update-tool_error-48",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-update-ok-49",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "sources-delete-tool_error-50",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-delete-ok-51",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "sources-check-connection-tool_error-52",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.check_connection"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-check-connection-ok-53",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.check_connection"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "sources-get-connection-check-tool_error-54",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.get_connection_check"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-get-connection-check-ok-55",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.get_connection_check"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "destinations-list-tool_error-56",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "destinations-list-ok-57",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "destinations-create-tool_error-58",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "destinations-create-ok-59",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "destinations-get-tool_error-60",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "destinations-get-ok-61",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "destinations-update-tool_error-62",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "destinations-update-ok-63",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "destinations-delete-tool_error-64",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "destinations-delete-ok-65",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "workflows-list-tool_error-66",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workflows-list-ok-67",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "workflows-create-tool_error-68",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workflows-create-ok-69",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "workflows-get-tool_error-70",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workflows-get-ok-71",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "workflows-update-tool_error-72",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workflows-update-ok-73",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "workflows-delete-tool_error-74",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workflows-delete-ok-75",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "workflows-run-tool_error-76",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workflows-run-ok-77",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "jobs-list-tool_error-78",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-list-ok-79",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "jobs-get-tool_error-80",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-get-ok-81",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "jobs-cancel-tool_error-82",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.cancel"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-cancel-ok-83",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.cancel"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "jobs-get-details-tool_error-84",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.get_details"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-get-details-ok-85",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.get_details"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "jobs-get-failed-files-tool_error-86",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.get_failed_files"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-get-failed-files-ok-87",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.get_failed_files"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "jobs-download-output-tool_error-88",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.download_output"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-download-output-ok-89",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.download_output"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "partition-log-count-90",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-ts-sequence-full",
+  "title": "A virtual second holds at most 999,999 message timestamps: the last one is allocated, then posting, replying, joining and inviting refuse with too_many_rows and write nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "ts-sequence-full",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the ts-sequence-full conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "chat-post-message-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-post-message-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "chat-reply-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.reply"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-join-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.join"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-invite-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.invite"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-add-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "one-message-posted",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "message.posted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "last-ts-of-the-second",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01INCIDENT:1789376400.999999",
+      "path": [
+        "text"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "edited"
+      }
+    },
+    {
+      "id": "one-row-more",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 40
+      }
+    },
+    {
+      "id": "memberships-untouched",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "comparison": {
+        "operator": "equals",
+        "value": 30
+      }
+    }
+  ]
+}

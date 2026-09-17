@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "jira-tight-limits-admin",
+  "title": "With site.limits lowered, direct lookups still work while every scan of an over-bound namespace fails FAILED_PRECONDITION",
+  "targetId": "conformance-agent",
+  "scenarioId": "tight-limits",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the tight-limits-admin conformance flow against the synthetic Jira Cloud Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "myself-get-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "myself.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-get-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-get-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-search-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "projects.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-search-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-add-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "boards-list-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "boards.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-add-ok-eq-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.add"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "comments-count-13",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    }
+  ]
+}

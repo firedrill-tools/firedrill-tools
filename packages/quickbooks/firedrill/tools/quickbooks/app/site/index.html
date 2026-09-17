@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QuickBooks (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/quickbooks.svg" />
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./nav.css" />
+    <link rel="stylesheet" href="./tables.css" />
+    <link rel="stylesheet" href="./forms.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#page">Skip to content</a>
+    <div class="shell" id="shell">
+      <aside class="leftnav" id="leftnav" aria-label="QuickBooks navigation">
+        <div class="brand"><img src="./assets/intuit-quickbooks.svg" alt="Intuit QuickBooks" class="brand-lockup" /><img src="./assets/quickbooks.svg" alt="Intuit QuickBooks" class="brand-icon" /></div>
+        <div class="create-wrap">
+          <button type="button" class="create-btn" id="create-btn" aria-haspopup="menu" aria-expanded="false"><span data-icon="plus"></span><span>Create</span></button>
+        </div>
+        <nav class="navlist" id="navlist">
+          <button type="button" class="nav-item" data-not-simulated="Bookmarks"><span data-icon="bookmark" class="nav-icon"></span><span>Bookmarks</span></button>
+          <a class="nav-item" href="#/home" data-route="home"><span data-icon="home" class="nav-icon"></span><span>Home</span></a>
+          <button type="button" class="nav-item" data-not-simulated="Feed"><span data-icon="feed" class="nav-icon"></span><span>Feed</span></button>
+          <button type="button" class="nav-item" data-not-simulated="Reports"><span data-icon="reports" class="nav-icon"></span><span>Reports</span></button>
+          <button type="button" class="nav-item" data-not-simulated="All apps"><span data-icon="apps" class="nav-icon"></span><span>All apps</span></button>
+          <div class="nav-heading">Pinned</div>
+          <a class="nav-item" href="#/accounts" data-route="accounts"><span data-icon="accounting" class="nav-icon"></span><span>Accounting</span></a>
+          <button type="button" class="nav-item" data-not-simulated="Expenses &amp; Bills"><span data-icon="expenses" class="nav-icon"></span><span>Expenses &amp; Bills</span></button>
+          <div class="nav-group" id="group-sales">
+            <a class="nav-item" href="#/invoices" data-route="sales"><span data-icon="sales" class="nav-icon"></span><span>Sales &amp; Get paid</span></a>
+            <div class="nav-sub">
+              <a class="nav-subitem" href="#/invoices" data-route="invoices">Invoices</a>
+              <a class="nav-subitem" href="#/payments" data-route="payments">Payments</a>
+              <a class="nav-subitem" href="#/customers" data-route="customers">Customers</a>
+              <a class="nav-subitem" href="#/items" data-route="items">Products &amp; services</a>
+            </div>
+          </div>
+          <a class="nav-item" href="#/customers" data-route="customers-hub"><span data-icon="customers" class="nav-icon"></span><span>Customers &amp; leads</span></a>
+          <button type="button" class="nav-item" data-not-simulated="Banking"><span data-icon="bank" class="nav-icon"></span><span>Banking</span></button>
+          <button type="button" class="nav-item" data-not-simulated="Payroll"><span data-icon="payroll" class="nav-icon"></span><span>Payroll</span></button>
+          <button type="button" class="nav-item" data-not-simulated="Taxes"><span data-icon="taxes" class="nav-icon"></span><span>Taxes</span></button>
+          <button type="button" class="nav-item" data-not-simulated="Mileage"><span data-icon="mileage" class="nav-icon"></span><span>Mileage</span></button>
+          <button type="button" class="nav-item" data-not-simulated="My accountant"><span data-icon="accountant" class="nav-icon"></span><span>My accountant</span></button>
+          <button type="button" class="nav-item" data-not-simulated="Team"><span data-icon="team" class="nav-icon"></span><span>Team</span></button>
+        </nav>
+        <div class="nav-bottom">
+          <button type="button" class="nav-item" data-not-simulated="Customize"><span data-icon="customize" class="nav-icon"></span><span>Customize</span></button>
+          <button type="button" class="nav-item" id="nav-collapse" aria-label="Collapse the menu" aria-expanded="true" aria-controls="leftnav"><span data-icon="collapse" class="nav-icon"></span><span class="nav-collapse-label">Collapse the menu</span></button>
+        </div>
+      </aside>
+      <div class="frame">
+        <header class="topbar">
+          <button type="button" class="icon-btn topbar-menu" id="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span data-icon="menu"></span></button>
+          <div class="company" id="company-name">Loading…</div>
+          <form class="gsearch" id="gsearch" role="search" autocomplete="off">
+            <span data-icon="search" class="gsearch-icon"></span>
+            <label class="visually-hidden" for="gsearch-input">Search</label>
+            <input id="gsearch-input" type="search" placeholder="Navigate or search for transactions, contacts, reports, and more" />
+            <div class="gsearch-results" id="gsearch-results" role="listbox" aria-label="Search results" hidden></div>
+          </form>
+          <div class="topbar-end">
+            <span class="sim-chip" title="All data here is synthetic and local to this Firedrill world">Firedrill test company</span>
+            <button type="button" class="icon-btn" data-not-simulated="My experts" aria-label="My experts" title="My experts"><span data-icon="experts"></span></button>
+            <button type="button" class="icon-btn" data-not-simulated="Help" aria-label="Help" title="Help"><span data-icon="help"></span></button>
+            <button type="button" class="icon-btn" data-not-simulated="Notifications" aria-label="Notifications" title="Notifications"><span data-icon="bell"></span></button>
+            <button type="button" class="icon-btn" data-not-simulated="Settings" aria-label="Settings" title="Settings"><span data-icon="gear"></span></button>
+            <button type="button" class="avatar" id="avatar" data-not-simulated="Account and profile" aria-label="Account and profile" title="Account and profile">·</button>
+          </div>
+        </header>
+        <main class="page" id="page" tabindex="-1" aria-live="polite">
+          <div class="loading"><span class="spinner" aria-hidden="true"></span><span>Loading…</span></div>
+        </main>
+      </div>
+    </div>
+    <div class="menu-pop" id="create-menu" role="menu" hidden></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <div id="overlay-root"></div>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-bounds",
+  "title": "A channel history above the scan bound fails with 500 instead of truncating; exact reads work",
+  "targetId": "conformance-agent",
+  "scenarioId": "bounds",
+  "actorId": "bot",
+  "task": {
+    "instruction": "Run flow:bounds against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "list-bounded",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

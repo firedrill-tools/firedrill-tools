@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-contacts-read",
+  "title": "Contacts, groups, other contacts and search read exactly what is seeded",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ada",
+  "task": {
+    "instruction": "Run the contacts-read flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "get-contact-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.get-contact"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "get-contact-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.get-contact"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "connections-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.list-connections"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "connections-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.list-connections"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.search-contacts"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "search-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.search-contacts"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "other-contacts-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "other-contacts.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "groups-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "contact-groups.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "group-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "contact-groups.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "contacts-unchanged",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    },
+    {
+      "id": "groups-unchanged",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contact-groups",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    }
+  ]
+}

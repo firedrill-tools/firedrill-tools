@@ -1,0 +1,393 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-denied",
+  "title": "An actor without Firedrill grants is denied before the Tool runs",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "no-grants",
+  "task": {
+    "instruction": "Run the denied flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-find-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.find"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-create-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-update-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-duplicate-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.duplicate"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-distribute-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.distribute"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-redistribute-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.redistribute"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "envelopes-cancel-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "envelopes.cancel"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "envelopes-audit-log-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "envelopes.audit_log"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-create-many-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.create_many"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-update-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-reject-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "recipients.reject"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-create-many-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.create_many"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "fields-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "fields.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-find-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.find"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-use-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.use"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "signing-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "signing.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "signing-complete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "signing.complete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "workspace-context-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "workspace.context"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-count",
+      "kind": "state.count",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    },
+    {
+      "id": "recipients-count",
+      "kind": "state.count",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "comparison": {
+        "operator": "equals",
+        "value": 33
+      }
+    }
+  ]
+}

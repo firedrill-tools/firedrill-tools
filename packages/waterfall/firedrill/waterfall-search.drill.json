@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "id": "waterfall-search",
+  "title": "Search Contact (three modes, every filter, paging, title-filter grammar errors) and Search Company",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "master",
+  "task": {
+    "instruction": "Run the search flow against the synthetic Waterfall Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "search-contact-run-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.contact.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "search-contact-run-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.contact.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "search-contact-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.contact.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-contact-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.contact.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "search-company-run-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.company.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "search-company-run-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.company.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "search-company-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.company.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-company-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.company.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "jobs-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    },
+    {
+      "id": "job-launched-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "job.launched"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "job-completed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "job.completed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "balance",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "meta",
+      "rowId": "account",
+      "path": [
+        "balance_remaining_micros"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 248590000
+      }
+    },
+    {
+      "id": "contact-found",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-16",
+      "path": [
+        "search_contact_found"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 29
+      }
+    },
+    {
+      "id": "contact-requests",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-16",
+      "path": [
+        "search_contact_requests"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "company-found",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-16",
+      "path": [
+        "search_company_found"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "run-then-get",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "waterfall",
+              "operationId": "search.contact.run"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "waterfall",
+              "operationId": "search.contact.get"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

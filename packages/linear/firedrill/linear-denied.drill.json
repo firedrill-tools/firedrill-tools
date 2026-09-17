@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-denied",
+  "title": "An actor without grants gets the framework denied outcome rendered in Linear's envelope",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "graphql-execute-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "issues-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "organization-get-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "organization.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "issues-create-ok-equals-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "issues-count-equals-24",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    }
+  ]
+}

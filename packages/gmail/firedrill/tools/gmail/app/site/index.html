@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inbox - Gmail (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/google-gmail-2026.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body class="density-default">
+    <div class="gm" id="app">
+      <header class="gm-header">
+        <div class="gm-header-start">
+          <button type="button" class="icon-btn large" id="menu-toggle" aria-label="Main menu" aria-expanded="true" title="Main menu"><span data-icon="menu"></span></button>
+          <a class="gm-logo" href="#inbox" aria-label="Gmail" title="Gmail"><img src="./assets/google-gmail-2026.svg" alt="" width="40" height="32" /><span class="gm-logo-text">Gmail</span></a>
+        </div>
+        <form class="gm-search" id="search-form" role="search">
+          <button type="button" class="icon-btn gm-search-back" id="search-back" aria-label="Back" title="Back"><span data-icon="arrow_back"></span></button>
+          <button type="submit" class="icon-btn gm-search-submit" aria-label="Search mail" title="Search"><span data-icon="search"></span></button>
+          <label class="visually-hidden" for="search">Search mail</label>
+          <input id="search" type="text" placeholder="Search mail" autocomplete="off" spellcheck="false" />
+          <button type="button" class="icon-btn" id="search-clear" aria-label="Clear search" title="Clear search" hidden><span data-icon="close"></span></button>
+          <button type="button" class="icon-btn" id="search-options" aria-label="Show search options" aria-expanded="false" title="Show search options"><span data-icon="tune"></span></button>
+        </form>
+        <div class="gm-header-end">
+          <button type="button" class="icon-btn large" id="help" aria-label="Support" aria-expanded="false" title="Support"><span data-icon="help"></span></button>
+          <button type="button" class="icon-btn large" id="settings" aria-label="Settings" aria-expanded="false" title="Settings"><span data-icon="settings"></span></button>
+          <button type="button" class="icon-btn large gm-apps-btn" id="apps" aria-label="Google apps" title="Google apps" data-not-simulated="Google apps" data-ns-detail="The app launcher opens other Google products. Only the mailbox is simulated in this Firedrill world."><span data-icon="apps"></span></button>
+          <button type="button" class="gm-account" id="account" aria-label="Account" aria-expanded="false" title="Account"><span class="gm-avatar small" id="account-avatar" aria-hidden="true">?</span></button>
+        </div>
+        <div class="gm-loading" id="loading" role="status" aria-live="polite" hidden>Loading…</div>
+      </header>
+
+      <div class="gm-body">
+        <nav class="gm-nav" id="nav" aria-label="Mail">
+          <button type="button" class="gm-compose" id="compose" title="Compose"><span data-icon="edit"></span><span class="gm-compose-label">Compose</span></button>
+          <ul class="gm-nav-list" id="folders">
+            <li><a href="#inbox" data-folder="inbox" title="Inbox"><span data-icon="inbox"></span><span class="label">Inbox</span><span class="count" data-count="INBOX"></span></a></li>
+            <li><a href="#starred" data-folder="starred" title="Starred"><span data-icon="star_border"></span><span class="label">Starred</span></a></li>
+            <li><button type="button" title="Snoozed" data-not-simulated="Snoozed" data-ns-detail="Snoozing is not part of this Tool's mail model, so there are never snoozed conversations to list."><span data-icon="snooze"></span><span class="label">Snoozed</span></button></li>
+            <li><a href="#sent" data-folder="sent" title="Sent"><span data-icon="send"></span><span class="label">Sent</span></a></li>
+            <li><a href="#drafts" data-folder="drafts" title="Drafts"><span data-icon="draft"></span><span class="label">Drafts</span><span class="count" data-count="DRAFT"></span></a></li>
+            <li><button type="button" id="more-toggle" aria-expanded="false" title="More"><span data-icon="expand_more"></span><span class="label">More</span></button></li>
+            <li class="gm-nav-more" hidden><a href="#imp" data-folder="important" title="Important"><span data-icon="important_outline"></span><span class="label">Important</span></a></li>
+            <li class="gm-nav-more" hidden><button type="button" title="Scheduled" data-not-simulated="Scheduled" data-ns-detail="Scheduled send is not simulated: messages are sent immediately, so nothing is ever waiting here."><span data-icon="schedule_send"></span><span class="label">Scheduled</span></button></li>
+            <li class="gm-nav-more" hidden><a href="#all" data-folder="all" title="All Mail"><span data-icon="all_mail"></span><span class="label">All Mail</span></a></li>
+            <li class="gm-nav-more" hidden><a href="#spam" data-folder="spam" title="Spam"><span data-icon="report"></span><span class="label">Spam</span><span class="count" data-count="SPAM"></span></a></li>
+            <li class="gm-nav-more" hidden><a href="#trash" data-folder="trash" title="Trash"><span data-icon="delete"></span><span class="label">Trash</span></a></li>
+            <li class="gm-nav-more" hidden><button type="button" id="categories-toggle" aria-expanded="false" title="Categories"><span data-icon="label"></span><span class="label">Categories</span><span data-icon="arrow_drop_down" class="gm-nav-caret"></span></button></li>
+            <li class="gm-nav-more gm-nav-cat" hidden><a href="#category/social" data-category="social" class="nested" title="Social"><span data-icon="group"></span><span class="label">Social</span></a></li>
+            <li class="gm-nav-more gm-nav-cat" hidden><a href="#category/updates" data-category="updates" class="nested" title="Updates"><span data-icon="info"></span><span class="label">Updates</span></a></li>
+            <li class="gm-nav-more gm-nav-cat" hidden><a href="#category/forums" data-category="forums" class="nested" title="Forums"><span data-icon="forum"></span><span class="label">Forums</span></a></li>
+            <li class="gm-nav-more gm-nav-cat" hidden><a href="#category/promotions" data-category="promotions" class="nested" title="Promotions"><span data-icon="local_offer"></span><span class="label">Promotions</span></a></li>
+            <li class="gm-nav-more" hidden><button type="button" title="Manage labels" data-not-simulated="Manage labels" data-ns-detail="The Labels settings page is not simulated. Use the + next to Labels or a label's menu to create, rename, recolour, nest or remove labels."><span data-icon="settings"></span><span class="label">Manage labels</span></button></li>
+            <li class="gm-nav-more" hidden><button type="button" id="nav-create-label" title="Create new label"><span data-icon="add"></span><span class="label">Create new label</span></button></li>
+          </ul>
+          <div class="gm-labels-head">
+            <span class="label">Labels</span>
+            <button type="button" class="icon-btn small" id="label-create" aria-label="Create new label" title="Create new label"><span data-icon="add"></span></button>
+          </div>
+          <ul class="gm-nav-list" id="labels" aria-label="Labels"></ul>
+        </nav>
+
+        <main class="gm-main" id="main">
+          <section class="gm-card" id="list-view" aria-label="Conversations">
+            <div class="gm-toolbar" id="list-toolbar">
+              <div class="gm-toolbar-start">
+                <div class="gm-select">
+                  <button type="button" class="icon-btn gm-check" id="select-all" aria-label="Select" aria-checked="false" role="checkbox" title="Select"><span data-icon="check_box_blank"></span></button>
+                  <button type="button" class="icon-btn gm-select-caret" id="select-menu" aria-label="Select options" aria-expanded="false" title="Select"><span data-icon="arrow_drop_down"></span></button>
+                </div>
+                <div class="gm-toolbar-idle" id="toolbar-idle">
+                  <button type="button" class="icon-btn" id="refresh" aria-label="Refresh" title="Refresh"><span data-icon="refresh"></span></button>
+                  <button type="button" class="icon-btn" id="list-more" aria-label="More email options" aria-expanded="false" title="More email options"><span data-icon="more_vert"></span></button>
+                </div>
+                <div class="gm-toolbar-selection" id="toolbar-selection" hidden>
+                  <button type="button" class="icon-btn" id="bulk-inbox" aria-label="Move to Inbox" title="Move to Inbox" hidden><span data-icon="move_to_inbox"></span></button>
+                  <button type="button" class="icon-btn" id="bulk-archive" aria-label="Archive" title="Archive"><span data-icon="archive"></span></button>
+                  <button type="button" class="icon-btn" id="bulk-spam" aria-label="Report spam" title="Report spam"><span data-icon="report"></span></button>
+                  <button type="button" class="gm-text-btn" id="bulk-not-spam" hidden>Not spam</button>
+                  <button type="button" class="icon-btn" id="bulk-delete" aria-label="Delete" title="Delete"><span data-icon="delete"></span></button>
+                  <span class="gm-toolbar-divider" role="separator"></span>
+                  <button type="button" class="icon-btn" id="bulk-read" aria-label="Mark as read" title="Mark as read"><span data-icon="mail_open"></span></button>
+                  <button type="button" class="icon-btn" id="bulk-unread" aria-label="Mark as unread" title="Mark as unread"><span data-icon="mail"></span></button>
+                  <button type="button" class="icon-btn gm-wide-only" id="bulk-snooze" aria-label="Snooze" title="Snooze" data-not-simulated="Snooze" data-ns-detail="Snoozing is not part of this Tool's mail model. Nothing was changed."><span data-icon="snooze"></span></button>
+                  <button type="button" class="icon-btn gm-wide-only" id="bulk-tasks" aria-label="Add to Tasks" title="Add to Tasks" data-not-simulated="Add to Tasks" data-ns-detail="Google Tasks is a separate product and is not simulated by the Gmail Tool. Nothing was changed."><span data-icon="add_task"></span></button>
+                  <span class="gm-toolbar-divider gm-wide-only" role="separator"></span>
+                  <button type="button" class="icon-btn" id="bulk-move" aria-label="Move to" aria-expanded="false" title="Move to"><span data-icon="drive_file_move"></span></button>
+                  <button type="button" class="icon-btn" id="bulk-label" aria-label="Labels" aria-expanded="false" title="Labels"><span data-icon="label"></span></button>
+                  <button type="button" class="icon-btn" id="bulk-more" aria-label="More" aria-expanded="false" title="More"><span data-icon="more_vert"></span></button>
+                </div>
+              </div>
+              <div class="gm-toolbar-end">
+                <span class="gm-pager-text" id="pager-text"></span>
+                <button type="button" class="icon-btn" id="page-newer" aria-label="Newer" title="Newer" disabled><span data-icon="chevron_left"></span></button>
+                <button type="button" class="icon-btn" id="page-older" aria-label="Older" title="Older" disabled><span data-icon="chevron_right"></span></button>
+              </div>
+            </div>
+            <div class="gm-tabs" id="category-tabs" role="tablist" aria-label="Inbox categories" hidden>
+              <a class="gm-tab" href="#inbox" role="tab" data-tab="primary" aria-selected="false"><span data-icon="inbox"></span><span class="gm-tab-label">Primary</span></a>
+              <a class="gm-tab" href="#category/promotions" role="tab" data-tab="promotions" aria-selected="false"><span data-icon="local_offer"></span><span class="gm-tab-label">Promotions</span></a>
+              <a class="gm-tab" href="#category/social" role="tab" data-tab="social" aria-selected="false"><span data-icon="group"></span><span class="gm-tab-label">Social</span></a>
+              <a class="gm-tab" href="#category/updates" role="tab" data-tab="updates" aria-selected="false"><span data-icon="info"></span><span class="gm-tab-label">Updates</span></a>
+            </div>
+            <div class="gm-chips" id="search-chips" hidden>
+              <button type="button" class="gm-chip" data-chip="has:attachment">Has attachment</button>
+              <button type="button" class="gm-chip" data-chip="is:unread">Is unread</button>
+              <button type="button" class="gm-chip" data-chip="is:starred">Is starred</button>
+              <button type="button" class="gm-chip" id="chip-time" aria-expanded="false">Any time<span data-icon="arrow_drop_down"></span></button>
+            </div>
+            <div class="gm-selection-banner" id="selection-banner" hidden></div>
+            <div class="gm-folder-banner" id="folder-banner" role="note" hidden><span id="folder-banner-text"></span><button type="button" class="gm-folder-banner-action" id="folder-banner-action"></button></div>
+            <div class="gm-list" id="rows" role="list" aria-live="polite"></div>
+            <footer class="gm-footer">
+              <div class="gm-footer-storage" id="footer-storage" hidden>
+                <button type="button" class="gm-footer-link gm-storage-text" id="storage-text" data-not-simulated="Manage storage" data-ns-detail="Google One storage plans and quota enforcement are not simulated. The used figure is the sum of Gmail's sizeEstimate over every message in this mailbox, Spam and Trash included; 15 GB is Gmail's standard free allowance, shown as a label only."></button>
+                <span class="gm-storage-bar" aria-hidden="true"><span class="gm-storage-fill" id="storage-fill"></span></span>
+              </div>
+              <span class="gm-footer-links">
+                <button type="button" class="gm-footer-link" data-not-simulated="Terms" data-ns-detail="Google's terms are not part of this synthetic mailbox.">Terms</button><span aria-hidden="true">·</span>
+                <button type="button" class="gm-footer-link" data-not-simulated="Privacy" data-ns-detail="Google's privacy policy is not part of this synthetic mailbox. All data here is fictional and stays in the local world.">Privacy</button><span aria-hidden="true">·</span>
+                <button type="button" class="gm-footer-link" data-not-simulated="Program Policies" data-ns-detail="Gmail program policies are not part of this synthetic mailbox.">Program Policies</button>
+              </span>
+              <div class="gm-footer-activity" id="footer-activity" hidden>
+                <span id="activity-text"></span>
+                <button type="button" class="gm-footer-link" id="activity-details" data-not-simulated="Account activity details" data-ns-detail="Sign-in sessions, devices and IP addresses are not modeled. The line above reflects this app's own latest read of the mailbox, measured in world time.">Details</button>
+              </div>
+            </footer>
+          </section>
+
+          <section class="gm-card" id="thread-view" aria-label="Conversation" hidden>
+            <div class="gm-toolbar">
+              <div class="gm-toolbar-start">
+                <button type="button" class="icon-btn" id="back" aria-label="Back to list" title="Back"><span data-icon="arrow_back"></span></button>
+                <button type="button" class="icon-btn" id="thread-inbox" aria-label="Move to Inbox" title="Move to Inbox" hidden><span data-icon="move_to_inbox"></span></button>
+                <button type="button" class="icon-btn" id="thread-archive" aria-label="Archive" title="Archive"><span data-icon="archive"></span></button>
+                <button type="button" class="icon-btn" id="thread-spam" aria-label="Report spam" title="Report spam"><span data-icon="report"></span></button>
+                <button type="button" class="gm-text-btn" id="thread-not-spam" hidden>Not spam</button>
+                <button type="button" class="icon-btn" id="thread-delete" aria-label="Delete" title="Delete"><span data-icon="delete"></span></button>
+                <span class="gm-toolbar-divider" role="separator"></span>
+                <button type="button" class="icon-btn" id="thread-unread" aria-label="Mark as unread" title="Mark as unread"><span data-icon="mail"></span></button>
+                <button type="button" class="icon-btn gm-wide-only" id="thread-snooze" aria-label="Snooze" title="Snooze" data-not-simulated="Snooze" data-ns-detail="Snoozing is not part of this Tool's mail model. Nothing was changed."><span data-icon="snooze"></span></button>
+                <button type="button" class="icon-btn gm-wide-only" id="thread-tasks" aria-label="Add to Tasks" title="Add to Tasks" data-not-simulated="Add to Tasks" data-ns-detail="Google Tasks is a separate product and is not simulated by the Gmail Tool. Nothing was changed."><span data-icon="add_task"></span></button>
+                <span class="gm-toolbar-divider gm-wide-only" role="separator"></span>
+                <button type="button" class="icon-btn" id="thread-move" aria-label="Move to" aria-expanded="false" title="Move to"><span data-icon="drive_file_move"></span></button>
+                <button type="button" class="icon-btn" id="thread-label" aria-label="Labels" aria-expanded="false" title="Labels"><span data-icon="label"></span></button>
+                <button type="button" class="icon-btn" id="thread-more" aria-label="More" aria-expanded="false" title="More"><span data-icon="more_vert"></span></button>
+              </div>
+              <div class="gm-toolbar-end">
+                <span class="gm-pager-text" id="thread-position"></span>
+                <button type="button" class="icon-btn" id="thread-newer" aria-label="Newer" title="Newer" disabled><span data-icon="chevron_left"></span></button>
+                <button type="button" class="icon-btn" id="thread-older" aria-label="Older" title="Older" disabled><span data-icon="chevron_right"></span></button>
+              </div>
+            </div>
+            <div class="gm-thread-scroll">
+              <article class="gm-thread">
+                <div class="gm-subject-row">
+                  <h2 class="gm-subject" id="thread-subject"></h2>
+                  <span class="gm-chips-inline" id="thread-chips"></span>
+                  <span class="gm-subject-actions">
+                    <button type="button" class="icon-btn" id="thread-print" aria-label="Print all" title="Print all" data-not-simulated="Print all" data-ns-detail="Gmail's print view is not simulated by this Tool."><span data-icon="print"></span></button>
+                    <button type="button" class="icon-btn" id="thread-new-window" aria-label="In new window" title="In new window" data-not-simulated="In new window" data-ns-detail="Opening a conversation in a separate window is not simulated by this Tool."><span data-icon="open_in_new"></span></button>
+                  </span>
+                </div>
+                <div class="gm-messages" id="messages"></div>
+                <div class="gm-thread-actions" id="thread-actions">
+                  <button type="button" class="gm-pill" id="thread-reply"><span data-icon="reply"></span>Reply</button>
+                  <button type="button" class="gm-pill" id="thread-reply-all" hidden><span data-icon="reply_all"></span>Reply all</button>
+                  <button type="button" class="gm-pill" id="thread-forward"><span data-icon="forward_arrow"></span>Forward</button>
+                  <button type="button" class="gm-pill gm-pill-icon" id="thread-react" aria-label="Add emoji reaction" title="Add emoji reaction" data-not-simulated="Emoji reactions" data-ns-detail="Emoji reactions are not part of this Tool's mail model. Nothing was sent."><span data-icon="add_reaction"></span></button>
+                </div>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="gm-side" id="side-panel" aria-label="Side panel">
+          <div class="gm-side-apps">
+            <button type="button" class="gm-side-btn" aria-label="Calendar" title="Calendar" data-not-simulated="Calendar" data-ns-detail="Google Calendar is a separate product and is not simulated by the Gmail Tool."><img src="./assets/google-calendar-2026.svg" alt="" width="20" height="20" /></button>
+            <button type="button" class="gm-side-btn" aria-label="Keep" title="Keep" data-not-simulated="Keep" data-ns-detail="Google Keep is a separate product and is not simulated by the Gmail Tool."><img src="./assets/google-keep-2026.svg" alt="" width="20" height="20" /></button>
+            <button type="button" class="gm-side-btn" aria-label="Tasks" title="Tasks" data-not-simulated="Tasks" data-ns-detail="Google Tasks is a separate product and is not simulated by the Gmail Tool."><img src="./assets/google-tasks-2026.svg" alt="" width="20" height="20" /></button>
+            <button type="button" class="gm-side-btn" aria-label="Contacts" title="Contacts" data-not-simulated="Contacts" data-ns-detail="Google Contacts is a separate product and is not simulated by the Gmail Tool."><img src="./assets/google-contacts.svg" alt="" width="20" height="20" /></button>
+            <span class="gm-side-divider" role="separator"></span>
+            <button type="button" class="gm-side-btn" aria-label="Get add-ons" title="Get add-ons" data-not-simulated="Get add-ons" data-ns-detail="The Google Workspace Marketplace and add-ons are not simulated by the Gmail Tool."><span data-icon="add"></span></button>
+          </div>
+          <button type="button" class="gm-side-btn gm-side-toggle" id="side-hide" aria-label="Hide side panel" title="Hide side panel"><span data-icon="chevron_right"></span></button>
+        </aside>
+        <button type="button" class="gm-side-show" id="side-show" aria-label="Show side panel" title="Show side panel" hidden><span data-icon="chevron_left"></span></button>
+      </div>
+    </div>
+
+    <button type="button" class="gm-compose-fab" id="compose-fab" aria-label="Compose" title="Compose"><span data-icon="edit"></span><span class="gm-compose-fab-label">Compose</span></button>
+
+    <section class="gm-compose-window" id="compose-window" role="dialog" aria-labelledby="compose-title" hidden>
+      <header class="gm-compose-head" id="compose-head">
+        <h2 id="compose-title">New Message</h2>
+        <div class="gm-compose-head-actions">
+          <button type="button" class="icon-btn small" id="compose-minimize" aria-label="Minimize" title="Minimize"><span data-icon="minimize"></span></button>
+          <button type="button" class="icon-btn small" id="compose-expand" aria-label="Full screen" title="Full screen"><span data-icon="open_in_full"></span></button>
+          <button type="button" class="icon-btn small" id="compose-close" aria-label="Save &amp; close" title="Save &amp; close"><span data-icon="close"></span></button>
+        </div>
+      </header>
+      <form class="gm-compose-form" id="compose-form" novalidate>
+        <div class="gm-field">
+          <label for="to">To</label>
+          <input id="to" name="to" autocomplete="off" spellcheck="false" />
+          <div class="gm-field-extra"><button type="button" class="gm-link-btn" id="show-cc" title="Add Cc recipients">Cc</button><button type="button" class="gm-link-btn" id="show-bcc" title="Add Bcc recipients">Bcc</button></div>
+        </div>
+        <div class="gm-field" id="cc-field" hidden>
+          <label for="cc">Cc</label>
+          <input id="cc" name="cc" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="gm-field" id="bcc-field" hidden>
+          <label for="bcc">Bcc</label>
+          <input id="bcc" name="bcc" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="gm-field gm-field-subject">
+          <label class="visually-hidden" for="subject">Subject</label>
+          <input id="subject" name="subject" placeholder="Subject" autocomplete="off" />
+        </div>
+        <label class="visually-hidden" for="body-text">Message body</label>
+        <textarea id="body-text" name="body" spellcheck="true"></textarea>
+        <span class="gm-compose-status" id="compose-status" aria-live="polite"></span>
+        <div class="gm-format-bar" id="compose-format-bar" role="toolbar" aria-label="Formatting options">
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Undo" title="Undo (⌘Z)" data-not-simulated="Undo" data-ns-detail="The message body is plain text in this Tool; use your keyboard's undo inside the text."><span data-icon="undo"></span></button>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Redo" title="Redo (⌘Y)" data-not-simulated="Redo" data-ns-detail="The message body is plain text in this Tool; use your keyboard's redo inside the text."><span data-icon="redo"></span></button>
+          <span class="gm-format-divider" role="separator"></span>
+          <button type="button" class="gm-format-select" aria-disabled="true" aria-label="Font" title="Font" data-not-simulated="Font" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text.">Sans Serif<span data-icon="arrow_drop_down"></span></button>
+          <span class="gm-format-divider" role="separator"></span>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Size" title="Size" data-not-simulated="Font size" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="text_format"></span></button>
+          <span class="gm-format-divider" role="separator"></span>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Bold" title="Bold (⌘B)" data-not-simulated="Bold" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_bold"></span></button>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Italic" title="Italic (⌘I)" data-not-simulated="Italic" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_italic"></span></button>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Underline" title="Underline (⌘U)" data-not-simulated="Underline" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_underlined"></span></button>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Text color" title="Text color" data-not-simulated="Text color" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_color_text"></span></button>
+          <span class="gm-format-divider" role="separator"></span>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Align" title="Align" data-not-simulated="Align" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_align_left"></span></button>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Numbered list" title="Numbered list (⌘⇧7)" data-not-simulated="Numbered list" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_list_numbered"></span></button>
+          <button type="button" class="icon-btn small" aria-disabled="true" aria-label="Bulleted list" title="Bulleted list (⌘⇧8)" data-not-simulated="Bulleted list" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_list_bulleted"></span></button>
+          <button type="button" class="icon-btn small gm-wide-only" aria-disabled="true" aria-label="Indent less" title="Indent less (⌘[)" data-not-simulated="Indent less" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_indent_decrease"></span></button>
+          <button type="button" class="icon-btn small gm-wide-only" aria-disabled="true" aria-label="Indent more" title="Indent more (⌘])" data-not-simulated="Indent more" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_indent_increase"></span></button>
+          <button type="button" class="icon-btn small gm-wide-only" aria-disabled="true" aria-label="Strikethrough" title="Strikethrough (⌘⇧X)" data-not-simulated="Strikethrough" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_strikethrough"></span></button>
+          <button type="button" class="icon-btn small gm-wide-only" aria-disabled="true" aria-label="Remove formatting" title="Remove formatting (⌘\)" data-not-simulated="Remove formatting" data-ns-detail="Rich-text formatting is not simulated: messages are stored as plain text."><span data-icon="format_clear"></span></button>
+        </div>
+        <div class="gm-compose-foot">
+          <div class="gm-send-group">
+            <button type="submit" class="gm-send" id="send" title="Send (⌘Enter)">Send</button>
+            <button type="button" class="gm-send-more" id="send-options" aria-label="More send options" title="More send options" data-not-simulated="Schedule send" data-ns-detail="Scheduled send is not simulated: Send delivers immediately inside this world."><span data-icon="arrow_drop_down"></span></button>
+          </div>
+          <div class="gm-compose-tools">
+            <button type="button" class="icon-btn small" id="format-toggle" aria-label="Formatting options" aria-pressed="true" title="Formatting options"><span data-icon="text_format"></span></button>
+            <button type="button" class="icon-btn small" aria-label="Attach files" title="Attach files" data-not-simulated="Attach files" data-ns-detail="Attachments cannot be created in this Tool (the operations refuse them); authored attachments stay readable."><span data-icon="attach_file"></span></button>
+            <button type="button" class="icon-btn small" aria-label="Insert link" title="Insert link (⌘K)" data-not-simulated="Insert link" data-ns-detail="Rich links are not simulated; type the URL into the plain-text body instead."><span data-icon="link"></span></button>
+            <button type="button" class="icon-btn small" aria-label="Insert emoji" title="Insert emoji (⌘⇧2)" data-not-simulated="Insert emoji" data-ns-detail="The emoji picker is not simulated; your system emoji input still works in the body."><span data-icon="mood"></span></button>
+            <button type="button" class="icon-btn small gm-wide-only" aria-label="Insert files using Drive" title="Insert files using Drive" data-not-simulated="Insert files using Drive" data-ns-detail="Google Drive is not simulated by the Gmail Tool."><span data-icon="drive"></span></button>
+            <button type="button" class="icon-btn small gm-wide-only" aria-label="Insert photo" title="Insert photo" data-not-simulated="Insert photo" data-ns-detail="Inline images cannot be created in this Tool."><span data-icon="insert_photo"></span></button>
+            <button type="button" class="icon-btn small gm-wide-only" aria-label="Toggle confidential mode" title="Toggle confidential mode" data-not-simulated="Confidential mode" data-ns-detail="Confidential mode (expiry and passcodes) is not simulated."><span data-icon="lock_clock"></span></button>
+            <button type="button" class="icon-btn small gm-wide-only" aria-label="Insert signature" title="Insert signature" data-not-simulated="Insert signature" data-ns-detail="Signatures are account settings that this Tool does not model."><span data-icon="draw"></span></button>
+            <button type="button" class="icon-btn small" aria-label="More options" title="More options" data-not-simulated="More options" data-ns-detail="Plain text mode is the only mode here; labels, print, spell check and Smart Compose options are not simulated."><span data-icon="more_vert"></span></button>
+          </div>
+          <button type="button" class="icon-btn small" id="discard" aria-label="Discard draft" title="Discard draft"><span data-icon="delete"></span></button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="gm-quick-settings" id="quick-settings" aria-labelledby="quick-settings-title" hidden>
+      <header><h2 id="quick-settings-title">Quick settings</h2><button type="button" class="icon-btn" id="quick-settings-close" aria-label="Close settings" title="Close"><span data-icon="close"></span></button></header>
+      <div class="gm-qs-all"><button type="button" class="gm-outline-btn" data-not-simulated="See all settings" data-ns-detail="Gmail's full settings pages (filters, forwarding, signatures, vacation responder, IMAP/POP) are not simulated.">See all settings</button></div>
+      <section>
+        <h3>Density</h3>
+        <label class="gm-radio"><input type="radio" name="density" value="default" /><span>Default</span></label>
+        <label class="gm-radio"><input type="radio" name="density" value="comfortable" /><span>Comfortable</span></label>
+        <label class="gm-radio"><input type="radio" name="density" value="compact" /><span>Compact</span></label>
+      </section>
+      <section class="gm-qs-row">
+        <h3>Theme</h3>
+        <button type="button" class="gm-text-btn" data-not-simulated="Themes" data-ns-detail="Themes are not simulated; the app always uses Gmail's default light theme.">View all</button>
+      </section>
+      <section>
+        <h3>Inbox type</h3>
+        <label class="gm-radio"><input type="radio" name="inbox-type" value="default" checked /><span>Default</span></label>
+        <label class="gm-radio disabled" title="Not simulated by this Tool"><input type="radio" name="inbox-type" value="important" disabled /><span>Important first</span></label>
+        <label class="gm-radio disabled" title="Not simulated by this Tool"><input type="radio" name="inbox-type" value="unread" disabled /><span>Unread first</span></label>
+        <label class="gm-radio disabled" title="Not simulated by this Tool"><input type="radio" name="inbox-type" value="starred" disabled /><span>Starred first</span></label>
+        <label class="gm-radio disabled" title="Not simulated by this Tool"><input type="radio" name="inbox-type" value="priority" disabled /><span>Priority Inbox</span></label>
+        <label class="gm-radio disabled" title="Not simulated by this Tool"><input type="radio" name="inbox-type" value="multiple" disabled /><span>Multiple Inboxes</span></label>
+      </section>
+      <section>
+        <h3>Reading pane</h3>
+        <label class="gm-radio"><input type="radio" name="reading-pane" value="none" checked /><span>No split</span></label>
+        <label class="gm-radio disabled" title="Not simulated by this Tool"><input type="radio" name="reading-pane" value="right" disabled /><span>Right of inbox</span></label>
+        <label class="gm-radio disabled" title="Not simulated by this Tool"><input type="radio" name="reading-pane" value="below" disabled /><span>Below inbox</span></label>
+      </section>
+      <section>
+        <h3>Email threading</h3>
+        <label class="gm-checkbox disabled" title="This Tool always groups messages into conversations"><input type="checkbox" checked disabled /><span>Conversation view</span></label>
+      </section>
+      <section>
+        <h3>Maximum page size</h3>
+        <label class="gm-select-label">Show <select id="page-size"><option>10</option><option>25</option><option selected>50</option><option>100</option></select> conversations per page</label>
+      </section>
+      <section>
+        <h3>Keyboard shortcuts</h3>
+        <dl class="gm-shortcuts">
+          <div><dt>c</dt><dd>Compose</dd></div>
+          <div><dt>/</dt><dd>Search</dd></div>
+          <div><dt>j / k</dt><dd>Older / newer conversation</dd></div>
+          <div><dt>Enter</dt><dd>Open conversation</dd></div>
+          <div><dt>u</dt><dd>Back to list</dd></div>
+          <div><dt>e</dt><dd>Archive</dd></div>
+          <div><dt>#</dt><dd>Delete</dd></div>
+          <div><dt>r / f</dt><dd>Reply / forward</dd></div>
+          <div><dt>s</dt><dd>Star</dd></div>
+          <div><dt>x</dt><dd>Select</dd></div>
+        </dl>
+      </section>
+    </aside>
+
+    <dialog class="gm-dialog" id="label-dialog" aria-labelledby="label-dialog-title">
+      <form id="label-form" method="dialog" novalidate>
+        <h2 id="label-dialog-title">New label</h2>
+        <label class="gm-dialog-label" for="label-name">Please enter a new label name:</label>
+        <input id="label-name" maxlength="225" autocomplete="off" />
+        <label class="gm-checkbox"><input type="checkbox" id="label-nest" /><span>Nest label under:</span></label>
+        <select id="label-parent" aria-label="Parent label" disabled></select>
+        <p class="gm-dialog-error" id="label-error" role="alert" hidden></p>
+        <div class="gm-dialog-actions">
+          <button type="button" class="gm-text-btn" id="label-cancel">Cancel</button>
+          <button type="submit" class="gm-filled-btn" id="label-submit">Create</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="gm-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <h2 id="confirm-title">Confirm</h2>
+        <p id="confirm-text"></p>
+        <div class="gm-dialog-actions">
+          <button type="submit" value="cancel" class="gm-text-btn" autofocus>Cancel</button>
+          <button type="submit" value="ok" class="gm-text-btn" id="confirm-ok">OK</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="gm-preview" id="preview-dialog" aria-labelledby="preview-title">
+      <header><span data-icon="description"></span><h2 id="preview-title"></h2><span class="gm-preview-meta" id="preview-meta"></span><button type="button" class="icon-btn" id="preview-close" aria-label="Close preview" title="Close"><span data-icon="close"></span></button></header>
+      <pre id="preview-body"></pre>
+    </dialog>
+
+    <div class="gm-snackbar" id="snackbar" role="status" aria-live="polite" hidden>
+      <span id="snackbar-text"></span>
+      <button type="button" class="gm-snackbar-action" id="snackbar-action" hidden></button>
+    </div>
+    <div class="gm-popover" id="popover" hidden></div>
+  </body>
+</html>

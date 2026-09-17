@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-workspace-read",
+  "title": "Read the workspace: users, search, pages, blocks, databases, property items, markdown (pagination and validation errors)",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the workspace-read conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "workspace-context-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "workspace.context"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-me-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "users.me"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "users.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "blocks-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "blocks-children-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.children.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-retrieve-property-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve-property"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-retrieve-markdown-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve-markdown"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "databases-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "databases.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "data-sources-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "data-sources-query-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-validation-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "pages-retrieve-property-validation-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve-property"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-unchanged",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "pages",
+      "comparison": {
+        "operator": "equals",
+        "value": 28
+      }
+    },
+    {
+      "id": "blocks-unchanged",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "blocks",
+      "comparison": {
+        "operator": "equals",
+        "value": 49
+      }
+    }
+  ]
+}

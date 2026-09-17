@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "box-uploader-viewer",
+  "title": "An uploader can add files but not list; a viewer cannot invite",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "priya",
+  "task": {
+    "instruction": "Run the uploader-viewer flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "files-upload-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-list-items-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.list-items"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

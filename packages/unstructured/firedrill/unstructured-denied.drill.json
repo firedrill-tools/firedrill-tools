@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-denied",
+  "title": "An actor without grants is denied by the framework; the codec renders the denial in the detail envelope",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "no-grants",
+  "task": {
+    "instruction": "Run the denied flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "sources-list-denied-91",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "general-partition-denied-92",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-list-ok-93",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

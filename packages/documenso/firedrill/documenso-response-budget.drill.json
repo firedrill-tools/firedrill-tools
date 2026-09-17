@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-response-budget",
+  "title": "Pages whose encoded body exceeds the response budget fail LIMIT_EXCEEDED",
+  "targetId": "conformance-agent",
+  "scenarioId": "response-budget",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the response-budget flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-find-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.find"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-find-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.find"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "envelopes-audit-log-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "envelopes.audit_log"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-find-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.find"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "templates-find-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "templates.find"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "envelopes-audit-log-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "envelopes.audit_log"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

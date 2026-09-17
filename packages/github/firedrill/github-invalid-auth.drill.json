@@ -1,0 +1,423 @@
+{
+  "schemaVersion": 1,
+  "id": "github-invalid-auth",
+  "title": "A login that matches no user fails Bad credentials (401) on every operation",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ghost",
+  "task": {
+    "instruction": "Run the invalid-auth conformance flow against the synthetic GitHub Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-authenticated-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "users.get-authenticated"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-list-for-authenticated-user-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.list-for-authenticated-user"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-list-branches-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.list-branches"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-get-branch-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.get-branch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-create-branch-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.create-branch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-list-commits-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.list-commits"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-get-commit-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.get-commit"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-get-content-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.get-content"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repos-create-or-update-file-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.create-or-update-file"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-labels-for-repo-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.list-labels-for-repo"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-read-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.read"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-write-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.write"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-add-comment-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.add-comment"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-add-labels-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.add-labels"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-remove-label-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.remove-label"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-add-assignees-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.add-assignees"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-search-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-read-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.read"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-create-review-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.create-review"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-check-merged-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.check-merged"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pulls-merge-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.merge"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 15
+      }
+    },
+    {
+      "id": "commits",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "commits",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    }
+  ]
+}

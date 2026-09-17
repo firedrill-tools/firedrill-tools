@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "id": "qbo-escape-heavy-invoices",
+  "title": "Escape-heavy descriptions are bounded as encoded; every committed row and list page stays readable",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the escape-heavy-invoices conformance flow against the synthetic QuickBooks Online Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "invoices-post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "invoices.post"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "invoices-post-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "invoices.post"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 5
+      }
+    },
+    {
+      "id": "invoices-create-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "invoices.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "items-post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "items.post"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "invoices.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "invoices-pdf-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "invoices.pdf"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "query-run-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "query.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 7
+      }
+    },
+    {
+      "id": "invoices-count",
+      "kind": "state.count",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "comparison": {
+        "operator": "equals",
+        "value": 17
+      }
+    },
+    {
+      "id": "invoice-1050-lines",
+      "kind": "state.value",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001050",
+      "path": [
+        "Line",
+        249,
+        "LineNum"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 250
+      }
+    },
+    {
+      "id": "invoice-1052-lines",
+      "kind": "state.value",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001052",
+      "path": [
+        "Line",
+        74,
+        "LineNum"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 75
+      }
+    }
+  ]
+}

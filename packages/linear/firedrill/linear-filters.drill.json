@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-filters",
+  "title": "IssueFilter, ordering, cursor pagination and the private team boundary as a member",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the filters conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "graphql-execute-ok-greater-than-or-equal-30",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 30
+      }
+    },
+    {
+      "id": "graphql-execute-tool-error-equals-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "issues-count-equals-24",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "event-issue-updated-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

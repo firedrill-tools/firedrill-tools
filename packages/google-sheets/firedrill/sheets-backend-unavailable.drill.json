@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "id": "sheets-backend-unavailable",
+  "title": "Scenario backend-unavailable: spreadsheet reads and values.update answer 503 UNAVAILABLE without touching state; Drive listing keeps working",
+  "targetId": "conformance-agent",
+  "scenarioId": "backend-unavailable",
+  "actorId": "avery",
+  "task": {
+    "instruction": "Run the google-sheets conformance flow `backend-unavailable` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "spreadsheets-get-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "spreadsheets.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-get-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-batch-get-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.batch-get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "values-update-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "budget-b2-unchanged",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1BxQ3MarketingBudgetSeedA7kLm2Np0123456789ab:0000000000:0000001",
+      "path": [
+        "cells",
+        1,
+        "value",
+        "number"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 12000
+      }
+    },
+    {
+      "id": "event-values-changed-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "values.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Datadog</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/datadog.svg" />
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./nav.css" />
+    <link rel="stylesheet" href="./pages.css" />
+    <link rel="stylesheet" href="./detail.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="dd-skip" href="#main">Skip to content</a>
+    <div class="dd-app">
+      <nav class="dd-nav" id="nav" aria-label="Main navigation">
+        <a class="dd-nav__logo" href="#/monitors/manage" aria-label="Datadog home">
+          <img class="dd-nav__logo-icon" src="./assets/datadog.svg" alt="" width="32" height="34" />
+        </a>
+        <div class="dd-nav__scroll">
+          <ul class="dd-nav__group" id="nav-top"></ul>
+          <ul class="dd-nav__group" id="nav-products"></ul>
+          <ul class="dd-nav__group" id="nav-data"></ul>
+          <ul class="dd-nav__group" id="nav-tools"></ul>
+        </div>
+        <ul class="dd-nav__group dd-nav__group--bottom" id="nav-bottom"></ul>
+      </nav>
+      <div class="dd-flyout" id="nav-flyout" hidden></div>
+      <main class="dd-main" id="main" tabindex="-1">
+        <div class="dd-state dd-state--loading" role="status"><span class="dd-spinner" aria-hidden="true"></span><span>Loading…</span></div>
+      </main>
+    </div>
+    <div class="dd-modal-root" id="modal-root" hidden></div>
+    <div class="dd-toasts" id="toasts" aria-live="polite"></div>
+  </body>
+</html>

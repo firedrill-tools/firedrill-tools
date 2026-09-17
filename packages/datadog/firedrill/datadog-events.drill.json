@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "datadog-events",
+  "title": "Events: post, list by window/priority/sources/tags with aggregation, get",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "standard",
+  "task": {
+    "instruction": "Run the events flow against the synthetic Datadog Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "events-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "events.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "events.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "events-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "events-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "events-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "events.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "events.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "events",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "unified-large-channels",
+  "title": "Two seeded channels with 350 members each push the default page past the 900 KB budget (413); smaller pages and projections succeed",
+  "targetId": "conformance-agent",
+  "scenarioId": "large-channels",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the large-channels flow against the synthetic Unified.to Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "channels-list-error-380",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-list-ok-381",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "channels-get-ok-382",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-count-383",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "channels",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    }
+  ]
+}

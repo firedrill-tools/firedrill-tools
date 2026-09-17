@@ -1,0 +1,1839 @@
+{
+  "schemaVersion": 1,
+  "id": "funding-outage",
+  "title": "payrolls.preview and payrolls.approve answer HTTP 503 service_unavailable",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "next": 1000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "companies",
+      "rowId": "com_bG9Rw5w5ZbqXqpcLZYUr",
+      "value": {
+        "id": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "seq": 1,
+        "legal_name": "Juniper Street Bakery LLC",
+        "trade_name": "Juniper Street Bakery",
+        "other_business_name": null,
+        "business_type": "llc",
+        "industry_type": "Bakery",
+        "website": null,
+        "email": "payroll@juniperstreet.example.com",
+        "phone": "510-555-0142",
+        "address": {
+          "line1": "1840 Telegraph Ave",
+          "line2": null,
+          "city": "Oakland",
+          "state": "CA",
+          "postal_code": "94612",
+          "country": "US"
+        },
+        "principal_place_of_business": "wrk_PJkDsy3tUxYRNThfAZsh",
+        "pay_frequency": "biweekly",
+        "processing_period": "two_day",
+        "start_date": "2025-03-01",
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "companies",
+      "rowId": "com_DcDlMbd4SEEjmypXVy91",
+      "value": {
+        "id": "com_DcDlMbd4SEEjmypXVy91",
+        "seq": 2,
+        "legal_name": "Harborview Dental Group PC",
+        "trade_name": "Harborview Dental",
+        "other_business_name": null,
+        "business_type": "s_corporation",
+        "industry_type": "Dental office",
+        "website": null,
+        "email": "office@harborview-dental.example.com",
+        "phone": "718-555-0187",
+        "address": {
+          "line1": "210 Joralemon St",
+          "line2": null,
+          "city": "Brooklyn",
+          "state": "NY",
+          "postal_code": "11201",
+          "country": "US"
+        },
+        "principal_place_of_business": "wrk_6OwkLrQyh6dCVl51owiy",
+        "pay_frequency": "semimonthly",
+        "processing_period": "one_day",
+        "start_date": "2024-07-01",
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "companies",
+      "rowId": "com_qrUVSAorR8ICg6N34mEQ",
+      "value": {
+        "id": "com_qrUVSAorR8ICg6N34mEQ",
+        "seq": 3,
+        "legal_name": "Quillmark Letterpress LLC",
+        "trade_name": null,
+        "other_business_name": null,
+        "business_type": "llc",
+        "industry_type": "Printing",
+        "website": null,
+        "email": "hello@quillmark.example.com",
+        "phone": "503-555-0119",
+        "address": {
+          "line1": "88 NW Couch St",
+          "line2": null,
+          "city": "Portland",
+          "state": "OR",
+          "postal_code": "97209",
+          "country": "US"
+        },
+        "principal_place_of_business": null,
+        "pay_frequency": "monthly",
+        "processing_period": "two_day",
+        "start_date": "2023-05-01",
+        "active": false,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "workplaces",
+      "rowId": "wrk_PJkDsy3tUxYRNThfAZsh",
+      "value": {
+        "id": "wrk_PJkDsy3tUxYRNThfAZsh",
+        "seq": 4,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Oakland Bakery",
+        "address": {
+          "line1": "1840 Telegraph Ave",
+          "line2": null,
+          "city": "Oakland",
+          "state": "CA",
+          "postal_code": "94612",
+          "country": "US"
+        },
+        "active": true,
+        "metadata": {},
+        "created_at": "2025-03-01T17:00:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "workplaces",
+      "rowId": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+      "value": {
+        "id": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+        "seq": 5,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Portland Café",
+        "address": {
+          "line1": "715 SE Hawthorne Blvd",
+          "line2": null,
+          "city": "Portland",
+          "state": "OR",
+          "postal_code": "97214",
+          "country": "US"
+        },
+        "active": true,
+        "metadata": {},
+        "created_at": "2025-03-01T17:00:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "workplaces",
+      "rowId": "wrk_qruDUwQ3nzwTUyJ9WQMs",
+      "value": {
+        "id": "wrk_qruDUwQ3nzwTUyJ9WQMs",
+        "seq": 6,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Emeryville Kitchen",
+        "address": {
+          "line1": "5959 Shellmound St",
+          "line2": null,
+          "city": "Emeryville",
+          "state": "CA",
+          "postal_code": "94608",
+          "country": "US"
+        },
+        "active": false,
+        "metadata": {},
+        "created_at": "2025-03-01T17:00:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "workplaces",
+      "rowId": "wrk_6OwkLrQyh6dCVl51owiy",
+      "value": {
+        "id": "wrk_6OwkLrQyh6dCVl51owiy",
+        "seq": 7,
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "name": "Brooklyn Office",
+        "address": {
+          "line1": "210 Joralemon St",
+          "line2": null,
+          "city": "Brooklyn",
+          "state": "NY",
+          "postal_code": "11201",
+          "country": "US"
+        },
+        "active": true,
+        "metadata": {},
+        "created_at": "2025-03-01T17:00:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_UmHuSGq1uFKWVCguWsnT",
+      "value": {
+        "id": "emp_UmHuSGq1uFKWVCguWsnT",
+        "seq": 8,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "first_name": "Marisol",
+        "middle_name": null,
+        "last_name": "Vega",
+        "email": "marisol.vega@example.com",
+        "dob": "1991-04-12",
+        "residence": {
+          "line1": "412 Alice St",
+          "line2": null,
+          "city": "Oakland",
+          "state": "CA",
+          "postal_code": "94607",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_PJkDsy3tUxYRNThfAZsh"
+        ],
+        "primary_workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+        "start_date": "2025-03-10",
+        "termination_date": null,
+        "payment_method_preference": "direct_deposit",
+        "has_bank_account": true,
+        "ssn_last_four": "4821",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_IXKUOm6MlxCzyxLEV2V9",
+      "value": {
+        "id": "emp_IXKUOm6MlxCzyxLEV2V9",
+        "seq": 9,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "first_name": "Terrence",
+        "middle_name": null,
+        "last_name": "Albright",
+        "email": "terrence.albright@example.com",
+        "dob": "1986-11-03",
+        "residence": {
+          "line1": "2201 Filbert St",
+          "line2": null,
+          "city": "Oakland",
+          "state": "CA",
+          "postal_code": "94607",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_PJkDsy3tUxYRNThfAZsh"
+        ],
+        "primary_workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+        "start_date": "2025-03-10",
+        "termination_date": null,
+        "payment_method_preference": "manual",
+        "has_bank_account": false,
+        "ssn_last_four": "7730",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_F01BJ8GX4dkEQrtSBevC",
+      "value": {
+        "id": "emp_F01BJ8GX4dkEQrtSBevC",
+        "seq": 10,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "first_name": "Hana",
+        "middle_name": null,
+        "last_name": "Kobayashi",
+        "email": "hana.kobayashi@example.com",
+        "dob": "1998-02-27",
+        "residence": {
+          "line1": "1311 SE Belmont St",
+          "line2": null,
+          "city": "Portland",
+          "state": "OR",
+          "postal_code": "97214",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_HTOdZhQ0OJQu5MmK2KCp"
+        ],
+        "primary_workplace": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+        "start_date": "2025-06-02",
+        "termination_date": null,
+        "payment_method_preference": "direct_deposit",
+        "has_bank_account": true,
+        "ssn_last_four": "1597",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_VrGwxGLF1SNRlKKycnIL",
+      "value": {
+        "id": "emp_VrGwxGLF1SNRlKKycnIL",
+        "seq": 11,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "first_name": "Ellis",
+        "middle_name": null,
+        "last_name": "Whitford",
+        "email": "ellis.whitford@example.com",
+        "dob": "1983-08-19",
+        "residence": {
+          "line1": "77 Linda Ave",
+          "line2": null,
+          "city": "Oakland",
+          "state": "CA",
+          "postal_code": "94611",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_PJkDsy3tUxYRNThfAZsh",
+          "wrk_HTOdZhQ0OJQu5MmK2KCp"
+        ],
+        "primary_workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+        "start_date": "2025-03-01",
+        "termination_date": null,
+        "payment_method_preference": "direct_deposit",
+        "has_bank_account": true,
+        "ssn_last_four": "3348",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_f0is1bqYAJcp10J228Ha",
+      "value": {
+        "id": "emp_f0is1bqYAJcp10J228Ha",
+        "seq": 12,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "first_name": "Zoë",
+        "middle_name": null,
+        "last_name": "Okafor-Brandt",
+        "email": "zoe.okaforbrandt@example.com",
+        "dob": "1995-12-01",
+        "residence": {
+          "line1": "530 Lenox Ave",
+          "line2": null,
+          "city": "Oakland",
+          "state": "CA",
+          "postal_code": "94610",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_PJkDsy3tUxYRNThfAZsh"
+        ],
+        "primary_workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+        "start_date": "2025-09-15",
+        "termination_date": null,
+        "payment_method_preference": "direct_deposit",
+        "has_bank_account": true,
+        "ssn_last_four": "6602",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_eMpADckv5snTsfvzTLm4",
+      "value": {
+        "id": "emp_eMpADckv5snTsfvzTLm4",
+        "seq": 13,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "first_name": "Declan",
+        "middle_name": null,
+        "last_name": "O'Reilly",
+        "email": "declan.oreilly@example.com",
+        "dob": "2000-06-21",
+        "residence": {
+          "line1": "4020 N Williams Ave",
+          "line2": null,
+          "city": "Portland",
+          "state": "OR",
+          "postal_code": "97227",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_HTOdZhQ0OJQu5MmK2KCp"
+        ],
+        "primary_workplace": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+        "start_date": "2026-01-05",
+        "termination_date": null,
+        "payment_method_preference": "manual",
+        "has_bank_account": false,
+        "ssn_last_four": "9014",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_0qIMF9Qrf6yvHjSWY7PI",
+      "value": {
+        "id": "emp_0qIMF9Qrf6yvHjSWY7PI",
+        "seq": 14,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "first_name": "Łucja",
+        "middle_name": null,
+        "last_name": "Nowak",
+        "email": "ucja.nowak@example.com",
+        "dob": "1993-03-30",
+        "residence": {
+          "line1": "925 Castro St",
+          "line2": null,
+          "city": "Oakland",
+          "state": "CA",
+          "postal_code": "94607",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_PJkDsy3tUxYRNThfAZsh"
+        ],
+        "primary_workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+        "start_date": "2025-04-14",
+        "termination_date": "2026-08-31",
+        "payment_method_preference": "manual",
+        "has_bank_account": false,
+        "ssn_last_four": "2475",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_gDVbGVB1hBcqPAoUz4XD",
+      "value": {
+        "id": "emp_gDVbGVB1hBcqPAoUz4XD",
+        "seq": 15,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "first_name": "Priya",
+        "middle_name": null,
+        "last_name": "Raman",
+        "email": "priya.raman@example.com",
+        "dob": null,
+        "residence": null,
+        "workplaces": [
+          "wrk_PJkDsy3tUxYRNThfAZsh"
+        ],
+        "primary_workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+        "start_date": "2026-09-14",
+        "termination_date": null,
+        "payment_method_preference": "direct_deposit",
+        "has_bank_account": false,
+        "ssn_last_four": null,
+        "ssn_validation_status": null,
+        "w2_electronic_consent_provided": false,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_fMgmiE0nUaezIP52ELW3",
+      "value": {
+        "id": "emp_fMgmiE0nUaezIP52ELW3",
+        "seq": 16,
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "first_name": "Naomi",
+        "middle_name": null,
+        "last_name": "Castellanos",
+        "email": "naomi.castellanos@example.com",
+        "dob": "1979-10-08",
+        "residence": {
+          "line1": "145 Clinton St",
+          "line2": null,
+          "city": "Brooklyn",
+          "state": "NY",
+          "postal_code": "11201",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_6OwkLrQyh6dCVl51owiy"
+        ],
+        "primary_workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+        "start_date": "2024-07-01",
+        "termination_date": null,
+        "payment_method_preference": "direct_deposit",
+        "has_bank_account": true,
+        "ssn_last_four": "5186",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_c4YguaxLOdQhVhuWdsjc",
+      "value": {
+        "id": "emp_c4YguaxLOdQhVhuWdsjc",
+        "seq": 17,
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "first_name": "Rafael",
+        "middle_name": null,
+        "last_name": "Mendes",
+        "email": "rafael.mendes@example.com",
+        "dob": "1990-01-17",
+        "residence": {
+          "line1": "380 Court St",
+          "line2": null,
+          "city": "Brooklyn",
+          "state": "NY",
+          "postal_code": "11231",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_6OwkLrQyh6dCVl51owiy"
+        ],
+        "primary_workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+        "start_date": "2024-09-16",
+        "termination_date": null,
+        "payment_method_preference": "manual",
+        "has_bank_account": false,
+        "ssn_last_four": "8823",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "employees",
+      "rowId": "emp_e4nD1DRKN9jYCZ0gqIkz",
+      "value": {
+        "id": "emp_e4nD1DRKN9jYCZ0gqIkz",
+        "seq": 18,
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "first_name": "Janelle",
+        "middle_name": null,
+        "last_name": "Brooks",
+        "email": "janelle.brooks@example.com",
+        "dob": "1987-05-25",
+        "residence": {
+          "line1": "62 Pierrepont St",
+          "line2": null,
+          "city": "Brooklyn",
+          "state": "NY",
+          "postal_code": "11201",
+          "country": "US"
+        },
+        "workplaces": [
+          "wrk_6OwkLrQyh6dCVl51owiy"
+        ],
+        "primary_workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+        "start_date": "2024-07-01",
+        "termination_date": null,
+        "payment_method_preference": "direct_deposit",
+        "has_bank_account": true,
+        "ssn_last_four": "4410",
+        "ssn_validation_status": "validated",
+        "w2_electronic_consent_provided": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "meta",
+      "rowId": "tax_table",
+      "value": {
+        "employee": [
+          {
+            "id": "fed_income",
+            "description": "Federal income tax (synthetic flat rate)",
+            "basis_points": 1000,
+            "state": null
+          },
+          {
+            "id": "social_security",
+            "description": "Social Security (synthetic flat rate)",
+            "basis_points": 620,
+            "state": null
+          },
+          {
+            "id": "medicare",
+            "description": "Medicare (synthetic flat rate)",
+            "basis_points": 145,
+            "state": null
+          },
+          {
+            "id": "state_income",
+            "description": "California income tax (synthetic flat rate)",
+            "basis_points": 400,
+            "state": "CA"
+          },
+          {
+            "id": "state_income",
+            "description": "Oregon income tax (synthetic flat rate)",
+            "basis_points": 800,
+            "state": "OR"
+          },
+          {
+            "id": "state_income",
+            "description": "New York income tax (synthetic flat rate)",
+            "basis_points": 500,
+            "state": "NY"
+          }
+        ],
+        "company": [
+          {
+            "id": "social_security",
+            "description": "Social Security, employer (synthetic flat rate)",
+            "basis_points": 620,
+            "state": null
+          },
+          {
+            "id": "medicare",
+            "description": "Medicare, employer (synthetic flat rate)",
+            "basis_points": 145,
+            "state": null
+          },
+          {
+            "id": "futa",
+            "description": "Federal unemployment (synthetic flat rate)",
+            "basis_points": 60,
+            "state": null
+          },
+          {
+            "id": "sui",
+            "description": "California unemployment insurance (synthetic flat rate)",
+            "basis_points": 340,
+            "state": "CA"
+          },
+          {
+            "id": "sui",
+            "description": "Oregon unemployment insurance (synthetic flat rate)",
+            "basis_points": 210,
+            "state": "OR"
+          },
+          {
+            "id": "sui",
+            "description": "New York unemployment insurance (synthetic flat rate)",
+            "basis_points": 410,
+            "state": "NY"
+          }
+        ],
+        "supported_states": [
+          "CA",
+          "OR",
+          "NY"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_gZEGnfiwxqe0aXPgUChK",
+      "value": {
+        "id": "rte_gZEGnfiwxqe0aXPgUChK",
+        "seq": 100,
+        "employee": "emp_UmHuSGq1uFKWVCguWsnT",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Baker (2025)",
+        "amount": "22.00",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": false,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_N2YYEJtYTCL109msAfwa",
+      "value": {
+        "id": "rte_N2YYEJtYTCL109msAfwa",
+        "seq": 101,
+        "employee": "emp_UmHuSGq1uFKWVCguWsnT",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Baker",
+        "amount": "24.50",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_v6p80UmQ5D37ZWaFFFmV",
+      "value": {
+        "id": "rte_v6p80UmQ5D37ZWaFFFmV",
+        "seq": 102,
+        "employee": "emp_IXKUOm6MlxCzyxLEV2V9",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Baker",
+        "amount": "22.00",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_YyH6ey1DT4XgvkorczrZ",
+      "value": {
+        "id": "rte_YyH6ey1DT4XgvkorczrZ",
+        "seq": 103,
+        "employee": "emp_F01BJ8GX4dkEQrtSBevC",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Barista",
+        "amount": "21.00",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_etOjeVzD4ZnvO6dJ5JoL",
+      "value": {
+        "id": "rte_etOjeVzD4ZnvO6dJ5JoL",
+        "seq": 104,
+        "employee": "emp_VrGwxGLF1SNRlKKycnIL",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "General manager",
+        "amount": "72000.00",
+        "period": "annually",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_ZXxbNUYDnXaObsGgwRrw",
+      "value": {
+        "id": "rte_ZXxbNUYDnXaObsGgwRrw",
+        "seq": 105,
+        "employee": "emp_f0is1bqYAJcp10J228Ha",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Pastry cook",
+        "amount": "23.75",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_6mtN3DHJlNpnlgWS0Fag",
+      "value": {
+        "id": "rte_6mtN3DHJlNpnlgWS0Fag",
+        "seq": 106,
+        "employee": "emp_eMpADckv5snTsfvzTLm4",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Barista",
+        "amount": "19.50",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_84eGoQdN19E645RFbJ6n",
+      "value": {
+        "id": "rte_84eGoQdN19E645RFbJ6n",
+        "seq": 107,
+        "employee": "emp_0qIMF9Qrf6yvHjSWY7PI",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Baker",
+        "amount": "22.50",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_ynLktPyEW9NOTDwjppql",
+      "value": {
+        "id": "rte_ynLktPyEW9NOTDwjppql",
+        "seq": 108,
+        "employee": "emp_gDVbGVB1hBcqPAoUz4XD",
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Counter associate",
+        "amount": "21.00",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_QcNaNlebkQoFcReqNCM1",
+      "value": {
+        "id": "rte_QcNaNlebkQoFcReqNCM1",
+        "seq": 109,
+        "employee": "emp_fMgmiE0nUaezIP52ELW3",
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "name": "Dentist",
+        "amount": "185000.00",
+        "period": "annually",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_piTKkKDEslvHdVFKZaTt",
+      "value": {
+        "id": "rte_piTKkKDEslvHdVFKZaTt",
+        "seq": 110,
+        "employee": "emp_c4YguaxLOdQhVhuWdsjc",
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "name": "Dental hygienist",
+        "amount": "34.00",
+        "period": "hourly",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "earning_rates",
+      "rowId": "rte_ZWSIKIFhRSRNwEnOwZkj",
+      "value": {
+        "id": "rte_ZWSIKIFhRSRNwEnOwZkj",
+        "seq": 111,
+        "employee": "emp_e4nD1DRKN9jYCZ0gqIkz",
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "name": "Office manager",
+        "amount": "78000.00",
+        "period": "annually",
+        "workweek_hours": 40,
+        "active": true,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "pay_schedules",
+      "rowId": "psc_yfbvx6haMpT4qiE6FJ5C",
+      "value": {
+        "id": "psc_yfbvx6haMpT4qiE6FJ5C",
+        "seq": 112,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "name": "Every other Friday",
+        "pay_frequency": "biweekly",
+        "first_payday": "2026-01-16",
+        "first_period_end": "2026-01-11",
+        "second_payday": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "pay_schedules",
+      "rowId": "psc_XHoQo2wxSGpHh5RybBKV",
+      "value": {
+        "id": "psc_XHoQo2wxSGpHh5RybBKV",
+        "seq": 113,
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "name": "15th and last day",
+        "pay_frequency": "semimonthly",
+        "first_payday": "2026-01-15",
+        "first_period_end": "2026-01-15",
+        "second_payday": 31,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_BFuQAzzOC2MXjjriv373",
+      "value": {
+        "id": "pay_BFuQAzzOC2MXjjriv373",
+        "seq": 114,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "pay_schedule": "psc_yfbvx6haMpT4qiE6FJ5C",
+        "type": "regular",
+        "pay_frequency": "biweekly",
+        "processing_period": "two_day",
+        "period_start": "2026-08-10",
+        "period_end": "2026-08-23",
+        "payday": "2026-08-28",
+        "approval_deadline": "2026-08-26T21:00:00Z",
+        "approved_at": "2026-08-26T15:12:00Z",
+        "reopen_deadline": "2026-08-26T16:12:00Z",
+        "stored_status": "pending",
+        "preview": {
+          "status": "succeeded",
+          "started_at": "2026-08-26T15:05:00.000Z",
+          "completed_at": "2026-08-26T15:05:00.000Z"
+        },
+        "last_preview_ms": 1787756700000,
+        "off_cycle_options": null,
+        "metadata": {},
+        "created_at": "2026-08-24T16:00:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_7yNnlyyg6oM0PLkMA8t2",
+      "value": {
+        "id": "pay_7yNnlyyg6oM0PLkMA8t2",
+        "seq": 115,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "pay_schedule": "psc_yfbvx6haMpT4qiE6FJ5C",
+        "type": "regular",
+        "pay_frequency": "biweekly",
+        "processing_period": "two_day",
+        "period_start": "2026-08-24",
+        "period_end": "2026-09-06",
+        "payday": "2026-09-11",
+        "approval_deadline": "2026-09-09T21:00:00Z",
+        "approved_at": "2026-09-09T17:40:00Z",
+        "reopen_deadline": "2026-09-09T18:40:00Z",
+        "stored_status": "pending",
+        "preview": {
+          "status": "succeeded",
+          "started_at": "2026-09-09T17:31:00.000Z",
+          "completed_at": "2026-09-09T17:31:00.000Z"
+        },
+        "last_preview_ms": 1788975060000,
+        "off_cycle_options": null,
+        "metadata": {},
+        "created_at": "2026-09-07T16:00:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_9KwRxHvvOUypb6MK3MPW",
+      "value": {
+        "id": "pay_9KwRxHvvOUypb6MK3MPW",
+        "seq": 116,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "pay_schedule": "psc_yfbvx6haMpT4qiE6FJ5C",
+        "type": "regular",
+        "pay_frequency": "biweekly",
+        "processing_period": "two_day",
+        "period_start": "2026-09-07",
+        "period_end": "2026-09-20",
+        "payday": "2026-09-25",
+        "approval_deadline": "2026-09-23T21:00:00Z",
+        "approved_at": null,
+        "reopen_deadline": null,
+        "stored_status": "draft",
+        "preview": null,
+        "last_preview_ms": null,
+        "off_cycle_options": null,
+        "metadata": {},
+        "created_at": "2026-09-14T09:00:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_Diu0UNU8OoqbKvbIkrAJ",
+      "value": {
+        "id": "pay_Diu0UNU8OoqbKvbIkrAJ",
+        "seq": 117,
+        "company": "com_bG9Rw5w5ZbqXqpcLZYUr",
+        "pay_schedule": null,
+        "type": "off_cycle",
+        "pay_frequency": "biweekly",
+        "processing_period": "two_day",
+        "period_start": "2026-07-01",
+        "period_end": "2026-09-30",
+        "payday": "2026-09-18",
+        "approval_deadline": "2026-09-16T21:00:00Z",
+        "approved_at": null,
+        "reopen_deadline": null,
+        "stored_status": "draft",
+        "preview": null,
+        "last_preview_ms": null,
+        "off_cycle_options": {
+          "force_supplemental_withholding": true
+        },
+        "metadata": {
+          "label": "Q3 bonus"
+        },
+        "created_at": "2026-09-14T09:30:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_2MWIwicegE3YG9CibvDh",
+      "value": {
+        "id": "pay_2MWIwicegE3YG9CibvDh",
+        "seq": 118,
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "pay_schedule": "psc_XHoQo2wxSGpHh5RybBKV",
+        "type": "regular",
+        "pay_frequency": "semimonthly",
+        "processing_period": "one_day",
+        "period_start": "2026-09-16",
+        "period_end": "2026-09-30",
+        "payday": "2026-09-30",
+        "approval_deadline": "2026-09-29T21:00:00Z",
+        "approved_at": "2026-09-15T13:30:00Z",
+        "reopen_deadline": "2026-09-15T14:30:00Z",
+        "stored_status": "pending",
+        "preview": {
+          "status": "succeeded",
+          "started_at": "2026-09-15T13:20:00.000Z",
+          "completed_at": "2026-09-15T13:20:00.000Z"
+        },
+        "last_preview_ms": 1789478400000,
+        "off_cycle_options": null,
+        "metadata": {},
+        "created_at": "2026-09-14T15:00:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_TFzx5OTXwPL8lxG1467e",
+      "value": {
+        "id": "pay_TFzx5OTXwPL8lxG1467e",
+        "seq": 119,
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "pay_schedule": null,
+        "type": "off_cycle",
+        "pay_frequency": "semimonthly",
+        "processing_period": "one_day",
+        "period_start": "2026-09-01",
+        "period_end": "2026-09-15",
+        "payday": "2026-09-15",
+        "approval_deadline": "2026-09-14T21:00:00Z",
+        "approved_at": "2026-09-11T15:00:00Z",
+        "reopen_deadline": "2026-09-11T16:00:00Z",
+        "stored_status": "pending",
+        "preview": {
+          "status": "succeeded",
+          "started_at": "2026-09-11T14:52:00.000Z",
+          "completed_at": "2026-09-11T14:52:00.000Z"
+        },
+        "last_preview_ms": 1789138320000,
+        "off_cycle_options": {
+          "force_supplemental_withholding": false
+        },
+        "metadata": {
+          "label": "Referral bonus"
+        },
+        "created_at": "2026-09-11T14:40:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_UB5St1xzy6BWDQPrFOZR",
+      "value": {
+        "id": "pay_UB5St1xzy6BWDQPrFOZR",
+        "seq": 120,
+        "company": "com_DcDlMbd4SEEjmypXVy91",
+        "pay_schedule": null,
+        "type": "off_cycle",
+        "pay_frequency": "semimonthly",
+        "processing_period": "one_day",
+        "period_start": "2026-09-01",
+        "period_end": "2026-09-15",
+        "payday": "2026-09-15",
+        "approval_deadline": "2026-09-14T21:00:00Z",
+        "approved_at": null,
+        "reopen_deadline": null,
+        "stored_status": "draft",
+        "preview": {
+          "status": "succeeded",
+          "started_at": "2026-09-14T10:00:00.000Z",
+          "completed_at": "2026-09-14T10:00:00.000Z"
+        },
+        "last_preview_ms": 1789380000000,
+        "off_cycle_options": {
+          "force_supplemental_withholding": false
+        },
+        "metadata": {
+          "label": "Holiday bonus"
+        },
+        "created_at": "2026-09-14T09:45:00Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_Tmnof9fjVia0CI8j15wn",
+      "value": {
+        "id": "itm_Tmnof9fjVia0CI8j15wn",
+        "seq": 121,
+        "payroll": "pay_BFuQAzzOC2MXjjriv373",
+        "employee": "emp_UmHuSGq1uFKWVCguWsnT",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "1960.00",
+            "hours": 80,
+            "earning_rate": "rte_N2YYEJtYTCL109msAfwa",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_XKgoeNGAsKzAPWu8f7am",
+      "value": {
+        "id": "itm_XKgoeNGAsKzAPWu8f7am",
+        "seq": 122,
+        "payroll": "pay_BFuQAzzOC2MXjjriv373",
+        "employee": "emp_IXKUOm6MlxCzyxLEV2V9",
+        "payment_method": "manual",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "1672.00",
+            "hours": 76,
+            "earning_rate": "rte_v6p80UmQ5D37ZWaFFFmV",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_BtnLQFvhZgQsYJVmnnZK",
+      "value": {
+        "id": "itm_BtnLQFvhZgQsYJVmnnZK",
+        "seq": 123,
+        "payroll": "pay_BFuQAzzOC2MXjjriv373",
+        "employee": "emp_F01BJ8GX4dkEQrtSBevC",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+            "amount": "1344.00",
+            "hours": 64,
+            "earning_rate": "rte_YyH6ey1DT4XgvkorczrZ",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_5mKLAXgwzUlpBkCZJwrm",
+      "value": {
+        "id": "itm_5mKLAXgwzUlpBkCZJwrm",
+        "seq": 124,
+        "payroll": "pay_BFuQAzzOC2MXjjriv373",
+        "employee": "emp_VrGwxGLF1SNRlKKycnIL",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "salaried",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "2769.23",
+            "hours": null,
+            "earning_rate": "rte_etOjeVzD4ZnvO6dJ5JoL",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_NCONJiUloSPQvPw3PLbC",
+      "value": {
+        "id": "itm_NCONJiUloSPQvPw3PLbC",
+        "seq": 125,
+        "payroll": "pay_BFuQAzzOC2MXjjriv373",
+        "employee": "emp_0qIMF9Qrf6yvHjSWY7PI",
+        "payment_method": "manual",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "1575.00",
+            "hours": 70,
+            "earning_rate": "rte_84eGoQdN19E645RFbJ6n",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_xY5rxk41myEFsxvjwVk7",
+      "value": {
+        "id": "itm_xY5rxk41myEFsxvjwVk7",
+        "seq": 126,
+        "payroll": "pay_7yNnlyyg6oM0PLkMA8t2",
+        "employee": "emp_UmHuSGq1uFKWVCguWsnT",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "1960.00",
+            "hours": 80,
+            "earning_rate": "rte_N2YYEJtYTCL109msAfwa",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_80hNohr8d8GAmLUFM75w",
+      "value": {
+        "id": "itm_80hNohr8d8GAmLUFM75w",
+        "seq": 127,
+        "payroll": "pay_7yNnlyyg6oM0PLkMA8t2",
+        "employee": "emp_IXKUOm6MlxCzyxLEV2V9",
+        "payment_method": "manual",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "1672.00",
+            "hours": 76,
+            "earning_rate": "rte_v6p80UmQ5D37ZWaFFFmV",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_r47Ik6XZKkzaO3WbN9HR",
+      "value": {
+        "id": "itm_r47Ik6XZKkzaO3WbN9HR",
+        "seq": 128,
+        "payroll": "pay_7yNnlyyg6oM0PLkMA8t2",
+        "employee": "emp_F01BJ8GX4dkEQrtSBevC",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+            "amount": "1344.00",
+            "hours": 64,
+            "earning_rate": "rte_YyH6ey1DT4XgvkorczrZ",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_bWDjSMzuMj5fEND53hrW",
+      "value": {
+        "id": "itm_bWDjSMzuMj5fEND53hrW",
+        "seq": 129,
+        "payroll": "pay_7yNnlyyg6oM0PLkMA8t2",
+        "employee": "emp_VrGwxGLF1SNRlKKycnIL",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "salaried",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "2769.23",
+            "hours": null,
+            "earning_rate": "rte_etOjeVzD4ZnvO6dJ5JoL",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_6CleqLiJ8KeODdC0OyTu",
+      "value": {
+        "id": "itm_6CleqLiJ8KeODdC0OyTu",
+        "seq": 130,
+        "payroll": "pay_7yNnlyyg6oM0PLkMA8t2",
+        "employee": "emp_0qIMF9Qrf6yvHjSWY7PI",
+        "payment_method": "manual",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "1575.00",
+            "hours": 70,
+            "earning_rate": "rte_84eGoQdN19E645RFbJ6n",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_ac1DJwENnOYwedMcXvXd",
+      "value": {
+        "id": "itm_ac1DJwENnOYwedMcXvXd",
+        "seq": 131,
+        "payroll": "pay_9KwRxHvvOUypb6MK3MPW",
+        "employee": "emp_UmHuSGq1uFKWVCguWsnT",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "1960.00",
+            "hours": 80,
+            "earning_rate": "rte_N2YYEJtYTCL109msAfwa",
+            "piece_units": null,
+            "description": null
+          },
+          {
+            "type": "overtime",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "147.00",
+            "hours": 4,
+            "earning_rate": "rte_N2YYEJtYTCL109msAfwa",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_3RkBCArr8LYl82x0YrgU",
+      "value": {
+        "id": "itm_3RkBCArr8LYl82x0YrgU",
+        "seq": 132,
+        "payroll": "pay_9KwRxHvvOUypb6MK3MPW",
+        "employee": "emp_IXKUOm6MlxCzyxLEV2V9",
+        "payment_method": "manual",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "1584.00",
+            "hours": 72,
+            "earning_rate": "rte_v6p80UmQ5D37ZWaFFFmV",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [
+          {
+            "amount": "42.50",
+            "description": "Flour delivery mileage"
+          }
+        ],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_qIZBToACgrH2p32DsHBt",
+      "value": {
+        "id": "itm_qIZBToACgrH2p32DsHBt",
+        "seq": 133,
+        "payroll": "pay_9KwRxHvvOUypb6MK3MPW",
+        "employee": "emp_F01BJ8GX4dkEQrtSBevC",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+            "amount": "1260.00",
+            "hours": 60,
+            "earning_rate": "rte_YyH6ey1DT4XgvkorczrZ",
+            "piece_units": null,
+            "description": null
+          },
+          {
+            "type": "cash_tips",
+            "workplace": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+            "amount": "185.00",
+            "hours": null,
+            "earning_rate": null,
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_vWZeDmuME6R2kaD1odFe",
+      "value": {
+        "id": "itm_vWZeDmuME6R2kaD1odFe",
+        "seq": 134,
+        "payroll": "pay_9KwRxHvvOUypb6MK3MPW",
+        "employee": "emp_VrGwxGLF1SNRlKKycnIL",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "salaried",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "2769.23",
+            "hours": null,
+            "earning_rate": "rte_etOjeVzD4ZnvO6dJ5JoL",
+            "piece_units": null,
+            "description": null
+          },
+          {
+            "type": "holiday",
+            "workplace": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+            "amount": "120.00",
+            "hours": null,
+            "earning_rate": null,
+            "piece_units": null,
+            "description": "Labor Day shift at Portland Café"
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_rxzqbTB445ysGNPp4B3h",
+      "value": {
+        "id": "itm_rxzqbTB445ysGNPp4B3h",
+        "seq": 135,
+        "payroll": "pay_9KwRxHvvOUypb6MK3MPW",
+        "employee": "emp_f0is1bqYAJcp10J228Ha",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "950.00",
+            "hours": 40,
+            "earning_rate": "rte_ZXxbNUYDnXaObsGgwRrw",
+            "piece_units": null,
+            "description": null
+          },
+          {
+            "type": "bonus",
+            "workplace": "wrk_PJkDsy3tUxYRNThfAZsh",
+            "amount": "150.00",
+            "hours": null,
+            "earning_rate": null,
+            "piece_units": null,
+            "description": "Wedding cake order bonus"
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_wgU3dSxdp2ea459Bzh5c",
+      "value": {
+        "id": "itm_wgU3dSxdp2ea459Bzh5c",
+        "seq": 136,
+        "payroll": "pay_9KwRxHvvOUypb6MK3MPW",
+        "employee": "emp_eMpADckv5snTsfvzTLm4",
+        "payment_method": "manual",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_HTOdZhQ0OJQu5MmK2KCp",
+            "amount": "585.00",
+            "hours": 30,
+            "earning_rate": "rte_6mtN3DHJlNpnlgWS0Fag",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_G8hc2e0MNgbzig1gaOHk",
+      "value": {
+        "id": "itm_G8hc2e0MNgbzig1gaOHk",
+        "seq": 137,
+        "payroll": "pay_2MWIwicegE3YG9CibvDh",
+        "employee": "emp_fMgmiE0nUaezIP52ELW3",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "salaried",
+            "workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+            "amount": "7708.33",
+            "hours": null,
+            "earning_rate": "rte_QcNaNlebkQoFcReqNCM1",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_G9e7qIutvT82vvnwWmZy",
+      "value": {
+        "id": "itm_G9e7qIutvT82vvnwWmZy",
+        "seq": 138,
+        "payroll": "pay_2MWIwicegE3YG9CibvDh",
+        "employee": "emp_c4YguaxLOdQhVhuWdsjc",
+        "payment_method": "manual",
+        "earnings": [
+          {
+            "type": "regular",
+            "workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+            "amount": "2946.78",
+            "hours": 86.67,
+            "earning_rate": "rte_piTKkKDEslvHdVFKZaTt",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_cGdy3Ah03drqfG2hABjN",
+      "value": {
+        "id": "itm_cGdy3Ah03drqfG2hABjN",
+        "seq": 139,
+        "payroll": "pay_2MWIwicegE3YG9CibvDh",
+        "employee": "emp_e4nD1DRKN9jYCZ0gqIkz",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "salaried",
+            "workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+            "amount": "3250.00",
+            "hours": null,
+            "earning_rate": "rte_ZWSIKIFhRSRNwEnOwZkj",
+            "piece_units": null,
+            "description": null
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_6pCTNx4pZKWVXCFJOz77",
+      "value": {
+        "id": "itm_6pCTNx4pZKWVXCFJOz77",
+        "seq": 140,
+        "payroll": "pay_TFzx5OTXwPL8lxG1467e",
+        "employee": "emp_c4YguaxLOdQhVhuWdsjc",
+        "payment_method": "manual",
+        "earnings": [
+          {
+            "type": "bonus",
+            "workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+            "amount": "500.00",
+            "hours": null,
+            "earning_rate": null,
+            "piece_units": null,
+            "description": "Referral bonus"
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_FH4BtGfcPkTkAM1FVkjq",
+      "value": {
+        "id": "itm_FH4BtGfcPkTkAM1FVkjq",
+        "seq": 141,
+        "payroll": "pay_UB5St1xzy6BWDQPrFOZR",
+        "employee": "emp_fMgmiE0nUaezIP52ELW3",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "bonus",
+            "workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+            "amount": "1000.00",
+            "hours": null,
+            "earning_rate": null,
+            "piece_units": null,
+            "description": "Holiday bonus"
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "check",
+      "namespace": "payroll_items",
+      "rowId": "itm_ZY6oVnphYuF5ZF0kiEq0",
+      "value": {
+        "id": "itm_ZY6oVnphYuF5ZF0kiEq0",
+        "seq": 142,
+        "payroll": "pay_UB5St1xzy6BWDQPrFOZR",
+        "employee": "emp_e4nD1DRKN9jYCZ0gqIkz",
+        "payment_method": "direct_deposit",
+        "earnings": [
+          {
+            "type": "bonus",
+            "workplace": "wrk_6OwkLrQyh6dCVl51owiy",
+            "amount": "250.00",
+            "hours": null,
+            "earning_rate": null,
+            "piece_units": null,
+            "description": "Holiday bonus"
+          }
+        ],
+        "reimbursements": [],
+        "pto_balance_hours": null,
+        "sick_balance_hours": null,
+        "paper_check_number": null,
+        "metadata": {}
+      }
+    }
+  ],
+  "faults": [
+    {
+      "packageId": "check",
+      "faultId": "funding-outage"
+    }
+  ]
+}

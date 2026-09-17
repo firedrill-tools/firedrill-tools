@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "id": "waterfall-rate-limited",
+  "title": "Every launch and run answers 429 with rate-limit headers; finders and the account stay readable",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "master",
+  "task": {
+    "instruction": "Run the rate-limited flow against the synthetic Waterfall Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "enrichment-contact-launch-errors-rate_limit_rate_limit_exceeded",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.contact.launch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-phone-launch-errors-rate_limit_rate_limit_exceeded",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.phone.launch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-company-launch-errors-rate_limit_rate_limit_exceeded",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.company.launch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-contact-run-errors-rate_limit_rate_limit_exceeded",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.contact.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-company-run-errors-rate_limit_rate_limit_exceeded",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.company.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "job_change-run-errors-rate_limit_rate_limit_exceeded",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "job_change.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "verify-email-run-errors-rate_limit_rate_limit_exceeded",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "verify.email.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-contact-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.contact.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "account-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "account.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "job-launched-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "job.launched"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

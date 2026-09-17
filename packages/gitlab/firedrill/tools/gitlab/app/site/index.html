@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" class="gl-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitLab</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/gitlab.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body class="ui-neutral">
+    <a class="gl-skip-link" href="#content-body">Skip to main content</a>
+    <div class="layout-page" id="layout-page">
+      <aside class="super-sidebar" id="super-sidebar" aria-label="Primary navigation sidebar">
+        <div class="user-bar">
+          <div class="user-bar-row">
+            <a class="brand-logo" href="#/" title="Homepage" aria-label="Homepage"><img src="./assets/gitlab.svg" alt="" width="24" height="24" /></a>
+            <div class="user-bar-actions">
+              <button type="button" class="gl-button btn-tertiary btn-icon btn-md user-bar-button super-sidebar-toggle" id="sidebar-collapse" title="Collapse sidebar" aria-label="Collapse sidebar" aria-controls="super-sidebar"><span data-icon="sidebar"></span></button>
+              <button type="button" class="gl-button btn-tertiary btn-md user-bar-button user-bar-create" id="create-new" title="Create new…" aria-label="Create new…" aria-expanded="false"><span data-icon="plus"></span><span data-icon="chevron-down" data-size="12" class="create-caret"></span></button>
+              <button type="button" class="gl-button btn-tertiary btn-icon btn-md user-bar-button" id="duo-chat" title="GitLab Duo Chat" aria-label="GitLab Duo Chat"><span data-icon="tanuki"></span></button>
+              <button type="button" class="user-bar-avatar" id="user-menu" title="User settings" aria-label="User settings" aria-expanded="false"><span class="gl-avatar gl-avatar-s24 gl-avatar-circle" id="user-avatar">?</span></button>
+            </div>
+          </div>
+          <div class="user-bar-counters" role="group" aria-label="Your work">
+            <button type="button" class="counter-button" id="counter-issues" title="Assigned issues"><span data-icon="issues"></span><span class="counter-value" id="count-issues"></span></button>
+            <button type="button" class="counter-button" id="counter-mrs" title="Merge requests" aria-expanded="false"><span data-icon="merge-request"></span><span class="counter-value" id="count-mrs"></span></button>
+            <button type="button" class="counter-button" id="counter-todos" title="To-Do List"><span data-icon="todo-done"></span><span class="counter-value" id="count-todos"></span></button>
+          </div>
+          <button type="button" class="search-button" id="search-button"><span data-icon="search"></span><span class="search-button-text">Search or go to…</span></button>
+        </div>
+        <div class="super-sidebar-context" id="sidebar-context"></div>
+        <nav class="super-sidebar-nav" id="sidebar-nav" aria-label="Main navigation"></nav>
+        <div class="super-sidebar-bottom">
+          <button type="button" class="nav-item" id="help-button" aria-expanded="false"><span class="nav-icon-container"><span data-icon="question-o"></span></span><span class="nav-item-label">Help</span></button>
+        </div>
+      </aside>
+      <div class="super-sidebar-overlay" id="sidebar-overlay" hidden></div>
+      <div class="content-wrapper" id="content-wrapper">
+        <div class="top-bar-fixed">
+          <div class="top-bar-container">
+            <button type="button" class="gl-button btn-tertiary btn-icon btn-md top-bar-toggle" id="sidebar-expand" title="Expand sidebar" aria-label="Expand sidebar" aria-controls="super-sidebar"><span data-icon="sidebar"></span></button>
+            <nav class="gl-breadcrumbs" aria-label="Breadcrumb"><ol class="gl-breadcrumb-list" id="breadcrumbs"></ol></nav>
+            <span class="synthetic-note" title="This instance is simulated by Firedrill. Nothing here reaches a real GitLab server.">Firedrill synthetic instance</span>
+          </div>
+        </div>
+        <main class="content" id="content-body" tabindex="-1">
+          <div class="gl-loading-block"><span class="gl-spinner" aria-hidden="true"></span></div>
+        </main>
+      </div>
+    </div>
+
+    <div class="gl-toast-container" id="toasts" aria-live="polite"></div>
+
+    <dialog class="gl-modal modal-sm" id="confirm-modal" aria-labelledby="confirm-title">
+      <form method="dialog" class="modal-content">
+        <header class="modal-header"><h2 class="modal-title" id="confirm-title">Are you sure?</h2><button type="submit" value="cancel" class="gl-button btn-tertiary btn-icon btn-sm" aria-label="Close"><span data-icon="close"></span></button></header>
+        <div class="modal-body"><p id="confirm-text"></p></div>
+        <footer class="modal-footer">
+          <button type="submit" value="cancel" class="gl-button btn-default btn-md"><span class="gl-button-text">Cancel</span></button>
+          <button type="submit" value="ok" class="gl-button btn-confirm btn-md" id="confirm-ok"><span class="gl-button-text">OK</span></button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="gl-modal modal-md" id="form-modal" aria-labelledby="form-modal-title">
+      <div class="modal-content">
+        <header class="modal-header"><h2 class="modal-title" id="form-modal-title"></h2><button type="button" class="gl-button btn-tertiary btn-icon btn-sm" id="form-modal-close" aria-label="Close"><span data-icon="close"></span></button></header>
+        <div class="modal-body" id="form-modal-body"></div>
+        <footer class="modal-footer" id="form-modal-footer"></footer>
+      </div>
+    </dialog>
+  </body>
+</html>

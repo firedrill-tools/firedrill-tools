@@ -1,0 +1,27 @@
+{
+  "name": "firedrill-tools",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Stateful synthetic Tool packages for testing AI agents with Firedrill.",
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20.19",
+    "pnpm": "9.15.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "esbuild"
+    ]
+  },
+  "scripts": {
+    "check": "pnpm portability:check && pnpm validate && pnpm test",
+    "package:catalog": "node tooling/package-catalog.mjs",
+    "portability:check": "node tooling/portable-workspace.mjs",
+    "release:identities:update": "node tooling/update-release-identities.mjs",
+    "release:identities:verify": "node tooling/release-identities.mjs verify-current",
+    "validate": "node tooling/run-community-tools.mjs validate",
+    "test": "node tooling/run-community-tools.mjs test"
+  }
+}

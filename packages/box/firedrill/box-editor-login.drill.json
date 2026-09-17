@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "box-editor-login",
+  "title": "An editor identified by login invites collaborators and comments",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "daniel",
+  "task": {
+    "instruction": "Run the editor-login flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "collaborations-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "collaborations.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

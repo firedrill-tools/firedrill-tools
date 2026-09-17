@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-scoped-script",
+  "title": "A token with Apps Script scopes only is refused on every People and Workspace Events call",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "scoped-script",
+  "task": {
+    "instruction": "Run the scoped-script flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "connections-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.list-connections"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "groups-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "contact-groups.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "subscriptions.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "project-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "script-projects.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "processes-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "processes.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "nothing-written",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "incidents-outage",
+  "title": "Incident creation commits and then answers 503, so a blind retry declares a duplicate",
+  "faults": [
+    {
+      "packageId": "datadog",
+      "faultId": "incidents-create-unavailable"
+    }
+  ]
+}

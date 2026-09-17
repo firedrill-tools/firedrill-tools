@@ -1,0 +1,2148 @@
+{
+  "schemaVersion": 1,
+  "id": "resend-conformance-world",
+  "title": "Resend Tool conformance world",
+  "virtualTimeUs": 1789480800000000,
+  "actors": [
+    {
+      "id": "owner",
+      "description": "Calls with the seeded full-access Production key (resendApiKeyId).",
+      "attributes": {
+        "resendApiKeyId": "fffffffc-0000-4000-8000-000300000003"
+      },
+      "grants": [
+        {
+          "packageId": "resend",
+          "operationId": "emails.send"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.send_batch"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.update"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.cancel"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.verify"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.add_segment"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.remove_segment"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.list_segments"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "workspace.context"
+        }
+      ]
+    },
+    {
+      "id": "fresh",
+      "description": "No resendApiKeyId attribute, as created by `firedrill tool add`: falls back to the team's default Production key.",
+      "attributes": {},
+      "grants": [
+        {
+          "packageId": "resend",
+          "operationId": "emails.send"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.send_batch"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.update"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.cancel"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.verify"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.add_segment"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.remove_segment"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.list_segments"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "workspace.context"
+        }
+      ]
+    },
+    {
+      "id": "sender",
+      "description": "Calls with the sending_access Marketing sender key restricted to updates.northwind.test.",
+      "attributes": {
+        "resendApiKeyId": "fffffffd-0000-4000-8000-000300000002"
+      },
+      "grants": [
+        {
+          "packageId": "resend",
+          "operationId": "emails.send"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.send_batch"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.update"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.cancel"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.verify"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.add_segment"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.remove_segment"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.list_segments"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "workspace.context"
+        }
+      ]
+    },
+    {
+      "id": "revoked",
+      "description": "Claims an API key id that does not exist: every operation fails invalid_api_key.",
+      "attributes": {
+        "resendApiKeyId": "00000000-0000-4000-8000-00000000dead"
+      },
+      "grants": [
+        {
+          "packageId": "resend",
+          "operationId": "emails.send"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.send_batch"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.update"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "emails.cancel"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.verify"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "domains.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "api_keys.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "segments.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.remove"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.add_segment"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.remove_segment"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "contacts.list_segments"
+        },
+        {
+          "packageId": "resend",
+          "operationId": "workspace.context"
+        }
+      ]
+    },
+    {
+      "id": "no-grants",
+      "description": "Production key but no operation grants: the framework denies every call.",
+      "attributes": {
+        "resendApiKeyId": "fffffffc-0000-4000-8000-000300000003"
+      },
+      "grants": []
+    }
+  ],
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "meta",
+      "rowId": "team",
+      "value": {
+        "name": "Northwind Labs",
+        "defaultApiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "dailyQuota": 100,
+        "plan": "free"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "meta",
+      "rowId": "usage",
+      "value": {
+        "day": "2026-09-15",
+        "sent": 7
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "emails": 23,
+        "domains": 4,
+        "apiKeys": 3,
+        "segments": 3,
+        "contacts": 14
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 5000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "domains",
+      "rowId": "fffffffe-0000-4000-8000-000200000001",
+      "value": {
+        "id": "fffffffe-0000-4000-8000-000200000001",
+        "name": "legacy.northwind.invalid",
+        "region": "us-east-1",
+        "status": "failed",
+        "openTracking": false,
+        "clickTracking": false,
+        "tls": "opportunistic",
+        "customReturnPath": "send",
+        "capabilities": {
+          "sending": "enabled",
+          "receiving": "disabled"
+        },
+        "records": [
+          {
+            "record": "SPF",
+            "name": "send.legacy.northwind.invalid",
+            "type": "MX",
+            "ttl": "Auto",
+            "status": "failed",
+            "value": "feedback-smtp.us-east-1.amazonses.com",
+            "priority": 10
+          },
+          {
+            "record": "SPF",
+            "name": "send.legacy.northwind.invalid",
+            "type": "TXT",
+            "ttl": "Auto",
+            "status": "failed",
+            "value": "\"v=spf1 include:amazonses.com ~all\"",
+            "priority": null
+          },
+          {
+            "record": "DKIM",
+            "name": "resend._domainkey.legacy.northwind.invalid",
+            "type": "TXT",
+            "ttl": "Auto",
+            "status": "failed",
+            "value": "p=wAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "priority": null
+          }
+        ],
+        "createdAtUs": 1772200800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "domain-names",
+      "rowId": "legacy.northwind.invalid",
+      "value": {
+        "domainId": "fffffffe-0000-4000-8000-000200000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "domains",
+      "rowId": "fffffffd-0000-4000-8000-000200000002",
+      "value": {
+        "id": "fffffffd-0000-4000-8000-000200000002",
+        "name": "mail.northwind.test",
+        "region": "us-east-1",
+        "status": "verified",
+        "openTracking": false,
+        "clickTracking": false,
+        "tls": "opportunistic",
+        "customReturnPath": "send",
+        "capabilities": {
+          "sending": "enabled",
+          "receiving": "disabled"
+        },
+        "records": [
+          {
+            "record": "SPF",
+            "name": "send.mail.northwind.test",
+            "type": "MX",
+            "ttl": "Auto",
+            "status": "verified",
+            "value": "feedback-smtp.us-east-1.amazonses.com",
+            "priority": 10
+          },
+          {
+            "record": "SPF",
+            "name": "send.mail.northwind.test",
+            "type": "TXT",
+            "ttl": "Auto",
+            "status": "verified",
+            "value": "\"v=spf1 include:amazonses.com ~all\"",
+            "priority": null
+          },
+          {
+            "record": "DKIM",
+            "name": "resend._domainkey.mail.northwind.test",
+            "type": "TXT",
+            "ttl": "Auto",
+            "status": "verified",
+            "value": "p=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5AAA5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4A5AAAAAAAA5AAAAAAAAAA4AAAAAAAAAAAAA5AAAAAAAAA5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "priority": null
+          }
+        ],
+        "createdAtUs": 1781704800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "domain-names",
+      "rowId": "mail.northwind.test",
+      "value": {
+        "domainId": "fffffffd-0000-4000-8000-000200000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "domains",
+      "rowId": "fffffffc-0000-4000-8000-000200000003",
+      "value": {
+        "id": "fffffffc-0000-4000-8000-000200000003",
+        "name": "updates.northwind.test",
+        "region": "eu-west-1",
+        "status": "verified",
+        "openTracking": false,
+        "clickTracking": true,
+        "tls": "opportunistic",
+        "customReturnPath": "send",
+        "capabilities": {
+          "sending": "enabled",
+          "receiving": "disabled"
+        },
+        "records": [
+          {
+            "record": "SPF",
+            "name": "send.updates.northwind.test",
+            "type": "MX",
+            "ttl": "Auto",
+            "status": "verified",
+            "value": "feedback-smtp.eu-west-1.amazonses.com",
+            "priority": 10
+          },
+          {
+            "record": "SPF",
+            "name": "send.updates.northwind.test",
+            "type": "TXT",
+            "ttl": "Auto",
+            "status": "verified",
+            "value": "\"v=spf1 include:amazonses.com ~all\"",
+            "priority": null
+          },
+          {
+            "record": "DKIM",
+            "name": "resend._domainkey.updates.northwind.test",
+            "type": "TXT",
+            "ttl": "Auto",
+            "status": "verified",
+            "value": "p=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAA4AAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAA4AAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAA4AA4AAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "priority": null
+          }
+        ],
+        "createdAtUs": 1784296800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "domain-names",
+      "rowId": "updates.northwind.test",
+      "value": {
+        "domainId": "fffffffc-0000-4000-8000-000200000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "domains",
+      "rowId": "fffffffb-0000-4000-8000-000200000004",
+      "value": {
+        "id": "fffffffb-0000-4000-8000-000200000004",
+        "name": "billing.northwind.test",
+        "region": "us-east-1",
+        "status": "not_started",
+        "openTracking": false,
+        "clickTracking": false,
+        "tls": "opportunistic",
+        "customReturnPath": "send",
+        "capabilities": {
+          "sending": "enabled",
+          "receiving": "enabled"
+        },
+        "records": [
+          {
+            "record": "SPF",
+            "name": "send.billing.northwind.test",
+            "type": "MX",
+            "ttl": "Auto",
+            "status": "not_started",
+            "value": "feedback-smtp.us-east-1.amazonses.com",
+            "priority": 10
+          },
+          {
+            "record": "SPF",
+            "name": "send.billing.northwind.test",
+            "type": "TXT",
+            "ttl": "Auto",
+            "status": "not_started",
+            "value": "\"v=spf1 include:amazonses.com ~all\"",
+            "priority": null
+          },
+          {
+            "record": "DKIM",
+            "name": "resend._domainkey.billing.northwind.test",
+            "type": "TXT",
+            "ttl": "Auto",
+            "status": "not_started",
+            "value": "p=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAA4ggAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "priority": null
+          },
+          {
+            "record": "Receiving",
+            "name": "billing.northwind.test",
+            "type": "MX",
+            "ttl": "Auto",
+            "status": "not_started",
+            "value": "inbound-smtp.us-east-1.amazonaws.com",
+            "priority": 10
+          }
+        ],
+        "createdAtUs": 1789308000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "domain-names",
+      "rowId": "billing.northwind.test",
+      "value": {
+        "domainId": "fffffffb-0000-4000-8000-000200000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "api-keys",
+      "rowId": "fffffffe-0000-4000-8000-000300000001",
+      "value": {
+        "id": "fffffffe-0000-4000-8000-000300000001",
+        "name": "Staging CI",
+        "permission": "full_access",
+        "domainId": null,
+        "tokenPreview": "re_Hk29Qa",
+        "createdAtUs": 1779112800000000,
+        "lastUsedAtUs": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "api-keys",
+      "rowId": "fffffffd-0000-4000-8000-000300000002",
+      "value": {
+        "id": "fffffffd-0000-4000-8000-000300000002",
+        "name": "Marketing sender",
+        "permission": "sending_access",
+        "domainId": "fffffffc-0000-4000-8000-000200000003",
+        "tokenPreview": "re_M4rkT7",
+        "createdAtUs": 1786024800000000,
+        "lastUsedAtUs": 1789394400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "api-keys",
+      "rowId": "fffffffc-0000-4000-8000-000300000003",
+      "value": {
+        "id": "fffffffc-0000-4000-8000-000300000003",
+        "name": "Production",
+        "permission": "full_access",
+        "domainId": null,
+        "tokenPreview": "re_Pr0dX9",
+        "createdAtUs": 1786888800000000,
+        "lastUsedAtUs": 1789480200000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffffe-0000-4000-8000-000100000001",
+      "value": {
+        "id": "fffffffe-0000-4000-8000-000100000001",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "mara.quinn@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Welcome to Northwind Labs",
+        "html": "<p>Thanks for signing up.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [
+          {
+            "name": "category",
+            "value": "welcome"
+          }
+        ],
+        "createdAtUs": 1788616800000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffffd-0000-4000-8000-000100000002",
+      "value": {
+        "id": "fffffffd-0000-4000-8000-000100000002",
+        "from": "Billing <invoices@billing.northwind.test>",
+        "to": [
+          "accounts@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Invoice NW-1042",
+        "html": null,
+        "text": "Your invoice is attached in the portal.",
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1788703200000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffffc-0000-4000-8000-000100000003",
+      "value": {
+        "id": "fffffffc-0000-4000-8000-000100000003",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "theo.brandt@example.com"
+        ],
+        "cc": [
+          "ops@example.com"
+        ],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Your workspace is ready",
+        "html": "<p>Log in to get started.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1788710400000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffffb-0000-4000-8000-000100000004",
+      "value": {
+        "id": "fffffffb-0000-4000-8000-000100000004",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "zoe.lukasiewicz@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Rechnung für September ✓",
+        "html": null,
+        "text": "Vielen Dank für Ihre Zahlung.",
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1788789600000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffffa-0000-4000-8000-000100000005",
+      "value": {
+        "id": "fffffffa-0000-4000-8000-000100000005",
+        "from": "Northwind Updates <news@updates.northwind.test>",
+        "to": [
+          "beta01@example.com",
+          "beta02@example.com",
+          "beta03@example.com",
+          "beta04@example.com",
+          "beta05@example.com",
+          "beta06@example.com",
+          "beta07@example.com",
+          "beta08@example.com",
+          "beta09@example.com",
+          "beta10@example.com",
+          "beta11@example.com",
+          "beta12@example.com",
+          "beta13@example.com",
+          "beta14@example.com",
+          "beta15@example.com",
+          "beta16@example.com",
+          "beta17@example.com",
+          "beta18@example.com",
+          "beta19@example.com",
+          "beta20@example.com",
+          "beta21@example.com",
+          "beta22@example.com",
+          "beta23@example.com",
+          "beta24@example.com",
+          "beta25@example.com",
+          "beta26@example.com",
+          "beta27@example.com",
+          "beta28@example.com",
+          "beta29@example.com",
+          "beta30@example.com",
+          "beta31@example.com",
+          "beta32@example.com",
+          "beta33@example.com",
+          "beta34@example.com",
+          "beta35@example.com",
+          "beta36@example.com",
+          "beta37@example.com",
+          "beta38@example.com",
+          "beta39@example.com",
+          "beta40@example.com",
+          "beta41@example.com",
+          "beta42@example.com",
+          "beta43@example.com",
+          "beta44@example.com",
+          "beta45@example.com",
+          "beta46@example.com",
+          "beta47@example.com",
+          "beta48@example.com",
+          "beta49@example.com",
+          "beta50@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Beta programme: week 3 notes",
+        "html": "<p>Here is what shipped this week.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [
+          {
+            "name": "category",
+            "value": "newsletter"
+          }
+        ],
+        "createdAtUs": 1788876000000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffd-0000-4000-8000-000300000002",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff9-0000-4000-8000-000100000006",
+      "value": {
+        "id": "fffffff9-0000-4000-8000-000100000006",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "former.user@nowhere.invalid"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Password reset requested",
+        "html": null,
+        "text": "Use the link in the app to reset.",
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1788962400000000,
+        "scheduledAtUs": null,
+        "status": "bounced",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff8-0000-4000-8000-000100000007",
+      "value": {
+        "id": "fffffff8-0000-4000-8000-000100000007",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "priya.nair@example.com"
+        ],
+        "cc": [],
+        "bcc": [
+          "audit@example.com"
+        ],
+        "replyTo": [
+          "support@example.com"
+        ],
+        "subject": "Support ticket #5521 updated",
+        "html": "<p>An agent replied to your ticket.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1788966000000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff7-0000-4000-8000-000100000008",
+      "value": {
+        "id": "fffffff7-0000-4000-8000-000100000008",
+        "from": "Northwind Updates <news@updates.northwind.test>",
+        "to": [
+          "ivo.petrov@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Scheduled maintenance notice",
+        "html": null,
+        "text": "Maintenance window on Saturday.",
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789048800000000,
+        "scheduledAtUs": 1789135200000000,
+        "status": "canceled",
+        "apiKeyId": "fffffffd-0000-4000-8000-000300000002",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff6-0000-4000-8000-000100000009",
+      "value": {
+        "id": "fffffff6-0000-4000-8000-000100000009",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "lena.hart@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Order NW-7781 confirmed",
+        "html": "<p>We received your order.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789052400000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": "fffffffe-0000-4000-8000-000600000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff5-0000-4000-8000-000100000010",
+      "value": {
+        "id": "fffffff5-0000-4000-8000-000100000010",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "omar.haddad@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Order NW-7782 confirmed",
+        "html": "<p>We received your order.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789052400000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": "fffffffe-0000-4000-8000-000600000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff4-0000-4000-8000-000100000011",
+      "value": {
+        "id": "fffffff4-0000-4000-8000-000100000011",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "sofia.reyes@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Order NW-7783 confirmed",
+        "html": "<p>We received your order.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789052400000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": "fffffffe-0000-4000-8000-000600000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff3-0000-4000-8000-000100000012",
+      "value": {
+        "id": "fffffff3-0000-4000-8000-000100000012",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "mara.quinn@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Your weekly usage summary",
+        "html": "<p>You sent 412 emails this week.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [
+          {
+            "name": "category",
+            "value": "digest"
+          }
+        ],
+        "createdAtUs": 1789135200000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff2-0000-4000-8000-000100000013",
+      "value": {
+        "id": "fffffff2-0000-4000-8000-000100000013",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "no.mailbox@nowhere.invalid"
+        ],
+        "cc": [
+          "theo.brandt@example.com"
+        ],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Trial ending soon",
+        "html": null,
+        "text": "Your trial ends in 3 days.",
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789221600000000,
+        "scheduledAtUs": null,
+        "status": "bounced",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff1-0000-4000-8000-000100000014",
+      "value": {
+        "id": "fffffff1-0000-4000-8000-000100000014",
+        "from": "Northwind Updates <news@updates.northwind.test>",
+        "to": [
+          "newsletter@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "September product update",
+        "html": "<p>New dashboard filters are live.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789308000000000,
+        "scheduledAtUs": 1789912800000000,
+        "status": "canceled",
+        "apiKeyId": "fffffffd-0000-4000-8000-000300000002",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "fffffff0-0000-4000-8000-000100000015",
+      "value": {
+        "id": "fffffff0-0000-4000-8000-000100000015",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "theo.brandt@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "New sign-in from Firefox on Linux",
+        "html": null,
+        "text": "If this was not you, reset your password.",
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789394400000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "ffffffef-0000-4000-8000-000100000016",
+      "value": {
+        "id": "ffffffef-0000-4000-8000-000100000016",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "priya.nair@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Support ticket #5521 resolved",
+        "html": "<p>We marked your ticket as resolved.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789408800000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "ffffffee-0000-4000-8000-000100000017",
+      "value": {
+        "id": "ffffffee-0000-4000-8000-000100000017",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "omar.haddad@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Receipt for your payment",
+        "html": "<p>Payment received: 49.00 EUR.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789459200000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "ffffffed-0000-4000-8000-000100000018",
+      "value": {
+        "id": "ffffffed-0000-4000-8000-000100000018",
+        "from": "Northwind Updates <news@updates.northwind.test>",
+        "to": [
+          "beta-list@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Webinar starts in 30 minutes",
+        "html": null,
+        "text": "Join from the event page.",
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789466400000000,
+        "scheduledAtUs": 1789479000000000,
+        "status": "scheduled",
+        "apiKeyId": "fffffffd-0000-4000-8000-000300000002",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "ffffffec-0000-4000-8000-000100000019",
+      "value": {
+        "id": "ffffffec-0000-4000-8000-000100000019",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "lena.hart@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Your export is ready",
+        "html": "<p>Download it from Settings.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789470000000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "ffffffeb-0000-4000-8000-000100000020",
+      "value": {
+        "id": "ffffffeb-0000-4000-8000-000100000020",
+        "from": "Northwind Updates <news@updates.northwind.test>",
+        "to": [
+          "newsletter@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "October roadmap preview",
+        "html": "<p>A look at what is coming.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789473600000000,
+        "scheduledAtUs": 1791986400000000,
+        "status": "scheduled",
+        "apiKeyId": "fffffffd-0000-4000-8000-000300000002",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "ffffffea-0000-4000-8000-000100000021",
+      "value": {
+        "id": "ffffffea-0000-4000-8000-000100000021",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "sofia.reyes@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Reminder: renew your plan",
+        "html": null,
+        "text": "Your plan renews tomorrow.",
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789475400000000,
+        "scheduledAtUs": 1789567200000000,
+        "status": "scheduled",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "ffffffe9-0000-4000-8000-000100000022",
+      "value": {
+        "id": "ffffffe9-0000-4000-8000-000100000022",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "ivo.petrov@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Security digest",
+        "html": "<p>No unusual activity this week.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789478400000000,
+        "scheduledAtUs": null,
+        "status": "delivered",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "emails",
+      "rowId": "ffffffe8-0000-4000-8000-000100000023",
+      "value": {
+        "id": "ffffffe8-0000-4000-8000-000100000023",
+        "from": "Northwind Labs <hello@mail.northwind.test>",
+        "to": [
+          "mara.quinn@example.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "replyTo": [],
+        "subject": "Team invite from Northwind Labs",
+        "html": "<p>You were invited to join a team.</p>",
+        "text": null,
+        "headers": {},
+        "tags": [],
+        "createdAtUs": 1789479900000000,
+        "scheduledAtUs": 1789482000000000,
+        "status": "scheduled",
+        "apiKeyId": "fffffffc-0000-4000-8000-000300000003",
+        "batchId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segments",
+      "rowId": "fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "id": "fffffffe-0000-4000-8000-000400000001",
+        "name": "Newsletter",
+        "createdAtUs": 1782568800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segments",
+      "rowId": "fffffffd-0000-4000-8000-000400000002",
+      "value": {
+        "id": "fffffffd-0000-4000-8000-000400000002",
+        "name": "Beta testers",
+        "createdAtUs": 1785160800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segments",
+      "rowId": "fffffffc-0000-4000-8000-000400000003",
+      "value": {
+        "id": "fffffffc-0000-4000-8000-000400000003",
+        "name": "Empty segment",
+        "createdAtUs": 1789221600000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffffe-0000-4000-8000-000500000001",
+      "value": {
+        "id": "fffffffe-0000-4000-8000-000500000001",
+        "email": "mara.quinn@example.com",
+        "firstName": "Mara",
+        "lastName": "Quinn",
+        "unsubscribed": false,
+        "properties": {
+          "company_name": "Quinn & Co",
+          "seats": 12
+        },
+        "createdAtUs": 1783432800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "mara.quinn@example.com",
+      "value": {
+        "contactId": "fffffffe-0000-4000-8000-000500000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffffe-0000-4000-8000-000500000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffffe-0000-4000-8000-000500000001",
+        "addedAtUs": 1783519200000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffffe-0000-4000-8000-000500000001/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffffe-0000-4000-8000-000500000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffd-0000-4000-8000-000400000002/fffffffe-0000-4000-8000-000500000001",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffffe-0000-4000-8000-000500000001",
+        "addedAtUs": 1783519200000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffffe-0000-4000-8000-000500000001/fffffffd-0000-4000-8000-000400000002",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffffe-0000-4000-8000-000500000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffffd-0000-4000-8000-000500000002",
+      "value": {
+        "id": "fffffffd-0000-4000-8000-000500000002",
+        "email": "theo.brandt@example.com",
+        "firstName": "Theo",
+        "lastName": "Brandt",
+        "unsubscribed": false,
+        "properties": {},
+        "createdAtUs": 1783778400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "theo.brandt@example.com",
+      "value": {
+        "contactId": "fffffffd-0000-4000-8000-000500000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffffd-0000-4000-8000-000500000002",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffffd-0000-4000-8000-000500000002",
+        "addedAtUs": 1783864800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffffd-0000-4000-8000-000500000002/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffffd-0000-4000-8000-000500000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffffc-0000-4000-8000-000500000003",
+      "value": {
+        "id": "fffffffc-0000-4000-8000-000500000003",
+        "email": "zoe.lukasiewicz@example.com",
+        "firstName": "Zoë",
+        "lastName": "Łukasiewicz",
+        "unsubscribed": false,
+        "properties": {
+          "company_name": "Kraków Analytics"
+        },
+        "createdAtUs": 1784124000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "zoe.lukasiewicz@example.com",
+      "value": {
+        "contactId": "fffffffc-0000-4000-8000-000500000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffffc-0000-4000-8000-000500000003",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffffc-0000-4000-8000-000500000003",
+        "addedAtUs": 1784210400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffffc-0000-4000-8000-000500000003/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffffc-0000-4000-8000-000500000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffffb-0000-4000-8000-000500000004",
+      "value": {
+        "id": "fffffffb-0000-4000-8000-000500000004",
+        "email": "priya.nair@example.com",
+        "firstName": "Priya",
+        "lastName": "Nair",
+        "unsubscribed": false,
+        "properties": {
+          "seats": 3,
+          "plan_note": null
+        },
+        "createdAtUs": 1784469600000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "priya.nair@example.com",
+      "value": {
+        "contactId": "fffffffb-0000-4000-8000-000500000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffd-0000-4000-8000-000400000002/fffffffb-0000-4000-8000-000500000004",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffffb-0000-4000-8000-000500000004",
+        "addedAtUs": 1784556000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffffb-0000-4000-8000-000500000004/fffffffd-0000-4000-8000-000400000002",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffffb-0000-4000-8000-000500000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffffa-0000-4000-8000-000500000005",
+      "value": {
+        "id": "fffffffa-0000-4000-8000-000500000005",
+        "email": "ivo.petrov@example.com",
+        "firstName": "Ivo",
+        "lastName": "Petrov",
+        "unsubscribed": true,
+        "properties": {},
+        "createdAtUs": 1784815200000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "ivo.petrov@example.com",
+      "value": {
+        "contactId": "fffffffa-0000-4000-8000-000500000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffffa-0000-4000-8000-000500000005",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffffa-0000-4000-8000-000500000005",
+        "addedAtUs": 1784901600000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffffa-0000-4000-8000-000500000005/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffffa-0000-4000-8000-000500000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff9-0000-4000-8000-000500000006",
+      "value": {
+        "id": "fffffff9-0000-4000-8000-000500000006",
+        "email": "lena.hart@example.com",
+        "firstName": "Lena",
+        "lastName": null,
+        "unsubscribed": false,
+        "properties": {},
+        "createdAtUs": 1785160800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "lena.hart@example.com",
+      "value": {
+        "contactId": "fffffff9-0000-4000-8000-000500000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffd-0000-4000-8000-000400000002/fffffff9-0000-4000-8000-000500000006",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffff9-0000-4000-8000-000500000006",
+        "addedAtUs": 1785247200000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffff9-0000-4000-8000-000500000006/fffffffd-0000-4000-8000-000400000002",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffff9-0000-4000-8000-000500000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff8-0000-4000-8000-000500000007",
+      "value": {
+        "id": "fffffff8-0000-4000-8000-000500000007",
+        "email": "omar.haddad@example.com",
+        "firstName": "Omar",
+        "lastName": "Haddad",
+        "unsubscribed": false,
+        "properties": {
+          "company_name": "Haddad Logistics",
+          "seats": 40
+        },
+        "createdAtUs": 1785506400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "omar.haddad@example.com",
+      "value": {
+        "contactId": "fffffff8-0000-4000-8000-000500000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffff8-0000-4000-8000-000500000007",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff8-0000-4000-8000-000500000007",
+        "addedAtUs": 1785592800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffff8-0000-4000-8000-000500000007/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff8-0000-4000-8000-000500000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff7-0000-4000-8000-000500000008",
+      "value": {
+        "id": "fffffff7-0000-4000-8000-000500000008",
+        "email": "sofia.reyes@example.com",
+        "firstName": null,
+        "lastName": null,
+        "unsubscribed": false,
+        "properties": {},
+        "createdAtUs": 1785852000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "sofia.reyes@example.com",
+      "value": {
+        "contactId": "fffffff7-0000-4000-8000-000500000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffd-0000-4000-8000-000400000002/fffffff7-0000-4000-8000-000500000008",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffff7-0000-4000-8000-000500000008",
+        "addedAtUs": 1785938400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffff7-0000-4000-8000-000500000008/fffffffd-0000-4000-8000-000400000002",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffff7-0000-4000-8000-000500000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff6-0000-4000-8000-000500000009",
+      "value": {
+        "id": "fffffff6-0000-4000-8000-000500000009",
+        "email": "accounts@example.com",
+        "firstName": null,
+        "lastName": null,
+        "unsubscribed": false,
+        "properties": {
+          "company_name": "Example Accounts"
+        },
+        "createdAtUs": 1786197600000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "accounts@example.com",
+      "value": {
+        "contactId": "fffffff6-0000-4000-8000-000500000009"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff5-0000-4000-8000-000500000010",
+      "value": {
+        "id": "fffffff5-0000-4000-8000-000500000010",
+        "email": "newsletter@example.com",
+        "firstName": "News",
+        "lastName": "Desk",
+        "unsubscribed": true,
+        "properties": {},
+        "createdAtUs": 1786543200000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "newsletter@example.com",
+      "value": {
+        "contactId": "fffffff5-0000-4000-8000-000500000010"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffff5-0000-4000-8000-000500000010",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff5-0000-4000-8000-000500000010",
+        "addedAtUs": 1786629600000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffff5-0000-4000-8000-000500000010/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff5-0000-4000-8000-000500000010"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff4-0000-4000-8000-000500000011",
+      "value": {
+        "id": "fffffff4-0000-4000-8000-000500000011",
+        "email": "hana.sato@example.com",
+        "firstName": "Hana",
+        "lastName": "Sato",
+        "unsubscribed": false,
+        "properties": {},
+        "createdAtUs": 1786888800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "hana.sato@example.com",
+      "value": {
+        "contactId": "fffffff4-0000-4000-8000-000500000011"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffff4-0000-4000-8000-000500000011",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff4-0000-4000-8000-000500000011",
+        "addedAtUs": 1786975200000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffff4-0000-4000-8000-000500000011/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff4-0000-4000-8000-000500000011"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff3-0000-4000-8000-000500000012",
+      "value": {
+        "id": "fffffff3-0000-4000-8000-000500000012",
+        "email": "felix.moreau@example.com",
+        "firstName": "Félix",
+        "lastName": "Moreau",
+        "unsubscribed": false,
+        "properties": {},
+        "createdAtUs": 1787234400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "felix.moreau@example.com",
+      "value": {
+        "contactId": "fffffff3-0000-4000-8000-000500000012"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffd-0000-4000-8000-000400000002/fffffff3-0000-4000-8000-000500000012",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffff3-0000-4000-8000-000500000012",
+        "addedAtUs": 1787320800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffff3-0000-4000-8000-000500000012/fffffffd-0000-4000-8000-000400000002",
+      "value": {
+        "segmentId": "fffffffd-0000-4000-8000-000400000002",
+        "contactId": "fffffff3-0000-4000-8000-000500000012"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff2-0000-4000-8000-000500000013",
+      "value": {
+        "id": "fffffff2-0000-4000-8000-000500000013",
+        "email": "ada.okafor@example.com",
+        "firstName": "Ada",
+        "lastName": "Okafor",
+        "unsubscribed": true,
+        "properties": {},
+        "createdAtUs": 1787580000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "ada.okafor@example.com",
+      "value": {
+        "contactId": "fffffff2-0000-4000-8000-000500000013"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffff2-0000-4000-8000-000500000013",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff2-0000-4000-8000-000500000013",
+        "addedAtUs": 1787666400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffff2-0000-4000-8000-000500000013/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff2-0000-4000-8000-000500000013"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "rowId": "fffffff1-0000-4000-8000-000500000014",
+      "value": {
+        "id": "fffffff1-0000-4000-8000-000500000014",
+        "email": "jon.berg@example.com",
+        "firstName": "Jon",
+        "lastName": "Berg",
+        "unsubscribed": false,
+        "properties": {},
+        "createdAtUs": 1787925600000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-emails",
+      "rowId": "jon.berg@example.com",
+      "value": {
+        "contactId": "fffffff1-0000-4000-8000-000500000014"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "rowId": "fffffffe-0000-4000-8000-000400000001/fffffff1-0000-4000-8000-000500000014",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff1-0000-4000-8000-000500000014",
+        "addedAtUs": 1788012000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "contact-segments",
+      "rowId": "fffffff1-0000-4000-8000-000500000014/fffffffe-0000-4000-8000-000400000001",
+      "value": {
+        "segmentId": "fffffffe-0000-4000-8000-000400000001",
+        "contactId": "fffffff1-0000-4000-8000-000500000014"
+      }
+    }
+  ]
+}

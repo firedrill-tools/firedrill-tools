@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "id": "attio-notes-tasks",
+  "title": "Notes and tasks: paging, parent filters, markdown conversion, assignee/link/completion filters and completion stamps",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the notes-tasks conformance flow against the synthetic Attio Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "notes-list-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "notes.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-get-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "notes.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-create-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "notes.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-delete-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "notes.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "tasks-list-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "tasks.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "tasks-create-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "tasks.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "tasks-update-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "tasks.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "tasks-delete-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "tasks.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workspace-members-list-ok-gte-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "workspace-members.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-notes-7",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "notes",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "count-tasks-7",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "task-reopened",
+      "kind": "state.value",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000001002",
+      "path": [
+        "is_completed"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": false
+      }
+    },
+    {
+      "id": "task-link-by-email",
+      "kind": "state.value",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000001002",
+      "path": [
+        "linked_records",
+        0,
+        "target_record_id"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "00000004-0000-4000-8000-000000000111"
+      }
+    }
+  ]
+}

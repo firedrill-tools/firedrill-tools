@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-tables-and-ranges",
+  "title": "Tables, bullets, page breaks, named ranges and replaceAllText applied to one document, asserting the index map after every step",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "dana",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `tables-and-ranges` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-batch-update-ok-greater_than_or_equal-8",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "documents-get-ok-greater_than_or_equal-6",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "event-document-updated-greater_than_or_equal-8",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-docs",
+        "eventId": "document.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "empty-doc-has-content",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1st00000000000000000000000000000000000000007",
+      "path": [
+        "headRevisionNumber"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,589 @@
+{
+  "schemaVersion": 1,
+  "id": "gitlab-rest-read",
+  "title": "REST reads: identity, projects, labels, branches, commits, files, issues, notes and merge requests with pagination and GitLab errors",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the rest-read conformance flow against the synthetic GitLab Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "projects.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "projects.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "branches-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "branches.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "branches-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "branches.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "commits-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "commits.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "commits-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "commits.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repository-get-file-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "repository.get-file"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repository-list-tree-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "repository.list-tree"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-notes-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.list-notes"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-list-commits-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.list-commits"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-list-diffs-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.list-diffs"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-list-notes-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.list-notes"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "projects.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "projects.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "branches-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "branches.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "branches-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "branches.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "commits-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "commits.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "commits-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "commits.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repository-get-file-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "repository.get-file"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "repository-list-tree-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "repository.list-tree"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-notes-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.list-notes"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-list-commits-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.list-commits"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-list-diffs-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.list-diffs"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-list-notes-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.list-notes"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "rows-issues",
+      "kind": "state.count",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "event-issue-changed",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gitlab",
+        "eventId": "issue.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-merge-request-changed",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gitlab",
+        "eventId": "merge-request.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,492 @@
+{
+  "schemaVersion": 1,
+  "id": "jira-rate-limited",
+  "title": "Every call answers HTTP 429 with Jira's rate-limit headers and nothing is written",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the rate-limited conformance flow against the synthetic Jira Cloud Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "resources-list-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "resources.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "myself-get-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "myself.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "server-info-get-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "server-info.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-search-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "projects.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-get-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "projects.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-statuses-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "projects.statuses"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issue-types-create-meta-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issue-types.create-meta"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "priorities-list-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "priorities.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "statuses-list-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "statuses.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-create-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-get-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-update-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-delete-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-assign-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.assign"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-transitions-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.transitions"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-transition-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.transition"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-search-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-count-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.count"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-add-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-update-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-delete-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "comments.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-search-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "users.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-assignable-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "users.assignable"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "boards-list-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "boards.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sprints-list-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "sprints.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sprints-move-issues-tool-error-ge-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "sprints.move-issues"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-search-tool-error-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-count-22",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 22
+      }
+    },
+    {
+      "id": "comments-count-13",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "event-issue-created-eq-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "issue.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-issue-updated-eq-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-comment-created-eq-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "id": "gitlab-permissions-guest",
+  "title": "External guest: internal projects hidden, own confidential issue editable with label changes ignored, locked and internal comments refused",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "guest",
+  "task": {
+    "instruction": "Run the permissions-guest conformance flow against the synthetic GitLab Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "issues-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-save-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "notes.save"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-save-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "notes.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "merge-requests-save-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issue-3-labels-unchanged",
+      "kind": "state.value",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "rowId": "p000101#000003",
+      "path": [
+        "labels"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "bug"
+        ]
+      }
+    },
+    {
+      "id": "issue-3-title",
+      "kind": "state.value",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "rowId": "p000101#000003",
+      "path": [
+        "title"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Customer depot coordinates exposed in debug logs (staging)"
+      }
+    }
+  ]
+}

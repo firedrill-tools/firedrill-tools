@@ -1,0 +1,1832 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Baseline organisation with a scan bound of 3 rows",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "invoiceNumber": 1015,
+        "contactNumber": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 3
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "organisation",
+      "rowId": "organisation",
+      "value": {
+        "OrganisationID": "0e5b3c1a-7d2f-4a61-9c8e-3b4f5a6d7e80",
+        "tenantId": "6d1c2f0e-4b8a-4c3e-9a51-2f7e0b9d4c11",
+        "Name": "Kōwhai Joinery Ltd",
+        "LegalName": "Kōwhai Joinery Limited",
+        "PaysTax": true,
+        "Version": "NZ",
+        "OrganisationType": "COMPANY",
+        "BaseCurrency": "NZD",
+        "CountryCode": "NZ",
+        "IsDemoCompany": false,
+        "OrganisationStatus": "ACTIVE",
+        "RegistrationNumber": "7012345",
+        "TaxNumber": "123-456-789",
+        "FinancialYearEndDay": 31,
+        "FinancialYearEndMonth": 3,
+        "SalesTaxBasis": "INVOICE",
+        "SalesTaxPeriod": "TWOMONTHS",
+        "DefaultSalesTax": "Tax Exclusive",
+        "DefaultPurchasesTax": "Tax Inclusive",
+        "PeriodLockDate": "2026-03-31",
+        "EndOfYearLockDate": null,
+        "CreatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "Timezone": "NEWZEALANDSTANDARDTIME",
+        "OrganisationEntityType": "COMPANY",
+        "ShortCode": "!kW7pQ",
+        "Class": "STANDARD",
+        "Edition": "BUSINESS",
+        "LineOfBusiness": "Custom furniture and joinery",
+        "Addresses": [
+          {
+            "AddressType": "STREET",
+            "AddressLine1": "14 Vanguard Street",
+            "AddressLine2": null,
+            "AddressLine3": null,
+            "AddressLine4": null,
+            "City": "Nelson",
+            "Region": "Nelson",
+            "PostalCode": "7010",
+            "Country": "New Zealand",
+            "AttentionTo": null
+          }
+        ],
+        "Phones": [
+          {
+            "PhoneType": "OFFICE",
+            "PhoneNumber": "555 0100",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "PaymentTerms": {
+          "Sales": {
+            "Day": 20,
+            "Type": "OFFOLLOWINGMONTH"
+          },
+          "Bills": {
+            "Day": 30,
+            "Type": "DAYSAFTERBILLDATE"
+          }
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000001",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000001",
+        "Code": "090",
+        "Name": "Business Bank Account",
+        "Type": "BANK",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": "03-1702-0456789-00",
+        "BankAccountType": "BANK",
+        "CurrencyCode": "NZD",
+        "TaxType": "NONE",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "ASSET",
+        "SystemAccount": null,
+        "ReportingCode": "ASS",
+        "ReportingCodeName": "Assets",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000002",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000002",
+        "Code": "091",
+        "Name": "Business Savings Account",
+        "Type": "BANK",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": "03-1702-0456789-01",
+        "BankAccountType": "BANK",
+        "CurrencyCode": "NZD",
+        "TaxType": "NONE",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "ASSET",
+        "SystemAccount": null,
+        "ReportingCode": "ASS",
+        "ReportingCodeName": "Assets",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000003",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000003",
+        "Code": "200",
+        "Name": "Sales",
+        "Type": "REVENUE",
+        "Status": "ACTIVE",
+        "Description": "Income from any normal business activity",
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "OUTPUT2",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "REVENUE",
+        "SystemAccount": null,
+        "ReportingCode": "REV.TRA",
+        "ReportingCodeName": "Revenue",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000004",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000004",
+        "Code": "260",
+        "Name": "Other Revenue",
+        "Type": "OTHERINCOME",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "OUTPUT2",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "REVENUE",
+        "SystemAccount": null,
+        "ReportingCode": "REV.OTH",
+        "ReportingCodeName": "Other revenue",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000005",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000005",
+        "Code": "310",
+        "Name": "Cost of Goods Sold",
+        "Type": "DIRECTCOSTS",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "INPUT2",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "EXPENSE",
+        "SystemAccount": null,
+        "ReportingCode": "EXP.COS",
+        "ReportingCodeName": "Cost of sales",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000006",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000006",
+        "Code": "429",
+        "Name": "General Expenses",
+        "Type": "EXPENSE",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "INPUT2",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": true,
+        "Class": "EXPENSE",
+        "SystemAccount": null,
+        "ReportingCode": "EXP",
+        "ReportingCodeName": "Expenses",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000007",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000007",
+        "Code": "453",
+        "Name": "Timber & Hardware",
+        "Type": "EXPENSE",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "INPUT2",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": true,
+        "Class": "EXPENSE",
+        "SystemAccount": null,
+        "ReportingCode": "EXP",
+        "ReportingCodeName": "Expenses",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000008",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000008",
+        "Code": "610",
+        "Name": "Accounts Receivable",
+        "Type": "CURRENT",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "NONE",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "ASSET",
+        "SystemAccount": "DEBTORS",
+        "ReportingCode": "ASS.CUR.REC.TRA",
+        "ReportingCodeName": "Trade receivables",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000009",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000009",
+        "Code": "800",
+        "Name": "Accounts Payable",
+        "Type": "CURRLIAB",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "NONE",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "LIABILITY",
+        "SystemAccount": "CREDITORS",
+        "ReportingCode": "LIA.CUR.PAY.TRA",
+        "ReportingCodeName": "Trade payables",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000010",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000010",
+        "Code": "820",
+        "Name": "GST",
+        "Type": "CURRLIAB",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "NONE",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "LIABILITY",
+        "SystemAccount": "GST",
+        "ReportingCode": "LIA.CUR.TAX.GST",
+        "ReportingCodeName": "GST payable",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000011",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000011",
+        "Code": "970",
+        "Name": "Owner Funds Introduced",
+        "Type": "EQUITY",
+        "Status": "ACTIVE",
+        "Description": null,
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "NONE",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "EQUITY",
+        "SystemAccount": null,
+        "ReportingCode": "EQU.OWN",
+        "ReportingCodeName": "Owner funds",
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "accounts",
+      "rowId": "ac000000-0000-4000-8000-000000000012",
+      "value": {
+        "AccountID": "ac000000-0000-4000-8000-000000000012",
+        "Code": "205",
+        "Name": "Legacy Commissions",
+        "Type": "REVENUE",
+        "Status": "ARCHIVED",
+        "Description": "Retired 2024; kept for history",
+        "BankAccountNumber": null,
+        "BankAccountType": null,
+        "CurrencyCode": null,
+        "TaxType": "OUTPUT2",
+        "EnablePaymentsToAccount": false,
+        "ShowInExpenseClaims": false,
+        "Class": "REVENUE",
+        "SystemAccount": null,
+        "ReportingCode": null,
+        "ReportingCodeName": null,
+        "HasAttachments": false,
+        "UpdatedDateUTC": "2019-04-01T01:30:00.000Z",
+        "AddToWatchlist": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "tax-rates",
+      "rowId": "OUTPUT2",
+      "value": {
+        "Name": "15% GST on Income",
+        "TaxType": "OUTPUT2",
+        "ReportTaxType": "OUTPUT",
+        "CanApplyToAssets": false,
+        "CanApplyToEquity": false,
+        "CanApplyToExpenses": false,
+        "CanApplyToLiabilities": false,
+        "CanApplyToRevenue": true,
+        "DisplayTaxRate": 15,
+        "EffectiveRate": 15,
+        "Status": "ACTIVE",
+        "TaxComponents": [
+          {
+            "Name": "GST",
+            "Rate": 15,
+            "IsCompound": false,
+            "IsNonRecoverable": false
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "tax-rates",
+      "rowId": "INPUT2",
+      "value": {
+        "Name": "15% GST on Expenses",
+        "TaxType": "INPUT2",
+        "ReportTaxType": "INPUT",
+        "CanApplyToAssets": true,
+        "CanApplyToEquity": true,
+        "CanApplyToExpenses": true,
+        "CanApplyToLiabilities": true,
+        "CanApplyToRevenue": false,
+        "DisplayTaxRate": 15,
+        "EffectiveRate": 15,
+        "Status": "ACTIVE",
+        "TaxComponents": [
+          {
+            "Name": "GST",
+            "Rate": 15,
+            "IsCompound": false,
+            "IsNonRecoverable": false
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "tax-rates",
+      "rowId": "NONE",
+      "value": {
+        "Name": "No GST",
+        "TaxType": "NONE",
+        "ReportTaxType": "NONE",
+        "CanApplyToAssets": true,
+        "CanApplyToEquity": true,
+        "CanApplyToExpenses": true,
+        "CanApplyToLiabilities": true,
+        "CanApplyToRevenue": true,
+        "DisplayTaxRate": 0,
+        "EffectiveRate": 0,
+        "Status": "ACTIVE",
+        "TaxComponents": [
+          {
+            "Name": "GST",
+            "Rate": 0,
+            "IsCompound": false,
+            "IsNonRecoverable": false
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "tax-rates",
+      "rowId": "ZERORATED",
+      "value": {
+        "Name": "Zero Rated",
+        "TaxType": "ZERORATED",
+        "ReportTaxType": "EXEMPTOUTPUT",
+        "CanApplyToAssets": false,
+        "CanApplyToEquity": false,
+        "CanApplyToExpenses": false,
+        "CanApplyToLiabilities": false,
+        "CanApplyToRevenue": true,
+        "DisplayTaxRate": 0,
+        "EffectiveRate": 0,
+        "Status": "ACTIVE",
+        "TaxComponents": [
+          {
+            "Name": "GST",
+            "Rate": 0,
+            "IsCompound": false,
+            "IsNonRecoverable": false
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000001",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000001",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Harbourside Café",
+        "FirstName": "Mereana",
+        "LastName": "Walker",
+        "EmailAddress": "accounts@harbourside-cafe.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [
+          {
+            "AddressType": "STREET",
+            "AddressLine1": "2 Wakefield Quay",
+            "AddressLine2": null,
+            "AddressLine3": null,
+            "AddressLine4": null,
+            "City": "Nelson",
+            "Region": "Nelson",
+            "PostalCode": "7010",
+            "Country": "New Zealand",
+            "AttentionTo": null
+          }
+        ],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0101",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-05-04T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000002",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000002",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Harbour Lights Motel",
+        "FirstName": "Tom",
+        "LastName": "Reyes",
+        "EmailAddress": "bookings@harbourlights.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0102",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-05-05T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000003",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000003",
+        "ContactNumber": "CUST-003",
+        "AccountNumber": "OBD-01",
+        "ContactStatus": "ACTIVE",
+        "Name": "O'Brien & Daughters Builders",
+        "FirstName": "Siobhan",
+        "LastName": "O'Brien",
+        "EmailAddress": "office@obrien-builders.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0103",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-05-06T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000004",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000004",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Te Awa Early Learning Centre",
+        "FirstName": null,
+        "LastName": null,
+        "EmailAddress": "admin@teawa-elc.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [
+          {
+            "AddressType": "STREET",
+            "AddressLine1": "88 Tahunanui Drive",
+            "AddressLine2": null,
+            "AddressLine3": null,
+            "AddressLine4": null,
+            "City": "Whakatū",
+            "Region": "Nelson",
+            "PostalCode": "7011",
+            "Country": "New Zealand",
+            "AttentionTo": null
+          }
+        ],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0104",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-05-07T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000005",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000005",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Mākoha Design Studio",
+        "FirstName": "Anahera",
+        "LastName": "Pōtae",
+        "EmailAddress": "studio@makoha.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0105",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": "https://makoha.example.com",
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-05-08T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000006",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000006",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Riverbend Dental",
+        "FirstName": "Priya",
+        "LastName": "Nair",
+        "EmailAddress": null,
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0106",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-05-09T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000007",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000007",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Nelson Makers Market",
+        "FirstName": null,
+        "LastName": null,
+        "EmailAddress": "stalls@nelsonmakers.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0107",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": {
+          "Sales": {
+            "Day": 7,
+            "Type": "DAYSAFTERBILLDATE"
+          }
+        },
+        "UpdatedDateUTC": "2026-06-10T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000008",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000008",
+        "ContactNumber": null,
+        "AccountNumber": "TTS-2231",
+        "ContactStatus": "ACTIVE",
+        "Name": "Tasman Timber Supplies",
+        "FirstName": null,
+        "LastName": null,
+        "EmailAddress": "orders@tasmantimber.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": "INPUT2",
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0108",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-06-11T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000009",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000009",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Brightside Hardware",
+        "FirstName": null,
+        "LastName": null,
+        "EmailAddress": "trade@brightside.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": "INPUT2",
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0109",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-06-12T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000010",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000010",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ARCHIVED",
+        "Name": "Old Mill Antiques",
+        "FirstName": null,
+        "LastName": null,
+        "EmailAddress": "hello@oldmill.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0110",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-06-13T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000011",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000011",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Coastal Kitchens Ltd",
+        "FirstName": null,
+        "LastName": null,
+        "EmailAddress": "projects@coastalkitchens.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0111",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-06-14T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "rowId": "c0000000-0000-4000-8000-000000000012",
+      "value": {
+        "ContactID": "c0000000-0000-4000-8000-000000000012",
+        "ContactNumber": null,
+        "AccountNumber": null,
+        "ContactStatus": "ACTIVE",
+        "Name": "Kererū Holiday Park",
+        "FirstName": null,
+        "LastName": null,
+        "EmailAddress": "stay@kereru.example.com",
+        "CompanyNumber": null,
+        "TaxNumber": null,
+        "AccountsReceivableTaxType": null,
+        "AccountsPayableTaxType": null,
+        "Addresses": [],
+        "Phones": [
+          {
+            "PhoneType": "DEFAULT",
+            "PhoneNumber": "555 0112",
+            "PhoneAreaCode": "03",
+            "PhoneCountryCode": "64"
+          }
+        ],
+        "DefaultCurrency": "NZD",
+        "Website": null,
+        "PaymentTerms": null,
+        "UpdatedDateUTC": "2026-06-15T21:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000001",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000001",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000001",
+        "InvoiceNumber": "INV-1001",
+        "Reference": "Bar leaners",
+        "Date": "2026-07-02",
+        "DueDate": "2026-08-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000001001",
+            "Description": "Walnut bar leaners",
+            "Quantity": 2,
+            "UnitAmount": 385,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 115.5,
+            "LineAmount": 770,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "PAID",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": true,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 770,
+        "TotalTax": 115.5,
+        "Total": 885.5,
+        "AmountPaid": 885.5,
+        "paymentIds": [
+          "b0000000-0000-4000-8000-000000000001"
+        ],
+        "FullyPaidOnDate": "2026-08-12",
+        "UpdatedDateUTC": "2026-08-12T02:05:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000002",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000002",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000002",
+        "InvoiceNumber": "INV-1002",
+        "Reference": null,
+        "Date": "2026-07-15",
+        "DueDate": "2026-08-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000002001",
+            "Description": "Reception desk refinish",
+            "Quantity": 1,
+            "UnitAmount": 1240,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 186,
+            "LineAmount": 1240,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "PAID",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 1240,
+        "TotalTax": 186,
+        "Total": 1426,
+        "AmountPaid": 1426,
+        "paymentIds": [
+          "b0000000-0000-4000-8000-000000000002"
+        ],
+        "FullyPaidOnDate": "2026-08-18",
+        "UpdatedDateUTC": "2026-08-18T04:40:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000003",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000003",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000003",
+        "InvoiceNumber": "INV-1003",
+        "Reference": "PO 7781",
+        "Date": "2026-07-28",
+        "DueDate": "2026-08-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000003001",
+            "Description": "Rimu window frames",
+            "Quantity": 6,
+            "UnitAmount": 212.5,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 191.25,
+            "LineAmount": 1275,
+            "DiscountRate": null
+          },
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000003002",
+            "Description": "Custom joinery hours",
+            "Quantity": 12.5,
+            "UnitAmount": 68,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 127.5,
+            "LineAmount": 850,
+            "DiscountRate": null
+          },
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000003003",
+            "Description": "Hardware kit",
+            "Quantity": 4,
+            "UnitAmount": 18.755,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 11.25,
+            "LineAmount": 75.02,
+            "DiscountRate": null
+          },
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000003004",
+            "Description": "Delivery to export shipper (zero rated)",
+            "Quantity": 1,
+            "UnitAmount": 45,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "ZERORATED",
+            "TaxAmount": 0,
+            "LineAmount": 45,
+            "DiscountRate": null
+          },
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000003005",
+            "Description": "Site measure",
+            "Quantity": 1,
+            "UnitAmount": 120,
+            "ItemCode": null,
+            "AccountCode": "260",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 18,
+            "LineAmount": 120,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "PAID",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 2365.02,
+        "TotalTax": 348,
+        "Total": 2713.02,
+        "AmountPaid": 2713.02,
+        "paymentIds": [
+          "b0000000-0000-4000-8000-000000000003"
+        ],
+        "FullyPaidOnDate": "2026-08-25",
+        "UpdatedDateUTC": "2026-08-25T23:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000004",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000004",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000011",
+        "InvoiceNumber": "INV-1004",
+        "Reference": null,
+        "Date": "2026-06-10",
+        "DueDate": "2026-07-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000004001",
+            "Description": "Kitchen island prototype",
+            "Quantity": 1,
+            "UnitAmount": 2100,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 315,
+            "LineAmount": 2100,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "VOIDED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 2100,
+        "TotalTax": 315,
+        "Total": 2415,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-06-30T03:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000005",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000005",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000011",
+        "InvoiceNumber": "INV-1005",
+        "Reference": null,
+        "Date": "2026-06-12",
+        "DueDate": "2026-07-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000005001",
+            "Description": "Pantry shelving",
+            "Quantity": 1,
+            "UnitAmount": 640,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 96,
+            "LineAmount": 640,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "DELETED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 640,
+        "TotalTax": 96,
+        "Total": 736,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-06-13T01:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000006",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000006",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000005",
+        "InvoiceNumber": "INV-1006",
+        "Reference": "Studio fit-out",
+        "Date": "2026-08-10",
+        "DueDate": "2026-09-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000006001",
+            "Description": "Studio shelving system",
+            "Quantity": 1,
+            "UnitAmount": 3500,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 525,
+            "LineAmount": 3500,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "AUTHORISED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 3500,
+        "TotalTax": 525,
+        "Total": 4025,
+        "AmountPaid": 2000,
+        "paymentIds": [
+          "b0000000-0000-4000-8000-000000000004"
+        ],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-08-30T01:20:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000007",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000007",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000007",
+        "InvoiceNumber": "INV-1007",
+        "Reference": null,
+        "Date": "2026-07-20",
+        "DueDate": "2026-08-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000007001",
+            "Description": "Market stall trestle",
+            "Quantity": 10,
+            "UnitAmount": 145,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 217.5,
+            "LineAmount": 1450,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "AUTHORISED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": true,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 1450,
+        "TotalTax": 217.5,
+        "Total": 1667.5,
+        "AmountPaid": 0,
+        "paymentIds": [
+          "b0000000-0000-4000-8000-000000000006"
+        ],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-08-22T22:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000008",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000008",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000007",
+        "InvoiceNumber": "INV-1008",
+        "Reference": null,
+        "Date": "2026-08-05",
+        "DueDate": "2026-09-10",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000008001",
+            "Description": "Signage boards",
+            "Quantity": 3,
+            "UnitAmount": 96,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 43.2,
+            "LineAmount": 288,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "AUTHORISED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 288,
+        "TotalTax": 43.2,
+        "Total": 331.2,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-08-05T20:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000009",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000009",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000001",
+        "InvoiceNumber": "INV-1009",
+        "Reference": "Outdoor seating",
+        "Date": "2026-08-26",
+        "DueDate": "2026-09-15",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000009001",
+            "Description": "Outdoor bench",
+            "Quantity": 2,
+            "UnitAmount": 460,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 138,
+            "LineAmount": 920,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "AUTHORISED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 920,
+        "TotalTax": 138,
+        "Total": 1058,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-08-26T21:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000010",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000010",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000006",
+        "InvoiceNumber": "INV-1010",
+        "Reference": null,
+        "Date": "2026-09-01",
+        "DueDate": "2026-10-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000010001",
+            "Description": "Waiting room bench seating",
+            "Quantity": 1,
+            "UnitAmount": 1890,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 283.5,
+            "LineAmount": 1890,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "AUTHORISED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 1890,
+        "TotalTax": 283.5,
+        "Total": 2173.5,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-09-01T22:15:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000011",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000011",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000002",
+        "InvoiceNumber": "INV-1011",
+        "Reference": null,
+        "Date": "2026-09-08",
+        "DueDate": "2026-10-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000011001",
+            "Description": "Bedside tables",
+            "Quantity": 8,
+            "UnitAmount": 175,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 210,
+            "LineAmount": 1400,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "SUBMITTED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 1400,
+        "TotalTax": 210,
+        "Total": 1610,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-09-08T03:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000012",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000012",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000012",
+        "InvoiceNumber": "INV-1012",
+        "Reference": null,
+        "Date": "2026-09-12",
+        "DueDate": null,
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [],
+        "Status": "DRAFT",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 0,
+        "TotalTax": 0,
+        "Total": 0,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-09-12T00:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000013",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000013",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000004",
+        "InvoiceNumber": "INV-1013",
+        "Reference": null,
+        "Date": "2026-09-14",
+        "DueDate": "2026-10-20",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000013001",
+            "Description": "Children's cubby shelves",
+            "Quantity": 4,
+            "UnitAmount": 230,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 138,
+            "LineAmount": 920,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "DRAFT",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 920,
+        "TotalTax": 138,
+        "Total": 1058,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-09-14T02:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000014",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000014",
+        "Type": "ACCREC",
+        "ContactID": "c0000000-0000-4000-8000-000000000005",
+        "InvoiceNumber": "INV-1014",
+        "Reference": "Gallery plinths",
+        "Date": "2026-09-14",
+        "DueDate": "2026-10-20",
+        "LineAmountTypes": "Inclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000014001",
+            "Description": "Display plinths",
+            "Quantity": 3,
+            "UnitAmount": 287.5,
+            "ItemCode": null,
+            "AccountCode": "200",
+            "TaxType": "OUTPUT2",
+            "TaxAmount": 112.5,
+            "LineAmount": 862.5,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "DRAFT",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 750,
+        "TotalTax": 112.5,
+        "Total": 862.5,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-09-14T04:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000015",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000015",
+        "Type": "ACCPAY",
+        "ContactID": "c0000000-0000-4000-8000-000000000008",
+        "InvoiceNumber": "TT-5521",
+        "Reference": null,
+        "Date": "2026-08-28",
+        "DueDate": "2026-09-27",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000015001",
+            "Description": "Macrocarpa slabs",
+            "Quantity": 1,
+            "UnitAmount": 2480,
+            "ItemCode": null,
+            "AccountCode": "453",
+            "TaxType": "INPUT2",
+            "TaxAmount": 372,
+            "LineAmount": 2480,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "AUTHORISED",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 2480,
+        "TotalTax": 372,
+        "Total": 2852,
+        "AmountPaid": 0,
+        "paymentIds": [],
+        "FullyPaidOnDate": null,
+        "UpdatedDateUTC": "2026-08-28T05:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000016",
+      "value": {
+        "InvoiceID": "a0000000-0000-4000-8000-000000000016",
+        "Type": "ACCPAY",
+        "ContactID": "c0000000-0000-4000-8000-000000000009",
+        "InvoiceNumber": "BH-0098",
+        "Reference": null,
+        "Date": "2026-08-02",
+        "DueDate": "2026-09-01",
+        "LineAmountTypes": "Exclusive",
+        "LineItems": [
+          {
+            "LineItemID": "d0000000-0000-4000-8000-000000016001",
+            "Description": "Hinges and fittings",
+            "Quantity": 1,
+            "UnitAmount": 312.4,
+            "ItemCode": null,
+            "AccountCode": "453",
+            "TaxType": "INPUT2",
+            "TaxAmount": 46.86,
+            "LineAmount": 312.4,
+            "DiscountRate": null
+          }
+        ],
+        "Status": "PAID",
+        "CurrencyCode": "NZD",
+        "CurrencyRate": 1,
+        "SentToContact": false,
+        "ExpectedPaymentDate": null,
+        "PlannedPaymentDate": null,
+        "SubTotal": 312.4,
+        "TotalTax": 46.86,
+        "Total": 359.26,
+        "AmountPaid": 359.26,
+        "paymentIds": [
+          "b0000000-0000-4000-8000-000000000005"
+        ],
+        "FullyPaidOnDate": "2026-08-20",
+        "UpdatedDateUTC": "2026-08-20T03:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "payments",
+      "rowId": "b0000000-0000-4000-8000-000000000001",
+      "value": {
+        "PaymentID": "b0000000-0000-4000-8000-000000000001",
+        "InvoiceID": "a0000000-0000-4000-8000-000000000001",
+        "AccountID": "ac000000-0000-4000-8000-000000000001",
+        "Date": "2026-08-12",
+        "Amount": 885.5,
+        "BankAmount": 885.5,
+        "CurrencyRate": 1,
+        "Reference": null,
+        "IsReconciled": false,
+        "Status": "AUTHORISED",
+        "PaymentType": "ACCRECPAYMENT",
+        "UpdatedDateUTC": "2026-08-12T02:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "payments",
+      "rowId": "b0000000-0000-4000-8000-000000000002",
+      "value": {
+        "PaymentID": "b0000000-0000-4000-8000-000000000002",
+        "InvoiceID": "a0000000-0000-4000-8000-000000000002",
+        "AccountID": "ac000000-0000-4000-8000-000000000001",
+        "Date": "2026-08-18",
+        "Amount": 1426,
+        "BankAmount": 1426,
+        "CurrencyRate": 1,
+        "Reference": "DD 0818",
+        "IsReconciled": true,
+        "Status": "AUTHORISED",
+        "PaymentType": "ACCRECPAYMENT",
+        "UpdatedDateUTC": "2026-08-18T02:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "payments",
+      "rowId": "b0000000-0000-4000-8000-000000000003",
+      "value": {
+        "PaymentID": "b0000000-0000-4000-8000-000000000003",
+        "InvoiceID": "a0000000-0000-4000-8000-000000000003",
+        "AccountID": "ac000000-0000-4000-8000-000000000002",
+        "Date": "2026-08-25",
+        "Amount": 2713.02,
+        "BankAmount": 2713.02,
+        "CurrencyRate": 1,
+        "Reference": null,
+        "IsReconciled": false,
+        "Status": "AUTHORISED",
+        "PaymentType": "ACCRECPAYMENT",
+        "UpdatedDateUTC": "2026-08-25T02:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "payments",
+      "rowId": "b0000000-0000-4000-8000-000000000004",
+      "value": {
+        "PaymentID": "b0000000-0000-4000-8000-000000000004",
+        "InvoiceID": "a0000000-0000-4000-8000-000000000006",
+        "AccountID": "ac000000-0000-4000-8000-000000000001",
+        "Date": "2026-08-30",
+        "Amount": 2000,
+        "BankAmount": 2000,
+        "CurrencyRate": 1,
+        "Reference": "DC-4471",
+        "IsReconciled": false,
+        "Status": "AUTHORISED",
+        "PaymentType": "ACCRECPAYMENT",
+        "UpdatedDateUTC": "2026-08-30T02:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "payments",
+      "rowId": "b0000000-0000-4000-8000-000000000005",
+      "value": {
+        "PaymentID": "b0000000-0000-4000-8000-000000000005",
+        "InvoiceID": "a0000000-0000-4000-8000-000000000016",
+        "AccountID": "ac000000-0000-4000-8000-000000000001",
+        "Date": "2026-08-20",
+        "Amount": 359.26,
+        "BankAmount": 359.26,
+        "CurrencyRate": 1,
+        "Reference": null,
+        "IsReconciled": false,
+        "Status": "AUTHORISED",
+        "PaymentType": "ACCPAYPAYMENT",
+        "UpdatedDateUTC": "2026-08-20T02:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "payments",
+      "rowId": "b0000000-0000-4000-8000-000000000006",
+      "value": {
+        "PaymentID": "b0000000-0000-4000-8000-000000000006",
+        "InvoiceID": "a0000000-0000-4000-8000-000000000007",
+        "AccountID": "ac000000-0000-4000-8000-000000000001",
+        "Date": "2026-08-21",
+        "Amount": 500,
+        "BankAmount": 500,
+        "CurrencyRate": 1,
+        "Reference": "Entered in error",
+        "IsReconciled": false,
+        "Status": "DELETED",
+        "PaymentType": "ACCRECPAYMENT",
+        "UpdatedDateUTC": "2026-08-22T22:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoice-emails",
+      "rowId": "a0000000-0000-4000-8000-000000000001/0001",
+      "value": {
+        "invoiceId": "a0000000-0000-4000-8000-000000000001",
+        "to": "accounts@harbourside-cafe.example.com",
+        "sentAtUtc": "2026-07-02T03:00:00.000Z",
+        "actorId": "owner"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "xero",
+      "namespace": "invoice-emails",
+      "rowId": "a0000000-0000-4000-8000-000000000007/0001",
+      "value": {
+        "invoiceId": "a0000000-0000-4000-8000-000000000007",
+        "to": "stalls@nelsonmakers.example.com",
+        "sentAtUtc": "2026-07-20T04:00:00.000Z",
+        "actorId": "owner"
+      }
+    }
+  ]
+}

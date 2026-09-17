@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-distribution-outage",
+  "title": "Distribute commits and answers 500; the retry says the document is no longer a draft",
+  "targetId": "conformance-agent",
+  "scenarioId": "distribution-outage",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the distribution-outage flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-distribute-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.distribute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "nda-pending",
+      "kind": "state.value",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001001",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "PENDING"
+      }
+    },
+    {
+      "id": "document-sent-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "documenso",
+        "eventId": "document.sent"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

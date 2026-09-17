@@ -1,0 +1,52 @@
+{
+  "name": "@firedrill-tools/tool-box",
+  "version": "0.1.0",
+  "description": "Synthetic Box Content API 2.0 subset (folders, files, versions, trash, search, collaborations, comments, events) as a Firedrill Tool",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "firedrill",
+    "test",
+    "firedrill.json",
+    "starter.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "firedrill": {
+    "layer": "tool-pack",
+    "tool": "firedrill/tools/box/box.tool.json",
+    "starter": "starter.json",
+    "lifecycle": "active",
+    "conformance": {
+      "schemaVersion": 1,
+      "project": "firedrill.json",
+      "suite": "conformance"
+    }
+  },
+  "scripts": {
+    "validate": "firedrill validate",
+    "test": "firedrill tool test box"
+  },
+  "devDependencies": {
+    "@firedrill-tools/cli": "0.1.0-rc.1",
+    "@firedrill-tools/tool-sdk": "0.1.0-rc.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firedrill-tools/firedrill-tools.git",
+    "directory": "packages/box"
+  },
+  "bugs": {
+    "url": "https://github.com/firedrill-tools/firedrill-tools/issues"
+  },
+  "homepage": "https://github.com/firedrill-tools/firedrill-tools/tree/main/packages/box#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-archivist",
+  "title": "The archive workspace key sees only its own connectors and workflow; Northgate ids are 404; an empty source cannot run",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "archivist",
+  "task": {
+    "instruction": "Run the archivist flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "jobs-count-36",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "workflows-run-tool_error-37",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-get-tool_error-38",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "workflows-create-tool_error-39",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

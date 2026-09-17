@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-schema-growth",
+  "title": "Data source schema growth is bounded by what it adds to every page: refused at limit + 1, accepted at the limit, rows stay readable",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the schema-growth conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "schema-growth-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "schema-growth-accepted-up-to-limit",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "database-created",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "databases.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "row-readable-after-growth",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "data-source-queryable-after-growth",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

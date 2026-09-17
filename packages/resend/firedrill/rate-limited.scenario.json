@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "rate-limited",
+  "title": "Sending answers HTTP 429 rate_limit_exceeded before anything is written",
+  "faults": [
+    {
+      "packageId": "resend",
+      "faultId": "send-rate-limited"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "salesforce-inactive-user",
+  "title": "A deactivated user's token is an invalid session",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "former",
+  "task": {
+    "instruction": "Run the inactive-user conformance flow against the synthetic Salesforce Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "userinfo-get-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "userinfo.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "query-execute-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "query.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

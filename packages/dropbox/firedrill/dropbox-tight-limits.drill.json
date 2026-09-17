@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "dropbox-tight-limits",
+  "title": "Upload size and change-journal retention bounds: payload too large and reset cursors",
+  "targetId": "conformance-agent",
+  "scenarioId": "tight-limits",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the tight-limits flow against the synthetic Dropbox Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-folder-continue-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-folder-continue"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

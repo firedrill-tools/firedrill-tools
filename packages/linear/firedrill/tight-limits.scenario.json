@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Scan bounds lowered below the starter data (organization.limits): every bounded read fails FAILED_PRECONDITION",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "organization",
+      "rowId": "organization",
+      "value": {
+        "id": "00000001-0000-4000-8000-000000000001",
+        "name": "Lumen Audio",
+        "urlKey": "lumenaudio",
+        "createdAt": "2026-05-04T08:00:00.000Z",
+        "updatedAt": "2026-09-01T10:15:00.000Z",
+        "restrictLabelManagementToAdmins": true,
+        "gitBranchFormat": "{username}/{issueIdentifier}-{issueTitle}",
+        "limits": {
+          "users": 2,
+          "teams": 1,
+          "workflow-states": 3,
+          "labels": 2,
+          "projects": 1,
+          "cycles": 1,
+          "issues": 5,
+          "comments": 10,
+          "commentsPerIssue": 2,
+          "childrenPerIssue": 1000
+        }
+      }
+    }
+  ]
+}

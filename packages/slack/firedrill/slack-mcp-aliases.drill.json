@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-mcp-aliases",
+  "title": "Reference Slack MCP tool names resolve to the same operations, state and errors",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the mcp-aliases conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "users-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-profile-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "users.profile.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-history-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.history"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-replies-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.replies"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-post-message-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "chat-reply-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.reply"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-add-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-posted",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "message.posted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "reactions-added",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "reaction.added"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "thread-grew",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787562900.000120",
+      "path": [
+        "reply_count"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "users.list"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "conversations.history"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "chat.post-message"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "chat.reply"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "slack",
+              "operationId": "reactions.add"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

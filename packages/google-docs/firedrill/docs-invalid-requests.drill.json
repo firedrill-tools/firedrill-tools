@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-invalid-requests",
+  "title": "Every rejected batchUpdate shape: unknown kinds, out-of-range indices, the final newline, segments, regex search and unsupported style fields — none of them writes anything",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "dana",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `invalid-requests` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-batch-update-tool_error-greater_than_or_equal-12",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 12
+      }
+    },
+    {
+      "id": "documents-batch-update-ok-equals-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "release-revision-unchanged",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1st00000000000000000000000000000000000000008",
+      "path": [
+        "revisionId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "ALBJ4000000000000008"
+      }
+    },
+    {
+      "id": "release-text-unchanged",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1st00000000000000000000000000000000000000008",
+      "path": [
+        "textLength"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 197
+      }
+    },
+    {
+      "id": "state-revisions-equals-12",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "revisions",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    }
+  ]
+}

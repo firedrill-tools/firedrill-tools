@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "attio-large-notes",
+  "title": "A notes page over the response size budget fails instead of truncating; smaller pages succeed",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the large-notes conformance flow against the synthetic Attio Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "notes-create-ok-eq-10",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "notes.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "notes-list-tool_error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "notes.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-list-ok-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "notes.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "count-notes-16",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "notes",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    }
+  ]
+}

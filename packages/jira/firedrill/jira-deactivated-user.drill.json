@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "jira-deactivated-user",
+  "title": "A deactivated account (active: false) cannot authenticate",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "deactivated",
+  "task": {
+    "instruction": "Run the deactivated-user conformance flow against the synthetic Jira Cloud Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "myself-get-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "myself.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-search-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-count-22",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 22
+      }
+    }
+  ]
+}

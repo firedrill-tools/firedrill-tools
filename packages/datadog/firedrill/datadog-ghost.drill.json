@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "datadog-ghost",
+  "title": "Unknown user handle: every operation is FORBIDDEN",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ghost",
+  "task": {
+    "instruction": "Run the ghost flow against the synthetic Datadog Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "org-context-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "org.context"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "monitors-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "incidents-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "incidents.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "events-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "events",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "attio-list-permissions",
+  "title": "A member without access cannot see the investors list and cannot write to a read-only list",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member-hana",
+  "task": {
+    "instruction": "Run the list-permissions conformance flow against the synthetic Attio Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "entries-query-tool_error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "entries.query"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "attributes-list-tool_error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "attributes.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "entries-create-tool_error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "entries.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "entries-update-tool_error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "entries.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "entries-delete-tool_error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "entries.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "lists-list-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "lists.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-entries-12",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "entries",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "event-list-entry-created-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "attio",
+        "eventId": "list-entry.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

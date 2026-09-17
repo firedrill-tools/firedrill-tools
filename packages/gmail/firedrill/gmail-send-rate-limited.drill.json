@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "id": "gmail-send-rate-limited",
+  "title": "Sending is rate limited: 429 with Retry-After, no state change, drafts survive",
+  "targetId": "conformance-agent",
+  "scenarioId": "send-rate-limited",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the send-rate-limited conformance flow against the synthetic Gmail Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "send-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "draft-send-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "drafts.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "send-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "no-sent-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gmail",
+        "eventId": "message.sent"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "drafts-intact",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "drafts",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "messages-intact",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    }
+  ]
+}

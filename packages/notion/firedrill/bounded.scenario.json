@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "bounded",
+  "title": "Baseline data with meta/limits.max_rows_per_namespace lowered to 4: bounded scans fail with FAILED_PRECONDITION instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "notion",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "max_rows_per_namespace": 4,
+        "max_page_size": 100,
+        "max_children_per_append": 100,
+        "max_markdown_bytes": 102400
+      }
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "id": "waterfall-slow-jobs",
+  "title": "Asynchronous jobs stay RUNNING until virtual time advances; synchronous runs still complete",
+  "targetId": "conformance-agent",
+  "scenarioId": "slow-jobs",
+  "actorId": "master",
+  "task": {
+    "instruction": "Run the slow-jobs flow against the synthetic Waterfall Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "enrichment-contact-launch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.contact.launch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-phone-launch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.phone.launch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-company-launch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.company.launch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-contact-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.contact.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-phone-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.phone.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-company-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.company.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-contact-run-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.contact.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "verify-email-run-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "verify.email.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "job-launched-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "job.launched"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "job-completed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "job.completed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

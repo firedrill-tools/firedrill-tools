@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "xero-contacts-only",
+  "title": "accounting.contacts allows contact reads and writes but not invoices, payments or settings",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "contacts-only",
+  "task": {
+    "instruction": "[contacts-only] Run the contacts-only conformance flow against the synthetic Xero Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "contacts-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-save-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.save"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-list-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "invoices.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "organisation-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "organisation.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    }
+  ]
+}

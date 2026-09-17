@@ -1,0 +1,63 @@
+{
+  "name": "@firedrill-tools/tool-notion",
+  "version": "0.1.0",
+  "description": "Synthetic Notion workspace (REST API 2025-09-03 pages, data sources, blocks, comments, search, users; page-markdown endpoints; Notion MCP server tool names) Tool package for Firedrill",
+  "keywords": [
+    "firedrill",
+    "tool-pack",
+    "notion",
+    "pages",
+    "databases",
+    "blocks",
+    "synthetic",
+    "testing",
+    "ai-agent"
+  ],
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "firedrill",
+    "test",
+    "firedrill.json",
+    "starter.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "firedrill": {
+    "layer": "tool-pack",
+    "tool": "firedrill/tools/notion/notion.tool.json",
+    "starter": "starter.json",
+    "lifecycle": "active",
+    "conformance": {
+      "schemaVersion": 1,
+      "project": "firedrill.json",
+      "suite": "conformance"
+    }
+  },
+  "scripts": {
+    "validate": "firedrill validate",
+    "test": "firedrill tool test notion"
+  },
+  "devDependencies": {
+    "@firedrill-tools/cli": "0.1.0-rc.1",
+    "@firedrill-tools/tool-sdk": "0.1.0-rc.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firedrill-tools/firedrill-tools.git",
+    "directory": "packages/notion"
+  },
+  "bugs": {
+    "url": "https://github.com/firedrill-tools/firedrill-tools/issues"
+  },
+  "homepage": "https://github.com/firedrill-tools/firedrill-tools/tree/main/packages/notion#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}

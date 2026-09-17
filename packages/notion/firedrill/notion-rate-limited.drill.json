@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-rate-limited",
+  "title": "search, query, block children and page retrieval answer 429 rate_limited with Retry-After while other reads keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the rate-limited conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "search-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "data-sources-query-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.query"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "blocks-children-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.children.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "users-me-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "users.me"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "databases-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "databases.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Scan bound lowered to 3 rows: whole-namespace reads fail with state_bound_exceeded instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 3
+      }
+    }
+  ]
+}

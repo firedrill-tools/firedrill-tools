@@ -1,0 +1,557 @@
+{
+  "schemaVersion": 1,
+  "id": "check-conformance-world",
+  "title": "Check Tool conformance world (Juniper Street Bakery and Harborview Dental sandbox)",
+  "virtualTimeUs": 1789480800000000,
+  "actors": [
+    {
+      "id": "ops",
+      "description": "Payroll operations key: no company restriction, full access; every operation granted.",
+      "attributes": {
+        "displayName": "Payroll Ops"
+      },
+      "grants": [
+        {
+          "packageId": "check",
+          "operationId": "companies.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "companies.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.paydays"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.preview"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.approve"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.reopen"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.delete"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.delete"
+        }
+      ]
+    },
+    {
+      "id": "fresh",
+      "description": "Actor as created by `firedrill tool add`: no attributes, so it reaches every seeded company with full access.",
+      "grants": [
+        {
+          "packageId": "check",
+          "operationId": "companies.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "companies.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.paydays"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.preview"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.approve"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.reopen"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.delete"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.delete"
+        }
+      ]
+    },
+    {
+      "id": "juniper-only",
+      "description": "Key restricted by the `companies` attribute to Juniper Street Bakery.",
+      "attributes": {
+        "companies": [
+          "com_bG9Rw5w5ZbqXqpcLZYUr"
+        ]
+      },
+      "grants": [
+        {
+          "packageId": "check",
+          "operationId": "companies.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "companies.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.paydays"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.preview"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.approve"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.reopen"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.delete"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.delete"
+        }
+      ]
+    },
+    {
+      "id": "viewer",
+      "description": "Read-only key (`accessLevel: read_only`): reads succeed, writes and preview answer 403.",
+      "attributes": {
+        "accessLevel": "read_only"
+      },
+      "grants": [
+        {
+          "packageId": "check",
+          "operationId": "companies.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "companies.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.paydays"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.preview"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.approve"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.reopen"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.delete"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.delete"
+        }
+      ]
+    },
+    {
+      "id": "bad-key",
+      "description": "Malformed `companies` attribute: every operation answers 401 authentication_error.",
+      "attributes": {
+        "companies": "not-an-array"
+      },
+      "grants": [
+        {
+          "packageId": "check",
+          "operationId": "companies.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "companies.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "workplaces.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "employees.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "earning_rates.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "pay_schedules.paydays"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.get"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.preview"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.approve"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.reopen"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payrolls.delete"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.list"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.create"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.update"
+        },
+        {
+          "packageId": "check",
+          "operationId": "payroll_items.delete"
+        }
+      ]
+    },
+    {
+      "id": "no-grants",
+      "description": "No grants: the framework denies every operation before the Tool runs.",
+      "grants": []
+    }
+  ]
+}

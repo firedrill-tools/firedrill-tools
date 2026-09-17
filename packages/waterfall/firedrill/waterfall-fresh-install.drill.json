@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "waterfall-fresh-install",
+  "title": "An actor without waterfallApiKey (as created by firedrill tool add) sees the seeded account through the master key",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the fresh-install flow against the synthetic Waterfall Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "account-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "account.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "enrichment-contact-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.contact.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "api_keys-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "job-launched-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "job.launched"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

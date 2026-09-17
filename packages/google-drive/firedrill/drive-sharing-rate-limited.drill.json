@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "id": "drive-sharing-rate-limited",
+  "title": "sharing-rate-limited fault: permissions.create answers 403 global/sharingRateLimitExceeded while other writes (permission update, create, delete) succeed",
+  "targetId": "conformance-agent",
+  "scenarioId": "sharing-rate-limited",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the sharing-rate-limited conformance flow against the synthetic Google Drive Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "permissions-create-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "create-permission-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "permissions-update-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-create-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "permission-rows-unchanged",
+      "kind": "state.count",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "comparison": {
+        "operator": "equals",
+        "value": 43
+      }
+    },
+    {
+      "id": "file-rows-unchanged",
+      "kind": "state.count",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 31
+      }
+    }
+  ]
+}

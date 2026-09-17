@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "cyclic-parents",
+  "title": "A hand-authored cyclic folder chain (Projects -> Archive -> Projects): reads that resolve ancestors refuse with FAILED_PRECONDITION; files outside the cycle keep working.",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000001",
+      "value": {
+        "id": "1st000000000000000000000000000001",
+        "name": "Projects",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000008"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-06-02T08:15:00.000Z",
+        "modifiedTime": "2026-09-01T10:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "folderColorRgb": "#4285f4"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "changes",
+      "rowId": "000000000001",
+      "value": {
+        "changeId": "000000000001",
+        "fileId": "1st000000000000000000000000000003",
+        "time": "2026-09-12T10:50:00.000Z",
+        "removed": false,
+        "changeType": "file",
+        "actorEmail": "dana.reyes@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "fileSequence": 0,
+        "permissionSequence": 0,
+        "changeSequence": 1,
+        "userSequence": 0,
+        "revisionSequence": 0
+      }
+    }
+  ]
+}

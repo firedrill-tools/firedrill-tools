@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "box-upload-committed-lost",
+  "title": "An upload commits but answers 500; the retry names the committed file",
+  "targetId": "conformance-agent",
+  "scenarioId": "upload-committed-lost",
+  "actorId": "maya",
+  "task": {
+    "instruction": "Run the upload-committed-lost flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 25
+      }
+    },
+    {
+      "id": "file-uploaded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "box",
+        "eventId": "file.uploaded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

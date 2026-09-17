@@ -1,0 +1,333 @@
+/* Chrome outside the Tool's scope and the fidelity pass additions (2026-09-15). Primer light tokens from styles.css. */
+
+/* ------------------------------------------------------------------ Header additions */
+.AppHeader-copilot .AppHeader-button {
+  width: auto;
+  padding: 0 7px;
+}
+.AppHeader-copilot .AppHeader-copilot-caret {
+  padding: 0 4px;
+}
+.AppHeader-copilot-caret .octicon {
+  width: 12px;
+  height: 12px;
+}
+.AppHeader-button:hover,
+.AppHeader-copilot .btn:hover {
+  background: var(--bgColor-neutral-muted);
+}
+
+/* ------------------------------------------------------------------ Repository action buttons */
+.repohead-actions {
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px;
+}
+.repo-action {
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.repo-action .octicon {
+  color: var(--fgColor-muted);
+}
+.repo-action-counter {
+  margin-left: 2px;
+  min-width: 18px;
+  padding: 0 5px;
+  line-height: 16px;
+}
+.repo-action-group .btn-caret {
+  width: 26px;
+}
+.repohead {
+  border-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ Tabs outside the Tool's scope */
+.UnderlineNav-item--chrome {
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------ Not simulated panel */
+.not-simulated {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 8px 8px 16px;
+  text-align: center;
+}
+.not-simulated-icon {
+  color: var(--fgColor-muted);
+}
+.not-simulated-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.not-simulated p {
+  max-width: 420px;
+  margin: 0;
+}
+.not-simulated-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 12px;
+  border-top: 1px solid var(--borderColor-muted);
+}
+
+/* ------------------------------------------------------------------ Footer */
+.footer {
+  padding: 40px 0 24px;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer-links a {
+  color: var(--fgColor-muted);
+}
+.footer-links a:hover {
+  color: var(--fgColor-accent);
+  text-decoration: underline;
+}
+.footer > .footer-note {
+  max-width: 1280px;
+  margin: 16px auto 0;
+  padding: 0 32px;
+  font-size: 12px;
+  color: var(--fgColor-muted);
+}
+@media (max-width: 767px) {
+  .footer > .footer-note {
+    padding: 0 16px;
+  }
+  .repohead-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+  .AppHeader-copilot,
+  #header-command-palette {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ Markdown toolbar */
+.comment-form-tabs {
+  align-items: flex-end;
+}
+.markdown-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: auto;
+  padding-bottom: 4px;
+}
+.markdown-toolbar[hidden] {
+  display: none;
+}
+.markdown-toolbar-group {
+  display: flex;
+  padding: 0 4px;
+}
+.markdown-toolbar-group + .markdown-toolbar-group {
+  border-left: 1px solid var(--borderColor-muted);
+}
+.toolbar-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--fgColor-muted);
+  background: none;
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.toolbar-item:hover {
+  color: var(--fgColor-accent);
+  background: var(--bgColor-neutral-muted);
+}
+
+/* ------------------------------------------------------------------ About sidebar additions */
+.language-bar {
+  display: flex;
+  height: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: var(--bgColor-neutral-muted);
+  border-radius: 6px;
+}
+.language-bar span {
+  flex: 1;
+}
+.about-heading-link {
+  padding: 0;
+  font: inherit;
+  color: var(--fgColor-default);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.about-heading-link:hover h3 {
+  color: var(--fgColor-accent);
+}
+.about-sidebar .about-note {
+  margin: 0;
+  font-size: 12px;
+}
+.contributors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.about-section h3 .Counter {
+  margin-left: 2px;
+  vertical-align: text-top;
+}
+.file-navigation-tags {
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.file-navigation-count:hover,
+.file-navigation-count:hover strong {
+  color: var(--fgColor-accent);
+  text-decoration: none;
+}
+
+/* ------------------------------------------------------------------ Sidebar additions */
+.sidebar-customize {
+  font-weight: 400;
+  color: var(--fgColor-muted);
+}
+.discussion-sidebar-item .btn-block {
+  width: 100%;
+  justify-content: center;
+}
+.sidebar-note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--fgColor-muted);
+}
+.sidebar-none {
+  font-size: 12px;
+  color: var(--fgColor-muted);
+}
+.list-header-links {
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------------ Phone widths (github.com collapses the header) */
+@media (max-width: 767px) {
+  #create-menu,
+  #header-issues,
+  #header-pulls,
+  .repohead-actions > .repo-action {
+    display: none;
+  }
+  .timeline-comment-header {
+    display: block;
+    position: relative;
+    padding-right: 120px;
+    line-height: 20px;
+  }
+  .timeline-comment-header .header-actions {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+  }
+  .markdown-toolbar {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ Repository tab overflow ("..." menu) */
+.UnderlineNav-item[hidden] {
+  display: none;
+}
+.UnderlineNav-more {
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0 8px;
+}
+#repo-nav {
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------------ New issue composer */
+.new-item-form .comment-form {
+  margin-bottom: 0;
+}
+.new-item-form .comment-form-body .new-body {
+  min-height: 200px;
+}
+.new-item-form .form-hint {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--fgColor-muted);
+}
+
+/* ------------------------------------------------------------------ Phone widths: code tab, PR tabs, dashboard */
+@media (max-width: 767px) {
+  #repo-nav {
+    overflow: hidden;
+  }
+  .latest-commit {
+    min-width: 0;
+    padding: 8px 12px;
+  }
+  .latest-commit .commit-sha,
+  .latest-commit .commit-sep,
+  .latest-commit .commit-time,
+  .latest-commit .history-link span {
+    display: none;
+  }
+  .tabnav {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .tabnav-tab {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .feed-item-card {
+    flex-wrap: wrap;
+  }
+  .feed-item-card .feed-labels {
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+}
+@media (max-width: 767px) {
+  .comment-form-footer .markdown-hint {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .table-list-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+  .table-list-header .states a {
+    white-space: nowrap;
+  }
+  .table-list-header .filters {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: -8px;
+  }
+}

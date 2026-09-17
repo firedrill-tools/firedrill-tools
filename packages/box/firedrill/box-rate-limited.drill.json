@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "id": "box-rate-limited",
+  "title": "Search, listings and uploads answer 429 with Retry-After and write nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "maya",
+  "task": {
+    "instruction": "Run the rate-limited flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "search-query-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "search.query"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-list-items-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.list-items"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-version-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload-version"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "versions-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "versions",
+      "comparison": {
+        "operator": "equals",
+        "value": 26
+      }
+    },
+    {
+      "id": "file-uploaded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "box",
+        "eventId": "file.uploaded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

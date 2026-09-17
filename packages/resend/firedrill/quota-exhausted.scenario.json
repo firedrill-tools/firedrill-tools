@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "quota-exhausted",
+  "title": "The team has one email left in today's quota of 100",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "resend",
+      "namespace": "meta",
+      "rowId": "usage",
+      "value": {
+        "day": "2026-09-15",
+        "sent": 99
+      }
+    }
+  ]
+}

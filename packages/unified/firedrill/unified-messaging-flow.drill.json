@@ -1,0 +1,326 @@
+{
+  "schemaVersion": 1,
+  "id": "unified-messaging-flow",
+  "title": "Messaging channels and messages: hierarchy, aliases, thread replies, unread and date filters, author identity, has_children maintenance",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the messaging flow against the synthetic Unified.to Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "channels-list-ok-40",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-get-ok-41",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-list-ok-42",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-get-ok-43",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-create-ok-44",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-update-ok-45",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-remove-ok-46",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-create-error-47",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-update-error-48",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-list-error-49",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-get-error-50",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-list-error-51",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-get-error-52",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-remove-error-53",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-count-54",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 21
+      }
+    },
+    {
+      "id": "channels-count-55",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "channels",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "messages-value-56",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000000805",
+      "path": [
+        "has_children"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": false
+      }
+    },
+    {
+      "id": "messages-value-57",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000001001",
+      "path": [
+        "message"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "edited"
+      }
+    },
+    {
+      "id": "messages-value-58",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000001001",
+      "path": [
+        "is_unread"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": true
+      }
+    },
+    {
+      "id": "messages-value-59",
+      "kind": "state.value",
+      "packageId": "unified",
+      "namespace": "messages",
+      "rowId": "68c800000000000000000203/68c800000000000000001001",
+      "path": [
+        "author_member",
+        "user_id"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "u-opsbot"
+      }
+    },
+    {
+      "id": "object-created-events-60",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unified",
+        "eventId": "object.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "object-deleted-events-61",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unified",
+        "eventId": "object.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

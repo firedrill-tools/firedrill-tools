@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "api-unavailable",
+  "title": "Every write answers HTTP 503 api_error and leaves state untouched; reads keep working",
+  "faults": [
+    {
+      "packageId": "stripe",
+      "faultId": "api-unavailable"
+    }
+  ]
+}

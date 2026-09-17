@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-scope-board-bot",
+  "title": "A workspace-wide read-only integration without comment capability: comments answer restricted_resource, users are listed without e-mails",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "board-bot",
+  "task": {
+    "instruction": "Run the scope-board-bot conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-me-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "users.me"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "users.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "restricted-comments-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "restricted-comments-create",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-unchanged",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    }
+  ]
+}

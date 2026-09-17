@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 1,
+  "id": "drive-user-rate-limited",
+  "title": "user-rate-limited fault: every write answers 403 usageLimits/userRateLimitExceeded with Retry-After 30 and changes nothing; reads keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "user-rate-limited",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the user-rate-limited conformance flow against the synthetic Google Drive Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "files-create-tool_error-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-update-tool_error-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-tool_error-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-delete-tool_error-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-empty-trash-tool_error-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.empty-trash"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-create-tool_error-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-update-tool_error-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-delete-tool_error-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-create-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "files-update-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "files-copy-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "files-delete-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "files-empty-trash-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.empty-trash"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "permissions-create-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "permissions-update-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "permissions-delete-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "files-list-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-export-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.export"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "permissions-list-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "permissions.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-read-content-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.read-content"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-file-created-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-drive",
+        "eventId": "file.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-file-changed-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-drive",
+        "eventId": "file.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-file-deleted-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-drive",
+        "eventId": "file.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "file-rows-unchanged",
+      "kind": "state.count",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 31
+      }
+    },
+    {
+      "id": "retro-still-trashed",
+      "kind": "state.value",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000009",
+      "path": [
+        "trashed"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": true
+      }
+    }
+  ]
+}

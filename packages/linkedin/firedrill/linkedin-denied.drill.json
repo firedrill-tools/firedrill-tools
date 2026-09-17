@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "id": "linkedin-denied",
+  "title": "An actor without Firedrill grants is denied before the Tool runs",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "no-grants",
+  "task": {
+    "instruction": "Run the denied flow against the synthetic LinkedIn Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "profile-userinfo-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "profile.userinfo"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "profile-me-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "profile.me"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "people-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "people.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "posts-create-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "posts.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "posts-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "posts.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "posts-list-by-author-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "posts.list_by_author"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "posts-update-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "posts.update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "posts-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "posts.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "feed-list-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "feed.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-create-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-update-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-create-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "reactions.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-list-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "reactions.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "reactions.delete"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "social-metadata-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "social_metadata.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "social-metadata-set-comments-state-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "social_metadata.set_comments_state"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "organizations-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "organizations.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "organizations-find-by-vanity-name-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "organizations.find_by_vanity_name"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "organization-acls-list-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "organization_acls.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "network-sizes-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "network_sizes.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-list-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "connections.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "posts-count",
+      "kind": "state.count",
+      "packageId": "linkedin",
+      "namespace": "posts",
+      "comparison": {
+        "operator": "equals",
+        "value": 19
+      }
+    }
+  ]
+}

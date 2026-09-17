@@ -1,0 +1,3939 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "salesforce",
+    "version": "0.1.0",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "accounts",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "IsDeleted": {
+              "type": "boolean"
+            },
+            "DeletedDate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "CreatedDate": {
+              "type": "string"
+            },
+            "CreatedById": {
+              "type": "string"
+            },
+            "LastModifiedDate": {
+              "type": "string"
+            },
+            "LastModifiedById": {
+              "type": "string"
+            },
+            "SystemModstamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id",
+            "fields",
+            "IsDeleted",
+            "DeletedDate",
+            "CreatedDate",
+            "CreatedById",
+            "LastModifiedDate",
+            "LastModifiedById",
+            "SystemModstamp"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Account records keyed by id (001…): `fields` holds every non-system field (including OwnerId and custom fields) by API name."
+      },
+      {
+        "namespace": "contacts",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "IsDeleted": {
+              "type": "boolean"
+            },
+            "DeletedDate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "CreatedDate": {
+              "type": "string"
+            },
+            "CreatedById": {
+              "type": "string"
+            },
+            "LastModifiedDate": {
+              "type": "string"
+            },
+            "LastModifiedById": {
+              "type": "string"
+            },
+            "SystemModstamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id",
+            "fields",
+            "IsDeleted",
+            "DeletedDate",
+            "CreatedDate",
+            "CreatedById",
+            "LastModifiedDate",
+            "LastModifiedById",
+            "SystemModstamp"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Contact records keyed by id (003…); fields.AccountId references a non-deleted Account or is null; Name is derived."
+      },
+      {
+        "namespace": "custom-fields",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "text",
+                      "textarea",
+                      "number",
+                      "currency",
+                      "percent",
+                      "checkbox",
+                      "date",
+                      "datetime",
+                      "email",
+                      "url",
+                      "phone",
+                      "picklist"
+                    ]
+                  },
+                  "length": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "precision": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "scale": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "picklistValues": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        },
+                        "default": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "value",
+                        "default"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "externalId": {
+                    "type": "boolean"
+                  },
+                  "unique": {
+                    "type": "boolean"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "defaultValue": {
+                    "anyOf": [
+                      {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "label",
+                  "type",
+                  "externalId",
+                  "unique",
+                  "required"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "sobjectType",
+            "fields"
+          ],
+          "additionalProperties": false
+        },
+        "description": "One row per sObject type (`Account`, `Contact`, …) listing its custom (__c) field definitions: type, length, picklist values, externalId, unique, required, default. Merged into describe, FIELDS(CUSTOM), validation and upsert."
+      },
+      {
+        "namespace": "leads",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "IsDeleted": {
+              "type": "boolean"
+            },
+            "DeletedDate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "CreatedDate": {
+              "type": "string"
+            },
+            "CreatedById": {
+              "type": "string"
+            },
+            "LastModifiedDate": {
+              "type": "string"
+            },
+            "LastModifiedById": {
+              "type": "string"
+            },
+            "SystemModstamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id",
+            "fields",
+            "IsDeleted",
+            "DeletedDate",
+            "CreatedDate",
+            "CreatedById",
+            "LastModifiedDate",
+            "LastModifiedById",
+            "SystemModstamp"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Lead records keyed by id (00Q…); converted leads (fields.IsConverted) reject every update."
+      },
+      {
+        "namespace": "meta",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "nextRecordNumber": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "nextRecordNumber"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Row `counters`: the single record-number sequence behind every minted id (created on first write when absent)."
+      },
+      {
+        "namespace": "opportunities",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "IsDeleted": {
+              "type": "boolean"
+            },
+            "DeletedDate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "CreatedDate": {
+              "type": "string"
+            },
+            "CreatedById": {
+              "type": "string"
+            },
+            "LastModifiedDate": {
+              "type": "string"
+            },
+            "LastModifiedById": {
+              "type": "string"
+            },
+            "SystemModstamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id",
+            "fields",
+            "IsDeleted",
+            "DeletedDate",
+            "CreatedDate",
+            "CreatedById",
+            "LastModifiedDate",
+            "LastModifiedById",
+            "SystemModstamp"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Opportunity records keyed by id (006…); IsClosed, IsWon, ForecastCategory and the default Probability derive from StageName."
+      },
+      {
+        "namespace": "org",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "organizationId": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "instanceUrl": {
+              "type": "string"
+            },
+            "myDomain": {
+              "type": "string"
+            },
+            "timeZoneSidKey": {
+              "type": "string"
+            },
+            "defaultCurrencyIsoCode": {
+              "type": "string"
+            },
+            "defaultLocaleSidKey": {
+              "type": "string"
+            },
+            "orgWideDefaults": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "enum": [
+                  "Private",
+                  "ReadOnly",
+                  "ReadWrite",
+                  "ControlledByParent"
+                ]
+              }
+            },
+            "dailyApiRequests": {
+              "type": "object",
+              "properties": {
+                "max": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "used": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "max",
+                "used"
+              ],
+              "additionalProperties": false
+            },
+            "dataStorageMB": {
+              "type": "object",
+              "properties": {
+                "max": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "used": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "max",
+                "used"
+              ],
+              "additionalProperties": false
+            },
+            "defaultUserId": {
+              "type": "string"
+            },
+            "limits": {
+              "type": "object",
+              "properties": {
+                "maxRowsPerNamespace": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                }
+              },
+              "required": [
+                "maxRowsPerNamespace"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "organizationId",
+            "name",
+            "instanceUrl",
+            "myDomain",
+            "timeZoneSidKey",
+            "defaultCurrencyIsoCode",
+            "defaultLocaleSidKey",
+            "orgWideDefaults",
+            "dailyApiRequests",
+            "dataStorageMB",
+            "defaultUserId",
+            "limits"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Row `org`: the one Salesforce org — identity, instance URL, org-wide sharing defaults per sObject, limit decorations, the fresh-install default user and the scan bound."
+      },
+      {
+        "namespace": "profiles",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            },
+            "Name": {
+              "type": "string"
+            },
+            "UserLicense": {
+              "type": "string"
+            },
+            "objectPermissions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "create": {
+                    "type": "boolean"
+                  },
+                  "read": {
+                    "type": "boolean"
+                  },
+                  "edit": {
+                    "type": "boolean"
+                  },
+                  "delete": {
+                    "type": "boolean"
+                  },
+                  "viewAll": {
+                    "type": "boolean"
+                  },
+                  "modifyAll": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "create",
+                  "read",
+                  "edit",
+                  "delete",
+                  "viewAll",
+                  "modifyAll"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "CreatedDate": {
+              "type": "string"
+            },
+            "LastModifiedDate": {
+              "type": "string"
+            },
+            "SystemModstamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id",
+            "Name",
+            "UserLicense",
+            "objectPermissions",
+            "CreatedDate",
+            "LastModifiedDate",
+            "SystemModstamp"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Profiles keyed by id (00e…): name, licence and object permissions per sObject. Queryable as Profile; never writable."
+      },
+      {
+        "namespace": "tasks",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "IsDeleted": {
+              "type": "boolean"
+            },
+            "DeletedDate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "CreatedDate": {
+              "type": "string"
+            },
+            "CreatedById": {
+              "type": "string"
+            },
+            "LastModifiedDate": {
+              "type": "string"
+            },
+            "LastModifiedById": {
+              "type": "string"
+            },
+            "SystemModstamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id",
+            "fields",
+            "IsDeleted",
+            "DeletedDate",
+            "CreatedDate",
+            "CreatedById",
+            "LastModifiedDate",
+            "LastModifiedById",
+            "SystemModstamp"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Task records keyed by id (00T…); WhoId references a Contact or Lead, WhatId an Account or Opportunity; IsClosed derives from Status."
+      },
+      {
+        "namespace": "users",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "string"
+            },
+            "Username": {
+              "type": "string"
+            },
+            "Email": {
+              "type": "string"
+            },
+            "FirstName": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "LastName": {
+              "type": "string"
+            },
+            "Name": {
+              "type": "string"
+            },
+            "Alias": {
+              "type": "string"
+            },
+            "Title": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "IsActive": {
+              "type": "boolean"
+            },
+            "ProfileId": {
+              "type": "string"
+            },
+            "UserType": {
+              "type": "string"
+            },
+            "TimeZoneSidKey": {
+              "type": "string"
+            },
+            "LocaleSidKey": {
+              "type": "string"
+            },
+            "LanguageLocaleKey": {
+              "type": "string"
+            },
+            "EmailEncodingKey": {
+              "type": "string"
+            },
+            "CreatedDate": {
+              "type": "string"
+            },
+            "LastModifiedDate": {
+              "type": "string"
+            },
+            "SystemModstamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Id",
+            "Username",
+            "Email",
+            "FirstName",
+            "LastName",
+            "Name",
+            "Alias",
+            "Title",
+            "IsActive",
+            "ProfileId",
+            "UserType",
+            "TimeZoneSidKey",
+            "LocaleSidKey",
+            "LanguageLocaleKey",
+            "EmailEncodingKey",
+            "CreatedDate",
+            "LastModifiedDate",
+            "SystemModstamp"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Users keyed by id (005…). Username is unique and lower-case; an inactive user still owns records but cannot authenticate or receive ownership. Queryable as User; never writable."
+      }
+    ],
+    "operations": [
+      {
+        "id": "collections.create",
+        "description": "sObject Collections create (POST …/composite/sobjects): up to 200 records of mixed types, each with attributes.type; per-item results in order, allOrNone rolls every write back.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "allOrNone": {
+              "type": "boolean"
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "records"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                      }
+                    }
+                  },
+                  "required": [
+                    "statusCode",
+                    "message"
+                  ]
+                }
+              },
+              "created": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "success",
+              "errors"
+            ]
+          }
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "SERVER_UNAVAILABLE",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "collections.delete",
+        "description": "sObject Collections delete (DELETE …/composite/sobjects?ids=…): up to 200 ids of any writable type; cascades as records.delete; per-item results, allOrNone rollback.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 18
+              }
+            },
+            "allOrNone": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "ids"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                      }
+                    }
+                  },
+                  "required": [
+                    "statusCode",
+                    "message"
+                  ]
+                }
+              },
+              "created": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "success",
+              "errors"
+            ]
+          }
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "collections.retrieve",
+        "description": "sObject Collections retrieve (POST/GET …/composite/sobjects/{sobjectType}): up to 2,000 ids with a field list; null for missing, deleted, hidden or wrong-type ids.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 18
+              }
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              }
+            }
+          },
+          "required": [
+            "sobjectType",
+            "ids",
+            "fields"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "attributes"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "declaredErrors": [
+          "INVALID_FIELD",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_ID",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "collections.update",
+        "description": "sObject Collections update (PATCH …/composite/sobjects): up to 200 records carrying Id; per-item results, allOrNone rollback.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "allOrNone": {
+              "type": "boolean"
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "records"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                      }
+                    }
+                  },
+                  "required": [
+                    "statusCode",
+                    "message"
+                  ]
+                }
+              },
+              "created": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "success",
+              "errors"
+            ]
+          }
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "collections.upsert",
+        "description": "sObject Collections upsert (PATCH …/composite/sobjects/{sobjectType}/{externalIdField}): up to 200 records carrying the external id value; per-item results with created, allOrNone rollback.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "externalIdField": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "allOrNone": {
+              "type": "boolean"
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "sobjectType",
+            "externalIdField",
+            "records"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                      }
+                    }
+                  },
+                  "required": [
+                    "statusCode",
+                    "message"
+                  ]
+                }
+              },
+              "created": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "success",
+              "errors"
+            ]
+          }
+        },
+        "declaredErrors": [
+          "INVALID_FIELD",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "INVALID_TYPE_FOR_OPERATION",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "SERVER_UNAVAILABLE",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "composite.execute",
+        "description": "Composite request (POST …/composite): up to 25 subrequests (at most 5 queries) over the sObject row resources, describe, basic info, query/queryAll and limits, with @{referenceId.path} substitution; allOrNone rolls back and marks siblings PROCESSING_HALTED. Per-subrequest failures are body-level, not Tool errors.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "allOrNone": {
+              "type": "boolean"
+            },
+            "collateSubrequests": {
+              "type": "boolean"
+            },
+            "compositeRequest": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "compositeRequest"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "compositeResponse": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "body": {},
+                  "httpHeaders": {
+                    "type": "object"
+                  },
+                  "httpStatusCode": {
+                    "type": "integer"
+                  },
+                  "referenceId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "body",
+                  "httpHeaders",
+                  "httpStatusCode",
+                  "referenceId"
+                ]
+              }
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "compositeResponse",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "limits.get",
+        "description": "Org limits (GET /services/data/{version}/limits): DailyApiRequests and DataStorageMB come from the org row, the other entries are constant decorations.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "DailyApiRequests": {
+              "type": "object",
+              "properties": {
+                "Max": {
+                  "type": "integer"
+                },
+                "Remaining": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "Max",
+                "Remaining"
+              ]
+            },
+            "DataStorageMB": {
+              "type": "object",
+              "properties": {
+                "Max": {
+                  "type": "integer"
+                },
+                "Remaining": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "Max",
+                "Remaining"
+              ]
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "DailyApiRequests",
+            "DataStorageMB",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "query.execute",
+        "description": "SOQL query (GET …/query?q= and …/queryAll?q=; MCP alias run_soql_query with `query`). Supported grammar: SELECT fields / one-level relationship fields / child subqueries / FIELDS() / COUNT(), WHERE with comparison, LIKE, IN, NOT, AND/OR, date literals, ORDER BY, LIMIT, OFFSET. Pages by Sforce-Query-Options batchSize with a self-contained locator.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "q": {
+              "type": "string",
+              "maxLength": 20000
+            },
+            "query": {
+              "type": "string",
+              "maxLength": 20000
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "includeDeleted": {
+              "type": "boolean"
+            },
+            "batchSize": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000
+            },
+            "usernameOrAlias": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "directory": {
+              "type": "string",
+              "maxLength": 1024
+            },
+            "useToolingApi": {
+              "type": "boolean"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "totalSize": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "done": {
+              "type": "boolean"
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "attributes"
+                ]
+              }
+            },
+            "nextRecordsUrl": {
+              "type": "string"
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "totalSize",
+            "done",
+            "records",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_FIELD",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_QUERY",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "run_soql_query",
+          "description": "Run a SOQL query against the org and return { totalSize, done, records }. Pass the statement as `query` (or `q`). usernameOrAlias must name an active user; useToolingApi is not supported."
+        }
+      },
+      {
+        "id": "query.more",
+        "description": "Next page of a query (GET …/query/{locator} and …/queryAll/{locator}). The locator re-runs the query at its offset, so it is deterministic; a foreign or exhausted locator fails INVALID_QUERY_LOCATOR.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "locator": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "includeDeleted": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "locator"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "totalSize": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "done": {
+              "type": "boolean"
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "attributes"
+                ]
+              }
+            },
+            "nextRecordsUrl": {
+              "type": "string"
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "totalSize",
+            "done",
+            "records",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_FIELD",
+          "INVALID_QUERY_LOCATOR",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_QUERY",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "records.create",
+        "description": "Create one record (POST /services/data/{version}/sobjects/{sobjectType}); the REST body is the record. OwnerId defaults to the caller, picklist defaults and derived fields are applied; emits record.created.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "record": {
+              "type": "object",
+              "description": "Salesforce record fields keyed by API name (PascalCase); attributes is ignored."
+            }
+          },
+          "required": [
+            "sobjectType",
+            "record"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "success": {
+              "type": "boolean"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "fields": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    }
+                  }
+                },
+                "required": [
+                  "statusCode",
+                  "message"
+                ]
+              }
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "id",
+            "success",
+            "errors",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "DUPLICATE_VALUE",
+          "FIELD_CUSTOM_VALIDATION_EXCEPTION",
+          "FIELD_INTEGRITY_EXCEPTION",
+          "INSUFFICIENT_ACCESS_OR_READONLY",
+          "INVALID_CROSS_REFERENCE_KEY",
+          "INVALID_FIELD",
+          "INVALID_FIELD_FOR_INSERT_UPDATE",
+          "INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "INVALID_TYPE_FOR_OPERATION",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_ID",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "REQUIRED_FIELD_MISSING",
+          "SERVER_UNAVAILABLE",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "records.delete",
+        "description": "Soft delete into the recycle bin (DELETE …/sobjects/{sobjectType}/{id}) with Salesforce's cascade: Account → Contacts, Opportunities, Tasks; Contact/Lead → Tasks (WhoId); Opportunity → Tasks (WhatId). Emits record.deleted per row.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 18
+            }
+          },
+          "required": [
+            "sobjectType",
+            "id"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "ENTITY_IS_DELETED",
+          "INSUFFICIENT_ACCESS_OR_READONLY",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "INVALID_TYPE_FOR_OPERATION",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_ID",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "records.retrieve",
+        "description": "Retrieve one record by id or by external id (GET …/sobjects/{sobjectType}/{id} and …/{externalIdField}/{value}); `fields` projects fields including one-level relationship paths such as Owner.Name. Records outside the caller's sharing are NOT_FOUND.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 18
+            },
+            "externalIdField": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "value": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "sobjectType"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "url"
+              ],
+              "additionalProperties": false
+            },
+            "Id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "attributes"
+          ]
+        },
+        "declaredErrors": [
+          "ENTITY_IS_DELETED",
+          "INVALID_FIELD",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_ID",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "records.update",
+        "description": "Partial update (PATCH …/sobjects/{sobjectType}/{id}): only sent fields change, null clears, read-only fields are rejected, converted leads are immutable, stage/status derivations re-run; emits record.updated when something changed.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 18
+            },
+            "record": {
+              "type": "object",
+              "description": "Salesforce record fields keyed by API name (PascalCase); attributes is ignored."
+            }
+          },
+          "required": [
+            "sobjectType",
+            "id",
+            "record"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "CANNOT_UPDATE_CONVERTED_LEAD",
+          "DUPLICATE_VALUE",
+          "ENTITY_IS_DELETED",
+          "FIELD_CUSTOM_VALIDATION_EXCEPTION",
+          "FIELD_INTEGRITY_EXCEPTION",
+          "INSUFFICIENT_ACCESS_OR_READONLY",
+          "INVALID_CROSS_REFERENCE_KEY",
+          "INVALID_FIELD",
+          "INVALID_FIELD_FOR_INSERT_UPDATE",
+          "INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "INVALID_TYPE_FOR_OPERATION",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_ID",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "REQUIRED_FIELD_MISSING",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "records.upsert",
+        "description": "Upsert by external id (PATCH …/sobjects/{sobjectType}/{externalIdField}/{value}): one non-deleted match updates, none creates; `Id` is accepted as the field (update only). Returns created=true|false.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "externalIdField": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "record": {
+              "type": "object",
+              "description": "Salesforce record fields keyed by API name (PascalCase); attributes is ignored."
+            }
+          },
+          "required": [
+            "sobjectType",
+            "externalIdField",
+            "value",
+            "record"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "success": {
+              "type": "boolean"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "statusCode": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "fields": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    }
+                  }
+                },
+                "required": [
+                  "statusCode",
+                  "message"
+                ]
+              }
+            },
+            "created": {
+              "type": "boolean"
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "id",
+            "success",
+            "errors",
+            "created",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "CANNOT_UPDATE_CONVERTED_LEAD",
+          "DUPLICATE_VALUE",
+          "ENTITY_IS_DELETED",
+          "FIELD_CUSTOM_VALIDATION_EXCEPTION",
+          "FIELD_INTEGRITY_EXCEPTION",
+          "INSUFFICIENT_ACCESS_OR_READONLY",
+          "INVALID_CROSS_REFERENCE_KEY",
+          "INVALID_FIELD",
+          "INVALID_FIELD_FOR_INSERT_UPDATE",
+          "INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "INVALID_TYPE_FOR_OPERATION",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_ID",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED",
+          "REQUIRED_FIELD_MISSING",
+          "SERVER_UNAVAILABLE",
+          "UNABLE_TO_LOCK_ROW"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "search.parameterized",
+        "description": "Parameterized SOSL-style search (POST …/parameterizedSearch): whitespace-separated terms matched as case-insensitive prefixes (with * and ? wildcards) over name/e-mail/phone fields per `in` scope, with per-sObject fields, where, orderBy and limit. Results respect sharing.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "q": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            },
+            "sobjects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "description": "{ name, fields?, where?, orderBy?, limit? } per sObject; validated by the handler (JSON_PARSER_ERROR)."
+              }
+            },
+            "in": {
+              "type": "string",
+              "maxLength": 16
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              }
+            },
+            "overallLimit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2000
+            },
+            "defaultLimit": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2000
+            }
+          },
+          "required": [
+            "q"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "searchRecords": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "attributes"
+                ]
+              }
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "searchRecords",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_FIELD",
+          "INVALID_SESSION_ID",
+          "INVALID_TYPE",
+          "JSON_PARSER_ERROR",
+          "LIMIT_EXCEEDED",
+          "MALFORMED_QUERY",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sobjects.basic-info",
+        "description": "Basic sObject metadata (GET /services/data/{version}/sobjects/{sobjectType}): objectDescribe without fields plus the five most recently modified visible records as recentItems.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            }
+          },
+          "required": [
+            "sobjectType"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "objectDescribe": {
+              "type": "object"
+            },
+            "recentItems": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "url"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "Id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "attributes"
+                ]
+              }
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "objectDescribe",
+            "recentItems",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sobjects.describe",
+        "description": "Full describe of one sObject (fields with picklist values and references, child relationships, record type infos). No direct HTTP route (the framework's route-overlap rule); reachable canonically, over MCP and as a composite subrequest GET …/sobjects/{sobjectType}/describe.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            }
+          },
+          "required": [
+            "sobjectType"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "keyPrefix": {
+              "type": "string"
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "childRelationships": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "recordTypeInfos": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "name",
+            "label",
+            "keyPrefix",
+            "fields",
+            "childRelationships",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sobjects.list",
+        "description": "Global describe (GET /services/data/{version}/sobjects): one summary per sObject the caller's profile can read, alphabetical; createable/updateable/deletable reflect the profile.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16,
+              "description": "API version tag such as v62.0 (default). Unsupported versions fail NOT_FOUND."
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "encoding": {
+              "type": "string"
+            },
+            "maxBatchSize": {
+              "type": "integer"
+            },
+            "sobjects": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "encoding",
+            "maxBatchSize",
+            "sobjects",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "userinfo.get",
+        "description": "OpenID Connect userinfo for the calling user (GET /services/oauth2/userinfo). Also exposed as the @salesforce/mcp tool name get_username; its directory/defaultTargetOrg/defaultDevHub arguments are accepted (a Dev Hub request fails NOT_FOUND).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "directory": {
+              "type": "string",
+              "maxLength": 1024
+            },
+            "defaultTargetOrg": {
+              "type": "boolean"
+            },
+            "defaultDevHub": {
+              "type": "boolean"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "sub": {
+              "type": "string"
+            },
+            "user_id": {
+              "type": "string"
+            },
+            "organization_id": {
+              "type": "string"
+            },
+            "preferred_username": {
+              "type": "string"
+            },
+            "nickname": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "email_verified": {
+              "type": "boolean"
+            },
+            "given_name": {
+              "type": "string"
+            },
+            "family_name": {
+              "type": "string"
+            },
+            "zoneinfo": {
+              "type": "string"
+            },
+            "photos": {
+              "type": "object"
+            },
+            "profile": {
+              "type": "string"
+            },
+            "picture": {
+              "type": "string"
+            },
+            "address": {
+              "type": "object"
+            },
+            "urls": {
+              "type": "object"
+            },
+            "active": {
+              "type": "boolean"
+            },
+            "user_type": {
+              "type": "string"
+            },
+            "language": {
+              "type": "string"
+            },
+            "locale": {
+              "type": "string"
+            },
+            "utcOffset": {
+              "type": "integer"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "is_app_installed": {
+              "type": "boolean"
+            },
+            "_limitInfo": {
+              "type": "string",
+              "description": "Sforce-Limit-Info value (api-usage=U/M); the REST codec lifts it into the header."
+            }
+          },
+          "required": [
+            "sub",
+            "user_id",
+            "organization_id",
+            "preferred_username",
+            "name",
+            "email",
+            "urls",
+            "active",
+            "_limitInfo"
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "LIMIT_EXCEEDED",
+          "NOT_FOUND",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "get_username",
+          "description": "Return the username (preferred_username), user id and organization id of the org the Tool is connected to. Arguments of the Salesforce DX MCP server are accepted; no Dev Hub exists."
+        }
+      },
+      {
+        "id": "versions.list",
+        "description": "Supported REST API versions (GET /services/data): one entry per version from 46.0 to 66.0 with its release label.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label",
+              "url",
+              "version"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "declaredErrors": [
+          "INVALID_SESSION_ID",
+          "LIMIT_EXCEEDED",
+          "REQUEST_LIMIT_EXCEEDED"
+        ],
+        "idempotency": "none",
+        "fidelity": "contract"
+      }
+    ],
+    "events": [
+      {
+        "id": "record.created",
+        "payloadSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "ownerId": {
+              "type": "string"
+            },
+            "createdById": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "sobjectType",
+            "id",
+            "ownerId",
+            "createdById"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "record.deleted",
+        "payloadSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "cascadedFrom": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "sobjectType",
+            "id",
+            "cascadedFrom"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "record.updated",
+        "payloadSchema": {
+          "type": "object",
+          "properties": {
+            "sobjectType": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "changedFields": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              }
+            }
+          },
+          "required": [
+            "sobjectType",
+            "id",
+            "changedFields"
+          ],
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "api-limit-exceeded",
+        "appliesTo": [
+          "collections.create",
+          "collections.delete",
+          "collections.retrieve",
+          "collections.update",
+          "collections.upsert",
+          "composite.execute",
+          "limits.get",
+          "query.execute",
+          "query.more",
+          "records.create",
+          "records.delete",
+          "records.retrieve",
+          "records.update",
+          "records.upsert",
+          "search.parameterized",
+          "sobjects.basic-info",
+          "sobjects.describe",
+          "sobjects.list",
+          "userinfo.get",
+          "versions.list"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "REQUEST_LIMIT_EXCEEDED",
+          "message": "TotalRequests Limit exceeded.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "row-locked",
+        "appliesTo": [
+          "collections.create",
+          "collections.delete",
+          "collections.update",
+          "collections.upsert",
+          "composite.execute",
+          "records.create",
+          "records.delete",
+          "records.update",
+          "records.upsert"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "UNABLE_TO_LOCK_ROW",
+          "message": "unable to obtain exclusive access to this record or 1 records",
+          "retryable": true
+        }
+      },
+      {
+        "id": "write-committed-lost",
+        "appliesTo": [
+          "collections.create",
+          "collections.upsert",
+          "records.create",
+          "records.upsert"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "SERVER_UNAVAILABLE",
+          "message": "Server is currently unavailable",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "collections-create",
+        "operationId": "collections.create",
+        "method": "POST",
+        "path": "/services/data/{version}/composite/sobjects",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "SERVER_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "collections-delete",
+        "operationId": "collections.delete",
+        "method": "DELETE",
+        "path": "/services/data/{version}/composite/sobjects",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "collections-retrieve",
+        "operationId": "collections.retrieve",
+        "method": "POST",
+        "path": "/services/data/{version}/composite/sobjects/{sobjectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 400
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_ID",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "collections-retrieve-get",
+        "operationId": "collections.retrieve",
+        "method": "GET",
+        "path": "/services/data/{version}/composite/sobjects/{sobjectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 400
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_ID",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "collections-update",
+        "operationId": "collections.update",
+        "method": "PATCH",
+        "path": "/services/data/{version}/composite/sobjects",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "collections-upsert",
+        "operationId": "collections.upsert",
+        "method": "PATCH",
+        "path": "/services/data/{version}/composite/sobjects/{sobjectType}/{externalIdField}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 400
+            },
+            {
+              "code": "INVALID_TYPE_FOR_OPERATION",
+              "status": 400
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "SERVER_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "composite",
+        "operationId": "composite.execute",
+        "method": "POST",
+        "path": "/services/data/{version}/composite",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-record",
+        "operationId": "records.create",
+        "method": "POST",
+        "path": "/services/data/{version}/sobjects/{sobjectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "DUPLICATE_VALUE",
+              "status": 400
+            },
+            {
+              "code": "FIELD_CUSTOM_VALIDATION_EXCEPTION",
+              "status": 400
+            },
+            {
+              "code": "FIELD_INTEGRITY_EXCEPTION",
+              "status": 400
+            },
+            {
+              "code": "INSUFFICIENT_ACCESS_OR_READONLY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CROSS_REFERENCE_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_FIELD_FOR_INSERT_UPDATE",
+              "status": 400
+            },
+            {
+              "code": "INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 404
+            },
+            {
+              "code": "INVALID_TYPE_FOR_OPERATION",
+              "status": 400
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_ID",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "REQUIRED_FIELD_MISSING",
+              "status": 400
+            },
+            {
+              "code": "SERVER_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-record",
+        "operationId": "records.delete",
+        "method": "DELETE",
+        "path": "/services/data/{version}/sobjects/{sobjectType}/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "ENTITY_IS_DELETED",
+              "status": 404
+            },
+            {
+              "code": "INSUFFICIENT_ACCESS_OR_READONLY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 404
+            },
+            {
+              "code": "INVALID_TYPE_FOR_OPERATION",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_ID",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-limits",
+        "operationId": "limits.get",
+        "method": "GET",
+        "path": "/services/data/{version}/limits",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-sobject-basic-info",
+        "operationId": "sobjects.basic-info",
+        "method": "GET",
+        "path": "/services/data/{version}/sobjects/{sobjectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-userinfo",
+        "operationId": "userinfo.get",
+        "method": "GET",
+        "path": "/services/oauth2/userinfo",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-sobjects",
+        "operationId": "sobjects.list",
+        "method": "GET",
+        "path": "/services/data/{version}/sobjects",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-versions",
+        "operationId": "versions.list",
+        "method": "GET",
+        "path": "/services/data",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "parameterized-search",
+        "operationId": "search.parameterized",
+        "method": "POST",
+        "path": "/services/data/{version}/parameterizedSearch",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 400
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_QUERY",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "query",
+        "operationId": "query.execute",
+        "method": "GET",
+        "path": "/services/data/{version}/query",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_QUERY",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "query-all",
+        "operationId": "query.execute",
+        "method": "GET",
+        "path": "/services/data/{version}/queryAll",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_QUERY",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "query-all-more",
+        "operationId": "query.more",
+        "method": "GET",
+        "path": "/services/data/{version}/queryAll/{locator}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_QUERY_LOCATOR",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_QUERY",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "query-more",
+        "operationId": "query.more",
+        "method": "GET",
+        "path": "/services/data/{version}/query/{locator}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_QUERY_LOCATOR",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_QUERY",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "retrieve-record",
+        "operationId": "records.retrieve",
+        "method": "GET",
+        "path": "/services/data/{version}/sobjects/{sobjectType}/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ENTITY_IS_DELETED",
+              "status": 404
+            },
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 404
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_ID",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "retrieve-record-by-external-id",
+        "operationId": "records.retrieve",
+        "method": "GET",
+        "path": "/services/data/{version}/sobjects/{sobjectType}/{externalIdField}/{value}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ENTITY_IS_DELETED",
+              "status": 404
+            },
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 404
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_ID",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-record",
+        "operationId": "records.update",
+        "method": "PATCH",
+        "path": "/services/data/{version}/sobjects/{sobjectType}/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CANNOT_UPDATE_CONVERTED_LEAD",
+              "status": 400
+            },
+            {
+              "code": "DUPLICATE_VALUE",
+              "status": 400
+            },
+            {
+              "code": "ENTITY_IS_DELETED",
+              "status": 404
+            },
+            {
+              "code": "FIELD_CUSTOM_VALIDATION_EXCEPTION",
+              "status": 400
+            },
+            {
+              "code": "FIELD_INTEGRITY_EXCEPTION",
+              "status": 400
+            },
+            {
+              "code": "INSUFFICIENT_ACCESS_OR_READONLY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CROSS_REFERENCE_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_FIELD_FOR_INSERT_UPDATE",
+              "status": 400
+            },
+            {
+              "code": "INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 404
+            },
+            {
+              "code": "INVALID_TYPE_FOR_OPERATION",
+              "status": 400
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_ID",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "REQUIRED_FIELD_MISSING",
+              "status": 400
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "upsert-record",
+        "operationId": "records.upsert",
+        "method": "PATCH",
+        "path": "/services/data/{version}/sobjects/{sobjectType}/{externalIdField}/{value}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer",
+            "OAuth"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CANNOT_UPDATE_CONVERTED_LEAD",
+              "status": 400
+            },
+            {
+              "code": "DUPLICATE_VALUE",
+              "status": 400
+            },
+            {
+              "code": "ENTITY_IS_DELETED",
+              "status": 404
+            },
+            {
+              "code": "FIELD_CUSTOM_VALIDATION_EXCEPTION",
+              "status": 400
+            },
+            {
+              "code": "FIELD_INTEGRITY_EXCEPTION",
+              "status": 400
+            },
+            {
+              "code": "INSUFFICIENT_ACCESS_OR_READONLY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CROSS_REFERENCE_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_FIELD",
+              "status": 400
+            },
+            {
+              "code": "INVALID_FIELD_FOR_INSERT_UPDATE",
+              "status": 400
+            },
+            {
+              "code": "INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST",
+              "status": 400
+            },
+            {
+              "code": "INVALID_SESSION_ID",
+              "status": 401
+            },
+            {
+              "code": "INVALID_TYPE",
+              "status": 404
+            },
+            {
+              "code": "INVALID_TYPE_FOR_OPERATION",
+              "status": 400
+            },
+            {
+              "code": "JSON_PARSER_ERROR",
+              "status": 400
+            },
+            {
+              "code": "LIMIT_EXCEEDED",
+              "status": 400
+            },
+            {
+              "code": "MALFORMED_ID",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "REQUEST_LIMIT_EXCEEDED",
+              "status": 403
+            },
+            {
+              "code": "REQUIRED_FIELD_MISSING",
+              "status": 400
+            },
+            {
+              "code": "SERVER_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNABLE_TO_LOCK_ROW",
+              "status": 400
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": [],
+    "connections": [
+      {
+        "id": "salesforce-rest-client",
+        "title": "Salesforce REST client (instance URL + access token)",
+        "protocol": "http",
+        "environment": {
+          "SALESFORCE_INSTANCE_URL": "FIREDRILL_HTTP_URL",
+          "SALESFORCE_ACCESS_TOKEN": "FIREDRILL_HTTP_TOKEN"
+        },
+        "instructions": "Use SALESFORCE_INSTANCE_URL (no trailing slash) as the instance URL and SALESFORCE_ACCESS_TOKEN as the OAuth access token: jsforce `new Connection({ instanceUrl, accessToken, version: \"62.0\" })`, simple-salesforce `Salesforce(instance_url=…, session_id=…, version=\"62.0\")`. Only the documented route subset exists; the OAuth token endpoints are not served. No client has been verified against this Tool yet."
+      }
+    ]
+  }
+}

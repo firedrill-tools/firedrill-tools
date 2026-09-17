@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "stripe-refund-committed-lost",
+  "title": "Refunds commit but the caller sees 503; a retry with a new Idempotency-Key refunds twice and the last one hits charge_already_refunded",
+  "targetId": "conformance-agent",
+  "scenarioId": "refund-committed-lost",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the refund-committed-lost conformance flow against the synthetic Stripe Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "refunds-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "refunds.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "refunds-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "refunds.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "customers-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "refunds-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "refunds.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "charges-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "charges.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "charge-refunded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "stripe",
+        "eventId": "charge.refunded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "refunds-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "refunds",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "charge-fully-refunded",
+      "kind": "state.value",
+      "packageId": "stripe",
+      "namespace": "charges",
+      "rowId": "ch_00005Q1YjqV41Z",
+      "path": [
+        "refunded"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": true
+      }
+    },
+    {
+      "id": "charge-amount-refunded",
+      "kind": "state.value",
+      "packageId": "stripe",
+      "namespace": "charges",
+      "rowId": "ch_00005Q1YjqV41Z",
+      "path": [
+        "amount_refunded"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 189000
+      }
+    }
+  ]
+}

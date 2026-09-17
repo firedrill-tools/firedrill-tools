@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-open-long-handles",
+  "title": "conversations.open creates group DMs of members with 21-character handles; names that would exceed 80 characters are bounded and distinct, and nothing fails",
+  "targetId": "conformance-agent",
+  "scenarioId": "open-long-handles",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the open-long-handles conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "open-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.open"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "open-never-fails",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.open"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "post-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "four-group-dms-added",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    },
+    {
+      "id": "nine-member-name-bounded",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C000000001H",
+      "path": [
+        "name"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "mpdm-dana.reyes--longhandle1xxxxxxxxxx--longhandle2xxxxxxxxxx--longha-98de6b61-1"
+      }
+    }
+  ]
+}

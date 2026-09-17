@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "drive-storage-quota-fault",
+  "title": "storage-quota-exceeded fault: create (media and metadata-only), content replace and copy answer 403 global/storageQuotaExceeded although Dana has 15 GiB; reads work",
+  "targetId": "conformance-agent",
+  "scenarioId": "storage-quota-exceeded",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the storage-quota-fault conformance flow against the synthetic Google Drive Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "files-create-tool_error-equals-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "files-update-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-drive",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "file-rows-unchanged",
+      "kind": "state.count",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 31
+      }
+    },
+    {
+      "id": "roadmap-version-unchanged",
+      "kind": "state.value",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000007",
+      "path": [
+        "version"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    }
+  ]
+}

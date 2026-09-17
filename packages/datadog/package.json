@@ -1,0 +1,62 @@
+{
+  "name": "@firedrill-tools/tool-datadog",
+  "version": "0.1.0",
+  "description": "Synthetic Datadog organization (monitors with deterministic evaluation, events, metric intake and queries, dashboards, incidents; Datadog-shaped REST routes) Tool package for Firedrill",
+  "keywords": [
+    "firedrill",
+    "tool-pack",
+    "datadog",
+    "monitoring",
+    "observability",
+    "synthetic",
+    "testing",
+    "ai-agent"
+  ],
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "firedrill",
+    "test",
+    "firedrill.json",
+    "starter.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "firedrill": {
+    "layer": "tool-pack",
+    "tool": "firedrill/tools/datadog/datadog.tool.json",
+    "starter": "starter.json",
+    "lifecycle": "active",
+    "conformance": {
+      "schemaVersion": 1,
+      "project": "firedrill.json",
+      "suite": "conformance"
+    }
+  },
+  "scripts": {
+    "validate": "firedrill validate",
+    "test": "firedrill tool test datadog"
+  },
+  "devDependencies": {
+    "@firedrill-tools/cli": "0.1.0-rc.1",
+    "@firedrill-tools/tool-sdk": "0.1.0-rc.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firedrill-tools/firedrill-tools.git",
+    "directory": "packages/datadog"
+  },
+  "bugs": {
+    "url": "https://github.com/firedrill-tools/firedrill-tools/issues"
+  },
+  "homepage": "https://github.com/firedrill-tools/firedrill-tools/tree/main/packages/datadog#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-visibility",
+  "title": "A member of #general and #random only sees public channels and nothing private",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "contractor",
+  "task": {
+    "instruction": "Run the visibility conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "update-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "delete-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "info-hidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.info"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "history-refused-then-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.history"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "memberships-grew-by-join-and-im",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "comparison": {
+        "operator": "equals",
+        "value": 33
+      }
+    },
+    {
+      "id": "dana-general-message-unchanged",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1787216400.000101",
+      "path": [
+        "text"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Welcome to Example Team! This is #general — company-wide announcements only. Please keep discussion in the topic channels."
+      }
+    },
+    {
+      "id": "one-post",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "message.posted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

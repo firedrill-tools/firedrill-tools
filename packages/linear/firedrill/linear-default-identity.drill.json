@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-default-identity",
+  "title": "An actor without identity attributes (fresh install) is the seeded default admin",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the default-identity conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "graphql-execute-ok-equals-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "users-get-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sec-5-creator",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000000-0000-4000-8000-0000000003e8",
+      "path": [
+        "creatorId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "0000000a-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "id": "issues-count-equals-25",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 25
+      }
+    }
+  ]
+}

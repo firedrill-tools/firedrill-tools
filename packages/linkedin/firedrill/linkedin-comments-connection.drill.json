@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "linkedin-comments-connection",
+  "title": "A post author deletes another member's comment and cannot edit it",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "connection",
+  "task": {
+    "instruction": "Run the comments-connection flow against the synthetic LinkedIn Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "comments-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

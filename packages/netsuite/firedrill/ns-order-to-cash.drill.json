@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "id": "ns-order-to-cash",
+  "title": "Quote to cash: order, billing transform and payment",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "administrator",
+  "task": {
+    "instruction": "Run the order-to-cash conformance flow against the synthetic NetSuite Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "order-created",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "sales-order.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "order-billed",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "sales-order.transform"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-taken",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "invoice.transform"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customer-deleted",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-grew",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "invoices",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 13
+      }
+    },
+    {
+      "id": "payments-grew",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "customer-payments",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    }
+  ]
+}

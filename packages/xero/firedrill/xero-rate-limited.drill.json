@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "id": "xero-rate-limited",
+  "title": "Every operation answers 429 with Retry-After and nothing is written",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "owner",
+  "task": {
+    "instruction": "[rate-limited] Run the rate-limited conformance flow against the synthetic Xero Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "organisation-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "organisation.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "accounts-list-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "accounts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "accounts-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "accounts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "tax-rates-list-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "tax-rates.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-save-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-update-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "contacts.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-list-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "invoices.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "invoices.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-save-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "invoices.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-create-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "invoices.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-update-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "invoices.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-email-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "invoices.email"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-list-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-get-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-create-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-record-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.record"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-delete-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-count",
+      "kind": "state.count",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "xero",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "invoice-changed-equals",
+      "kind": "event.count",
+      "event": {
+        "packageId": "xero",
+        "eventId": "invoice.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

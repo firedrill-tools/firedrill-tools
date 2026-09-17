@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-workflows-jobs",
+  "title": "Workflows and jobs: list/sort/page, node rules, run with source and runtime files, derived statuses, download equals direct partition, cancel, delete rules",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "analyst",
+  "task": {
+    "instruction": "Run the workflows flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "job-created-events-23",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unstructured",
+        "eventId": "job.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "job-cancelled-events-24",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unstructured",
+        "eventId": "job.cancelled"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-value-25",
+      "kind": "state.value",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "rowId": "e5f60718-7a92-4b3c-9d4e-f60718293a05",
+      "path": [
+        "stop_requested"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": true
+      }
+    },
+    {
+      "id": "workflows-count-26",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "workflows",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "jobs-count-27",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "job-files-count-28",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "job-files",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "workflows-run-ok-29",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "jobs-download-output-ok-30",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "jobs.download_output"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "order-31",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "unstructured",
+              "operationId": "workflows.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "unstructured",
+              "operationId": "workflows.run"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "unstructured",
+              "operationId": "jobs.get"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "unstructured",
+              "operationId": "jobs.download_output"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "unstructured",
+              "operationId": "jobs.cancel"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "unstructured",
+              "operationId": "workflows.delete"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

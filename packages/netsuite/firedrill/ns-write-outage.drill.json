@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "ns-write-outage",
+  "title": "A write outage fails every write and moves no state",
+  "targetId": "conformance-agent",
+  "scenarioId": "write-outage",
+  "actorId": "administrator",
+  "task": {
+    "instruction": "Run the write-outage conformance flow against the synthetic NetSuite Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "create-500",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "reads-still-work",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-unchanged",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "invoices-unchanged",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "invoices",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    }
+  ]
+}

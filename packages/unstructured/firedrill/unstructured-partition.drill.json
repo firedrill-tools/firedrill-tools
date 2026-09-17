@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-partition",
+  "title": "Partition every seeded document type: element rules, ids, pages, multi-file, CSV output, canonical call, multipart e-mail, hostile Markdown/HTML, hostile-input harness slice",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "analyst",
+  "task": {
+    "instruction": "Run the partition flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "general-partition-ok-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 32
+      }
+    },
+    {
+      "id": "partition-log-count-2",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "comparison": {
+        "operator": "equals",
+        "value": 32
+      }
+    },
+    {
+      "id": "partition-completed-events-3",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unstructured",
+        "eventId": "partition.completed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 32
+      }
+    },
+    {
+      "id": "partition-log-value-4",
+      "kind": "state.value",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "rowId": "p_0000001000",
+      "path": [
+        "filenames",
+        0
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "handbook.md"
+      }
+    },
+    {
+      "id": "partition-log-value-5",
+      "kind": "state.value",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "rowId": "p_0000001000",
+      "path": [
+        "strategy"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "auto"
+      }
+    },
+    {
+      "id": "partition-log-value-6",
+      "kind": "state.value",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "rowId": "p_0000001002",
+      "path": [
+        "filetypes",
+        0
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "text/plain"
+      }
+    }
+  ]
+}

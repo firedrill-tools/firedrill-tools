@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Attio (synthetic workspace)</title>
+    <link rel="icon" href="./assets/attio-favicon.ico" sizes="32x32" type="image/x-icon" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="at-splash" id="splash" role="status" aria-live="polite">
+      <img src="./assets/attio-wordmark.svg" alt="Attio" width="103" height="26" />
+      <span class="at-splash-text" id="splash-text">Loading workspace…</span>
+    </div>
+
+    <div class="at-app" id="app" hidden>
+      <aside class="at-sidebar" id="sidebar" aria-label="Workspace navigation">
+        <div class="at-sidebar-top">
+          <button type="button" class="at-ws" id="workspace-switcher" aria-expanded="false" title="Switch workspace">
+            <span class="at-ws-logo" id="ws-logo" aria-hidden="true">?</span>
+            <span class="at-ws-name" id="ws-name">Workspace</span>
+            <span data-icon="chevronDown" class="at-ws-caret"></span>
+          </button>
+          <button type="button" class="at-icon-btn" id="sidebar-toggle" aria-label="Collapse sidebar" title="Collapse sidebar"><span data-icon="sidebar"></span></button>
+        </div>
+
+        <button type="button" class="at-quick" id="open-search" title="Quick actions">
+          <span data-icon="search"></span><span class="at-quick-label">Quick actions</span><kbd class="at-kbd">⌘K</kbd>
+        </button>
+
+        <nav class="at-nav" aria-label="Main">
+          <ul class="at-nav-list">
+            <li><button type="button" class="at-nav-item" data-not-simulated="Notifications" data-ns-detail="Mentions, comments and assignments are not part of this Tool's model, so there is no notification inbox."><span data-icon="bell"></span><span class="at-nav-label">Notifications</span></button></li>
+            <li><a class="at-nav-item" href="#/tasks" data-route="tasks"><span data-icon="tasks"></span><span class="at-nav-label">Tasks</span><span class="at-nav-count" id="nav-task-count"></span></a></li>
+            <li><a class="at-nav-item" href="#/notes" data-route="notes"><span data-icon="note"></span><span class="at-nav-label">Notes</span></a></li>
+            <li><button type="button" class="at-nav-item" data-not-simulated="Emails" data-ns-detail="Mailbox sync and email threads are not simulated. No email is ever read or sent by this Tool."><span data-icon="mail"></span><span class="at-nav-label">Emails</span></button></li>
+            <li><button type="button" class="at-nav-item" data-not-simulated="Calls" data-ns-detail="Call recordings and transcripts are not simulated."><span data-icon="phone"></span><span class="at-nav-label">Calls</span></button></li>
+            <li><button type="button" class="at-nav-item" data-not-simulated="Reports" data-ns-detail="Reports and charts are not simulated. Query records and list entries instead."><span data-icon="reports"></span><span class="at-nav-label">Reports</span></button></li>
+            <li><button type="button" class="at-nav-item" data-not-simulated="Workflows" data-ns-detail="Workflow automations are not simulated; nothing runs in the background of this workspace."><span data-icon="workflows"></span><span class="at-nav-label">Workflows</span></button></li>
+            <li><button type="button" class="at-nav-item" data-not-simulated="Sequences" data-ns-detail="Email sequences are not simulated. No email is ever sent."><span data-icon="sequences"></span><span class="at-nav-label">Sequences</span></button></li>
+          </ul>
+        </nav>
+
+        <div class="at-sidebar-scroll">
+          <section class="at-section" aria-labelledby="favorites-head">
+            <div class="at-section-head">
+              <button type="button" class="at-section-toggle" id="favorites-head" data-section="favorites" aria-expanded="true"><span data-icon="chevronDown" class="at-section-caret"></span>Favorites</button>
+            </div>
+            <ul class="at-nav-list" data-section-body="favorites">
+              <li><button type="button" class="at-nav-item at-nav-muted" data-not-simulated="Favorites" data-ns-detail="Favorite records and views are not simulated."><span data-icon="star"></span><span class="at-nav-label">No favorites</span></button></li>
+            </ul>
+          </section>
+          <section class="at-section" aria-labelledby="records-head">
+            <div class="at-section-head">
+              <button type="button" class="at-section-toggle" id="records-head" data-section="records" aria-expanded="true"><span data-icon="chevronDown" class="at-section-caret"></span>Records</button>
+            </div>
+            <ul class="at-nav-list" id="nav-objects" data-section-body="records"></ul>
+          </section>
+          <section class="at-section" aria-labelledby="lists-head">
+            <div class="at-section-head">
+              <button type="button" class="at-section-toggle" id="lists-head" data-section="lists" aria-expanded="true"><span data-icon="chevronDown" class="at-section-caret"></span>Lists</button>
+              <button type="button" class="at-icon-btn small" aria-label="Create list" title="Create list" data-not-simulated="Create list" data-ns-detail="List configuration is fixed by starter or scenario data; creating lists is not simulated."><span data-icon="plus"></span></button>
+            </div>
+            <ul class="at-nav-list" id="nav-lists" data-section-body="lists"></ul>
+          </section>
+        </div>
+
+        <div class="at-sidebar-foot">
+          <button type="button" class="at-nav-item" data-not-simulated="Invite teammates" data-ns-detail="Workspace members come from starter data; inviting members is not simulated."><span data-icon="userPlus"></span><span class="at-nav-label">Invite teammates</span></button>
+          <button type="button" class="at-nav-item" id="help-button" aria-expanded="false"><span data-icon="help"></span><span class="at-nav-label">Help and first steps</span></button>
+          <button type="button" class="at-me" id="me-button" aria-expanded="false" title="Account">
+            <span class="at-avatar small" id="me-avatar" aria-hidden="true">?</span>
+            <span class="at-me-name" id="me-name">…</span>
+            <span data-icon="settings" class="at-me-gear"></span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="at-main" id="main" tabindex="-1"></main>
+    </div>
+
+    <dialog class="at-dialog" id="confirm-dialog" aria-labelledby="confirm-title">
+      <form method="dialog" class="at-dialog-body">
+        <h2 id="confirm-title" class="at-dialog-title">Are you sure?</h2>
+        <p id="confirm-text" class="at-dialog-text"></p>
+        <div class="at-dialog-actions">
+          <button type="submit" value="cancel" class="at-btn">Cancel</button>
+          <button type="submit" value="ok" class="at-btn primary" id="confirm-ok">Confirm</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="at-dialog at-modal" id="modal" aria-labelledby="modal-title">
+      <div class="at-modal-head">
+        <span class="at-modal-icon" id="modal-icon"></span>
+        <h2 id="modal-title" class="at-modal-title"></h2>
+        <button type="button" class="at-icon-btn" id="modal-close" aria-label="Close" title="Close"><span data-icon="x"></span></button>
+      </div>
+      <div class="at-modal-body" id="modal-body"></div>
+      <div class="at-modal-foot" id="modal-foot"></div>
+    </dialog>
+
+    <dialog class="at-palette" id="palette" aria-label="Quick actions">
+      <div class="at-palette-search">
+        <span data-icon="search"></span>
+        <label class="visually-hidden" for="palette-input">Search records or jump to a page</label>
+        <input id="palette-input" type="text" placeholder="Search for records, lists and pages…" autocomplete="off" spellcheck="false" />
+        <kbd class="at-kbd">Esc</kbd>
+      </div>
+      <div class="at-palette-results" id="palette-results" role="listbox" aria-label="Results"></div>
+    </dialog>
+
+    <div class="at-toasts" id="toasts" aria-live="polite"></div>
+  </body>
+</html>

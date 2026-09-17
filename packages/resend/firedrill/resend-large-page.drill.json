@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "resend-large-page",
+  "title": "Byte-capped email list pages stay complete when paging forward and backward",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the large-page flow against the synthetic Resend Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "emails-send-batch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send_batch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "emails-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "emails-count",
+      "kind": "state.count",
+      "packageId": "resend",
+      "namespace": "emails",
+      "comparison": {
+        "operator": "equals",
+        "value": 47
+      }
+    }
+  ]
+}

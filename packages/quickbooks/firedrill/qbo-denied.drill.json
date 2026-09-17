@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "qbo-denied",
+  "title": "An actor without grants is denied by the framework",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic QuickBooks Online Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "invoices-get-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "invoices.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-post-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "quickbooks",
+        "operationId": "payments.post"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-count",
+      "kind": "state.count",
+      "packageId": "quickbooks",
+      "namespace": "payments",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    }
+  ]
+}

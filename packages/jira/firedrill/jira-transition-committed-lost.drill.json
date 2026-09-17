@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "id": "jira-transition-committed-lost",
+  "title": "Transitions commit (status, resolution, comment, events) but the caller sees 503; the naive retry then fails 400",
+  "targetId": "conformance-agent",
+  "scenarioId": "transition-committed-lost",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the transition-committed-lost conformance flow against the synthetic Jira Cloud Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "issues-transition-tool-error-eq-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.transition"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "issues-transition-ok-eq-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.transition"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "issues-update-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-get-ok-eq-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "event-issue-updated-eq-3",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-comment-created-eq-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "plat-1-resolved",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010114",
+      "path": [
+        "statusId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "5"
+      }
+    },
+    {
+      "id": "plat-1-resolution",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010114",
+      "path": [
+        "resolutionId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "10000"
+      }
+    },
+    {
+      "id": "plat-1-summary",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010114",
+      "path": [
+        "summary"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "after outage"
+      }
+    },
+    {
+      "id": "sfr-2-done",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010101",
+      "path": [
+        "statusId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "10003"
+      }
+    },
+    {
+      "id": "issues-count-22",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 22
+      }
+    },
+    {
+      "id": "comments-count-14",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "ns-transform-lost",
+  "title": "A transform commits but its response is lost",
+  "targetId": "conformance-agent",
+  "scenarioId": "transform-response-lost",
+  "actorId": "administrator",
+  "task": {
+    "instruction": "Run the transform-lost conformance flow against the synthetic NetSuite Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "order-transform-500",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "sales-order.transform"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoice-transform-500",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "invoice.transform"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoice-was-created",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "invoices",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "payment-was-created",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "customer-payments",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    }
+  ]
+}

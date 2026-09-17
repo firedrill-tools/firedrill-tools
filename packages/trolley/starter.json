@@ -1,0 +1,2108 @@
+{
+  "schemaVersion": 1,
+  "virtualTimeUs": 1789480800000000,
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "meta",
+      "rowId": "merchant",
+      "value": {
+        "id": "M-4Lk9Qx2Rb7Tn3Vw8Yz1Ca6",
+        "name": "Larkspur Creator Studio",
+        "country": "US",
+        "defaultCurrency": "USD",
+        "sandbox": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "next": 1000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "meta",
+      "rowId": "fx",
+      "value": {
+        "base": "USD",
+        "rates": {
+          "USD": "1.000000",
+          "CAD": "1.352000",
+          "EUR": "0.912000",
+          "GBP": "0.781000",
+          "AUD": "1.498000",
+          "MXN": "17.240000"
+        },
+        "asOf": "2026-09-15T13:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "meta",
+      "rowId": "fees",
+      "value": {
+        "currency": "USD",
+        "fixed": {
+          "bank-transfer": "1.00",
+          "paypal": "1.00",
+          "check": "2.50",
+          "venmo": "0.75"
+        },
+        "minimums": {
+          "bank-transfer": "5.00",
+          "paypal": "1.00",
+          "check": "20.00",
+          "venmo": "1.00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "balances",
+      "rowId": "paymentrails:USD",
+      "value": {
+        "type": "paymentrails",
+        "currency": "USD",
+        "amount": "18420.55",
+        "pendingAmount": "0.00",
+        "accountNumber": "BL-7QX2M9KD4R",
+        "primary": true,
+        "display": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "balances",
+      "rowId": "paymentrails:CAD",
+      "value": {
+        "type": "paymentrails",
+        "currency": "CAD",
+        "amount": "2150.00",
+        "pendingAmount": "0.00",
+        "accountNumber": "BL-3HT8V1NC6W",
+        "primary": false,
+        "display": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "balances",
+      "rowId": "paypal:USD",
+      "value": {
+        "type": "paypal",
+        "currency": "USD",
+        "amount": "640.00",
+        "pendingAmount": "0.00",
+        "accountNumber": "BL-5PL4Z7YB2E",
+        "primary": false,
+        "display": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000001",
+      "value": {
+        "id": "R-0000000000000000000001",
+        "referenceId": "CR-1001",
+        "email": "maya.castellanos@example.com",
+        "type": "individual",
+        "firstName": "Maya",
+        "lastName": "Castellanos",
+        "name": "Maya Castellanos",
+        "status": "active",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": "1991-04-12",
+        "phone": "503-555-0101",
+        "language": "en",
+        "tags": [
+          "illustrator",
+          "q3"
+        ],
+        "address": {
+          "street1": "1450 Juniper St",
+          "street2": null,
+          "city": "Portland",
+          "region": "OR",
+          "postalCode": "97214",
+          "country": "US",
+          "phone": "503-555-0101"
+        },
+        "createdAt": "2026-03-02T16:20:00.000Z",
+        "updatedAt": "2026-08-30T10:05:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000002",
+      "value": {
+        "id": "R-0000000000000000000002",
+        "referenceId": "CR-1002",
+        "email": "billing@quarrylane.example.com",
+        "type": "business",
+        "firstName": null,
+        "lastName": null,
+        "name": "Quarry Lane Films LLC",
+        "status": "active",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [
+          "studio"
+        ],
+        "address": {
+          "street1": "88 Harbor Way",
+          "street2": "Suite 4",
+          "city": "Oakland",
+          "region": "CA",
+          "postalCode": "94607",
+          "country": "US",
+          "phone": "510-555-0102"
+        },
+        "createdAt": "2026-03-09T18:00:00.000Z",
+        "updatedAt": "2026-07-21T09:40:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000003",
+      "value": {
+        "id": "R-0000000000000000000003",
+        "referenceId": "CR-1003",
+        "email": "etienne.tremblay@example.com",
+        "type": "individual",
+        "firstName": "Étienne",
+        "lastName": "Tremblay",
+        "name": "Étienne Tremblay",
+        "status": "active",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "fr",
+        "tags": [
+          "editor"
+        ],
+        "address": {
+          "street1": "410 Rue Saint-Paul",
+          "street2": null,
+          "city": "Montréal",
+          "region": "QC",
+          "postalCode": "H2Y 1H4",
+          "country": "CA",
+          "phone": "514-555-0103"
+        },
+        "createdAt": "2026-03-15T14:10:00.000Z",
+        "updatedAt": "2026-07-02T15:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000004",
+      "value": {
+        "id": "R-0000000000000000000004",
+        "referenceId": "CR-1004",
+        "email": "zoe.oconnell@example.com",
+        "type": "individual",
+        "firstName": "Zoë",
+        "lastName": "O'Connell",
+        "name": "Zoë O'Connell",
+        "status": "active",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [
+          "editor",
+          "uk"
+        ],
+        "address": {
+          "street1": "12 Wharf Rd",
+          "street2": null,
+          "city": "London",
+          "region": null,
+          "postalCode": "N1 7GR",
+          "country": "GB",
+          "phone": null
+        },
+        "createdAt": "2026-04-01T11:00:00.000Z",
+        "updatedAt": "2026-06-11T08:15:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000005",
+      "value": {
+        "id": "R-0000000000000000000005",
+        "referenceId": null,
+        "email": "lukasz.wisniewski@example.com",
+        "type": "individual",
+        "firstName": "Łukasz",
+        "lastName": "Wiśniewski",
+        "name": "Łukasz Wiśniewski",
+        "status": "active",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "de",
+        "tags": [
+          "colorist"
+        ],
+        "address": {
+          "street1": "Friedrichstraße 20",
+          "street2": null,
+          "city": "Berlin",
+          "region": "BE",
+          "postalCode": "10117",
+          "country": "DE",
+          "phone": null
+        },
+        "createdAt": "2026-04-08T09:30:00.000Z",
+        "updatedAt": "2026-04-08T09:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000006",
+      "value": {
+        "id": "R-0000000000000000000006",
+        "referenceId": "CR-1006",
+        "email": "priya.raman@example.com",
+        "type": "individual",
+        "firstName": "Priya",
+        "lastName": "Raman",
+        "name": "Priya Raman",
+        "status": "active",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [
+          "editor",
+          "video",
+          "priority"
+        ],
+        "address": {
+          "street1": "77 Elm Ave",
+          "street2": null,
+          "city": "Austin",
+          "region": "TX",
+          "postalCode": "78701",
+          "country": "US",
+          "phone": "512-555-0106"
+        },
+        "createdAt": "2026-04-20T17:25:00.000Z",
+        "updatedAt": "2026-08-01T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000007",
+      "value": {
+        "id": "R-0000000000000000000007",
+        "referenceId": "CR-1007",
+        "email": "jordan.blake@example.com",
+        "type": "individual",
+        "firstName": "Jordan",
+        "lastName": "Blake",
+        "name": "Jordan Blake",
+        "status": "active",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [
+          "animator"
+        ],
+        "address": {
+          "street1": "5 Birch Ln",
+          "street2": null,
+          "city": "Denver",
+          "region": "CO",
+          "postalCode": "80205",
+          "country": "US",
+          "phone": "303-555-0107"
+        },
+        "createdAt": "2026-05-04T13:00:00.000Z",
+        "updatedAt": "2026-05-04T13:20:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000008",
+      "value": {
+        "id": "R-0000000000000000000008",
+        "referenceId": "CR-1008",
+        "email": "pagos@estudionopal.example.com",
+        "type": "business",
+        "firstName": null,
+        "lastName": null,
+        "name": "Estudio Nopal S.A. de C.V.",
+        "status": "active",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "es",
+        "tags": [
+          "studio",
+          "mx"
+        ],
+        "address": {
+          "street1": "Av. Reforma 222",
+          "street2": null,
+          "city": "Ciudad de México",
+          "region": "CDMX",
+          "postalCode": "06600",
+          "country": "MX",
+          "phone": null
+        },
+        "createdAt": "2026-05-12T20:00:00.000Z",
+        "updatedAt": "2026-06-02T19:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000009",
+      "value": {
+        "id": "R-0000000000000000000009",
+        "referenceId": "CR-1009",
+        "email": "sam.okafor@example.com",
+        "type": "individual",
+        "firstName": "Sam",
+        "lastName": "Okafor",
+        "name": "Sam Okafor",
+        "status": "incomplete",
+        "complianceStatus": "pending",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [],
+        "address": {
+          "street1": null,
+          "street2": null,
+          "city": null,
+          "region": null,
+          "postalCode": null,
+          "country": null,
+          "phone": null
+        },
+        "createdAt": "2026-09-10T10:00:00.000Z",
+        "updatedAt": "2026-09-10T10:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-000000000000000000000A",
+      "value": {
+        "id": "R-000000000000000000000A",
+        "referenceId": "CR-1010",
+        "email": "harper.lin@example.com",
+        "type": "individual",
+        "firstName": "Harper",
+        "lastName": "Lin",
+        "name": "Harper Lin",
+        "status": "incomplete",
+        "complianceStatus": "pending",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [],
+        "address": {
+          "street1": "300 Pine St",
+          "street2": null,
+          "city": "Seattle",
+          "region": "WA",
+          "postalCode": "98101",
+          "country": "US",
+          "phone": null
+        },
+        "createdAt": "2026-09-12T15:45:00.000Z",
+        "updatedAt": "2026-09-12T15:50:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-000000000000000000000B",
+      "value": {
+        "id": "R-000000000000000000000B",
+        "referenceId": "CR-0990",
+        "email": "jordan.blake@example.com",
+        "type": "individual",
+        "firstName": "Jordan",
+        "lastName": "Blake",
+        "name": "Jordan Blake",
+        "status": "archived",
+        "complianceStatus": "verified",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [],
+        "address": {
+          "street1": "19 Alder Ct",
+          "street2": null,
+          "city": "Boulder",
+          "region": "CO",
+          "postalCode": "80302",
+          "country": "US",
+          "phone": null
+        },
+        "createdAt": "2026-02-10T09:00:00.000Z",
+        "updatedAt": "2026-05-04T12:55:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-000000000000000000000C",
+      "value": {
+        "id": "R-000000000000000000000C",
+        "referenceId": "CR-1012",
+        "email": "nadia.petrov@example.com",
+        "type": "individual",
+        "firstName": "Nadia",
+        "lastName": "Petrov",
+        "name": "Nadia Petrov",
+        "status": "suspended",
+        "complianceStatus": "verified",
+        "holdStatus": "suspended",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [],
+        "address": {
+          "street1": "61 Cedar Blvd",
+          "street2": null,
+          "city": "Chicago",
+          "region": "IL",
+          "postalCode": "60614",
+          "country": "US",
+          "phone": null
+        },
+        "createdAt": "2026-05-20T16:00:00.000Z",
+        "updatedAt": "2026-08-19T11:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-000000000000000000000D",
+      "value": {
+        "id": "R-000000000000000000000D",
+        "referenceId": "CR-1013",
+        "email": "victor.hale@example.com",
+        "type": "individual",
+        "firstName": "Victor",
+        "lastName": "Hale",
+        "name": "Victor Hale",
+        "status": "blocked",
+        "complianceStatus": "blocked",
+        "holdStatus": "none",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [],
+        "address": {
+          "street1": "9 Summit Rd",
+          "street2": null,
+          "city": "Phoenix",
+          "region": "AZ",
+          "postalCode": "85004",
+          "country": "US",
+          "phone": null
+        },
+        "createdAt": "2026-06-03T10:30:00.000Z",
+        "updatedAt": "2026-08-22T14:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-000000000000000000000E",
+      "value": {
+        "id": "R-000000000000000000000E",
+        "referenceId": "CR-1014",
+        "email": "ines.duarte@example.com",
+        "type": "individual",
+        "firstName": "Inês",
+        "lastName": "Duarte",
+        "name": "Inês Duarte",
+        "status": "disabled",
+        "complianceStatus": "verified",
+        "holdStatus": "disabled",
+        "dob": null,
+        "phone": null,
+        "language": "en",
+        "tags": [],
+        "address": {
+          "street1": "240 Bay St",
+          "street2": null,
+          "city": "Miami",
+          "region": "FL",
+          "postalCode": "33131",
+          "country": "US",
+          "phone": null
+        },
+        "createdAt": "2026-06-18T12:00:00.000Z",
+        "updatedAt": "2026-09-15T09:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000001:A-000000000000000000001d",
+      "value": {
+        "id": "A-000000000000000000001d",
+        "recipientId": "R-0000000000000000000001",
+        "type": "bank-transfer",
+        "primary": true,
+        "status": "primary",
+        "currency": "USD",
+        "country": "US",
+        "accountHolderName": "Maya Castellanos",
+        "accountNumLast4": "2847",
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": "000123456",
+        "swiftBic": null,
+        "bankName": "Firedrill Test Bank US",
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-03-02T16:30:00.000Z",
+        "updatedAt": "2026-03-02T16:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000002:A-000000000000000000001e",
+      "value": {
+        "id": "A-000000000000000000001e",
+        "recipientId": "R-0000000000000000000002",
+        "type": "check",
+        "primary": true,
+        "status": "primary",
+        "currency": "USD",
+        "country": "US",
+        "accountHolderName": null,
+        "accountNumLast4": null,
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": null,
+        "swiftBic": null,
+        "bankName": null,
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": {
+          "name": "Quarry Lane Films LLC",
+          "street1": "88 Harbor Way",
+          "street2": "Suite 4",
+          "city": "Oakland",
+          "region": "CA",
+          "postal": "94607",
+          "country": "US"
+        },
+        "disabledAt": null,
+        "createdAt": "2026-03-09T18:10:00.000Z",
+        "updatedAt": "2026-03-09T18:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000003:A-000000000000000000001f",
+      "value": {
+        "id": "A-000000000000000000001f",
+        "recipientId": "R-0000000000000000000003",
+        "type": "bank-transfer",
+        "primary": true,
+        "status": "primary",
+        "currency": "CAD",
+        "country": "CA",
+        "accountHolderName": "Etienne Tremblay",
+        "accountNumLast4": "5521",
+        "ibanLast4": null,
+        "bankId": "001",
+        "branchId": "00011",
+        "swiftBic": null,
+        "bankName": "Firedrill Test Bank CA",
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-07-02T15:25:00.000Z",
+        "updatedAt": "2026-07-02T15:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000003:A-000000000000000000001g",
+      "value": {
+        "id": "A-000000000000000000001g",
+        "recipientId": "R-0000000000000000000003",
+        "type": "paypal",
+        "primary": false,
+        "status": "active",
+        "currency": "USD",
+        "country": "CA",
+        "accountHolderName": null,
+        "accountNumLast4": null,
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": null,
+        "swiftBic": null,
+        "bankName": null,
+        "emailAddress": "etienne.payouts@example.com",
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-05-01T10:00:00.000Z",
+        "updatedAt": "2026-05-01T10:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000003:A-000000000000000000001h",
+      "value": {
+        "id": "A-000000000000000000001h",
+        "recipientId": "R-0000000000000000000003",
+        "type": "bank-transfer",
+        "primary": false,
+        "status": "disabled",
+        "currency": "CAD",
+        "country": "CA",
+        "accountHolderName": "Etienne Tremblay",
+        "accountNumLast4": "0093",
+        "ibanLast4": null,
+        "bankId": "002",
+        "branchId": "00042",
+        "swiftBic": null,
+        "bankName": "Firedrill Test Bank CA",
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": "2026-07-02T15:30:00.000Z",
+        "createdAt": "2026-03-15T14:20:00.000Z",
+        "updatedAt": "2026-07-02T15:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000004:A-000000000000000000001i",
+      "value": {
+        "id": "A-000000000000000000001i",
+        "recipientId": "R-0000000000000000000004",
+        "type": "bank-transfer",
+        "primary": true,
+        "status": "primary",
+        "currency": "GBP",
+        "country": "GB",
+        "accountHolderName": "Zoe O'Connell",
+        "accountNumLast4": "1180",
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": "000404",
+        "swiftBic": null,
+        "bankName": "Firedrill Test Bank GB",
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-04-01T11:10:00.000Z",
+        "updatedAt": "2026-04-01T11:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000005:A-000000000000000000001j",
+      "value": {
+        "id": "A-000000000000000000001j",
+        "recipientId": "R-0000000000000000000005",
+        "type": "bank-transfer",
+        "primary": true,
+        "status": "primary",
+        "currency": "EUR",
+        "country": "DE",
+        "accountHolderName": "Lukasz Wisniewski",
+        "accountNumLast4": null,
+        "ibanLast4": "3000",
+        "bankId": null,
+        "branchId": null,
+        "swiftBic": "FDTBDEFFXXX",
+        "bankName": "Firedrill Test Bank DE",
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-04-08T09:45:00.000Z",
+        "updatedAt": "2026-04-08T09:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000006:A-000000000000000000001k",
+      "value": {
+        "id": "A-000000000000000000001k",
+        "recipientId": "R-0000000000000000000006",
+        "type": "paypal",
+        "primary": true,
+        "status": "primary",
+        "currency": "USD",
+        "country": "US",
+        "accountHolderName": null,
+        "accountNumLast4": null,
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": null,
+        "swiftBic": null,
+        "bankName": null,
+        "emailAddress": "priya.raman.payouts@example.com",
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-04-20T17:40:00.000Z",
+        "updatedAt": "2026-04-20T17:40:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000007:A-000000000000000000001l",
+      "value": {
+        "id": "A-000000000000000000001l",
+        "recipientId": "R-0000000000000000000007",
+        "type": "venmo",
+        "primary": true,
+        "status": "primary",
+        "currency": "USD",
+        "country": "US",
+        "accountHolderName": null,
+        "accountNumLast4": null,
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": null,
+        "swiftBic": null,
+        "bankName": null,
+        "emailAddress": null,
+        "phoneNumber": "3035550107",
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-05-04T13:20:00.000Z",
+        "updatedAt": "2026-05-04T13:20:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000008:A-000000000000000000001m",
+      "value": {
+        "id": "A-000000000000000000001m",
+        "recipientId": "R-0000000000000000000008",
+        "type": "bank-transfer",
+        "primary": true,
+        "status": "primary",
+        "currency": "MXN",
+        "country": "MX",
+        "accountHolderName": "Estudio Nopal S.A. de C.V.",
+        "accountNumLast4": "4410",
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": null,
+        "swiftBic": null,
+        "bankName": "Firedrill Test Bank MX",
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-05-12T20:15:00.000Z",
+        "updatedAt": "2026-06-02T19:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-000000000000000000000C:A-000000000000000000001n",
+      "value": {
+        "id": "A-000000000000000000001n",
+        "recipientId": "R-000000000000000000000C",
+        "type": "bank-transfer",
+        "primary": true,
+        "status": "primary",
+        "currency": "USD",
+        "country": "US",
+        "accountHolderName": "Nadia Petrov",
+        "accountNumLast4": "7731",
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": "000654321",
+        "swiftBic": null,
+        "bankName": "Firedrill Test Bank US",
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-05-20T16:10:00.000Z",
+        "updatedAt": "2026-05-20T16:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-000000000000000000000D:A-000000000000000000001o",
+      "value": {
+        "id": "A-000000000000000000001o",
+        "recipientId": "R-000000000000000000000D",
+        "type": "paypal",
+        "primary": true,
+        "status": "primary",
+        "currency": "USD",
+        "country": "US",
+        "accountHolderName": null,
+        "accountNumLast4": null,
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": null,
+        "swiftBic": null,
+        "bankName": null,
+        "emailAddress": "victor.hale.payouts@example.com",
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-06-03T10:40:00.000Z",
+        "updatedAt": "2026-06-03T10:40:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-000000000000000000000E:A-000000000000000000001p",
+      "value": {
+        "id": "A-000000000000000000001p",
+        "recipientId": "R-000000000000000000000E",
+        "type": "bank-transfer",
+        "primary": true,
+        "status": "primary",
+        "currency": "USD",
+        "country": "US",
+        "accountHolderName": "Ines Duarte",
+        "accountNumLast4": "6604",
+        "ibanLast4": null,
+        "bankId": null,
+        "branchId": "000777888",
+        "swiftBic": null,
+        "bankName": "Firedrill Test Bank US",
+        "emailAddress": null,
+        "phoneNumber": null,
+        "mailing": null,
+        "disabledAt": null,
+        "createdAt": "2026-06-18T12:10:00.000Z",
+        "updatedAt": "2026-06-18T12:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003F",
+      "value": {
+        "id": "B-000000000000000000003F",
+        "status": "open",
+        "currency": "USD",
+        "description": "September week 3 creators",
+        "tags": [
+          "weekly"
+        ],
+        "quoteExpiredAt": null,
+        "sentAt": null,
+        "completedAt": null,
+        "createdAt": "2026-09-15T09:10:00.000Z",
+        "updatedAt": "2026-09-15T09:40:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003G",
+      "value": {
+        "id": "B-000000000000000000003G",
+        "status": "open",
+        "currency": "USD",
+        "description": "EU and UK editors",
+        "tags": [
+          "editors",
+          "fx"
+        ],
+        "quoteExpiredAt": "2026-09-15T12:30:00.000Z",
+        "sentAt": null,
+        "completedAt": null,
+        "createdAt": "2026-09-15T10:45:00.000Z",
+        "updatedAt": "2026-09-15T11:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003H",
+      "value": {
+        "id": "B-000000000000000000003H",
+        "status": "open",
+        "currency": "USD",
+        "description": "Q3 studio retainers",
+        "tags": [
+          "retainer"
+        ],
+        "quoteExpiredAt": null,
+        "sentAt": null,
+        "completedAt": null,
+        "createdAt": "2026-09-14T15:00:00.000Z",
+        "updatedAt": "2026-09-14T15:20:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003I",
+      "value": {
+        "id": "B-000000000000000000003I",
+        "status": "open",
+        "currency": "USD",
+        "description": "Mixed status payout",
+        "tags": [],
+        "quoteExpiredAt": null,
+        "sentAt": null,
+        "completedAt": null,
+        "createdAt": "2026-09-14T16:00:00.000Z",
+        "updatedAt": "2026-09-14T16:05:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003J",
+      "value": {
+        "id": "B-000000000000000000003J",
+        "status": "open",
+        "currency": "USD",
+        "description": "Check below minimum",
+        "tags": [],
+        "quoteExpiredAt": null,
+        "sentAt": null,
+        "completedAt": null,
+        "createdAt": "2026-09-15T08:00:00.000Z",
+        "updatedAt": "2026-09-15T08:02:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003K",
+      "value": {
+        "id": "B-000000000000000000003K",
+        "status": "open",
+        "currency": "USD",
+        "description": "Draft – October",
+        "tags": [
+          "draft"
+        ],
+        "quoteExpiredAt": null,
+        "sentAt": null,
+        "completedAt": null,
+        "createdAt": "2026-09-15T13:30:00.000Z",
+        "updatedAt": "2026-09-15T13:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003L",
+      "value": {
+        "id": "B-000000000000000000003L",
+        "status": "complete",
+        "currency": "USD",
+        "description": "August week 1",
+        "tags": [
+          "weekly"
+        ],
+        "quoteExpiredAt": null,
+        "sentAt": "2026-08-07T15:00:00.000Z",
+        "completedAt": "2026-08-07T15:00:00.000Z",
+        "createdAt": "2026-08-06T10:00:00.000Z",
+        "updatedAt": "2026-08-07T15:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003M",
+      "value": {
+        "id": "B-000000000000000000003M",
+        "status": "complete",
+        "currency": "USD",
+        "description": "August week 2",
+        "tags": [
+          "weekly"
+        ],
+        "quoteExpiredAt": "2026-08-14T16:30:00.000Z",
+        "sentAt": "2026-08-14T15:05:00.000Z",
+        "completedAt": "2026-08-14T15:05:00.000Z",
+        "createdAt": "2026-08-13T10:00:00.000Z",
+        "updatedAt": "2026-08-14T15:05:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003N",
+      "value": {
+        "id": "B-000000000000000000003N",
+        "status": "complete",
+        "currency": "USD",
+        "description": "August week 3",
+        "tags": [
+          "weekly",
+          "fx"
+        ],
+        "quoteExpiredAt": "2026-08-21T16:30:00.000Z",
+        "sentAt": "2026-08-21T15:10:00.000Z",
+        "completedAt": "2026-08-21T15:10:00.000Z",
+        "createdAt": "2026-08-20T10:00:00.000Z",
+        "updatedAt": "2026-08-21T15:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003O",
+      "value": {
+        "id": "B-000000000000000000003O",
+        "status": "complete",
+        "currency": "USD",
+        "description": "August retainers",
+        "tags": [
+          "retainer",
+          "fx"
+        ],
+        "quoteExpiredAt": "2026-08-28T16:00:00.000Z",
+        "sentAt": "2026-08-28T14:45:00.000Z",
+        "completedAt": "2026-08-28T14:45:00.000Z",
+        "createdAt": "2026-08-27T09:00:00.000Z",
+        "updatedAt": "2026-08-28T14:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003P",
+      "value": {
+        "id": "B-000000000000000000003P",
+        "status": "failed",
+        "currency": "USD",
+        "description": "Late August correction",
+        "tags": [],
+        "quoteExpiredAt": null,
+        "sentAt": "2026-08-29T11:00:00.000Z",
+        "completedAt": "2026-08-29T11:00:00.000Z",
+        "createdAt": "2026-08-29T10:30:00.000Z",
+        "updatedAt": "2026-08-29T11:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003F:P-000000000000000000004r",
+      "value": {
+        "id": "P-000000000000000000004r",
+        "batchId": "B-000000000000000000003F",
+        "recipientId": "R-0000000000000000000001",
+        "accountId": "A-000000000000000000001d",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "500.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "499.00",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Cover illustrations, issue 14",
+        "externalId": "INV-2026-0911",
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-15T09:10:00.000Z",
+        "updatedAt": "2026-09-15T09:40:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003F:P-000000000000000000004s",
+      "value": {
+        "id": "P-000000000000000000004s",
+        "batchId": "B-000000000000000000003F",
+        "recipientId": "R-0000000000000000000006",
+        "accountId": "A-000000000000000000001k",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "440.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "440.00",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "1.00",
+        "recipientFees": "0.00",
+        "merchantFees": "1.00",
+        "coverFees": true,
+        "payoutMethod": "paypal",
+        "memo": "Trailer edit",
+        "externalId": "INV-2026-0912",
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-15T09:10:00.000Z",
+        "updatedAt": "2026-09-15T09:40:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003F:P-000000000000000000004t",
+      "value": {
+        "id": "P-000000000000000000004t",
+        "batchId": "B-000000000000000000003F",
+        "recipientId": "R-0000000000000000000007",
+        "accountId": "A-000000000000000000001l",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "300.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "299.25",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "0.75",
+        "recipientFees": "0.75",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "venmo",
+        "memo": "Title sequence royalties",
+        "externalId": null,
+        "category": "royalties",
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-15T09:10:00.000Z",
+        "updatedAt": "2026-09-15T09:40:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003G:P-000000000000000000004u",
+      "value": {
+        "id": "P-000000000000000000004u",
+        "batchId": "B-000000000000000000003G",
+        "recipientId": "R-0000000000000000000004",
+        "accountId": "A-000000000000000000001i",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "800.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "624.02",
+        "targetCurrency": "GBP",
+        "exchangeRate": "0.781000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Documentary rough cut",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-15T10:45:00.000Z",
+        "updatedAt": "2026-09-15T11:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003G:P-000000000000000000004v",
+      "value": {
+        "id": "P-000000000000000000004v",
+        "batchId": "B-000000000000000000003G",
+        "recipientId": "R-0000000000000000000005",
+        "accountId": "A-000000000000000000001j",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "650.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "591.89",
+        "targetCurrency": "EUR",
+        "exchangeRate": "0.912000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Color grade, episode 3",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-15T10:45:00.000Z",
+        "updatedAt": "2026-09-15T11:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003H:P-000000000000000000004w",
+      "value": {
+        "id": "P-000000000000000000004w",
+        "batchId": "B-000000000000000000003H",
+        "recipientId": "R-0000000000000000000001",
+        "accountId": "A-000000000000000000001d",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "12000.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "11999.00",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Q3 retainer",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-14T15:00:00.000Z",
+        "updatedAt": "2026-09-14T15:20:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003H:P-000000000000000000004x",
+      "value": {
+        "id": "P-000000000000000000004x",
+        "batchId": "B-000000000000000000003H",
+        "recipientId": "R-0000000000000000000002",
+        "accountId": "A-000000000000000000001e",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "12000.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "11997.50",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "2.50",
+        "recipientFees": "2.50",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "check",
+        "memo": "Q3 studio retainer",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-14T15:00:00.000Z",
+        "updatedAt": "2026-09-14T15:20:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003I:P-000000000000000000004y",
+      "value": {
+        "id": "P-000000000000000000004y",
+        "batchId": "B-000000000000000000003I",
+        "recipientId": "R-0000000000000000000001",
+        "accountId": "A-000000000000000000001d",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "150.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "149.00",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Storyboard revisions",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-14T16:00:00.000Z",
+        "updatedAt": "2026-09-14T16:05:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003I:P-000000000000000000004z",
+      "value": {
+        "id": "P-000000000000000000004z",
+        "batchId": "B-000000000000000000003I",
+        "recipientId": "R-000000000000000000000E",
+        "accountId": "A-000000000000000000001p",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "200.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "199.00",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Sound design",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-14T16:00:00.000Z",
+        "updatedAt": "2026-09-14T16:05:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003J:P-0000000000000000000050",
+      "value": {
+        "id": "P-0000000000000000000050",
+        "batchId": "B-000000000000000000003J",
+        "recipientId": "R-0000000000000000000002",
+        "accountId": "A-000000000000000000001e",
+        "status": "pending",
+        "amountSide": "source",
+        "sourceAmount": "12.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "9.50",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "2.50",
+        "recipientFees": "2.50",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "check",
+        "memo": "Stock footage licence",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": null,
+        "processedAt": null,
+        "createdAt": "2026-09-15T08:00:00.000Z",
+        "updatedAt": "2026-09-15T08:02:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003L:P-0000000000000000000051",
+      "value": {
+        "id": "P-0000000000000000000051",
+        "batchId": "B-000000000000000000003L",
+        "recipientId": "R-0000000000000000000001",
+        "accountId": "A-000000000000000000001d",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "320.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "319.00",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Poster art",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-07T15:00:00.000Z",
+        "processedAt": "2026-08-07T15:00:00.000Z",
+        "createdAt": "2026-08-06T10:00:00.000Z",
+        "updatedAt": "2026-08-07T15:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003L:P-0000000000000000000052",
+      "value": {
+        "id": "P-0000000000000000000052",
+        "batchId": "B-000000000000000000003L",
+        "recipientId": "R-0000000000000000000006",
+        "accountId": "A-000000000000000000001k",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "180.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "179.00",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "paypal",
+        "memo": "Social cutdowns",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-07T15:00:00.000Z",
+        "processedAt": "2026-08-07T15:00:00.000Z",
+        "createdAt": "2026-08-06T10:00:00.000Z",
+        "updatedAt": "2026-08-07T15:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003L:P-0000000000000000000053",
+      "value": {
+        "id": "P-0000000000000000000053",
+        "batchId": "B-000000000000000000003L",
+        "recipientId": "R-0000000000000000000008",
+        "accountId": "A-000000000000000000001m",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "500.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "8602.76",
+        "targetCurrency": "MXN",
+        "exchangeRate": "17.240000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Motion graphics package",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-07T15:00:00.000Z",
+        "processedAt": "2026-08-07T15:00:00.000Z",
+        "createdAt": "2026-08-06T10:00:00.000Z",
+        "updatedAt": "2026-08-07T15:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003M:P-0000000000000000000054",
+      "value": {
+        "id": "P-0000000000000000000054",
+        "batchId": "B-000000000000000000003M",
+        "recipientId": "R-0000000000000000000003",
+        "accountId": "A-000000000000000000001f",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "400.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "539.45",
+        "targetCurrency": "CAD",
+        "exchangeRate": "1.352000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "French subtitles",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-14T15:05:00.000Z",
+        "processedAt": "2026-08-14T15:05:00.000Z",
+        "createdAt": "2026-08-13T10:00:00.000Z",
+        "updatedAt": "2026-08-14T15:05:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003M:P-0000000000000000000055",
+      "value": {
+        "id": "P-0000000000000000000055",
+        "batchId": "B-000000000000000000003M",
+        "recipientId": "R-0000000000000000000007",
+        "accountId": "A-000000000000000000001l",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "90.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "89.25",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "0.75",
+        "recipientFees": "0.75",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "venmo",
+        "memo": "Lower thirds",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-14T15:05:00.000Z",
+        "processedAt": "2026-08-14T15:05:00.000Z",
+        "createdAt": "2026-08-13T10:00:00.000Z",
+        "updatedAt": "2026-08-14T15:05:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003N:P-0000000000000000000056",
+      "value": {
+        "id": "P-0000000000000000000056",
+        "batchId": "B-000000000000000000003N",
+        "recipientId": "R-0000000000000000000004",
+        "accountId": "A-000000000000000000001i",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "250.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "194.47",
+        "targetCurrency": "GBP",
+        "exchangeRate": "0.781000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Interview edit",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-21T15:10:00.000Z",
+        "processedAt": "2026-08-21T15:10:00.000Z",
+        "createdAt": "2026-08-20T10:00:00.000Z",
+        "updatedAt": "2026-08-21T15:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003N:P-0000000000000000000057",
+      "value": {
+        "id": "P-0000000000000000000057",
+        "batchId": "B-000000000000000000003N",
+        "recipientId": "R-0000000000000000000005",
+        "accountId": "A-000000000000000000001j",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "300.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "272.69",
+        "targetCurrency": "EUR",
+        "exchangeRate": "0.912000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Color consult",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-21T15:10:00.000Z",
+        "processedAt": "2026-08-21T15:10:00.000Z",
+        "createdAt": "2026-08-20T10:00:00.000Z",
+        "updatedAt": "2026-08-21T15:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003N:P-0000000000000000000058",
+      "value": {
+        "id": "P-0000000000000000000058",
+        "batchId": "B-000000000000000000003N",
+        "recipientId": "R-0000000000000000000007",
+        "accountId": "A-000000000000000000001l",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "60.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "59.25",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "0.75",
+        "recipientFees": "0.75",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "venmo",
+        "memo": "GIF loops",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-21T15:10:00.000Z",
+        "processedAt": "2026-08-21T15:10:00.000Z",
+        "createdAt": "2026-08-20T10:00:00.000Z",
+        "updatedAt": "2026-08-21T15:10:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003O:P-0000000000000000000059",
+      "value": {
+        "id": "P-0000000000000000000059",
+        "batchId": "B-000000000000000000003O",
+        "recipientId": "R-0000000000000000000002",
+        "accountId": "A-000000000000000000001e",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "1500.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "1497.50",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "2.50",
+        "recipientFees": "2.50",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "check",
+        "memo": "August retainer",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-28T14:45:00.000Z",
+        "processedAt": "2026-08-28T14:45:00.000Z",
+        "createdAt": "2026-08-27T09:00:00.000Z",
+        "updatedAt": "2026-08-28T14:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003O:P-000000000000000000005A",
+      "value": {
+        "id": "P-000000000000000000005A",
+        "batchId": "B-000000000000000000003O",
+        "recipientId": "R-0000000000000000000008",
+        "accountId": "A-000000000000000000001m",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "900.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "15498.76",
+        "targetCurrency": "MXN",
+        "exchangeRate": "17.240000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Animation retainer",
+        "externalId": null,
+        "category": "services",
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-28T14:45:00.000Z",
+        "processedAt": "2026-08-28T14:45:00.000Z",
+        "createdAt": "2026-08-27T09:00:00.000Z",
+        "updatedAt": "2026-08-28T14:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003O:P-000000000000000000005B",
+      "value": {
+        "id": "P-000000000000000000005B",
+        "batchId": "B-000000000000000000003O",
+        "recipientId": "R-0000000000000000000001",
+        "accountId": "A-000000000000000000001d",
+        "status": "processed",
+        "amountSide": "source",
+        "sourceAmount": "75.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "74.00",
+        "targetCurrency": "USD",
+        "exchangeRate": "1.000000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Icon set",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": null,
+        "initiatedAt": "2026-08-28T14:45:00.000Z",
+        "processedAt": "2026-08-28T14:45:00.000Z",
+        "createdAt": "2026-08-27T09:00:00.000Z",
+        "updatedAt": "2026-08-28T14:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payments",
+      "rowId": "B-000000000000000000003P:P-000000000000000000005C",
+      "value": {
+        "id": "P-000000000000000000005C",
+        "batchId": "B-000000000000000000003P",
+        "recipientId": "R-0000000000000000000003",
+        "accountId": "A-000000000000000000001h",
+        "status": "failed",
+        "amountSide": "source",
+        "sourceAmount": "120.00",
+        "sourceCurrency": "USD",
+        "targetAmount": "160.89",
+        "targetCurrency": "CAD",
+        "exchangeRate": "1.352000",
+        "fees": "1.00",
+        "recipientFees": "1.00",
+        "merchantFees": "0.00",
+        "coverFees": false,
+        "payoutMethod": "bank-transfer",
+        "memo": "Subtitle fixes",
+        "externalId": null,
+        "category": null,
+        "tags": [],
+        "failureMessage": "Recipient has no primary payout method",
+        "initiatedAt": "2026-08-29T11:00:00.000Z",
+        "processedAt": null,
+        "createdAt": "2026-08-29T10:30:00.000Z",
+        "updatedAt": "2026-08-29T11:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004r",
+      "value": {
+        "batchId": "B-000000000000000000003F"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004s",
+      "value": {
+        "batchId": "B-000000000000000000003F"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004t",
+      "value": {
+        "batchId": "B-000000000000000000003F"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004u",
+      "value": {
+        "batchId": "B-000000000000000000003G"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004v",
+      "value": {
+        "batchId": "B-000000000000000000003G"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004w",
+      "value": {
+        "batchId": "B-000000000000000000003H"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004x",
+      "value": {
+        "batchId": "B-000000000000000000003H"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004y",
+      "value": {
+        "batchId": "B-000000000000000000003I"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000004z",
+      "value": {
+        "batchId": "B-000000000000000000003I"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000050",
+      "value": {
+        "batchId": "B-000000000000000000003J"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000051",
+      "value": {
+        "batchId": "B-000000000000000000003L"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000052",
+      "value": {
+        "batchId": "B-000000000000000000003L"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000053",
+      "value": {
+        "batchId": "B-000000000000000000003L"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000054",
+      "value": {
+        "batchId": "B-000000000000000000003M"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000055",
+      "value": {
+        "batchId": "B-000000000000000000003M"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000056",
+      "value": {
+        "batchId": "B-000000000000000000003N"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000057",
+      "value": {
+        "batchId": "B-000000000000000000003N"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000058",
+      "value": {
+        "batchId": "B-000000000000000000003N"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-0000000000000000000059",
+      "value": {
+        "batchId": "B-000000000000000000003O"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000005A",
+      "value": {
+        "batchId": "B-000000000000000000003O"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000005B",
+      "value": {
+        "batchId": "B-000000000000000000003O"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "trolley",
+      "namespace": "payment_index",
+      "rowId": "P-000000000000000000005C",
+      "value": {
+        "batchId": "B-000000000000000000003P"
+      }
+    }
+  ]
+}

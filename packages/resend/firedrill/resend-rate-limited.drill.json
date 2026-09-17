@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "resend-rate-limited",
+  "title": "Sends answer 429 rate_limit_exceeded with rate-limit headers and write nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the rate-limited flow against the synthetic Resend Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "emails-send-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "emails-send-batch-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send_batch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-count",
+      "kind": "state.count",
+      "packageId": "resend",
+      "namespace": "emails",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    },
+    {
+      "id": "email-sent-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "resend",
+        "eventId": "email.sent"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

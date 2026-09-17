@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "id": "trolley-recipients",
+  "title": "Recipients: list, search, filters, paging, create, update, archive and restore",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the recipients conformance flow against the synthetic Trolley Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "recipients-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-recipients",
+      "kind": "state.count",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "count-recipient-accounts",
+      "kind": "state.count",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    }
+  ]
+}

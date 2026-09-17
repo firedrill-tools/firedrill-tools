@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-fuzz-surface",
+  "title": "Hostile paths, queries and bodies answer a declared error with the provider envelope, never 5xx",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ada",
+  "task": {
+    "instruction": "Run the fuzz-surface flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "group-get-invalid",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "contact-groups.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.search-contacts"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-invalid",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.list-connections"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "nothing-written",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    },
+    {
+      "id": "groups-unchanged",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contact-groups",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    }
+  ]
+}

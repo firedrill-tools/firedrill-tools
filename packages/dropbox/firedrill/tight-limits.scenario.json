@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "meta/limits caps uploads at 64 bytes and keeps only the newest 3 change-journal rows",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "dropbox",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "uploadBytes": 64,
+        "journal": 3
+      }
+    }
+  ]
+}

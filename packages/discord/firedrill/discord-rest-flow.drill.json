@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-rest-flow",
+  "title": "Every operation and error over the Discord-shaped routes as the seeded bot",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "bot",
+  "task": {
+    "instruction": "Run flow:rest-flow against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "ok-users-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-users-list-my-guilds",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.list-my-guilds"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-users-list-dm-channels",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.list-dm-channels"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-users-create-dm",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.create-dm"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-guilds-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-guilds-list-channels",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.list-channels"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-guilds-list-active-threads",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.list-active-threads"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-guild-members-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guild-members.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-guild-members-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guild-members.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-roles-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "roles.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-channels-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-messages-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-messages-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-messages-create",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-messages-edit",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.edit"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-messages-delete",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-reactions-add",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-reactions-remove",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-reactions-list-users",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.list-users"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-threads-create-from-message",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "threads.create-from-message"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "ok-threads-create",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "threads.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "messages-deleted",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-added",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "reaction.added"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 30
+      }
+    },
+    {
+      "id": "channel-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "channels",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "reaction-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "comparison": {
+        "operator": "equals",
+        "value": 29
+      }
+    },
+    {
+      "id": "nonce-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "nonces",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "thread-member-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "thread_members",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "thread-from-message-open",
+      "kind": "state.value",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01544636753510400031",
+      "path": [
+        "thread_metadata",
+        "archived"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": false
+      }
+    },
+    {
+      "id": "starter-links-thread",
+      "kind": "state.value",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01544636753510400031",
+      "path": [
+        "thread_id"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "1544636753510400031"
+      }
+    },
+    {
+      "id": "saturated-summary-kept",
+      "kind": "state.value",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01547909568921600035",
+      "path": [
+        "reaction_summary",
+        19,
+        "emoji_name"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "😚"
+      }
+    },
+    {
+      "id": "thread-count",
+      "kind": "state.value",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01548287056281600038",
+      "path": [
+        "message_count"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "read-write-order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "discord",
+              "operationId": "users.get"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "discord",
+              "operationId": "guilds.get"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "discord",
+              "operationId": "messages.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "discord",
+              "operationId": "reactions.add"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "discord",
+              "operationId": "threads.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "discord",
+              "operationId": "messages.delete"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

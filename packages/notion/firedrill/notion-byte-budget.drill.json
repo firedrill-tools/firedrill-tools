@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-byte-budget",
+  "title": "Oversized rich text is refused; block children, comments, search and queries page by encoded bytes under 1 MiB",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the byte-budget conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "oversized-append-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.children.append"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "near-limit-appends-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.children.append"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "children-paged-by-bytes",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.children.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 5
+      }
+    },
+    {
+      "id": "oversized-markdown-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve-markdown"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "oversized-database-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "databases.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-paged-by-bytes",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "comments-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

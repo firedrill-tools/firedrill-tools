@@ -1,0 +1,121 @@
+/* Shell, navigation and top bar. Palette taken from Check's own published CSS custom properties
+   (--dark-*, --light-*, --blue-*) so the greys and the action blue match the product exactly. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("./assets/fonts/inter-latin.woff2") format("woff2");
+}
+:root {
+  --black: #000000;
+  --ink: #131415;          /* dark--900 */
+  --ink-2: #1a2229;        /* dark--800 */
+  --ink-3: #283440;        /* dark--700 */
+  --muted: #425466;        /* dark--600 */
+  --muted-2: #788894;      /* dark--500 */
+  --grey: #79838e;
+  --line: #e2e8f0;         /* light--200 */
+  --line-2: #c1ccd8;       /* light--300 */
+  --wash: #f8fafc;         /* light--50 */
+  --wash-2: #f1f5f9;       /* light--100 */
+  --wash-3: #fbfdfd;       /* light--25 */
+  --pill-bg: #f3f7f9;
+  --blue: #0c8ce9;         /* blue--default */
+  --blue-hover: #0795fc;
+  --blue-focus: #0685e2;
+  --blue-soft: #e7f3fd;
+  --green: #067647;
+  --green-soft: #ecfdf3;
+  --amber: #b54708;
+  --amber-soft: #fffaeb;
+  --red: #b42318;
+  --red-soft: #fef3f2;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(19, 20, 21, 0.05);
+  --shadow: 0 1px 3px rgba(19, 20, 21, 0.08), 0 1px 2px rgba(19, 20, 21, 0.04);
+  --shadow-lg: 0 18px 40px rgba(19, 20, 21, 0.16);
+  --side: 244px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--wash);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: var(--blue-focus); }
+h1, h2, h3 { margin: 0; letter-spacing: -0.01em; }
+.skip-link { position: absolute; left: -999px; top: 8px; background: #fff; padding: 8px; z-index: 60; }
+.skip-link:focus { left: 8px; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+.shell { display: flex; height: 100vh; }
+
+/* Sidebar */
+.side {
+  width: var(--side); flex: none; background: #fff; border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.side-brand { display: flex; align-items: center; gap: 9px; height: 60px; padding: 0 18px; text-decoration: none; color: var(--ink); flex: none; }
+.brand-tile { width: 26px; height: 26px; border-radius: 6px; flex: none; }
+.brand-mark { height: 15px; width: auto; }
+.brand-sub { font-size: 13px; color: var(--muted-2); border-left: 1px solid var(--line-2); padding-left: 9px; margin-left: 2px; }
+.switcher {
+  display: flex; align-items: center; gap: 10px; margin: 0 12px 12px; padding: 8px 10px; height: 52px;
+  background: var(--wash-2); border: 1px solid var(--line); border-radius: var(--radius); cursor: pointer; text-align: left; flex: none;
+}
+.switcher:hover { background: #eaf0f6; }
+.switcher-avatar { width: 28px; height: 28px; border-radius: 7px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; display: grid; place-items: center; flex: none; }
+.switcher-text { min-width: 0; flex: 1; display: flex; flex-direction: column; }
+.switcher-name { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.switcher-meta { font-size: 11.5px; color: var(--muted-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.switcher-caret { color: var(--muted-2); display: flex; }
+.switcher-caret svg { width: 16px; height: 16px; }
+.side-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 12px; flex: 1; overflow-y: auto; }
+.side-bottom { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px 14px; border-top: 1px solid var(--line); }
+.nav-item {
+  display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 10px; width: 100%;
+  border: 0; background: none; border-radius: 8px; color: var(--muted); text-decoration: none; cursor: pointer;
+  font-size: 13.5px; font-weight: 500; text-align: left; white-space: nowrap;
+}
+.nav-item svg { width: 18px; height: 18px; flex: none; color: var(--muted-2); }
+.nav-item:hover { background: var(--wash-2); color: var(--ink); }
+.nav-item:hover svg { color: var(--ink-3); }
+.nav-item.active { background: var(--wash-2); color: var(--ink); font-weight: 600; }
+.nav-item.active svg { color: var(--ink); }
+.nav-section { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-2); padding: 14px 10px 6px; }
+
+/* Main column */
+.main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.topbar { height: 60px; flex: none; display: flex; align-items: center; gap: 12px; padding: 0 28px; background: #fff; border-bottom: 1px solid var(--line); }
+.hamburger { display: none; border: 0; background: none; color: var(--muted); cursor: pointer; padding: 6px; border-radius: 8px; }
+.hamburger svg { width: 22px; height: 22px; }
+.crumbs { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted-2); }
+.crumbs a { color: var(--muted-2); text-decoration: none; }
+.crumbs a:hover { color: var(--ink); text-decoration: underline; }
+.page-title { font-size: 16px; font-weight: 600; color: var(--ink); }
+.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.env-pill { font-size: 11.5px; font-weight: 600; color: var(--amber); background: var(--amber-soft); border: 1px solid #fedf89; border-radius: 999px; padding: 2px 10px; }
+.clock { font-size: 12.5px; color: var(--muted-2); font-variant-numeric: tabular-nums; }
+.icon-btn { width: 32px; height: 32px; border-radius: 8px; border: 0; background: none; color: var(--muted); cursor: pointer; display: grid; place-items: center; }
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn:hover { background: var(--wash-2); color: var(--ink); }
+.avatar-btn { width: 30px; height: 30px; border-radius: 999px; border: 0; background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; cursor: pointer; }
+.avatar-btn:hover { background: var(--ink-3); }
+.page { flex: 1; overflow: auto; padding: 24px 28px 56px; outline: none; }
+.page-inner { max-width: 1120px; }
+
+@media (max-width: 860px) {
+  .side { position: fixed; z-index: 40; height: 100vh; width: 0; border: 0; }
+  .shell.open .side { width: var(--side); border-right: 1px solid var(--line); box-shadow: var(--shadow-lg); }
+  .hamburger { display: block; }
+  .topbar { padding: 0 12px; gap: 8px; }
+  .clock, .crumbs { display: none; }
+  .page { padding: 16px 12px 40px; }
+}

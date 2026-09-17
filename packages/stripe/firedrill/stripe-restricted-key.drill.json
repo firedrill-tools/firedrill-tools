@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "id": "stripe-restricted-key",
+  "title": "A read-only restricted key: reads succeed, every write fails PERMISSION_DENIED (403) naming the missing permission",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "readonly-key",
+  "task": {
+    "instruction": "Run the restricted-key conformance flow against the synthetic Stripe Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "balance-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "balance.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "refunds-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "refunds.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-confirm-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.confirm"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-finalize-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.finalize"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "products-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "products.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payment_intent-succeeded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "stripe",
+        "eventId": "payment_intent.succeeded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "customers-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    }
+  ]
+}

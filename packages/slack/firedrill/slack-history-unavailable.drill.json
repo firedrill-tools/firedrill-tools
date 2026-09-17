@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-history-unavailable",
+  "title": "History and search return 503 while replies, info and pins still work",
+  "targetId": "conformance-agent",
+  "scenarioId": "history-unavailable",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the history-unavailable conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "history-unavailable",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.history"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-unavailable",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "search.messages"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "replies-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.replies"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pins-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "pins.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-untouched",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 38
+      }
+    }
+  ]
+}

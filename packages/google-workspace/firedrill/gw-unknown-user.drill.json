@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-unknown-user",
+  "title": "An address with no directory record fails UNAUTHENTICATED on every operation",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ghost",
+  "task": {
+    "instruction": "Run the unknown-user flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "profile-unauthenticated",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.get-contact"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "create-unauthenticated",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "people.create-contact"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "run-unauthenticated",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "scripts.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "nothing-written",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 18
+      }
+    },
+    {
+      "id": "no-subscriptions-written",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "subscriptions",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    }
+  ]
+}

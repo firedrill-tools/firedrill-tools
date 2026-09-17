@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-run-lost",
+  "title": "workflows.run commits the job and emits job.created, then answers 500; a naive retry creates a second job",
+  "targetId": "conformance-agent",
+  "scenarioId": "run-response-lost",
+  "actorId": "analyst",
+  "task": {
+    "instruction": "Run the run-lost flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "workflows-run-tool_error-101",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "workflows.run"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "job-created-events-102",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unstructured",
+        "eventId": "job.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "jobs-count-103",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    }
+  ]
+}

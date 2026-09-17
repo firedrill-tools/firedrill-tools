@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-task-triage",
+  "title": "Query the Tasks data source with real filters and sorts, then create, update, move and comment on a task",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the task-triage conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "data-sources-query-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 12
+      }
+    },
+    {
+      "id": "data-sources-query-validation-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "data-sources.query"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "pages-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-move-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.move"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "comments-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "comments-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "new-task-title",
+      "kind": "state.value",
+      "packageId": "notion",
+      "namespace": "pages",
+      "rowId": "fd000000-0000-4000-8000-000200001002",
+      "path": [
+        "title_plain"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Bench-test the OTA rollback"
+      }
+    },
+    {
+      "id": "new-task-back-in-tasks",
+      "kind": "state.value",
+      "packageId": "notion",
+      "namespace": "pages",
+      "rowId": "fd000000-0000-4000-8000-000200001002",
+      "path": [
+        "parent",
+        "type"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "data_source_id"
+      }
+    },
+    {
+      "id": "new-task-status-reset-by-move",
+      "kind": "state.value",
+      "packageId": "notion",
+      "namespace": "pages",
+      "rowId": "fd000000-0000-4000-8000-000200001002",
+      "path": [
+        "properties",
+        "Status",
+        "value"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": null
+      }
+    },
+    {
+      "id": "t3-untouched",
+      "kind": "state.value",
+      "packageId": "notion",
+      "namespace": "pages",
+      "rowId": "fd000000-0000-4000-8000-000200000122",
+      "path": [
+        "properties",
+        "Status",
+        "value",
+        "name"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Todo"
+      }
+    },
+    {
+      "id": "pages-plus-one",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "pages",
+      "comparison": {
+        "operator": "equals",
+        "value": 29
+      }
+    },
+    {
+      "id": "comments-plus-two",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "page-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "page.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "page-properties-updated-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "page.properties_updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "comment-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "triage-order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "notion",
+              "operationId": "pages.create"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "notion",
+              "operationId": "pages.update"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "notion",
+              "operationId": "pages.move"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "notion",
+              "operationId": "comments.create"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

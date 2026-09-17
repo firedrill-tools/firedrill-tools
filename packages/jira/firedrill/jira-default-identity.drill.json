@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "jira-default-identity",
+  "title": "An actor without provider attributes (the fresh-install shape) is the seeded default user",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the default-identity conformance flow against the synthetic Jira Cloud Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "myself-get-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "myself.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-search-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "projects.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-create-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-get-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-delete-tool-error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "jira",
+        "operationId": "issues.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sec-3-reporter",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010200",
+      "path": [
+        "reporterAccountId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001"
+      }
+    },
+    {
+      "id": "sec-3-key",
+      "kind": "state.value",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010200",
+      "path": [
+        "key"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "SEC-3"
+      }
+    },
+    {
+      "id": "issues-count-23",
+      "kind": "state.count",
+      "packageId": "jira",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    },
+    {
+      "id": "event-issue-created-eq-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "jira",
+        "eventId": "issue.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Bounds lowered (3 scanned rows, 2 groups, 2 query groups, 2 KB dashboards): bounded operations fail with LIMIT_EXCEEDED instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 3,
+        "maxGroupsPerMonitor": 2,
+        "maxSeriesPerQuery": 2,
+        "maxDashboardBytes": 2000
+      }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-post-rate-limited",
+  "title": "Posting is rate limited (429 + Retry-After) without changing state",
+  "targetId": "conformance-agent",
+  "scenarioId": "post-rate-limited",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the post-rate-limited conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "post-limited",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reply-limited",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.reply"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "update-limited",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reaction-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "nothing-posted",
+      "kind": "event.count",
+      "event": {
+        "packageId": "slack",
+        "eventId": "message.posted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "messages-untouched",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 38
+      }
+    }
+  ]
+}

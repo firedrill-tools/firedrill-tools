@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Org scan bound lowered below the starter data so every bounded scan fails LIMIT_EXCEEDED instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "salesforce",
+      "namespace": "org",
+      "rowId": "org",
+      "value": {
+        "organizationId": "00DFd0000000001MAA",
+        "name": "Brightwater Instruments",
+        "instanceUrl": "https://brightwater.example.my.salesforce.test",
+        "myDomain": "brightwater",
+        "timeZoneSidKey": "Europe/Amsterdam",
+        "defaultCurrencyIsoCode": "EUR",
+        "defaultLocaleSidKey": "en_GB",
+        "orgWideDefaults": {
+          "Account": "ReadOnly",
+          "Contact": "ControlledByParent",
+          "Lead": "ReadWrite",
+          "Opportunity": "Private",
+          "Task": "Private"
+        },
+        "dailyApiRequests": {
+          "max": 15000,
+          "used": 138
+        },
+        "dataStorageMB": {
+          "max": 200,
+          "used": 3
+        },
+        "defaultUserId": "005Fd0000000001IAA",
+        "limits": {
+          "maxRowsPerNamespace": 2
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "mailbox-over-bound",
+  "title": "Mailbox rows carry bounds below their authored rows: whole-mailbox reads and capacity-checked writes fail with FAILED_PRECONDITION, reads by id keep working",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "mailboxes",
+      "rowId": "dana.reyes@example.test",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "displayName": "Dana Reyes",
+        "historyId": 1200,
+        "messagesTotal": 20,
+        "threadsTotal": 12,
+        "sequence": 300,
+        "limits": {
+          "labels": 3,
+          "drafts": 1
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "mailboxes",
+      "rowId": "sam.okafor@example.test",
+      "value": {
+        "emailAddress": "sam.okafor@example.test",
+        "displayName": "Sam Okafor",
+        "historyId": 40,
+        "messagesTotal": 3,
+        "threadsTotal": 2,
+        "sequence": 20,
+        "limits": {
+          "messages": 2
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000c01",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000c01",
+        "threadId": "18f0000000000c01",
+        "labelIds": [
+          "DRAFT"
+        ],
+        "snippet": "Hi, Please find the Q3 budget summary below. I need sign-off by Wednesday. - Infra: 42k - Tooling: 9k - Travel: 3k Dana",
+        "historyId": 1119,
+        "internalDate": "1789315200000",
+        "sizeEstimate": 354,
+        "headers": {
+          "from": "dana.reyes@example.test",
+          "fromName": "Dana Reyes",
+          "to": [
+            "sam.okafor@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Q3 budget sign-off",
+          "date": "Sun, 13 Sep 2026 16:00:00 +0000",
+          "messageId": "<18f0000000000c01@example.test>",
+          "references": []
+        },
+        "body": {
+          "text": "Hi,\n\nPlease find the Q3 budget summary below. I need sign-off by Wednesday.\n\n- Infra: 42k\n- Tooling: 9k\n- Travel: 3k\n\nDana"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    }
+  ]
+}

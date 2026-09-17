@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "bounds",
+  "title": "meta.limits.scan_rows lowered to 1 and meta.default_user_id cleared: bounded scans (including the identity fallback) fail instead of truncating; exact reads still work",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "meta",
+      "rowId": "service",
+      "value": {
+        "default_user_id": null,
+        "last_snowflake": "1549064680243200037",
+        "limits": {
+          "scan_rows": 1
+        }
+      }
+    }
+  ]
+}

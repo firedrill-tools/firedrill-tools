@@ -1,0 +1,616 @@
+{
+  "schemaVersion": 1,
+  "id": "stripe-rate-limited",
+  "title": "Every call answers HTTP 429 rate_limit and nothing is written",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the rate-limited conformance flow against the synthetic Stripe Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "balance-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "balance.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "charges-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "charges.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "charges-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "charges.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoice-items-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoice_items.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-finalize-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.finalize"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-pay-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.pay"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-void-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "invoices.void"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-cancel-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.cancel"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-capture-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.capture"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-confirm-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.confirm"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-intents-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_intents.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-methods-attach-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_methods.attach"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-methods-detach-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_methods.detach"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payment-methods-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "payment_methods.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "prices-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "prices.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "prices-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "prices.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "prices-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "prices.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "products-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "products.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "products-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "products.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "products-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "products.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "products-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "products.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "refunds-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "refunds.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "refunds-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "refunds.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-cancel-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.cancel"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-retrieve-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.retrieve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "subscriptions-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "subscriptions.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "stripe",
+        "operationId": "customers.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "customers-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "refunds-count",
+      "kind": "state.count",
+      "packageId": "stripe",
+      "namespace": "refunds",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "payment_intent-succeeded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "stripe",
+        "eventId": "payment_intent.succeeded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

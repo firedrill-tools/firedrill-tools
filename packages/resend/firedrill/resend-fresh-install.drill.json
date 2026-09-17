@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "resend-fresh-install",
+  "title": "An actor without resendApiKeyId uses the Production key and sees the seeded team",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the fresh-install flow against the synthetic Resend Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "workspace-context-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "workspace.context"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "domains-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "domains.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

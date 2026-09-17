@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "id": "unified-connections-flow",
+  "title": "Connections: filters and paging, create with permission/category checks, update narrows permissions, remove cascades data",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the connections flow against the synthetic Unified.to Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "connections-list-ok-62",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-get-ok-63",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-create-ok-64",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-update-ok-65",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-remove-ok-66",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-list-error-67",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-create-error-68",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-get-error-69",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-update-error-70",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-remove-error-71",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-error-72",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-error-73",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-count-74",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "connections",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "contacts-count-75",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "object-deleted-events-76",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unified",
+        "eventId": "object.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

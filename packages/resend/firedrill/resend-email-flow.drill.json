@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "id": "resend-email-flow",
+  "title": "Send, batch, read, page, reschedule and cancel emails; every send validation branch",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the email-flow flow against the synthetic Resend Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "emails-send-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-send-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-send-batch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send_batch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-send-batch-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send_batch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-cancel-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.cancel"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-cancel-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.cancel"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-count",
+      "kind": "state.count",
+      "packageId": "resend",
+      "namespace": "emails",
+      "comparison": {
+        "operator": "equals",
+        "value": 29
+      }
+    },
+    {
+      "id": "email-sent-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "resend",
+        "eventId": "email.sent"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "email-delivered-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "resend",
+        "eventId": "email.delivered"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "email-bounced-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "resend",
+        "eventId": "email.bounced"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "usage-sent",
+      "kind": "state.value",
+      "packageId": "resend",
+      "namespace": "meta",
+      "rowId": "usage",
+      "path": [
+        "sent"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "send-before-cancel",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "resend",
+              "operationId": "emails.send"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "resend",
+              "operationId": "emails.get"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "resend",
+              "operationId": "emails.cancel"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

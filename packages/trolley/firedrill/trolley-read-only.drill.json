@@ -1,0 +1,468 @@
+{
+  "schemaVersion": 1,
+  "id": "trolley-read-only",
+  "title": "Read-only key: every read succeeds, every write answers 403 not_authorized and changes nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "viewer",
+  "task": {
+    "instruction": "Run the read-only conformance flow against the synthetic Trolley Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "recipients-create-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "recipients-update-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "recipients-delete-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "recipient-accounts-create-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "recipient-accounts-update-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "recipient-accounts-delete-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "batches-create-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "batches-update-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "batches-delete-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "batches-generate-quote-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.generate_quote"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "batches-start-processing-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.start_processing"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payments-create-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "payments.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payments-update-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "payments.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "payments-delete-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "payments.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "recipients-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "batches-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "batches-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "batches-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "batches-generate-quote-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.generate_quote"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "batches-start-processing-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.start_processing"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "payments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "payments.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "payments.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipients-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipients.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-batches",
+      "kind": "state.count",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "count-recipients",
+      "kind": "state.count",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    }
+  ]
+}

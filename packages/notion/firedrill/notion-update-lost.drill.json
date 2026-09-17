@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-update-lost",
+  "title": "pages.update commits the change although the caller sees 409 conflict_error",
+  "targetId": "conformance-agent",
+  "scenarioId": "update-lost",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the update-lost conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "pages-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-update-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "pages-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "t7-status-committed",
+      "kind": "state.value",
+      "packageId": "notion",
+      "namespace": "pages",
+      "rowId": "fd000000-0000-4000-8000-000200000126",
+      "path": [
+        "properties",
+        "Status",
+        "value",
+        "name"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "In progress"
+      }
+    },
+    {
+      "id": "page-properties-updated-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "page.properties_updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "rate-limited",
+  "title": "Every write answers HTTP 429 Retry later (Retry-After: 60) while reads keep working",
+  "faults": [
+    {
+      "packageId": "gitlab",
+      "faultId": "api-rate-limited"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "datadog-monitors",
+  "title": "Monitors: list, search, get, create with evaluation, update, validate and delete with force",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the monitors flow against the synthetic Datadog Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "monitors-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "monitors-search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 6
+      }
+    },
+    {
+      "id": "monitors-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "monitors-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "monitors-delete-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "monitors-validate-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.validate"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "monitors-validate-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "monitors.validate"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "monitors-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "composite-no-data",
+      "kind": "state.value",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500005",
+      "path": [
+        "overallState"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "No Data"
+      }
+    },
+    {
+      "id": "disk-priority",
+      "kind": "state.value",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500003",
+      "path": [
+        "priority"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "created-recovered",
+      "kind": "state.value",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500010",
+      "path": [
+        "overallState"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "OK"
+      }
+    },
+    {
+      "id": "state-changes",
+      "kind": "event.count",
+      "event": {
+        "packageId": "datadog",
+        "eventId": "monitor.state_changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "events-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "events",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    }
+  ]
+}

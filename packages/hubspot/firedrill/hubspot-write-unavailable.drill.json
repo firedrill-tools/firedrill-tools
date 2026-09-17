@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "id": "hubspot-write-unavailable",
+  "title": "Writes answer HTTP 503 and leave state untouched while reads keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "write-unavailable",
+  "actorId": "rep",
+  "task": {
+    "instruction": "Run the write-unavailable conformance flow against the synthetic HubSpot Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "objects-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-archive-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.archive"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-create-default-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.create-default"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-batch-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.batch-create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "associations-archive-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "associations.archive"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    },
+    {
+      "id": "companies-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "companies",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "deals-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "deals",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "notes-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "notes",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "tasks-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "tasks",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "associations-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "associations",
+      "comparison": {
+        "operator": "equals",
+        "value": 48
+      }
+    },
+    {
+      "id": "object-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "object.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "object-property-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "object.property-changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "association-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "association.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

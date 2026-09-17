@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "salesforce-denied",
+  "title": "An actor without operation grants is denied by the framework and sees Salesforce's API_DISABLED_FOR_ORG 403 body",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic Salesforce Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "userinfo-get-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "userinfo.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "query-execute-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "query.execute"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "records-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "records-create-ok-eq-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "accounts-count-10",
+      "kind": "state.count",
+      "packageId": "salesforce",
+      "namespace": "accounts",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    }
+  ]
+}

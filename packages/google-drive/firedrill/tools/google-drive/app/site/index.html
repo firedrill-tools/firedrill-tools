@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home - Google Drive</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/google-drive-2026.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="gd" id="app">
+      <header class="gd-header">
+        <div class="gd-header-start">
+          <button type="button" class="icon-btn large" id="menu-toggle" aria-label="Main menu" aria-expanded="true" title="Main menu"><span data-icon="menu"></span></button>
+          <a class="gd-logo" href="#home" id="logo-link" aria-label="Drive"><img src="./assets/google-drive-2026.svg" alt="" width="40" height="37" /><span class="gd-logo-text">Drive</span></a>
+        </div>
+        <form class="gd-search" id="search-form" role="search">
+          <button type="submit" class="icon-btn gd-search-icon" id="search-submit" aria-label="Search" title="Search"><span data-icon="search"></span></button>
+          <label class="visually-hidden" for="search">Search in Drive</label>
+          <input id="search" type="text" placeholder="Search in Drive" autocomplete="off" spellcheck="false" />
+          <button type="button" class="icon-btn gd-search-clear" id="search-clear" aria-label="Clear search" title="Clear search" hidden><span data-icon="close"></span></button>
+          <button type="button" class="icon-btn gd-search-tune" id="search-tune" aria-label="Advanced search" aria-expanded="false" title="Advanced search"><span data-icon="tune"></span></button>
+        </form>
+        <div class="gd-header-end">
+          <button type="button" class="icon-btn large" id="offline-btn" aria-label="Ready for offline" title="Ready for offline"><span data-icon="offline_pin"></span></button>
+          <button type="button" class="icon-btn large" id="help-btn" aria-label="Support" aria-haspopup="menu" aria-expanded="false" title="Support"><span data-icon="help"></span></button>
+          <button type="button" class="icon-btn large" id="settings-btn" aria-label="Settings" aria-expanded="false" title="Settings"><span data-icon="settings"></span></button>
+          <button type="button" class="icon-btn large gd-apps-btn" id="apps-btn" aria-label="Google apps" aria-expanded="false" title="Google apps"><span data-icon="apps"></span></button>
+          <button type="button" class="gd-account" id="account-btn" aria-label="Google Account" aria-expanded="false" title="Google Account"><span class="gd-avatar" id="account-avatar" aria-hidden="true">?</span></button>
+        </div>
+        <div class="gd-progress" id="loading" role="progressbar" aria-label="Loading" hidden></div>
+      </header>
+
+      <div class="gd-body">
+        <aside class="gd-sidebar" id="sidebar" aria-label="Drive navigation">
+          <button type="button" class="gd-new" id="new-btn" aria-expanded="false" aria-haspopup="menu"><span data-icon="create_plus"></span><span class="gd-new-label">New</span></button>
+          <nav class="gd-nav" id="nav" aria-label="Drive sections"></nav>
+          <div class="gd-storage" id="storage"></div>
+        </aside>
+        <div class="gd-scrim" id="scrim" hidden></div>
+
+        <main class="gd-main" id="main">
+          <section class="gd-surface" id="surface" aria-label="Files">
+            <div class="gd-surface-head">
+              <div class="gd-crumbs" id="crumbs"></div>
+              <div class="gd-surface-tools">
+                <div class="gd-view-toggle" role="group" aria-label="Layout">
+                  <button type="button" class="icon-btn" id="layout-list" aria-label="List layout" aria-pressed="true" title="List layout"><span data-icon="view_list"></span></button>
+                  <button type="button" class="icon-btn" id="layout-grid" aria-label="Grid layout" aria-pressed="false" title="Grid layout"><span data-icon="grid_view"></span></button>
+                </div>
+                <button type="button" class="icon-btn" id="details-toggle" aria-label="View details" aria-pressed="false" title="View details"><span data-icon="info"></span></button>
+              </div>
+            </div>
+            <div class="gd-chips" id="chips" aria-label="Filters"></div>
+            <div class="gd-selbar" id="selbar" role="toolbar" aria-label="Selection actions" hidden></div>
+            <div class="gd-banner" id="banner" role="alert" hidden>
+              <span data-icon="error_outline"></span>
+              <span class="gd-banner-text" id="banner-text"></span>
+              <button type="button" class="gd-text-btn" id="banner-retry">Retry</button>
+            </div>
+            <div class="gd-content" id="content" aria-live="polite"></div>
+          </section>
+          <aside class="gd-details" id="details" aria-label="File details" hidden></aside>
+        </main>
+        <aside class="gd-rail" id="side-panel" aria-label="Side panel"></aside>
+      </div>
+    </div>
+
+    <div class="gd-preview" id="preview" role="dialog" aria-label="File preview" aria-modal="true" hidden></div>
+
+    <dialog class="gd-dialog gd-modal" id="modal" aria-labelledby="modal-title">
+      <h2 id="modal-title"></h2>
+      <div id="modal-body"></div>
+      <div class="gd-dialog-actions" id="modal-actions"></div>
+    </dialog>
+
+    <dialog class="gd-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <h2 id="confirm-title">Confirm</h2>
+        <p id="confirm-text"></p>
+        <div class="gd-dialog-actions" id="confirm-actions"></div>
+      </form>
+    </dialog>
+
+    <div class="gd-snackbar" id="snackbar" role="status" aria-live="polite" hidden>
+      <span id="snackbar-text"></span>
+      <button type="button" class="gd-snackbar-action" id="snackbar-action" hidden></button>
+    </div>
+  </body>
+</html>

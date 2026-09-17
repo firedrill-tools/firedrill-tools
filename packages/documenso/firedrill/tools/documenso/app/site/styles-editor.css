@@ -1,0 +1,46 @@
+/* Editor flow card, field palette, signer rows and signing page. */
+.sticky { position: sticky; top: 80px; }
+.flow { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 12px; background: var(--widget); padding: 24px 16px 16px; min-height: 640px; }
+.flow-head { padding: 0 8px; }
+.flow-title { margin: 0; font-size: 24px; font-weight: 600; }
+.flow-desc { margin: 8px 0 0; color: var(--muted-foreground); font-size: 14px; }
+.flow-hr { width: 100%; border: 0; border-top: 1px solid var(--border); margin: 16px 0; }
+.flow-body { flex: 1; padding: 0 8px; }
+.flow-fields { display: flex; flex-direction: column; gap: 16px; }
+.flow-foot { margin-top: 24px; padding: 0 8px; }
+.flow-progress p { margin: 0; font-size: 14px; }
+.flow-bar { margin-top: 8px; height: 8px; border-radius: 999px; background: hsl(95 71% 67% / 0.2); overflow: hidden; }
+.flow-bar-fill { height: 100%; background: var(--documenso-700); border-radius: 999px; transition: width 0.3s; }
+.flow-bar-fill.s1 { width: 25%; } .flow-bar-fill.s2 { width: 50%; } .flow-bar-fill.s3 { width: 75%; } .flow-bar-fill.s4 { width: 100%; }
+.flow-actions { margin-top: 16px; display: flex; gap: 16px; }
+.flow-actions .btn { flex: 1; }
+.flow .input { background: var(--background); }
+.advanced summary { cursor: pointer; font-weight: 500; padding: 8px 0; }
+.advanced[open] summary { margin-bottom: 12px; }
+.signer-list { display: flex; flex-direction: column; gap: 12px; }
+.signer-row { display: flex; align-items: flex-start; gap: 8px; }
+.signer-main { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; min-width: 0; }
+.signer-order { width: 64px; display: none; }
+.signer-list.is-sequential .signer-order { display: block; }
+.signer-role { width: 170px; }
+.signer-add { display: flex; gap: 12px; flex-wrap: wrap; }
+.field-palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.palette-tile { height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--background); color: var(--muted-foreground); font-size: 14px; cursor: pointer; }
+.palette-tile .ic { width: 16px; height: 16px; }
+.palette-tile.is-script span { font-family: "Caveat", cursive; font-size: 22px; }
+.palette-tile:hover:not(:disabled) { border-color: hsl(var(--c) / 0.8); color: var(--foreground); }
+.palette-tile.is-selected { border: 2px solid hsl(var(--c)); background: hsl(var(--c) / 0.1); color: var(--foreground); }
+.palette-tile:disabled { opacity: 0.45; cursor: not-allowed; }
+.recipient-summary { border-top: 1px solid var(--border); padding-top: 12px; display: flex; flex-direction: column; gap: 4px; }
+.sign-invite { margin: 8px 0 0; color: var(--muted-foreground); }
+.sign-panel .sign-fields { display: flex; flex-direction: column; gap: 16px; padding: 16px 16px 0; }
+.field-hit { position: absolute; inset: 0; background: transparent; border: 0; cursor: pointer; border-radius: 4px; }
+.field-hit:hover { background: hsl(var(--c) / 0.15); }
+.sig-input { font-family: "Caveat", cursive; font-size: 28px; height: 56px; }
+.sign-done { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 96px 16px; }
+.sign-done h1 { margin: 8px 0 0; font-size: 30px; font-weight: 600; max-width: 40ch; }
+.sign-done-ic { color: var(--green-500); }
+.sign-done-ic .ic { width: 64px; height: 64px; }
+.sign-done-ic.is-red { color: var(--red-500); }
+body.is-signing .header-nav, body.is-signing .header-inbox, body.is-signing .org-switcher { visibility: hidden; }
+@media (max-width: 1024px) { .doc-left, .doc-right { grid-column: span 12; } .sticky { position: static; } .header-nav { display: none; } }

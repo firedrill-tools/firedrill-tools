@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "waterfall-key-create-lost",
+  "title": "api_keys.create commits the key and then answers 500: a blind retry creates a duplicate",
+  "targetId": "conformance-agent",
+  "scenarioId": "key-create-lost",
+  "actorId": "master",
+  "task": {
+    "instruction": "Run the key-create-lost flow against the synthetic Waterfall Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "api_keys-create-errors-internal_failed_create_api_key",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "api_keys-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "api-keys-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "api-keys",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "api-key-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "api-key.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

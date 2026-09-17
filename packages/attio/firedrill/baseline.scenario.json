@@ -1,0 +1,4494 @@
+{
+  "schemaVersion": 1,
+  "id": "baseline",
+  "title": "Baseline: the fictional Kestrel Labs workspace exactly as seeded (no faults)",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "nextSeq": 1000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "workspace",
+      "rowId": "workspace",
+      "value": {
+        "workspace_id": "00000001-0000-4000-8000-000000000001",
+        "workspace_name": "Kestrel Labs",
+        "workspace_slug": "kestrel-labs",
+        "workspace_logo_url": null,
+        "client_id": "00000001-0000-4000-8000-000000000900",
+        "token_issued_at": "2026-09-01T08:00:00.000000000Z",
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "workspace-members",
+      "rowId": "00000009-0000-4000-8000-000000000001",
+      "value": {
+        "workspace_member_id": "00000009-0000-4000-8000-000000000001",
+        "first_name": "Priya",
+        "last_name": "Raman",
+        "avatar_url": null,
+        "email_address": "priya.raman@kestrel-labs.example.com",
+        "access_level": "admin",
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "workspace-members",
+      "rowId": "00000009-0000-4000-8000-000000000002",
+      "value": {
+        "workspace_member_id": "00000009-0000-4000-8000-000000000002",
+        "first_name": "Tomás",
+        "last_name": "Ferreira",
+        "avatar_url": null,
+        "email_address": "tomas.ferreira@kestrel-labs.example.com",
+        "access_level": "member",
+        "created_at": "2025-04-14T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "workspace-members",
+      "rowId": "00000009-0000-4000-8000-000000000003",
+      "value": {
+        "workspace_member_id": "00000009-0000-4000-8000-000000000003",
+        "first_name": "Hana",
+        "last_name": "Sato",
+        "avatar_url": null,
+        "email_address": "hana.sato@kestrel-labs.example.com",
+        "access_level": "member",
+        "created_at": "2025-06-09T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "workspace-members",
+      "rowId": "00000009-0000-4000-8000-000000000004",
+      "value": {
+        "workspace_member_id": "00000009-0000-4000-8000-000000000004",
+        "first_name": "Owen",
+        "last_name": "Fielding",
+        "avatar_url": null,
+        "email_address": "owen.fielding@kestrel-labs.example.com",
+        "access_level": "suspended",
+        "created_at": "2025-05-20T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "objects",
+      "rowId": "people",
+      "value": {
+        "object_id": "00000002-0000-4000-8000-000000000001",
+        "api_slug": "people",
+        "singular_noun": "Person",
+        "plural_noun": "People",
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "objects",
+      "rowId": "companies",
+      "value": {
+        "object_id": "00000002-0000-4000-8000-000000000002",
+        "api_slug": "companies",
+        "singular_noun": "Company",
+        "plural_noun": "Companies",
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "objects",
+      "rowId": "deals",
+      "value": {
+        "object_id": "00000002-0000-4000-8000-000000000003",
+        "api_slug": "deals",
+        "singular_noun": "Deal",
+        "plural_noun": "Deals",
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/record_id",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000001",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Record ID",
+        "description": null,
+        "api_slug": "record_id",
+        "type": "text",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 0,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/name",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000002",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Name",
+        "description": null,
+        "api_slug": "name",
+        "type": "personal-name",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 1,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/email_addresses",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000003",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Email addresses",
+        "description": null,
+        "api_slug": "email_addresses",
+        "type": "email-address",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": true,
+        "is_multiselect": true,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 2,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/phone_numbers",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000004",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Phone numbers",
+        "description": null,
+        "api_slug": "phone_numbers",
+        "type": "phone-number",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": true,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 3,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/job_title",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000005",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Job title",
+        "description": null,
+        "api_slug": "job_title",
+        "type": "text",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 4,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/description",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000006",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Description",
+        "description": null,
+        "api_slug": "description",
+        "type": "text",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 5,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/company",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000007",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Company",
+        "description": null,
+        "api_slug": "company",
+        "type": "record-reference",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": {
+          "object": "companies",
+          "attribute": "team"
+        },
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": [
+              "00000002-0000-4000-8000-000000000002"
+            ]
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 6,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/created_at",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000008",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Created at",
+        "description": null,
+        "api_slug": "created_at",
+        "type": "timestamp",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 7,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/created_by",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000009",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Created by",
+        "description": null,
+        "api_slug": "created_by",
+        "type": "actor-reference",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 8,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/record_id",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000010",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Record ID",
+        "description": null,
+        "api_slug": "record_id",
+        "type": "text",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 0,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/name",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000011",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Name",
+        "description": null,
+        "api_slug": "name",
+        "type": "text",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 1,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/domains",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000012",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Domains",
+        "description": null,
+        "api_slug": "domains",
+        "type": "domain",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": true,
+        "is_multiselect": true,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 2,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/description",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000013",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Description",
+        "description": null,
+        "api_slug": "description",
+        "type": "text",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 3,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/categories",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000014",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Categories",
+        "description": null,
+        "api_slug": "categories",
+        "type": "select",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": true,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000001",
+            "title": "SaaS",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000002",
+            "title": "Logistics",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000003",
+            "title": "Energy",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000004",
+            "title": "Healthcare",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000005",
+            "title": "Hardware",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000006",
+            "title": "Finance",
+            "is_archived": true
+          }
+        ],
+        "statuses": [],
+        "position": 4,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/employee_range",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000015",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Employee range",
+        "description": null,
+        "api_slug": "employee_range",
+        "type": "select",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000007",
+            "title": "1-10",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000008",
+            "title": "11-50",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000009",
+            "title": "51-250",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000010",
+            "title": "251-1K",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000011",
+            "title": "1K-5K",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000012",
+            "title": "5K+",
+            "is_archived": false
+          }
+        ],
+        "statuses": [],
+        "position": 5,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/team",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000016",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Team",
+        "description": null,
+        "api_slug": "team",
+        "type": "record-reference",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": true,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": {
+          "object": "people",
+          "attribute": "company"
+        },
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": [
+              "00000002-0000-4000-8000-000000000001"
+            ]
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 6,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/renewal_date",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000017",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Renewal date",
+        "description": null,
+        "api_slug": "renewal_date",
+        "type": "date",
+        "is_system_attribute": false,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 7,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/created_at",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000018",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Created at",
+        "description": null,
+        "api_slug": "created_at",
+        "type": "timestamp",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 8,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/companies/created_by",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000019",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Created by",
+        "description": null,
+        "api_slug": "created_by",
+        "type": "actor-reference",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 9,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/record_id",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000020",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Record ID",
+        "description": null,
+        "api_slug": "record_id",
+        "type": "text",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 0,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/name",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000021",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Deal name",
+        "description": null,
+        "api_slug": "name",
+        "type": "text",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": true,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 1,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/stage",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000022",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Deal stage",
+        "description": null,
+        "api_slug": "stage",
+        "type": "status",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": true,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000001",
+            "title": "Lead",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000002",
+            "title": "In Progress",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000003",
+            "title": "Won 🎉",
+            "is_archived": false,
+            "celebration_enabled": true,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000004",
+            "title": "Lost",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          }
+        ],
+        "position": 2,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/owner",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000023",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Deal owner",
+        "description": null,
+        "api_slug": "owner",
+        "type": "actor-reference",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": true,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 3,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/value",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000024",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Deal value",
+        "description": null,
+        "api_slug": "value",
+        "type": "currency",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": "USD",
+            "display_type": "symbol"
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 4,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/associated_people",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000025",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Associated people",
+        "description": null,
+        "api_slug": "associated_people",
+        "type": "record-reference",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": true,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": [
+              "00000002-0000-4000-8000-000000000001"
+            ]
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 5,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/associated_company",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000026",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Associated company",
+        "description": null,
+        "api_slug": "associated_company",
+        "type": "record-reference",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": [
+              "00000002-0000-4000-8000-000000000002"
+            ]
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 6,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/created_at",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000027",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Created at",
+        "description": null,
+        "api_slug": "created_at",
+        "type": "timestamp",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 7,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/deals/created_by",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000028",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Created by",
+        "description": null,
+        "api_slug": "created_by",
+        "type": "actor-reference",
+        "is_system_attribute": true,
+        "is_writable": false,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 8,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "lists/enterprise_accounts/stage",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000029",
+        "target": "lists",
+        "parent_id": "00000005-0000-4000-8000-000000000141",
+        "title": "Stage",
+        "description": null,
+        "api_slug": "stage",
+        "type": "status",
+        "is_system_attribute": false,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000005",
+            "title": "Prospecting",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000006",
+            "title": "Qualified",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000007",
+            "title": "Negotiation",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000008",
+            "title": "Closed",
+            "is_archived": false,
+            "celebration_enabled": true,
+            "target_time_in_status": null
+          }
+        ],
+        "position": 0,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "lists/enterprise_accounts/priority",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000030",
+        "target": "lists",
+        "parent_id": "00000005-0000-4000-8000-000000000141",
+        "title": "Priority",
+        "description": null,
+        "api_slug": "priority",
+        "type": "select",
+        "is_system_attribute": false,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000013",
+            "title": "High",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000014",
+            "title": "Medium",
+            "is_archived": false
+          },
+          {
+            "option_id": "0000000a-0000-4000-8000-000000000015",
+            "title": "Low",
+            "is_archived": false
+          }
+        ],
+        "statuses": [],
+        "position": 1,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "lists/enterprise_accounts/next_review",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000031",
+        "target": "lists",
+        "parent_id": "00000005-0000-4000-8000-000000000141",
+        "title": "Next review",
+        "description": null,
+        "api_slug": "next_review",
+        "type": "date",
+        "is_system_attribute": false,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 2,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "lists/recruiting/stage",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000032",
+        "target": "lists",
+        "parent_id": "00000005-0000-4000-8000-000000000142",
+        "title": "Stage",
+        "description": null,
+        "api_slug": "stage",
+        "type": "status",
+        "is_system_attribute": false,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000009",
+            "title": "Applied",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000010",
+            "title": "Screen",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000011",
+            "title": "Interview",
+            "is_archived": false,
+            "celebration_enabled": false,
+            "target_time_in_status": null
+          },
+          {
+            "status_id": "0000000b-0000-4000-8000-000000000012",
+            "title": "Offer",
+            "is_archived": false,
+            "celebration_enabled": true,
+            "target_time_in_status": null
+          }
+        ],
+        "position": 0,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "lists/recruiting/role",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000033",
+        "target": "lists",
+        "parent_id": "00000005-0000-4000-8000-000000000142",
+        "title": "Role",
+        "description": null,
+        "api_slug": "role",
+        "type": "text",
+        "is_system_attribute": false,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 1,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "lists/investors/check_size",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000034",
+        "target": "lists",
+        "parent_id": "00000005-0000-4000-8000-000000000143",
+        "title": "Check size",
+        "description": null,
+        "api_slug": "check_size",
+        "type": "currency",
+        "is_system_attribute": false,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": "USD",
+            "display_type": "symbol"
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 0,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "lists/partner_referrals/referred_by",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000035",
+        "target": "lists",
+        "parent_id": "00000005-0000-4000-8000-000000000144",
+        "title": "Referred by",
+        "description": null,
+        "api_slug": "referred_by",
+        "type": "actor-reference",
+        "is_system_attribute": false,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": false,
+        "is_multiselect": false,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 0,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000101",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000101",
+        "created_at": "2025-09-01T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2025-09-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Halcyon Freight"
+            }
+          ],
+          "domains": [
+            {
+              "active_from": "2025-09-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "halcyonfreight.example.com",
+              "root_domain": "example.com"
+            }
+          ],
+          "description": [
+            {
+              "active_from": "2025-09-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Regional freight carrier running 400 trucks across the Nordics."
+            }
+          ],
+          "categories": [
+            {
+              "active_from": "2025-09-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000002"
+            }
+          ],
+          "employee_range": [
+            {
+              "active_from": "2025-09-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000010"
+            }
+          ],
+          "team": [
+            {
+              "active_from": "2026-01-05T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000111"
+            },
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000113"
+            }
+          ],
+          "renewal_date": [
+            {
+              "active_from": "2025-09-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "2026-11-01"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000102",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000102",
+        "created_at": "2025-10-12T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2025-10-12T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Brightwater Analytics"
+            }
+          ],
+          "domains": [
+            {
+              "active_from": "2025-10-12T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "brightwater.example.com",
+              "root_domain": "example.com"
+            },
+            {
+              "active_from": "2025-10-12T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "brightwater-analytics.example.com",
+              "root_domain": "example.com"
+            }
+          ],
+          "description": [
+            {
+              "active_from": "2025-10-12T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Revenue analytics for mid-market retailers."
+            }
+          ],
+          "categories": [
+            {
+              "active_from": "2025-10-12T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000001"
+            },
+            {
+              "active_from": "2025-10-12T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000006"
+            }
+          ],
+          "employee_range": [
+            {
+              "active_from": "2025-10-12T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000009"
+            }
+          ],
+          "team": [
+            {
+              "active_from": "2026-01-18T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000112"
+            },
+            {
+              "active_from": "2026-07-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000122"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000103",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000103",
+        "created_at": "2025-11-03T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2025-11-03T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Norrland Energy"
+            }
+          ],
+          "domains": [
+            {
+              "active_from": "2025-11-03T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "norrland-energy.example.com",
+              "root_domain": "example.com"
+            }
+          ],
+          "categories": [
+            {
+              "active_from": "2025-11-03T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000003"
+            }
+          ],
+          "employee_range": [
+            {
+              "active_from": "2025-11-03T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000011"
+            }
+          ],
+          "team": [
+            {
+              "active_from": "2026-03-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000115"
+            },
+            {
+              "active_from": "2026-04-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000118"
+            }
+          ],
+          "renewal_date": [
+            {
+              "active_from": "2025-11-03T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "2027-01-15"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000104",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000104",
+        "created_at": "2026-01-20T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-01-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Cobalt & Pine"
+            }
+          ],
+          "domains": [
+            {
+              "active_from": "2026-01-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "cobaltpine.example.com",
+              "root_domain": "example.com"
+            }
+          ],
+          "description": [
+            {
+              "active_from": "2026-01-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Outdoor sensor hardware."
+            }
+          ],
+          "categories": [
+            {
+              "active_from": "2026-01-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000005"
+            }
+          ],
+          "employee_range": [
+            {
+              "active_from": "2026-01-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000008"
+            }
+          ],
+          "team": [
+            {
+              "active_from": "2026-05-06T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000120"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000105",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000105",
+        "created_at": "2025-03-10T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2025-03-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Cobalt and Pine Ltd"
+            }
+          ],
+          "domains": [
+            {
+              "active_from": "2025-03-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "cobaltpine.example.com",
+              "root_domain": "example.com"
+            }
+          ],
+          "description": [
+            {
+              "active_from": "2025-03-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Legacy import from the 2024 spreadsheet; duplicate of Cobalt & Pine."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000106",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000106",
+        "created_at": "2026-02-02T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Meridian Health Systems"
+            }
+          ],
+          "domains": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "meridianhealth.example.com",
+              "root_domain": "example.com"
+            }
+          ],
+          "categories": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000004"
+            }
+          ],
+          "employee_range": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000012"
+            }
+          ],
+          "team": [
+            {
+              "active_from": "2026-02-14T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000114"
+            },
+            {
+              "active_from": "2026-03-22T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000117"
+            }
+          ],
+          "renewal_date": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "2026-12-31"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000107",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000107",
+        "created_at": "2026-03-15T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-03-15T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Juniper Logistics"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000108",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000108",
+        "created_at": "2026-04-08T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-04-08T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Atlas Microfab"
+            }
+          ],
+          "domains": [
+            {
+              "active_from": "2026-04-08T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "atlasmicrofab.example.com",
+              "root_domain": "example.com"
+            }
+          ],
+          "description": [
+            {
+              "active_from": "2026-04-08T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Contract MEMS fabrication."
+            }
+          ],
+          "categories": [
+            {
+              "active_from": "2026-04-08T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000005"
+            }
+          ],
+          "employee_range": [
+            {
+              "active_from": "2026-04-08T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000009"
+            }
+          ],
+          "team": [
+            {
+              "active_from": "2026-04-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000119"
+            },
+            {
+              "active_from": "2026-06-17T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000121"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "companies",
+      "rowId": "00000004-0000-4000-8000-000000000109",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000109",
+        "created_at": "2026-05-01T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-05-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Ondine Capital"
+            }
+          ],
+          "domains": [
+            {
+              "active_from": "2026-05-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "domain": "ondinecapital.example.com",
+              "root_domain": "example.com"
+            }
+          ],
+          "description": [
+            {
+              "active_from": "2026-05-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Seed-stage fund."
+            }
+          ],
+          "employee_range": [
+            {
+              "active_from": "2026-05-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000008"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000111",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000111",
+        "created_at": "2026-01-05T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-01-05T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Zoë",
+              "last_name": "Lindqvist",
+              "full_name": "Zoë Lindqvist"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-01-05T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "zoe.lindqvist@halcyonfreight.example.com",
+              "email_address": "zoe.lindqvist@halcyonfreight.example.com",
+              "email_domain": "halcyonfreight.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "zoe.lindqvist"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-01-05T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Head of Operations"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-01-05T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000101"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000112",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000112",
+        "created_at": "2026-01-18T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-01-18T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Marcus",
+              "last_name": "Bell",
+              "full_name": "Marcus Bell"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-01-18T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "marcus.bell@brightwater.example.com",
+              "email_address": "marcus.bell@brightwater.example.com",
+              "email_domain": "brightwater.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "marcus.bell"
+            },
+            {
+              "active_from": "2026-01-18T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "marcus@brightwater-analytics.example.com",
+              "email_address": "marcus@brightwater-analytics.example.com",
+              "email_domain": "brightwater-analytics.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "marcus"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-01-18T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "VP Finance"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-01-18T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000102"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000113",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000113",
+        "created_at": "2026-02-02T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Sam",
+              "last_name": "Chen",
+              "full_name": "Sam Chen"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "sam.chen@halcyonfreight.example.com",
+              "email_address": "sam.chen@halcyonfreight.example.com",
+              "email_domain": "halcyonfreight.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "sam.chen"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Fleet Manager"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-02-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000101"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000114",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000114",
+        "created_at": "2026-02-14T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-02-14T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Sam",
+              "last_name": "Okoro",
+              "full_name": "Sam Okoro"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-02-14T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "sam.okoro@meridianhealth.example.com",
+              "email_address": "sam.okoro@meridianhealth.example.com",
+              "email_domain": "meridianhealth.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "sam.okoro"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-02-14T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Procurement Lead"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-02-14T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000106"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000115",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000115",
+        "created_at": "2026-03-01T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-03-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Ines",
+              "last_name": "Duarte",
+              "full_name": "Ines Duarte"
+            }
+          ],
+          "phone_numbers": [
+            {
+              "active_from": "2026-03-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_phone_number": "+46 70 123 45 67",
+              "country_code": "SE",
+              "phone_number": "+46701234567"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-03-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Site Engineer"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-03-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000103"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000116",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000116",
+        "created_at": "2026-03-09T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-03-09T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Rafael",
+              "last_name": "Ortiz",
+              "full_name": "Rafael Ortiz"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-03-09T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "rafael.ortiz@example.com",
+              "email_address": "rafael.ortiz@example.com",
+              "email_domain": "example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "rafael.ortiz"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-03-09T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Solutions Engineer (candidate)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000117",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000117",
+        "created_at": "2026-03-22T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-03-22T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Aiko",
+              "last_name": "Tanaka",
+              "full_name": "Aiko Tanaka"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-03-22T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "aiko.tanaka@meridianhealth.example.com",
+              "email_address": "aiko.tanaka@meridianhealth.example.com",
+              "email_domain": "meridianhealth.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "aiko.tanaka"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-03-22T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "CTO"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-03-22T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000106"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000118",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000118",
+        "created_at": "2026-04-02T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-04-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Grace",
+              "last_name": "Mensah",
+              "full_name": "Grace Mensah"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-04-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "grace.mensah@norrland-energy.example.com",
+              "email_address": "grace.mensah@norrland-energy.example.com",
+              "email_domain": "norrland-energy.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "grace.mensah"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-04-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Data Analyst"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-04-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000103"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000119",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000119",
+        "created_at": "2026-04-11T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-04-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Leo",
+              "last_name": "Fischer",
+              "full_name": "Leo Fischer"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-04-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "leo.fischer@atlasmicrofab.example.com",
+              "email_address": "leo.fischer@atlasmicrofab.example.com",
+              "email_domain": "atlasmicrofab.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "leo.fischer"
+            }
+          ],
+          "phone_numbers": [
+            {
+              "active_from": "2026-04-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_phone_number": "+49 30 555 0142",
+              "country_code": "DE",
+              "phone_number": "+49305550142"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-04-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "COO"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-04-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000108"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000120",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000120",
+        "created_at": "2026-05-06T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-05-06T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Nadia",
+              "last_name": "Karim",
+              "full_name": "Nadia Karim"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-05-06T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "nadia.karim@cobaltpine.example.com",
+              "email_address": "nadia.karim@cobaltpine.example.com",
+              "email_domain": "cobaltpine.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "nadia.karim"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-05-06T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Founder"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-05-06T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000104"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000121",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000121",
+        "created_at": "2026-06-17T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-06-17T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Ben",
+              "last_name": "Adler",
+              "full_name": "Ben Adler"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-06-17T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "ben.adler@atlasmicrofab.example.com",
+              "email_address": "ben.adler@atlasmicrofab.example.com",
+              "email_domain": "atlasmicrofab.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "ben.adler"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-06-17T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Product Manager"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-06-17T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000108"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "people",
+      "rowId": "00000004-0000-4000-8000-000000000122",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000122",
+        "created_at": "2026-07-01T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-07-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "first_name": "Chloé",
+              "last_name": "Martin",
+              "full_name": "Chloé Martin"
+            }
+          ],
+          "email_addresses": [
+            {
+              "active_from": "2026-07-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "original_email_address": "chloe.martin@brightwater.example.com",
+              "email_address": "chloe.martin@brightwater.example.com",
+              "email_domain": "brightwater.example.com",
+              "email_root_domain": "example.com",
+              "email_local_specifier": "chloe.martin"
+            }
+          ],
+          "job_title": [
+            {
+              "active_from": "2026-07-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Account Executive"
+            }
+          ],
+          "company": [
+            {
+              "active_from": "2026-07-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000102"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "deals",
+      "rowId": "00000004-0000-4000-8000-000000000131",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000131",
+        "created_at": "2026-06-01T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-06-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Halcyon fleet rollout"
+            }
+          ],
+          "stage": [
+            {
+              "active_from": "2026-06-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000002"
+            }
+          ],
+          "owner": [
+            {
+              "active_from": "2026-06-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "referenced_actor_type": "workspace-member",
+              "referenced_actor_id": "00000009-0000-4000-8000-000000000002"
+            }
+          ],
+          "value": [
+            {
+              "active_from": "2026-06-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "currency_value": 48000,
+              "currency_code": "USD"
+            }
+          ],
+          "associated_people": [
+            {
+              "active_from": "2026-06-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000111"
+            },
+            {
+              "active_from": "2026-06-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000113"
+            }
+          ],
+          "associated_company": [
+            {
+              "active_from": "2026-06-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000101"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "deals",
+      "rowId": "00000004-0000-4000-8000-000000000132",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000132",
+        "created_at": "2026-07-15T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-07-15T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Brightwater pilot"
+            }
+          ],
+          "stage": [
+            {
+              "active_from": "2026-07-15T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000001"
+            }
+          ],
+          "owner": [
+            {
+              "active_from": "2026-07-15T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "referenced_actor_type": "workspace-member",
+              "referenced_actor_id": "00000009-0000-4000-8000-000000000003"
+            }
+          ],
+          "associated_people": [
+            {
+              "active_from": "2026-07-15T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000112"
+            }
+          ],
+          "associated_company": [
+            {
+              "active_from": "2026-07-15T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000102"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "deals",
+      "rowId": "00000004-0000-4000-8000-000000000133",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000133",
+        "created_at": "2026-05-10T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-05-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Meridian expansion"
+            }
+          ],
+          "stage": [
+            {
+              "active_from": "2026-05-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000003"
+            }
+          ],
+          "owner": [
+            {
+              "active_from": "2026-05-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "referenced_actor_type": "workspace-member",
+              "referenced_actor_id": "00000009-0000-4000-8000-000000000001"
+            }
+          ],
+          "value": [
+            {
+              "active_from": "2026-05-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "currency_value": 120000,
+              "currency_code": "USD"
+            }
+          ],
+          "associated_people": [
+            {
+              "active_from": "2026-05-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000114"
+            }
+          ],
+          "associated_company": [
+            {
+              "active_from": "2026-05-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000106"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "deals",
+      "rowId": "00000004-0000-4000-8000-000000000134",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000134",
+        "created_at": "2026-04-20T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-04-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Norrland renewal"
+            }
+          ],
+          "stage": [
+            {
+              "active_from": "2026-04-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000004"
+            }
+          ],
+          "owner": [
+            {
+              "active_from": "2026-04-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "referenced_actor_type": "workspace-member",
+              "referenced_actor_id": "00000009-0000-4000-8000-000000000004"
+            }
+          ],
+          "value": [
+            {
+              "active_from": "2026-04-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "currency_value": 30000,
+              "currency_code": "USD"
+            }
+          ],
+          "associated_company": [
+            {
+              "active_from": "2026-04-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000103"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "deals",
+      "rowId": "00000004-0000-4000-8000-000000000135",
+      "value": {
+        "record_id": "00000004-0000-4000-8000-000000000135",
+        "created_at": "2026-08-25T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "values": {
+          "name": [
+            {
+              "active_from": "2026-08-25T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Atlas Microfab POC"
+            }
+          ],
+          "stage": [
+            {
+              "active_from": "2026-08-25T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000001"
+            }
+          ],
+          "owner": [
+            {
+              "active_from": "2026-08-25T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "referenced_actor_type": "workspace-member",
+              "referenced_actor_id": "00000009-0000-4000-8000-000000000002"
+            }
+          ],
+          "value": [
+            {
+              "active_from": "2026-08-25T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "currency_value": 15000,
+              "currency_code": "USD"
+            }
+          ],
+          "associated_people": [
+            {
+              "active_from": "2026-08-25T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "people",
+              "target_record_id": "00000004-0000-4000-8000-000000000119"
+            }
+          ],
+          "associated_company": [
+            {
+              "active_from": "2026-08-25T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "target_object": "companies",
+              "target_record_id": "00000004-0000-4000-8000-000000000108"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "lists",
+      "rowId": "00000005-0000-4000-8000-000000000141",
+      "value": {
+        "list_id": "00000005-0000-4000-8000-000000000141",
+        "api_slug": "enterprise_accounts",
+        "name": "Enterprise accounts",
+        "parent_object": [
+          "companies"
+        ],
+        "workspace_access": "read-and-write",
+        "workspace_member_access": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2025-06-01T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "lists",
+      "rowId": "00000005-0000-4000-8000-000000000142",
+      "value": {
+        "list_id": "00000005-0000-4000-8000-000000000142",
+        "api_slug": "recruiting",
+        "name": "Recruiting",
+        "parent_object": [
+          "people"
+        ],
+        "workspace_access": "full-access",
+        "workspace_member_access": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2025-06-01T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "lists",
+      "rowId": "00000005-0000-4000-8000-000000000143",
+      "value": {
+        "list_id": "00000005-0000-4000-8000-000000000143",
+        "api_slug": "investors",
+        "name": "Investors",
+        "parent_object": [
+          "companies"
+        ],
+        "workspace_access": null,
+        "workspace_member_access": [
+          {
+            "workspace_member_id": "00000009-0000-4000-8000-000000000001",
+            "level": "full-access"
+          }
+        ],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2025-06-01T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "lists",
+      "rowId": "00000005-0000-4000-8000-000000000144",
+      "value": {
+        "list_id": "00000005-0000-4000-8000-000000000144",
+        "api_slug": "partner_referrals",
+        "name": "Partner referrals",
+        "parent_object": [
+          "people"
+        ],
+        "workspace_access": "read-only",
+        "workspace_member_access": [
+          {
+            "workspace_member_id": "00000009-0000-4000-8000-000000000002",
+            "level": "read-and-write"
+          }
+        ],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2025-06-01T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000141/00000006-0000-4000-8000-000000000151",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000151",
+        "list_id": "00000005-0000-4000-8000-000000000141",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000101",
+        "created_at": "2026-06-02T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-06-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000007"
+            }
+          ],
+          "priority": [
+            {
+              "active_from": "2026-06-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000013"
+            }
+          ],
+          "next_review": [
+            {
+              "active_from": "2026-06-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "2026-09-20"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000141/00000006-0000-4000-8000-000000000152",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000152",
+        "list_id": "00000005-0000-4000-8000-000000000141",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000102",
+        "created_at": "2026-07-16T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-07-16T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000006"
+            }
+          ],
+          "priority": [
+            {
+              "active_from": "2026-07-16T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000014"
+            }
+          ],
+          "next_review": [
+            {
+              "active_from": "2026-07-16T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "2026-10-05"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000141/00000006-0000-4000-8000-000000000153",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000153",
+        "list_id": "00000005-0000-4000-8000-000000000141",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000102",
+        "created_at": "2026-08-01T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-08-01T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000005"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000141/00000006-0000-4000-8000-000000000154",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000154",
+        "list_id": "00000005-0000-4000-8000-000000000141",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000106",
+        "created_at": "2026-05-11T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-05-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000008"
+            }
+          ],
+          "priority": [
+            {
+              "active_from": "2026-05-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000015"
+            }
+          ],
+          "next_review": [
+            {
+              "active_from": "2026-05-11T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "2026-12-01"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000141/00000006-0000-4000-8000-000000000155",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000155",
+        "list_id": "00000005-0000-4000-8000-000000000141",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000103",
+        "created_at": "2026-04-21T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-04-21T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000007"
+            }
+          ],
+          "priority": [
+            {
+              "active_from": "2026-04-21T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "option_id": "0000000a-0000-4000-8000-000000000013"
+            }
+          ],
+          "next_review": [
+            {
+              "active_from": "2026-04-21T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "2026-09-18"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000142/00000006-0000-4000-8000-000000000156",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000156",
+        "list_id": "00000005-0000-4000-8000-000000000142",
+        "parent_object": "people",
+        "parent_record_id": "00000004-0000-4000-8000-000000000116",
+        "created_at": "2026-03-10T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-03-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000009"
+            }
+          ],
+          "role": [
+            {
+              "active_from": "2026-03-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Solutions engineer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000142/00000006-0000-4000-8000-000000000157",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000157",
+        "list_id": "00000005-0000-4000-8000-000000000142",
+        "parent_object": "people",
+        "parent_record_id": "00000004-0000-4000-8000-000000000111",
+        "created_at": "2026-08-03T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-08-03T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000010"
+            }
+          ],
+          "role": [
+            {
+              "active_from": "2026-08-03T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Operations lead"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000142/00000006-0000-4000-8000-000000000158",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000158",
+        "list_id": "00000005-0000-4000-8000-000000000142",
+        "parent_object": "people",
+        "parent_record_id": "00000004-0000-4000-8000-000000000118",
+        "created_at": "2026-08-10T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-08-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000011"
+            }
+          ],
+          "role": [
+            {
+              "active_from": "2026-08-10T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Analytics engineer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000142/00000006-0000-4000-8000-000000000159",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000159",
+        "list_id": "00000005-0000-4000-8000-000000000142",
+        "parent_object": "people",
+        "parent_record_id": "00000004-0000-4000-8000-000000000121",
+        "created_at": "2026-08-19T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "stage": [
+            {
+              "active_from": "2026-08-19T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "status_id": "0000000b-0000-4000-8000-000000000012"
+            }
+          ],
+          "role": [
+            {
+              "active_from": "2026-08-19T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "value": "Product manager"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000143/00000006-0000-4000-8000-000000000160",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000160",
+        "list_id": "00000005-0000-4000-8000-000000000143",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000109",
+        "created_at": "2026-05-02T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "check_size": [
+            {
+              "active_from": "2026-05-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "currency_value": 2500000,
+              "currency_code": "USD"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000144/00000006-0000-4000-8000-000000000161",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000161",
+        "list_id": "00000005-0000-4000-8000-000000000144",
+        "parent_object": "people",
+        "parent_record_id": "00000004-0000-4000-8000-000000000120",
+        "created_at": "2026-06-20T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "referred_by": [
+            {
+              "active_from": "2026-06-20T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "referenced_actor_type": "workspace-member",
+              "referenced_actor_id": "00000009-0000-4000-8000-000000000002"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "entries",
+      "rowId": "00000005-0000-4000-8000-000000000144/00000006-0000-4000-8000-000000000162",
+      "value": {
+        "entry_id": "00000006-0000-4000-8000-000000000162",
+        "list_id": "00000005-0000-4000-8000-000000000144",
+        "parent_object": "people",
+        "parent_record_id": "00000004-0000-4000-8000-000000000122",
+        "created_at": "2026-07-02T09:00:00.000000000Z",
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "entry_values": {
+          "referred_by": [
+            {
+              "active_from": "2026-07-02T09:00:00.000000000Z",
+              "active_until": null,
+              "created_by_actor": {
+                "type": "workspace-member",
+                "id": "00000009-0000-4000-8000-000000000001"
+              },
+              "referenced_actor_type": "workspace-member",
+              "referenced_actor_id": "00000009-0000-4000-8000-000000000003"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "notes",
+      "rowId": "00000007-0000-4000-8000-000000000171",
+      "value": {
+        "note_id": "00000007-0000-4000-8000-000000000171",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000101",
+        "title": "Quarterly business review",
+        "format": "markdown",
+        "content_plaintext": "QBR summary\n\nFleet rollout is on track for October\nRenewal due in November\n\nSee the rollout plan.",
+        "content_markdown": "# QBR summary\n\n- Fleet rollout is on track for **October**\n- Renewal due in November\n\nSee [the rollout plan](https://example.com/rollout-plan).",
+        "meeting_id": null,
+        "tags": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-08-20T14:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "notes",
+      "rowId": "00000007-0000-4000-8000-000000000172",
+      "value": {
+        "note_id": "00000007-0000-4000-8000-000000000172",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000101",
+        "title": "Call notes",
+        "format": "plaintext",
+        "content_plaintext": "Spoke with Zoë about driver onboarding. They want a second training session before go-live.",
+        "content_markdown": "Spoke with Zoë about driver onboarding. They want a second training session before go-live.",
+        "meeting_id": null,
+        "tags": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-02T10:30:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "notes",
+      "rowId": "00000007-0000-4000-8000-000000000173",
+      "value": {
+        "note_id": "00000007-0000-4000-8000-000000000173",
+        "parent_object": "companies",
+        "parent_record_id": "00000004-0000-4000-8000-000000000101",
+        "title": "Pricing follow-up",
+        "format": "plaintext",
+        "content_plaintext": "Discount tiers use *literal asterisks* in their internal sheet: *A*, *B* and *C*.",
+        "content_markdown": "Discount tiers use \\*literal asterisks\\* in their internal sheet: \\*A\\*, \\*B\\* and \\*C\\*.",
+        "meeting_id": null,
+        "tags": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-10T16:45:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "notes",
+      "rowId": "00000007-0000-4000-8000-000000000174",
+      "value": {
+        "note_id": "00000007-0000-4000-8000-000000000174",
+        "parent_object": "people",
+        "parent_record_id": "00000004-0000-4000-8000-000000000111",
+        "title": "Intro call",
+        "format": "plaintext",
+        "content_plaintext": "Met Zoë at the logistics summit; interested in route analytics.",
+        "content_markdown": "Met Zoë at the logistics summit; interested in route analytics.",
+        "meeting_id": null,
+        "tags": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-08-12T11:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "notes",
+      "rowId": "00000007-0000-4000-8000-000000000175",
+      "value": {
+        "note_id": "00000007-0000-4000-8000-000000000175",
+        "parent_object": "deals",
+        "parent_record_id": "00000004-0000-4000-8000-000000000133",
+        "title": "Signed",
+        "format": "plaintext",
+        "content_plaintext": "Contract countersigned; kickoff scheduled with Aiko's team.",
+        "content_markdown": "Contract countersigned; kickoff scheduled with Aiko's team.",
+        "meeting_id": null,
+        "tags": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-05T09:15:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "notes",
+      "rowId": "00000007-0000-4000-8000-000000000176",
+      "value": {
+        "note_id": "00000007-0000-4000-8000-000000000176",
+        "parent_object": "people",
+        "parent_record_id": "00000004-0000-4000-8000-000000000116",
+        "title": "Candidate screen",
+        "format": "plaintext",
+        "content_plaintext": "Strong on integrations; follow up about notice period.",
+        "content_markdown": "Strong on integrations; follow up about notice period.",
+        "meeting_id": null,
+        "tags": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-08-28T15:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000000181",
+      "value": {
+        "task_id": "00000008-0000-4000-8000-000000000181",
+        "content_plaintext": "Send revised fleet pricing to Halcyon",
+        "format": "plaintext",
+        "deadline_at": "2026-09-10T17:00:00.000000000Z",
+        "is_completed": false,
+        "completed_at": null,
+        "linked_records": [
+          {
+            "target_object_id": "00000002-0000-4000-8000-000000000002",
+            "target_record_id": "00000004-0000-4000-8000-000000000101"
+          }
+        ],
+        "assignees": [
+          {
+            "referenced_actor_type": "workspace-member",
+            "referenced_actor_id": "00000009-0000-4000-8000-000000000002"
+          }
+        ],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-01T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000000182",
+      "value": {
+        "task_id": "00000008-0000-4000-8000-000000000182",
+        "content_plaintext": "Follow up with Marcus on pilot scope",
+        "format": "plaintext",
+        "deadline_at": "2026-09-15T17:00:00.000000000Z",
+        "is_completed": false,
+        "completed_at": null,
+        "linked_records": [
+          {
+            "target_object_id": "00000002-0000-4000-8000-000000000001",
+            "target_record_id": "00000004-0000-4000-8000-000000000112"
+          },
+          {
+            "target_object_id": "00000002-0000-4000-8000-000000000003",
+            "target_record_id": "00000004-0000-4000-8000-000000000132"
+          }
+        ],
+        "assignees": [
+          {
+            "referenced_actor_type": "workspace-member",
+            "referenced_actor_id": "00000009-0000-4000-8000-000000000003"
+          }
+        ],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-08T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000000183",
+      "value": {
+        "task_id": "00000008-0000-4000-8000-000000000183",
+        "content_plaintext": "Prepare Meridian expansion contract",
+        "format": "plaintext",
+        "deadline_at": "2026-09-12T12:00:00.000000000Z",
+        "is_completed": true,
+        "completed_at": "2026-09-12T15:30:00.000000000Z",
+        "linked_records": [
+          {
+            "target_object_id": "00000002-0000-4000-8000-000000000003",
+            "target_record_id": "00000004-0000-4000-8000-000000000133"
+          }
+        ],
+        "assignees": [
+          {
+            "referenced_actor_type": "workspace-member",
+            "referenced_actor_id": "00000009-0000-4000-8000-000000000001"
+          }
+        ],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-03T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000000184",
+      "value": {
+        "task_id": "00000008-0000-4000-8000-000000000184",
+        "content_plaintext": "Find a contact at Juniper Logistics",
+        "format": "plaintext",
+        "deadline_at": null,
+        "is_completed": false,
+        "completed_at": null,
+        "linked_records": [
+          {
+            "target_object_id": "00000002-0000-4000-8000-000000000002",
+            "target_record_id": "00000004-0000-4000-8000-000000000107"
+          }
+        ],
+        "assignees": [],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-04T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000000185",
+      "value": {
+        "task_id": "00000008-0000-4000-8000-000000000185",
+        "content_plaintext": "Plan Q4 enterprise account reviews",
+        "format": "plaintext",
+        "deadline_at": "2026-09-22T09:00:00.000000000Z",
+        "is_completed": false,
+        "completed_at": null,
+        "linked_records": [
+          {
+            "target_object_id": "00000002-0000-4000-8000-000000000002",
+            "target_record_id": "00000004-0000-4000-8000-000000000103"
+          }
+        ],
+        "assignees": [
+          {
+            "referenced_actor_type": "workspace-member",
+            "referenced_actor_id": "00000009-0000-4000-8000-000000000001"
+          },
+          {
+            "referenced_actor_type": "workspace-member",
+            "referenced_actor_id": "00000009-0000-4000-8000-000000000002"
+          }
+        ],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-06T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000000186",
+      "value": {
+        "task_id": "00000008-0000-4000-8000-000000000186",
+        "content_plaintext": "Update partner referral terms",
+        "format": "plaintext",
+        "deadline_at": "2026-09-30T12:00:00.000000000Z",
+        "is_completed": false,
+        "completed_at": null,
+        "linked_records": [],
+        "assignees": [
+          {
+            "referenced_actor_type": "workspace-member",
+            "referenced_actor_id": "00000009-0000-4000-8000-000000000003"
+          }
+        ],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-09T09:00:00.000000000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000000187",
+      "value": {
+        "task_id": "00000008-0000-4000-8000-000000000187",
+        "content_plaintext": "Schedule Atlas POC kickoff",
+        "format": "plaintext",
+        "deadline_at": "2026-10-01T10:00:00.000000000Z",
+        "is_completed": false,
+        "completed_at": null,
+        "linked_records": [
+          {
+            "target_object_id": "00000002-0000-4000-8000-000000000003",
+            "target_record_id": "00000004-0000-4000-8000-000000000135"
+          }
+        ],
+        "assignees": [
+          {
+            "referenced_actor_type": "workspace-member",
+            "referenced_actor_id": "00000009-0000-4000-8000-000000000002"
+          }
+        ],
+        "created_by_actor": {
+          "type": "workspace-member",
+          "id": "00000009-0000-4000-8000-000000000001"
+        },
+        "created_at": "2026-09-11T09:00:00.000000000Z"
+      }
+    }
+  ]
+}

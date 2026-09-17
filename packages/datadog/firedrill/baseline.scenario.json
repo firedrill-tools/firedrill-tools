@@ -1,0 +1,6284 @@
+{
+  "schemaVersion": 1,
+  "id": "baseline",
+  "title": "Northwind Commerce Datadog organization with two hours of synthetic metrics",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "composite-refs",
+      "rowId": "000148500001/000148500005",
+      "value": {
+        "childId": 148500001,
+        "compositeId": 148500005
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "composite-refs",
+      "rowId": "000148500004/000148500005",
+      "value": {
+        "childId": 148500004,
+        "compositeId": 148500005
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "dashboards",
+      "rowId": "nwc-chk-001",
+      "value": {
+        "id": "nwc-chk-001",
+        "title": "Checkout Service Overview",
+        "description": "Latency, throughput and errors for the checkout service.",
+        "layoutType": "ordered",
+        "reflowType": "auto",
+        "widgets": [
+          {
+            "id": 1,
+            "definition": {
+              "type": "note",
+              "title": null,
+              "content": "## Checkout\nOn-call: **#checkout-oncall**. Runbook: see the team wiki.",
+              "backgroundColor": "white",
+              "fontSize": "14",
+              "textAlign": "left",
+              "showTick": false,
+              "showLegend": null,
+              "precision": null,
+              "autoscale": null,
+              "customUnit": null,
+              "requests": []
+            },
+            "layout": null
+          },
+          {
+            "id": 2,
+            "definition": {
+              "type": "query_value",
+              "title": "Avg latency (5m)",
+              "content": null,
+              "backgroundColor": null,
+              "fontSize": null,
+              "textAlign": null,
+              "showTick": null,
+              "showLegend": null,
+              "precision": 0,
+              "autoscale": true,
+              "customUnit": "ms",
+              "requests": [
+                {
+                  "q": "avg:checkout.request.latency{$env,service:checkout}",
+                  "queries": [],
+                  "formulas": [],
+                  "responseFormat": null,
+                  "displayType": null,
+                  "aggregator": "avg"
+                }
+              ]
+            },
+            "layout": null
+          },
+          {
+            "id": 3,
+            "definition": {
+              "type": "timeseries",
+              "title": "Latency by host",
+              "content": null,
+              "backgroundColor": null,
+              "fontSize": null,
+              "textAlign": null,
+              "showTick": null,
+              "showLegend": true,
+              "precision": null,
+              "autoscale": null,
+              "customUnit": null,
+              "requests": [
+                {
+                  "q": null,
+                  "queries": [
+                    {
+                      "dataSource": "metrics",
+                      "name": "query1",
+                      "query": "avg:checkout.request.latency{$env,service:checkout} by {host}"
+                    }
+                  ],
+                  "formulas": [
+                    {
+                      "formula": "query1",
+                      "alias": "latency"
+                    }
+                  ],
+                  "responseFormat": "timeseries",
+                  "displayType": "line",
+                  "aggregator": null
+                }
+              ]
+            },
+            "layout": null
+          },
+          {
+            "id": 4,
+            "definition": {
+              "type": "toplist",
+              "title": "Top CPU by host",
+              "content": null,
+              "backgroundColor": null,
+              "fontSize": null,
+              "textAlign": null,
+              "showTick": null,
+              "showLegend": null,
+              "precision": null,
+              "autoscale": null,
+              "customUnit": null,
+              "requests": [
+                {
+                  "q": "max:system.cpu.user{$env} by {host}",
+                  "queries": [],
+                  "formulas": [],
+                  "responseFormat": null,
+                  "displayType": null,
+                  "aggregator": null
+                }
+              ]
+            },
+            "layout": null
+          }
+        ],
+        "templateVariables": [
+          {
+            "name": "env",
+            "prefix": "env",
+            "available_values": [
+              "prod",
+              "staging"
+            ],
+            "defaults": [
+              "prod"
+            ]
+          }
+        ],
+        "tags": [
+          "team:checkout"
+        ],
+        "notifyList": [
+          "priya.raman@example.com"
+        ],
+        "restrictedRoles": null,
+        "isReadOnly": false,
+        "authorHandle": "priya.raman@example.com",
+        "createdUs": 1782986400000000,
+        "modifiedUs": 1782986400000000,
+        "deletedUs": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "dashboards",
+      "rowId": "nwc-inf-002",
+      "value": {
+        "id": "nwc-inf-002",
+        "title": "Infrastructure",
+        "description": null,
+        "layoutType": "free",
+        "reflowType": null,
+        "widgets": [
+          {
+            "id": 5,
+            "definition": {
+              "type": "timeseries",
+              "title": "CPU user",
+              "content": null,
+              "backgroundColor": null,
+              "fontSize": null,
+              "textAlign": null,
+              "showTick": null,
+              "showLegend": null,
+              "precision": null,
+              "autoscale": null,
+              "customUnit": null,
+              "requests": [
+                {
+                  "q": "avg:system.cpu.user{*} by {host}",
+                  "queries": [],
+                  "formulas": [],
+                  "responseFormat": null,
+                  "displayType": "area",
+                  "aggregator": null
+                }
+              ]
+            },
+            "layout": {
+              "x": 0,
+              "y": 0,
+              "width": 47,
+              "height": 15,
+              "is_column_break": false
+            }
+          },
+          {
+            "id": 6,
+            "definition": {
+              "type": "query_value",
+              "title": "DB disk in use",
+              "content": null,
+              "backgroundColor": null,
+              "fontSize": null,
+              "textAlign": null,
+              "showTick": null,
+              "showLegend": null,
+              "precision": 2,
+              "autoscale": null,
+              "customUnit": null,
+              "requests": [
+                {
+                  "q": "max:system.disk.in_use{host:db-01}",
+                  "queries": [],
+                  "formulas": [],
+                  "responseFormat": null,
+                  "displayType": null,
+                  "aggregator": "last"
+                }
+              ]
+            },
+            "layout": {
+              "x": 48,
+              "y": 0,
+              "width": 23,
+              "height": 15,
+              "is_column_break": false
+            }
+          }
+        ],
+        "templateVariables": [],
+        "tags": [
+          "team:infra"
+        ],
+        "notifyList": [],
+        "restrictedRoles": null,
+        "isReadOnly": false,
+        "authorHandle": "marco.silva@example.com",
+        "createdUs": 1784538000000000,
+        "modifiedUs": 1784538000000000,
+        "deletedUs": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "dashboards",
+      "rowId": "nwc-old-004",
+      "value": {
+        "id": "nwc-old-004",
+        "title": "Legacy checkout (old)",
+        "description": null,
+        "layoutType": "ordered",
+        "reflowType": null,
+        "widgets": [
+          {
+            "id": 8,
+            "definition": {
+              "type": "note",
+              "title": null,
+              "content": "Replaced by Checkout Service Overview.",
+              "backgroundColor": null,
+              "fontSize": null,
+              "textAlign": null,
+              "showTick": null,
+              "showLegend": null,
+              "precision": null,
+              "autoscale": null,
+              "customUnit": null,
+              "requests": []
+            },
+            "layout": null
+          }
+        ],
+        "templateVariables": [],
+        "tags": [],
+        "notifyList": [],
+        "restrictedRoles": null,
+        "isReadOnly": false,
+        "authorHandle": "marco.silva@example.com",
+        "createdUs": 1775044800000000,
+        "modifiedUs": 1775044800000000,
+        "deletedUs": 1789038000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "dashboards",
+      "rowId": "nwc-pay-003",
+      "value": {
+        "id": "nwc-pay-003",
+        "title": "Payments (restricted)",
+        "description": null,
+        "layoutType": "ordered",
+        "reflowType": null,
+        "widgets": [
+          {
+            "id": 7,
+            "definition": {
+              "type": "timeseries",
+              "title": "Payment errors",
+              "content": null,
+              "backgroundColor": null,
+              "fontSize": null,
+              "textAlign": null,
+              "showTick": null,
+              "showLegend": null,
+              "precision": null,
+              "autoscale": null,
+              "customUnit": null,
+              "requests": [
+                {
+                  "q": "sum:payments.errors{service:payments}.as_count()",
+                  "queries": [],
+                  "formulas": [],
+                  "responseFormat": null,
+                  "displayType": "bars",
+                  "aggregator": null
+                }
+              ]
+            },
+            "layout": null
+          }
+        ],
+        "templateVariables": [],
+        "tags": [
+          "team:payments"
+        ],
+        "notifyList": [],
+        "restrictedRoles": [
+          "Datadog Admin Role"
+        ],
+        "isReadOnly": true,
+        "authorHandle": "priya.raman@example.com",
+        "createdUs": 1785942000000000,
+        "modifiedUs": 1785942000000000,
+        "deletedUs": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000001",
+      "value": {
+        "id": 7412300000000001,
+        "title": "[Warn] CPU high on prod",
+        "text": "CPU is elevated at 76%. @pagerduty-infra",
+        "dateHappenedSec": 1789473600,
+        "priority": "normal",
+        "alertType": "warning",
+        "host": null,
+        "aggregationKey": "monitor-148500002",
+        "sourceTypeName": "Monitor Alert",
+        "tags": [
+          "team:infra",
+          "env:prod",
+          "monitor:148500002"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": 148500002
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000002",
+      "value": {
+        "id": 7412300000000002,
+        "title": "[Warn on host:web-02] Checkout p95 latency high on web-02",
+        "text": " @slack-checkout-oncall @priya.raman@example.com",
+        "dateHappenedSec": 1789479840,
+        "priority": "normal",
+        "alertType": "warning",
+        "host": null,
+        "aggregationKey": "monitor-148500001",
+        "sourceTypeName": "Monitor Alert",
+        "tags": [
+          "team:checkout",
+          "service:checkout",
+          "env:prod",
+          "monitor:148500001",
+          "host:web-02"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": 148500001
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000003",
+      "value": {
+        "id": 7412300000000003,
+        "title": "[Triggered] Payment errors burst",
+        "text": "51 payment errors in 10 minutes. @slack-payments",
+        "dateHappenedSec": 1789480380,
+        "priority": "normal",
+        "alertType": "error",
+        "host": null,
+        "aggregationKey": "monitor-148500004",
+        "sourceTypeName": "Monitor Alert",
+        "tags": [
+          "team:payments",
+          "service:payments",
+          "env:prod",
+          "monitor:148500004",
+          "muted:true"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": 148500004
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000004",
+      "value": {
+        "id": 7412300000000004,
+        "title": "[Triggered] Checkout degraded and payments failing",
+        "text": "Checkout latency and payment errors are both alerting. @slack-incident-room",
+        "dateHappenedSec": 1789480380,
+        "priority": "normal",
+        "alertType": "error",
+        "host": null,
+        "aggregationKey": "monitor-148500005",
+        "sourceTypeName": "Monitor Alert",
+        "tags": [
+          "team:checkout",
+          "team:payments",
+          "monitor:148500005"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": 148500005
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000005",
+      "value": {
+        "id": 7412300000000005,
+        "title": "[Triggered on host:web-02] Checkout p95 latency high on web-02",
+        "text": "Latency on web-02 is 804 ms (threshold 800 ms). @slack-checkout-oncall @priya.raman@example.com",
+        "dateHappenedSec": 1789480440,
+        "priority": "normal",
+        "alertType": "error",
+        "host": null,
+        "aggregationKey": "monitor-148500001",
+        "sourceTypeName": "Monitor Alert",
+        "tags": [
+          "team:checkout",
+          "service:checkout",
+          "env:prod",
+          "monitor:148500001",
+          "host:web-02"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": 148500001
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000006",
+      "value": {
+        "id": 7412300000000006,
+        "title": "[No Data] Queue stopped reporting",
+        "text": "queue.depth has not reported for 15 minutes. @slack-orders",
+        "dateHappenedSec": 1789480740,
+        "priority": "normal",
+        "alertType": "info",
+        "host": null,
+        "aggregationKey": "monitor-148500006",
+        "sourceTypeName": "Monitor Alert",
+        "tags": [
+          "team:orders",
+          "service:orders",
+          "monitor:148500006"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": 148500006
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000007",
+      "value": {
+        "id": 7412300000000007,
+        "title": "Deployed checkout 2026.09.15-1",
+        "text": "Rolling deploy of checkout to prod finished (3/3 hosts).",
+        "dateHappenedSec": 1789470600,
+        "priority": "normal",
+        "alertType": "info",
+        "host": null,
+        "aggregationKey": "deploy-checkout",
+        "sourceTypeName": "deploy",
+        "tags": [
+          "service:checkout",
+          "env:prod",
+          "version:2026.09.15-1"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000008",
+      "value": {
+        "id": 7412300000000008,
+        "title": "Nightly capacity report",
+        "text": "Capacity summary for Northwind Commerce. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All clusters within planned headroom; see the capacity dashboard for per-host detail. All",
+        "dateHappenedSec": 1789476300,
+        "priority": "normal",
+        "alertType": "info",
+        "host": null,
+        "aggregationKey": null,
+        "sourceTypeName": null,
+        "tags": [
+          "team:infra"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000009",
+      "value": {
+        "id": 7412300000000009,
+        "title": "Deployed payments 2026.09.15-2",
+        "text": "Payments deploy to prod finished.",
+        "dateHappenedSec": 1789476000,
+        "priority": "normal",
+        "alertType": "info",
+        "host": null,
+        "aggregationKey": "deploy-payments",
+        "sourceTypeName": "deploy",
+        "tags": [
+          "service:payments",
+          "env:prod"
+        ],
+        "relatedEventId": null,
+        "handle": "marco.silva@example.com",
+        "monitorId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000010",
+      "value": {
+        "id": 7412300000000010,
+        "title": "Feature flag checkout-v2 at 25%",
+        "text": "Rollout of checkout-v2 raised from 10% to 25%.",
+        "dateHappenedSec": 1789479000,
+        "priority": "low",
+        "alertType": "user_update",
+        "host": null,
+        "aggregationKey": null,
+        "sourceTypeName": null,
+        "tags": [
+          "service:checkout",
+          "flag:checkout-v2"
+        ],
+        "relatedEventId": null,
+        "handle": "marco.silva@example.com",
+        "monitorId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000011",
+      "value": {
+        "id": 7412300000000011,
+        "title": "Deployed checkout 2026.09.15-3",
+        "text": "Rolling deploy of checkout to prod started.",
+        "dateHappenedSec": 1789479480,
+        "priority": "normal",
+        "alertType": "info",
+        "host": null,
+        "aggregationKey": "deploy-checkout",
+        "sourceTypeName": "deploy",
+        "tags": [
+          "service:checkout",
+          "env:prod",
+          "version:2026.09.15-3"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000012",
+      "value": {
+        "id": 7412300000000012,
+        "title": "Deploy checkout 2026.09.15-3 finished",
+        "text": "All hosts report version 2026.09.15-3.",
+        "dateHappenedSec": 1789479600,
+        "priority": "normal",
+        "alertType": "success",
+        "host": null,
+        "aggregationKey": null,
+        "sourceTypeName": "deploy",
+        "tags": [
+          "service:checkout",
+          "env:prod"
+        ],
+        "relatedEventId": 7412300000000011,
+        "handle": "priya.raman@example.com",
+        "monitorId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "events",
+      "rowId": "0007412300000000013",
+      "value": {
+        "id": 7412300000000013,
+        "title": "Quarterly failover test",
+        "text": "Database failover exercise completed.",
+        "dateHappenedSec": 1786352400,
+        "priority": "normal",
+        "alertType": "success",
+        "host": null,
+        "aggregationKey": null,
+        "sourceTypeName": null,
+        "tags": [
+          "team:data"
+        ],
+        "relatedEventId": null,
+        "handle": "priya.raman@example.com",
+        "monitorId": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "incident-public-ids",
+      "rowId": "000000038",
+      "value": {
+        "incidentId": "15b91617-ceef-4d95-94c7-f619699b3b8b"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "incident-public-ids",
+      "rowId": "000000039",
+      "value": {
+        "incidentId": "bbf86e2a-a7b8-475b-9353-99a36700c951"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "incident-public-ids",
+      "rowId": "000000040",
+      "value": {
+        "incidentId": "2b2d1fc7-c712-45b1-9990-cae0db3bf87a"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "incident-public-ids",
+      "rowId": "000000041",
+      "value": {
+        "incidentId": "335e1f94-a802-4a7c-a598-db7885007197"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "incidents",
+      "rowId": "15b91617-ceef-4d95-94c7-f619699b3b8b",
+      "value": {
+        "id": "15b91617-ceef-4d95-94c7-f619699b3b8b",
+        "publicId": 38,
+        "title": "Game day drill: checkout database failover",
+        "customerImpacted": false,
+        "customerImpactScope": null,
+        "customerImpactStartUs": null,
+        "customerImpactEndUs": null,
+        "state": "resolved",
+        "severity": "SEV-5",
+        "commanderHandle": "priya.raman@example.com",
+        "createdByHandle": "priya.raman@example.com",
+        "lastModifiedByHandle": "priya.raman@example.com",
+        "createdUs": 1788256800000000,
+        "modifiedUs": 1788258600000000,
+        "detectedUs": 1788256800000000,
+        "resolvedUs": 1788258600000000,
+        "isTest": true,
+        "notificationHandles": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "incidents",
+      "rowId": "2b2d1fc7-c712-45b1-9990-cae0db3bf87a",
+      "value": {
+        "id": "2b2d1fc7-c712-45b1-9990-cae0db3bf87a",
+        "publicId": 40,
+        "title": "Order queue consumer lag",
+        "customerImpacted": false,
+        "customerImpactScope": null,
+        "customerImpactStartUs": null,
+        "customerImpactEndUs": null,
+        "state": "stable",
+        "severity": "SEV-3",
+        "commanderHandle": null,
+        "createdByHandle": "marco.silva@example.com",
+        "lastModifiedByHandle": "marco.silva@example.com",
+        "createdUs": 1789230600000000,
+        "modifiedUs": 1789230600000000,
+        "detectedUs": 1789230600000000,
+        "resolvedUs": null,
+        "isTest": false,
+        "notificationHandles": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "incidents",
+      "rowId": "335e1f94-a802-4a7c-a598-db7885007197",
+      "value": {
+        "id": "335e1f94-a802-4a7c-a598-db7885007197",
+        "publicId": 41,
+        "title": "Checkout latency degradation",
+        "customerImpacted": true,
+        "customerImpactScope": "Checkout is slow for a share of customers in all regions",
+        "customerImpactStartUs": 1789479900000000,
+        "customerImpactEndUs": null,
+        "state": "active",
+        "severity": "SEV-2",
+        "commanderHandle": "marco.silva@example.com",
+        "createdByHandle": "marco.silva@example.com",
+        "lastModifiedByHandle": "marco.silva@example.com",
+        "createdUs": 1789479900000000,
+        "modifiedUs": 1789479900000000,
+        "detectedUs": 1789479900000000,
+        "resolvedUs": null,
+        "isTest": false,
+        "notificationHandles": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "incidents",
+      "rowId": "bbf86e2a-a7b8-475b-9353-99a36700c951",
+      "value": {
+        "id": "bbf86e2a-a7b8-475b-9353-99a36700c951",
+        "publicId": 39,
+        "title": "EU checkout outage after certificate expiry",
+        "customerImpacted": true,
+        "customerImpactScope": "Customers in the EU could not complete checkout",
+        "customerImpactStartUs": 1788854400000000,
+        "customerImpactEndUs": 1788859800000000,
+        "state": "resolved",
+        "severity": "SEV-1",
+        "commanderHandle": "priya.raman@example.com",
+        "createdByHandle": "priya.raman@example.com",
+        "lastModifiedByHandle": "priya.raman@example.com",
+        "createdUs": 1788854400000000,
+        "modifiedUs": 1788859800000000,
+        "detectedUs": 1788854400000000,
+        "resolvedUs": 1788859800000000,
+        "isTest": false,
+        "notificationHandles": [
+          {
+            "handle": "@slack-incident-room",
+            "display_name": "#incident-room"
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "monitor": 148500010,
+        "event": 7412300000000014,
+        "incident": 42,
+        "series": 10,
+        "widget": 9
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 5000,
+        "maxGroupsPerMonitor": 100,
+        "maxSeriesPerQuery": 100,
+        "maxDashboardBytes": 800000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "meta",
+      "rowId": "org",
+      "value": {
+        "name": "Northwind Commerce",
+        "publicId": "9f3c2a71b8d40e65",
+        "orgId": 482113,
+        "defaultUserHandle": "priya.raman@example.com"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000001/1789473600",
+      "value": {
+        "seq": 1,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            430
+          ],
+          [
+            1789473660,
+            467
+          ],
+          [
+            1789473720,
+            444
+          ],
+          [
+            1789473780,
+            481
+          ],
+          [
+            1789473840,
+            458
+          ],
+          [
+            1789473900,
+            435
+          ],
+          [
+            1789473960,
+            472
+          ],
+          [
+            1789474020,
+            449
+          ],
+          [
+            1789474080,
+            486
+          ],
+          [
+            1789474140,
+            463
+          ],
+          [
+            1789474200,
+            440
+          ],
+          [
+            1789474260,
+            477
+          ],
+          [
+            1789474320,
+            454
+          ],
+          [
+            1789474380,
+            431
+          ],
+          [
+            1789474440,
+            468
+          ],
+          [
+            1789474500,
+            445
+          ],
+          [
+            1789474560,
+            482
+          ],
+          [
+            1789474620,
+            459
+          ],
+          [
+            1789474680,
+            436
+          ],
+          [
+            1789474740,
+            473
+          ],
+          [
+            1789474800,
+            450
+          ],
+          [
+            1789474860,
+            487
+          ],
+          [
+            1789474920,
+            464
+          ],
+          [
+            1789474980,
+            441
+          ],
+          [
+            1789475040,
+            478
+          ],
+          [
+            1789475100,
+            455
+          ],
+          [
+            1789475160,
+            432
+          ],
+          [
+            1789475220,
+            469
+          ],
+          [
+            1789475280,
+            446
+          ],
+          [
+            1789475340,
+            483
+          ],
+          [
+            1789475400,
+            460
+          ],
+          [
+            1789475460,
+            437
+          ],
+          [
+            1789475520,
+            474
+          ],
+          [
+            1789475580,
+            451
+          ],
+          [
+            1789475640,
+            488
+          ],
+          [
+            1789475700,
+            465
+          ],
+          [
+            1789475760,
+            442
+          ],
+          [
+            1789475820,
+            479
+          ],
+          [
+            1789475880,
+            456
+          ],
+          [
+            1789475940,
+            433
+          ],
+          [
+            1789476000,
+            470
+          ],
+          [
+            1789476060,
+            447
+          ],
+          [
+            1789476120,
+            484
+          ],
+          [
+            1789476180,
+            461
+          ],
+          [
+            1789476240,
+            438
+          ],
+          [
+            1789476300,
+            475
+          ],
+          [
+            1789476360,
+            452
+          ],
+          [
+            1789476420,
+            489
+          ],
+          [
+            1789476480,
+            466
+          ],
+          [
+            1789476540,
+            443
+          ],
+          [
+            1789476600,
+            480
+          ],
+          [
+            1789476660,
+            457
+          ],
+          [
+            1789476720,
+            434
+          ],
+          [
+            1789476780,
+            471
+          ],
+          [
+            1789476840,
+            448
+          ],
+          [
+            1789476900,
+            485
+          ],
+          [
+            1789476960,
+            462
+          ],
+          [
+            1789477020,
+            439
+          ],
+          [
+            1789477080,
+            476
+          ],
+          [
+            1789477140,
+            453
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000001/1789477200",
+      "value": {
+        "seq": 1,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            430
+          ],
+          [
+            1789477260,
+            467
+          ],
+          [
+            1789477320,
+            444
+          ],
+          [
+            1789477380,
+            481
+          ],
+          [
+            1789477440,
+            458
+          ],
+          [
+            1789477500,
+            435
+          ],
+          [
+            1789477560,
+            472
+          ],
+          [
+            1789477620,
+            449
+          ],
+          [
+            1789477680,
+            486
+          ],
+          [
+            1789477740,
+            463
+          ],
+          [
+            1789477800,
+            440
+          ],
+          [
+            1789477860,
+            477
+          ],
+          [
+            1789477920,
+            454
+          ],
+          [
+            1789477980,
+            431
+          ],
+          [
+            1789478040,
+            468
+          ],
+          [
+            1789478100,
+            445
+          ],
+          [
+            1789478160,
+            482
+          ],
+          [
+            1789478220,
+            459
+          ],
+          [
+            1789478280,
+            436
+          ],
+          [
+            1789478340,
+            473
+          ],
+          [
+            1789478400,
+            450
+          ],
+          [
+            1789478460,
+            487
+          ],
+          [
+            1789478520,
+            464
+          ],
+          [
+            1789478580,
+            441
+          ],
+          [
+            1789478640,
+            478
+          ],
+          [
+            1789478700,
+            455
+          ],
+          [
+            1789478760,
+            432
+          ],
+          [
+            1789478820,
+            469
+          ],
+          [
+            1789478880,
+            446
+          ],
+          [
+            1789478940,
+            483
+          ],
+          [
+            1789479000,
+            460
+          ],
+          [
+            1789479060,
+            437
+          ],
+          [
+            1789479120,
+            474
+          ],
+          [
+            1789479180,
+            451
+          ],
+          [
+            1789479240,
+            488
+          ],
+          [
+            1789479300,
+            465
+          ],
+          [
+            1789479360,
+            442
+          ],
+          [
+            1789479420,
+            479
+          ],
+          [
+            1789479480,
+            456
+          ],
+          [
+            1789479540,
+            433
+          ],
+          [
+            1789479600,
+            470
+          ],
+          [
+            1789479660,
+            447
+          ],
+          [
+            1789479720,
+            484
+          ],
+          [
+            1789479780,
+            461
+          ],
+          [
+            1789479840,
+            438
+          ],
+          [
+            1789479900,
+            475
+          ],
+          [
+            1789479960,
+            452
+          ],
+          [
+            1789480020,
+            489
+          ],
+          [
+            1789480080,
+            466
+          ],
+          [
+            1789480140,
+            443
+          ],
+          [
+            1789480200,
+            480
+          ],
+          [
+            1789480260,
+            457
+          ],
+          [
+            1789480320,
+            434
+          ],
+          [
+            1789480380,
+            471
+          ],
+          [
+            1789480440,
+            448
+          ],
+          [
+            1789480500,
+            485
+          ],
+          [
+            1789480560,
+            462
+          ],
+          [
+            1789480620,
+            439
+          ],
+          [
+            1789480680,
+            476
+          ],
+          [
+            1789480740,
+            453
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000001/1789480800",
+      "value": {
+        "seq": 1,
+        "hourStartSec": 1789480800,
+        "points": [
+          [
+            1789480800,
+            430
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000002/1789473600",
+      "value": {
+        "seq": 2,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            450
+          ],
+          [
+            1789473660,
+            503
+          ],
+          [
+            1789473720,
+            486
+          ],
+          [
+            1789473780,
+            469
+          ],
+          [
+            1789473840,
+            452
+          ],
+          [
+            1789473900,
+            505
+          ],
+          [
+            1789473960,
+            488
+          ],
+          [
+            1789474020,
+            471
+          ],
+          [
+            1789474080,
+            454
+          ],
+          [
+            1789474140,
+            507
+          ],
+          [
+            1789474200,
+            490
+          ],
+          [
+            1789474260,
+            473
+          ],
+          [
+            1789474320,
+            456
+          ],
+          [
+            1789474380,
+            509
+          ],
+          [
+            1789474440,
+            492
+          ],
+          [
+            1789474500,
+            475
+          ],
+          [
+            1789474560,
+            458
+          ],
+          [
+            1789474620,
+            511
+          ],
+          [
+            1789474680,
+            494
+          ],
+          [
+            1789474740,
+            477
+          ],
+          [
+            1789474800,
+            460
+          ],
+          [
+            1789474860,
+            513
+          ],
+          [
+            1789474920,
+            496
+          ],
+          [
+            1789474980,
+            479
+          ],
+          [
+            1789475040,
+            462
+          ],
+          [
+            1789475100,
+            515
+          ],
+          [
+            1789475160,
+            498
+          ],
+          [
+            1789475220,
+            481
+          ],
+          [
+            1789475280,
+            464
+          ],
+          [
+            1789475340,
+            517
+          ],
+          [
+            1789475400,
+            500
+          ],
+          [
+            1789475460,
+            483
+          ],
+          [
+            1789475520,
+            466
+          ],
+          [
+            1789475580,
+            519
+          ],
+          [
+            1789475640,
+            502
+          ],
+          [
+            1789475700,
+            485
+          ],
+          [
+            1789475760,
+            468
+          ],
+          [
+            1789475820,
+            451
+          ],
+          [
+            1789475880,
+            504
+          ],
+          [
+            1789475940,
+            487
+          ],
+          [
+            1789476000,
+            470
+          ],
+          [
+            1789476060,
+            453
+          ],
+          [
+            1789476120,
+            506
+          ],
+          [
+            1789476180,
+            489
+          ],
+          [
+            1789476240,
+            472
+          ],
+          [
+            1789476300,
+            455
+          ],
+          [
+            1789476360,
+            508
+          ],
+          [
+            1789476420,
+            491
+          ],
+          [
+            1789476480,
+            474
+          ],
+          [
+            1789476540,
+            457
+          ],
+          [
+            1789476600,
+            510
+          ],
+          [
+            1789476660,
+            493
+          ],
+          [
+            1789476720,
+            476
+          ],
+          [
+            1789476780,
+            459
+          ],
+          [
+            1789476840,
+            512
+          ],
+          [
+            1789476900,
+            495
+          ],
+          [
+            1789476960,
+            478
+          ],
+          [
+            1789477020,
+            461
+          ],
+          [
+            1789477080,
+            514
+          ],
+          [
+            1789477140,
+            497
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000002/1789477200",
+      "value": {
+        "seq": 2,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            480
+          ],
+          [
+            1789477260,
+            463
+          ],
+          [
+            1789477320,
+            516
+          ],
+          [
+            1789477380,
+            499
+          ],
+          [
+            1789477440,
+            482
+          ],
+          [
+            1789477500,
+            465
+          ],
+          [
+            1789477560,
+            518
+          ],
+          [
+            1789477620,
+            501
+          ],
+          [
+            1789477680,
+            484
+          ],
+          [
+            1789477740,
+            467
+          ],
+          [
+            1789477800,
+            450
+          ],
+          [
+            1789477860,
+            503
+          ],
+          [
+            1789477920,
+            486
+          ],
+          [
+            1789477980,
+            469
+          ],
+          [
+            1789478040,
+            452
+          ],
+          [
+            1789478100,
+            505
+          ],
+          [
+            1789478160,
+            488
+          ],
+          [
+            1789478220,
+            471
+          ],
+          [
+            1789478280,
+            454
+          ],
+          [
+            1789478340,
+            507
+          ],
+          [
+            1789478400,
+            490
+          ],
+          [
+            1789478460,
+            473
+          ],
+          [
+            1789478520,
+            456
+          ],
+          [
+            1789478580,
+            509
+          ],
+          [
+            1789478640,
+            492
+          ],
+          [
+            1789478700,
+            475
+          ],
+          [
+            1789478760,
+            458
+          ],
+          [
+            1789478820,
+            511
+          ],
+          [
+            1789478880,
+            494
+          ],
+          [
+            1789478940,
+            477
+          ],
+          [
+            1789479000,
+            460
+          ],
+          [
+            1789479060,
+            513
+          ],
+          [
+            1789479120,
+            496
+          ],
+          [
+            1789479180,
+            479
+          ],
+          [
+            1789479240,
+            462
+          ],
+          [
+            1789479300,
+            515
+          ],
+          [
+            1789479360,
+            498
+          ],
+          [
+            1789479420,
+            481
+          ],
+          [
+            1789479480,
+            464
+          ],
+          [
+            1789479540,
+            517
+          ],
+          [
+            1789479600,
+            620
+          ],
+          [
+            1789479660,
+            636
+          ],
+          [
+            1789479720,
+            652
+          ],
+          [
+            1789479780,
+            668
+          ],
+          [
+            1789479840,
+            684
+          ],
+          [
+            1789479900,
+            700
+          ],
+          [
+            1789479960,
+            716
+          ],
+          [
+            1789480020,
+            732
+          ],
+          [
+            1789480080,
+            748
+          ],
+          [
+            1789480140,
+            764
+          ],
+          [
+            1789480200,
+            780
+          ],
+          [
+            1789480260,
+            796
+          ],
+          [
+            1789480320,
+            812
+          ],
+          [
+            1789480380,
+            828
+          ],
+          [
+            1789480440,
+            844
+          ],
+          [
+            1789480500,
+            860
+          ],
+          [
+            1789480560,
+            876
+          ],
+          [
+            1789480620,
+            892
+          ],
+          [
+            1789480680,
+            908
+          ],
+          [
+            1789480740,
+            924
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000002/1789480800",
+      "value": {
+        "seq": 2,
+        "hourStartSec": 1789480800,
+        "points": [
+          [
+            1789480800,
+            940
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000003/1789473600",
+      "value": {
+        "seq": 3,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            390
+          ],
+          [
+            1789473660,
+            419
+          ],
+          [
+            1789473720,
+            403
+          ],
+          [
+            1789473780,
+            432
+          ],
+          [
+            1789473840,
+            416
+          ],
+          [
+            1789473900,
+            400
+          ],
+          [
+            1789473960,
+            429
+          ],
+          [
+            1789474020,
+            413
+          ],
+          [
+            1789474080,
+            397
+          ],
+          [
+            1789474140,
+            426
+          ],
+          [
+            1789474200,
+            410
+          ],
+          [
+            1789474260,
+            394
+          ],
+          [
+            1789474320,
+            423
+          ],
+          [
+            1789474380,
+            407
+          ],
+          [
+            1789474440,
+            391
+          ],
+          [
+            1789474500,
+            420
+          ],
+          [
+            1789474560,
+            404
+          ],
+          [
+            1789474620,
+            433
+          ],
+          [
+            1789474680,
+            417
+          ],
+          [
+            1789474740,
+            401
+          ],
+          [
+            1789474800,
+            430
+          ],
+          [
+            1789474860,
+            414
+          ],
+          [
+            1789474920,
+            398
+          ],
+          [
+            1789474980,
+            427
+          ],
+          [
+            1789475040,
+            411
+          ],
+          [
+            1789475100,
+            395
+          ],
+          [
+            1789475160,
+            424
+          ],
+          [
+            1789475220,
+            408
+          ],
+          [
+            1789475280,
+            392
+          ],
+          [
+            1789475340,
+            421
+          ],
+          [
+            1789475400,
+            405
+          ],
+          [
+            1789475460,
+            434
+          ],
+          [
+            1789475520,
+            418
+          ],
+          [
+            1789475580,
+            402
+          ],
+          [
+            1789475640,
+            431
+          ],
+          [
+            1789475700,
+            415
+          ],
+          [
+            1789475760,
+            399
+          ],
+          [
+            1789475820,
+            428
+          ],
+          [
+            1789475880,
+            412
+          ],
+          [
+            1789475940,
+            396
+          ],
+          [
+            1789476000,
+            425
+          ],
+          [
+            1789476060,
+            409
+          ],
+          [
+            1789476120,
+            393
+          ],
+          [
+            1789476180,
+            422
+          ],
+          [
+            1789476240,
+            406
+          ],
+          [
+            1789476300,
+            390
+          ],
+          [
+            1789476360,
+            419
+          ],
+          [
+            1789476420,
+            403
+          ],
+          [
+            1789476480,
+            432
+          ],
+          [
+            1789476540,
+            416
+          ],
+          [
+            1789476600,
+            400
+          ],
+          [
+            1789476660,
+            429
+          ],
+          [
+            1789476720,
+            413
+          ],
+          [
+            1789476780,
+            397
+          ],
+          [
+            1789476840,
+            426
+          ],
+          [
+            1789476900,
+            410
+          ],
+          [
+            1789476960,
+            394
+          ],
+          [
+            1789477020,
+            423
+          ],
+          [
+            1789477080,
+            407
+          ],
+          [
+            1789477140,
+            391
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000003/1789477200",
+      "value": {
+        "seq": 3,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            420
+          ],
+          [
+            1789477260,
+            404
+          ],
+          [
+            1789477320,
+            433
+          ],
+          [
+            1789477380,
+            417
+          ],
+          [
+            1789477440,
+            401
+          ],
+          [
+            1789477500,
+            430
+          ],
+          [
+            1789477560,
+            414
+          ],
+          [
+            1789477620,
+            398
+          ],
+          [
+            1789477680,
+            427
+          ],
+          [
+            1789477740,
+            411
+          ],
+          [
+            1789477800,
+            395
+          ],
+          [
+            1789477860,
+            424
+          ],
+          [
+            1789477920,
+            408
+          ],
+          [
+            1789477980,
+            392
+          ],
+          [
+            1789478040,
+            421
+          ],
+          [
+            1789478100,
+            405
+          ],
+          [
+            1789478160,
+            434
+          ],
+          [
+            1789478220,
+            418
+          ],
+          [
+            1789478280,
+            402
+          ],
+          [
+            1789478340,
+            431
+          ],
+          [
+            1789478400,
+            415
+          ],
+          [
+            1789478460,
+            399
+          ],
+          [
+            1789478520,
+            428
+          ],
+          [
+            1789478580,
+            412
+          ],
+          [
+            1789478640,
+            396
+          ],
+          [
+            1789478700,
+            425
+          ],
+          [
+            1789478760,
+            409
+          ],
+          [
+            1789478820,
+            393
+          ],
+          [
+            1789478880,
+            422
+          ],
+          [
+            1789478940,
+            406
+          ],
+          [
+            1789479000,
+            390
+          ],
+          [
+            1789479060,
+            419
+          ],
+          [
+            1789479120,
+            403
+          ],
+          [
+            1789479180,
+            432
+          ],
+          [
+            1789479240,
+            416
+          ],
+          [
+            1789479300,
+            400
+          ],
+          [
+            1789479360,
+            429
+          ],
+          [
+            1789479420,
+            413
+          ],
+          [
+            1789479480,
+            397
+          ],
+          [
+            1789479540,
+            426
+          ],
+          [
+            1789479600,
+            410
+          ],
+          [
+            1789479660,
+            394
+          ],
+          [
+            1789479720,
+            423
+          ],
+          [
+            1789479780,
+            407
+          ],
+          [
+            1789479840,
+            391
+          ],
+          [
+            1789479900,
+            420
+          ],
+          [
+            1789479960,
+            404
+          ],
+          [
+            1789480020,
+            433
+          ],
+          [
+            1789480080,
+            417
+          ],
+          [
+            1789480140,
+            401
+          ],
+          [
+            1789480200,
+            430
+          ],
+          [
+            1789480260,
+            414
+          ],
+          [
+            1789480320,
+            398
+          ],
+          [
+            1789480380,
+            427
+          ],
+          [
+            1789480440,
+            411
+          ],
+          [
+            1789480500,
+            395
+          ],
+          [
+            1789480560,
+            424
+          ],
+          [
+            1789480620,
+            408
+          ],
+          [
+            1789480680,
+            392
+          ],
+          [
+            1789480740,
+            421
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000003/1789480800",
+      "value": {
+        "seq": 3,
+        "hourStartSec": 1789480800,
+        "points": [
+          [
+            1789480800,
+            405
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000004/1789473600",
+      "value": {
+        "seq": 4,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            68
+          ],
+          [
+            1789473660,
+            75
+          ],
+          [
+            1789473720,
+            73
+          ],
+          [
+            1789473780,
+            71
+          ],
+          [
+            1789473840,
+            69
+          ],
+          [
+            1789473900,
+            76
+          ],
+          [
+            1789473960,
+            74
+          ],
+          [
+            1789474020,
+            72
+          ],
+          [
+            1789474080,
+            70
+          ],
+          [
+            1789474140,
+            68
+          ],
+          [
+            1789474200,
+            75
+          ],
+          [
+            1789474260,
+            73
+          ],
+          [
+            1789474320,
+            71
+          ],
+          [
+            1789474380,
+            69
+          ],
+          [
+            1789474440,
+            76
+          ],
+          [
+            1789474500,
+            74
+          ],
+          [
+            1789474560,
+            72
+          ],
+          [
+            1789474620,
+            70
+          ],
+          [
+            1789474680,
+            68
+          ],
+          [
+            1789474740,
+            75
+          ],
+          [
+            1789474800,
+            73
+          ],
+          [
+            1789474860,
+            71
+          ],
+          [
+            1789474920,
+            69
+          ],
+          [
+            1789474980,
+            76
+          ],
+          [
+            1789475040,
+            74
+          ],
+          [
+            1789475100,
+            72
+          ],
+          [
+            1789475160,
+            70
+          ],
+          [
+            1789475220,
+            68
+          ],
+          [
+            1789475280,
+            75
+          ],
+          [
+            1789475340,
+            73
+          ],
+          [
+            1789475400,
+            71
+          ],
+          [
+            1789475460,
+            69
+          ],
+          [
+            1789475520,
+            76
+          ],
+          [
+            1789475580,
+            74
+          ],
+          [
+            1789475640,
+            72
+          ],
+          [
+            1789475700,
+            70
+          ],
+          [
+            1789475760,
+            68
+          ],
+          [
+            1789475820,
+            75
+          ],
+          [
+            1789475880,
+            73
+          ],
+          [
+            1789475940,
+            71
+          ],
+          [
+            1789476000,
+            69
+          ],
+          [
+            1789476060,
+            76
+          ],
+          [
+            1789476120,
+            74
+          ],
+          [
+            1789476180,
+            72
+          ],
+          [
+            1789476240,
+            70
+          ],
+          [
+            1789476300,
+            68
+          ],
+          [
+            1789476360,
+            75
+          ],
+          [
+            1789476420,
+            73
+          ],
+          [
+            1789476480,
+            71
+          ],
+          [
+            1789476540,
+            69
+          ],
+          [
+            1789476600,
+            76
+          ],
+          [
+            1789476660,
+            74
+          ],
+          [
+            1789476720,
+            72
+          ],
+          [
+            1789476780,
+            70
+          ],
+          [
+            1789476840,
+            68
+          ],
+          [
+            1789476900,
+            75
+          ],
+          [
+            1789476960,
+            73
+          ],
+          [
+            1789477020,
+            71
+          ],
+          [
+            1789477080,
+            69
+          ],
+          [
+            1789477140,
+            76
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000004/1789477200",
+      "value": {
+        "seq": 4,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            74
+          ],
+          [
+            1789477260,
+            72
+          ],
+          [
+            1789477320,
+            70
+          ],
+          [
+            1789477380,
+            68
+          ],
+          [
+            1789477440,
+            75
+          ],
+          [
+            1789477500,
+            73
+          ],
+          [
+            1789477560,
+            71
+          ],
+          [
+            1789477620,
+            69
+          ],
+          [
+            1789477680,
+            76
+          ],
+          [
+            1789477740,
+            74
+          ],
+          [
+            1789477800,
+            72
+          ],
+          [
+            1789477860,
+            70
+          ],
+          [
+            1789477920,
+            68
+          ],
+          [
+            1789477980,
+            75
+          ],
+          [
+            1789478040,
+            73
+          ],
+          [
+            1789478100,
+            71
+          ],
+          [
+            1789478160,
+            69
+          ],
+          [
+            1789478220,
+            76
+          ],
+          [
+            1789478280,
+            74
+          ],
+          [
+            1789478340,
+            72
+          ],
+          [
+            1789478400,
+            70
+          ],
+          [
+            1789478460,
+            68
+          ],
+          [
+            1789478520,
+            75
+          ],
+          [
+            1789478580,
+            73
+          ],
+          [
+            1789478640,
+            71
+          ],
+          [
+            1789478700,
+            69
+          ],
+          [
+            1789478760,
+            76
+          ],
+          [
+            1789478820,
+            74
+          ],
+          [
+            1789478880,
+            72
+          ],
+          [
+            1789478940,
+            70
+          ],
+          [
+            1789479000,
+            68
+          ],
+          [
+            1789479060,
+            75
+          ],
+          [
+            1789479120,
+            73
+          ],
+          [
+            1789479180,
+            71
+          ],
+          [
+            1789479240,
+            69
+          ],
+          [
+            1789479300,
+            76
+          ],
+          [
+            1789479360,
+            74
+          ],
+          [
+            1789479420,
+            72
+          ],
+          [
+            1789479480,
+            70
+          ],
+          [
+            1789479540,
+            68
+          ],
+          [
+            1789479600,
+            75
+          ],
+          [
+            1789479660,
+            73
+          ],
+          [
+            1789479720,
+            71
+          ],
+          [
+            1789479780,
+            69
+          ],
+          [
+            1789479840,
+            76
+          ],
+          [
+            1789479900,
+            74
+          ],
+          [
+            1789479960,
+            72
+          ],
+          [
+            1789480020,
+            70
+          ],
+          [
+            1789480080,
+            68
+          ],
+          [
+            1789480140,
+            75
+          ],
+          [
+            1789480200,
+            73
+          ],
+          [
+            1789480260,
+            71
+          ],
+          [
+            1789480320,
+            69
+          ],
+          [
+            1789480380,
+            76
+          ],
+          [
+            1789480440,
+            74
+          ],
+          [
+            1789480500,
+            72
+          ],
+          [
+            1789480560,
+            70
+          ],
+          [
+            1789480620,
+            68
+          ],
+          [
+            1789480680,
+            75
+          ],
+          [
+            1789480740,
+            73
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000004/1789480800",
+      "value": {
+        "seq": 4,
+        "hourStartSec": 1789480800,
+        "points": [
+          [
+            1789480800,
+            71
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000005/1789473600",
+      "value": {
+        "seq": 5,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            84
+          ],
+          [
+            1789473660,
+            87
+          ],
+          [
+            1789473720,
+            90
+          ],
+          [
+            1789473780,
+            85
+          ],
+          [
+            1789473840,
+            88
+          ],
+          [
+            1789473900,
+            91
+          ],
+          [
+            1789473960,
+            86
+          ],
+          [
+            1789474020,
+            89
+          ],
+          [
+            1789474080,
+            84
+          ],
+          [
+            1789474140,
+            87
+          ],
+          [
+            1789474200,
+            90
+          ],
+          [
+            1789474260,
+            85
+          ],
+          [
+            1789474320,
+            88
+          ],
+          [
+            1789474380,
+            91
+          ],
+          [
+            1789474440,
+            86
+          ],
+          [
+            1789474500,
+            89
+          ],
+          [
+            1789474560,
+            84
+          ],
+          [
+            1789474620,
+            87
+          ],
+          [
+            1789474680,
+            90
+          ],
+          [
+            1789474740,
+            85
+          ],
+          [
+            1789474800,
+            88
+          ],
+          [
+            1789474860,
+            91
+          ],
+          [
+            1789474920,
+            86
+          ],
+          [
+            1789474980,
+            89
+          ],
+          [
+            1789475040,
+            84
+          ],
+          [
+            1789475100,
+            87
+          ],
+          [
+            1789475160,
+            90
+          ],
+          [
+            1789475220,
+            85
+          ],
+          [
+            1789475280,
+            88
+          ],
+          [
+            1789475340,
+            91
+          ],
+          [
+            1789475400,
+            86
+          ],
+          [
+            1789475460,
+            89
+          ],
+          [
+            1789475520,
+            84
+          ],
+          [
+            1789475580,
+            87
+          ],
+          [
+            1789475640,
+            90
+          ],
+          [
+            1789475700,
+            85
+          ],
+          [
+            1789475760,
+            88
+          ],
+          [
+            1789475820,
+            91
+          ],
+          [
+            1789475880,
+            86
+          ],
+          [
+            1789475940,
+            89
+          ],
+          [
+            1789476000,
+            84
+          ],
+          [
+            1789476060,
+            87
+          ],
+          [
+            1789476120,
+            90
+          ],
+          [
+            1789476180,
+            85
+          ],
+          [
+            1789476240,
+            88
+          ],
+          [
+            1789476300,
+            91
+          ],
+          [
+            1789476360,
+            86
+          ],
+          [
+            1789476420,
+            89
+          ],
+          [
+            1789476480,
+            84
+          ],
+          [
+            1789476540,
+            87
+          ],
+          [
+            1789476600,
+            90
+          ],
+          [
+            1789476660,
+            85
+          ],
+          [
+            1789476720,
+            88
+          ],
+          [
+            1789476780,
+            91
+          ],
+          [
+            1789476840,
+            86
+          ],
+          [
+            1789476900,
+            89
+          ],
+          [
+            1789476960,
+            84
+          ],
+          [
+            1789477020,
+            87
+          ],
+          [
+            1789477080,
+            90
+          ],
+          [
+            1789477140,
+            85
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000005/1789477200",
+      "value": {
+        "seq": 5,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            88
+          ],
+          [
+            1789477260,
+            91
+          ],
+          [
+            1789477320,
+            86
+          ],
+          [
+            1789477380,
+            89
+          ],
+          [
+            1789477440,
+            84
+          ],
+          [
+            1789477500,
+            87
+          ],
+          [
+            1789477560,
+            90
+          ],
+          [
+            1789477620,
+            85
+          ],
+          [
+            1789477680,
+            88
+          ],
+          [
+            1789477740,
+            91
+          ],
+          [
+            1789477800,
+            86
+          ],
+          [
+            1789477860,
+            89
+          ],
+          [
+            1789477920,
+            84
+          ],
+          [
+            1789477980,
+            87
+          ],
+          [
+            1789478040,
+            90
+          ],
+          [
+            1789478100,
+            85
+          ],
+          [
+            1789478160,
+            88
+          ],
+          [
+            1789478220,
+            91
+          ],
+          [
+            1789478280,
+            86
+          ],
+          [
+            1789478340,
+            89
+          ],
+          [
+            1789478400,
+            84
+          ],
+          [
+            1789478460,
+            87
+          ],
+          [
+            1789478520,
+            90
+          ],
+          [
+            1789478580,
+            85
+          ],
+          [
+            1789478640,
+            88
+          ],
+          [
+            1789478700,
+            91
+          ],
+          [
+            1789478760,
+            86
+          ],
+          [
+            1789478820,
+            89
+          ],
+          [
+            1789478880,
+            84
+          ],
+          [
+            1789478940,
+            87
+          ],
+          [
+            1789479000,
+            90
+          ],
+          [
+            1789479060,
+            85
+          ],
+          [
+            1789479120,
+            88
+          ],
+          [
+            1789479180,
+            91
+          ],
+          [
+            1789479240,
+            86
+          ],
+          [
+            1789479300,
+            89
+          ],
+          [
+            1789479360,
+            84
+          ],
+          [
+            1789479420,
+            87
+          ],
+          [
+            1789479480,
+            90
+          ],
+          [
+            1789479540,
+            85
+          ],
+          [
+            1789479600,
+            88
+          ],
+          [
+            1789479660,
+            91
+          ],
+          [
+            1789479720,
+            86
+          ],
+          [
+            1789479780,
+            89
+          ],
+          [
+            1789479840,
+            84
+          ],
+          [
+            1789479900,
+            87
+          ],
+          [
+            1789479960,
+            90
+          ],
+          [
+            1789480020,
+            85
+          ],
+          [
+            1789480080,
+            88
+          ],
+          [
+            1789480140,
+            91
+          ],
+          [
+            1789480200,
+            86
+          ],
+          [
+            1789480260,
+            89
+          ],
+          [
+            1789480320,
+            84
+          ],
+          [
+            1789480380,
+            87
+          ],
+          [
+            1789480440,
+            90
+          ],
+          [
+            1789480500,
+            85
+          ],
+          [
+            1789480560,
+            88
+          ],
+          [
+            1789480620,
+            91
+          ],
+          [
+            1789480680,
+            86
+          ],
+          [
+            1789480740,
+            89
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000005/1789480800",
+      "value": {
+        "seq": 5,
+        "hourStartSec": 1789480800,
+        "points": [
+          [
+            1789480800,
+            84
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000006/1789473600",
+      "value": {
+        "seq": 6,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            22
+          ],
+          [
+            1789473660,
+            25
+          ],
+          [
+            1789473720,
+            28
+          ],
+          [
+            1789473780,
+            31
+          ],
+          [
+            1789473840,
+            24
+          ],
+          [
+            1789473900,
+            27
+          ],
+          [
+            1789473960,
+            30
+          ],
+          [
+            1789474020,
+            23
+          ],
+          [
+            1789474080,
+            26
+          ],
+          [
+            1789474140,
+            29
+          ],
+          [
+            1789474200,
+            22
+          ],
+          [
+            1789474260,
+            25
+          ],
+          [
+            1789474320,
+            28
+          ],
+          [
+            1789474380,
+            31
+          ],
+          [
+            1789474440,
+            24
+          ],
+          [
+            1789474500,
+            27
+          ],
+          [
+            1789474560,
+            30
+          ],
+          [
+            1789474620,
+            23
+          ],
+          [
+            1789474680,
+            26
+          ],
+          [
+            1789474740,
+            29
+          ],
+          [
+            1789474800,
+            22
+          ],
+          [
+            1789474860,
+            25
+          ],
+          [
+            1789474920,
+            28
+          ],
+          [
+            1789474980,
+            31
+          ],
+          [
+            1789475040,
+            24
+          ],
+          [
+            1789475100,
+            27
+          ],
+          [
+            1789475160,
+            30
+          ],
+          [
+            1789475220,
+            23
+          ],
+          [
+            1789475280,
+            26
+          ],
+          [
+            1789475340,
+            29
+          ],
+          [
+            1789475400,
+            22
+          ],
+          [
+            1789475460,
+            25
+          ],
+          [
+            1789475520,
+            28
+          ],
+          [
+            1789475580,
+            31
+          ],
+          [
+            1789475640,
+            24
+          ],
+          [
+            1789475700,
+            27
+          ],
+          [
+            1789475760,
+            30
+          ],
+          [
+            1789475820,
+            23
+          ],
+          [
+            1789475880,
+            26
+          ],
+          [
+            1789475940,
+            29
+          ],
+          [
+            1789476000,
+            22
+          ],
+          [
+            1789476060,
+            25
+          ],
+          [
+            1789476120,
+            28
+          ],
+          [
+            1789476180,
+            31
+          ],
+          [
+            1789476240,
+            24
+          ],
+          [
+            1789476300,
+            27
+          ],
+          [
+            1789476360,
+            30
+          ],
+          [
+            1789476420,
+            23
+          ],
+          [
+            1789476480,
+            26
+          ],
+          [
+            1789476540,
+            29
+          ],
+          [
+            1789476600,
+            22
+          ],
+          [
+            1789476660,
+            25
+          ],
+          [
+            1789476720,
+            28
+          ],
+          [
+            1789476780,
+            31
+          ],
+          [
+            1789476840,
+            24
+          ],
+          [
+            1789476900,
+            27
+          ],
+          [
+            1789476960,
+            30
+          ],
+          [
+            1789477020,
+            23
+          ],
+          [
+            1789477080,
+            26
+          ],
+          [
+            1789477140,
+            29
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000006/1789477200",
+      "value": {
+        "seq": 6,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            22
+          ],
+          [
+            1789477260,
+            25
+          ],
+          [
+            1789477320,
+            28
+          ],
+          [
+            1789477380,
+            31
+          ],
+          [
+            1789477440,
+            24
+          ],
+          [
+            1789477500,
+            27
+          ],
+          [
+            1789477560,
+            30
+          ],
+          [
+            1789477620,
+            23
+          ],
+          [
+            1789477680,
+            26
+          ],
+          [
+            1789477740,
+            29
+          ],
+          [
+            1789477800,
+            22
+          ],
+          [
+            1789477860,
+            25
+          ],
+          [
+            1789477920,
+            28
+          ],
+          [
+            1789477980,
+            31
+          ],
+          [
+            1789478040,
+            24
+          ],
+          [
+            1789478100,
+            27
+          ],
+          [
+            1789478160,
+            30
+          ],
+          [
+            1789478220,
+            23
+          ],
+          [
+            1789478280,
+            26
+          ],
+          [
+            1789478340,
+            29
+          ],
+          [
+            1789478400,
+            22
+          ],
+          [
+            1789478460,
+            25
+          ],
+          [
+            1789478520,
+            28
+          ],
+          [
+            1789478580,
+            31
+          ],
+          [
+            1789478640,
+            24
+          ],
+          [
+            1789478700,
+            27
+          ],
+          [
+            1789478760,
+            30
+          ],
+          [
+            1789478820,
+            23
+          ],
+          [
+            1789478880,
+            26
+          ],
+          [
+            1789478940,
+            29
+          ],
+          [
+            1789479000,
+            22
+          ],
+          [
+            1789479060,
+            25
+          ],
+          [
+            1789479120,
+            28
+          ],
+          [
+            1789479180,
+            31
+          ],
+          [
+            1789479240,
+            24
+          ],
+          [
+            1789479300,
+            27
+          ],
+          [
+            1789479360,
+            30
+          ],
+          [
+            1789479420,
+            23
+          ],
+          [
+            1789479480,
+            26
+          ],
+          [
+            1789479540,
+            29
+          ],
+          [
+            1789479600,
+            22
+          ],
+          [
+            1789479660,
+            25
+          ],
+          [
+            1789479720,
+            28
+          ],
+          [
+            1789479780,
+            31
+          ],
+          [
+            1789479840,
+            24
+          ],
+          [
+            1789479900,
+            27
+          ],
+          [
+            1789479960,
+            30
+          ],
+          [
+            1789480020,
+            23
+          ],
+          [
+            1789480080,
+            26
+          ],
+          [
+            1789480140,
+            29
+          ],
+          [
+            1789480200,
+            22
+          ],
+          [
+            1789480260,
+            25
+          ],
+          [
+            1789480320,
+            28
+          ],
+          [
+            1789480380,
+            31
+          ],
+          [
+            1789480440,
+            24
+          ],
+          [
+            1789480500,
+            27
+          ],
+          [
+            1789480560,
+            30
+          ],
+          [
+            1789480620,
+            23
+          ],
+          [
+            1789480680,
+            26
+          ],
+          [
+            1789480740,
+            29
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000006/1789480800",
+      "value": {
+        "seq": 6,
+        "hourStartSec": 1789480800,
+        "points": [
+          [
+            1789480800,
+            22
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000007/1789473600",
+      "value": {
+        "seq": 7,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            0.61
+          ],
+          [
+            1789473660,
+            0.6105
+          ],
+          [
+            1789473720,
+            0.611
+          ],
+          [
+            1789473780,
+            0.6115
+          ],
+          [
+            1789473840,
+            0.612
+          ],
+          [
+            1789473900,
+            0.6125
+          ],
+          [
+            1789473960,
+            0.613
+          ],
+          [
+            1789474020,
+            0.6135
+          ],
+          [
+            1789474080,
+            0.614
+          ],
+          [
+            1789474140,
+            0.6145
+          ],
+          [
+            1789474200,
+            0.615
+          ],
+          [
+            1789474260,
+            0.6155
+          ],
+          [
+            1789474320,
+            0.616
+          ],
+          [
+            1789474380,
+            0.6165
+          ],
+          [
+            1789474440,
+            0.617
+          ],
+          [
+            1789474500,
+            0.6175
+          ],
+          [
+            1789474560,
+            0.618
+          ],
+          [
+            1789474620,
+            0.6185
+          ],
+          [
+            1789474680,
+            0.619
+          ],
+          [
+            1789474740,
+            0.6195
+          ],
+          [
+            1789474800,
+            0.62
+          ],
+          [
+            1789474860,
+            0.6205
+          ],
+          [
+            1789474920,
+            0.621
+          ],
+          [
+            1789474980,
+            0.6215
+          ],
+          [
+            1789475040,
+            0.622
+          ],
+          [
+            1789475100,
+            0.6225
+          ],
+          [
+            1789475160,
+            0.623
+          ],
+          [
+            1789475220,
+            0.6235
+          ],
+          [
+            1789475280,
+            0.624
+          ],
+          [
+            1789475340,
+            0.6245
+          ],
+          [
+            1789475400,
+            0.625
+          ],
+          [
+            1789475460,
+            0.6255
+          ],
+          [
+            1789475520,
+            0.626
+          ],
+          [
+            1789475580,
+            0.6265
+          ],
+          [
+            1789475640,
+            0.627
+          ],
+          [
+            1789475700,
+            0.6275
+          ],
+          [
+            1789475760,
+            0.628
+          ],
+          [
+            1789475820,
+            0.6285
+          ],
+          [
+            1789475880,
+            0.629
+          ],
+          [
+            1789475940,
+            0.6295
+          ],
+          [
+            1789476000,
+            0.63
+          ],
+          [
+            1789476060,
+            0.6305
+          ],
+          [
+            1789476120,
+            0.631
+          ],
+          [
+            1789476180,
+            0.6315
+          ],
+          [
+            1789476240,
+            0.632
+          ],
+          [
+            1789476300,
+            0.6325
+          ],
+          [
+            1789476360,
+            0.633
+          ],
+          [
+            1789476420,
+            0.6335
+          ],
+          [
+            1789476480,
+            0.634
+          ],
+          [
+            1789476540,
+            0.6345
+          ],
+          [
+            1789476600,
+            0.635
+          ],
+          [
+            1789476660,
+            0.6355
+          ],
+          [
+            1789476720,
+            0.636
+          ],
+          [
+            1789476780,
+            0.6365
+          ],
+          [
+            1789476840,
+            0.637
+          ],
+          [
+            1789476900,
+            0.6375
+          ],
+          [
+            1789476960,
+            0.638
+          ],
+          [
+            1789477020,
+            0.6385
+          ],
+          [
+            1789477080,
+            0.639
+          ],
+          [
+            1789477140,
+            0.6395
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000007/1789477200",
+      "value": {
+        "seq": 7,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            0.64
+          ],
+          [
+            1789477260,
+            0.6405
+          ],
+          [
+            1789477320,
+            0.641
+          ],
+          [
+            1789477380,
+            0.6415
+          ],
+          [
+            1789477440,
+            0.642
+          ],
+          [
+            1789477500,
+            0.6425
+          ],
+          [
+            1789477560,
+            0.643
+          ],
+          [
+            1789477620,
+            0.6435
+          ],
+          [
+            1789477680,
+            0.644
+          ],
+          [
+            1789477740,
+            0.6445
+          ],
+          [
+            1789477800,
+            0.645
+          ],
+          [
+            1789477860,
+            0.6455
+          ],
+          [
+            1789477920,
+            0.646
+          ],
+          [
+            1789477980,
+            0.6465
+          ],
+          [
+            1789478040,
+            0.647
+          ],
+          [
+            1789478100,
+            0.6475
+          ],
+          [
+            1789478160,
+            0.648
+          ],
+          [
+            1789478220,
+            0.6485
+          ],
+          [
+            1789478280,
+            0.649
+          ],
+          [
+            1789478340,
+            0.6495
+          ],
+          [
+            1789478400,
+            0.65
+          ],
+          [
+            1789478460,
+            0.6505
+          ],
+          [
+            1789478520,
+            0.651
+          ],
+          [
+            1789478580,
+            0.6515
+          ],
+          [
+            1789478640,
+            0.652
+          ],
+          [
+            1789478700,
+            0.6525
+          ],
+          [
+            1789478760,
+            0.653
+          ],
+          [
+            1789478820,
+            0.6535
+          ],
+          [
+            1789478880,
+            0.654
+          ],
+          [
+            1789478940,
+            0.6545
+          ],
+          [
+            1789479000,
+            0.655
+          ],
+          [
+            1789479060,
+            0.6555
+          ],
+          [
+            1789479120,
+            0.656
+          ],
+          [
+            1789479180,
+            0.6565
+          ],
+          [
+            1789479240,
+            0.657
+          ],
+          [
+            1789479300,
+            0.6575
+          ],
+          [
+            1789479360,
+            0.658
+          ],
+          [
+            1789479420,
+            0.6585
+          ],
+          [
+            1789479480,
+            0.659
+          ],
+          [
+            1789479540,
+            0.6595
+          ],
+          [
+            1789479600,
+            0.66
+          ],
+          [
+            1789479660,
+            0.6605
+          ],
+          [
+            1789479720,
+            0.661
+          ],
+          [
+            1789479780,
+            0.6615
+          ],
+          [
+            1789479840,
+            0.662
+          ],
+          [
+            1789479900,
+            0.6625
+          ],
+          [
+            1789479960,
+            0.663
+          ],
+          [
+            1789480020,
+            0.6635
+          ],
+          [
+            1789480080,
+            0.664
+          ],
+          [
+            1789480140,
+            0.6645
+          ],
+          [
+            1789480200,
+            0.665
+          ],
+          [
+            1789480260,
+            0.6655
+          ],
+          [
+            1789480320,
+            0.666
+          ],
+          [
+            1789480380,
+            0.6665
+          ],
+          [
+            1789480440,
+            0.667
+          ],
+          [
+            1789480500,
+            0.6675
+          ],
+          [
+            1789480560,
+            0.668
+          ],
+          [
+            1789480620,
+            0.6685
+          ],
+          [
+            1789480680,
+            0.669
+          ],
+          [
+            1789480740,
+            0.6695
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000007/1789480800",
+      "value": {
+        "seq": 7,
+        "hourStartSec": 1789480800,
+        "points": [
+          [
+            1789480800,
+            0.67
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000008/1789473600",
+      "value": {
+        "seq": 8,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            1
+          ],
+          [
+            1789473660,
+            0
+          ],
+          [
+            1789473720,
+            0
+          ],
+          [
+            1789473780,
+            0
+          ],
+          [
+            1789473840,
+            0
+          ],
+          [
+            1789473900,
+            0
+          ],
+          [
+            1789473960,
+            0
+          ],
+          [
+            1789474020,
+            0
+          ],
+          [
+            1789474080,
+            0
+          ],
+          [
+            1789474140,
+            1
+          ],
+          [
+            1789474200,
+            0
+          ],
+          [
+            1789474260,
+            0
+          ],
+          [
+            1789474320,
+            0
+          ],
+          [
+            1789474380,
+            0
+          ],
+          [
+            1789474440,
+            0
+          ],
+          [
+            1789474500,
+            0
+          ],
+          [
+            1789474560,
+            0
+          ],
+          [
+            1789474620,
+            0
+          ],
+          [
+            1789474680,
+            1
+          ],
+          [
+            1789474740,
+            0
+          ],
+          [
+            1789474800,
+            0
+          ],
+          [
+            1789474860,
+            0
+          ],
+          [
+            1789474920,
+            0
+          ],
+          [
+            1789474980,
+            0
+          ],
+          [
+            1789475040,
+            0
+          ],
+          [
+            1789475100,
+            0
+          ],
+          [
+            1789475160,
+            0
+          ],
+          [
+            1789475220,
+            1
+          ],
+          [
+            1789475280,
+            0
+          ],
+          [
+            1789475340,
+            0
+          ],
+          [
+            1789475400,
+            0
+          ],
+          [
+            1789475460,
+            0
+          ],
+          [
+            1789475520,
+            0
+          ],
+          [
+            1789475580,
+            0
+          ],
+          [
+            1789475640,
+            0
+          ],
+          [
+            1789475700,
+            0
+          ],
+          [
+            1789475760,
+            1
+          ],
+          [
+            1789475820,
+            0
+          ],
+          [
+            1789475880,
+            0
+          ],
+          [
+            1789475940,
+            0
+          ],
+          [
+            1789476000,
+            0
+          ],
+          [
+            1789476060,
+            0
+          ],
+          [
+            1789476120,
+            0
+          ],
+          [
+            1789476180,
+            0
+          ],
+          [
+            1789476240,
+            0
+          ],
+          [
+            1789476300,
+            1
+          ],
+          [
+            1789476360,
+            0
+          ],
+          [
+            1789476420,
+            0
+          ],
+          [
+            1789476480,
+            0
+          ],
+          [
+            1789476540,
+            0
+          ],
+          [
+            1789476600,
+            0
+          ],
+          [
+            1789476660,
+            0
+          ],
+          [
+            1789476720,
+            0
+          ],
+          [
+            1789476780,
+            0
+          ],
+          [
+            1789476840,
+            1
+          ],
+          [
+            1789476900,
+            0
+          ],
+          [
+            1789476960,
+            0
+          ],
+          [
+            1789477020,
+            0
+          ],
+          [
+            1789477080,
+            0
+          ],
+          [
+            1789477140,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000008/1789477200",
+      "value": {
+        "seq": 8,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            0
+          ],
+          [
+            1789477260,
+            0
+          ],
+          [
+            1789477320,
+            0
+          ],
+          [
+            1789477380,
+            1
+          ],
+          [
+            1789477440,
+            0
+          ],
+          [
+            1789477500,
+            0
+          ],
+          [
+            1789477560,
+            0
+          ],
+          [
+            1789477620,
+            0
+          ],
+          [
+            1789477680,
+            0
+          ],
+          [
+            1789477740,
+            0
+          ],
+          [
+            1789477800,
+            0
+          ],
+          [
+            1789477860,
+            0
+          ],
+          [
+            1789477920,
+            1
+          ],
+          [
+            1789477980,
+            0
+          ],
+          [
+            1789478040,
+            0
+          ],
+          [
+            1789478100,
+            0
+          ],
+          [
+            1789478160,
+            0
+          ],
+          [
+            1789478220,
+            0
+          ],
+          [
+            1789478280,
+            0
+          ],
+          [
+            1789478340,
+            0
+          ],
+          [
+            1789478400,
+            0
+          ],
+          [
+            1789478460,
+            1
+          ],
+          [
+            1789478520,
+            0
+          ],
+          [
+            1789478580,
+            0
+          ],
+          [
+            1789478640,
+            0
+          ],
+          [
+            1789478700,
+            0
+          ],
+          [
+            1789478760,
+            0
+          ],
+          [
+            1789478820,
+            0
+          ],
+          [
+            1789478880,
+            0
+          ],
+          [
+            1789478940,
+            0
+          ],
+          [
+            1789479000,
+            1
+          ],
+          [
+            1789479060,
+            0
+          ],
+          [
+            1789479120,
+            0
+          ],
+          [
+            1789479180,
+            0
+          ],
+          [
+            1789479240,
+            0
+          ],
+          [
+            1789479300,
+            0
+          ],
+          [
+            1789479360,
+            0
+          ],
+          [
+            1789479420,
+            0
+          ],
+          [
+            1789479480,
+            0
+          ],
+          [
+            1789479540,
+            1
+          ],
+          [
+            1789479600,
+            0
+          ],
+          [
+            1789479660,
+            0
+          ],
+          [
+            1789479720,
+            0
+          ],
+          [
+            1789479780,
+            0
+          ],
+          [
+            1789479840,
+            0
+          ],
+          [
+            1789479900,
+            0
+          ],
+          [
+            1789479960,
+            0
+          ],
+          [
+            1789480020,
+            0
+          ],
+          [
+            1789480080,
+            1
+          ],
+          [
+            1789480140,
+            0
+          ],
+          [
+            1789480200,
+            0
+          ],
+          [
+            1789480260,
+            0
+          ],
+          [
+            1789480320,
+            25
+          ],
+          [
+            1789480380,
+            25
+          ],
+          [
+            1789480440,
+            25
+          ],
+          [
+            1789480500,
+            25
+          ],
+          [
+            1789480560,
+            25
+          ],
+          [
+            1789480620,
+            25
+          ],
+          [
+            1789480680,
+            25
+          ],
+          [
+            1789480740,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000008/1789480800",
+      "value": {
+        "seq": 8,
+        "hourStartSec": 1789480800,
+        "points": [
+          [
+            1789480800,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000009/1789473600",
+      "value": {
+        "seq": 9,
+        "hourStartSec": 1789473600,
+        "points": [
+          [
+            1789473600,
+            120
+          ],
+          [
+            1789473660,
+            137
+          ],
+          [
+            1789473720,
+            154
+          ],
+          [
+            1789473780,
+            131
+          ],
+          [
+            1789473840,
+            148
+          ],
+          [
+            1789473900,
+            125
+          ],
+          [
+            1789473960,
+            142
+          ],
+          [
+            1789474020,
+            159
+          ],
+          [
+            1789474080,
+            136
+          ],
+          [
+            1789474140,
+            153
+          ],
+          [
+            1789474200,
+            130
+          ],
+          [
+            1789474260,
+            147
+          ],
+          [
+            1789474320,
+            124
+          ],
+          [
+            1789474380,
+            141
+          ],
+          [
+            1789474440,
+            158
+          ],
+          [
+            1789474500,
+            135
+          ],
+          [
+            1789474560,
+            152
+          ],
+          [
+            1789474620,
+            129
+          ],
+          [
+            1789474680,
+            146
+          ],
+          [
+            1789474740,
+            123
+          ],
+          [
+            1789474800,
+            140
+          ],
+          [
+            1789474860,
+            157
+          ],
+          [
+            1789474920,
+            134
+          ],
+          [
+            1789474980,
+            151
+          ],
+          [
+            1789475040,
+            128
+          ],
+          [
+            1789475100,
+            145
+          ],
+          [
+            1789475160,
+            122
+          ],
+          [
+            1789475220,
+            139
+          ],
+          [
+            1789475280,
+            156
+          ],
+          [
+            1789475340,
+            133
+          ],
+          [
+            1789475400,
+            150
+          ],
+          [
+            1789475460,
+            127
+          ],
+          [
+            1789475520,
+            144
+          ],
+          [
+            1789475580,
+            121
+          ],
+          [
+            1789475640,
+            138
+          ],
+          [
+            1789475700,
+            155
+          ],
+          [
+            1789475760,
+            132
+          ],
+          [
+            1789475820,
+            149
+          ],
+          [
+            1789475880,
+            126
+          ],
+          [
+            1789475940,
+            143
+          ],
+          [
+            1789476000,
+            120
+          ],
+          [
+            1789476060,
+            137
+          ],
+          [
+            1789476120,
+            154
+          ],
+          [
+            1789476180,
+            131
+          ],
+          [
+            1789476240,
+            148
+          ],
+          [
+            1789476300,
+            125
+          ],
+          [
+            1789476360,
+            142
+          ],
+          [
+            1789476420,
+            159
+          ],
+          [
+            1789476480,
+            136
+          ],
+          [
+            1789476540,
+            153
+          ],
+          [
+            1789476600,
+            130
+          ],
+          [
+            1789476660,
+            147
+          ],
+          [
+            1789476720,
+            124
+          ],
+          [
+            1789476780,
+            141
+          ],
+          [
+            1789476840,
+            158
+          ],
+          [
+            1789476900,
+            135
+          ],
+          [
+            1789476960,
+            152
+          ],
+          [
+            1789477020,
+            129
+          ],
+          [
+            1789477080,
+            146
+          ],
+          [
+            1789477140,
+            123
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "rowId": "00000009/1789477200",
+      "value": {
+        "seq": 9,
+        "hourStartSec": 1789477200,
+        "points": [
+          [
+            1789477200,
+            140
+          ],
+          [
+            1789477260,
+            157
+          ],
+          [
+            1789477320,
+            134
+          ],
+          [
+            1789477380,
+            151
+          ],
+          [
+            1789477440,
+            128
+          ],
+          [
+            1789477500,
+            145
+          ]
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "checkout.request.latency/00000001",
+      "value": {
+        "seq": 1,
+        "metric": "checkout.request.latency",
+        "tags": [
+          "env:prod",
+          "region:us-east-1",
+          "service:checkout"
+        ],
+        "host": "web-01",
+        "resources": [
+          {
+            "name": "web-01",
+            "type": "host"
+          }
+        ],
+        "intakeType": 3,
+        "interval": null,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789480800,
+        "pointCount": 121
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "checkout.request.latency/00000002",
+      "value": {
+        "seq": 2,
+        "metric": "checkout.request.latency",
+        "tags": [
+          "env:prod",
+          "region:us-east-1",
+          "service:checkout"
+        ],
+        "host": "web-02",
+        "resources": [
+          {
+            "name": "web-02",
+            "type": "host"
+          }
+        ],
+        "intakeType": 3,
+        "interval": null,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789480800,
+        "pointCount": 121
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "checkout.request.latency/00000003",
+      "value": {
+        "seq": 3,
+        "metric": "checkout.request.latency",
+        "tags": [
+          "env:prod",
+          "region:são-paulo",
+          "service:checkout"
+        ],
+        "host": "web-03",
+        "resources": [
+          {
+            "name": "web-03",
+            "type": "host"
+          }
+        ],
+        "intakeType": 3,
+        "interval": null,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789480800,
+        "pointCount": 121
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "payments.errors/00000008",
+      "value": {
+        "seq": 8,
+        "metric": "payments.errors",
+        "tags": [
+          "env:prod",
+          "service:payments"
+        ],
+        "host": null,
+        "resources": [],
+        "intakeType": 1,
+        "interval": 60,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789480800,
+        "pointCount": 121
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "queue.depth/00000009",
+      "value": {
+        "seq": 9,
+        "metric": "queue.depth",
+        "tags": [
+          "env:prod",
+          "service:orders"
+        ],
+        "host": "worker-01",
+        "resources": [
+          {
+            "name": "worker-01",
+            "type": "host"
+          }
+        ],
+        "intakeType": 3,
+        "interval": null,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789477500,
+        "pointCount": 66
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "system.cpu.user/00000004",
+      "value": {
+        "seq": 4,
+        "metric": "system.cpu.user",
+        "tags": [
+          "env:prod",
+          "role:web"
+        ],
+        "host": "web-01",
+        "resources": [
+          {
+            "name": "web-01",
+            "type": "host"
+          }
+        ],
+        "intakeType": 3,
+        "interval": null,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789480800,
+        "pointCount": 121
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "system.cpu.user/00000005",
+      "value": {
+        "seq": 5,
+        "metric": "system.cpu.user",
+        "tags": [
+          "env:prod",
+          "role:db"
+        ],
+        "host": "db-01",
+        "resources": [
+          {
+            "name": "db-01",
+            "type": "host"
+          }
+        ],
+        "intakeType": 3,
+        "interval": null,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789480800,
+        "pointCount": 121
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "system.cpu.user/00000006",
+      "value": {
+        "seq": 6,
+        "metric": "system.cpu.user",
+        "tags": [
+          "env:staging",
+          "role:web"
+        ],
+        "host": "stage-01",
+        "resources": [
+          {
+            "name": "stage-01",
+            "type": "host"
+          }
+        ],
+        "intakeType": 3,
+        "interval": null,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789480800,
+        "pointCount": 121
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metric-series",
+      "rowId": "system.disk.in_use/00000007",
+      "value": {
+        "seq": 7,
+        "metric": "system.disk.in_use",
+        "tags": [
+          "device:/dev/sda1",
+          "env:prod"
+        ],
+        "host": "db-01",
+        "resources": [
+          {
+            "name": "db-01",
+            "type": "host"
+          }
+        ],
+        "intakeType": 3,
+        "interval": null,
+        "firstSeenSec": 1789473600,
+        "lastSeenSec": 1789480800,
+        "pointCount": 121
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metrics-meta",
+      "rowId": "checkout.request.latency",
+      "value": {
+        "metric": "checkout.request.latency",
+        "type": "gauge",
+        "description": null,
+        "shortName": null,
+        "unit": "millisecond",
+        "perUnit": null,
+        "statsdInterval": null,
+        "integration": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metrics-meta",
+      "rowId": "payments.errors",
+      "value": {
+        "metric": "payments.errors",
+        "type": "count",
+        "description": null,
+        "shortName": null,
+        "unit": "error",
+        "perUnit": null,
+        "statsdInterval": 60,
+        "integration": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metrics-meta",
+      "rowId": "queue.depth",
+      "value": {
+        "metric": "queue.depth",
+        "type": "gauge",
+        "description": null,
+        "shortName": null,
+        "unit": "item",
+        "perUnit": null,
+        "statsdInterval": null,
+        "integration": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metrics-meta",
+      "rowId": "system.cpu.user",
+      "value": {
+        "metric": "system.cpu.user",
+        "type": "gauge",
+        "description": null,
+        "shortName": null,
+        "unit": "percent",
+        "perUnit": null,
+        "statsdInterval": null,
+        "integration": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "metrics-meta",
+      "rowId": "system.disk.in_use",
+      "value": {
+        "metric": "system.disk.in_use",
+        "type": "gauge",
+        "description": null,
+        "shortName": null,
+        "unit": "percent",
+        "perUnit": null,
+        "statsdInterval": null,
+        "integration": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitor-metrics",
+      "rowId": "checkout.request.latency/000148500001",
+      "value": {
+        "metric": "checkout.request.latency",
+        "monitorId": 148500001
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitor-metrics",
+      "rowId": "payments.errors/000148500004",
+      "value": {
+        "metric": "payments.errors",
+        "monitorId": 148500004
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitor-metrics",
+      "rowId": "queue.depth/000148500006",
+      "value": {
+        "metric": "queue.depth",
+        "monitorId": 148500006
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitor-metrics",
+      "rowId": "system.cpu.user/000148500002",
+      "value": {
+        "metric": "system.cpu.user",
+        "monitorId": 148500002
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitor-metrics",
+      "rowId": "system.cpu.user/000148500009",
+      "value": {
+        "metric": "system.cpu.user",
+        "monitorId": 148500009
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitor-metrics",
+      "rowId": "system.disk.in_use/000148500003",
+      "value": {
+        "metric": "system.disk.in_use",
+        "monitorId": 148500003
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500001",
+      "value": {
+        "id": 148500001,
+        "name": "Checkout p95 latency high on {{host.name}}",
+        "type": "query alert",
+        "query": "avg(last_5m):avg:checkout.request.latency{env:prod,service:checkout} by {host} > 800",
+        "message": "{{#is_alert}}Latency on {{host.name}} is {{value}} ms (threshold {{threshold}} ms).{{/is_alert}}{{#is_recovery}}Latency recovered on {{host.name}}.{{/is_recovery}} @slack-checkout-oncall @priya.raman@example.com",
+        "tags": [
+          "team:checkout",
+          "service:checkout",
+          "env:prod"
+        ],
+        "priority": 2,
+        "restrictedRoles": null,
+        "options": {
+          "thresholds": {
+            "critical": 800,
+            "warning": 600,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": null
+          },
+          "notifyNoData": false,
+          "noDataTimeframe": null,
+          "renotifyInterval": 30,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [],
+          "escalationMessage": ""
+        },
+        "parsed": {
+          "kind": "metric",
+          "metric": "checkout.request.latency",
+          "windowSec": 300,
+          "ids": []
+        },
+        "multi": true,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789471800000000,
+        "creatorHandle": "priya.raman@example.com",
+        "overallState": "Alert",
+        "overallStateModifiedUs": 1789480440000000,
+        "groups": [
+          {
+            "name": "host:web-01",
+            "status": "OK",
+            "lastTriggeredSec": null,
+            "lastNodataSec": null,
+            "lastResolvedSec": null,
+            "lastValue": 457.5
+          },
+          {
+            "name": "host:web-02",
+            "status": "Alert",
+            "lastTriggeredSec": 1789480440,
+            "lastNodataSec": null,
+            "lastResolvedSec": null,
+            "lastValue": 900
+          },
+          {
+            "name": "host:web-03",
+            "status": "OK",
+            "lastTriggeredSec": null,
+            "lastNodataSec": null,
+            "lastResolvedSec": null,
+            "lastValue": 407.5
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500002",
+      "value": {
+        "id": 148500002,
+        "name": "CPU high on prod",
+        "type": "metric alert",
+        "query": "avg(last_5m):avg:system.cpu.user{env:prod} > 90",
+        "message": "{{#is_warning}}CPU is elevated at {{value}}%.{{/is_warning}}{{#is_alert}}CPU is critical at {{value}}%.{{/is_alert}} @pagerduty-infra",
+        "tags": [
+          "team:infra",
+          "env:prod"
+        ],
+        "priority": 3,
+        "restrictedRoles": null,
+        "options": {
+          "thresholds": {
+            "critical": 90,
+            "warning": 75,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": null
+          },
+          "notifyNoData": false,
+          "noDataTimeframe": null,
+          "renotifyInterval": null,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [],
+          "escalationMessage": ""
+        },
+        "parsed": {
+          "kind": "metric",
+          "metric": "system.cpu.user",
+          "windowSec": 300,
+          "ids": []
+        },
+        "multi": false,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789471800000000,
+        "creatorHandle": "priya.raman@example.com",
+        "overallState": "Warn",
+        "overallStateModifiedUs": 1789473600000000,
+        "groups": [
+          {
+            "name": "*",
+            "status": "Warn",
+            "lastTriggeredSec": 1789473600,
+            "lastNodataSec": null,
+            "lastResolvedSec": null,
+            "lastValue": 79.33333333333333
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500003",
+      "value": {
+        "id": 148500003,
+        "name": "DB disk almost full",
+        "type": "metric alert",
+        "query": "max(last_15m):avg:system.disk.in_use{host:db-01} > 0.9",
+        "message": "Disk usage on db-01 is {{value}}. @dba-team@example.com",
+        "tags": [
+          "team:data",
+          "env:prod"
+        ],
+        "priority": 1,
+        "restrictedRoles": [
+          "Datadog Admin Role"
+        ],
+        "options": {
+          "thresholds": {
+            "critical": 0.9,
+            "warning": 0.8,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": null
+          },
+          "notifyNoData": false,
+          "noDataTimeframe": null,
+          "renotifyInterval": null,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [],
+          "escalationMessage": ""
+        },
+        "parsed": {
+          "kind": "metric",
+          "metric": "system.disk.in_use",
+          "windowSec": 900,
+          "ids": []
+        },
+        "multi": false,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789471800000000,
+        "creatorHandle": "priya.raman@example.com",
+        "overallState": "OK",
+        "overallStateModifiedUs": null,
+        "groups": [
+          {
+            "name": "*",
+            "status": "OK",
+            "lastTriggeredSec": null,
+            "lastNodataSec": null,
+            "lastResolvedSec": null,
+            "lastValue": 0.67
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500004",
+      "value": {
+        "id": 148500004,
+        "name": "Payment errors burst",
+        "type": "query alert",
+        "query": "sum(last_10m):sum:payments.errors{service:payments}.as_count() > 50",
+        "message": "{{#is_alert}}{{value}} payment errors in 10 minutes.{{/is_alert}} @slack-payments",
+        "tags": [
+          "team:payments",
+          "service:payments",
+          "env:prod"
+        ],
+        "priority": 2,
+        "restrictedRoles": null,
+        "options": {
+          "thresholds": {
+            "critical": 50,
+            "warning": null,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": null
+          },
+          "notifyNoData": false,
+          "noDataTimeframe": null,
+          "renotifyInterval": null,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [
+            {
+              "scope": "*",
+              "untilSec": null
+            }
+          ],
+          "escalationMessage": ""
+        },
+        "parsed": {
+          "kind": "metric",
+          "metric": "payments.errors",
+          "windowSec": 600,
+          "ids": []
+        },
+        "multi": false,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789471800000000,
+        "creatorHandle": "priya.raman@example.com",
+        "overallState": "Alert",
+        "overallStateModifiedUs": 1789480380000000,
+        "groups": [
+          {
+            "name": "*",
+            "status": "Alert",
+            "lastTriggeredSec": 1789480380,
+            "lastNodataSec": null,
+            "lastResolvedSec": null,
+            "lastValue": 175
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500005",
+      "value": {
+        "id": 148500005,
+        "name": "Checkout degraded and payments failing",
+        "type": "composite",
+        "query": "148500001 && 148500004",
+        "message": "Checkout latency and payment errors are both alerting. @slack-incident-room",
+        "tags": [
+          "team:checkout",
+          "team:payments"
+        ],
+        "priority": 1,
+        "restrictedRoles": null,
+        "options": {
+          "thresholds": {
+            "critical": null,
+            "warning": null,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": null
+          },
+          "notifyNoData": false,
+          "noDataTimeframe": null,
+          "renotifyInterval": null,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [],
+          "escalationMessage": ""
+        },
+        "parsed": {
+          "kind": "composite",
+          "metric": null,
+          "windowSec": null,
+          "ids": [
+            148500001,
+            148500004
+          ]
+        },
+        "multi": false,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789471800000000,
+        "creatorHandle": "priya.raman@example.com",
+        "overallState": "Alert",
+        "overallStateModifiedUs": 1789480380000000,
+        "groups": [
+          {
+            "name": "*",
+            "status": "Alert",
+            "lastTriggeredSec": 1789480380,
+            "lastNodataSec": null,
+            "lastResolvedSec": null,
+            "lastValue": null
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500006",
+      "value": {
+        "id": 148500006,
+        "name": "Queue stopped reporting",
+        "type": "metric alert",
+        "query": "avg(last_15m):avg:queue.depth{service:orders} > 1000",
+        "message": "{{#is_no_data}}queue.depth has not reported for 15 minutes.{{/is_no_data}} @slack-orders",
+        "tags": [
+          "team:orders",
+          "service:orders"
+        ],
+        "priority": 3,
+        "restrictedRoles": null,
+        "options": {
+          "thresholds": {
+            "critical": 1000,
+            "warning": null,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": null
+          },
+          "notifyNoData": true,
+          "noDataTimeframe": 15,
+          "renotifyInterval": 60,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [],
+          "escalationMessage": ""
+        },
+        "parsed": {
+          "kind": "metric",
+          "metric": "queue.depth",
+          "windowSec": 900,
+          "ids": []
+        },
+        "multi": false,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789480740000000,
+        "creatorHandle": "priya.raman@example.com",
+        "overallState": "No Data",
+        "overallStateModifiedUs": 1789480740000000,
+        "groups": [
+          {
+            "name": "*",
+            "status": "No Data",
+            "lastTriggeredSec": null,
+            "lastNodataSec": 1789480740,
+            "lastResolvedSec": null,
+            "lastValue": 140
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500007",
+      "value": {
+        "id": 148500007,
+        "name": "Checkout health endpoint",
+        "type": "service check",
+        "query": "\"http.can_connect\".over(\"instance:checkout_health\").by(\"host\").last(3).count_by_status()",
+        "message": "Health check failing. @slack-checkout-oncall",
+        "tags": [
+          "team:checkout",
+          "service:checkout"
+        ],
+        "priority": 2,
+        "restrictedRoles": null,
+        "options": {
+          "thresholds": {
+            "critical": 2,
+            "warning": 1,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": 1
+          },
+          "notifyNoData": false,
+          "noDataTimeframe": null,
+          "renotifyInterval": null,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [],
+          "escalationMessage": ""
+        },
+        "parsed": null,
+        "multi": false,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789471800000000,
+        "creatorHandle": "priya.raman@example.com",
+        "overallState": "OK",
+        "overallStateModifiedUs": 1789475400000000,
+        "groups": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500008",
+      "value": {
+        "id": 148500008,
+        "name": "Checkout error logs spike",
+        "type": "log alert",
+        "query": "logs(\"service:checkout status:error\").index(\"*\").rollup(\"count\").last(\"5m\") > 100",
+        "message": "Error logs spiking. @slack-checkout-oncall",
+        "tags": [
+          "team:checkout",
+          "service:checkout"
+        ],
+        "priority": 3,
+        "restrictedRoles": null,
+        "options": {
+          "thresholds": {
+            "critical": 100,
+            "warning": null,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": null
+          },
+          "notifyNoData": false,
+          "noDataTimeframe": null,
+          "renotifyInterval": null,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [],
+          "escalationMessage": ""
+        },
+        "parsed": null,
+        "multi": false,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789471800000000,
+        "creatorHandle": "priya.raman@example.com",
+        "overallState": "Unknown",
+        "overallStateModifiedUs": 1789475400000000,
+        "groups": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "monitors",
+      "rowId": "000148500009",
+      "value": {
+        "id": 148500009,
+        "name": "Staging CPU",
+        "type": "metric alert",
+        "query": "avg(last_10m):avg:system.cpu.user{env:staging} > 90",
+        "message": "Staging CPU high.",
+        "tags": [
+          "team:infra",
+          "env:staging"
+        ],
+        "priority": 5,
+        "restrictedRoles": null,
+        "options": {
+          "thresholds": {
+            "critical": 90,
+            "warning": null,
+            "criticalRecovery": null,
+            "warningRecovery": null,
+            "ok": null
+          },
+          "notifyNoData": false,
+          "noDataTimeframe": null,
+          "renotifyInterval": null,
+          "evaluationDelay": null,
+          "newGroupDelay": null,
+          "includeTags": true,
+          "requireFullWindow": false,
+          "notifyAudit": false,
+          "silenced": [],
+          "escalationMessage": ""
+        },
+        "parsed": {
+          "kind": "metric",
+          "metric": "system.cpu.user",
+          "windowSec": 600,
+          "ids": []
+        },
+        "multi": false,
+        "createdUs": 1789471800000000,
+        "modifiedUs": 1789471800000000,
+        "creatorHandle": "marco.silva@example.com",
+        "overallState": "OK",
+        "overallStateModifiedUs": null,
+        "groups": [
+          {
+            "name": "*",
+            "status": "OK",
+            "lastTriggeredSec": null,
+            "lastNodataSec": null,
+            "lastResolvedSec": null,
+            "lastValue": 26.09090909090909
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "users",
+      "rowId": "former.sre@example.com",
+      "value": {
+        "handle": "former.sre@example.com",
+        "uuid": "9a0b1c2d-3e4f-4a5b-b6c7-d8e9f0a1b2c3",
+        "name": "Former SRE",
+        "role": "Datadog Standard Role",
+        "disabled": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "users",
+      "rowId": "lin.okafor@example.com",
+      "value": {
+        "handle": "lin.okafor@example.com",
+        "uuid": "7d8e9f0a-1b2c-4d3e-a4f5-6a7b8c9d0e1f",
+        "name": "Lin Okafor",
+        "role": "Datadog Read Only Role",
+        "disabled": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "users",
+      "rowId": "marco.silva@example.com",
+      "value": {
+        "handle": "marco.silva@example.com",
+        "uuid": "5b7c9d1e-2f3a-4b5c-8d6e-7f8091a2b3c4",
+        "name": "Marco Silva",
+        "role": "Datadog Standard Role",
+        "disabled": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "datadog",
+      "namespace": "users",
+      "rowId": "priya.raman@example.com",
+      "value": {
+        "handle": "priya.raman@example.com",
+        "uuid": "3f6a1c2e-8b4d-4e7f-9a10-2b3c4d5e6f70",
+        "name": "Priya Raman",
+        "role": "Datadog Admin Role",
+        "disabled": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "xero-payment-response-lost",
+  "title": "A payment commits but its response is lost; an idempotent retry is safe and a blind retry is refused",
+  "targetId": "conformance-agent",
+  "scenarioId": "payment-response-lost",
+  "actorId": "owner",
+  "task": {
+    "instruction": "[payment-response-lost] Run the payment-response-lost conformance flow against the synthetic Xero Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "payments-create-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payments-record-tool_error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "xero",
+        "operationId": "payments.record"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "inv-1007-paid",
+      "kind": "state.value",
+      "packageId": "xero",
+      "namespace": "invoices",
+      "rowId": "a0000000-0000-4000-8000-000000000007",
+      "path": [
+        "Status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "PAID"
+      }
+    },
+    {
+      "id": "payments-count",
+      "kind": "state.count",
+      "packageId": "xero",
+      "namespace": "payments",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "invoice-changed-equals",
+      "kind": "event.count",
+      "event": {
+        "packageId": "xero",
+        "eventId": "invoice.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

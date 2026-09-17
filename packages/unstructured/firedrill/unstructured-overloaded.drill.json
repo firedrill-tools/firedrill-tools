@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-overloaded",
+  "title": "general.partition answers 503 with the open server's text under the partition-overloaded fault",
+  "targetId": "conformance-agent",
+  "scenarioId": "overloaded",
+  "actorId": "analyst",
+  "task": {
+    "instruction": "Run the overloaded flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "general-partition-tool_error-98",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "general.partition"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "partition-log-count-99",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "partition-log",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "partition-completed-events-100",
+      "kind": "event.count",
+      "event": {
+        "packageId": "unstructured",
+        "eventId": "partition.completed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

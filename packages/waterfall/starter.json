@@ -1,0 +1,3676 @@
+{
+  "schemaVersion": 1,
+  "virtualTimeUs": 1789552800000000,
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "meta",
+      "rowId": "account",
+      "value": {
+        "name": "Northwind Labs",
+        "master_api_key": "00000001-0000-4000-8000-000000000001",
+        "balance_remaining_micros": 250000000,
+        "job_delay_us": 0,
+        "price_micros": {
+          "prospector_persons": 138000,
+          "prospector_persons_phones": 320000,
+          "enrichment_contact_persons": 138000,
+          "enrichment_contact_persons_phones": 320000,
+          "enrichment_phone_phones": 320000,
+          "enrichment_company_companies": 100000,
+          "search_contact_found": 40000,
+          "search_company_found": 50000,
+          "company_reveal_found": 0,
+          "company_titles_found": 0,
+          "job_change_found": 100000,
+          "verify_email_verified": 20000
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "max_scan_rows": 5000,
+        "max_response_bytes": 900000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "api-keys",
+      "rowId": "00000001-0000-4000-8000-000000000001",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "active": true,
+        "notes": "Northwind master",
+        "master": true,
+        "per_interval": 50,
+        "interval_seconds": 60,
+        "created_at_us": 1762161300000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "api-keys",
+      "rowId": "00000001-0000-4000-8000-000000000002",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000002",
+        "active": true,
+        "notes": "Outbound team",
+        "master": false,
+        "per_interval": 30,
+        "interval_seconds": 60,
+        "created_at_us": 1771346400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "api-keys",
+      "rowId": "00000001-0000-4000-8000-000000000003",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000003",
+        "active": false,
+        "notes": "Legacy zap",
+        "master": false,
+        "per_interval": 10,
+        "interval_seconds": 60,
+        "created_at_us": 1767870000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "companies",
+      "rowId": "00000002-0000-4000-8000-000000000001",
+      "value": {
+        "id": "00000002-0000-4000-8000-000000000001",
+        "domain": "northwind.test",
+        "name": "Northwind Labs",
+        "website": "https://www.northwind.test",
+        "linkedin_id": "northwind-labs",
+        "linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+        "description": "Northwind Labs builds observability tooling for data platform teams.",
+        "logo_url": "https://www.northwind.test/logo.png",
+        "size": "201-500",
+        "employees_count": 320,
+        "industry": "Software Development",
+        "type": "Privately Held",
+        "founded": 2014,
+        "address": "Seattle, Washington, United States",
+        "country": "United States",
+        "linkedin_followers": 12400,
+        "crunchbase_url": "https://www.crunchbase.com/organization/northwind-labs",
+        "recent_job_posting_count": 7,
+        "technologies": [
+          "TypeScript",
+          "PostgreSQL",
+          "Kubernetes",
+          "Terraform",
+          "React",
+          "Snowflake"
+        ],
+        "funding_details": {
+          "total_funding_rounds": 3,
+          "total_funding_usd": 61500000,
+          "funding_rounds": [
+            {
+              "round_name": "Seed",
+              "round_date": "2015-02-10",
+              "investor_count": 1,
+              "amount_raised_usd": 1500000,
+              "investor_names": [
+                "Rainier Ventures"
+              ]
+            },
+            {
+              "round_name": "Series A",
+              "round_date": "2017-09-21",
+              "investor_count": 2,
+              "amount_raised_usd": 12000000,
+              "investor_names": [
+                "Rainier Ventures",
+                "Cascade Capital"
+              ]
+            },
+            {
+              "round_name": "Series B",
+              "round_date": "2021-05-04",
+              "investor_count": 4,
+              "amount_raised_usd": 48000000,
+              "investor_names": [
+                "Cascade Capital",
+                "Puget Growth Partners",
+                "Evergreen Fund",
+                "Harbor Equity"
+              ]
+            }
+          ]
+        },
+        "smtp_provider": "google",
+        "mx_records": [
+          "aspmx.l.google.com",
+          "alt1.aspmx.l.google.com"
+        ],
+        "catch_all": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-domains",
+      "rowId": "northwind.test",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-linkedin",
+      "rowId": "northwind-labs",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-names",
+      "rowId": "northwind labs",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "companies",
+      "rowId": "00000002-0000-4000-8000-000000000002",
+      "value": {
+        "id": "00000002-0000-4000-8000-000000000002",
+        "domain": "contoso-freight.test",
+        "name": "Contoso Freight",
+        "website": "https://www.contoso-freight.test",
+        "linkedin_id": "contoso-freight",
+        "linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+        "description": "Contoso Freight runs road logistics across Central Europe with a fleet of 1,400 trucks.",
+        "logo_url": "https://www.contoso-freight.test/logo.png",
+        "size": "1001-5000",
+        "employees_count": 2600,
+        "industry": "Truck Transportation",
+        "type": "Privately Held",
+        "founded": 1987,
+        "address": "Hamburg, Germany",
+        "country": "Germany",
+        "linkedin_followers": 8900,
+        "crunchbase_url": null,
+        "recent_job_posting_count": 12,
+        "technologies": [
+          "SAP",
+          "Oracle Transportation Management",
+          "Microsoft 365"
+        ],
+        "funding_details": {
+          "total_funding_rounds": 0,
+          "total_funding_usd": 0,
+          "funding_rounds": []
+        },
+        "smtp_provider": "microsoft",
+        "mx_records": [
+          "contoso-freight-test.mail.protection.outlook.com"
+        ],
+        "catch_all": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-domains",
+      "rowId": "contoso-freight.test",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-linkedin",
+      "rowId": "contoso-freight",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-names",
+      "rowId": "contoso freight",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "companies",
+      "rowId": "00000002-0000-4000-8000-000000000003",
+      "value": {
+        "id": "00000002-0000-4000-8000-000000000003",
+        "domain": "fabrikam.example",
+        "name": "Fabrikam",
+        "website": "https://www.fabrikam.example",
+        "linkedin_id": "fabrikam",
+        "linkedin_url": "https://www.linkedin.com/company/fabrikam/",
+        "description": "Fabrikam makes scheduling software for field service teams.",
+        "logo_url": "https://www.fabrikam.example/logo.png",
+        "size": "51-200",
+        "employees_count": 120,
+        "industry": "Software Development",
+        "type": "Privately Held",
+        "founded": null,
+        "address": "Lyon, France",
+        "country": "France",
+        "linkedin_followers": null,
+        "crunchbase_url": "https://www.crunchbase.com/organization/fabrikam",
+        "recent_job_posting_count": 3,
+        "technologies": [
+          "Python",
+          "Django",
+          "AWS"
+        ],
+        "funding_details": {
+          "total_funding_rounds": 1,
+          "total_funding_usd": 900000,
+          "funding_rounds": [
+            {
+              "round_name": "Seed",
+              "round_date": "2020-11-30",
+              "investor_count": 1,
+              "amount_raised_usd": 900000,
+              "investor_names": [
+                "Rhône Angels"
+              ]
+            }
+          ]
+        },
+        "smtp_provider": "google",
+        "mx_records": [
+          "aspmx.l.google.com"
+        ],
+        "catch_all": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-domains",
+      "rowId": "fabrikam.example",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-linkedin",
+      "rowId": "fabrikam",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-names",
+      "rowId": "fabrikam",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "companies",
+      "rowId": "00000002-0000-4000-8000-000000000004",
+      "value": {
+        "id": "00000002-0000-4000-8000-000000000004",
+        "domain": "tailspin-toys.test",
+        "name": "Tailspin Toys",
+        "website": "https://www.tailspin-toys.test",
+        "linkedin_id": "tailspin-toys",
+        "linkedin_url": "https://www.linkedin.com/company/tailspin-toys/",
+        "description": "Tailspin Toys sells wooden toys online and in two stores.",
+        "logo_url": "https://www.tailspin-toys.test/logo.png",
+        "size": "11-50",
+        "employees_count": 28,
+        "industry": "Retail",
+        "type": "Privately Held",
+        "founded": 2009,
+        "address": "Portland, Oregon, United States",
+        "country": "United States",
+        "linkedin_followers": 1500,
+        "crunchbase_url": null,
+        "recent_job_posting_count": 1,
+        "technologies": [
+          "Shopify",
+          "Klaviyo"
+        ],
+        "funding_details": {
+          "total_funding_rounds": 0,
+          "total_funding_usd": 0,
+          "funding_rounds": []
+        },
+        "smtp_provider": "zoho",
+        "mx_records": [
+          "mx.zoho.com",
+          "mx2.zoho.com"
+        ],
+        "catch_all": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-domains",
+      "rowId": "tailspin-toys.test",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-linkedin",
+      "rowId": "tailspin-toys",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-names",
+      "rowId": "tailspin toys",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "companies",
+      "rowId": "00000002-0000-4000-8000-000000000005",
+      "value": {
+        "id": "00000002-0000-4000-8000-000000000005",
+        "domain": "woodgrove-bank.test",
+        "name": "Woodgrove Bank",
+        "website": "https://www.woodgrove-bank.test",
+        "linkedin_id": "woodgrove-bank",
+        "linkedin_url": "https://www.linkedin.com/company/woodgrove-bank/",
+        "description": "Woodgrove Bank is a retail and commercial bank.",
+        "logo_url": "https://www.woodgrove-bank.test/logo.png",
+        "size": "5001-10000",
+        "employees_count": 7400,
+        "industry": "Banking",
+        "type": "Public Company",
+        "founded": 1921,
+        "address": "London, United Kingdom",
+        "country": "United Kingdom",
+        "linkedin_followers": 54000,
+        "crunchbase_url": null,
+        "recent_job_posting_count": 22,
+        "technologies": [
+          "Java",
+          "Temenos",
+          "Azure"
+        ],
+        "funding_details": {
+          "total_funding_rounds": 0,
+          "total_funding_usd": 0,
+          "funding_rounds": []
+        },
+        "smtp_provider": "microsoft",
+        "mx_records": [
+          "woodgrove-bank-test.mail.protection.outlook.com"
+        ],
+        "catch_all": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-domains",
+      "rowId": "woodgrove-bank.test",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-linkedin",
+      "rowId": "woodgrove-bank",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-names",
+      "rowId": "woodgrove bank",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "companies",
+      "rowId": "00000002-0000-4000-8000-000000000006",
+      "value": {
+        "id": "00000002-0000-4000-8000-000000000006",
+        "domain": "adventure-works.test",
+        "name": "Adventure Works",
+        "website": "https://www.adventure-works.test",
+        "linkedin_id": "adventure-works",
+        "linkedin_url": "https://www.linkedin.com/company/adventure-works/",
+        "description": "Adventure Works — bicycles and outdoor equipment designed in Montréal.",
+        "logo_url": "https://www.adventure-works.test/logo.png",
+        "size": "501-1000",
+        "employees_count": 740,
+        "industry": "Sporting Goods Manufacturing",
+        "type": "Privately Held",
+        "founded": 1998,
+        "address": "Montréal, Québec, Canada",
+        "country": "Canada",
+        "linkedin_followers": 6100,
+        "crunchbase_url": null,
+        "recent_job_posting_count": 4,
+        "technologies": [
+          "SAP",
+          "Salesforce"
+        ],
+        "funding_details": {
+          "total_funding_rounds": 0,
+          "total_funding_usd": 0,
+          "funding_rounds": []
+        },
+        "smtp_provider": "google",
+        "mx_records": [
+          "aspmx.l.google.com"
+        ],
+        "catch_all": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-domains",
+      "rowId": "adventure-works.test",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-linkedin",
+      "rowId": "adventure-works",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-names",
+      "rowId": "adventure works",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "companies",
+      "rowId": "00000002-0000-4000-8000-000000000007",
+      "value": {
+        "id": "00000002-0000-4000-8000-000000000007",
+        "domain": "litware.example",
+        "name": "Litware",
+        "website": "https://www.litware.example",
+        "linkedin_id": "litware",
+        "linkedin_url": "https://www.linkedin.com/company/litware/",
+        "description": "Litware builds an embedded analytics engine.",
+        "logo_url": "https://www.litware.example/logo.png",
+        "size": "1-10",
+        "employees_count": 6,
+        "industry": "Software Development",
+        "type": "Privately Held",
+        "founded": 2023,
+        "address": "Austin, Texas, United States",
+        "country": "United States",
+        "linkedin_followers": 210,
+        "crunchbase_url": "https://www.crunchbase.com/organization/litware",
+        "recent_job_posting_count": 0,
+        "technologies": [
+          "Rust",
+          "SQLite"
+        ],
+        "funding_details": {
+          "total_funding_rounds": 1,
+          "total_funding_usd": 400000,
+          "funding_rounds": [
+            {
+              "round_name": "Pre-seed",
+              "round_date": "2024-03-12",
+              "investor_count": 1,
+              "amount_raised_usd": 400000,
+              "investor_names": [
+                "Hill Country Angels"
+              ]
+            }
+          ]
+        },
+        "smtp_provider": "google",
+        "mx_records": [
+          "aspmx.l.google.com"
+        ],
+        "catch_all": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-domains",
+      "rowId": "litware.example",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-linkedin",
+      "rowId": "litware",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-names",
+      "rowId": "litware",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "companies",
+      "rowId": "00000002-0000-4000-8000-000000000008",
+      "value": {
+        "id": "00000002-0000-4000-8000-000000000008",
+        "domain": "proseware.invalid",
+        "name": "Proseware",
+        "website": "https://www.proseware.invalid",
+        "linkedin_id": "proseware",
+        "linkedin_url": "https://www.linkedin.com/company/proseware/",
+        "description": "Proseware's mail domain is not routable; every address at it fails verification.",
+        "logo_url": null,
+        "size": "11-50",
+        "employees_count": 15,
+        "industry": "Software Development",
+        "type": "Privately Held",
+        "founded": 2016,
+        "address": "Denver, Colorado, United States",
+        "country": "United States",
+        "linkedin_followers": 900,
+        "crunchbase_url": null,
+        "recent_job_posting_count": 0,
+        "technologies": [
+          "Go"
+        ],
+        "funding_details": {
+          "total_funding_rounds": 0,
+          "total_funding_usd": 0,
+          "funding_rounds": []
+        },
+        "smtp_provider": null,
+        "mx_records": [],
+        "catch_all": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-domains",
+      "rowId": "proseware.invalid",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-linkedin",
+      "rowId": "proseware",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-names",
+      "rowId": "proseware",
+      "value": {
+        "company_id": "00000002-0000-4000-8000-000000000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000001",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000001",
+        "first_name": "Ada",
+        "last_name": "Lindqvist",
+        "full_name_key": "ada lindqvist",
+        "linkedin_id": "ada-lindqvist",
+        "linkedin_url": "https://www.linkedin.com/in/ada-lindqvist/",
+        "about": "Ada is a CEO & Co-founder at Northwind Labs.",
+        "personal_email": "ada.lindqvist@example.com",
+        "professional_email": "ada.lindqvist@northwind.test",
+        "mobile_phone": "+12065550101",
+        "phone_numbers": [
+          "+12065550101"
+        ],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "CEO & Co-founder",
+        "seniority": "Owner",
+        "department": "C-Suite",
+        "experiences": [
+          {
+            "title": "CEO & Co-founder",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2014,
+            "start_month": 3,
+            "start_date": "2014-03-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "CEO & Co-founder at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "ada.lindqvist@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "ada.lindqvist@example.com",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "ada-lindqvist",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000001",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000002",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000002",
+        "first_name": "Bram",
+        "last_name": "Okafor",
+        "full_name_key": "bram okafor",
+        "linkedin_id": "bram-okafor",
+        "linkedin_url": "https://www.linkedin.com/in/bram-okafor/",
+        "about": "Bram is a Chief Technology Officer at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "bram.okafor@northwind.test",
+        "mobile_phone": "+12065550102",
+        "phone_numbers": [
+          "+12065550102"
+        ],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Chief Technology Officer",
+        "seniority": "CXO",
+        "department": "C-Suite",
+        "experiences": [
+          {
+            "title": "Chief Technology Officer",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2014,
+            "start_month": 3,
+            "start_date": "2014-03-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Chief Technology Officer at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "bram.okafor@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "bram-okafor",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000002",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000003",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000003",
+        "first_name": "Zoë",
+        "last_name": "Łukasiewicz",
+        "full_name_key": "zoë łukasiewicz",
+        "linkedin_id": "zoe-lukasiewicz",
+        "linkedin_url": "https://www.linkedin.com/in/zoe-lukasiewicz/",
+        "about": "Zoë is a Head of Sales — EMEA at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "zoe.lukasiewicz@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Berlin, Germany",
+        "country": "Germany",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Head of Sales — EMEA",
+        "seniority": "Director",
+        "department": "Sales",
+        "experiences": [
+          {
+            "title": "Head of Sales — EMEA",
+            "location": "Berlin, Germany",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2021,
+            "start_month": 6,
+            "start_date": "2021-06-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Head of Sales — EMEA at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "zoe.lukasiewicz@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "zoe-lukasiewicz",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000003",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000004",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000004",
+        "first_name": "Carmen",
+        "last_name": "Delgado",
+        "full_name_key": "carmen delgado",
+        "linkedin_id": "carmen-delgado",
+        "linkedin_url": "https://www.linkedin.com/in/carmen-delgado/",
+        "about": "Carmen is a VP Sales at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "carmen.delgado@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Austin, Texas",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "VP Sales",
+        "seniority": "Vice President",
+        "department": "Sales",
+        "experiences": [
+          {
+            "title": "VP Sales",
+            "location": "Austin, Texas",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2019,
+            "start_month": 1,
+            "start_date": "2019-01-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "VP Sales at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "carmen.delgado@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "carmen-delgado",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000004",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000005",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000005",
+        "first_name": "Diego",
+        "last_name": "Marchetti",
+        "full_name_key": "diego marchetti",
+        "linkedin_id": "diego-marchetti",
+        "linkedin_url": "https://www.linkedin.com/in/diego-marchetti/",
+        "about": "Diego is an Account Executive at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "diego.marchetti@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Account Executive",
+        "seniority": "Senior",
+        "department": "Sales",
+        "experiences": [
+          {
+            "title": "Account Executive",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2022,
+            "start_month": 4,
+            "start_date": "2022-04-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Account Executive at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "diego.marchetti@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "diego-marchetti",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000005",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000006",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000006",
+        "first_name": "Elin",
+        "last_name": "Bergström",
+        "full_name_key": "elin bergström",
+        "linkedin_id": "elin-bergstrom",
+        "linkedin_url": "https://www.linkedin.com/in/elin-bergstrom/",
+        "about": "Elin is a Sales Development Representative at Northwind Labs.",
+        "personal_email": "elin.bergstrom@example.com",
+        "professional_email": null,
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Sales Development Representative",
+        "seniority": "Entry",
+        "department": "Sales",
+        "experiences": [
+          {
+            "title": "Sales Development Representative",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2026,
+            "start_month": 8,
+            "start_date": "2026-08-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Sales Development Representative at Northwind Labs."
+          }
+        ],
+        "email_verified": null,
+        "email_confidence": null,
+        "email_verified_status": null,
+        "domain_age_days": null,
+        "smtp_provider": null,
+        "mx_record": null,
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "elin.bergstrom@example.com",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "elin-bergstrom",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000006",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000007",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000007",
+        "first_name": "Farid",
+        "last_name": "Haddad",
+        "full_name_key": "farid haddad",
+        "linkedin_id": "farid-haddad",
+        "linkedin_url": "https://www.linkedin.com/in/farid-haddad/",
+        "about": "Farid is a Head of Partnerships at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "farid.haddad@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "New York, New York",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Head of Partnerships",
+        "seniority": "Director",
+        "department": "Sales",
+        "experiences": [
+          {
+            "title": "Head of Partnerships",
+            "location": "New York, New York",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2020,
+            "start_month": 9,
+            "start_date": "2020-09-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Head of Partnerships at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "farid.haddad@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "farid-haddad",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000007",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000008",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000008",
+        "first_name": "Grace",
+        "last_name": "Whitfield",
+        "full_name_key": "grace whitfield",
+        "linkedin_id": "grace-whitfield",
+        "linkedin_url": "https://www.linkedin.com/in/grace-whitfield/",
+        "about": "Grace is a Vice President of Engineering at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "grace.whitfield@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Vice President of Engineering",
+        "seniority": "Vice President",
+        "department": "Engineering & Technical",
+        "experiences": [
+          {
+            "title": "Vice President of Engineering",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2018,
+            "start_month": 5,
+            "start_date": "2018-05-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Vice President of Engineering at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "grace.whitfield@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "grace-whitfield",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000008",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000009",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000009",
+        "first_name": "Hiro",
+        "last_name": "Tanaka",
+        "full_name_key": "hiro tanaka",
+        "linkedin_id": "hiro-tanaka",
+        "linkedin_url": "https://www.linkedin.com/in/hiro-tanaka/",
+        "about": "Hiro is a Staff Software Engineer at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "hiro.tanaka@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "San Francisco, California",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Staff Software Engineer",
+        "seniority": "Senior",
+        "department": "Engineering & Technical",
+        "experiences": [
+          {
+            "title": "Staff Software Engineer",
+            "location": "San Francisco, California",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2019,
+            "start_month": 11,
+            "start_date": "2019-11-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Staff Software Engineer at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "hiro.tanaka@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000009"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "hiro-tanaka",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000009"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-000000000009",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000009"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000000a",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000000a",
+        "first_name": "Ines",
+        "last_name": "Moreau",
+        "full_name_key": "ines moreau",
+        "linkedin_id": "ines-moreau",
+        "linkedin_url": "https://www.linkedin.com/in/ines-moreau/",
+        "about": "Ines is a Software Engineer at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "ines.moreau@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Software Engineer",
+        "seniority": "Entry",
+        "department": "Engineering & Technical",
+        "experiences": [
+          {
+            "title": "Software Engineer",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2024,
+            "start_month": 2,
+            "start_date": "2024-02-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Software Engineer at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "ines.moreau@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000a"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "ines-moreau",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000a"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-00000000000a",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000a"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000000b",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000000b",
+        "first_name": "Jonas",
+        "last_name": "Weber",
+        "full_name_key": "jonas weber",
+        "linkedin_id": "jonas-weber",
+        "linkedin_url": "https://www.linkedin.com/in/jonas-weber/",
+        "about": "Jonas is an Engineering Manager, Platform at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "jonas.weber@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Engineering Manager, Platform",
+        "seniority": "Manager",
+        "department": "Engineering & Technical",
+        "experiences": [
+          {
+            "title": "Engineering Manager, Platform",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2020,
+            "start_month": 1,
+            "start_date": "2020-01-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Engineering Manager, Platform at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "jonas.weber@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000b"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "jonas-weber",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000b"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-00000000000b",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000b"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000000c",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000000c",
+        "first_name": "Keiko",
+        "last_name": "Sato",
+        "full_name_key": "keiko sato",
+        "linkedin_id": "keiko-sato",
+        "linkedin_url": "https://www.linkedin.com/in/keiko-sato/",
+        "about": "Keiko is a Head of Marketing at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "keiko.sato@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Head of Marketing",
+        "seniority": "Director",
+        "department": "Marketing",
+        "experiences": [
+          {
+            "title": "Head of Marketing",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2021,
+            "start_month": 3,
+            "start_date": "2021-03-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Head of Marketing at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "keiko.sato@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000c"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "keiko-sato",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000c"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-00000000000c",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000c"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000000d",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000000d",
+        "first_name": "Luca",
+        "last_name": "Ferrari",
+        "full_name_key": "luca ferrari",
+        "linkedin_id": "luca-ferrari",
+        "linkedin_url": "https://www.linkedin.com/in/luca-ferrari/",
+        "about": "Luca is a Marketing Intern at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "luca.ferrari@northwind.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Marketing Intern",
+        "seniority": "Entry",
+        "department": "Marketing",
+        "experiences": [
+          {
+            "title": "Marketing Intern",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2026,
+            "start_month": 6,
+            "start_date": "2026-06-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Marketing Intern at Northwind Labs."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "4380",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "luca.ferrari@northwind.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000d"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "luca-ferrari",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000d"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-00000000000d",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000d"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000000e",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000000e",
+        "first_name": "Maya",
+        "last_name": "Rasmussen",
+        "full_name_key": "maya rasmussen",
+        "linkedin_id": "maya-rasmussen",
+        "linkedin_url": "https://www.linkedin.com/in/maya-rasmussen/",
+        "about": "Maya is a Head of Customer Success at Northwind Labs.",
+        "personal_email": null,
+        "professional_email": "maya.rasmussen@contoso-freight.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Seattle, Washington",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Head of Customer Success",
+        "seniority": "Manager",
+        "department": "Operations",
+        "experiences": [
+          {
+            "title": "Head of Customer Success",
+            "location": "Seattle, Washington",
+            "company_name": "Northwind Labs",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_domain": "northwind.test",
+            "start_year": 2026,
+            "start_month": 5,
+            "start_date": "2026-05-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Head of Customer Success at Northwind Labs."
+          },
+          {
+            "title": "Customer Success Manager",
+            "location": null,
+            "company_name": "Contoso Freight",
+            "company_linkedin_id": "contoso-freight",
+            "company_linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+            "company_domain": "contoso-freight.test",
+            "start_year": 2022,
+            "start_month": 3,
+            "start_date": "2022-03-01",
+            "end_year": 2026,
+            "end_month": 4,
+            "end_date": "2026-04-01",
+            "is_current": false,
+            "description": "Customer Success Manager at Contoso Freight."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "14235",
+        "smtp_provider": "microsoft",
+        "mx_record": "contoso-freight-test.mail.protection.outlook.com",
+        "previous_company_id": "00000002-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "maya.rasmussen@contoso-freight.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000e"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "maya-rasmussen",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000e"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000001/00000003-0000-4000-8000-00000000000e",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000e"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000000f",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000000f",
+        "first_name": "Otto",
+        "last_name": "Brandt",
+        "full_name_key": "otto brandt",
+        "linkedin_id": "otto-brandt",
+        "linkedin_url": "https://www.linkedin.com/in/otto-brandt/",
+        "about": "Otto is a Managing Director at Contoso Freight.",
+        "personal_email": null,
+        "professional_email": "otto.brandt@contoso-freight.test",
+        "mobile_phone": "+4940555010115",
+        "phone_numbers": [
+          "+4940555010115"
+        ],
+        "location": "Hamburg, Germany",
+        "country": "Germany",
+        "company_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Managing Director",
+        "seniority": "Owner",
+        "department": "C-Suite",
+        "experiences": [
+          {
+            "title": "Managing Director",
+            "location": "Hamburg, Germany",
+            "company_name": "Contoso Freight",
+            "company_linkedin_id": "contoso-freight",
+            "company_linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+            "company_domain": "contoso-freight.test",
+            "start_year": 2005,
+            "start_month": 1,
+            "start_date": "2005-01-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Managing Director at Contoso Freight."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "14235",
+        "smtp_provider": "microsoft",
+        "mx_record": "contoso-freight-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "otto.brandt@contoso-freight.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000f"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "otto-brandt",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000f"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000002/00000003-0000-4000-8000-00000000000f",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000000f"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000010",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000010",
+        "first_name": "Petra",
+        "last_name": "Novak",
+        "full_name_key": "petra novak",
+        "linkedin_id": "petra-novak",
+        "linkedin_url": "https://www.linkedin.com/in/petra-novak/",
+        "about": "Petra is a Head of Operations at Contoso Freight.",
+        "personal_email": null,
+        "professional_email": "petra.novak@contoso-freight.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Hamburg, Germany",
+        "country": "Germany",
+        "company_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Head of Operations",
+        "seniority": "Director",
+        "department": "Operations",
+        "experiences": [
+          {
+            "title": "Head of Operations",
+            "location": "Hamburg, Germany",
+            "company_name": "Contoso Freight",
+            "company_linkedin_id": "contoso-freight",
+            "company_linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+            "company_domain": "contoso-freight.test",
+            "start_year": 2016,
+            "start_month": 8,
+            "start_date": "2016-08-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Head of Operations at Contoso Freight."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "14235",
+        "smtp_provider": "microsoft",
+        "mx_record": "contoso-freight-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "petra.novak@contoso-freight.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000010"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "petra-novak",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000010"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000002/00000003-0000-4000-8000-000000000010",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000010"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000011",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000011",
+        "first_name": "Quentin",
+        "last_name": "Roux",
+        "full_name_key": "quentin roux",
+        "linkedin_id": "quentin-roux",
+        "linkedin_url": "https://www.linkedin.com/in/quentin-roux/",
+        "about": "Quentin is a Fleet Manager at Contoso Freight.",
+        "personal_email": null,
+        "professional_email": "quentin.roux@contoso-freight.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Bremen, Germany",
+        "country": "Germany",
+        "company_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Fleet Manager",
+        "seniority": "Manager",
+        "department": "Operations",
+        "experiences": [
+          {
+            "title": "Fleet Manager",
+            "location": "Bremen, Germany",
+            "company_name": "Contoso Freight",
+            "company_linkedin_id": "contoso-freight",
+            "company_linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+            "company_domain": "contoso-freight.test",
+            "start_year": 2019,
+            "start_month": 3,
+            "start_date": "2019-03-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Fleet Manager at Contoso Freight."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "14235",
+        "smtp_provider": "microsoft",
+        "mx_record": "contoso-freight-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "quentin.roux@contoso-freight.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000011"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "quentin-roux",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000011"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000002/00000003-0000-4000-8000-000000000011",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000011"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000012",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000012",
+        "first_name": "Rosa",
+        "last_name": "Alvarez",
+        "full_name_key": "rosa alvarez",
+        "linkedin_id": "rosa-alvarez",
+        "linkedin_url": "https://www.linkedin.com/in/rosa-alvarez/",
+        "about": "Rosa is a Dispatcher at Contoso Freight.",
+        "personal_email": null,
+        "professional_email": "rosa.alvarez@contoso-freight.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Hamburg, Germany",
+        "country": "Germany",
+        "company_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Dispatcher",
+        "seniority": "Entry",
+        "department": "Operations",
+        "experiences": [
+          {
+            "title": "Dispatcher",
+            "location": "Hamburg, Germany",
+            "company_name": "Contoso Freight",
+            "company_linkedin_id": "contoso-freight",
+            "company_linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+            "company_domain": "contoso-freight.test",
+            "start_year": 2023,
+            "start_month": 10,
+            "start_date": "2023-10-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Dispatcher at Contoso Freight."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "14235",
+        "smtp_provider": "microsoft",
+        "mx_record": "contoso-freight-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "rosa.alvarez@contoso-freight.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000012"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "rosa-alvarez",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000012"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000002/00000003-0000-4000-8000-000000000012",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000012"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000013",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000013",
+        "first_name": "Sven",
+        "last_name": "Karlsson",
+        "full_name_key": "sven karlsson",
+        "linkedin_id": "sven-karlsson",
+        "linkedin_url": "https://www.linkedin.com/in/sven-karlsson/",
+        "about": "Sven is a Sales Manager DACH at Contoso Freight.",
+        "personal_email": null,
+        "professional_email": "sven.karlsson@contoso-freight.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Munich, Germany",
+        "country": "Germany",
+        "company_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Sales Manager DACH",
+        "seniority": "Manager",
+        "department": "Sales",
+        "experiences": [
+          {
+            "title": "Sales Manager DACH",
+            "location": "Munich, Germany",
+            "company_name": "Contoso Freight",
+            "company_linkedin_id": "contoso-freight",
+            "company_linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+            "company_domain": "contoso-freight.test",
+            "start_year": 2018,
+            "start_month": 2,
+            "start_date": "2018-02-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Sales Manager DACH at Contoso Freight."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "14235",
+        "smtp_provider": "microsoft",
+        "mx_record": "contoso-freight-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "sven.karlsson@contoso-freight.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000013"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "sven-karlsson",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000013"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000002/00000003-0000-4000-8000-000000000013",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000013"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000014",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000014",
+        "first_name": "Tomasz",
+        "last_name": "Zielinski",
+        "full_name_key": "tomasz zielinski",
+        "linkedin_id": "tomasz-zielinski",
+        "linkedin_url": "https://www.linkedin.com/in/tomasz-zielinski/",
+        "about": "Tomasz is a Finance Controller at Contoso Freight.",
+        "personal_email": null,
+        "professional_email": "tomasz.zielinski@contoso-freight.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Hamburg, Germany",
+        "country": "Germany",
+        "company_id": "00000002-0000-4000-8000-000000000002",
+        "title": "Finance Controller",
+        "seniority": "Senior",
+        "department": "Finance",
+        "experiences": [
+          {
+            "title": "Finance Controller",
+            "location": "Hamburg, Germany",
+            "company_name": "Contoso Freight",
+            "company_linkedin_id": "contoso-freight",
+            "company_linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+            "company_domain": "contoso-freight.test",
+            "start_year": 2020,
+            "start_month": 6,
+            "start_date": "2020-06-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Finance Controller at Contoso Freight."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "14235",
+        "smtp_provider": "microsoft",
+        "mx_record": "contoso-freight-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "tomasz.zielinski@contoso-freight.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000014"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "tomasz-zielinski",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000014"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000002/00000003-0000-4000-8000-000000000014",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000014"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000015",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000015",
+        "first_name": "Ulla",
+        "last_name": "Jensen",
+        "full_name_key": "ulla jensen",
+        "linkedin_id": "ulla-jensen",
+        "linkedin_url": "https://www.linkedin.com/in/ulla-jensen/",
+        "about": "Ulla is an IT Administrator at Contoso Freight.",
+        "personal_email": null,
+        "professional_email": "ulla.jensen@contoso-freight.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Hamburg, Germany",
+        "country": "Germany",
+        "company_id": "00000002-0000-4000-8000-000000000002",
+        "title": "IT Administrator",
+        "seniority": "Senior",
+        "department": "Information Technology",
+        "experiences": [
+          {
+            "title": "IT Administrator",
+            "location": "Hamburg, Germany",
+            "company_name": "Contoso Freight",
+            "company_linkedin_id": "contoso-freight",
+            "company_linkedin_url": "https://www.linkedin.com/company/contoso-freight/",
+            "company_domain": "contoso-freight.test",
+            "start_year": 2015,
+            "start_month": 4,
+            "start_date": "2015-04-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "IT Administrator at Contoso Freight."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "14235",
+        "smtp_provider": "microsoft",
+        "mx_record": "contoso-freight-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "ulla.jensen@contoso-freight.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000015"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "ulla-jensen",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000015"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000002/00000003-0000-4000-8000-000000000015",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000015"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000016",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000016",
+        "first_name": "Victor",
+        "last_name": "Lambert",
+        "full_name_key": "victor lambert",
+        "linkedin_id": "victor-lambert",
+        "linkedin_url": "https://www.linkedin.com/in/victor-lambert/",
+        "about": "Victor is a CEO at Fabrikam.",
+        "personal_email": null,
+        "professional_email": "victor.lambert@fabrikam.example",
+        "mobile_phone": "+33455501122",
+        "phone_numbers": [
+          "+33455501122"
+        ],
+        "location": "Lyon, France",
+        "country": "France",
+        "company_id": "00000002-0000-4000-8000-000000000003",
+        "title": "CEO",
+        "seniority": "Owner",
+        "department": "C-Suite",
+        "experiences": [
+          {
+            "title": "CEO",
+            "location": "Lyon, France",
+            "company_name": "Fabrikam",
+            "company_linkedin_id": "fabrikam",
+            "company_linkedin_url": "https://www.linkedin.com/company/fabrikam/",
+            "company_domain": "fabrikam.example",
+            "start_year": 2019,
+            "start_month": 5,
+            "start_date": "2019-05-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "CEO at Fabrikam."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "2920",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "victor.lambert@fabrikam.example",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000016"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "victor-lambert",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000016"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000003/00000003-0000-4000-8000-000000000016",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000016"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000017",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000017",
+        "first_name": "Wanda",
+        "last_name": "Dubois",
+        "full_name_key": "wanda dubois",
+        "linkedin_id": "wanda-dubois",
+        "linkedin_url": "https://www.linkedin.com/in/wanda-dubois/",
+        "about": "Wanda is a CTO at Fabrikam.",
+        "personal_email": null,
+        "professional_email": "wanda.dubois@fabrikam.example",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Lyon, France",
+        "country": "France",
+        "company_id": "00000002-0000-4000-8000-000000000003",
+        "title": "CTO",
+        "seniority": "CXO",
+        "department": "C-Suite",
+        "experiences": [
+          {
+            "title": "CTO",
+            "location": "Lyon, France",
+            "company_name": "Fabrikam",
+            "company_linkedin_id": "fabrikam",
+            "company_linkedin_url": "https://www.linkedin.com/company/fabrikam/",
+            "company_domain": "fabrikam.example",
+            "start_year": 2019,
+            "start_month": 5,
+            "start_date": "2019-05-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "CTO at Fabrikam."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "2920",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "wanda.dubois@fabrikam.example",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000017"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "wanda-dubois",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000017"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000003/00000003-0000-4000-8000-000000000017",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000017"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000018",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000018",
+        "first_name": "Xavier",
+        "last_name": "Martin",
+        "full_name_key": "xavier martin",
+        "linkedin_id": "xavier-martin",
+        "linkedin_url": "https://www.linkedin.com/in/xavier-martin/",
+        "about": "Xavier is a Product Manager at Fabrikam.",
+        "personal_email": null,
+        "professional_email": "xavier.martin@fabrikam.example",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Paris, France",
+        "country": "France",
+        "company_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Product Manager",
+        "seniority": "Manager",
+        "department": "Product",
+        "experiences": [
+          {
+            "title": "Product Manager",
+            "location": "Paris, France",
+            "company_name": "Fabrikam",
+            "company_linkedin_id": "fabrikam",
+            "company_linkedin_url": "https://www.linkedin.com/company/fabrikam/",
+            "company_domain": "fabrikam.example",
+            "start_year": 2021,
+            "start_month": 9,
+            "start_date": "2021-09-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Product Manager at Fabrikam."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "2920",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "xavier.martin@fabrikam.example",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000018"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "xavier-martin",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000018"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000003/00000003-0000-4000-8000-000000000018",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000018"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000019",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000019",
+        "first_name": "Yara",
+        "last_name": "Benali",
+        "full_name_key": "yara benali",
+        "linkedin_id": "yara-benali",
+        "linkedin_url": "https://www.linkedin.com/in/yara-benali/",
+        "about": "Yara is a Product Designer at Fabrikam.",
+        "personal_email": null,
+        "professional_email": "yara.benali@fabrikam.example",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Lyon, France",
+        "country": "France",
+        "company_id": "00000002-0000-4000-8000-000000000003",
+        "title": "Product Designer",
+        "seniority": "Senior",
+        "department": "Design",
+        "experiences": [
+          {
+            "title": "Product Designer",
+            "location": "Lyon, France",
+            "company_name": "Fabrikam",
+            "company_linkedin_id": "fabrikam",
+            "company_linkedin_url": "https://www.linkedin.com/company/fabrikam/",
+            "company_domain": "fabrikam.example",
+            "start_year": 2022,
+            "start_month": 1,
+            "start_date": "2022-01-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Product Designer at Fabrikam."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "2920",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "yara.benali@fabrikam.example",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000019"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "yara-benali",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000019"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000003/00000003-0000-4000-8000-000000000019",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000019"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000001a",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000001a",
+        "first_name": "Zach",
+        "last_name": "Thompson",
+        "full_name_key": "zach thompson",
+        "linkedin_id": "zach-thompson",
+        "linkedin_url": "https://www.linkedin.com/in/zach-thompson/",
+        "about": "Zach is a Founder at Tailspin Toys.",
+        "personal_email": null,
+        "professional_email": "zach.thompson@tailspin-toys.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Portland, Oregon",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000004",
+        "title": "Founder",
+        "seniority": "Owner",
+        "department": "C-Suite",
+        "experiences": [
+          {
+            "title": "Founder",
+            "location": "Portland, Oregon",
+            "company_name": "Tailspin Toys",
+            "company_linkedin_id": "tailspin-toys",
+            "company_linkedin_url": "https://www.linkedin.com/company/tailspin-toys/",
+            "company_domain": "tailspin-toys.test",
+            "start_year": 2009,
+            "start_month": 6,
+            "start_date": "2009-06-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Founder at Tailspin Toys."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "6205",
+        "smtp_provider": "zoho",
+        "mx_record": "mx.zoho.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "zach.thompson@tailspin-toys.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001a"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "zach-thompson",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001a"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000004/00000003-0000-4000-8000-00000000001a",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001a"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000001b",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000001b",
+        "first_name": "Amara",
+        "last_name": "Osei",
+        "full_name_key": "amara osei",
+        "linkedin_id": "amara-osei",
+        "linkedin_url": "https://www.linkedin.com/in/amara-osei/",
+        "about": "Amara is a Store Manager at Tailspin Toys.",
+        "personal_email": null,
+        "professional_email": "amara.osei@tailspin-toys.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Portland, Oregon",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000004",
+        "title": "Store Manager",
+        "seniority": "Manager",
+        "department": "Operations",
+        "experiences": [
+          {
+            "title": "Store Manager",
+            "location": "Portland, Oregon",
+            "company_name": "Tailspin Toys",
+            "company_linkedin_id": "tailspin-toys",
+            "company_linkedin_url": "https://www.linkedin.com/company/tailspin-toys/",
+            "company_domain": "tailspin-toys.test",
+            "start_year": 2017,
+            "start_month": 3,
+            "start_date": "2017-03-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Store Manager at Tailspin Toys."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "6205",
+        "smtp_provider": "zoho",
+        "mx_record": "mx.zoho.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "amara.osei@tailspin-toys.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001b"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "amara-osei",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001b"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000004/00000003-0000-4000-8000-00000000001b",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001b"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000001c",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000001c",
+        "first_name": "Ben",
+        "last_name": "Clarke",
+        "full_name_key": "ben clarke",
+        "linkedin_id": "ben-clarke",
+        "linkedin_url": "https://www.linkedin.com/in/ben-clarke/",
+        "about": "Ben is a Head of Digital Banking at Woodgrove Bank.",
+        "personal_email": null,
+        "professional_email": "ben.clarke@woodgrove-bank.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "London, United Kingdom",
+        "country": "United Kingdom",
+        "company_id": "00000002-0000-4000-8000-000000000005",
+        "title": "Head of Digital Banking",
+        "seniority": "Director",
+        "department": "Product",
+        "experiences": [
+          {
+            "title": "Head of Digital Banking",
+            "location": "London, United Kingdom",
+            "company_name": "Woodgrove Bank",
+            "company_linkedin_id": "woodgrove-bank",
+            "company_linkedin_url": "https://www.linkedin.com/company/woodgrove-bank/",
+            "company_domain": "woodgrove-bank.test",
+            "start_year": 2018,
+            "start_month": 11,
+            "start_date": "2018-11-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Head of Digital Banking at Woodgrove Bank."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "38325",
+        "smtp_provider": "microsoft",
+        "mx_record": "woodgrove-bank-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "ben.clarke@woodgrove-bank.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001c"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "ben-clarke",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001c"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000005/00000003-0000-4000-8000-00000000001c",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001c"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000001d",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000001d",
+        "first_name": "Chloe",
+        "last_name": "Patel",
+        "full_name_key": "chloe patel",
+        "linkedin_id": "chloe-patel",
+        "linkedin_url": "https://www.linkedin.com/in/chloe-patel/",
+        "about": "Chloe is a Compliance Officer at Woodgrove Bank.",
+        "personal_email": null,
+        "professional_email": "chloe.patel@woodgrove-bank.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Leeds, United Kingdom",
+        "country": "United Kingdom",
+        "company_id": "00000002-0000-4000-8000-000000000005",
+        "title": "Compliance Officer",
+        "seniority": "Senior",
+        "department": "Legal",
+        "experiences": [
+          {
+            "title": "Compliance Officer",
+            "location": "Leeds, United Kingdom",
+            "company_name": "Woodgrove Bank",
+            "company_linkedin_id": "woodgrove-bank",
+            "company_linkedin_url": "https://www.linkedin.com/company/woodgrove-bank/",
+            "company_domain": "woodgrove-bank.test",
+            "start_year": 2020,
+            "start_month": 2,
+            "start_date": "2020-02-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Compliance Officer at Woodgrove Bank."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "38325",
+        "smtp_provider": "microsoft",
+        "mx_record": "woodgrove-bank-test.mail.protection.outlook.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "chloe.patel@woodgrove-bank.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001d"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "chloe-patel",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001d"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000005/00000003-0000-4000-8000-00000000001d",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001d"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000001e",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000001e",
+        "first_name": "Émile",
+        "last_name": "Tremblay",
+        "full_name_key": "émile tremblay",
+        "linkedin_id": "emile-tremblay",
+        "linkedin_url": "https://www.linkedin.com/in/emile-tremblay/",
+        "about": "Émile is a Chief Operating Officer at Adventure Works.",
+        "personal_email": null,
+        "professional_email": "emile.tremblay@adventure-works.test",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Montréal, Québec",
+        "country": "Canada",
+        "company_id": "00000002-0000-4000-8000-000000000006",
+        "title": "Chief Operating Officer",
+        "seniority": "CXO",
+        "department": "C-Suite",
+        "experiences": [
+          {
+            "title": "Chief Operating Officer",
+            "location": "Montréal, Québec",
+            "company_name": "Adventure Works",
+            "company_linkedin_id": "adventure-works",
+            "company_linkedin_url": "https://www.linkedin.com/company/adventure-works/",
+            "company_domain": "adventure-works.test",
+            "start_year": 2012,
+            "start_month": 9,
+            "start_date": "2012-09-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Chief Operating Officer at Adventure Works."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "10220",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "emile.tremblay@adventure-works.test",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001e"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "emile-tremblay",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001e"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000006/00000003-0000-4000-8000-00000000001e",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001e"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-00000000001f",
+      "value": {
+        "id": "00000003-0000-4000-8000-00000000001f",
+        "first_name": "Dana",
+        "last_name": "Kowalski",
+        "full_name_key": "dana kowalski",
+        "linkedin_id": "dana-kowalski",
+        "linkedin_url": "https://www.linkedin.com/in/dana-kowalski/",
+        "about": "Dana is a Founder & CEO at Litware.",
+        "personal_email": null,
+        "professional_email": "dana.kowalski@litware.example",
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Austin, Texas",
+        "country": "United States",
+        "company_id": "00000002-0000-4000-8000-000000000007",
+        "title": "Founder & CEO",
+        "seniority": "Owner",
+        "department": "C-Suite",
+        "experiences": [
+          {
+            "title": "Founder & CEO",
+            "location": "Austin, Texas",
+            "company_name": "Litware",
+            "company_linkedin_id": "litware",
+            "company_linkedin_url": "https://www.linkedin.com/company/litware/",
+            "company_domain": "litware.example",
+            "start_year": 2023,
+            "start_month": 1,
+            "start_date": "2023-01-01",
+            "end_year": null,
+            "end_month": null,
+            "end_date": null,
+            "is_current": true,
+            "description": "Founder & CEO at Litware."
+          }
+        ],
+        "email_verified": true,
+        "email_confidence": "high",
+        "email_verified_status": "safe",
+        "domain_age_days": "1095",
+        "smtp_provider": "google",
+        "mx_record": "aspmx.l.google.com",
+        "previous_company_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "dana.kowalski@litware.example",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001f"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "dana-kowalski",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001f"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "company-persons",
+      "rowId": "00000002-0000-4000-8000-000000000007/00000003-0000-4000-8000-00000000001f",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-00000000001f"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "persons",
+      "rowId": "00000003-0000-4000-8000-000000000020",
+      "value": {
+        "id": "00000003-0000-4000-8000-000000000020",
+        "first_name": "Nadia",
+        "last_name": "Petrova",
+        "full_name_key": "nadia petrova",
+        "linkedin_id": "nadia-petrova",
+        "linkedin_url": "https://www.linkedin.com/in/nadia-petrova/",
+        "about": "Nadia is a Product Designer between roles.",
+        "personal_email": "nadia.petrova@example.com",
+        "professional_email": null,
+        "mobile_phone": null,
+        "phone_numbers": [],
+        "location": "Lyon, France",
+        "country": "France",
+        "company_id": null,
+        "title": "Product Designer",
+        "seniority": "Senior",
+        "department": "Design",
+        "experiences": [
+          {
+            "title": "Product Designer",
+            "location": null,
+            "company_name": "Fabrikam",
+            "company_linkedin_id": "fabrikam",
+            "company_linkedin_url": "https://www.linkedin.com/company/fabrikam/",
+            "company_domain": "fabrikam.example",
+            "start_year": 2021,
+            "start_month": 2,
+            "start_date": "2021-02-01",
+            "end_year": 2026,
+            "end_month": 7,
+            "end_date": "2026-07-01",
+            "is_current": false,
+            "description": "Product Designer at Fabrikam."
+          }
+        ],
+        "email_verified": null,
+        "email_confidence": null,
+        "email_verified_status": null,
+        "domain_age_days": null,
+        "smtp_provider": null,
+        "mx_record": null,
+        "previous_company_id": "00000002-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-emails",
+      "rowId": "nadia.petrova@example.com",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000020"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "person-linkedin",
+      "rowId": "nadia-petrova",
+      "value": {
+        "person_id": "00000003-0000-4000-8000-000000000020"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "rowId": "00000004-0000-4000-8000-000000000001",
+      "value": {
+        "job_id": "00000004-0000-4000-8000-000000000001",
+        "kind": "enrichment_contact",
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "start_at_us": 1789480931250000,
+        "due_at_us": 1789480934750000,
+        "stop_at_us": 1789480934750000,
+        "status": "SUCCEEDED",
+        "task": {
+          "email": "ada.lindqvist@northwind.test",
+          "linkedin": null,
+          "full_name": null,
+          "first_name": null,
+          "last_name": null,
+          "domain": null,
+          "include_phones": false,
+          "webhook_url": null,
+          "custom_fields": {},
+          "job_id": "00000004-0000-4000-8000-000000000001",
+          "context_id": "00000004-0000-4000-8000-000000000001"
+        },
+        "output": {
+          "person": {
+            "id": "00000003-0000-4000-8000-000000000001",
+            "first_name": "Ada",
+            "last_name": "Lindqvist",
+            "linkedin_id": "ada-lindqvist",
+            "linkedin_url": "https://www.linkedin.com/in/ada-lindqvist/",
+            "about": "Ada is a CEO & Co-founder at Northwind Labs.",
+            "personal_email": "ada.lindqvist@example.com",
+            "professional_email": "ada.lindqvist@northwind.test",
+            "mobile_phone": null,
+            "phone_numbers": [],
+            "location": "Seattle, Washington",
+            "country": "United States",
+            "company_name": "Northwind Labs",
+            "company_domain": "northwind.test",
+            "company_linkedin_id": "northwind-labs",
+            "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+            "company_website": "https://www.northwind.test",
+            "title": "CEO & Co-founder",
+            "seniority": "Owner",
+            "department": "C-Suite",
+            "experiences": [
+              {
+                "title": "CEO & Co-founder",
+                "location": "Seattle, Washington",
+                "company_name": "Northwind Labs",
+                "company_linkedin_id": "northwind-labs",
+                "company_linkedin_url": "https://www.linkedin.com/company/northwind-labs/",
+                "company_domain": "northwind.test",
+                "start_year": 2014,
+                "start_month": 3,
+                "start_date": "2014-03-01",
+                "end_year": null,
+                "end_month": null,
+                "end_date": null,
+                "is_current": true,
+                "description": "CEO & Co-founder at Northwind Labs."
+              }
+            ],
+            "email_verified": true,
+            "email_confidence": "high",
+            "email_verified_status": "safe",
+            "domain_age_days": "4380",
+            "smtp_provider": "google",
+            "mx_record": "aspmx.l.google.com"
+          }
+        },
+        "usage": {
+          "persons_count": 1,
+          "persons_micros": 138000,
+          "phones_count": 0,
+          "phones_micros": 0,
+          "companies_count": 0,
+          "companies_micros": 0
+        },
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "rowId": "00000004-0000-4000-8000-000000000002",
+      "value": {
+        "job_id": "00000004-0000-4000-8000-000000000002",
+        "kind": "enrichment_phone",
+        "api_key": "00000001-0000-4000-8000-000000000002",
+        "start_at_us": 1789461000000000,
+        "due_at_us": 1789461000000000,
+        "stop_at_us": 1789461002000000,
+        "status": "FAILED",
+        "task": {
+          "email": null,
+          "linkedin": "sven-karlsson",
+          "full_name": null,
+          "first_name": null,
+          "last_name": null,
+          "domain": null,
+          "include_phones": false,
+          "webhook_url": null,
+          "custom_fields": {},
+          "job_id": "00000004-0000-4000-8000-000000000002",
+          "context_id": "00000004-0000-4000-8000-000000000002"
+        },
+        "output": null,
+        "usage": {
+          "persons_count": 0,
+          "persons_micros": 0,
+          "phones_count": 0,
+          "phones_micros": 0,
+          "companies_count": 0,
+          "companies_micros": 0
+        },
+        "error": "Provider error"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "rowId": "00000004-0000-4000-8000-000000000003",
+      "value": {
+        "job_id": "00000004-0000-4000-8000-000000000003",
+        "kind": "enrichment_company",
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "start_at_us": 1788246000000000,
+        "due_at_us": 1788246000000000,
+        "stop_at_us": 1788246300000000,
+        "status": "TIMED_OUT",
+        "task": {
+          "domain": "woodgrove-bank.test",
+          "linkedin": null,
+          "name": null,
+          "webhook_url": null,
+          "custom_fields": {},
+          "job_id": "00000004-0000-4000-8000-000000000003",
+          "context_id": "00000004-0000-4000-8000-000000000003"
+        },
+        "output": null,
+        "usage": {
+          "persons_count": 0,
+          "persons_micros": 0,
+          "phones_count": 0,
+          "phones_micros": 0,
+          "companies_count": 0,
+          "companies_micros": 0
+        },
+        "error": "Timed out after 300 seconds"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "rowId": "00000004-0000-4000-8000-000000000004",
+      "value": {
+        "job_id": "00000004-0000-4000-8000-000000000004",
+        "kind": "search_contact",
+        "api_key": "00000001-0000-4000-8000-000000000002",
+        "start_at_us": 1788350400000000,
+        "due_at_us": 1788350400000000,
+        "stop_at_us": 1788350401000000,
+        "status": "ABORTED",
+        "task": {
+          "domain": "contoso-freight.test",
+          "departments": [
+            "Operations"
+          ],
+          "page_number": 1,
+          "page_size": 10,
+          "custom_fields": {},
+          "job_id": "00000004-0000-4000-8000-000000000004",
+          "context_id": "00000004-0000-4000-8000-000000000004"
+        },
+        "output": null,
+        "usage": {
+          "persons_count": 0,
+          "persons_micros": 0,
+          "phones_count": 0,
+          "phones_micros": 0,
+          "companies_count": 0,
+          "companies_micros": 0
+        },
+        "error": "Aborted by operator"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "rowId": "00000004-0000-4000-8000-000000000005",
+      "value": {
+        "job_id": "00000004-0000-4000-8000-000000000005",
+        "kind": "enrichment_contact",
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "start_at_us": 1789552770000000,
+        "due_at_us": 1789552780000000,
+        "stop_at_us": null,
+        "status": "RUNNING",
+        "task": {
+          "email": null,
+          "linkedin": null,
+          "full_name": "Bram Okafor",
+          "first_name": null,
+          "last_name": null,
+          "domain": "northwind.test",
+          "include_phones": true,
+          "webhook_url": null,
+          "custom_fields": {},
+          "job_id": "00000004-0000-4000-8000-000000000005",
+          "context_id": "00000004-0000-4000-8000-000000000005"
+        },
+        "output": null,
+        "usage": null,
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "rowId": "00000004-0000-4000-8000-000000000006",
+      "value": {
+        "job_id": "00000004-0000-4000-8000-000000000006",
+        "kind": "enrichment_company",
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "start_at_us": 1789552790000000,
+        "due_at_us": 1789639200000000,
+        "stop_at_us": null,
+        "status": "RUNNING",
+        "task": {
+          "domain": "fabrikam.example",
+          "linkedin": null,
+          "name": null,
+          "webhook_url": null,
+          "custom_fields": {
+            "batch": "q3-accounts"
+          },
+          "job_id": "00000004-0000-4000-8000-000000000006",
+          "context_id": "00000004-0000-4000-8000-000000000006"
+        },
+        "output": null,
+        "usage": null,
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "rowId": "00000004-0000-4000-8000-000000000007",
+      "value": {
+        "job_id": "00000004-0000-4000-8000-000000000007",
+        "kind": "enrichment_phone",
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "start_at_us": 1789552775000000,
+        "due_at_us": 1789552785000000,
+        "stop_at_us": null,
+        "status": "RUNNING",
+        "task": {
+          "email": null,
+          "linkedin": null,
+          "full_name": "Ada Lindqvist",
+          "first_name": null,
+          "last_name": null,
+          "domain": "northwind.test",
+          "webhook_url": null,
+          "custom_fields": {},
+          "job_id": "00000004-0000-4000-8000-000000000007",
+          "context_id": "00000004-0000-4000-8000-000000000007"
+        },
+        "output": null,
+        "usage": null,
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-01",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "day": "2026-09-01",
+        "prospector_requests": 0,
+        "prospector_persons": 0,
+        "prospector_persons_phones": 0,
+        "enrichment_contact_requests": 0,
+        "enrichment_contact_persons": 0,
+        "enrichment_contact_persons_phones": 0,
+        "enrichment_phone_requests": 0,
+        "enrichment_phone_phones": 0,
+        "enrichment_company_requests": 1,
+        "enrichment_company_companies": 0,
+        "verify_email_requests": 0,
+        "verify_email_verified": 0,
+        "search_contact_requests": 0,
+        "search_contact_found": 0,
+        "search_company_requests": 0,
+        "search_company_found": 0,
+        "job_change_requests": 0,
+        "job_change_found": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-10",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "day": "2026-09-10",
+        "prospector_requests": 0,
+        "prospector_persons": 0,
+        "prospector_persons_phones": 0,
+        "enrichment_contact_requests": 3,
+        "enrichment_contact_persons": 2,
+        "enrichment_contact_persons_phones": 0,
+        "enrichment_phone_requests": 0,
+        "enrichment_phone_phones": 0,
+        "enrichment_company_requests": 0,
+        "enrichment_company_companies": 0,
+        "verify_email_requests": 0,
+        "verify_email_verified": 0,
+        "search_contact_requests": 0,
+        "search_contact_found": 0,
+        "search_company_requests": 0,
+        "search_company_found": 0,
+        "job_change_requests": 0,
+        "job_change_found": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-15",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "day": "2026-09-15",
+        "prospector_requests": 0,
+        "prospector_persons": 0,
+        "prospector_persons_phones": 0,
+        "enrichment_contact_requests": 1,
+        "enrichment_contact_persons": 1,
+        "enrichment_contact_persons_phones": 0,
+        "enrichment_phone_requests": 0,
+        "enrichment_phone_phones": 0,
+        "enrichment_company_requests": 0,
+        "enrichment_company_companies": 0,
+        "verify_email_requests": 0,
+        "verify_email_verified": 0,
+        "search_contact_requests": 0,
+        "search_contact_found": 0,
+        "search_company_requests": 0,
+        "search_company_found": 0,
+        "job_change_requests": 0,
+        "job_change_found": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-16",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000001",
+        "day": "2026-09-16",
+        "prospector_requests": 0,
+        "prospector_persons": 0,
+        "prospector_persons_phones": 0,
+        "enrichment_contact_requests": 1,
+        "enrichment_contact_persons": 0,
+        "enrichment_contact_persons_phones": 0,
+        "enrichment_phone_requests": 1,
+        "enrichment_phone_phones": 0,
+        "enrichment_company_requests": 1,
+        "enrichment_company_companies": 0,
+        "verify_email_requests": 0,
+        "verify_email_verified": 0,
+        "search_contact_requests": 0,
+        "search_contact_found": 0,
+        "search_company_requests": 0,
+        "search_company_found": 0,
+        "job_change_requests": 0,
+        "job_change_found": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000002/2026-08-28",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000002",
+        "day": "2026-08-28",
+        "prospector_requests": 0,
+        "prospector_persons": 0,
+        "prospector_persons_phones": 0,
+        "enrichment_contact_requests": 0,
+        "enrichment_contact_persons": 0,
+        "enrichment_contact_persons_phones": 0,
+        "enrichment_phone_requests": 0,
+        "enrichment_phone_phones": 0,
+        "enrichment_company_requests": 0,
+        "enrichment_company_companies": 0,
+        "verify_email_requests": 0,
+        "verify_email_verified": 0,
+        "search_contact_requests": 2,
+        "search_contact_found": 15,
+        "search_company_requests": 0,
+        "search_company_found": 0,
+        "job_change_requests": 0,
+        "job_change_found": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000002/2026-09-02",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000002",
+        "day": "2026-09-02",
+        "prospector_requests": 0,
+        "prospector_persons": 0,
+        "prospector_persons_phones": 0,
+        "enrichment_contact_requests": 0,
+        "enrichment_contact_persons": 0,
+        "enrichment_contact_persons_phones": 0,
+        "enrichment_phone_requests": 0,
+        "enrichment_phone_phones": 0,
+        "enrichment_company_requests": 0,
+        "enrichment_company_companies": 0,
+        "verify_email_requests": 0,
+        "verify_email_verified": 0,
+        "search_contact_requests": 1,
+        "search_contact_found": 0,
+        "search_company_requests": 0,
+        "search_company_found": 0,
+        "job_change_requests": 0,
+        "job_change_found": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000002/2026-09-15",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000002",
+        "day": "2026-09-15",
+        "prospector_requests": 0,
+        "prospector_persons": 0,
+        "prospector_persons_phones": 0,
+        "enrichment_contact_requests": 0,
+        "enrichment_contact_persons": 0,
+        "enrichment_contact_persons_phones": 0,
+        "enrichment_phone_requests": 1,
+        "enrichment_phone_phones": 0,
+        "enrichment_company_requests": 0,
+        "enrichment_company_companies": 0,
+        "verify_email_requests": 0,
+        "verify_email_verified": 0,
+        "search_contact_requests": 0,
+        "search_contact_found": 0,
+        "search_company_requests": 0,
+        "search_company_found": 0,
+        "job_change_requests": 0,
+        "job_change_found": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000003/2026-07-14",
+      "value": {
+        "api_key": "00000001-0000-4000-8000-000000000003",
+        "day": "2026-07-14",
+        "prospector_requests": 0,
+        "prospector_persons": 0,
+        "prospector_persons_phones": 0,
+        "enrichment_contact_requests": 0,
+        "enrichment_contact_persons": 0,
+        "enrichment_contact_persons_phones": 0,
+        "enrichment_phone_requests": 0,
+        "enrichment_phone_phones": 0,
+        "enrichment_company_requests": 0,
+        "enrichment_company_companies": 0,
+        "verify_email_requests": 4,
+        "verify_email_verified": 3,
+        "search_contact_requests": 0,
+        "search_contact_found": 0,
+        "search_company_requests": 0,
+        "search_company_found": 0,
+        "job_change_requests": 0,
+        "job_change_found": 0
+      }
+    }
+  ]
+}

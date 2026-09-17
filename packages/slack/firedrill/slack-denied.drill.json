@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-denied",
+  "title": "An actor without grants is denied by the framework over HTTP and MCP",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "auth-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "auth.test"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "post-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "list-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "nothing-posted",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "messages-untouched",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 38
+      }
+    }
+  ]
+}

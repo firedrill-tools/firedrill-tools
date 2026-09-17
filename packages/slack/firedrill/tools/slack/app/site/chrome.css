@@ -1,0 +1,73 @@
+/* Client chrome added around the simulated surfaces: nav rows, section actions, huddle split button, clip buttons,
+   schedule caret, and the "not simulated" panel. */
+.sb-nav { padding: 0 0 12px; }
+.sb-nav .sb-link { padding-left: 8px; }
+.sb-nav .sb-glyph .icon { width: 18px; height: 18px; }
+.section-head { position: relative; display: flex; align-items: center; }
+.section-head .section-toggle { flex: 1; min-width: 0; }
+.section-toggle > span:last-child { font-weight: 400; }
+.section-action {
+  position: absolute; top: 2px; width: 24px; height: 24px; border-radius: 4px;
+  display: none; align-items: center; justify-content: center; color: var(--sidebar-text);
+}
+.section-action[data-section-add], .section-action[data-ns="apps"] { right: 14px; }
+.section-action[data-section-options] { right: 40px; }
+.section-action .icon { width: 16px; height: 16px; }
+.section-action:hover, .section-action[aria-expanded="true"] { background: var(--sidebar-hover); color: #fff; }
+.section-head:hover .section-action, .section-head:focus-within .section-action, .section-action[aria-expanded="true"] { display: inline-flex; }
+.members-stack .avatar { width: 22px; height: 22px; font-size: 11px; border: 2px solid #fff; border-radius: 6px; margin-right: -4px; }
+.members-pill { padding-left: 3px; height: 30px; }
+.huddle-split {
+  display: inline-flex; align-items: stretch; height: 30px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+}
+.huddle-split[hidden] { display: none; }
+.huddle-btn, .huddle-caret { display: inline-flex; align-items: center; gap: 4px; color: var(--text-2); font-size: 13px; font-weight: 700; }
+.huddle-btn { padding: 0 8px; }
+.huddle-caret { padding: 0 4px; border-left: 1px solid var(--border); }
+.huddle-btn .icon { width: 18px; height: 18px; }
+.huddle-caret .icon { width: 14px; height: 14px; }
+.huddle-btn:hover, .huddle-caret:hover, .huddle-caret[aria-expanded="true"] { background: var(--hover); color: var(--text); }
+.pane-tab-add { padding: 0 6px; }
+.pane-tab-add .icon { width: 16px; height: 16px; }
+.send-divider { width: 1px; height: 18px; background: rgba(255, 255, 255, 0.4); }
+.send-btn { border-radius: 4px 0 0 4px; }
+.send-caret {
+  width: 22px; height: 28px; border-radius: 0 4px 4px 0; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--primary); color: #fff;
+}
+.send-caret .icon { width: 14px; height: 14px; }
+.send-caret:hover { background: var(--primary-hover); }
+.send-btn:disabled + .send-divider { background: var(--border); }
+.send-btn:disabled + .send-divider + .send-caret { background: transparent; color: var(--text-2); }
+.send-btn:disabled + .send-divider + .send-caret:hover { background: var(--hover); color: var(--text); }
+.menu.ns-menu { padding: 0; min-width: 0; }
+.ns-panel { width: 280px; padding: 16px 20px; white-space: normal; }
+.ns-title { font-size: 15px; font-weight: 900; color: var(--text); }
+.ns-subtitle { font-size: 13px; color: var(--text-2); margin-top: 2px; }
+.ns-text { margin: 10px 0 12px; font-size: 13px; line-height: 1.45; color: var(--text); }
+.ns-tag {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; color: var(--text-2);
+  background: var(--surface-3); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px;
+}
+@media (max-width: 768px) {
+  .huddle-text { display: none; }
+  .composer-actions-start [data-ns="video"], .composer-actions-start [data-ns="audio"] { display: none; }
+}
+.fd-tooltip {
+  position: fixed; z-index: 60; max-width: 240px; padding: 6px 10px; border-radius: 8px; pointer-events: none;
+  background: #1d1c1d; color: #fff; font-size: 13px; font-weight: 700; line-height: 1.35; text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+.fd-tooltip::after {
+  content: ""; position: absolute; left: var(--arrow-x, 50%); top: 100%; margin-left: -5px;
+  border: 5px solid transparent; border-top-color: #1d1c1d;
+}
+.fd-tooltip.below::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: #1d1c1d; }
+.menu.wide-menu .menu-item, .menu.wide-menu .menu-label { white-space: normal; overflow: visible; text-overflow: clip; }
+.thread-composer .composer-toolbar { flex-wrap: wrap; }
+.thread-composer .composer-actions-start { flex-wrap: wrap; min-width: 0; }
+.thread-composer .composer-actions { gap: 4px; }
+/* Current Slack (2023+) selected sidebar row: a light lavender pill with aubergine text, not the older blue fill. */
+.sb-link[aria-current="page"], .sb-link[aria-current="page"]:hover { background: rgba(249, 237, 255, 0.9); color: #39063a; }
+.sb-link[aria-current="page"] .sb-glyph, .sb-link[aria-current="page"] .sb-glyph .icon { color: #39063a; }
+.sb-link[aria-current="page"] .sb-glyph .presence { border-color: #f5e9fa; }

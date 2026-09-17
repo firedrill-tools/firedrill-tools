@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-connectors",
+  "title": "Sources and destinations: filters, masking, required keys, duplicate keys, updates, connection checks, in-use protection, deletes",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "analyst",
+  "task": {
+    "instruction": "Run the connectors flow against the synthetic Unstructured Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "sources-count-15",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "sources",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "destinations-count-16",
+      "kind": "state.count",
+      "packageId": "unstructured",
+      "namespace": "destinations",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "connection-checks-value-17",
+      "kind": "state.value",
+      "packageId": "unstructured",
+      "namespace": "connection-checks",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "SUCCESS"
+      }
+    },
+    {
+      "id": "connection-checks-value-18",
+      "kind": "state.value",
+      "packageId": "unstructured",
+      "namespace": "connection-checks",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+      "path": [
+        "created_at"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "2026-09-16T09:00:00.000Z"
+      }
+    },
+    {
+      "id": "sources-delete-ok-19",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-delete-tool_error-20",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "destinations-delete-ok-21",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "destinations.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sources-check-connection-ok-22",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unstructured",
+        "operationId": "sources.check_connection"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "attio-denied",
+  "title": "Framework grants deny an actor without operation grants before the Tool runs",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic Attio Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "self-identify-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "self.identify"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "notes-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "notes.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "count-notes-6",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "notes",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    }
+  ]
+}

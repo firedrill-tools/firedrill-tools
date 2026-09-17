@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "over-capacity",
+  "title": "The object counter is past the cap, so every scanning operation refuses rather than answering short",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-workspace",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "nextContactId": 19,
+        "nextOtherContactId": 6,
+        "nextGroupId": 4,
+        "nextSubscriptionId": 5,
+        "nextOperationId": 3,
+        "nextScriptId": 4,
+        "nextDeploymentId": 2,
+        "nextExecutionSeq": 7,
+        "objectCount": 1501
+      }
+    }
+  ]
+}

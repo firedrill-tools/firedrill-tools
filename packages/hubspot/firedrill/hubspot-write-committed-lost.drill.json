@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "id": "hubspot-write-committed-lost",
+  "title": "Creates commit but the caller sees 503; the retry of a contact create hits 409",
+  "targetId": "conformance-agent",
+  "scenarioId": "write-committed-lost",
+  "actorId": "rep",
+  "task": {
+    "instruction": "Run the write-committed-lost conformance flow against the synthetic HubSpot Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "objects-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "objects-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "objects-batch-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "object-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "object.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "companies-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "companies",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "lost-contact-email",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "contacts",
+      "rowId": "0000001001",
+      "path": [
+        "properties",
+        "email"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "lost@example.org"
+      }
+    },
+    {
+      "id": "lost-contact-updated",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "contacts",
+      "rowId": "0000001001",
+      "path": [
+        "properties",
+        "lastname"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Berg"
+      }
+    }
+  ]
+}

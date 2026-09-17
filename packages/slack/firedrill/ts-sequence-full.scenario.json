@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "ts-sequence-full",
+  "title": "The frozen virtual second already holds 999,997 message timestamps and an authored message occupies .999998: one more post fits, then every ts allocation refuses with too_many_rows",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "workspace",
+      "rowId": "team",
+      "value": {
+        "id": "T01EXAMPLE0",
+        "name": "Example Team",
+        "domain": "example-team",
+        "url": "https://example-team.slack.com/",
+        "id_sequence": 50,
+        "message_sequence": 999997,
+        "message_second": 1789376400
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01INCIDENT:1789376400.999998",
+      "value": {
+        "channel": "C01INCIDENT",
+        "ts": "1789376400.999998",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Authored message occupying the second-to-last ts of this second.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01INCIDENT/p1789376400999998",
+        "team": "T01EXAMPLE0"
+      }
+    }
+  ]
+}

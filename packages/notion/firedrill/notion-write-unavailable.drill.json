@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-write-unavailable",
+  "title": "pages.create, pages.update, blocks.children.append and comments.create answer 503 without writing",
+  "targetId": "conformance-agent",
+  "scenarioId": "write-unavailable",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the write-unavailable conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "pages-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-update-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "blocks-children-append-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.children.append"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-create-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-create-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "pages-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "blocks-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "blocks.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pages-unchanged",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "pages",
+      "comparison": {
+        "operator": "equals",
+        "value": 28
+      }
+    },
+    {
+      "id": "comments-unchanged",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "blocks-unchanged",
+      "kind": "state.count",
+      "packageId": "notion",
+      "namespace": "blocks",
+      "comparison": {
+        "operator": "equals",
+        "value": 49
+      }
+    },
+    {
+      "id": "page-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "page.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

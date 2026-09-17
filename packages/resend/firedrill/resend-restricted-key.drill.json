@@ -1,0 +1,441 @@
+{
+  "schemaVersion": 1,
+  "id": "resend-restricted-key",
+  "title": "A sending_access key is refused every non-send operation and may send only from its domain",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "sender",
+  "task": {
+    "instruction": "Run the restricted-key flow against the synthetic Resend Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "emails-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-cancel-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.cancel"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "domains-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "domains.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "domains-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "domains.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "domains-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "domains.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "domains-verify-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "domains.verify"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "domains-remove-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "domains.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "api-keys-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "api_keys.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "api-keys-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "api_keys.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "api-keys-remove-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "api_keys.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "segments-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "segments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "segments-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "segments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "segments-remove-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "segments.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-remove-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-add-segment-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.add_segment"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-remove-segment-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.remove_segment"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-segments-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.list_segments"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-send-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-send-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-send-batch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send_batch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workspace-context-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "workspace.context"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-count",
+      "kind": "state.count",
+      "packageId": "resend",
+      "namespace": "emails",
+      "comparison": {
+        "operator": "equals",
+        "value": 25
+      }
+    },
+    {
+      "id": "email-sent-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "resend",
+        "eventId": "email.sent"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

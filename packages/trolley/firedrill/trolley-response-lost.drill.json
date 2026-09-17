@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "id": "trolley-response-lost",
+  "title": "start-processing commits but the response is lost; the caller checks the batch instead of paying twice",
+  "targetId": "conformance-agent",
+  "scenarioId": "processing-response-lost",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the response-lost conformance flow against the synthetic Trolley Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "batches-start-processing-tool-error-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.start_processing"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "batches-start-processing-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.start_processing"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "batches-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-payment-processed",
+      "kind": "event.count",
+      "event": {
+        "packageId": "trolley",
+        "eventId": "payment.processed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "b1-complete",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003F",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "complete"
+      }
+    },
+    {
+      "id": "usd-balance-once",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "balances",
+      "rowId": "paymentrails:USD",
+      "path": [
+        "amount"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "17179.55"
+      }
+    },
+    {
+      "id": "check-after-lost-response",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "trolley",
+              "operationId": "batches.start_processing"
+            }
+          ],
+          "outcomes": [
+            "tool_error"
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "trolley",
+              "operationId": "batches.get"
+            }
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        }
+      ]
+    }
+  ]
+}

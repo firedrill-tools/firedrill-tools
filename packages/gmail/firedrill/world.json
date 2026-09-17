@@ -1,0 +1,1658 @@
+{
+  "schemaVersion": 1,
+  "id": "gmail-conformance-world",
+  "title": "Gmail Tool conformance world",
+  "virtualTimeUs": 1789376400000000,
+  "actors": [
+    {
+      "id": "owner",
+      "description": "Primary mailbox owner with every Gmail operation granted.",
+      "attributes": {
+        "email": "dana.reyes@example.test",
+        "displayName": "Dana Reyes"
+      },
+      "grants": [
+        {
+          "packageId": "gmail",
+          "operationId": "profile.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "labels.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "labels.create"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "labels.update"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "labels.delete"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.modify"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.batch-modify"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.label"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.unlabel"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.trash"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.untrash"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.send"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "attachments.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.modify"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.label"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.unlabel"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.trash"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.create"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.update"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.send"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.delete"
+        }
+      ]
+    },
+    {
+      "id": "colleague",
+      "description": "A second mailbox in the same world; proves ownership isolation and intra-world delivery.",
+      "attributes": {
+        "email": "sam.okafor@example.test",
+        "displayName": "Sam Okafor"
+      },
+      "grants": [
+        {
+          "packageId": "gmail",
+          "operationId": "profile.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.send"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.modify"
+        }
+      ]
+    },
+    {
+      "id": "auditor",
+      "description": "Has a mailbox address but no grants; every call is denied by the framework.",
+      "attributes": {
+        "email": "audit@example.test"
+      },
+      "grants": []
+    },
+    {
+      "id": "newcomer",
+      "description": "Fresh-install shaped actor: no identity attributes, every operation granted. Must open the primary seeded mailbox (dana.reyes@example.test).",
+      "grants": [
+        {
+          "packageId": "gmail",
+          "operationId": "profile.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "labels.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "labels.create"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "labels.update"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "labels.delete"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.modify"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.batch-modify"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.label"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.unlabel"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.trash"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.untrash"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "messages.send"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "attachments.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.modify"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.label"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.unlabel"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "threads.trash"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.list"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.get"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.create"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.update"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.send"
+        },
+        {
+          "packageId": "gmail",
+          "operationId": "drafts.delete"
+        }
+      ]
+    }
+  ],
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "attachments",
+      "rowId": "dana.reyes@example.test:att_18f000000000a001",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "attachmentId": "att_18f000000000a001",
+        "messageId": "18f0000000000201",
+        "filename": "INV-2026-0912.pdf",
+        "mimeType": "application/pdf",
+        "size": 297,
+        "data": "Tm9ydGh3aW5kIFRyYWRlcnMgKGZpY3Rpb25hbCkg4oCUIEludm9pY2UgSU5WLTIwMjYtMDkxMgpCaWxsIHRvOiBEYW5hIFJleWVzLCBleGFtcGxlLnRlc3QKSXRlbTogTWFuYWdlZCBob3N0aW5nLCBTZXB0ZW1iZXIgMjAyNiAuLi4gMSB4IDEsODQwLjAwClZBVCAyMCUgLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLiAzNjguMDAKVG90YWwgZHVlIGJ5IDIwMjYtMDktMjYgLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uIDIsMjA4LjAwClRoaXMgZG9jdW1lbnQgaXMgc3ludGhldGljIHRlc3QgZGF0YS4K"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "attachments",
+      "rowId": "dana.reyes@example.test:att_18f000000000a002",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "attachmentId": "att_18f000000000a002",
+        "messageId": "18f0000000000d01",
+        "filename": "notice.txt",
+        "mimeType": "text/plain",
+        "size": 0,
+        "data": ""
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "drafts",
+      "rowId": "dana.reyes@example.test:r5900000000000000101",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "r5900000000000000101",
+        "messageId": "18f0000000000c01"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "drafts",
+      "rowId": "dana.reyes@example.test:r5900000000000000102",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "r5900000000000000102",
+        "messageId": "18f0000000000104"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "labels",
+      "rowId": "dana.reyes@example.test:Label_1",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "Label_1",
+        "name": "Customers",
+        "type": "user",
+        "messageListVisibility": "show",
+        "labelListVisibility": "labelShow",
+        "color": {
+          "textColor": "#ffffff",
+          "backgroundColor": "#16a765"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "labels",
+      "rowId": "dana.reyes@example.test:Label_2",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "Label_2",
+        "name": "Invoices",
+        "type": "user",
+        "messageListVisibility": "show",
+        "labelListVisibility": "labelShow",
+        "color": {
+          "textColor": "#000000",
+          "backgroundColor": "#ffad47"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "labels",
+      "rowId": "dana.reyes@example.test:Label_3",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "Label_3",
+        "name": "Recruiting",
+        "type": "user",
+        "messageListVisibility": "show",
+        "labelListVisibility": "labelHide"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "labels",
+      "rowId": "dana.reyes@example.test:Label_4",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "Label_4",
+        "name": "Customers/Escalations",
+        "type": "user",
+        "messageListVisibility": "show",
+        "labelListVisibility": "labelShow",
+        "color": {
+          "textColor": "#ffffff",
+          "backgroundColor": "#cc3a21"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "labels",
+      "rowId": "sam.okafor@example.test:Label_1",
+      "value": {
+        "mailbox": "sam.okafor@example.test",
+        "id": "Label_1",
+        "name": "Team",
+        "type": "user",
+        "messageListVisibility": "show",
+        "labelListVisibility": "labelShow",
+        "color": {
+          "textColor": "#ffffff",
+          "backgroundColor": "#4a86e8"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "mailboxes",
+      "rowId": "dana.reyes@example.test",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "displayName": "Dana Reyes",
+        "historyId": 1200,
+        "messagesTotal": 20,
+        "threadsTotal": 12,
+        "sequence": 300
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "mailboxes",
+      "rowId": "sam.okafor@example.test",
+      "value": {
+        "emailAddress": "sam.okafor@example.test",
+        "displayName": "Sam Okafor",
+        "historyId": 40,
+        "messagesTotal": 3,
+        "threadsTotal": 2,
+        "sequence": 20
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000101",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000101",
+        "threadId": "18f0000000000101",
+        "labelIds": [
+          "INBOX",
+          "UNREAD",
+          "Label_1"
+        ],
+        "snippet": "Hi Dana, I was charged twice for order 48213 on 9 September. Could you refund the duplicate charge of 129.00? Thanks, Priya",
+        "historyId": 1101,
+        "internalDate": "1789135320000",
+        "sizeEstimate": 361,
+        "headers": {
+          "from": "priya.natarajan@example.com",
+          "fromName": "Priya Natarajan",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Refund for order 48213",
+          "date": "Fri, 11 Sep 2026 14:02:00 +0000",
+          "messageId": "<a1f3.48213@example.com>",
+          "references": []
+        },
+        "body": {
+          "text": "Hi Dana,\n\nI was charged twice for order 48213 on 9 September. Could you refund the duplicate charge of 129.00?\n\nThanks,\nPriya"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000102",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000102",
+        "threadId": "18f0000000000101",
+        "labelIds": [
+          "SENT"
+        ],
+        "snippet": "Hi Priya, Sorry about that. I can see both charges and have asked billing to reverse the second one. You should see it within 3-5 business days. Dana",
+        "historyId": 1102,
+        "internalDate": "1789145100000",
+        "sizeEstimate": 475,
+        "headers": {
+          "from": "dana.reyes@example.test",
+          "fromName": "Dana Reyes",
+          "to": [
+            "priya.natarajan@example.com"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Re: Refund for order 48213",
+          "date": "Fri, 11 Sep 2026 16:45:00 +0000",
+          "messageId": "<18f0000000000102@example.test>",
+          "inReplyTo": "<a1f3.48213@example.com>",
+          "references": [
+            "<a1f3.48213@example.com>"
+          ]
+        },
+        "body": {
+          "text": "Hi Priya,\n\nSorry about that. I can see both charges and have asked billing to reverse the second one. You should see it within 3-5 business days.\n\nDana"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000103",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000103",
+        "threadId": "18f0000000000101",
+        "labelIds": [
+          "INBOX",
+          "UNREAD",
+          "IMPORTANT",
+          "Label_1",
+          "Label_4"
+        ],
+        "snippet": "Dana, It has been a day and nothing has changed on my statement. If this is not resolved by Monday I will dispute the charge with my bank. Priya",
+        "historyId": 1103,
+        "internalDate": "1789201800000",
+        "sizeEstimate": 530,
+        "headers": {
+          "from": "priya.natarajan@example.com",
+          "fromName": "Priya Natarajan",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [
+            "support@example.test"
+          ],
+          "bcc": [],
+          "subject": "Re: Refund for order 48213",
+          "date": "Sat, 12 Sep 2026 08:30:00 +0000",
+          "messageId": "<a1f3.48213.2@example.com>",
+          "inReplyTo": "<18f0000000000102@example.test>",
+          "references": [
+            "<a1f3.48213@example.com>",
+            "<18f0000000000102@example.test>"
+          ]
+        },
+        "body": {
+          "text": "Dana,\n\nIt has been a day and nothing has changed on my statement. If this is not resolved by Monday I will dispute the charge with my bank.\n\nPriya"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000104",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000104",
+        "threadId": "18f0000000000101",
+        "labelIds": [
+          "DRAFT"
+        ],
+        "snippet": "Hi Priya, The refund was issued this morning (reference RF-77120). Please allow one more business day for it to appear. Dana",
+        "historyId": 1104,
+        "internalDate": "1789320000000",
+        "sizeEstimate": 511,
+        "headers": {
+          "from": "dana.reyes@example.test",
+          "fromName": "Dana Reyes",
+          "to": [
+            "priya.natarajan@example.com"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Re: Refund for order 48213",
+          "date": "Sun, 13 Sep 2026 17:20:00 +0000",
+          "messageId": "<18f0000000000104@example.test>",
+          "inReplyTo": "<a1f3.48213.2@example.com>",
+          "references": [
+            "<a1f3.48213@example.com>",
+            "<18f0000000000102@example.test>",
+            "<a1f3.48213.2@example.com>"
+          ]
+        },
+        "body": {
+          "text": "Hi Priya,\n\nThe refund was issued this morning (reference RF-77120). Please allow one more business day for it to appear.\n\nDana"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000201",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000201",
+        "threadId": "18f0000000000201",
+        "labelIds": [
+          "INBOX",
+          "CATEGORY_UPDATES",
+          "Label_2"
+        ],
+        "snippet": "Your invoice INV-2026-0912 for September hosting is attached. Total due 2,208.00 by 26 September. Northwind Traders (a fictional company)",
+        "historyId": 1105,
+        "internalDate": "1789193700000",
+        "sizeEstimate": 813,
+        "headers": {
+          "from": "billing@northwind.example.com",
+          "fromName": "Northwind Billing",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Invoice INV-2026-0912",
+          "date": "Sat, 12 Sep 2026 06:15:00 +0000",
+          "messageId": "<inv-2026-0912@northwind.example.com>",
+          "references": []
+        },
+        "body": {
+          "text": "Your invoice INV-2026-0912 for September hosting is attached. Total due 2,208.00 by 26 September.\n\nNorthwind Traders (a fictional company)"
+        },
+        "attachments": [
+          {
+            "attachmentId": "att_18f000000000a001",
+            "filename": "INV-2026-0912.pdf",
+            "mimeType": "application/pdf",
+            "size": 297
+          }
+        ],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000301",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000301",
+        "threadId": "18f0000000000301",
+        "labelIds": [
+          "INBOX",
+          "CATEGORY_PROMOTIONS"
+        ],
+        "snippet": "This week: deterministic test worlds, replaying agent runs, and a checklist for synthetic services. Read online or reply to unsubscribe.",
+        "historyId": 1106,
+        "internalDate": "1788955200000",
+        "sizeEstimate": 606,
+        "headers": {
+          "from": "news@devweekly.example.org",
+          "fromName": "Dev Weekly",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Dev Weekly #412: deterministic testing for agents",
+          "date": "Wed, 09 Sep 2026 12:00:00 +0000",
+          "messageId": "<dw-412@devweekly.example.org>",
+          "references": []
+        },
+        "body": {
+          "text": "This week: deterministic test worlds, replaying agent runs, and a checklist for synthetic services.\n\nRead online or reply to unsubscribe.",
+          "html": "<h1>Dev Weekly #412</h1><p>This week: <b>deterministic test worlds</b>, replaying agent runs, and a checklist for synthetic services.</p>"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000401",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000401",
+        "threadId": "18f0000000000401",
+        "labelIds": [
+          "INBOX",
+          "Label_3"
+        ],
+        "snippet": "Dana, can you take the systems design slot on Thursday at 14:00? Panel notes are in the shared folder.",
+        "historyId": 1107,
+        "internalDate": "1788858600000",
+        "sizeEstimate": 381,
+        "headers": {
+          "from": "marcus.lindqvist@example.test",
+          "fromName": "Marcus Lindqvist",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [
+            "recruiting@example.test"
+          ],
+          "bcc": [],
+          "subject": "Interview loop - backend candidate",
+          "date": "Tue, 08 Sep 2026 09:10:00 +0000",
+          "messageId": "<loop-4401@example.test>",
+          "references": []
+        },
+        "body": {
+          "text": "Dana, can you take the systems design slot on Thursday at 14:00? Panel notes are in the shared folder."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000402",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000402",
+        "threadId": "18f0000000000401",
+        "labelIds": [
+          "INBOX",
+          "STARRED",
+          "Label_3"
+        ],
+        "snippet": "Confirmed: Thursday 14:00, room Birch. Scorecards are due within 24 hours of the interview.",
+        "historyId": 1108,
+        "internalDate": "1788882000000",
+        "sizeEstimate": 451,
+        "headers": {
+          "from": "recruiting@example.test",
+          "fromName": "Recruiting",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [
+            "marcus.lindqvist@example.test"
+          ],
+          "bcc": [],
+          "subject": "Re: Interview loop - backend candidate",
+          "date": "Tue, 08 Sep 2026 15:40:00 +0000",
+          "messageId": "<loop-4402@example.test>",
+          "inReplyTo": "<loop-4401@example.test>",
+          "references": [
+            "<loop-4401@example.test>"
+          ]
+        },
+        "body": {
+          "text": "Confirmed: Thursday 14:00, room Birch. Scorecards are due within 24 hours of the interview."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000501",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000501",
+        "threadId": "18f0000000000501",
+        "labelIds": [
+          "INBOX"
+        ],
+        "snippet": "Draft postmortem for yesterday's latency incident is ready for review. Root cause: connection pool exhaustion after the deploy at 09:12.",
+        "historyId": 1109,
+        "internalDate": "1785924000000",
+        "sizeEstimate": 405,
+        "headers": {
+          "from": "ops@example.test",
+          "fromName": "Ops",
+          "to": [
+            "dana.reyes@example.test",
+            "sam.okafor@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Outage postmortem: 2026-08-04 API latency",
+          "date": "Wed, 05 Aug 2026 10:00:00 +0000",
+          "messageId": "<pm-0804-1@example.test>",
+          "references": []
+        },
+        "body": {
+          "text": "Draft postmortem for yesterday's latency incident is ready for review. Root cause: connection pool exhaustion after the deploy at 09:12."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000502",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000502",
+        "threadId": "18f0000000000501",
+        "labelIds": [
+          "SENT"
+        ],
+        "snippet": "Reviewed. Two follow-ups: add a pool saturation alert and cap retries in the client. I added both to the action items.",
+        "historyId": 1110,
+        "internalDate": "1786534200000",
+        "sizeEstimate": 479,
+        "headers": {
+          "from": "dana.reyes@example.test",
+          "fromName": "Dana Reyes",
+          "to": [
+            "ops@example.test"
+          ],
+          "cc": [
+            "sam.okafor@example.test"
+          ],
+          "bcc": [],
+          "subject": "Re: Outage postmortem: 2026-08-04 API latency",
+          "date": "Wed, 12 Aug 2026 11:30:00 +0000",
+          "messageId": "<18f0000000000502@example.test>",
+          "inReplyTo": "<pm-0804-1@example.test>",
+          "references": [
+            "<pm-0804-1@example.test>"
+          ]
+        },
+        "body": {
+          "text": "Reviewed. Two follow-ups: add a pool saturation alert and cap retries in the client. I added both to the action items."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000503",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000503",
+        "threadId": "18f0000000000501",
+        "labelIds": [
+          "INBOX"
+        ],
+        "snippet": "Alert shipped in release 4.18. Retry cap is scheduled for next sprint.",
+        "historyId": 1111,
+        "internalDate": "1786698000000",
+        "sizeEstimate": 459,
+        "headers": {
+          "from": "sam.okafor@example.test",
+          "fromName": "Sam Okafor",
+          "to": [
+            "dana.reyes@example.test",
+            "ops@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Re: Outage postmortem: 2026-08-04 API latency",
+          "date": "Fri, 14 Aug 2026 09:00:00 +0000",
+          "messageId": "<pm-0804-3@example.test>",
+          "inReplyTo": "<18f0000000000502@example.test>",
+          "references": [
+            "<pm-0804-1@example.test>",
+            "<18f0000000000502@example.test>"
+          ]
+        },
+        "body": {
+          "text": "Alert shipped in release 4.18. Retry cap is scheduled for next sprint."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000504",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000504",
+        "threadId": "18f0000000000501",
+        "labelIds": [
+          "INBOX",
+          "UNREAD"
+        ],
+        "snippet": "Closing the loop: retry cap landed in 4.20 and the postmortem is now final. Thanks both.",
+        "historyId": 1112,
+        "internalDate": "1789285500000",
+        "sizeEstimate": 495,
+        "headers": {
+          "from": "ops@example.test",
+          "fromName": "Ops",
+          "to": [
+            "dana.reyes@example.test",
+            "sam.okafor@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Re: Outage postmortem: 2026-08-04 API latency",
+          "date": "Sun, 13 Sep 2026 07:45:00 +0000",
+          "messageId": "<pm-0804-4@example.test>",
+          "inReplyTo": "<pm-0804-3@example.test>",
+          "references": [
+            "<pm-0804-1@example.test>",
+            "<18f0000000000502@example.test>",
+            "<pm-0804-3@example.test>"
+          ]
+        },
+        "body": {
+          "text": "Closing the loop: retry cap landed in 4.20 and the postmortem is now final. Thanks both."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000601",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000601",
+        "threadId": "18f0000000000601",
+        "labelIds": [
+          "INBOX",
+          "UNREAD"
+        ],
+        "snippet": "Forgot to add a subject - are we still on for the vendor call tomorrow at 10?",
+        "historyId": 1113,
+        "internalDate": "1789329900000",
+        "sizeEstimate": 284,
+        "headers": {
+          "from": "lena.moreau@example.org",
+          "fromName": "Lena Moreau",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "",
+          "date": "Sun, 13 Sep 2026 20:05:00 +0000",
+          "messageId": "<lm-9913@example.org>",
+          "references": []
+        },
+        "body": {
+          "text": "Forgot to add a subject - are we still on for the vendor call tomorrow at 10?"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000701",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000701",
+        "threadId": "18f0000000000701",
+        "labelIds": [
+          "TRASH"
+        ],
+        "snippet": "Team sync starts at 09:15. This is an automated reminder.",
+        "historyId": 1114,
+        "internalDate": "1788249600000",
+        "sizeEstimate": 314,
+        "headers": {
+          "from": "noreply@calendar.example.test",
+          "fromName": "Calendar",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Reminder: Team sync in 15 minutes",
+          "date": "Tue, 01 Sep 2026 08:00:00 +0000",
+          "messageId": "<cal-7701@calendar.example.test>",
+          "references": []
+        },
+        "body": {
+          "text": "Team sync starts at 09:15. This is an automated reminder."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000801",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000801",
+        "threadId": "18f0000000000801",
+        "labelIds": [
+          "SPAM",
+          "UNREAD"
+        ],
+        "snippet": "Congratulations! Claim your prize by replying with your account details. (Synthetic spam sample.)",
+        "historyId": 1115,
+        "internalDate": "1789270380000",
+        "sizeEstimate": 343,
+        "headers": {
+          "from": "prize-desk@lottery.example.org",
+          "fromName": "Prize Desk",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "You have been selected",
+          "date": "Sun, 13 Sep 2026 03:33:00 +0000",
+          "messageId": "<spam-8801@lottery.example.org>",
+          "references": []
+        },
+        "body": {
+          "text": "Congratulations! Claim your prize by replying with your account details. (Synthetic spam sample.)"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000901",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000901",
+        "threadId": "18f0000000000901",
+        "labelIds": [
+          "Label_1"
+        ],
+        "snippet": "Hi Dana, we would like to renew for another year on the same terms. Can you send the paperwork?",
+        "historyId": 1116,
+        "internalDate": "1784541600000",
+        "sizeEstimate": 338,
+        "headers": {
+          "from": "tomas.berg@example.com",
+          "fromName": "Tomas Berg",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Contract renewal - Berg Analytics",
+          "date": "Mon, 20 Jul 2026 10:00:00 +0000",
+          "messageId": "<berg-2026-1@example.com>",
+          "references": []
+        },
+        "body": {
+          "text": "Hi Dana, we would like to renew for another year on the same terms. Can you send the paperwork?"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000902",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000902",
+        "threadId": "18f0000000000901",
+        "labelIds": [
+          "SENT",
+          "Label_1"
+        ],
+        "snippet": "Great news, Tomas. Renewal paperwork is on its way via the signature service.",
+        "historyId": 1117,
+        "internalDate": "1784626200000",
+        "sizeEstimate": 409,
+        "headers": {
+          "from": "dana.reyes@example.test",
+          "fromName": "Dana Reyes",
+          "to": [
+            "tomas.berg@example.com"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Re: Contract renewal - Berg Analytics",
+          "date": "Tue, 21 Jul 2026 09:30:00 +0000",
+          "messageId": "<18f0000000000902@example.test>",
+          "inReplyTo": "<berg-2026-1@example.com>",
+          "references": [
+            "<berg-2026-1@example.com>"
+          ]
+        },
+        "body": {
+          "text": "Great news, Tomas. Renewal paperwork is on its way via the signature service."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000b01",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000b01",
+        "threadId": "18f0000000000b01",
+        "labelIds": [
+          "SENT"
+        ],
+        "snippet": "Attached in the shared drive: Q3 numbers and the hiring plan. Please keep this confidential until the all-hands.",
+        "historyId": 1118,
+        "internalDate": "1789063200000",
+        "sizeEstimate": 414,
+        "headers": {
+          "from": "dana.reyes@example.test",
+          "fromName": "Dana Reyes",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [
+            "board@example.test",
+            "advisors@example.org"
+          ],
+          "subject": "Q3 update for the board (confidential)",
+          "date": "Thu, 10 Sep 2026 18:00:00 +0000",
+          "messageId": "<18f0000000000b01@example.test>",
+          "references": []
+        },
+        "body": {
+          "text": "Attached in the shared drive: Q3 numbers and the hiring plan. Please keep this confidential until the all-hands."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000c01",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000c01",
+        "threadId": "18f0000000000c01",
+        "labelIds": [
+          "DRAFT"
+        ],
+        "snippet": "Hi, Please find the Q3 budget summary below. I need sign-off by Wednesday. - Infra: 42k - Tooling: 9k - Travel: 3k Dana",
+        "historyId": 1119,
+        "internalDate": "1789315200000",
+        "sizeEstimate": 354,
+        "headers": {
+          "from": "dana.reyes@example.test",
+          "fromName": "Dana Reyes",
+          "to": [
+            "finance@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Q3 budget sign-off",
+          "date": "Sun, 13 Sep 2026 16:00:00 +0000",
+          "messageId": "<18f0000000000c01@example.test>",
+          "references": []
+        },
+        "body": {
+          "text": "Hi,\n\nPlease find the Q3 budget summary below. I need sign-off by Wednesday.\n\n- Infra: 42k\n- Tooling: 9k\n- Travel: 3k\n\nDana"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "dana.reyes@example.test:18f0000000000d01",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000d01",
+        "threadId": "18f0000000000d01",
+        "labelIds": [
+          "INBOX"
+        ],
+        "snippet": "The updated data processing terms take effect on 1 October. The attached notice is intentionally empty in this synthetic dataset.",
+        "historyId": 1120,
+        "internalDate": "1788613200000",
+        "sizeEstimate": 492,
+        "headers": {
+          "from": "legal@example.test",
+          "fromName": "Legal",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Updated data processing terms",
+          "date": "Sat, 05 Sep 2026 13:00:00 +0000",
+          "messageId": "<legal-1001@example.test>",
+          "references": []
+        },
+        "body": {
+          "text": "The updated data processing terms take effect on 1 October. The attached notice is intentionally empty in this synthetic dataset."
+        },
+        "attachments": [
+          {
+            "attachmentId": "att_18f000000000a002",
+            "filename": "notice.txt",
+            "mimeType": "text/plain",
+            "size": 0
+          }
+        ],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "sam.okafor@example.test:18f0000000000101",
+      "value": {
+        "mailbox": "sam.okafor@example.test",
+        "id": "18f0000000000101",
+        "threadId": "18f0000000000101",
+        "labelIds": [
+          "INBOX"
+        ],
+        "snippet": "Sam, before I send the Q3 budget to finance, can you sanity-check the infra line?",
+        "historyId": 31,
+        "internalDate": "1789207200000",
+        "sizeEstimate": 333,
+        "headers": {
+          "from": "dana.reyes@example.test",
+          "fromName": "Dana Reyes",
+          "to": [
+            "sam.okafor@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "Can you review the Q3 budget draft?",
+          "date": "Sat, 12 Sep 2026 10:00:00 +0000",
+          "messageId": "<18f0000000000b0a@example.test>",
+          "references": []
+        },
+        "body": {
+          "text": "Sam, before I send the Q3 budget to finance, can you sanity-check the infra line?"
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "sam.okafor@example.test:18f0000000000102",
+      "value": {
+        "mailbox": "sam.okafor@example.test",
+        "id": "18f0000000000102",
+        "threadId": "18f0000000000101",
+        "labelIds": [
+          "SENT"
+        ],
+        "snippet": "Looks right to me. Ops confirmed the reserved-capacity discount is already included.",
+        "historyId": 32,
+        "internalDate": "1789215600000",
+        "sizeEstimate": 453,
+        "headers": {
+          "from": "sam.okafor@example.test",
+          "fromName": "Sam Okafor",
+          "to": [
+            "dana.reyes@example.test"
+          ],
+          "cc": [
+            "ops@example.test"
+          ],
+          "bcc": [],
+          "subject": "Re: Can you review the Q3 budget draft?",
+          "date": "Sat, 12 Sep 2026 12:20:00 +0000",
+          "messageId": "<18f0000000000102@example.test>",
+          "inReplyTo": "<18f0000000000b0a@example.test>",
+          "references": [
+            "<18f0000000000b0a@example.test>"
+          ]
+        },
+        "body": {
+          "text": "Looks right to me. Ops confirmed the reserved-capacity discount is already included."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "rowId": "sam.okafor@example.test:18f0000000000103",
+      "value": {
+        "mailbox": "sam.okafor@example.test",
+        "id": "18f0000000000103",
+        "threadId": "18f0000000000103",
+        "labelIds": [
+          "INBOX",
+          "UNREAD",
+          "Label_1"
+        ],
+        "snippet": "The nightly integration suite failed on 3 of 212 checks. See the build log for details.",
+        "historyId": 33,
+        "internalDate": "1789365600000",
+        "sizeEstimate": 339,
+        "headers": {
+          "from": "alerts@example.org",
+          "fromName": "Alerts",
+          "to": [
+            "sam.okafor@example.test"
+          ],
+          "cc": [],
+          "bcc": [],
+          "subject": "[team] Nightly build failed: integration-suite",
+          "date": "Mon, 14 Sep 2026 06:00:00 +0000",
+          "messageId": "<nb-20260914@example.org>",
+          "references": []
+        },
+        "body": {
+          "text": "The nightly integration suite failed on 3 of 212 checks. See the build log for details."
+        },
+        "attachments": [],
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000101",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000101",
+        "messageIds": [
+          "18f0000000000101",
+          "18f0000000000102",
+          "18f0000000000103",
+          "18f0000000000104"
+        ],
+        "snippet": "Hi Priya, The refund was issued this morning (reference RF-77120). Please allow one more business day for it to appear. Dana",
+        "historyId": 1104,
+        "lastInternalDate": "1789320000000",
+        "labelIds": [
+          "INBOX",
+          "UNREAD",
+          "Label_1",
+          "SENT",
+          "IMPORTANT",
+          "Label_4",
+          "DRAFT"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000201",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000201",
+        "messageIds": [
+          "18f0000000000201"
+        ],
+        "snippet": "Your invoice INV-2026-0912 for September hosting is attached. Total due 2,208.00 by 26 September. Northwind Traders (a fictional company)",
+        "historyId": 1105,
+        "lastInternalDate": "1789193700000",
+        "labelIds": [
+          "INBOX",
+          "CATEGORY_UPDATES",
+          "Label_2"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000301",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000301",
+        "messageIds": [
+          "18f0000000000301"
+        ],
+        "snippet": "This week: deterministic test worlds, replaying agent runs, and a checklist for synthetic services. Read online or reply to unsubscribe.",
+        "historyId": 1106,
+        "lastInternalDate": "1788955200000",
+        "labelIds": [
+          "INBOX",
+          "CATEGORY_PROMOTIONS"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000401",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000401",
+        "messageIds": [
+          "18f0000000000401",
+          "18f0000000000402"
+        ],
+        "snippet": "Confirmed: Thursday 14:00, room Birch. Scorecards are due within 24 hours of the interview.",
+        "historyId": 1108,
+        "lastInternalDate": "1788882000000",
+        "labelIds": [
+          "INBOX",
+          "Label_3",
+          "STARRED"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000501",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000501",
+        "messageIds": [
+          "18f0000000000501",
+          "18f0000000000502",
+          "18f0000000000503",
+          "18f0000000000504"
+        ],
+        "snippet": "Closing the loop: retry cap landed in 4.20 and the postmortem is now final. Thanks both.",
+        "historyId": 1112,
+        "lastInternalDate": "1789285500000",
+        "labelIds": [
+          "INBOX",
+          "SENT",
+          "UNREAD"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000601",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000601",
+        "messageIds": [
+          "18f0000000000601"
+        ],
+        "snippet": "Forgot to add a subject - are we still on for the vendor call tomorrow at 10?",
+        "historyId": 1113,
+        "lastInternalDate": "1789329900000",
+        "labelIds": [
+          "INBOX",
+          "UNREAD"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000701",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000701",
+        "messageIds": [
+          "18f0000000000701"
+        ],
+        "snippet": "Team sync starts at 09:15. This is an automated reminder.",
+        "historyId": 1114,
+        "lastInternalDate": "1788249600000",
+        "labelIds": [
+          "TRASH"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000801",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000801",
+        "messageIds": [
+          "18f0000000000801"
+        ],
+        "snippet": "Congratulations! Claim your prize by replying with your account details. (Synthetic spam sample.)",
+        "historyId": 1115,
+        "lastInternalDate": "1789270380000",
+        "labelIds": [
+          "SPAM",
+          "UNREAD"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000901",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000901",
+        "messageIds": [
+          "18f0000000000901",
+          "18f0000000000902"
+        ],
+        "snippet": "Great news, Tomas. Renewal paperwork is on its way via the signature service.",
+        "historyId": 1117,
+        "lastInternalDate": "1784626200000",
+        "labelIds": [
+          "Label_1",
+          "SENT"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000b01",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000b01",
+        "messageIds": [
+          "18f0000000000b01"
+        ],
+        "snippet": "Attached in the shared drive: Q3 numbers and the hiring plan. Please keep this confidential until the all-hands.",
+        "historyId": 1118,
+        "lastInternalDate": "1789063200000",
+        "labelIds": [
+          "SENT"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000c01",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000c01",
+        "messageIds": [
+          "18f0000000000c01"
+        ],
+        "snippet": "Hi, Please find the Q3 budget summary below. I need sign-off by Wednesday. - Infra: 42k - Tooling: 9k - Travel: 3k Dana",
+        "historyId": 1119,
+        "lastInternalDate": "1789315200000",
+        "labelIds": [
+          "DRAFT"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "dana.reyes@example.test:18f0000000000d01",
+      "value": {
+        "mailbox": "dana.reyes@example.test",
+        "id": "18f0000000000d01",
+        "messageIds": [
+          "18f0000000000d01"
+        ],
+        "snippet": "The updated data processing terms take effect on 1 October. The attached notice is intentionally empty in this synthetic dataset.",
+        "historyId": 1120,
+        "lastInternalDate": "1788613200000",
+        "labelIds": [
+          "INBOX"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "sam.okafor@example.test:18f0000000000101",
+      "value": {
+        "mailbox": "sam.okafor@example.test",
+        "id": "18f0000000000101",
+        "messageIds": [
+          "18f0000000000101",
+          "18f0000000000102"
+        ],
+        "snippet": "Looks right to me. Ops confirmed the reserved-capacity discount is already included.",
+        "historyId": 32,
+        "lastInternalDate": "1789215600000",
+        "labelIds": [
+          "INBOX",
+          "SENT"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "gmail",
+      "namespace": "threads",
+      "rowId": "sam.okafor@example.test:18f0000000000103",
+      "value": {
+        "mailbox": "sam.okafor@example.test",
+        "id": "18f0000000000103",
+        "messageIds": [
+          "18f0000000000103"
+        ],
+        "snippet": "The nightly integration suite failed on 3 of 212 checks. See the build log for details.",
+        "historyId": 33,
+        "lastInternalDate": "1789365600000",
+        "labelIds": [
+          "INBOX",
+          "UNREAD",
+          "Label_1"
+        ]
+      }
+    }
+  ]
+}

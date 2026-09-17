@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Slack (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/slack.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./chrome.css" />
+    <script type="module" src="./app.js"></script>
+    <script type="module" src="./chrome.js"></script>
+  </head>
+  <body>
+    <div class="shell" id="shell">
+      <header class="topbar">
+        <div class="topbar-start">
+          <button type="button" class="topbar-btn" id="nav-menu" aria-label="Show sidebar" title="Sidebar"><span data-icon="menu"></span></button>
+          <button type="button" class="topbar-btn" id="nav-back" aria-label="Back" title="Back" disabled><span data-icon="arrow_left"></span></button>
+          <button type="button" class="topbar-btn" id="nav-forward" aria-label="Forward" title="Forward" disabled><span data-icon="arrow_right"></span></button>
+          <button type="button" class="topbar-btn" id="nav-history" aria-label="History" aria-expanded="false" title="History"><span data-icon="clock"></span></button>
+        </div>
+        <form class="topbar-search" id="search-form" role="search">
+          <label class="visually-hidden" for="search">Search</label>
+          <span data-icon="search" class="search-glyph"></span>
+          <input id="search" type="text" placeholder="Search" autocomplete="off" spellcheck="false" />
+          <button type="button" class="search-clear" id="search-clear" aria-label="Clear search" hidden><span data-icon="close"></span></button>
+        </form>
+        <div class="topbar-end">
+          <button type="button" class="topbar-btn" id="help" aria-label="Help" aria-expanded="false" title="Help"><span data-icon="help"></span></button>
+        </div>
+      </header>
+
+      <nav class="rail" id="rail" aria-label="Workspace">
+        <button type="button" class="rail-workspace" id="workspace-tile" aria-label="Workspace menu" aria-expanded="false" title="Workspace">
+          <span class="rail-tile" id="workspace-initial">·</span>
+        </button>
+        <div class="rail-items">
+          <button type="button" class="rail-item" data-view="home" aria-current="page"><span class="rail-icon"><span data-icon="home"></span></span><span class="rail-label">Home</span></button>
+          <button type="button" class="rail-item" data-view="dms"><span class="rail-icon"><span data-icon="dm"></span></span><span class="rail-label">DMs</span></button>
+          <button type="button" class="rail-item" data-view="activity" data-ns="activity" aria-expanded="false"><span class="rail-icon"><span data-icon="bell"></span></span><span class="rail-label">Activity</span></button>
+          <button type="button" class="rail-item" data-view="later" data-ns="later"><span class="rail-icon"><span data-icon="bookmark"></span></span><span class="rail-label">Later</span></button>
+          <button type="button" class="rail-item" data-view="more" aria-expanded="false"><span class="rail-icon"><span data-icon="more_h"></span></span><span class="rail-label">More</span></button>
+        </div>
+        <div class="rail-bottom">
+          <button type="button" class="rail-plus" id="rail-create" aria-label="Create new" aria-expanded="false" title="Create new"><span data-icon="plus"></span></button>
+          <button type="button" class="rail-avatar" id="me-button" aria-label="Your profile" aria-expanded="false" title="You"><span class="avatar md" id="me-avatar" aria-hidden="true">?</span><span class="presence active" aria-hidden="true"></span></button>
+        </div>
+      </nav>
+
+      <div class="workspace" id="workspace">
+        <aside class="sidebar" id="sidebar" aria-label="Conversations">
+          <div class="sidebar-header">
+            <button type="button" class="sidebar-title" id="workspace-menu" aria-expanded="false"><span class="sidebar-title-text" id="workspace-name">Loading…</span><span data-icon="chevron_down"></span></button>
+            <div class="sidebar-header-actions">
+              <button type="button" class="sidebar-filter" id="sidebar-filter" aria-label="Filter conversations" aria-expanded="false" title="Filter conversations"><span data-icon="filter"></span></button>
+              <button type="button" class="sidebar-compose" id="compose" aria-label="New message" title="New message"><span data-icon="compose"></span></button>
+            </div>
+          </div>
+          <div class="sidebar-scroll" id="sidebar-scroll">
+            <div class="sidebar-denied" id="sidebar-denied" hidden></div>
+            <ul class="sidebar-list sb-nav" role="list" aria-label="Views">
+              <li><button type="button" class="sb-link sb-nav-link" data-ns="threads" title="Threads"><span class="sb-glyph"><span data-icon="thread"></span></span><span class="sb-name">Threads</span></button></li>
+              <li><button type="button" class="sb-link sb-nav-link" data-ns="huddles" title="Huddles"><span class="sb-glyph"><span data-icon="headphones"></span></span><span class="sb-name">Huddles</span></button></li>
+              <li><button type="button" class="sb-link sb-nav-link" data-ns="drafts" title="Drafts &amp; sent"><span class="sb-glyph"><span data-icon="drafts"></span></span><span class="sb-name">Drafts &amp; sent</span></button></li>
+              <li><button type="button" class="sb-link sb-nav-link" id="nav-directories" title="Directories"><span class="sb-glyph"><span data-icon="directory"></span></span><span class="sb-name">Directories</span></button></li>
+            </ul>
+            <section class="sidebar-section" id="section-channels">
+              <div class="section-head"><button type="button" class="section-toggle" id="channels-toggle" aria-expanded="true" aria-controls="channel-list"><span data-icon="chevron_down" class="section-chevron"></span><span>Channels</span></button><button type="button" class="section-action" data-section-options="Channels" aria-label="Channels section options" title="Section options" aria-expanded="false"><span data-icon="more_v"></span></button><button type="button" class="section-action" data-section-add="add-channels" aria-label="Add channels" title="Add channels" aria-expanded="false"><span data-icon="plus"></span></button></div>
+              <ul class="sidebar-list" id="channel-list" role="list" aria-label="Channels"></ul>
+              <button type="button" class="sidebar-add" id="add-channels" aria-expanded="false"><span class="add-box"><span data-icon="plus"></span></span><span>Add channels</span></button>
+            </section>
+            <section class="sidebar-section" id="section-dms">
+              <div class="section-head"><button type="button" class="section-toggle" id="dms-toggle" aria-expanded="true" aria-controls="dm-list"><span data-icon="chevron_down" class="section-chevron"></span><span>Direct messages</span></button><button type="button" class="section-action" data-section-options="Direct messages" aria-label="Direct messages section options" title="Section options" aria-expanded="false"><span data-icon="more_v"></span></button><button type="button" class="section-action" data-section-add="add-dm" aria-label="Add a direct message" title="New message" aria-expanded="false"><span data-icon="plus"></span></button></div>
+              <ul class="sidebar-list" id="dm-list" role="list" aria-label="Direct messages"></ul>
+              <button type="button" class="sidebar-add" id="add-dm"><span class="add-box"><span data-icon="plus"></span></span><span>New message</span></button>
+            </section>
+            <section class="sidebar-section" id="section-apps" hidden>
+              <div class="section-head"><button type="button" class="section-toggle" id="apps-toggle" aria-expanded="true" aria-controls="app-list"><span data-icon="chevron_down" class="section-chevron"></span><span>Apps</span></button><button type="button" class="section-action" data-ns="apps" aria-label="Add apps" title="Add apps" aria-expanded="false"><span data-icon="plus"></span></button></div>
+              <ul class="sidebar-list" id="app-list" role="list" aria-label="Apps"></ul>
+            </section>
+          </div>
+        </aside>
+
+        <main class="pane" id="pane">
+          <header class="pane-header" id="pane-header">
+            <div class="pane-title-wrap">
+              <button type="button" class="pane-title" id="pane-title" aria-expanded="false"><span class="pane-title-glyph" id="pane-title-glyph"></span><span class="pane-title-text" id="pane-title-text">Loading…</span><span data-icon="chevron_down" class="pane-title-chevron"></span></button>
+              <button type="button" class="pane-topic" id="pane-topic" hidden></button>
+            </div>
+            <div class="pane-header-actions" id="pane-header-actions">
+              <button type="button" class="members-pill" id="members-pill" aria-label="View members" hidden><span class="members-stack" id="members-stack"></span><span class="members-count" id="members-count"></span></button>
+              <div class="huddle-split" id="huddle-split"><button type="button" class="huddle-btn" data-ns="huddle" aria-label="Start huddle" title="Start huddle"><span data-icon="headphones"></span><span class="huddle-text">Huddle</span></button><button type="button" class="huddle-caret" data-ns="huddle-options" aria-label="Huddle options" title="Huddle options" aria-expanded="false"><span data-icon="chevron_down"></span></button></div>
+              <button type="button" class="icon-btn" id="pane-more" aria-label="More actions" title="More actions" aria-expanded="false"><span data-icon="more_v"></span></button>
+              <button type="button" class="icon-btn" id="pane-details" aria-label="Conversation details" title="Details" hidden><span data-icon="info"></span></button>
+            </div>
+          </header>
+          <nav class="pane-tabs" id="pane-tabs" aria-label="Conversation sections">
+            <button type="button" class="pane-tab" data-tab="messages" aria-current="page"><span data-icon="dm"></span>Messages</button>
+            <button type="button" class="pane-tab" data-tab="pins"><span data-icon="pin"></span>Pins<span class="tab-count" id="pins-count"></span></button>
+            <button type="button" class="pane-tab" data-ns="files" aria-label="Files"><span data-icon="files"></span>Files</button>
+            <button type="button" class="pane-tab pane-tab-add" data-ns="add-tab" aria-label="Add a tab" title="Add canvas, list, workflow or bookmark" aria-expanded="false"><span data-icon="plus"></span></button>
+          </nav>
+          <div class="pane-body" id="pane-body" tabindex="-1">
+            <div class="message-scroll" id="message-scroll">
+              <div class="message-list" id="messages" role="log" aria-live="polite" aria-label="Messages"></div>
+            </div>
+          </div>
+          <div class="pane-footer" id="pane-footer">
+            <div class="composer" id="composer">
+              <div class="composer-toolbar" id="composer-toolbar">
+                <button type="button" class="fmt-btn" data-fmt="*" aria-label="Bold" title="Bold"><span data-icon="bold"></span></button>
+                <button type="button" class="fmt-btn" data-fmt="_" aria-label="Italic" title="Italic"><span data-icon="italic"></span></button>
+                <button type="button" class="fmt-btn" data-fmt="~" aria-label="Strikethrough" title="Strikethrough"><span data-icon="strike"></span></button>
+                <span class="fmt-divider" role="separator"></span>
+                <button type="button" class="fmt-btn" data-fmt="link" aria-label="Link" title="Link"><span data-icon="link"></span></button>
+                <span class="fmt-divider" role="separator"></span>
+                <button type="button" class="fmt-btn" data-fmt="ol" aria-label="Ordered list" title="Ordered list"><span data-icon="list_ol"></span></button>
+                <button type="button" class="fmt-btn" data-fmt="ul" aria-label="Bulleted list" title="Bulleted list"><span data-icon="list_ul"></span></button>
+                <span class="fmt-divider" role="separator"></span>
+                <button type="button" class="fmt-btn" data-fmt="quote" aria-label="Blockquote" title="Blockquote"><span data-icon="quote"></span></button>
+                <span class="fmt-divider" role="separator"></span>
+                <button type="button" class="fmt-btn" data-fmt="`" aria-label="Code" title="Code"><span data-icon="code"></span></button>
+                <button type="button" class="fmt-btn" data-fmt="```" aria-label="Code block" title="Code block"><span data-icon="code_block"></span></button>
+              </div>
+              <label class="visually-hidden" for="composer-input" id="composer-label">Message</label>
+              <textarea id="composer-input" rows="1" placeholder="Message" spellcheck="true"></textarea>
+              <div class="composer-actions">
+                <div class="composer-actions-start">
+                  <button type="button" class="composer-plus" id="composer-plus" aria-label="Attach" aria-expanded="false" title="Attach"><span data-icon="plus"></span></button>
+                  <button type="button" class="fmt-btn" id="composer-format" aria-label="Hide formatting" aria-pressed="true" title="Hide formatting"><span data-icon="format"></span></button>
+                  <button type="button" class="fmt-btn" id="composer-emoji" aria-label="Emoji" aria-expanded="false" title="Emoji"><span data-icon="emoji"></span></button>
+                  <button type="button" class="fmt-btn" id="composer-mention" aria-label="Mention someone" aria-expanded="false" title="Mention someone"><span data-icon="at"></span></button>
+                  <span class="fmt-divider" role="separator"></span>
+                  <button type="button" class="fmt-btn" data-ns="video" aria-label="Record video clip" title="Record video clip"><span data-icon="video"></span></button>
+                  <button type="button" class="fmt-btn" data-ns="audio" aria-label="Record audio clip" title="Record audio clip"><span data-icon="mic"></span></button>
+                  <span class="fmt-divider" role="separator"></span>
+                  <button type="button" class="fmt-btn" data-ns="shortcuts" aria-label="Run shortcut" title="Run shortcut" aria-expanded="false"><span data-icon="slash"></span></button>
+                </div>
+                <div class="composer-actions-end">
+                  <button type="button" class="send-btn" id="send" aria-label="Send now" title="Send now" disabled><span data-icon="send"></span></button><span class="send-divider" aria-hidden="true"></span><button type="button" class="send-caret" id="send-schedule" data-ns="schedule" aria-label="Schedule for later" title="Schedule for later" aria-expanded="false"><span data-icon="chevron_down"></span></button>
+                </div>
+              </div>
+            </div>
+            <p class="composer-note" id="composer-note" role="alert" hidden></p>
+            <div class="composer-banner" id="composer-banner" hidden></div>
+          </div>
+        </main>
+
+        <aside class="side-panel" id="side-panel" aria-label="Details" hidden>
+          <header class="side-header">
+            <div class="side-title-wrap"><h2 class="side-title" id="side-title">Thread</h2><span class="side-subtitle" id="side-subtitle"></span></div>
+            <button type="button" class="icon-btn" id="side-close" aria-label="Close"><span data-icon="close"></span></button>
+          </header>
+          <div class="side-body" id="side-body"></div>
+        </aside>
+      </div>
+    </div>
+
+    <dialog class="modal" id="create-channel-dialog" aria-labelledby="create-channel-title">
+      <form id="create-channel-form" method="dialog" novalidate>
+        <header class="modal-header"><h2 id="create-channel-title">Create a channel</h2><button type="button" class="icon-btn modal-close" data-close aria-label="Close"><span data-icon="close"></span></button></header>
+        <div class="modal-body">
+          <label class="field-label" for="channel-name">Name</label>
+          <div class="field channel-name-field">
+            <span class="field-prefix" id="channel-name-prefix"><span data-icon="hash"></span></span>
+            <input id="channel-name" maxlength="80" autocomplete="off" placeholder="e.g. plan-budget" />
+            <span class="field-counter" id="channel-name-counter">80</span>
+          </div>
+          <p class="field-hint">Channels are where conversations happen around a topic. Use a name that is easy to find and understand.</p>
+          <fieldset class="visibility">
+            <legend class="field-label">Visibility</legend>
+            <label class="radio"><input type="radio" name="visibility" value="public" checked /><span><strong>Public</strong> — Anyone in the workspace</span></label>
+            <label class="radio"><input type="radio" name="visibility" value="private" /><span><strong>Private</strong> — Only specific people<br /><small>Can only be viewed or joined by invitation</small></span></label>
+          </fieldset>
+          <p class="modal-error" id="create-channel-error" role="alert" hidden></p>
+        </div>
+        <footer class="modal-footer">
+          <button type="submit" class="btn primary" id="create-channel-submit" disabled>Create</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="topic-dialog" aria-labelledby="topic-title">
+      <form id="topic-form" method="dialog" novalidate>
+        <header class="modal-header"><h2 id="topic-title">Edit topic</h2><button type="button" class="icon-btn modal-close" data-close aria-label="Close"><span data-icon="close"></span></button></header>
+        <div class="modal-body">
+          <label class="visually-hidden" for="topic-input">Topic</label>
+          <textarea id="topic-input" class="field-textarea" rows="3" maxlength="250" placeholder="Add a topic"></textarea>
+          <p class="field-hint">Let people know what this channel is focused on right now (e.g. a project milestone). Topics are always visible in the header.</p>
+          <p class="modal-error" id="topic-error" role="alert" hidden></p>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" class="btn" data-close>Cancel</button>
+          <button type="submit" class="btn primary" id="topic-submit">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal people-modal" id="people-dialog" aria-labelledby="people-title">
+      <form id="people-form" method="dialog" novalidate>
+        <header class="modal-header"><div><h2 id="people-title">Add people</h2><p class="modal-subtitle" id="people-subtitle"></p></div><button type="button" class="icon-btn modal-close" data-close aria-label="Close"><span data-icon="close"></span></button></header>
+        <div class="modal-body">
+          <label class="visually-hidden" for="people-filter">Search people</label>
+          <div class="field"><span class="field-prefix"><span data-icon="search"></span></span><input id="people-filter" autocomplete="off" placeholder="Search by name" /></div>
+          <div class="people-selected" id="people-selected" aria-live="polite"></div>
+          <ul class="people-list" id="people-list" role="listbox" aria-multiselectable="true" aria-label="People"></ul>
+          <p class="modal-error" id="people-error" role="alert" hidden></p>
+        </div>
+        <footer class="modal-footer">
+          <button type="submit" class="btn primary" id="people-submit" disabled>Add</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal details-modal" id="details-dialog" aria-labelledby="details-title">
+      <header class="modal-header">
+        <h2 id="details-title" class="details-title"><span id="details-glyph"></span><span id="details-name"></span></h2>
+        <button type="button" class="icon-btn modal-close" data-close aria-label="Close"><span data-icon="close"></span></button>
+      </header>
+      <nav class="modal-tabs" id="details-tabs" aria-label="Details sections">
+        <button type="button" class="modal-tab" data-tab="about" aria-current="page">About</button>
+        <button type="button" class="modal-tab" data-tab="members">Members<span class="tab-count" id="details-members-count"></span></button>
+        <button type="button" class="modal-tab" data-tab="settings">Settings</button>
+      </nav>
+      <div class="modal-body details-body" id="details-body"></div>
+    </dialog>
+
+    <dialog class="modal about-modal" id="about-dialog" aria-labelledby="about-title">
+      <header class="modal-header"><h2 id="about-title">About this workspace</h2><button type="button" class="icon-btn modal-close" data-close aria-label="Close"><span data-icon="close"></span></button></header>
+      <div class="modal-body about-body">
+        <div class="about-brand"><img src="./assets/slack.svg" alt="" width="40" height="40" /><img src="./assets/slack-wordmark.svg" alt="Slack" class="about-wordmark" height="24" /></div>
+        <dl class="about-list" id="about-list"></dl>
+        <p class="field-hint">A synthetic workspace served by a Firedrill Tool. Messages, channels and members exist only inside this world; nothing is delivered to Slack.</p>
+      </div>
+    </dialog>
+
+    <dialog class="modal confirm-modal" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <header class="modal-header"><h2 id="confirm-title">Confirm</h2><button type="submit" value="cancel" class="icon-btn modal-close" aria-label="Close"><span data-icon="close"></span></button></header>
+        <div class="modal-body">
+          <p id="confirm-text"></p>
+          <div class="confirm-preview" id="confirm-preview" hidden></div>
+        </div>
+        <footer class="modal-footer">
+          <button type="submit" value="cancel" class="btn" autofocus>Cancel</button>
+          <button type="submit" value="ok" class="btn primary" id="confirm-ok">OK</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden><span id="toast-text"></span></div>
+  </body>
+</html>

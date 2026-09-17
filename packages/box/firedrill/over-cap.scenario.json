@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "over-cap",
+  "title": "The object counter is above the cap: every operation except users/me fails before scanning",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "box",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "nextFolderId": 310000000012,
+        "nextFileId": 910000000025,
+        "nextVersionId": 121000000027,
+        "nextCommentId": 5100005,
+        "nextCollabId": 8800008,
+        "nextStreamPosition": 7,
+        "firstStreamPosition": 1,
+        "objectCount": 2001
+      }
+    }
+  ]
+}

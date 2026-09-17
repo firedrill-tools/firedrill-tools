@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "id": "calendar-write-rate-limited",
+  "title": "Event writes are rate limited: 403 rateLimitExceeded with Retry-After, no state change, no domain events, reads keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "write-rate-limited",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the write-rate-limited conformance flow against the synthetic Google Calendar Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "events-insert-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.insert"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "events-patch-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.patch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-delete-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-quick-add-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.quick-add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-move-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.move"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "insert-never-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.insert"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "events-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "no-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "no-updated",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "no-cancelled",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.cancelled"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "baseline-untouched",
+      "kind": "state.count",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "comparison": {
+        "operator": "equals",
+        "value": 27
+      }
+    },
+    {
+      "id": "focus-time-still-confirmed",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000004",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "confirmed"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "target": {
+    "id": "conformance-agent",
+    "kind": "command",
+    "bindings": [
+      "http"
+    ],
+    "executable": "node",
+    "arguments": [
+      "test/conformance.mjs"
+    ],
+    "workingDirectory": ".",
+    "timeoutMs": 10000
+  }
+}

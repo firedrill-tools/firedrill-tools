@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-unauthorized",
+  "title": "A userId without an account gets 401 on every operation and writes nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ghost",
+  "task": {
+    "instruction": "Run flow:unauthorized against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "unauthorized-users-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-users-list-my-guilds",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.list-my-guilds"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-users-list-dm-channels",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.list-dm-channels"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-users-create-dm",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.create-dm"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-guilds-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-guilds-list-channels",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.list-channels"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-guilds-list-active-threads",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guilds.list-active-threads"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-guild-members-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guild-members.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-guild-members-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "guild-members.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-roles-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "roles.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-channels-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-messages-list",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-messages-get",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-messages-create",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-messages-edit",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.edit"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-messages-delete",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-reactions-add",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-reactions-remove",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-reactions-list-users",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.list-users"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-threads-create-from-message",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "threads.create-from-message"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "unauthorized-threads-create",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "threads.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "nothing-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    }
+  ]
+}

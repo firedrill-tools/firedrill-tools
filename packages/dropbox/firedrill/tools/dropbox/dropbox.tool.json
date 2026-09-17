@@ -1,0 +1,4804 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "ui": {
+    "root": "app/site",
+    "entry": "index.html"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "dropbox",
+    "version": "0.1.0",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "accounts",
+        "schema": {
+          "type": "object",
+          "required": [
+            "accountId",
+            "givenName",
+            "surname",
+            "familiarName",
+            "displayName",
+            "abbreviatedName",
+            "email",
+            "emailVerified",
+            "disabled",
+            "country",
+            "locale",
+            "accountType",
+            "allocated",
+            "rootNamespaceId",
+            "referralLink"
+          ],
+          "properties": {
+            "accountId": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "givenName": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "surname": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "familiarName": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "displayName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "abbreviatedName": {
+              "type": "string",
+              "maxLength": 8
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 254
+            },
+            "emailVerified": {
+              "type": "boolean"
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "country": {
+              "type": "string",
+              "maxLength": 2
+            },
+            "locale": {
+              "type": "string",
+              "maxLength": 16
+            },
+            "accountType": {
+              "enum": [
+                "basic",
+                "pro"
+              ]
+            },
+            "allocated": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "rootNamespaceId": {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^[0-9]{1,20}$"
+            },
+            "referralLink": {
+              "type": "string",
+              "maxLength": 256
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "entries",
+        "schema": {
+          "type": "object",
+          "required": [
+            "accountId",
+            "id",
+            "tag",
+            "name",
+            "pathLower",
+            "pathDisplay",
+            "deleted"
+          ],
+          "properties": {
+            "accountId": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "id": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "tag": {
+              "enum": [
+                "file",
+                "folder"
+              ]
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "pathLower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "pathDisplay": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "deleted": {
+              "type": "boolean"
+            },
+            "deletedAt": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "rev": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "contentHash": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "clientModified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "serverModified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "contentKind": {
+              "enum": [
+                "text",
+                "base64"
+              ]
+            },
+            "content": {
+              "type": "string",
+              "maxLength": 400000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "journal",
+        "schema": {
+          "type": "object",
+          "required": [
+            "accountId",
+            "seq",
+            "entryId",
+            "pathLower",
+            "pathDisplay",
+            "change"
+          ],
+          "properties": {
+            "accountId": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "seq": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "entryId": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "pathLower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "pathDisplay": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "change": {
+              "enum": [
+                "upsert",
+                "delete"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "meta",
+        "schema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "nextEntry": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "nextRev": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "nextLink": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "nextJournal": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "journalFloor": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "entries": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "depth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "revisions": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "links": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "journal": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "uploadBytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "revisions",
+        "schema": {
+          "type": "object",
+          "required": [
+            "accountId",
+            "entryId",
+            "rev",
+            "pathLower",
+            "pathDisplay",
+            "name",
+            "size",
+            "contentHash",
+            "clientModified",
+            "serverModified",
+            "contentKind",
+            "content",
+            "isDeleteMarker"
+          ],
+          "properties": {
+            "accountId": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "entryId": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "rev": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "pathLower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "pathDisplay": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "contentHash": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "clientModified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "serverModified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "contentKind": {
+              "enum": [
+                "text",
+                "base64"
+              ]
+            },
+            "content": {
+              "type": "string",
+              "maxLength": 400000
+            },
+            "isDeleteMarker": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "shared_links",
+        "schema": {
+          "type": "object",
+          "required": [
+            "accountId",
+            "linkId",
+            "entryId",
+            "url",
+            "name",
+            "pathLower",
+            "tag",
+            "requestedVisibility",
+            "resolvedVisibility",
+            "audience",
+            "hasPassword",
+            "allowDownload",
+            "createdAt"
+          ],
+          "properties": {
+            "accountId": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "linkId": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "entryId": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "url": {
+              "type": "string",
+              "maxLength": 2600
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "pathLower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "tag": {
+              "enum": [
+                "file",
+                "folder"
+              ]
+            },
+            "requestedVisibility": {
+              "enum": [
+                "public",
+                "team_only",
+                "password"
+              ]
+            },
+            "resolvedVisibility": {
+              "enum": [
+                "public",
+                "password",
+                "no_one"
+              ]
+            },
+            "audience": {
+              "enum": [
+                "public",
+                "password",
+                "no_one"
+              ]
+            },
+            "hasPassword": {
+              "type": "boolean"
+            },
+            "expires": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "allowDownload": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "files.copy",
+        "description": "Copy a file or folder; copies get new ids and revs (POST /2/files/copy_v2). Requires scope files.content.write.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "from_path",
+            "to_path"
+          ],
+          "properties": {
+            "from_path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "to_path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "autorename": {
+              "type": "boolean"
+            },
+            "allow_shared_folder": {
+              "type": "boolean"
+            },
+            "allow_ownership_transfer": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "metadata"
+          ],
+          "properties": {
+            "metadata": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "id",
+                    "path_lower",
+                    "path_display",
+                    "client_modified",
+                    "server_modified",
+                    "rev",
+                    "size",
+                    "is_downloadable",
+                    "content_hash"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "file"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "id": {
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "client_modified": {
+                      "type": "string",
+                      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                    },
+                    "server_modified": {
+                      "type": "string",
+                      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                    },
+                    "rev": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "is_downloadable": {
+                      "type": "boolean"
+                    },
+                    "content_hash": {
+                      "type": "string",
+                      "maxLength": 64
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "id",
+                    "path_lower",
+                    "path_display"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "folder"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "id": {
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "path_lower",
+                    "path_display"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "deleted"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CANT_MOVE_FOLDER_INTO_ITSELF",
+          "CONFLICT",
+          "DISALLOWED_NAME",
+          "DUPLICATED_OR_NESTED_PATHS",
+          "INSUFFICIENT_SPACE",
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.create-folder",
+        "description": "Create a folder and any missing parents (POST /2/files/create_folder_v2). Requires scope files.content.write.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "autorename": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "metadata"
+          ],
+          "properties": {
+            "metadata": {
+              "type": "object",
+              "required": [
+                ".tag",
+                "name",
+                "id",
+                "path_lower",
+                "path_display"
+              ],
+              "properties": {
+                ".tag": {
+                  "const": "folder"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "id": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "path_lower": {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                "path_display": {
+                  "type": "string",
+                  "maxLength": 4096
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CONFLICT",
+          "DISALLOWED_NAME",
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "RATE_LIMITED",
+          "TOO_MANY_FILES",
+          "TOO_MANY_WRITE_OPERATIONS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.delete",
+        "description": "Delete a file or folder (with its subtree); deleted entries stay restorable (POST /2/files/delete_v2). Requires scope files.content.write.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "parent_rev": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{9,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "metadata"
+          ],
+          "properties": {
+            "metadata": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "id",
+                    "path_lower",
+                    "path_display",
+                    "client_modified",
+                    "server_modified",
+                    "rev",
+                    "size",
+                    "is_downloadable",
+                    "content_hash"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "file"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "id": {
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "client_modified": {
+                      "type": "string",
+                      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                    },
+                    "server_modified": {
+                      "type": "string",
+                      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                    },
+                    "rev": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "is_downloadable": {
+                      "type": "boolean"
+                    },
+                    "content_hash": {
+                      "type": "string",
+                      "maxLength": 64
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "id",
+                    "path_lower",
+                    "path_display"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "folder"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "id": {
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "path_lower",
+                    "path_display"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "deleted"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CONFLICT",
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "TOO_MANY_FILES",
+          "TOO_MANY_WRITE_OPERATIONS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.download",
+        "description": "Download a file (or one of its revisions). The REST route returns the bytes with metadata in Dropbox-API-Result (POST /2/files/download). Requires scope files.content.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "rev": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{9,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "metadata",
+            "content_kind",
+            "content"
+          ],
+          "properties": {
+            "metadata": {
+              "type": "object",
+              "required": [
+                ".tag",
+                "name",
+                "id",
+                "path_lower",
+                "path_display",
+                "client_modified",
+                "server_modified",
+                "rev",
+                "size",
+                "is_downloadable",
+                "content_hash"
+              ],
+              "properties": {
+                ".tag": {
+                  "const": "file"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "id": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "path_lower": {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                "path_display": {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                "client_modified": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                },
+                "server_modified": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                },
+                "rev": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "size": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "is_downloadable": {
+                  "type": "boolean"
+                },
+                "content_hash": {
+                  "type": "string",
+                  "maxLength": 64
+                }
+              },
+              "additionalProperties": false
+            },
+            "content_kind": {
+              "enum": [
+                "text",
+                "base64"
+              ]
+            },
+            "content": {
+              "type": "string",
+              "maxLength": 400000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "BAD_REQUEST",
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FILE",
+          "NOT_FOUND",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "files.get-metadata",
+        "description": "Metadata of a file or folder by path, id: or rev: (POST /2/files/get_metadata). Requires scope files.metadata.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "include_deleted": {
+              "type": "boolean"
+            },
+            "include_media_info": {
+              "type": "boolean"
+            },
+            "include_has_explicit_shared_members": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                ".tag",
+                "name",
+                "id",
+                "path_lower",
+                "path_display",
+                "client_modified",
+                "server_modified",
+                "rev",
+                "size",
+                "is_downloadable",
+                "content_hash"
+              ],
+              "properties": {
+                ".tag": {
+                  "const": "file"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "id": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "path_lower": {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                "path_display": {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                "client_modified": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                },
+                "server_modified": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                },
+                "rev": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "size": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "is_downloadable": {
+                  "type": "boolean"
+                },
+                "content_hash": {
+                  "type": "string",
+                  "maxLength": 64
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": [
+                ".tag",
+                "name",
+                "id",
+                "path_lower",
+                "path_display"
+              ],
+              "properties": {
+                ".tag": {
+                  "const": "folder"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "id": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "path_lower": {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                "path_display": {
+                  "type": "string",
+                  "maxLength": 4096
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": [
+                ".tag",
+                "name",
+                "path_lower",
+                "path_display"
+              ],
+              "properties": {
+                ".tag": {
+                  "const": "deleted"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "path_lower": {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                "path_display": {
+                  "type": "string",
+                  "maxLength": 4096
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "files.list-folder",
+        "description": "List a folder (root is \"\"), optionally recursive and with deleted entries, sorted by path_lower (POST /2/files/list_folder). Requires scope files.metadata.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "recursive": {
+              "type": "boolean"
+            },
+            "include_deleted": {
+              "type": "boolean"
+            },
+            "include_media_info": {
+              "type": "boolean"
+            },
+            "include_has_explicit_shared_members": {
+              "type": "boolean"
+            },
+            "include_mounted_folders": {
+              "type": "boolean"
+            },
+            "include_non_downloadable_files": {
+              "type": "boolean"
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "entries",
+            "cursor",
+            "has_more"
+          ],
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "required": [
+                      ".tag",
+                      "name",
+                      "id",
+                      "path_lower",
+                      "path_display",
+                      "client_modified",
+                      "server_modified",
+                      "rev",
+                      "size",
+                      "is_downloadable",
+                      "content_hash"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "const": "file"
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 255
+                      },
+                      "id": {
+                        "type": "string",
+                        "maxLength": 80
+                      },
+                      "path_lower": {
+                        "type": "string",
+                        "maxLength": 4096
+                      },
+                      "path_display": {
+                        "type": "string",
+                        "maxLength": 4096
+                      },
+                      "client_modified": {
+                        "type": "string",
+                        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                      },
+                      "server_modified": {
+                        "type": "string",
+                        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                      },
+                      "rev": {
+                        "type": "string",
+                        "maxLength": 64
+                      },
+                      "size": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "is_downloadable": {
+                        "type": "boolean"
+                      },
+                      "content_hash": {
+                        "type": "string",
+                        "maxLength": 64
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      ".tag",
+                      "name",
+                      "id",
+                      "path_lower",
+                      "path_display"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "const": "folder"
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 255
+                      },
+                      "id": {
+                        "type": "string",
+                        "maxLength": 80
+                      },
+                      "path_lower": {
+                        "type": "string",
+                        "maxLength": 4096
+                      },
+                      "path_display": {
+                        "type": "string",
+                        "maxLength": 4096
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      ".tag",
+                      "name",
+                      "path_lower",
+                      "path_display"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "const": "deleted"
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 255
+                      },
+                      "path_lower": {
+                        "type": "string",
+                        "maxLength": 4096
+                      },
+                      "path_display": {
+                        "type": "string",
+                        "maxLength": 4096
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "maxItems": 2000
+            },
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192
+            },
+            "has_more": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOLDER",
+          "NOT_FOUND",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.list-folder-continue",
+        "description": "Next page of a listing; after the last page the same cursor returns the changes since the listing (POST /2/files/list_folder/continue). Requires scope files.metadata.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "cursor"
+          ],
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192,
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "entries",
+            "cursor",
+            "has_more"
+          ],
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "required": [
+                      ".tag",
+                      "name",
+                      "id",
+                      "path_lower",
+                      "path_display",
+                      "client_modified",
+                      "server_modified",
+                      "rev",
+                      "size",
+                      "is_downloadable",
+                      "content_hash"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "const": "file"
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 255
+                      },
+                      "id": {
+                        "type": "string",
+                        "maxLength": 80
+                      },
+                      "path_lower": {
+                        "type": "string",
+                        "maxLength": 4096
+                      },
+                      "path_display": {
+                        "type": "string",
+                        "maxLength": 4096
+                      },
+                      "client_modified": {
+                        "type": "string",
+                        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                      },
+                      "server_modified": {
+                        "type": "string",
+                        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                      },
+                      "rev": {
+                        "type": "string",
+                        "maxLength": 64
+                      },
+                      "size": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "is_downloadable": {
+                        "type": "boolean"
+                      },
+                      "content_hash": {
+                        "type": "string",
+                        "maxLength": 64
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      ".tag",
+                      "name",
+                      "id",
+                      "path_lower",
+                      "path_display"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "const": "folder"
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 255
+                      },
+                      "id": {
+                        "type": "string",
+                        "maxLength": 80
+                      },
+                      "path_lower": {
+                        "type": "string",
+                        "maxLength": 4096
+                      },
+                      "path_display": {
+                        "type": "string",
+                        "maxLength": 4096
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      ".tag",
+                      "name",
+                      "path_lower",
+                      "path_display"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "const": "deleted"
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 255
+                      },
+                      "path_lower": {
+                        "type": "string",
+                        "maxLength": 4096
+                      },
+                      "path_display": {
+                        "type": "string",
+                        "maxLength": 4096
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "maxItems": 2000
+            },
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192
+            },
+            "has_more": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "BAD_REQUEST",
+          "INVALID_ACCESS_TOKEN",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "RESET",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.list-folder-get-latest-cursor",
+        "description": "A cursor positioned after the current state of a folder, for change polling (POST /2/files/list_folder/get_latest_cursor). Requires scope files.metadata.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "recursive": {
+              "type": "boolean"
+            },
+            "include_deleted": {
+              "type": "boolean"
+            },
+            "include_media_info": {
+              "type": "boolean"
+            },
+            "include_has_explicit_shared_members": {
+              "type": "boolean"
+            },
+            "include_mounted_folders": {
+              "type": "boolean"
+            },
+            "include_non_downloadable_files": {
+              "type": "boolean"
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "cursor"
+          ],
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOLDER",
+          "NOT_FOUND",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.list-revisions",
+        "description": "Revisions of a file, newest first; works for deleted files (POST /2/files/list_revisions). Requires scope files.content.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "mode": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "path"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "enum": [
+                        "path"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "is_deleted",
+            "entries"
+          ],
+          "properties": {
+            "is_deleted": {
+              "type": "boolean"
+            },
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  ".tag",
+                  "name",
+                  "id",
+                  "path_lower",
+                  "path_display",
+                  "client_modified",
+                  "server_modified",
+                  "rev",
+                  "size",
+                  "is_downloadable",
+                  "content_hash"
+                ],
+                "properties": {
+                  ".tag": {
+                    "const": "file"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "id": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "path_lower": {
+                    "type": "string",
+                    "maxLength": 4096
+                  },
+                  "path_display": {
+                    "type": "string",
+                    "maxLength": 4096
+                  },
+                  "client_modified": {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                  },
+                  "server_modified": {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                  },
+                  "rev": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "size": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "is_downloadable": {
+                    "type": "boolean"
+                  },
+                  "content_hash": {
+                    "type": "string",
+                    "maxLength": 64
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 100
+            },
+            "server_deleted": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FILE",
+          "NOT_FOUND",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "files.move",
+        "description": "Move or rename a file or folder; ids and revs are kept (POST /2/files/move_v2). Requires scope files.content.write.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "from_path",
+            "to_path"
+          ],
+          "properties": {
+            "from_path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "to_path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "autorename": {
+              "type": "boolean"
+            },
+            "allow_shared_folder": {
+              "type": "boolean"
+            },
+            "allow_ownership_transfer": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "metadata"
+          ],
+          "properties": {
+            "metadata": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "id",
+                    "path_lower",
+                    "path_display",
+                    "client_modified",
+                    "server_modified",
+                    "rev",
+                    "size",
+                    "is_downloadable",
+                    "content_hash"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "file"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "id": {
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "client_modified": {
+                      "type": "string",
+                      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                    },
+                    "server_modified": {
+                      "type": "string",
+                      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                    },
+                    "rev": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "is_downloadable": {
+                      "type": "boolean"
+                    },
+                    "content_hash": {
+                      "type": "string",
+                      "maxLength": 64
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "id",
+                    "path_lower",
+                    "path_display"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "folder"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "id": {
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "name",
+                    "path_lower",
+                    "path_display"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "deleted"
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "path_lower": {
+                      "type": "string",
+                      "maxLength": 4096
+                    },
+                    "path_display": {
+                      "type": "string",
+                      "maxLength": 4096
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CANT_MOVE_FOLDER_INTO_ITSELF",
+          "CONFLICT",
+          "DISALLOWED_NAME",
+          "DUPLICATED_OR_NESTED_PATHS",
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "TOO_MANY_FILES",
+          "TOO_MANY_WRITE_OPERATIONS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.restore",
+        "description": "Restore a file to an earlier revision as a new revision (POST /2/files/restore). Requires scope files.content.write.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path",
+            "rev"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "rev": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{9,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            ".tag",
+            "name",
+            "id",
+            "path_lower",
+            "path_display",
+            "client_modified",
+            "server_modified",
+            "rev",
+            "size",
+            "is_downloadable",
+            "content_hash"
+          ],
+          "properties": {
+            ".tag": {
+              "const": "file"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "id": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "path_lower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "path_display": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "client_modified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "server_modified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "rev": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "is_downloadable": {
+              "type": "boolean"
+            },
+            "content_hash": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CONFLICT",
+          "INSUFFICIENT_SPACE",
+          "INVALID_ACCESS_TOKEN",
+          "INVALID_REVISION",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "TOO_MANY_FILES",
+          "TOO_MANY_WRITE_OPERATIONS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.search",
+        "description": "Search names and text content (POST /2/files/search_v2). Requires scope files.metadata.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "type": "string",
+              "maxLength": 1000,
+              "minLength": 1
+            },
+            "options": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "maxLength": 4096
+                },
+                "max_results": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000
+                },
+                "order_by": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "relevance",
+                        "last_modified_time"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        ".tag"
+                      ],
+                      "properties": {
+                        ".tag": {
+                          "enum": [
+                            "relevance",
+                            "last_modified_time"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                },
+                "file_status": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "active",
+                        "deleted"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        ".tag"
+                      ],
+                      "properties": {
+                        ".tag": {
+                          "enum": [
+                            "active",
+                            "deleted"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                },
+                "filename_only": {
+                  "type": "boolean"
+                },
+                "file_extensions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "maxItems": 100
+                },
+                "file_categories": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "image",
+                          "document",
+                          "pdf",
+                          "spreadsheet",
+                          "presentation",
+                          "audio",
+                          "video",
+                          "folder",
+                          "paper",
+                          "others"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "image",
+                              "document",
+                              "pdf",
+                              "spreadsheet",
+                              "presentation",
+                              "audio",
+                              "video",
+                              "folder",
+                              "paper",
+                              "others"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "maxItems": 10
+                }
+              },
+              "additionalProperties": false
+            },
+            "match_field_options": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "include_highlights": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "include_highlights": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "matches",
+            "has_more"
+          ],
+          "properties": {
+            "matches": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "match_type",
+                  "metadata"
+                ],
+                "properties": {
+                  "match_type": {
+                    "type": "object",
+                    "required": [
+                      ".tag"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "enum": [
+                          "filename",
+                          "file_content",
+                          "filename_and_content",
+                          "image_content"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "required": [
+                      ".tag",
+                      "metadata"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "const": "metadata"
+                      },
+                      "metadata": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "required": [
+                              ".tag",
+                              "name",
+                              "id",
+                              "path_lower",
+                              "path_display",
+                              "client_modified",
+                              "server_modified",
+                              "rev",
+                              "size",
+                              "is_downloadable",
+                              "content_hash"
+                            ],
+                            "properties": {
+                              ".tag": {
+                                "const": "file"
+                              },
+                              "name": {
+                                "type": "string",
+                                "maxLength": 255
+                              },
+                              "id": {
+                                "type": "string",
+                                "maxLength": 80
+                              },
+                              "path_lower": {
+                                "type": "string",
+                                "maxLength": 4096
+                              },
+                              "path_display": {
+                                "type": "string",
+                                "maxLength": 4096
+                              },
+                              "client_modified": {
+                                "type": "string",
+                                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                              },
+                              "server_modified": {
+                                "type": "string",
+                                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                              },
+                              "rev": {
+                                "type": "string",
+                                "maxLength": 64
+                              },
+                              "size": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 9007199254740991
+                              },
+                              "is_downloadable": {
+                                "type": "boolean"
+                              },
+                              "content_hash": {
+                                "type": "string",
+                                "maxLength": 64
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "required": [
+                              ".tag",
+                              "name",
+                              "id",
+                              "path_lower",
+                              "path_display"
+                            ],
+                            "properties": {
+                              ".tag": {
+                                "const": "folder"
+                              },
+                              "name": {
+                                "type": "string",
+                                "maxLength": 255
+                              },
+                              "id": {
+                                "type": "string",
+                                "maxLength": 80
+                              },
+                              "path_lower": {
+                                "type": "string",
+                                "maxLength": 4096
+                              },
+                              "path_display": {
+                                "type": "string",
+                                "maxLength": 4096
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "required": [
+                              ".tag",
+                              "name",
+                              "path_lower",
+                              "path_display"
+                            ],
+                            "properties": {
+                              ".tag": {
+                                "const": "deleted"
+                              },
+                              "name": {
+                                "type": "string",
+                                "maxLength": 255
+                              },
+                              "path_lower": {
+                                "type": "string",
+                                "maxLength": 4096
+                              },
+                              "path_display": {
+                                "type": "string",
+                                "maxLength": 4096
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "INVALID_ARGUMENT",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOLDER",
+          "NOT_FOUND",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.search-continue",
+        "description": "Next page of a search (POST /2/files/search/continue_v2). Requires scope files.metadata.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "cursor"
+          ],
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192,
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "matches",
+            "has_more"
+          ],
+          "properties": {
+            "matches": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "match_type",
+                  "metadata"
+                ],
+                "properties": {
+                  "match_type": {
+                    "type": "object",
+                    "required": [
+                      ".tag"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "enum": [
+                          "filename",
+                          "file_content",
+                          "filename_and_content",
+                          "image_content"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "required": [
+                      ".tag",
+                      "metadata"
+                    ],
+                    "properties": {
+                      ".tag": {
+                        "const": "metadata"
+                      },
+                      "metadata": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "required": [
+                              ".tag",
+                              "name",
+                              "id",
+                              "path_lower",
+                              "path_display",
+                              "client_modified",
+                              "server_modified",
+                              "rev",
+                              "size",
+                              "is_downloadable",
+                              "content_hash"
+                            ],
+                            "properties": {
+                              ".tag": {
+                                "const": "file"
+                              },
+                              "name": {
+                                "type": "string",
+                                "maxLength": 255
+                              },
+                              "id": {
+                                "type": "string",
+                                "maxLength": 80
+                              },
+                              "path_lower": {
+                                "type": "string",
+                                "maxLength": 4096
+                              },
+                              "path_display": {
+                                "type": "string",
+                                "maxLength": 4096
+                              },
+                              "client_modified": {
+                                "type": "string",
+                                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                              },
+                              "server_modified": {
+                                "type": "string",
+                                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                              },
+                              "rev": {
+                                "type": "string",
+                                "maxLength": 64
+                              },
+                              "size": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 9007199254740991
+                              },
+                              "is_downloadable": {
+                                "type": "boolean"
+                              },
+                              "content_hash": {
+                                "type": "string",
+                                "maxLength": 64
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "required": [
+                              ".tag",
+                              "name",
+                              "id",
+                              "path_lower",
+                              "path_display"
+                            ],
+                            "properties": {
+                              ".tag": {
+                                "const": "folder"
+                              },
+                              "name": {
+                                "type": "string",
+                                "maxLength": 255
+                              },
+                              "id": {
+                                "type": "string",
+                                "maxLength": 80
+                              },
+                              "path_lower": {
+                                "type": "string",
+                                "maxLength": 4096
+                              },
+                              "path_display": {
+                                "type": "string",
+                                "maxLength": 4096
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "required": [
+                              ".tag",
+                              "name",
+                              "path_lower",
+                              "path_display"
+                            ],
+                            "properties": {
+                              ".tag": {
+                                "const": "deleted"
+                              },
+                              "name": {
+                                "type": "string",
+                                "maxLength": 255
+                              },
+                              "path_lower": {
+                                "type": "string",
+                                "maxLength": 4096
+                              },
+                              "path_display": {
+                                "type": "string",
+                                "maxLength": 4096
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "BAD_REQUEST",
+          "INVALID_ACCESS_TOKEN",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.upload",
+        "description": "Upload UTF-8 text content (POST /2/files/upload; arguments in Dropbox-API-Arg, content in the body). Requires scope files.content.write.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path",
+            "content"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "mode": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "add",
+                    "overwrite"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "enum": [
+                        "add",
+                        "overwrite"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    ".tag",
+                    "update"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "const": "update"
+                    },
+                    "update": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{9,64}$"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "autorename": {
+              "type": "boolean"
+            },
+            "client_modified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "mute": {
+              "type": "boolean"
+            },
+            "strict_conflict": {
+              "type": "boolean"
+            },
+            "content_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "content": {
+              "type": "string",
+              "maxLength": 262144
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            ".tag",
+            "name",
+            "id",
+            "path_lower",
+            "path_display",
+            "client_modified",
+            "server_modified",
+            "rev",
+            "size",
+            "is_downloadable",
+            "content_hash"
+          ],
+          "properties": {
+            ".tag": {
+              "const": "file"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "id": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "path_lower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "path_display": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "client_modified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "server_modified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "rev": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "is_downloadable": {
+              "type": "boolean"
+            },
+            "content_hash": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "BAD_REQUEST",
+          "CONFLICT",
+          "CONTENT_HASH_MISMATCH",
+          "DISALLOWED_NAME",
+          "INSUFFICIENT_SPACE",
+          "INTERNAL_ERROR",
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "PAYLOAD_TOO_LARGE",
+          "RATE_LIMITED",
+          "TOO_MANY_FILES",
+          "TOO_MANY_WRITE_OPERATIONS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sharing.create-shared-link-with-settings",
+        "description": "Create a shared link record for a file or folder (POST /2/sharing/create_shared_link_with_settings). The URL is synthetic and never served. Requires scope sharing.write.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "settings": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "requested_visibility": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "public",
+                        "team_only",
+                        "password"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        ".tag"
+                      ],
+                      "properties": {
+                        ".tag": {
+                          "enum": [
+                            "public",
+                            "team_only",
+                            "password"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                },
+                "link_password": {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                "expires": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "audience": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "public",
+                        "team",
+                        "no_one"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        ".tag"
+                      ],
+                      "properties": {
+                        ".tag": {
+                          "enum": [
+                            "public",
+                            "team",
+                            "no_one"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                },
+                "access": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "viewer"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        ".tag"
+                      ],
+                      "properties": {
+                        ".tag": {
+                          "enum": [
+                            "viewer"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                },
+                "allow_download": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            ".tag",
+            "url",
+            "id",
+            "name",
+            "path_lower",
+            "link_permissions"
+          ],
+          "properties": {
+            ".tag": {
+              "enum": [
+                "file",
+                "folder"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "maxLength": 2600
+            },
+            "id": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "path_lower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "expires": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "link_permissions": {
+              "type": "object",
+              "required": [
+                "can_revoke",
+                "resolved_visibility",
+                "visibility_policies",
+                "can_set_expiry",
+                "can_remove_expiry",
+                "allow_download",
+                "can_allow_download",
+                "can_disallow_download",
+                "allow_comments",
+                "team_restricts_comments",
+                "audience_options",
+                "can_set_password",
+                "can_remove_password",
+                "require_password",
+                "effective_audience",
+                "link_access_level"
+              ],
+              "properties": {
+                "can_revoke": {
+                  "type": "boolean"
+                },
+                "resolved_visibility": {
+                  "type": "object",
+                  "required": [
+                    ".tag"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "enum": [
+                        "public",
+                        "team_only",
+                        "password",
+                        "team_and_password",
+                        "shared_folder_only",
+                        "no_one",
+                        "only_you"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "requested_visibility": {
+                  "type": "object",
+                  "required": [
+                    ".tag"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "enum": [
+                        "public",
+                        "team_only",
+                        "password"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "visibility_policies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "policy",
+                      "resolved_policy",
+                      "allowed"
+                    ],
+                    "properties": {
+                      "policy": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "public",
+                              "team_only",
+                              "password",
+                              "team_and_password",
+                              "shared_folder_only",
+                              "no_one",
+                              "only_you"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "resolved_policy": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "public",
+                              "team_only",
+                              "password",
+                              "team_and_password",
+                              "shared_folder_only",
+                              "no_one",
+                              "only_you"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "allowed": {
+                        "type": "boolean"
+                      },
+                      "disallowed_reason": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "user_not_on_team",
+                              "user_account_type",
+                              "permission_denied"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 10
+                },
+                "can_set_expiry": {
+                  "type": "boolean"
+                },
+                "can_remove_expiry": {
+                  "type": "boolean"
+                },
+                "allow_download": {
+                  "type": "boolean"
+                },
+                "can_allow_download": {
+                  "type": "boolean"
+                },
+                "can_disallow_download": {
+                  "type": "boolean"
+                },
+                "allow_comments": {
+                  "type": "boolean"
+                },
+                "team_restricts_comments": {
+                  "type": "boolean"
+                },
+                "audience_options": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "audience",
+                      "allowed"
+                    ],
+                    "properties": {
+                      "audience": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "public",
+                              "team",
+                              "no_one",
+                              "password",
+                              "members"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "allowed": {
+                        "type": "boolean"
+                      },
+                      "disallowed_reason": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "user_not_on_team",
+                              "user_account_type",
+                              "permission_denied"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 10
+                },
+                "can_set_password": {
+                  "type": "boolean"
+                },
+                "can_remove_password": {
+                  "type": "boolean"
+                },
+                "require_password": {
+                  "type": "boolean"
+                },
+                "effective_audience": {
+                  "type": "object",
+                  "required": [
+                    ".tag"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "enum": [
+                        "public",
+                        "team",
+                        "no_one",
+                        "password",
+                        "members"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "link_access_level": {
+                  "type": "object",
+                  "required": [
+                    ".tag"
+                  ],
+                  "properties": {
+                    ".tag": {
+                      "enum": [
+                        "viewer",
+                        "editor"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "client_modified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "server_modified": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "rev": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SETTINGS_ERROR",
+          "SHARED_LINK_ALREADY_EXISTS",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sharing.list-shared-links",
+        "description": "List the account's shared links, all or for one path (POST /2/sharing/list_shared_links). Requires scope sharing.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "path": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192,
+              "minLength": 1
+            },
+            "direct_only": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "links",
+            "has_more"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  ".tag",
+                  "url",
+                  "id",
+                  "name",
+                  "path_lower",
+                  "link_permissions"
+                ],
+                "properties": {
+                  ".tag": {
+                    "enum": [
+                      "file",
+                      "folder"
+                    ]
+                  },
+                  "url": {
+                    "type": "string",
+                    "maxLength": 2600
+                  },
+                  "id": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "path_lower": {
+                    "type": "string",
+                    "maxLength": 4096
+                  },
+                  "expires": {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                  },
+                  "link_permissions": {
+                    "type": "object",
+                    "required": [
+                      "can_revoke",
+                      "resolved_visibility",
+                      "visibility_policies",
+                      "can_set_expiry",
+                      "can_remove_expiry",
+                      "allow_download",
+                      "can_allow_download",
+                      "can_disallow_download",
+                      "allow_comments",
+                      "team_restricts_comments",
+                      "audience_options",
+                      "can_set_password",
+                      "can_remove_password",
+                      "require_password",
+                      "effective_audience",
+                      "link_access_level"
+                    ],
+                    "properties": {
+                      "can_revoke": {
+                        "type": "boolean"
+                      },
+                      "resolved_visibility": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "public",
+                              "team_only",
+                              "password",
+                              "team_and_password",
+                              "shared_folder_only",
+                              "no_one",
+                              "only_you"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "requested_visibility": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "public",
+                              "team_only",
+                              "password"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "visibility_policies": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "policy",
+                            "resolved_policy",
+                            "allowed"
+                          ],
+                          "properties": {
+                            "policy": {
+                              "type": "object",
+                              "required": [
+                                ".tag"
+                              ],
+                              "properties": {
+                                ".tag": {
+                                  "enum": [
+                                    "public",
+                                    "team_only",
+                                    "password",
+                                    "team_and_password",
+                                    "shared_folder_only",
+                                    "no_one",
+                                    "only_you"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            "resolved_policy": {
+                              "type": "object",
+                              "required": [
+                                ".tag"
+                              ],
+                              "properties": {
+                                ".tag": {
+                                  "enum": [
+                                    "public",
+                                    "team_only",
+                                    "password",
+                                    "team_and_password",
+                                    "shared_folder_only",
+                                    "no_one",
+                                    "only_you"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            "allowed": {
+                              "type": "boolean"
+                            },
+                            "disallowed_reason": {
+                              "type": "object",
+                              "required": [
+                                ".tag"
+                              ],
+                              "properties": {
+                                ".tag": {
+                                  "enum": [
+                                    "user_not_on_team",
+                                    "user_account_type",
+                                    "permission_denied"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "maxItems": 10
+                      },
+                      "can_set_expiry": {
+                        "type": "boolean"
+                      },
+                      "can_remove_expiry": {
+                        "type": "boolean"
+                      },
+                      "allow_download": {
+                        "type": "boolean"
+                      },
+                      "can_allow_download": {
+                        "type": "boolean"
+                      },
+                      "can_disallow_download": {
+                        "type": "boolean"
+                      },
+                      "allow_comments": {
+                        "type": "boolean"
+                      },
+                      "team_restricts_comments": {
+                        "type": "boolean"
+                      },
+                      "audience_options": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "audience",
+                            "allowed"
+                          ],
+                          "properties": {
+                            "audience": {
+                              "type": "object",
+                              "required": [
+                                ".tag"
+                              ],
+                              "properties": {
+                                ".tag": {
+                                  "enum": [
+                                    "public",
+                                    "team",
+                                    "no_one",
+                                    "password",
+                                    "members"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            "allowed": {
+                              "type": "boolean"
+                            },
+                            "disallowed_reason": {
+                              "type": "object",
+                              "required": [
+                                ".tag"
+                              ],
+                              "properties": {
+                                ".tag": {
+                                  "enum": [
+                                    "user_not_on_team",
+                                    "user_account_type",
+                                    "permission_denied"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "maxItems": 10
+                      },
+                      "can_set_password": {
+                        "type": "boolean"
+                      },
+                      "can_remove_password": {
+                        "type": "boolean"
+                      },
+                      "require_password": {
+                        "type": "boolean"
+                      },
+                      "effective_audience": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "public",
+                              "team",
+                              "no_one",
+                              "password",
+                              "members"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "link_access_level": {
+                        "type": "object",
+                        "required": [
+                          ".tag"
+                        ],
+                        "properties": {
+                          ".tag": {
+                            "enum": [
+                              "viewer",
+                              "editor"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "client_modified": {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                  },
+                  "server_modified": {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+                  },
+                  "rev": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "size": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 200
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "cursor": {
+              "type": "string",
+              "maxLength": 8192
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "BAD_REQUEST",
+          "INVALID_ACCESS_TOKEN",
+          "MALFORMED_PATH",
+          "MISSING_SCOPE",
+          "NOT_FOUND",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sharing.revoke-shared-link",
+        "description": "Revoke a shared link by URL (POST /2/sharing/revoke_shared_link; the REST body is null). Requires scope sharing.write.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "properties": {
+            "url": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "revoked",
+            "url"
+          ],
+          "properties": {
+            "revoked": {
+              "const": true
+            },
+            "url": {
+              "type": "string",
+              "maxLength": 2600
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "MISSING_SCOPE",
+          "SHARED_LINK_MALFORMED",
+          "SHARED_LINK_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "users.get-current-account",
+        "description": "Get the calling account (POST /2/users/get_current_account). The canonical value also carries server_time (virtual now); the REST route omits it. Requires scope account_info.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "account_id",
+            "name",
+            "email",
+            "email_verified",
+            "disabled",
+            "locale",
+            "referral_link",
+            "is_paired",
+            "account_type",
+            "root_info",
+            "country",
+            "server_time"
+          ],
+          "properties": {
+            "account_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "name": {
+              "type": "object",
+              "required": [
+                "given_name",
+                "surname",
+                "familiar_name",
+                "display_name",
+                "abbreviated_name"
+              ],
+              "properties": {
+                "given_name": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "surname": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "familiar_name": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "display_name": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "abbreviated_name": {
+                  "type": "string",
+                  "maxLength": 8
+                }
+              },
+              "additionalProperties": false
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 254
+            },
+            "email_verified": {
+              "type": "boolean"
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "locale": {
+              "type": "string",
+              "maxLength": 16
+            },
+            "referral_link": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "is_paired": {
+              "type": "boolean"
+            },
+            "account_type": {
+              "type": "object",
+              "required": [
+                ".tag"
+              ],
+              "properties": {
+                ".tag": {
+                  "enum": [
+                    "basic",
+                    "pro",
+                    "business"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "root_info": {
+              "type": "object",
+              "required": [
+                ".tag",
+                "root_namespace_id",
+                "home_namespace_id"
+              ],
+              "properties": {
+                ".tag": {
+                  "const": "user"
+                },
+                "root_namespace_id": {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                "home_namespace_id": {
+                  "type": "string",
+                  "maxLength": 32
+                }
+              },
+              "additionalProperties": false
+            },
+            "country": {
+              "type": "string",
+              "maxLength": 2
+            },
+            "server_time": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "MISSING_SCOPE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "users.get-space-usage",
+        "description": "Space used by live files and the individual allocation (POST /2/users/get_space_usage). Requires scope account_info.read.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "used",
+            "allocation"
+          ],
+          "properties": {
+            "used": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "allocation": {
+              "type": "object",
+              "required": [
+                ".tag",
+                "allocated"
+              ],
+              "properties": {
+                ".tag": {
+                  "const": "individual"
+                },
+                "allocated": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ACCESS_TOKEN",
+          "MISSING_SCOPE",
+          "TOO_MANY_FILES"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      }
+    ],
+    "events": [
+      {
+        "id": "files.changed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "account_id",
+            "change",
+            "id",
+            "path_lower"
+          ],
+          "properties": {
+            "account_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "change": {
+              "enum": [
+                "added",
+                "modified",
+                "deleted",
+                "moved",
+                "restored"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "path_lower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "previous_path_lower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "rev": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "shared-link.created",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "account_id",
+            "link_id",
+            "path_lower",
+            "visibility"
+          ],
+          "properties": {
+            "account_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "link_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "path_lower": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "visibility": {
+              "enum": [
+                "public",
+                "password",
+                "no_one"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "shared-link.revoked",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "account_id",
+            "link_id",
+            "path_lower"
+          ],
+          "properties": {
+            "account_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "link_id": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "path_lower": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "rate-limited",
+        "appliesTo": [
+          "files.copy",
+          "files.create-folder",
+          "files.delete",
+          "files.move",
+          "files.restore",
+          "files.upload",
+          "sharing.create-shared-link-with-settings"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RATE_LIMITED",
+          "message": "too_many_requests",
+          "retryable": true
+        }
+      },
+      {
+        "id": "upload-outage-after-commit",
+        "appliesTo": [
+          "files.upload"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "INTERNAL_ERROR",
+          "message": "Internal Server Error",
+          "retryable": true
+        }
+      },
+      {
+        "id": "write-contention",
+        "appliesTo": [
+          "files.create-folder",
+          "files.delete",
+          "files.move",
+          "files.restore",
+          "files.upload"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "TOO_MANY_WRITE_OPERATIONS",
+          "message": "too_many_write_operations",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "files-copy-v2",
+        "operationId": "files.copy",
+        "method": "POST",
+        "path": "/2/files/copy_v2",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CANT_MOVE_FOLDER_INTO_ITSELF",
+              "status": 409
+            },
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "DISALLOWED_NAME",
+              "status": 409
+            },
+            {
+              "code": "DUPLICATED_OR_NESTED_PATHS",
+              "status": 409
+            },
+            {
+              "code": "INSUFFICIENT_SPACE",
+              "status": 409
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-create-folder-v2",
+        "operationId": "files.create-folder",
+        "method": "POST",
+        "path": "/2/files/create_folder_v2",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "DISALLOWED_NAME",
+              "status": 409
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_WRITE_OPERATIONS",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-delete-v2",
+        "operationId": "files.delete",
+        "method": "POST",
+        "path": "/2/files/delete_v2",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_WRITE_OPERATIONS",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-download",
+        "operationId": "files.download",
+        "method": "POST",
+        "path": "/2/files/download",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "BAD_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FILE",
+              "status": 409
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-get-metadata",
+        "operationId": "files.get-metadata",
+        "method": "POST",
+        "path": "/2/files/get_metadata",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-list-folder",
+        "operationId": "files.list-folder",
+        "method": "POST",
+        "path": "/2/files/list_folder",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOLDER",
+              "status": 409
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-list-folder-continue",
+        "operationId": "files.list-folder-continue",
+        "method": "POST",
+        "path": "/2/files/list_folder/continue",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "BAD_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "RESET",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-list-folder-get-latest-cursor",
+        "operationId": "files.list-folder-get-latest-cursor",
+        "method": "POST",
+        "path": "/2/files/list_folder/get_latest_cursor",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOLDER",
+              "status": 409
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-list-revisions",
+        "operationId": "files.list-revisions",
+        "method": "POST",
+        "path": "/2/files/list_revisions",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FILE",
+              "status": 409
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-move-v2",
+        "operationId": "files.move",
+        "method": "POST",
+        "path": "/2/files/move_v2",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CANT_MOVE_FOLDER_INTO_ITSELF",
+              "status": 409
+            },
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "DISALLOWED_NAME",
+              "status": 409
+            },
+            {
+              "code": "DUPLICATED_OR_NESTED_PATHS",
+              "status": 409
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_WRITE_OPERATIONS",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-restore",
+        "operationId": "files.restore",
+        "method": "POST",
+        "path": "/2/files/restore",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "INSUFFICIENT_SPACE",
+              "status": 409
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_REVISION",
+              "status": 409
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_WRITE_OPERATIONS",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-search-continue-v2",
+        "operationId": "files.search-continue",
+        "method": "POST",
+        "path": "/2/files/search/continue_v2",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "BAD_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-search-v2",
+        "operationId": "files.search",
+        "method": "POST",
+        "path": "/2/files/search_v2",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 409
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOLDER",
+              "status": 409
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "files-upload",
+        "operationId": "files.upload",
+        "method": "POST",
+        "path": "/2/files/upload",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "BAD_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "CONTENT_HASH_MISMATCH",
+              "status": 400
+            },
+            {
+              "code": "DISALLOWED_NAME",
+              "status": 409
+            },
+            {
+              "code": "INSUFFICIENT_SPACE",
+              "status": 409
+            },
+            {
+              "code": "INTERNAL_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "PAYLOAD_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_WRITE_OPERATIONS",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "sharing-create-shared-link-with-settings",
+        "operationId": "sharing.create-shared-link-with-settings",
+        "method": "POST",
+        "path": "/2/sharing/create_shared_link_with_settings",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SETTINGS_ERROR",
+              "status": 409
+            },
+            {
+              "code": "SHARED_LINK_ALREADY_EXISTS",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "sharing-list-shared-links",
+        "operationId": "sharing.list-shared-links",
+        "method": "POST",
+        "path": "/2/sharing/list_shared_links",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "BAD_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MALFORMED_PATH",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "sharing-revoke-shared-link",
+        "operationId": "sharing.revoke-shared-link",
+        "method": "POST",
+        "path": "/2/sharing/revoke_shared_link",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "SHARED_LINK_MALFORMED",
+              "status": 409
+            },
+            {
+              "code": "SHARED_LINK_NOT_FOUND",
+              "status": 409
+            }
+          ]
+        }
+      },
+      {
+        "id": "users-get-current-account",
+        "operationId": "users.get-current-account",
+        "method": "POST",
+        "path": "/2/users/get_current_account",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "users-get-space-usage",
+        "operationId": "users.get-space-usage",
+        "method": "POST",
+        "path": "/2/users/get_space_usage",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ACCESS_TOKEN",
+              "status": 401
+            },
+            {
+              "code": "MISSING_SCOPE",
+              "status": 401
+            },
+            {
+              "code": "TOO_MANY_FILES",
+              "status": 409
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": []
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-byte-budget",
+  "title": "A 100-document page of CJK-named recipients exceeds 900 KB and fails; a 20-document page fits",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the byte-budget flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 40
+      }
+    },
+    {
+      "id": "documents-find-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "documents.find"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-count",
+      "kind": "state.count",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 58
+      }
+    }
+  ]
+}

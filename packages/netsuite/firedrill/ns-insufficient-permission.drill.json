@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "ns-insufficient-permission",
+  "title": "A role with no permissions fails every operation",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "restricted",
+  "task": {
+    "instruction": "Run the insufficient-permission conformance flow against the synthetic NetSuite Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "list-403",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "metadata-403",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "record.metadata"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-unchanged",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    }
+  ]
+}

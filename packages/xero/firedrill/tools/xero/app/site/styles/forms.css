@@ -1,0 +1,57 @@
+/* XUI text inputs, selects, the invoice editor grid and totals. */
+.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.field label, .field .label { font-size: 13px; font-weight: 600; color: var(--x-text); }
+.field .hint { font-size: 12px; color: var(--x-text-2); }
+.err { font-size: 13px; color: var(--x-negative); margin-top: 8px; }
+.err:empty { display: none; }
+.field .err { font-size: 12px; margin-top: 0; }
+.input, .select, textarea.input { height: 40px; width: 100%; padding: 0 10px; border: 1px solid var(--x-border); border-radius: var(--radius); background: #fff; }
+textarea.input { height: auto; min-height: 64px; padding: 8px 10px; resize: vertical; }
+.input:hover, .select:hover { border-color: #9ba1a9; }
+.input:focus, .select:focus { outline: none; border-color: var(--x-action); box-shadow: 0 0 0 1px var(--x-action); }
+.input.invalid, .select.invalid { border-color: var(--x-negative); box-shadow: 0 0 0 1px var(--x-negative); }
+.input[readonly] { background: #f5f6f7; }
+.select { appearance: none; padding-right: 30px; background-image: linear-gradient(45deg, transparent 50%, #59606d 50%), linear-gradient(135deg, #59606d 50%, transparent 50%); background-position: calc(100% - 15px) 17px, calc(100% - 10px) 17px; background-size: 5px 5px; background-repeat: no-repeat; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.form-grid .span2 { grid-column: span 2; }
+.form-stack { display: grid; gap: 14px; }
+
+.typeahead { position: relative; }
+.typeahead-list { position: absolute; left: 0; right: 0; top: calc(100% + 2px); z-index: 30; max-height: 260px; overflow: auto; background: #fff; border-radius: var(--radius); box-shadow: 0 0 0 1px rgba(0, 10, 30, .1), 0 8px 20px rgba(0, 10, 30, .15); padding: 4px 0; }
+.typeahead-opt { display: block; width: 100%; padding: 8px 12px; border: 0; background: transparent; text-align: left; cursor: pointer; }
+.typeahead-opt:hover, .typeahead-opt.active { background: var(--x-row-hover); }
+.typeahead-note { padding: 8px 12px; color: var(--x-text-2); font-size: 13px; }
+
+.editor { background: #fff; border: 1px solid var(--x-border-soft); border-radius: 8px; margin-top: 20px; }
+.editor-head { display: grid; grid-template-columns: minmax(220px, 2fr) repeat(4, minmax(140px, 1fr)); gap: 16px; padding: 20px 20px 16px; }
+.editor-opts { display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 0 20px 12px; }
+.editor-opts label { font-size: 13px; color: var(--x-text-2); }
+.editor-opts .select { width: 170px; height: 34px; }
+.grid-scroll { overflow-x: auto; border-top: 1px solid var(--x-border); }
+table.lines { width: 100%; border-collapse: collapse; min-width: 980px; }
+.lines th { text-align: left; font-size: 12px; font-weight: 600; color: var(--x-text-2); padding: 8px; border-bottom: 1px solid var(--x-border); background: #f7f8f9; white-space: nowrap; }
+.lines th.num { text-align: right; }
+.lines td { border-bottom: 1px solid var(--x-border-soft); border-right: 1px solid var(--x-border-soft); padding: 0; height: 40px; }
+.lines td:last-child { border-right: 0; }
+.lines td .cell { width: 100%; height: 40px; border: 0; padding: 0 8px; background: transparent; border-radius: 0; }
+.lines td .cell:focus { outline: 2px solid var(--x-action); outline-offset: -2px; background: #fff; }
+.lines td .cell.num { text-align: right; }
+.lines td .cell.invalid { background: #fdf0f3; }
+.lines td.static { padding: 0 8px; text-align: right; color: var(--x-text-2); white-space: nowrap; }
+.lines td.row-del { width: 36px; text-align: center; }
+.lines select.cell { appearance: none; cursor: pointer; }
+.editor-foot { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 12px 20px 20px; }
+.totals { min-width: 300px; margin-left: auto; }
+.totals .trow { display: flex; justify-content: space-between; gap: 24px; padding: 6px 0; }
+.totals .trow.grand { border-top: 2px solid var(--x-text); margin-top: 6px; padding-top: 10px; font-size: 18px; font-weight: 700; }
+.totals .trow.due { border-top: 1px solid var(--x-border); font-weight: 700; }
+.errors-box { margin: 0 20px 12px; }
+.errors-box ul { margin: 6px 0 0; padding-left: 18px; }
+.savebar { position: sticky; bottom: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; padding: 12px 24px; background: #fff; border-top: 1px solid var(--x-border); box-shadow: 0 -2px 8px rgba(0, 10, 30, .06); }
+.savebar .actions { margin-left: auto; }
+
+@media (max-width: 900px) {
+  .editor-head { grid-template-columns: 1fr 1fr; }
+  .editor-head .field:first-child { grid-column: span 2; }
+  .form-grid .span2 { grid-column: auto; }
+}

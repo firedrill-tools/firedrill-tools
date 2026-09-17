@@ -1,0 +1,2028 @@
+{
+  "schemaVersion": 1,
+  "virtualTimeUs": 1789376400000000,
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "organization",
+      "rowId": "organization",
+      "value": {
+        "id": "00000001-0000-4000-8000-000000000001",
+        "name": "Lumen Audio",
+        "urlKey": "lumenaudio",
+        "createdAt": "2026-05-04T08:00:00.000Z",
+        "updatedAt": "2026-09-01T10:15:00.000Z",
+        "restrictLabelManagementToAdmins": true,
+        "gitBranchFormat": "{username}/{issueIdentifier}-{issueTitle}"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "nextId": 1000,
+        "lastSyncId": 4200
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "users",
+      "rowId": "0000000a-0000-4000-8000-000000000001",
+      "value": {
+        "id": "0000000a-0000-4000-8000-000000000001",
+        "name": "Maya Lindqvist",
+        "displayName": "maya",
+        "email": "maya.lindqvist@lumenaudio.example.com",
+        "active": true,
+        "admin": true,
+        "guest": false,
+        "avatarUrl": null,
+        "timezone": "Europe/Stockholm",
+        "createdAt": "2026-05-04T08:05:00.000Z",
+        "updatedAt": "2026-09-10T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "users",
+      "rowId": "0000000a-0000-4000-8000-000000000002",
+      "value": {
+        "id": "0000000a-0000-4000-8000-000000000002",
+        "name": "Daniel Okafor",
+        "displayName": "daniel",
+        "email": "daniel.okafor@lumenaudio.example.com",
+        "active": true,
+        "admin": false,
+        "guest": false,
+        "avatarUrl": null,
+        "timezone": "Europe/London",
+        "createdAt": "2026-05-04T09:10:00.000Z",
+        "updatedAt": "2026-09-10T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "users",
+      "rowId": "0000000a-0000-4000-8000-000000000003",
+      "value": {
+        "id": "0000000a-0000-4000-8000-000000000003",
+        "name": "Sofia Reyes",
+        "displayName": "sofia",
+        "email": "sofia.reyes@lumenaudio.example.com",
+        "active": true,
+        "admin": false,
+        "guest": false,
+        "avatarUrl": null,
+        "timezone": "America/Mexico_City",
+        "createdAt": "2026-05-05T14:20:00.000Z",
+        "updatedAt": "2026-09-10T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "users",
+      "rowId": "0000000a-0000-4000-8000-000000000004",
+      "value": {
+        "id": "0000000a-0000-4000-8000-000000000004",
+        "name": "Kenji Watanabe",
+        "displayName": "kenji",
+        "email": "kenji.watanabe@lumenaudio.example.com",
+        "active": true,
+        "admin": false,
+        "guest": true,
+        "avatarUrl": null,
+        "timezone": "Asia/Tokyo",
+        "createdAt": "2026-06-12T01:30:00.000Z",
+        "updatedAt": "2026-09-10T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "users",
+      "rowId": "0000000a-0000-4000-8000-000000000005",
+      "value": {
+        "id": "0000000a-0000-4000-8000-000000000005",
+        "name": "Lars Bergström",
+        "displayName": "lars",
+        "email": "lars.bergstrom@lumenaudio.example.com",
+        "active": false,
+        "admin": false,
+        "guest": false,
+        "avatarUrl": null,
+        "timezone": "Europe/Stockholm",
+        "createdAt": "2026-05-06T07:45:00.000Z",
+        "updatedAt": "2026-08-15T16:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "users",
+      "rowId": "0000000a-0000-4000-8000-000000000006",
+      "value": {
+        "id": "0000000a-0000-4000-8000-000000000006",
+        "name": "Amélie Dubois",
+        "displayName": "amelie",
+        "email": "amelie.dubois@lumenaudio.example.com",
+        "active": true,
+        "admin": false,
+        "guest": false,
+        "avatarUrl": null,
+        "timezone": "Europe/Paris",
+        "createdAt": "2026-06-20T12:00:00.000Z",
+        "updatedAt": "2026-09-10T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "teams",
+      "rowId": "0000000b-0000-4000-8000-000000000001",
+      "value": {
+        "id": "0000000b-0000-4000-8000-000000000001",
+        "key": "ENG",
+        "name": "Engineering",
+        "description": "Core DSP, playback and platform work.",
+        "private": false,
+        "timezone": "Europe/Stockholm",
+        "cyclesEnabled": true,
+        "triageEnabled": false,
+        "issueCount": 14,
+        "defaultIssueStateId": "0000000c-0000-4000-8000-000000000001",
+        "memberIds": [
+          "0000000a-0000-4000-8000-000000000001",
+          "0000000a-0000-4000-8000-000000000002",
+          "0000000a-0000-4000-8000-000000000003",
+          "0000000a-0000-4000-8000-000000000006"
+        ],
+        "createdAt": "2026-05-04T08:10:00.000Z",
+        "updatedAt": "2026-09-12T15:30:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "teams",
+      "rowId": "0000000b-0000-4000-8000-000000000002",
+      "value": {
+        "id": "0000000b-0000-4000-8000-000000000002",
+        "key": "MOB",
+        "name": "Mobile",
+        "description": "iOS and Android companion apps.",
+        "private": false,
+        "timezone": "Asia/Tokyo",
+        "cyclesEnabled": false,
+        "triageEnabled": false,
+        "issueCount": 6,
+        "defaultIssueStateId": "0000000c-0000-4000-8000-000000000009",
+        "memberIds": [
+          "0000000a-0000-4000-8000-000000000001",
+          "0000000a-0000-4000-8000-000000000002",
+          "0000000a-0000-4000-8000-000000000004"
+        ],
+        "createdAt": "2026-06-01T09:00:00.000Z",
+        "updatedAt": "2026-09-12T15:30:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "teams",
+      "rowId": "0000000b-0000-4000-8000-000000000003",
+      "value": {
+        "id": "0000000b-0000-4000-8000-000000000003",
+        "key": "SEC",
+        "name": "Security",
+        "description": "Compliance, access reviews and incident response.",
+        "private": true,
+        "timezone": "America/Mexico_City",
+        "cyclesEnabled": false,
+        "triageEnabled": true,
+        "issueCount": 4,
+        "defaultIssueStateId": "0000000c-0000-4000-8000-00000000000d",
+        "memberIds": [
+          "0000000a-0000-4000-8000-000000000001",
+          "0000000a-0000-4000-8000-000000000003"
+        ],
+        "createdAt": "2026-07-15T13:00:00.000Z",
+        "updatedAt": "2026-09-12T15:30:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000001",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000001",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "name": "Backlog",
+        "type": "backlog",
+        "color": "#bec2c8",
+        "position": 0,
+        "description": null,
+        "createdAt": "2026-05-04T08:10:00.000Z",
+        "updatedAt": "2026-05-04T08:10:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000002",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000002",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "name": "Todo",
+        "type": "unstarted",
+        "color": "#e2e2e2",
+        "position": 1,
+        "description": null,
+        "createdAt": "2026-05-04T08:10:00.000Z",
+        "updatedAt": "2026-05-04T08:10:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000003",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000003",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "name": "In Progress",
+        "type": "started",
+        "color": "#f2c94c",
+        "position": 2,
+        "description": null,
+        "createdAt": "2026-05-04T08:10:00.000Z",
+        "updatedAt": "2026-05-04T08:10:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000004",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000004",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "name": "In Review",
+        "type": "started",
+        "color": "#0f783c",
+        "position": 3,
+        "description": null,
+        "createdAt": "2026-05-04T08:10:00.000Z",
+        "updatedAt": "2026-05-04T08:10:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000005",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000005",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "name": "Done",
+        "type": "completed",
+        "color": "#5e6ad2",
+        "position": 4,
+        "description": null,
+        "createdAt": "2026-05-04T08:10:00.000Z",
+        "updatedAt": "2026-05-04T08:10:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000006",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000006",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "name": "Canceled",
+        "type": "canceled",
+        "color": "#95a2b3",
+        "position": 5,
+        "description": null,
+        "createdAt": "2026-05-04T08:10:00.000Z",
+        "updatedAt": "2026-05-04T08:10:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000007",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000007",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "name": "Duplicate",
+        "type": "canceled",
+        "color": "#95a2b3",
+        "position": 6,
+        "description": null,
+        "createdAt": "2026-05-04T08:10:00.000Z",
+        "updatedAt": "2026-05-04T08:10:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000008",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000008",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "name": "Backlog",
+        "type": "backlog",
+        "color": "#bec2c8",
+        "position": 0,
+        "description": null,
+        "createdAt": "2026-06-01T09:00:00.000Z",
+        "updatedAt": "2026-06-01T09:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000009",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000009",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "name": "Todo",
+        "type": "unstarted",
+        "color": "#e2e2e2",
+        "position": 1,
+        "description": null,
+        "createdAt": "2026-06-01T09:00:00.000Z",
+        "updatedAt": "2026-06-01T09:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-00000000000a",
+      "value": {
+        "id": "0000000c-0000-4000-8000-00000000000a",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "name": "In Progress",
+        "type": "started",
+        "color": "#f2c94c",
+        "position": 2,
+        "description": null,
+        "createdAt": "2026-06-01T09:00:00.000Z",
+        "updatedAt": "2026-06-01T09:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-00000000000b",
+      "value": {
+        "id": "0000000c-0000-4000-8000-00000000000b",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "name": "Done",
+        "type": "completed",
+        "color": "#5e6ad2",
+        "position": 3,
+        "description": null,
+        "createdAt": "2026-06-01T09:00:00.000Z",
+        "updatedAt": "2026-06-01T09:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-00000000000c",
+      "value": {
+        "id": "0000000c-0000-4000-8000-00000000000c",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "name": "Canceled",
+        "type": "canceled",
+        "color": "#95a2b3",
+        "position": 4,
+        "description": null,
+        "createdAt": "2026-06-01T09:00:00.000Z",
+        "updatedAt": "2026-06-01T09:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-00000000000d",
+      "value": {
+        "id": "0000000c-0000-4000-8000-00000000000d",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "name": "Triage",
+        "type": "triage",
+        "color": "#eb5757",
+        "position": 0,
+        "description": null,
+        "createdAt": "2026-07-15T13:00:00.000Z",
+        "updatedAt": "2026-07-15T13:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-00000000000e",
+      "value": {
+        "id": "0000000c-0000-4000-8000-00000000000e",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "name": "Backlog",
+        "type": "backlog",
+        "color": "#bec2c8",
+        "position": 1,
+        "description": null,
+        "createdAt": "2026-07-15T13:00:00.000Z",
+        "updatedAt": "2026-07-15T13:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-00000000000f",
+      "value": {
+        "id": "0000000c-0000-4000-8000-00000000000f",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "name": "Todo",
+        "type": "unstarted",
+        "color": "#e2e2e2",
+        "position": 2,
+        "description": null,
+        "createdAt": "2026-07-15T13:00:00.000Z",
+        "updatedAt": "2026-07-15T13:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000010",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000010",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "name": "In Progress",
+        "type": "started",
+        "color": "#f2c94c",
+        "position": 3,
+        "description": null,
+        "createdAt": "2026-07-15T13:00:00.000Z",
+        "updatedAt": "2026-07-15T13:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000011",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000011",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "name": "Done",
+        "type": "completed",
+        "color": "#5e6ad2",
+        "position": 4,
+        "description": null,
+        "createdAt": "2026-07-15T13:00:00.000Z",
+        "updatedAt": "2026-07-15T13:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "workflow-states",
+      "rowId": "0000000c-0000-4000-8000-000000000012",
+      "value": {
+        "id": "0000000c-0000-4000-8000-000000000012",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "name": "Canceled",
+        "type": "canceled",
+        "color": "#95a2b3",
+        "position": 5,
+        "description": null,
+        "createdAt": "2026-07-15T13:00:00.000Z",
+        "updatedAt": "2026-07-15T13:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "labels",
+      "rowId": "0000000d-0000-4000-8000-000000000001",
+      "value": {
+        "id": "0000000d-0000-4000-8000-000000000001",
+        "name": "Bug",
+        "color": "#eb5757",
+        "description": null,
+        "teamId": null,
+        "isGroup": false,
+        "parentId": null,
+        "createdAt": "2026-05-10T08:00:00.000Z",
+        "updatedAt": "2026-05-10T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "labels",
+      "rowId": "0000000d-0000-4000-8000-000000000002",
+      "value": {
+        "id": "0000000d-0000-4000-8000-000000000002",
+        "name": "Feature",
+        "color": "#5e6ad2",
+        "description": null,
+        "teamId": null,
+        "isGroup": false,
+        "parentId": null,
+        "createdAt": "2026-05-10T08:00:00.000Z",
+        "updatedAt": "2026-05-10T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "labels",
+      "rowId": "0000000d-0000-4000-8000-000000000003",
+      "value": {
+        "id": "0000000d-0000-4000-8000-000000000003",
+        "name": "Improvement",
+        "color": "#4cb782",
+        "description": null,
+        "teamId": null,
+        "isGroup": false,
+        "parentId": null,
+        "createdAt": "2026-05-10T08:00:00.000Z",
+        "updatedAt": "2026-05-10T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "labels",
+      "rowId": "0000000d-0000-4000-8000-000000000004",
+      "value": {
+        "id": "0000000d-0000-4000-8000-000000000004",
+        "name": "backend",
+        "color": "#26b5ce",
+        "description": null,
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "isGroup": false,
+        "parentId": null,
+        "createdAt": "2026-05-10T08:00:00.000Z",
+        "updatedAt": "2026-05-10T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "labels",
+      "rowId": "0000000d-0000-4000-8000-000000000005",
+      "value": {
+        "id": "0000000d-0000-4000-8000-000000000005",
+        "name": "frontend",
+        "color": "#f2c94c",
+        "description": null,
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "isGroup": false,
+        "parentId": null,
+        "createdAt": "2026-05-10T08:00:00.000Z",
+        "updatedAt": "2026-05-10T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "labels",
+      "rowId": "0000000d-0000-4000-8000-000000000006",
+      "value": {
+        "id": "0000000d-0000-4000-8000-000000000006",
+        "name": "legacy",
+        "color": "#95a2b3",
+        "description": null,
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "isGroup": false,
+        "parentId": null,
+        "createdAt": "2026-05-10T08:00:00.000Z",
+        "updatedAt": "2026-08-20T10:00:00.000Z",
+        "archivedAt": "2026-08-20T10:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "labels",
+      "rowId": "0000000d-0000-4000-8000-000000000007",
+      "value": {
+        "id": "0000000d-0000-4000-8000-000000000007",
+        "name": "ios",
+        "color": "#0f7488",
+        "description": null,
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "isGroup": false,
+        "parentId": null,
+        "createdAt": "2026-05-10T08:00:00.000Z",
+        "updatedAt": "2026-05-10T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "labels",
+      "rowId": "0000000d-0000-4000-8000-000000000008",
+      "value": {
+        "id": "0000000d-0000-4000-8000-000000000008",
+        "name": "android",
+        "color": "#4cb782",
+        "description": null,
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "isGroup": false,
+        "parentId": null,
+        "createdAt": "2026-05-10T08:00:00.000Z",
+        "updatedAt": "2026-05-10T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "projects",
+      "rowId": "0000000e-0000-4000-8000-000000000001",
+      "value": {
+        "id": "0000000e-0000-4000-8000-000000000001",
+        "name": "Spatial Audio Engine",
+        "slugId": "3f2a9c1e",
+        "description": "Room-aware rendering pipeline for the desktop player.",
+        "content": null,
+        "state": "started",
+        "priority": 2,
+        "leadId": "0000000a-0000-4000-8000-000000000002",
+        "teamIds": [
+          "0000000b-0000-4000-8000-000000000001"
+        ],
+        "startDate": "2026-07-01",
+        "targetDate": "2026-10-31",
+        "icon": null,
+        "color": null,
+        "createdAt": "2026-06-20T09:00:00.000Z",
+        "updatedAt": "2026-09-08T10:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-07-01T08:00:00.000Z",
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "projects",
+      "rowId": "0000000e-0000-4000-8000-000000000002",
+      "value": {
+        "id": "0000000e-0000-4000-8000-000000000002",
+        "name": "Companion App 2.0",
+        "slugId": "7b1d4e2a",
+        "description": "Next major release of the mobile companion app.",
+        "content": null,
+        "state": "planned",
+        "priority": 3,
+        "leadId": "0000000a-0000-4000-8000-000000000003",
+        "teamIds": [
+          "0000000b-0000-4000-8000-000000000002",
+          "0000000b-0000-4000-8000-000000000001"
+        ],
+        "startDate": null,
+        "targetDate": "2026-12-15",
+        "icon": null,
+        "color": null,
+        "createdAt": "2026-08-05T11:00:00.000Z",
+        "updatedAt": "2026-09-08T10:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "projects",
+      "rowId": "0000000e-0000-4000-8000-000000000003",
+      "value": {
+        "id": "0000000e-0000-4000-8000-000000000003",
+        "name": "SOC 2 Readiness",
+        "slugId": "9c5e2f41",
+        "description": "Evidence collection and control gaps for the Type II audit.",
+        "content": null,
+        "state": "started",
+        "priority": 1,
+        "leadId": "0000000a-0000-4000-8000-000000000003",
+        "teamIds": [
+          "0000000b-0000-4000-8000-000000000003"
+        ],
+        "startDate": "2026-08-01",
+        "targetDate": "2026-11-30",
+        "icon": null,
+        "color": null,
+        "createdAt": "2026-07-20T15:00:00.000Z",
+        "updatedAt": "2026-09-08T10:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-08-01T08:00:00.000Z",
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "cycles",
+      "rowId": "0000000f-0000-4000-8000-000000000001",
+      "value": {
+        "id": "0000000f-0000-4000-8000-000000000001",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 1,
+        "name": "Cycle 1",
+        "description": null,
+        "startsAt": "2026-08-10T00:00:00.000Z",
+        "endsAt": "2026-08-24T00:00:00.000Z",
+        "completedAt": "2026-08-24T00:00:00.000Z",
+        "createdAt": "2026-08-01T08:00:00.000Z",
+        "updatedAt": "2026-08-24T00:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "cycles",
+      "rowId": "0000000f-0000-4000-8000-000000000002",
+      "value": {
+        "id": "0000000f-0000-4000-8000-000000000002",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 2,
+        "name": "Cycle 2",
+        "description": null,
+        "startsAt": "2026-09-07T00:00:00.000Z",
+        "endsAt": "2026-09-21T00:00:00.000Z",
+        "completedAt": null,
+        "createdAt": "2026-08-01T08:00:00.000Z",
+        "updatedAt": "2026-08-01T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "cycles",
+      "rowId": "0000000f-0000-4000-8000-000000000003",
+      "value": {
+        "id": "0000000f-0000-4000-8000-000000000003",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 3,
+        "name": "Cycle 3",
+        "description": null,
+        "startsAt": "2026-09-21T00:00:00.000Z",
+        "endsAt": "2026-10-05T00:00:00.000Z",
+        "completedAt": null,
+        "createdAt": "2026-08-01T08:00:00.000Z",
+        "updatedAt": "2026-08-01T08:00:00.000Z",
+        "archivedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000001",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000001",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 1,
+        "identifier": "ENG-1",
+        "title": "Room-correction calibration pipeline",
+        "description": "Measure the listening room with the calibration mic and derive correction filters.",
+        "priority": 1,
+        "estimate": 8,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000002",
+        "assigneeId": "0000000a-0000-4000-8000-000000000002",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": "0000000e-0000-4000-8000-000000000001",
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000002",
+          "0000000d-0000-4000-8000-000000000004"
+        ],
+        "sortOrder": -1,
+        "createdAt": "2026-06-22T09:00:00.000Z",
+        "updatedAt": "2026-09-05T10:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-1",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000002",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000002",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 2,
+        "identifier": "ENG-2",
+        "title": "Crackling on 96 kHz playback",
+        "description": "Intermittent crackle when the output device runs at 96 kHz; reproduces on the reference DAC.",
+        "priority": 2,
+        "estimate": 3,
+        "dueDate": "2026-09-18",
+        "stateId": "0000000c-0000-4000-8000-000000000003",
+        "assigneeId": "0000000a-0000-4000-8000-000000000006",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": null,
+        "cycleId": "0000000f-0000-4000-8000-000000000002",
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000001"
+        ],
+        "sortOrder": -2,
+        "createdAt": "2026-06-25T13:00:00.000Z",
+        "updatedAt": "2026-09-13T16:20:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-09-08T09:00:00.000Z",
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-2",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000003",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000003",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 3,
+        "identifier": "ENG-3",
+        "title": "Old DSP bench harness",
+        "description": "Superseded by the new benchmark runner.",
+        "priority": 0,
+        "estimate": null,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000006",
+        "assigneeId": null,
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [],
+        "sortOrder": -3,
+        "createdAt": "2026-06-26T10:00:00.000Z",
+        "updatedAt": "2026-08-01T10:00:00.000Z",
+        "archivedAt": "2026-08-01T10:00:00.000Z",
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": "2026-08-01T10:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-3",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000004",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000004",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 4,
+        "identifier": "ENG-4",
+        "title": "Calibration sweep signal generator",
+        "description": "Log sweep with configurable length; sub-issue of the calibration pipeline.",
+        "priority": 2,
+        "estimate": 2,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000005",
+        "assigneeId": "0000000a-0000-4000-8000-000000000003",
+        "creatorId": "0000000a-0000-4000-8000-000000000002",
+        "projectId": "0000000e-0000-4000-8000-000000000001",
+        "cycleId": "0000000f-0000-4000-8000-000000000001",
+        "parentId": "00000010-0000-4000-8000-000000000001",
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000004"
+        ],
+        "sortOrder": -4,
+        "createdAt": "2026-07-02T08:30:00.000Z",
+        "updatedAt": "2026-08-22T17:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-08-11T09:00:00.000Z",
+        "completedAt": "2026-08-22T17:00:00.000Z",
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-4",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000005",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000005",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 5,
+        "identifier": "ENG-5",
+        "title": "Filter design from measured response",
+        "description": "Derive minimum-phase correction filters from the averaged room response.",
+        "priority": 0,
+        "estimate": null,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000001",
+        "assigneeId": null,
+        "creatorId": "0000000a-0000-4000-8000-000000000002",
+        "projectId": "0000000e-0000-4000-8000-000000000001",
+        "cycleId": null,
+        "parentId": "00000010-0000-4000-8000-000000000001",
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000004"
+        ],
+        "sortOrder": -5,
+        "createdAt": "2026-07-02T08:45:00.000Z",
+        "updatedAt": "2026-07-02T08:45:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-5",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000006",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000006",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 6,
+        "identifier": "ENG-6",
+        "title": "Latency regression after buffer change",
+        "description": "Round-trip latency went from 9 ms to 14 ms after the ring buffer refactor.",
+        "priority": 2,
+        "estimate": 3,
+        "dueDate": "2026-09-10",
+        "stateId": "0000000c-0000-4000-8000-000000000004",
+        "assigneeId": "0000000a-0000-4000-8000-000000000003",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": "0000000e-0000-4000-8000-000000000001",
+        "cycleId": "0000000f-0000-4000-8000-000000000002",
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000001",
+          "0000000d-0000-4000-8000-000000000004"
+        ],
+        "sortOrder": -6,
+        "createdAt": "2026-08-28T11:00:00.000Z",
+        "updatedAt": "2026-09-11T14:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-09-09T10:00:00.000Z",
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-6",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000007",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000007",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 7,
+        "identifier": "ENG-7",
+        "title": "Document the DSP graph format",
+        "description": "Write the reference for the node graph JSON so plugin authors can target it.",
+        "priority": 4,
+        "estimate": 2,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000002",
+        "assigneeId": "0000000a-0000-4000-8000-000000000005",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000003"
+        ],
+        "sortOrder": -7,
+        "createdAt": "2026-07-10T09:00:00.000Z",
+        "updatedAt": "2026-08-30T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-7",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000008",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000008",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 8,
+        "identifier": "ENG-8",
+        "title": "Crackle when switching sample rates",
+        "description": "Same root cause as the 96 kHz crackle.",
+        "priority": 2,
+        "estimate": null,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000007",
+        "assigneeId": "0000000a-0000-4000-8000-000000000006",
+        "creatorId": "0000000a-0000-4000-8000-000000000003",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [],
+        "sortOrder": -8,
+        "createdAt": "2026-07-14T12:00:00.000Z",
+        "updatedAt": "2026-07-20T12:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": "2026-07-20T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-8",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000008"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000009",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000009",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 9,
+        "identifier": "ENG-9",
+        "title": "Refactor plugin loader",
+        "description": "Split discovery from instantiation so the companion app can reuse it.",
+        "priority": 3,
+        "estimate": 5,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000001",
+        "assigneeId": "0000000a-0000-4000-8000-000000000003",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": "0000000e-0000-4000-8000-000000000002",
+        "cycleId": "0000000f-0000-4000-8000-000000000003",
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000005"
+        ],
+        "sortOrder": -9,
+        "createdAt": "2026-08-06T10:00:00.000Z",
+        "updatedAt": "2026-09-02T10:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-9",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000009"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-00000000000a",
+      "value": {
+        "id": "00000010-0000-4000-8000-00000000000a",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 10,
+        "identifier": "ENG-10",
+        "title": "Crossfade clicks when changing presets",
+        "description": "Audible click at the crossfade midpoint when switching EQ presets.",
+        "priority": 2,
+        "estimate": 1,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000002",
+        "assigneeId": null,
+        "creatorId": "0000000a-0000-4000-8000-000000000002",
+        "projectId": null,
+        "cycleId": "0000000f-0000-4000-8000-000000000002",
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000001"
+        ],
+        "sortOrder": -10,
+        "createdAt": "2026-08-20T15:00:00.000Z",
+        "updatedAt": "2026-09-07T08:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-10",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-00000000000a"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-00000000000b",
+      "value": {
+        "id": "00000010-0000-4000-8000-00000000000b",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 11,
+        "identifier": "ENG-11",
+        "title": "Support Dolby Atmos bed rendering",
+        "description": "Render 7.1.4 beds through the spatial engine.",
+        "priority": 3,
+        "estimate": 8,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000001",
+        "assigneeId": "0000000a-0000-4000-8000-000000000006",
+        "creatorId": "0000000a-0000-4000-8000-000000000006",
+        "projectId": "0000000e-0000-4000-8000-000000000001",
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000002"
+        ],
+        "sortOrder": -11,
+        "createdAt": "2026-08-26T09:30:00.000Z",
+        "updatedAt": "2026-08-26T09:30:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-11",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-00000000000b"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-00000000000c",
+      "value": {
+        "id": "00000010-0000-4000-8000-00000000000c",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 12,
+        "identifier": "ENG-12",
+        "title": "Flaky CI on ARM runners",
+        "description": "The audio unit tests time out roughly one run in five on the ARM pool.",
+        "priority": 1,
+        "estimate": 2,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000003",
+        "assigneeId": "0000000a-0000-4000-8000-000000000001",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": null,
+        "cycleId": "0000000f-0000-4000-8000-000000000002",
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000004"
+        ],
+        "sortOrder": -12,
+        "createdAt": "2026-09-13T10:00:00.000Z",
+        "updatedAt": "2026-09-14T07:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-09-13T11:00:00.000Z",
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-12",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-00000000000c"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-00000000000d",
+      "value": {
+        "id": "00000010-0000-4000-8000-00000000000d",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 13,
+        "identifier": "ENG-13",
+        "title": "Upgrade toolchain to LLVM 19",
+        "description": "Bump the compiler and fix the new warnings.",
+        "priority": 3,
+        "estimate": 5,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000002",
+        "assigneeId": "0000000a-0000-4000-8000-000000000001",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000003"
+        ],
+        "sortOrder": -13,
+        "createdAt": "2026-09-01T08:00:00.000Z",
+        "updatedAt": "2026-09-01T08:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-13",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-00000000000d"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-00000000000e",
+      "value": {
+        "id": "00000010-0000-4000-8000-00000000000e",
+        "teamId": "0000000b-0000-4000-8000-000000000001",
+        "number": 14,
+        "identifier": "ENG-14",
+        "title": "Investigate clipping report from beta users",
+        "description": "Several beta testers report clipping on loud passages with the limiter enabled.",
+        "priority": 2,
+        "estimate": null,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000002",
+        "assigneeId": "0000000a-0000-4000-8000-000000000002",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000001"
+        ],
+        "sortOrder": -14,
+        "createdAt": "2026-09-10T09:00:00.000Z",
+        "updatedAt": "2026-09-14T08:30:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "ENG-14",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-00000000000e"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-00000000000f",
+      "value": {
+        "id": "00000010-0000-4000-8000-00000000000f",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "number": 1,
+        "identifier": "MOB-1",
+        "title": "Offline playlists",
+        "description": "Download playlists for offline listening with background sync.",
+        "priority": 2,
+        "estimate": 5,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-00000000000a",
+        "assigneeId": "0000000a-0000-4000-8000-000000000004",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": "0000000e-0000-4000-8000-000000000002",
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000002",
+          "0000000d-0000-4000-8000-000000000007"
+        ],
+        "sortOrder": -1,
+        "createdAt": "2026-06-15T09:00:00.000Z",
+        "updatedAt": "2026-09-12T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-09-01T09:00:00.000Z",
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "MOB-1",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-00000000000f"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000010",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000010",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "number": 2,
+        "identifier": "MOB-2",
+        "title": "Android widget crashes on rotate",
+        "description": "The home-screen widget throws when the device rotates while playing.",
+        "priority": 1,
+        "estimate": 2,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000009",
+        "assigneeId": "0000000a-0000-4000-8000-000000000002",
+        "creatorId": "0000000a-0000-4000-8000-000000000004",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000001",
+          "0000000d-0000-4000-8000-000000000008"
+        ],
+        "sortOrder": -2,
+        "createdAt": "2026-07-08T09:00:00.000Z",
+        "updatedAt": "2026-09-06T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "MOB-2",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000010"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000011",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000011",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "number": 3,
+        "identifier": "MOB-3",
+        "title": "Dark mode contrast",
+        "description": "Secondary text falls below the contrast ratio in dark mode.",
+        "priority": 3,
+        "estimate": 1,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000008",
+        "assigneeId": null,
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000003"
+        ],
+        "sortOrder": -3,
+        "createdAt": "2026-07-22T09:00:00.000Z",
+        "updatedAt": "2026-07-22T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "MOB-3",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000011"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000012",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000012",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "number": 4,
+        "identifier": "MOB-4",
+        "title": "Bluetooth reconnect loop",
+        "description": "Reconnect attempts loop forever after the headphones sleep.",
+        "priority": 2,
+        "estimate": 3,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-00000000000b",
+        "assigneeId": "0000000a-0000-4000-8000-000000000002",
+        "creatorId": "0000000a-0000-4000-8000-000000000002",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000001"
+        ],
+        "sortOrder": -4,
+        "createdAt": "2026-07-30T09:00:00.000Z",
+        "updatedAt": "2026-08-18T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-08-05T09:00:00.000Z",
+        "completedAt": "2026-08-18T09:00:00.000Z",
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "MOB-4",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000012"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000013",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000013",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "number": 5,
+        "identifier": "MOB-5",
+        "title": "CarPlay now-playing art",
+        "description": "Show album art on the CarPlay now-playing screen.",
+        "priority": 4,
+        "estimate": 1,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000009",
+        "assigneeId": "0000000a-0000-4000-8000-000000000004",
+        "creatorId": "0000000a-0000-4000-8000-000000000004",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": "00000010-0000-4000-8000-00000000000f",
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000007"
+        ],
+        "sortOrder": -5,
+        "createdAt": "2026-08-12T09:00:00.000Z",
+        "updatedAt": "2026-08-12T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "MOB-5",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000013"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000014",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000014",
+        "teamId": "0000000b-0000-4000-8000-000000000002",
+        "number": 6,
+        "identifier": "MOB-6",
+        "title": "Crash on iOS 19 beta",
+        "description": "Fixed upstream in the beta 3 release; nothing to do on our side.",
+        "priority": 2,
+        "estimate": null,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-00000000000c",
+        "assigneeId": null,
+        "creatorId": "0000000a-0000-4000-8000-000000000004",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [
+          "0000000d-0000-4000-8000-000000000001"
+        ],
+        "sortOrder": -6,
+        "createdAt": "2026-08-25T09:00:00.000Z",
+        "updatedAt": "2026-09-03T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": "2026-09-03T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "MOB-6",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000014"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000015",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000015",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "number": 1,
+        "identifier": "SEC-1",
+        "title": "SOC 2 access review Q3",
+        "description": "Quarterly review of production access grants.",
+        "priority": 2,
+        "estimate": 3,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-000000000010",
+        "assigneeId": "0000000a-0000-4000-8000-000000000003",
+        "creatorId": "0000000a-0000-4000-8000-000000000001",
+        "projectId": "0000000e-0000-4000-8000-000000000003",
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [],
+        "sortOrder": -1,
+        "createdAt": "2026-08-01T09:00:00.000Z",
+        "updatedAt": "2026-09-09T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": "2026-08-15T09:00:00.000Z",
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "SEC-1",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000015"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000016",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000016",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "number": 2,
+        "identifier": "SEC-2",
+        "title": "Rotate signing keys",
+        "description": "Rotate the release signing keys before the audit window.",
+        "priority": 1,
+        "estimate": null,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-00000000000d",
+        "assigneeId": null,
+        "creatorId": "0000000a-0000-4000-8000-000000000003",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [],
+        "sortOrder": -2,
+        "createdAt": "2026-09-11T09:00:00.000Z",
+        "updatedAt": "2026-09-11T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "SEC-2",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000016"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000017",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000017",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "number": 3,
+        "identifier": "SEC-3",
+        "title": "Pen-test findings triage",
+        "description": "Walk through the external pen-test report and file follow-ups.",
+        "priority": 2,
+        "estimate": 2,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-00000000000f",
+        "assigneeId": "0000000a-0000-4000-8000-000000000001",
+        "creatorId": "0000000a-0000-4000-8000-000000000003",
+        "projectId": "0000000e-0000-4000-8000-000000000003",
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [],
+        "sortOrder": -3,
+        "createdAt": "2026-08-10T09:00:00.000Z",
+        "updatedAt": "2026-08-28T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "SEC-3",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000017"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000010-0000-4000-8000-000000000018",
+      "value": {
+        "id": "00000010-0000-4000-8000-000000000018",
+        "teamId": "0000000b-0000-4000-8000-000000000003",
+        "number": 4,
+        "identifier": "SEC-4",
+        "title": "Vendor questionnaire backlog",
+        "description": "Answer the outstanding vendor security questionnaires.",
+        "priority": 3,
+        "estimate": null,
+        "dueDate": null,
+        "stateId": "0000000c-0000-4000-8000-00000000000e",
+        "assigneeId": null,
+        "creatorId": "0000000a-0000-4000-8000-000000000003",
+        "projectId": null,
+        "cycleId": null,
+        "parentId": null,
+        "labelIds": [],
+        "sortOrder": -4,
+        "createdAt": "2026-08-20T09:00:00.000Z",
+        "updatedAt": "2026-08-20T09:00:00.000Z",
+        "archivedAt": null,
+        "startedAt": null,
+        "completedAt": null,
+        "canceledAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "issue-identifiers",
+      "rowId": "SEC-4",
+      "value": {
+        "issueId": "00000010-0000-4000-8000-000000000018"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000002/00000011-0000-4000-8000-000000000001",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000001",
+        "issueId": "00000010-0000-4000-8000-000000000002",
+        "userId": "0000000a-0000-4000-8000-000000000001",
+        "body": "Reproduced on the reference DAC at 96 kHz. Buffer underruns line up with the crackle.",
+        "parentId": null,
+        "createdAt": "2026-09-08T09:15:00.000Z",
+        "updatedAt": "2026-09-08T09:15:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000002/00000011-0000-4000-8000-000000000002",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000002",
+        "issueId": "00000010-0000-4000-8000-000000000002",
+        "userId": "0000000a-0000-4000-8000-000000000002",
+        "body": "Could this be the ring buffer refactor? @daniel to check the timings.",
+        "parentId": null,
+        "createdAt": "2026-09-08T10:05:00.000Z",
+        "updatedAt": "2026-09-08T10:05:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000002/00000011-0000-4000-8000-000000000003",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000003",
+        "issueId": "00000010-0000-4000-8000-000000000002",
+        "userId": "0000000a-0000-4000-8000-000000000006",
+        "body": "Bisected to the commit that changed `frames_per_period` to 256.",
+        "parentId": null,
+        "createdAt": "2026-09-09T08:40:00.000Z",
+        "updatedAt": "2026-09-09T08:40:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000002/00000011-0000-4000-8000-000000000004",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000004",
+        "issueId": "00000010-0000-4000-8000-000000000002",
+        "userId": "0000000a-0000-4000-8000-000000000003",
+        "body": "Same symptom on the Linux build, so it is not driver-specific.",
+        "parentId": null,
+        "createdAt": "2026-09-10T12:00:00.000Z",
+        "updatedAt": "2026-09-10T12:00:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000002/00000011-0000-4000-8000-000000000005",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000005",
+        "issueId": "00000010-0000-4000-8000-000000000002",
+        "userId": "0000000a-0000-4000-8000-000000000002",
+        "body": "Confirmed, the timings regress after that commit.",
+        "parentId": "00000011-0000-4000-8000-000000000002",
+        "createdAt": "2026-09-11T09:30:00.000Z",
+        "updatedAt": "2026-09-11T09:30:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000002/00000011-0000-4000-8000-000000000006",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000006",
+        "issueId": "00000010-0000-4000-8000-000000000002",
+        "userId": "0000000a-0000-4000-8000-000000000001",
+        "body": "Assigning to the current cycle; fix before the beta cut.",
+        "parentId": null,
+        "createdAt": "2026-09-13T16:20:00.000Z",
+        "updatedAt": "2026-09-13T16:20:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000007/00000011-0000-4000-8000-000000000007",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000007",
+        "issueId": "00000010-0000-4000-8000-000000000007",
+        "userId": "0000000a-0000-4000-8000-000000000001",
+        "body": "Start from the schema in `docs/graph.schema.json`.",
+        "parentId": null,
+        "createdAt": "2026-08-29T09:00:00.000Z",
+        "updatedAt": "2026-08-29T09:00:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000007/00000011-0000-4000-8000-000000000008",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000008",
+        "issueId": "00000010-0000-4000-8000-000000000007",
+        "userId": "0000000a-0000-4000-8000-000000000005",
+        "body": "I drafted an outline before leaving; it is in the shared drive.",
+        "parentId": null,
+        "createdAt": "2026-08-30T09:00:00.000Z",
+        "updatedAt": "2026-08-30T09:00:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-00000000000f/00000011-0000-4000-8000-000000000009",
+      "value": {
+        "id": "00000011-0000-4000-8000-000000000009",
+        "issueId": "00000010-0000-4000-8000-00000000000f",
+        "userId": "0000000a-0000-4000-8000-000000000004",
+        "body": "Background sync works on Wi-Fi; cellular still pauses downloads.",
+        "parentId": null,
+        "createdAt": "2026-09-11T02:00:00.000Z",
+        "updatedAt": "2026-09-11T02:00:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-00000000000f/00000011-0000-4000-8000-00000000000a",
+      "value": {
+        "id": "00000011-0000-4000-8000-00000000000a",
+        "issueId": "00000010-0000-4000-8000-00000000000f",
+        "userId": "0000000a-0000-4000-8000-000000000002",
+        "body": "Cellular downloads are gated by the data-saver setting, that is expected.",
+        "parentId": null,
+        "createdAt": "2026-09-12T09:00:00.000Z",
+        "updatedAt": "2026-09-12T09:00:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000015/00000011-0000-4000-8000-00000000000b",
+      "value": {
+        "id": "00000011-0000-4000-8000-00000000000b",
+        "issueId": "00000010-0000-4000-8000-000000000015",
+        "userId": "0000000a-0000-4000-8000-000000000003",
+        "body": "Exported the IAM report; three stale grants found so far.",
+        "parentId": null,
+        "createdAt": "2026-09-09T09:00:00.000Z",
+        "updatedAt": "2026-09-09T09:00:00.000Z",
+        "editedAt": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "linear",
+      "namespace": "comments",
+      "rowId": "00000010-0000-4000-8000-000000000010/00000011-0000-4000-8000-00000000000c",
+      "value": {
+        "id": "00000011-0000-4000-8000-00000000000c",
+        "issueId": "00000010-0000-4000-8000-000000000010",
+        "userId": "0000000a-0000-4000-8000-000000000002",
+        "body": "Stack trace points at the widget's state restoration.",
+        "parentId": null,
+        "createdAt": "2026-09-06T09:00:00.000Z",
+        "updatedAt": "2026-09-06T09:00:00.000Z",
+        "editedAt": null
+      }
+    }
+  ]
+}

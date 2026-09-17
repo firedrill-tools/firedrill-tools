@@ -1,0 +1,943 @@
+{
+  "schemaVersion": 1,
+  "id": "unified-many-workspaces",
+  "title": "With 102 workspaces an actor without a workspaceId attribute has no default workspace: every operation fails FAILED_PRECONDITION",
+  "targetId": "conformance-agent",
+  "scenarioId": "many-workspaces",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the many-workspaces flow against the synthetic Unified.to Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "connections-list-error-316",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-get-error-317",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-create-error-318",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-update-error-319",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-remove-error-320",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-error-321",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-get-error-322",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-error-323",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-update-error-324",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-remove-error-325",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-list-error-326",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-get-error-327",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-create-error-328",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-update-error-329",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-remove-error-330",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-list-error-331",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-get-error-332",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-create-error-333",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-update-error-334",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "deals-remove-error-335",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-list-error-336",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "pipelines.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "pipelines-get-error-337",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "pipelines.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-list-error-338",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "channels-get-error-339",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-list-error-340",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-get-error-341",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-create-error-342",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-update-error-343",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-remove-error-344",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-list-ok-345",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "connections-get-ok-346",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "connections-create-ok-347",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "connections-update-ok-348",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "connections-remove-ok-349",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "contacts-list-ok-350",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "contacts-get-ok-351",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "contacts-create-ok-352",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "contacts-update-ok-353",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "contacts-remove-ok-354",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "companies-list-ok-355",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "companies-get-ok-356",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "companies-create-ok-357",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "companies-update-ok-358",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "companies-remove-ok-359",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "deals-list-ok-360",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "deals-get-ok-361",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "deals-create-ok-362",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "deals-update-ok-363",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "deals-remove-ok-364",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "deals.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "pipelines-list-ok-365",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "pipelines.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "pipelines-get-ok-366",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "pipelines.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "channels-list-ok-367",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "channels-get-ok-368",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "channels.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "messages-list-ok-369",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "messages-get-ok-370",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "messages-create-ok-371",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "messages-update-ok-372",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "messages-remove-ok-373",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "workspaces-count-374",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "workspaces",
+      "comparison": {
+        "operator": "equals",
+        "value": 102
+      }
+    },
+    {
+      "id": "connections-count-375",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "connections",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "contacts-count-376",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "companies-count-377",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "companies",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "deals-count-378",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "deals",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "messages-count-379",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 20
+      }
+    }
+  ]
+}

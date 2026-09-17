@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-write-control",
+  "title": "writeControl: a batch pinned to a stale revision is refused and changes nothing; re-reading and retrying succeeds",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "miguel",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `write-control` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-batch-update-ok-equals-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "documents-batch-update-tool_error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-get-ok-greater_than_or_equal-3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-document-updated-equals-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-docs",
+        "eventId": "document.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "launch-revision-number",
+      "kind": "state.value",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "rowId": "1st00000000000000000000000000000000000000001",
+      "path": [
+        "headRevisionNumber"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    }
+  ]
+}

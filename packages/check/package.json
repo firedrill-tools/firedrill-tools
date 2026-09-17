@@ -1,0 +1,63 @@
+{
+  "name": "@firedrill-tools/tool-check",
+  "version": "0.1.1",
+  "description": "Synthetic Check payroll sandbox partner account (companies, workplaces, employees, earning rates, pay schedules, payrolls with preview/approve/reopen, payroll items; Check-shaped REST routes) Tool package for Firedrill",
+  "keywords": [
+    "firedrill",
+    "tool-pack",
+    "check",
+    "payroll",
+    "employees",
+    "pay-schedules",
+    "synthetic",
+    "testing",
+    "ai-agent"
+  ],
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "firedrill",
+    "test",
+    "firedrill.json",
+    "starter.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "firedrill": {
+    "layer": "tool-pack",
+    "tool": "firedrill/tools/check/check.tool.json",
+    "starter": "starter.json",
+    "lifecycle": "active",
+    "conformance": {
+      "schemaVersion": 1,
+      "project": "firedrill.json",
+      "suite": "conformance"
+    }
+  },
+  "scripts": {
+    "validate": "firedrill validate",
+    "test": "firedrill tool test check"
+  },
+  "devDependencies": {
+    "@firedrill-tools/cli": "0.1.0-rc.1",
+    "@firedrill-tools/tool-sdk": "0.1.0-rc.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firedrill-tools/firedrill-tools.git",
+    "directory": "packages/check"
+  },
+  "bugs": {
+    "url": "https://github.com/firedrill-tools/firedrill-tools/issues"
+  },
+  "homepage": "https://github.com/firedrill-tools/firedrill-tools/tree/main/packages/check#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}

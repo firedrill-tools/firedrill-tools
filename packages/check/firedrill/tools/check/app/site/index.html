@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Check Console (synthetic)</title>
+    <link rel="icon" type="image/png" href="./assets/check-favicon.png" />
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./components.css" />
+    <link rel="stylesheet" href="./detail.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#page">Skip to content</a>
+    <div class="shell" id="shell">
+      <aside class="side" id="side" aria-label="Main navigation">
+        <a class="side-brand" href="#/" aria-label="Check Console home">
+          <img class="brand-tile" src="./assets/check-icon.png" alt="" width="28" height="28" />
+          <img class="brand-mark" src="./assets/check-wordmark.svg" alt="Check" width="71" height="17" />
+          <span class="brand-sub">Console</span>
+        </a>
+        <button type="button" class="switcher" id="switcher" aria-haspopup="listbox" aria-expanded="false" aria-label="Switch company">
+          <span class="switcher-avatar" id="switcher-avatar">–</span>
+          <span class="switcher-text">
+            <span class="switcher-name" id="switcher-name">Loading…</span>
+            <span class="switcher-meta" id="switcher-meta">company</span>
+          </span>
+          <span data-icon="chevronDown" class="switcher-caret"></span>
+        </button>
+        <nav class="side-nav" aria-label="Sections">
+          <a class="nav-item" href="#/" data-route="home"><span data-icon="home"></span><span class="nav-label">Home</span></a>
+          <a class="nav-item" href="#/companies" data-route="companies"><span data-icon="building"></span><span class="nav-label">Companies</span></a>
+          <a class="nav-item" href="#/employees" data-route="employees"><span data-icon="people"></span><span class="nav-label">Employees</span></a>
+          <button type="button" class="nav-item" data-not-simulated="Contractors"><span data-icon="badge"></span><span class="nav-label">Contractors</span></button>
+          <a class="nav-item" href="#/payrolls" data-route="payrolls"><span data-icon="money"></span><span class="nav-label">Payrolls</span></a>
+          <a class="nav-item" href="#/workplaces" data-route="workplaces"><span data-icon="pin"></span><span class="nav-label">Workplaces</span></a>
+          <a class="nav-item" href="#/schedules" data-route="schedules"><span data-icon="calendar"></span><span class="nav-label">Pay schedules</span></a>
+          <button type="button" class="nav-item" data-not-simulated="Documents"><span data-icon="doc"></span><span class="nav-label">Documents</span></button>
+          <button type="button" class="nav-item" data-not-simulated="Taxes"><span data-icon="bank"></span><span class="nav-label">Taxes</span></button>
+        </nav>
+        <div class="side-bottom">
+          <button type="button" class="nav-item" data-not-simulated="Developers"><span data-icon="code"></span><span class="nav-label">Developers</span></button>
+          <button type="button" class="nav-item" data-not-simulated="Settings"><span data-icon="gear"></span><span class="nav-label">Settings</span></button>
+        </div>
+      </aside>
+      <div class="main">
+        <header class="topbar">
+          <button type="button" class="hamburger" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><span data-icon="menu"></span></button>
+          <div class="crumbs" id="crumbs"></div>
+          <h1 class="page-title" id="page-title">Home</h1>
+          <div class="topbar-right">
+            <span class="env-pill" id="env-pill" title="Synthetic sandbox: no money moves and no filings are made">Sandbox</span>
+            <span class="clock" id="clock" title="World time used for deadlines and “today”">—</span>
+            <button type="button" class="icon-btn" id="bell" aria-label="Notifications (not simulated)" data-not-simulated="Notifications"><span data-icon="bell"></span></button>
+            <button type="button" class="avatar-btn" id="avatar" aria-haspopup="menu" aria-expanded="false" aria-label="Account menu">·</button>
+          </div>
+        </header>
+        <main class="page" id="page" tabindex="-1"></main>
+      </div>
+    </div>
+    <div class="toast-host" id="toasts" aria-live="polite"></div>
+  </body>
+</html>

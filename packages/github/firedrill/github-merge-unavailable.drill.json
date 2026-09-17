@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "github-merge-unavailable",
+  "title": "Merging and file commits answer 503 while comments keep working",
+  "targetId": "conformance-agent",
+  "scenarioId": "merge-unavailable",
+  "actorId": "maintainer",
+  "task": {
+    "instruction": "Run the merge-unavailable conformance flow against the synthetic GitHub Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "merge-unavailable",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.merge"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "file-unavailable",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.create-or-update-file"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comment-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.add-comment"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pull-45-unmerged",
+      "kind": "state.value",
+      "packageId": "github",
+      "namespace": "pulls",
+      "rowId": "acme-robotics/telemetry-service#00045",
+      "path": [
+        "merged"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": false
+      }
+    },
+    {
+      "id": "commits",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "commits",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "comments",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    }
+  ]
+}

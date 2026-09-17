@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "tiny-scan",
+  "title": "meta.limits.maxScanRows set below the number of documents: whole-collection reads refuse rather than return a truncated page; point reads keep working.",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-docs",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 8
+      }
+    }
+  ]
+}

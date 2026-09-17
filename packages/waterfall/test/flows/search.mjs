@@ -1,0 +1,83 @@
+// Search flow (baseline scenario, master key).
+// search.contact.run ok 13 / tool_error 12; search.contact.get ok 1 / tool_error 3; search.company.run ok 3 / tool_error 3 (page_size 251 is
+// refused by input validation before the handler);
+// search.company.get ok 1 / tool_error 3; jobs 23; job.launched 16, job.completed 16;
+// usage/master/2026-09-16: search_contact_requests 13, search_contact_found 29, search_company_requests 3, search_company_found 5;
+// balance 250 − 29 × 0.04 − 5 × 0.05 = 248.59 USD.
+const UNKNOWN = "0badc0de-0000-4000-8000-000000000000";
+
+export async function search({ api, assert, SEED }) {
+  const names = (result) => result.output.persons.map((person) => person.first_name);
+  const contact = async (body) => (await api("POST", "/v1/search/contact", { body })).body;
+  const northwind = { domain: "northwind.test" };
+  const byRole = await contact({ ...northwind, departments: ["Sales"], seniorities: ["director"] });
+  assert.equal(byRole.status, "SUCCEEDED");
+  assert.deepEqual(names(byRole), ["Zoë", "Farid"]);
+  assert.equal(byRole.output.persons[0].professional_email, null, "search never returns contact details");
+  assert.equal(byRole.output.persons[0].title, "Head of Sales — EMEA");
+  assert.equal(byRole.output.usage.total_usd, 0.08);
+  assert.deepEqual(names(await contact({ ...northwind, included_names: ["ada", "bram"] })), ["Ada", "Bram"]);
+  assert.deepEqual(names(await contact({ ...northwind, included_names: ["ada", "bram"], excluded_names: ["Lindqvist"] })), ["Bram"]);
+  assert.deepEqual(names(await contact({ ...northwind, title_lists: [{ name: "ics", titles: ["Account Executive", "software engineer"] }] })), ["Diego", "Ines"]);
+  assert.deepEqual(names(await contact({ ...northwind, title_filters: [{ name: "heads", filter: '"Head of" AND NOT Marketing' }] })), ["Zoë", "Farid", "Maya"]);
+  assert.deepEqual(names(await contact({ ...northwind, title_filters: [{ name: "vps", filter: '(VP OR "Vice President") AND Sales' }] })), ["Carmen"]);
+  assert.deepEqual(names(await contact({ ...northwind, experience_start_date_new_hire: "2026-08-01" })), ["Elin"]);
+  assert.deepEqual(names(await contact({ ...northwind, experience_start_date: "2026-01-01" })), ["Elin", "Luca", "Maya"]);
+  const persona = { company_industries: ["Software Development"], company_location_countries: ["United States"], company_employee_ranges: ["201-500"], title_filters: [{ name: "staff", filter: "NOT Intern" }], page_size: 10 };
+  const page1 = await contact({ ...persona, page_number: 1 });
+  assert.deepEqual(names(page1), ["Ada", "Bram", "Zoë", "Carmen", "Diego", "Elin", "Farid", "Grace", "Hiro", "Ines"]);
+  assert.equal(page1.output.usage.total_usd, 0.4);
+  assert.deepEqual(names(await contact({ ...persona, page_number: 2 })), ["Jonas", "Keiko", "Maya"]);
+  const page3 = await contact({ ...persona, page_number: 3 });
+  assert.deepEqual(page3.output.persons, []);
+  assert.equal(page3.output.usage.total_usd, 0);
+  const single = await contact({ contact_linkedin: "https://www.linkedin.com/in/ada-lindqvist/", page_size: 5 });
+  assert.equal(single.output.persons.length, 1);
+  assert.equal(single.output.persons[0].id, SEED.PID["ada-lindqvist"]);
+  const both = await api("POST", "/v1/search/contact", { body: { contact_linkedin: "ada-lindqvist", domain: "northwind.test" }, status: 400, code: "VALIDATION_BAD_REQUEST" });
+  assert.deepEqual(both.body.error, ["request: Value error, contact_linkedin cannot be set together with other fields"]);
+  await api("POST", "/v1/search/contact", { body: { company_industries: ["Software Development"] }, status: 400, code: "VALIDATION_MISSING_TITLE_FILTERS" });
+  const filterError = (filter, code) => api("POST", "/v1/search/contact", { body: { ...northwind, title_filters: [{ name: "f", filter }] }, status: 400, code });
+  await filterError('"Head of" AND', "VALIDATION_BAD_TITLE_FILTER_MISSING_STRING");
+  await filterError('("Head of"', "VALIDATION_BAD_TITLE_FILTER_MISSING_RIGHT_PARENTHESIS");
+  await filterError('"Head of")', "VALIDATION_BAD_TITLE_FILTER_EXTRA_RIGHT_PARENTHESIS");
+  await filterError('"Head of', "VALIDATION_BAD_TITLE_FILTER");
+  await api("POST", "/v1/search/contact", { body: { ...northwind, seniorities: ["Boss"] }, status: 400, code: "VALIDATION_BAD_REQUEST" });
+  const noMode = await api("POST", "/v1/search/contact", { body: {}, status: 400, code: "VALIDATION_BAD_REQUEST" });
+  assert.deepEqual(noMode.body.error, ["request: Value error, one search mode is required"]);
+  await api("POST", "/v1/search/contact", { body: null, status: 400, code: "VALIDATION_MISSING_BODY" });
+  await api("POST", "/v1/search/contact", { body: { domain: "gmail.com" }, status: 400, code: "VALIDATION_BAD_DOMAIN_EMAIL_PROVIDER" });
+  await api("POST", "/v1/search/contact", { body: { domain: "facebook.com" }, status: 400, code: "VALIDATION_BAD_DOMAIN_SOCIAL_MEDIA" });
+  await api("POST", "/v1/search/contact", { body: { domain: "??" }, status: 400, code: "VALIDATION_BAD_DOMAIN" });
+  const unknownCompany = await contact({ domain: "unknown.test" });
+  assert.deepEqual(unknownCompany.output.persons, []);
+  const stored = (await api("GET", `/v1/search/contact?job_id=${page1.input.task.job_id}`)).body;
+  assert.deepEqual(names(stored), names(page1));
+  assert.equal(stored.output.usage.total_usd, 0.4);
+  await api("GET", "/v1/search/contact?job_id=nope", { status: 400, code: "VALIDATION_BAD_JOB_ID" });
+  await api("GET", "/v1/search/contact", { status: 400, code: "VALIDATION_MISSING_JOB_ID_PARAMETER" });
+  await api("GET", `/v1/search/contact?job_id=${UNKNOWN}`, { status: 404, code: "NOT_FOUND_JOB_NOT_FOUND" });
+
+  const company = async (body) => (await api("POST", "/v1/search/company", { body })).body;
+  const companyNames = (result) => result.output.companies.map((item) => item.name);
+  const bySize = await company({ industries: ["Software Development"], sizes: ["201-500", "1-10"] });
+  assert.deepEqual(companyNames(bySize), ["Northwind Labs", "Litware"]);
+  assert.equal(bySize.output.usage.total_usd, 0.1);
+  assert.equal(bySize.output.companies[0].catch_all, undefined);
+  assert.deepEqual(companyNames(await company({ location_countries: ["germany"] })), ["Contoso Freight"]);
+  assert.deepEqual(companyNames(await company({ industries: ["Software Development"], page_size: 2, page_number: 2 })), ["Litware", "Proseware"]);
+  const empty = await api("POST", "/v1/search/company", { body: {}, status: 400, code: "VALIDATION_BAD_REQUEST" });
+  assert.match(empty.body.error[0], /at least one of industries/);
+  await api("POST", "/v1/search/company", { body: { industries: ["Software Development"], page_size: 251 }, status: 400, code: "VALIDATION_BAD_REQUEST" });
+  await api("POST", "/v1/search/company", { body: { sizes: ["huge"] }, status: 400, code: "VALIDATION_BAD_REQUEST" });
+  await api("POST", "/v1/search/company", { body: null, status: 400, code: "VALIDATION_MISSING_BODY" });
+  const storedCompany = (await api("GET", `/v1/search/company?job_id=${bySize.input.task.job_id}`)).body;
+  assert.deepEqual(companyNames(storedCompany), ["Northwind Labs", "Litware"]);
+  await api("GET", `/v1/search/company?job_id=${UNKNOWN}`, { status: 404, code: "NOT_FOUND_JOB_NOT_FOUND" });
+  await api("GET", "/v1/search/company", { status: 400, code: "VALIDATION_MISSING_JOB_ID_PARAMETER" });
+  await api("GET", "/v1/search/company?job_id=", { status: 400, code: "VALIDATION_BAD_JOB_ID" });
+  const account = (await api("GET", "/v2/account")).body;
+  assert.equal(account.key_usage.search_contact_found, 29);
+  assert.equal(account.key_usage.search_company_found, 5);
+  assert.equal(account.balance_remaining_usd, 248.59);
+}

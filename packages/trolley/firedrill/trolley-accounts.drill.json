@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "id": "trolley-accounts",
+  "title": "Recipient accounts: list, get, create per type, primary switching, immutable fields, disable",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the accounts conformance flow against the synthetic Trolley Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "recipient-accounts-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-get-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-update-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "recipient-accounts-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "recipient_accounts.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "maya-status",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-0000000000000000000001",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "active"
+      }
+    },
+    {
+      "id": "maya-new-account-disabled",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "recipient_accounts",
+      "rowId": "R-0000000000000000000001:A-00000000000000000000G8",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "disabled"
+      }
+    },
+    {
+      "id": "harper-active",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "recipients",
+      "rowId": "R-000000000000000000000A",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "active"
+      }
+    }
+  ]
+}

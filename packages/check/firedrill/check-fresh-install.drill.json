@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "check-fresh-install",
+  "title": "An actor without attributes sees every seeded company and can run payroll",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the fresh-install conformance flow against the synthetic Check Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "employees-list-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "employees.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-list-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-preview-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.preview"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "fresh-preview-recorded",
+      "kind": "state.value",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_9KwRxHvvOUypb6MK3MPW",
+      "path": [
+        "preview",
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "succeeded"
+      }
+    }
+  ]
+}

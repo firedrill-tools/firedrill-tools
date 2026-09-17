@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "id": "hubspot-size-bounds",
+  "title": "Property values are capped at 65,536 characters, wildcard search stays linear with a work budget, and list, search and batch responses stay under 1 MiB",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "rep",
+  "task": {
+    "instruction": "Run the size-bounds conformance flow against the synthetic HubSpot Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "objects-create-rejected",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "objects-batch-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "objects-batch-create-rejected",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-search-rejected",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "objects-list-paged",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "objects-batch-read-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-read"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-batch-read-too-large",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.batch-read"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "long-contacts-stored",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 100
+      }
+    },
+    {
+      "id": "created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "hubspot",
+        "eventId": "object.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 100
+      }
+    }
+  ]
+}

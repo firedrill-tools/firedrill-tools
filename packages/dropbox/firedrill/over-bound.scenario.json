@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "over-bound",
+  "title": "meta/limits caps each account at 5 entry rows, below the starter data: index-reading operations answer too_many_files",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "dropbox",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "entries": 5
+      }
+    }
+  ]
+}

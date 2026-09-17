@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "state-bound",
+  "title": "Worlds past the 10,000-row scan bound: calendar list, calendar delete, event patch and move answer 400 failedPrecondition (tool overrides stand in for a seeded world of that size)",
+  "toolOverrides": [
+    {
+      "id": "calendar-list-scan-bound",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendar-list.list"
+      },
+      "outcome": {
+        "kind": "error",
+        "code": "FAILED_PRECONDITION",
+        "message": "Scan bound of 10000 rows exceeded in calendar-list."
+      }
+    },
+    {
+      "id": "calendar-delete-scan-bound",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendars.delete"
+      },
+      "outcome": {
+        "kind": "error",
+        "code": "FAILED_PRECONDITION",
+        "message": "Scan bound of 10000 rows exceeded in events."
+      }
+    },
+    {
+      "id": "event-patch-scan-bound",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.patch"
+      },
+      "outcome": {
+        "kind": "error",
+        "code": "FAILED_PRECONDITION",
+        "message": "Scan bound of 10000 rows exceeded in events."
+      }
+    },
+    {
+      "id": "event-move-scan-bound",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.move"
+      },
+      "outcome": {
+        "kind": "error",
+        "code": "FAILED_PRECONDITION",
+        "message": "Scan bound of 10000 rows exceeded in events."
+      }
+    }
+  ]
+}

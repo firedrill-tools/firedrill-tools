@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "id": "notion-trash-and-restore",
+  "title": "Trash a page subtree, watch it leave search, restore it, restore the seeded trashed page, reject moves into the trash",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the trash-and-restore conformance flow against the synthetic Notion Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "pages-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "pages-retrieve-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.retrieve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "workspace-trash-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "workspace.trash"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "trash-page-size-rejected",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "workspace.trash"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "trashed-edit-rejected",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "move-into-trash-rejected",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "notion",
+        "operationId": "pages.move"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "meeting-notes-restored",
+      "kind": "state.value",
+      "packageId": "notion",
+      "namespace": "pages",
+      "rowId": "fd000000-0000-4000-8000-000200000005",
+      "path": [
+        "in_trash"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": false
+      }
+    },
+    {
+      "id": "weekly-sync-restored",
+      "kind": "state.value",
+      "packageId": "notion",
+      "namespace": "pages",
+      "rowId": "fd000000-0000-4000-8000-000200000006",
+      "path": [
+        "in_trash"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": false
+      }
+    },
+    {
+      "id": "roadmap-restored",
+      "kind": "state.value",
+      "packageId": "notion",
+      "namespace": "pages",
+      "rowId": "fd000000-0000-4000-8000-000200000009",
+      "path": [
+        "in_trash"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": false
+      }
+    },
+    {
+      "id": "page-deleted-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "page.deleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "page-undeleted-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "notion",
+        "eventId": "page.undeleted"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

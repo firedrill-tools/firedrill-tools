@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Documents | Documenso (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/documenso-logo-icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles-table.css" />
+    <link rel="stylesheet" href="./styles-document.css" />
+    <link rel="stylesheet" href="./styles-overlay.css" />
+    <link rel="stylesheet" href="./styles-editor.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="app-header" id="app-header">
+      <div class="header-inner">
+        <a class="header-logo" href="#/documents" aria-label="Documenso home"><img src="./assets/documenso-logo.svg" alt="Documenso" width="169" height="24" /></a>
+        <nav class="header-nav" aria-label="Main">
+          <div class="nav-links">
+            <a href="#/documents" id="nav-documents" class="nav-link">Documents</a>
+            <a href="#/templates" id="nav-templates" class="nav-link">Templates</a>
+          </div>
+          <button type="button" class="btn btn-outline command-trigger" id="command-trigger" aria-label="Search documents and templates">
+            <span class="command-left"><span data-icon="search" class="command-ic"></span>Search</span>
+            <span class="kbd">⌘+K</span>
+          </button>
+        </nav>
+        <a class="btn btn-outline header-inbox" href="#/documents?status=INBOX" id="header-inbox" aria-label="Inbox" title="Inbox">
+          <span data-icon="inbox"></span>
+          <span class="inbox-badge" id="inbox-badge" hidden></span>
+        </a>
+        <button type="button" class="org-switcher" id="org-switcher" aria-haspopup="menu" aria-expanded="false" aria-label="Switch team or open account menu">
+          <span class="avatar avatar-org" id="org-avatar" aria-hidden="true">?</span>
+          <span class="org-text"><span class="org-name" id="org-name">Loading…</span><span class="org-sub" id="org-sub"></span></span>
+          <span data-icon="chevronUpDown" class="org-chevron"></span>
+        </button>
+      </div>
+    </header>
+    <div class="banner" id="banner" hidden role="alert"></div>
+    <main id="main" class="app-main" tabindex="-1">
+      <div class="page-loading" id="boot">
+        <span data-icon="loader" class="spin"></span>
+      </div>
+    </main>
+    <footer class="app-footer" id="app-footer">
+      <span>Synthetic Documenso workspace served by Firedrill. No e-mail is sent and no PDF is sealed.</span>
+    </footer>
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "datadog-intake-rate-limited",
+  "title": "Metric intake answers 429 with x-ratelimit headers and writes nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "intake-rate-limited",
+  "actorId": "standard",
+  "task": {
+    "instruction": "Run the intake-rate-limited flow against the synthetic Datadog Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "metrics-submit-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "datadog",
+        "operationId": "metrics.submit"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "points-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "metric-points",
+      "comparison": {
+        "operator": "equals",
+        "value": 26
+      }
+    },
+    {
+      "id": "no-state-changes",
+      "kind": "event.count",
+      "event": {
+        "packageId": "datadog",
+        "eventId": "monitor.state_changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "events-count",
+      "kind": "state.count",
+      "packageId": "datadog",
+      "namespace": "events",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    }
+  ]
+}

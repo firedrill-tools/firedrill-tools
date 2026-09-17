@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "id": "sheets-grant-denied",
+  "title": "An actor holding read grants only is refused by the framework on every write, and the world is untouched",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "reader-grants",
+  "task": {
+    "instruction": "Run the google-sheets conformance flow `grant-denied` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "values-update-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "values-update-formulas-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.update-formulas"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "permissions-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "values-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "state-permissions-equals-12",
+      "kind": "state.count",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    }
+  ]
+}

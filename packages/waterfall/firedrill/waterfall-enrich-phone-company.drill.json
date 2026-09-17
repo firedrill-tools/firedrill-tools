@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "id": "waterfall-enrich-phone-company",
+  "title": "Phone and company enrichment: phones found and missing, company by domain/linkedin/name, misses, kind mismatch, seeded terminal statuses",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "master",
+  "task": {
+    "instruction": "Run the enrich-phone-company flow against the synthetic Waterfall Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "enrichment-phone-launch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.phone.launch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "enrichment-phone-launch-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.phone.launch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "enrichment-phone-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.phone.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "enrichment-phone-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.phone.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "enrichment-company-launch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.company.launch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "enrichment-company-launch-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.company.launch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "enrichment-company-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.company.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    },
+    {
+      "id": "enrichment-company-get-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "enrichment.company.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "search-contact-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.contact.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "jobs-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    },
+    {
+      "id": "job-launched-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "job.launched"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "job-completed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "waterfall",
+        "eventId": "job.completed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "balance",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "meta",
+      "rowId": "account",
+      "path": [
+        "balance_remaining_micros"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 249060000
+      }
+    },
+    {
+      "id": "phones-billed",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-16",
+      "path": [
+        "enrichment_phone_phones"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "phone-job-completed",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "jobs",
+      "rowId": "00000004-0000-4000-8000-000000000007",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "SUCCEEDED"
+      }
+    },
+    {
+      "id": "companies-billed",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000001/2026-09-16",
+      "path": [
+        "enrichment_company_companies"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,6114 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "ui": {
+    "root": "app/site",
+    "entry": "index.html"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "slack",
+    "version": "0.1.0",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "conversations",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "is_channel",
+            "is_group",
+            "is_im",
+            "is_mpim",
+            "is_private",
+            "is_archived",
+            "is_general",
+            "created",
+            "creator",
+            "topic",
+            "purpose",
+            "name_normalized",
+            "updated"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "is_channel": {
+              "type": "boolean"
+            },
+            "is_group": {
+              "type": "boolean"
+            },
+            "is_im": {
+              "type": "boolean"
+            },
+            "is_mpim": {
+              "type": "boolean"
+            },
+            "is_private": {
+              "type": "boolean"
+            },
+            "is_archived": {
+              "type": "boolean"
+            },
+            "is_general": {
+              "type": "boolean"
+            },
+            "created": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "creator": {
+              "type": "string",
+              "maxLength": 16
+            },
+            "user": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "topic": {
+              "type": "object",
+              "required": [
+                "value",
+                "creator",
+                "last_set"
+              ],
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 250
+                },
+                "creator": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "last_set": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "purpose": {
+              "type": "object",
+              "required": [
+                "value",
+                "creator",
+                "last_set"
+              ],
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 250
+                },
+                "creator": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "last_set": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "name_normalized": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "updated": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Public/private channels, IMs and group DMs keyed by conversation id. is_member and num_members are computed per actor, never stored."
+      },
+      {
+        "namespace": "memberships",
+        "schema": {
+          "type": "object",
+          "required": [
+            "channel",
+            "user",
+            "joined"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "user": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "joined": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "invited_by": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "One row per (conversation, member) keyed \"<channelId>:<userId>\"."
+      },
+      {
+        "namespace": "messages",
+        "schema": {
+          "type": "object",
+          "required": [
+            "channel",
+            "ts",
+            "type",
+            "user",
+            "text",
+            "reactions",
+            "permalink",
+            "team"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "type": {
+              "const": "message"
+            },
+            "subtype": {
+              "type": "string",
+              "enum": [
+                "bot_message",
+                "thread_broadcast",
+                "tombstone",
+                "channel_join"
+              ]
+            },
+            "user": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "bot_id": {
+              "type": "string",
+              "pattern": "^B[A-Z0-9]{8,10}$"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 40000
+            },
+            "blocks": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 50
+            },
+            "thread_ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "reply_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "reply_users": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^U[A-Z0-9]{8,10}$"
+              },
+              "maxItems": 50
+            },
+            "reply_users_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "latest_reply": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "edited": {
+              "type": "object",
+              "required": [
+                "user",
+                "ts"
+              ],
+              "properties": {
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "ts": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "reactions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "users",
+                  "count"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9_+-]{1,100}$"
+                  },
+                  "users": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^U[A-Z0-9]{8,10}$"
+                    },
+                    "maxItems": 1000
+                  },
+                  "count": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 100
+            },
+            "pinned_to": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[CD][A-Z0-9]{8,10}$"
+              },
+              "maxItems": 10
+            },
+            "permalink": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "team": {
+              "type": "string",
+              "pattern": "^T[A-Z0-9]{8,10}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Messages keyed \"<channelId>:<ts>\" so a prefix scan yields one conversation in ts order. Replies carry thread_ts; a parent with replies carries thread_ts equal to its own ts."
+      },
+      {
+        "namespace": "pins",
+        "schema": {
+          "type": "object",
+          "required": [
+            "channel",
+            "message_ts",
+            "created",
+            "created_by"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "message_ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "created": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "created_by": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Pinned messages keyed \"<channelId>:<ts>\"; the message's pinned_to is kept in sync."
+      },
+      {
+        "namespace": "users",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "team_id",
+            "name",
+            "real_name",
+            "deleted",
+            "is_bot",
+            "is_admin",
+            "is_owner",
+            "tz",
+            "tz_label",
+            "tz_offset",
+            "updated",
+            "profile"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "team_id": {
+              "type": "string",
+              "pattern": "^T[A-Z0-9]{8,10}$"
+            },
+            "name": {
+              "type": "string",
+              "pattern": "^[a-z0-9._-]{1,21}$"
+            },
+            "real_name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "deleted": {
+              "type": "boolean"
+            },
+            "is_bot": {
+              "type": "boolean"
+            },
+            "is_admin": {
+              "type": "boolean"
+            },
+            "is_owner": {
+              "type": "boolean"
+            },
+            "tz": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "tz_label": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "tz_offset": {
+              "type": "integer"
+            },
+            "updated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "bot_id": {
+              "type": "string",
+              "pattern": "^B[A-Z0-9]{8,10}$"
+            },
+            "profile": {
+              "type": "object",
+              "required": [
+                "real_name",
+                "display_name",
+                "first_name",
+                "last_name",
+                "title",
+                "status_text",
+                "status_emoji"
+              ],
+              "properties": {
+                "real_name": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "display_name": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "first_name": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "last_name": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "title": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                "phone": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "status_text": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "status_emoji": {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                "image_24": {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                "image_72": {
+                  "type": "string",
+                  "maxLength": 512
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Workspace members keyed by user id; read-only through the API in this version."
+      },
+      {
+        "namespace": "workspace",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "domain",
+            "url",
+            "id_sequence",
+            "message_sequence"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^T[A-Z0-9]{8,10}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "domain": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]{1,21}$"
+            },
+            "url": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "id_sequence": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "message_sequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999999,
+              "description": "Six-digit ts fraction of the last message allocated in message_second; restarts at 0 in every new virtual second (at most 999,999 timestamps per second, then chat.postMessage, chat.reply, conversations.join and conversations.invite fail with TOO_MANY_ROWS)."
+            },
+            "message_second": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Virtual epoch second the current message_sequence belongs to. Absent in authored data: the first allocation sets it and restarts the sequence."
+            },
+            "limits": {
+              "type": "object",
+              "description": "Optional row bounds this synthetic workspace serves (defaults: users 1000, conversations 1000, members 1000 per conversation, messages 10000 per conversation, pins 100 per conversation, response_bytes 900000 per list or read response). A read that finds more rows fails with TOO_MANY_ROWS; pins.add refuses to exceed pins. Lists and reads size each page to response_bytes of UTF-8 encoded JSON and return a next cursor; one item that alone exceeds it fails with response_too_large (users, conversations and member ids with too_many_rows).",
+              "properties": {
+                "users": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                },
+                "conversations": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                },
+                "members": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                },
+                "messages": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                },
+                "pins": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                },
+                "response_bytes": {
+                  "type": "integer",
+                  "minimum": 1024,
+                  "maximum": 900000
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "The single workspace row (rowId \"team\"): identity, literal url, the counters that feed generated ids and ts values, and optional row bounds."
+      }
+    ],
+    "operations": [
+      {
+        "id": "auth.test",
+        "description": "Identify the workspace member the token acts as (Slack auth.test).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "url",
+            "team",
+            "user",
+            "team_id",
+            "user_id",
+            "is_enterprise_install"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "url": {
+              "type": "string"
+            },
+            "team": {
+              "type": "string"
+            },
+            "user": {
+              "type": "string"
+            },
+            "team_id": {
+              "type": "string",
+              "pattern": "^T[A-Z0-9]{8,10}$"
+            },
+            "user_id": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "bot_id": {
+              "type": "string",
+              "pattern": "^B[A-Z0-9]{8,10}$"
+            },
+            "is_enterprise_install": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_AUTH"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "chat.delete",
+        "description": "Delete the acting member's own message, or anyone's as an admin; a parent with replies becomes a tombstone (Slack chat.delete).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "ts"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "ts": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "as_user": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel",
+            "ts"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CANT_DELETE_MESSAGE",
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "IS_ARCHIVED",
+          "MESSAGE_NOT_FOUND",
+          "NOT_IN_CHANNEL",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "chat.post-message",
+        "description": "Post a message, optionally into a thread, to a conversation the member belongs to (Slack chat.postMessage). Never leaves the world.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 40000
+            },
+            "blocks": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "maxItems": 50
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1000000
+                }
+              ],
+              "description": "Block Kit blocks: an array (canonical and MCP calls) or the JSON-encoded array the Web API form carries. At most 50 blocks, each an object with a string type, nesting at most 32 levels and encoding to at most 100 KB; stored and echoed back, never rendered. A string that is not JSON fails with invalid_blocks_format, other shapes with invalid_blocks."
+            },
+            "thread_ts": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "reply_broadcast": {
+              "type": "boolean"
+            },
+            "mrkdwn": {
+              "type": "boolean"
+            },
+            "unfurl_links": {
+              "type": "boolean"
+            },
+            "unfurl_media": {
+              "type": "boolean"
+            },
+            "link_names": {
+              "type": "boolean"
+            },
+            "parse": {
+              "type": "string",
+              "maxLength": 16
+            },
+            "username": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "icon_emoji": {
+              "type": "string",
+              "maxLength": 120
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel",
+            "ts",
+            "message"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "message": {
+              "type": "object",
+              "required": [
+                "ts",
+                "type",
+                "user",
+                "text",
+                "team"
+              ],
+              "properties": {
+                "channel": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "ts": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "type": {
+                  "const": "message"
+                },
+                "subtype": {
+                  "type": "string",
+                  "enum": [
+                    "bot_message",
+                    "thread_broadcast",
+                    "tombstone",
+                    "channel_join"
+                  ]
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "bot_id": {
+                  "type": "string",
+                  "pattern": "^B[A-Z0-9]{8,10}$"
+                },
+                "text": {
+                  "type": "string",
+                  "maxLength": 40000
+                },
+                "blocks": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "maxItems": 50
+                },
+                "thread_ts": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "reply_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "reply_users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^U[A-Z0-9]{8,10}$"
+                  },
+                  "maxItems": 50
+                },
+                "reply_users_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "latest_reply": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "edited": {
+                  "type": "object",
+                  "required": [
+                    "user",
+                    "ts"
+                  ],
+                  "properties": {
+                    "user": {
+                      "type": "string",
+                      "pattern": "^U[A-Z0-9]{8,10}$"
+                    },
+                    "ts": {
+                      "type": "string",
+                      "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "reactions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "users",
+                      "count"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_+-]{1,100}$"
+                      },
+                      "users": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^U[A-Z0-9]{8,10}$"
+                        },
+                        "maxItems": 1000
+                      },
+                      "count": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 100
+                },
+                "pinned_to": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[CD][A-Z0-9]{8,10}$"
+                  },
+                  "maxItems": 10
+                },
+                "permalink": {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                "team": {
+                  "type": "string",
+                  "pattern": "^T[A-Z0-9]{8,10}$"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_BLOCKS",
+          "INVALID_BLOCKS_FORMAT",
+          "IS_ARCHIVED",
+          "NOT_IN_CHANNEL",
+          "NO_TEXT",
+          "RATELIMITED",
+          "THREAD_NOT_FOUND",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "slack_post_message",
+          "description": "Post a new message to a Slack channel"
+        }
+      },
+      {
+        "id": "chat.reply",
+        "description": "Reply in a thread (the reference MCP server's slack_reply_to_thread contract; over HTTP use chat.postMessage with thread_ts).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "thread_ts",
+            "text"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "thread_ts": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 40000
+            },
+            "blocks": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "maxItems": 50
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1000000
+                }
+              ],
+              "description": "Block Kit blocks: an array (canonical and MCP calls) or the JSON-encoded array the Web API form carries. At most 50 blocks, each an object with a string type, nesting at most 32 levels and encoding to at most 100 KB; stored and echoed back, never rendered. A string that is not JSON fails with invalid_blocks_format, other shapes with invalid_blocks."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel",
+            "ts",
+            "message"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "message": {
+              "type": "object",
+              "required": [
+                "ts",
+                "type",
+                "user",
+                "text",
+                "team"
+              ],
+              "properties": {
+                "channel": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "ts": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "type": {
+                  "const": "message"
+                },
+                "subtype": {
+                  "type": "string",
+                  "enum": [
+                    "bot_message",
+                    "thread_broadcast",
+                    "tombstone",
+                    "channel_join"
+                  ]
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "bot_id": {
+                  "type": "string",
+                  "pattern": "^B[A-Z0-9]{8,10}$"
+                },
+                "text": {
+                  "type": "string",
+                  "maxLength": 40000
+                },
+                "blocks": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "maxItems": 50
+                },
+                "thread_ts": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "reply_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "reply_users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^U[A-Z0-9]{8,10}$"
+                  },
+                  "maxItems": 50
+                },
+                "reply_users_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "latest_reply": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "edited": {
+                  "type": "object",
+                  "required": [
+                    "user",
+                    "ts"
+                  ],
+                  "properties": {
+                    "user": {
+                      "type": "string",
+                      "pattern": "^U[A-Z0-9]{8,10}$"
+                    },
+                    "ts": {
+                      "type": "string",
+                      "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "reactions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "users",
+                      "count"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_+-]{1,100}$"
+                      },
+                      "users": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^U[A-Z0-9]{8,10}$"
+                        },
+                        "maxItems": 1000
+                      },
+                      "count": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 100
+                },
+                "pinned_to": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[CD][A-Z0-9]{8,10}$"
+                  },
+                  "maxItems": 10
+                },
+                "permalink": {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                "team": {
+                  "type": "string",
+                  "pattern": "^T[A-Z0-9]{8,10}$"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_BLOCKS",
+          "INVALID_BLOCKS_FORMAT",
+          "IS_ARCHIVED",
+          "NOT_IN_CHANNEL",
+          "NO_TEXT",
+          "RATELIMITED",
+          "THREAD_NOT_FOUND",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "slack_reply_to_thread",
+          "description": "Reply to a specific message thread in Slack"
+        }
+      },
+      {
+        "id": "chat.update",
+        "description": "Edit the acting member's own message (Slack chat.update).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "ts"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "ts": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 40000
+            },
+            "blocks": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "maxItems": 50
+                },
+                {
+                  "type": "string",
+                  "maxLength": 1000000
+                }
+              ],
+              "description": "Block Kit blocks: an array (canonical and MCP calls) or the JSON-encoded array the Web API form carries. At most 50 blocks, each an object with a string type, nesting at most 32 levels and encoding to at most 100 KB; stored and echoed back, never rendered. A string that is not JSON fails with invalid_blocks_format, other shapes with invalid_blocks."
+            },
+            "as_user": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel",
+            "ts",
+            "text",
+            "message"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "text": {
+              "type": "string"
+            },
+            "message": {
+              "type": "object",
+              "required": [
+                "ts",
+                "type",
+                "user",
+                "text",
+                "team"
+              ],
+              "properties": {
+                "channel": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "ts": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "type": {
+                  "const": "message"
+                },
+                "subtype": {
+                  "type": "string",
+                  "enum": [
+                    "bot_message",
+                    "thread_broadcast",
+                    "tombstone",
+                    "channel_join"
+                  ]
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "bot_id": {
+                  "type": "string",
+                  "pattern": "^B[A-Z0-9]{8,10}$"
+                },
+                "text": {
+                  "type": "string",
+                  "maxLength": 40000
+                },
+                "blocks": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "maxItems": 50
+                },
+                "thread_ts": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "reply_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "reply_users": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^U[A-Z0-9]{8,10}$"
+                  },
+                  "maxItems": 50
+                },
+                "reply_users_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "latest_reply": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                },
+                "edited": {
+                  "type": "object",
+                  "required": [
+                    "user",
+                    "ts"
+                  ],
+                  "properties": {
+                    "user": {
+                      "type": "string",
+                      "pattern": "^U[A-Z0-9]{8,10}$"
+                    },
+                    "ts": {
+                      "type": "string",
+                      "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "reactions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "users",
+                      "count"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_+-]{1,100}$"
+                      },
+                      "users": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^U[A-Z0-9]{8,10}$"
+                        },
+                        "maxItems": 1000
+                      },
+                      "count": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 100
+                },
+                "pinned_to": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[CD][A-Z0-9]{8,10}$"
+                  },
+                  "maxItems": 10
+                },
+                "permalink": {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                "team": {
+                  "type": "string",
+                  "pattern": "^T[A-Z0-9]{8,10}$"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CANT_UPDATE_MESSAGE",
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_BLOCKS",
+          "INVALID_BLOCKS_FORMAT",
+          "IS_ARCHIVED",
+          "MESSAGE_NOT_FOUND",
+          "NOT_IN_CHANNEL",
+          "NO_TEXT",
+          "RATELIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "conversations.archive",
+        "description": "Archive a channel the acting member belongs to; #general and IMs cannot be archived (Slack conversations.archive).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "ALREADY_ARCHIVED",
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "METHOD_NOT_SUPPORTED_FOR_CHANNEL_TYPE",
+          "NOT_IN_CHANNEL"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "conversations.create",
+        "description": "Create a public or private channel and join it (Slack conversations.create).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "is_private": {
+              "type": "boolean"
+            },
+            "team_id": {
+              "type": "string",
+              "maxLength": 32
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "is_channel",
+                "is_group",
+                "is_im",
+                "is_mpim",
+                "is_private",
+                "is_archived",
+                "is_general",
+                "created",
+                "creator",
+                "topic",
+                "purpose",
+                "name_normalized",
+                "updated",
+                "is_member"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "is_channel": {
+                  "type": "boolean"
+                },
+                "is_group": {
+                  "type": "boolean"
+                },
+                "is_im": {
+                  "type": "boolean"
+                },
+                "is_mpim": {
+                  "type": "boolean"
+                },
+                "is_private": {
+                  "type": "boolean"
+                },
+                "is_archived": {
+                  "type": "boolean"
+                },
+                "is_general": {
+                  "type": "boolean"
+                },
+                "created": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "creator": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "topic": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "purpose": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "name_normalized": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "updated": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "is_member": {
+                  "type": "boolean"
+                },
+                "num_members": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_AUTH",
+          "INVALID_NAME",
+          "NAME_TAKEN",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "conversations.history",
+        "description": "Read top-level messages of a conversation the member belongs to, newest first, with cursor pagination and a ts window (Slack conversations.history).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Page size; values above the documented maximum are clamped, values below 1 fail with INVALID_ARGUMENTS."
+            },
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "oldest": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "A message ts or plain epoch seconds."
+            },
+            "latest": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "A message ts or plain epoch seconds."
+            },
+            "inclusive": {
+              "type": "boolean"
+            },
+            "include_all_metadata": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "messages",
+            "has_more",
+            "pin_count",
+            "response_metadata"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "ts",
+                  "type",
+                  "user",
+                  "text",
+                  "team"
+                ],
+                "properties": {
+                  "channel": {
+                    "type": "string",
+                    "pattern": "^[CD][A-Z0-9]{8,10}$"
+                  },
+                  "ts": {
+                    "type": "string",
+                    "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                  },
+                  "type": {
+                    "const": "message"
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "enum": [
+                      "bot_message",
+                      "thread_broadcast",
+                      "tombstone",
+                      "channel_join"
+                    ]
+                  },
+                  "user": {
+                    "type": "string",
+                    "pattern": "^U[A-Z0-9]{8,10}$"
+                  },
+                  "bot_id": {
+                    "type": "string",
+                    "pattern": "^B[A-Z0-9]{8,10}$"
+                  },
+                  "text": {
+                    "type": "string",
+                    "maxLength": 40000
+                  },
+                  "blocks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    },
+                    "maxItems": 50
+                  },
+                  "thread_ts": {
+                    "type": "string",
+                    "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                  },
+                  "reply_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "reply_users": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^U[A-Z0-9]{8,10}$"
+                    },
+                    "maxItems": 50
+                  },
+                  "reply_users_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "latest_reply": {
+                    "type": "string",
+                    "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                  },
+                  "edited": {
+                    "type": "object",
+                    "required": [
+                      "user",
+                      "ts"
+                    ],
+                    "properties": {
+                      "user": {
+                        "type": "string",
+                        "pattern": "^U[A-Z0-9]{8,10}$"
+                      },
+                      "ts": {
+                        "type": "string",
+                        "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "reactions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "users",
+                        "count"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9_+-]{1,100}$"
+                        },
+                        "users": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^U[A-Z0-9]{8,10}$"
+                          },
+                          "maxItems": 1000
+                        },
+                        "count": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "maxItems": 100
+                  },
+                  "pinned_to": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[CD][A-Z0-9]{8,10}$"
+                    },
+                    "maxItems": 10
+                  },
+                  "permalink": {
+                    "type": "string",
+                    "maxLength": 512
+                  },
+                  "team": {
+                    "type": "string",
+                    "pattern": "^T[A-Z0-9]{8,10}$"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "pin_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "response_metadata": {
+              "type": "object",
+              "required": [
+                "next_cursor"
+              ],
+              "properties": {
+                "next_cursor": {
+                  "type": "string",
+                  "maxLength": 512
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_CURSOR",
+          "NOT_IN_CHANNEL",
+          "RESPONSE_TOO_LARGE",
+          "SERVICE_UNAVAILABLE",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "slack_get_channel_history",
+          "description": "Get recent messages from a channel"
+        }
+      },
+      {
+        "id": "conversations.info",
+        "description": "Read one visible conversation (Slack conversations.info).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "include_num_members": {
+              "type": "boolean"
+            },
+            "include_locale": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "is_channel",
+                "is_group",
+                "is_im",
+                "is_mpim",
+                "is_private",
+                "is_archived",
+                "is_general",
+                "created",
+                "creator",
+                "topic",
+                "purpose",
+                "name_normalized",
+                "updated",
+                "is_member"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "is_channel": {
+                  "type": "boolean"
+                },
+                "is_group": {
+                  "type": "boolean"
+                },
+                "is_im": {
+                  "type": "boolean"
+                },
+                "is_mpim": {
+                  "type": "boolean"
+                },
+                "is_private": {
+                  "type": "boolean"
+                },
+                "is_archived": {
+                  "type": "boolean"
+                },
+                "is_general": {
+                  "type": "boolean"
+                },
+                "created": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "creator": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "topic": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "purpose": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "name_normalized": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "updated": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "is_member": {
+                  "type": "boolean"
+                },
+                "num_members": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "conversations.invite",
+        "description": "Invite members (comma-separated ids) to a channel the acting member belongs to; all-or-nothing (Slack conversations.invite).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "users"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "users": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "force": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "is_channel",
+                "is_group",
+                "is_im",
+                "is_mpim",
+                "is_private",
+                "is_archived",
+                "is_general",
+                "created",
+                "creator",
+                "topic",
+                "purpose",
+                "name_normalized",
+                "updated",
+                "is_member"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "is_channel": {
+                  "type": "boolean"
+                },
+                "is_group": {
+                  "type": "boolean"
+                },
+                "is_im": {
+                  "type": "boolean"
+                },
+                "is_mpim": {
+                  "type": "boolean"
+                },
+                "is_private": {
+                  "type": "boolean"
+                },
+                "is_archived": {
+                  "type": "boolean"
+                },
+                "is_general": {
+                  "type": "boolean"
+                },
+                "created": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "creator": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "topic": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "purpose": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "name_normalized": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "updated": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "is_member": {
+                  "type": "boolean"
+                },
+                "num_members": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "ALREADY_IN_CHANNEL",
+          "CANT_INVITE_SELF",
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "IS_ARCHIVED",
+          "METHOD_NOT_SUPPORTED_FOR_CHANNEL_TYPE",
+          "NOT_IN_CHANNEL",
+          "TOO_MANY_ROWS",
+          "USER_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "conversations.join",
+        "description": "Join a public channel; joining again is a no-op with a warning (Slack conversations.join).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "is_channel",
+                "is_group",
+                "is_im",
+                "is_mpim",
+                "is_private",
+                "is_archived",
+                "is_general",
+                "created",
+                "creator",
+                "topic",
+                "purpose",
+                "name_normalized",
+                "updated",
+                "is_member"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "is_channel": {
+                  "type": "boolean"
+                },
+                "is_group": {
+                  "type": "boolean"
+                },
+                "is_im": {
+                  "type": "boolean"
+                },
+                "is_mpim": {
+                  "type": "boolean"
+                },
+                "is_private": {
+                  "type": "boolean"
+                },
+                "is_archived": {
+                  "type": "boolean"
+                },
+                "is_general": {
+                  "type": "boolean"
+                },
+                "created": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "creator": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "topic": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "purpose": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "name_normalized": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "updated": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "is_member": {
+                  "type": "boolean"
+                },
+                "num_members": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "warning": {
+              "type": "string"
+            },
+            "response_metadata": {
+              "type": "object",
+              "required": [
+                "warnings"
+              ],
+              "properties": {
+                "warnings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "IS_ARCHIVED",
+          "METHOD_NOT_SUPPORTED_FOR_CHANNEL_TYPE",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "conversations.list",
+        "description": "List the conversations the member can see: public channels, plus private channels, IMs and group DMs they belong to (Slack conversations.list).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "types": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Comma-separated subset of public_channel, private_channel, mpim, im (default public_channel)."
+            },
+            "exclude_archived": {
+              "type": "boolean"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Page size; values above the documented maximum are clamped, values below 1 fail with INVALID_ARGUMENTS."
+            },
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "team_id": {
+              "type": "string",
+              "maxLength": 32
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channels",
+            "response_metadata"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channels": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "is_channel",
+                  "is_group",
+                  "is_im",
+                  "is_mpim",
+                  "is_private",
+                  "is_archived",
+                  "is_general",
+                  "created",
+                  "creator",
+                  "topic",
+                  "purpose",
+                  "name_normalized",
+                  "updated",
+                  "is_member"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[CD][A-Z0-9]{8,10}$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "is_channel": {
+                    "type": "boolean"
+                  },
+                  "is_group": {
+                    "type": "boolean"
+                  },
+                  "is_im": {
+                    "type": "boolean"
+                  },
+                  "is_mpim": {
+                    "type": "boolean"
+                  },
+                  "is_private": {
+                    "type": "boolean"
+                  },
+                  "is_archived": {
+                    "type": "boolean"
+                  },
+                  "is_general": {
+                    "type": "boolean"
+                  },
+                  "created": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "creator": {
+                    "type": "string",
+                    "maxLength": 16
+                  },
+                  "user": {
+                    "type": "string",
+                    "pattern": "^U[A-Z0-9]{8,10}$"
+                  },
+                  "topic": {
+                    "type": "object",
+                    "required": [
+                      "value",
+                      "creator",
+                      "last_set"
+                    ],
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 250
+                      },
+                      "creator": {
+                        "type": "string",
+                        "maxLength": 16
+                      },
+                      "last_set": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "purpose": {
+                    "type": "object",
+                    "required": [
+                      "value",
+                      "creator",
+                      "last_set"
+                    ],
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 250
+                      },
+                      "creator": {
+                        "type": "string",
+                        "maxLength": 16
+                      },
+                      "last_set": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "name_normalized": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "updated": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "is_member": {
+                    "type": "boolean"
+                  },
+                  "num_members": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "response_metadata": {
+              "type": "object",
+              "required": [
+                "next_cursor"
+              ],
+              "properties": {
+                "next_cursor": {
+                  "type": "string",
+                  "maxLength": 512
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_CURSOR",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "slack_list_channels",
+          "description": "List public or pre-defined channels in the workspace with pagination"
+        }
+      },
+      {
+        "id": "conversations.members",
+        "description": "List member ids of a visible conversation with cursor pagination (Slack conversations.members).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Page size; values above the documented maximum are clamped, values below 1 fail with INVALID_ARGUMENTS."
+            },
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "members",
+            "response_metadata"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "members": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^U[A-Z0-9]{8,10}$"
+              }
+            },
+            "response_metadata": {
+              "type": "object",
+              "required": [
+                "next_cursor"
+              ],
+              "properties": {
+                "next_cursor": {
+                  "type": "string",
+                  "maxLength": 512
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_CURSOR",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "conversations.open",
+        "description": "Open or reopen a direct message (one user) or group DM (2–8 users) (Slack conversations.open).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "users": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024,
+              "description": "Comma-separated user ids, excluding the acting member. Exactly one of users or channel."
+            },
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Existing IM or group DM id to reopen. Exactly one of users or channel."
+            },
+            "return_im": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "no_op",
+            "already_open",
+            "channel"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "no_op": {
+              "type": "boolean"
+            },
+            "already_open": {
+              "type": "boolean"
+            },
+            "channel": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "is_channel": {
+                  "type": "boolean"
+                },
+                "is_group": {
+                  "type": "boolean"
+                },
+                "is_im": {
+                  "type": "boolean"
+                },
+                "is_mpim": {
+                  "type": "boolean"
+                },
+                "is_private": {
+                  "type": "boolean"
+                },
+                "is_archived": {
+                  "type": "boolean"
+                },
+                "is_general": {
+                  "type": "boolean"
+                },
+                "created": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "creator": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "topic": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "purpose": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "name_normalized": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "updated": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "is_member": {
+                  "type": "boolean"
+                },
+                "num_members": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "TOO_MANY_ROWS",
+          "USER_NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "conversations.replies",
+        "description": "Read a thread: the parent followed by its replies, oldest first (Slack conversations.replies).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "ts": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "Parent message ts (Web API spelling). Exactly one of ts or thread_ts."
+            },
+            "thread_ts": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "Parent message ts (reference MCP server spelling). Exactly one of ts or thread_ts."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Page size; values above the documented maximum are clamped, values below 1 fail with INVALID_ARGUMENTS."
+            },
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "oldest": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "A message ts or plain epoch seconds."
+            },
+            "latest": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "A message ts or plain epoch seconds."
+            },
+            "inclusive": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "messages",
+            "has_more",
+            "response_metadata"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "ts",
+                  "type",
+                  "user",
+                  "text",
+                  "team"
+                ],
+                "properties": {
+                  "channel": {
+                    "type": "string",
+                    "pattern": "^[CD][A-Z0-9]{8,10}$"
+                  },
+                  "ts": {
+                    "type": "string",
+                    "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                  },
+                  "type": {
+                    "const": "message"
+                  },
+                  "subtype": {
+                    "type": "string",
+                    "enum": [
+                      "bot_message",
+                      "thread_broadcast",
+                      "tombstone",
+                      "channel_join"
+                    ]
+                  },
+                  "user": {
+                    "type": "string",
+                    "pattern": "^U[A-Z0-9]{8,10}$"
+                  },
+                  "bot_id": {
+                    "type": "string",
+                    "pattern": "^B[A-Z0-9]{8,10}$"
+                  },
+                  "text": {
+                    "type": "string",
+                    "maxLength": 40000
+                  },
+                  "blocks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    },
+                    "maxItems": 50
+                  },
+                  "thread_ts": {
+                    "type": "string",
+                    "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                  },
+                  "reply_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "reply_users": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^U[A-Z0-9]{8,10}$"
+                    },
+                    "maxItems": 50
+                  },
+                  "reply_users_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "latest_reply": {
+                    "type": "string",
+                    "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                  },
+                  "edited": {
+                    "type": "object",
+                    "required": [
+                      "user",
+                      "ts"
+                    ],
+                    "properties": {
+                      "user": {
+                        "type": "string",
+                        "pattern": "^U[A-Z0-9]{8,10}$"
+                      },
+                      "ts": {
+                        "type": "string",
+                        "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "reactions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "users",
+                        "count"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9_+-]{1,100}$"
+                        },
+                        "users": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^U[A-Z0-9]{8,10}$"
+                          },
+                          "maxItems": 1000
+                        },
+                        "count": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "maxItems": 100
+                  },
+                  "pinned_to": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[CD][A-Z0-9]{8,10}$"
+                    },
+                    "maxItems": 10
+                  },
+                  "permalink": {
+                    "type": "string",
+                    "maxLength": 512
+                  },
+                  "team": {
+                    "type": "string",
+                    "pattern": "^T[A-Z0-9]{8,10}$"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "response_metadata": {
+              "type": "object",
+              "required": [
+                "next_cursor"
+              ],
+              "properties": {
+                "next_cursor": {
+                  "type": "string",
+                  "maxLength": 512
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_CURSOR",
+          "NOT_IN_CHANNEL",
+          "RESPONSE_TOO_LARGE",
+          "THREAD_NOT_FOUND",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "slack_get_thread_replies",
+          "description": "Get all replies in a message thread"
+        }
+      },
+      {
+        "id": "conversations.set-topic",
+        "description": "Set a conversation topic (Slack conversations.setTopic).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "topic"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "topic": {
+              "type": "string",
+              "maxLength": 250
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "channel"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "channel": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "is_channel",
+                "is_group",
+                "is_im",
+                "is_mpim",
+                "is_private",
+                "is_archived",
+                "is_general",
+                "created",
+                "creator",
+                "topic",
+                "purpose",
+                "name_normalized",
+                "updated",
+                "is_member"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[CD][A-Z0-9]{8,10}$"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "is_channel": {
+                  "type": "boolean"
+                },
+                "is_group": {
+                  "type": "boolean"
+                },
+                "is_im": {
+                  "type": "boolean"
+                },
+                "is_mpim": {
+                  "type": "boolean"
+                },
+                "is_private": {
+                  "type": "boolean"
+                },
+                "is_archived": {
+                  "type": "boolean"
+                },
+                "is_general": {
+                  "type": "boolean"
+                },
+                "created": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "creator": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "user": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "topic": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "purpose": {
+                  "type": "object",
+                  "required": [
+                    "value",
+                    "creator",
+                    "last_set"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "creator": {
+                      "type": "string",
+                      "maxLength": 16
+                    },
+                    "last_set": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "name_normalized": {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "updated": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "is_member": {
+                  "type": "boolean"
+                },
+                "num_members": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "IS_ARCHIVED",
+          "NOT_IN_CHANNEL",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "pins.add",
+        "description": "Pin a message to its conversation (Slack pins.add).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "timestamp"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "timestamp": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "ALREADY_PINNED",
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "IS_ARCHIVED",
+          "MESSAGE_NOT_FOUND",
+          "NOT_IN_CHANNEL",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "pins.list",
+        "description": "List pinned messages of a conversation the member belongs to, newest pin first (Slack pins.list).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "items"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "channel",
+                  "created",
+                  "created_by",
+                  "message"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "message"
+                  },
+                  "channel": {
+                    "type": "string",
+                    "pattern": "^[CD][A-Z0-9]{8,10}$"
+                  },
+                  "created": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "pattern": "^U[A-Z0-9]{8,10}$"
+                  },
+                  "message": {
+                    "type": "object",
+                    "required": [
+                      "ts",
+                      "type",
+                      "user",
+                      "text",
+                      "team"
+                    ],
+                    "properties": {
+                      "channel": {
+                        "type": "string",
+                        "pattern": "^[CD][A-Z0-9]{8,10}$"
+                      },
+                      "ts": {
+                        "type": "string",
+                        "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                      },
+                      "type": {
+                        "const": "message"
+                      },
+                      "subtype": {
+                        "type": "string",
+                        "enum": [
+                          "bot_message",
+                          "thread_broadcast",
+                          "tombstone",
+                          "channel_join"
+                        ]
+                      },
+                      "user": {
+                        "type": "string",
+                        "pattern": "^U[A-Z0-9]{8,10}$"
+                      },
+                      "bot_id": {
+                        "type": "string",
+                        "pattern": "^B[A-Z0-9]{8,10}$"
+                      },
+                      "text": {
+                        "type": "string",
+                        "maxLength": 40000
+                      },
+                      "blocks": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        },
+                        "maxItems": 50
+                      },
+                      "thread_ts": {
+                        "type": "string",
+                        "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                      },
+                      "reply_count": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "reply_users": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^U[A-Z0-9]{8,10}$"
+                        },
+                        "maxItems": 50
+                      },
+                      "reply_users_count": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "latest_reply": {
+                        "type": "string",
+                        "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                      },
+                      "edited": {
+                        "type": "object",
+                        "required": [
+                          "user",
+                          "ts"
+                        ],
+                        "properties": {
+                          "user": {
+                            "type": "string",
+                            "pattern": "^U[A-Z0-9]{8,10}$"
+                          },
+                          "ts": {
+                            "type": "string",
+                            "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "reactions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "name",
+                            "users",
+                            "count"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-z0-9_+-]{1,100}$"
+                            },
+                            "users": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "pattern": "^U[A-Z0-9]{8,10}$"
+                              },
+                              "maxItems": 1000
+                            },
+                            "count": {
+                              "type": "integer",
+                              "minimum": 0
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "maxItems": 100
+                      },
+                      "pinned_to": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[CD][A-Z0-9]{8,10}$"
+                        },
+                        "maxItems": 10
+                      },
+                      "permalink": {
+                        "type": "string",
+                        "maxLength": 512
+                      },
+                      "team": {
+                        "type": "string",
+                        "pattern": "^T[A-Z0-9]{8,10}$"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "NOT_IN_CHANNEL",
+          "RESPONSE_TOO_LARGE",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "pins.remove",
+        "description": "Unpin a message (Slack pins.remove).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "timestamp"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "timestamp": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "IS_ARCHIVED",
+          "NOT_IN_CHANNEL",
+          "NOT_PINNED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "reactions.add",
+        "description": "Add an emoji reaction to a message (Slack reactions.add).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "timestamp"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "timestamp": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120,
+              "description": "Emoji name with or without colons (Web API spelling). Exactly one of name or reaction."
+            },
+            "reaction": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120,
+              "description": "Emoji name (reference MCP server spelling). Exactly one of name or reaction."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "ALREADY_REACTED",
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_NAME",
+          "IS_ARCHIVED",
+          "MESSAGE_NOT_FOUND",
+          "NOT_IN_CHANNEL",
+          "TOO_MANY_REACTIONS"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "slack_add_reaction",
+          "description": "Add a reaction emoji to a message"
+        }
+      },
+      {
+        "id": "reactions.remove",
+        "description": "Remove the acting member's reaction from a message (Slack reactions.remove).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "timestamp"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (Web API spelling). Exactly one of channel or channel_id."
+            },
+            "channel_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Conversation id (reference MCP server spelling). Exactly one of channel or channel_id."
+            },
+            "timestamp": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "reaction": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CHANNEL_NOT_FOUND",
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_NAME",
+          "IS_ARCHIVED",
+          "MESSAGE_NOT_FOUND",
+          "NOT_IN_CHANNEL",
+          "NO_REACTION"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "search.messages",
+        "description": "Search messages in the member's conversations with a documented modifier subset and page-based pagination (Slack search.messages).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "count": {
+              "type": "integer",
+              "description": "Results per page, 1–100 (default 20)."
+            },
+            "page": {
+              "type": "integer",
+              "description": "1-based page number (default 1)."
+            },
+            "sort": {
+              "type": "string",
+              "maxLength": 16,
+              "description": "score (default) or timestamp."
+            },
+            "sort_dir": {
+              "type": "string",
+              "maxLength": 8,
+              "description": "desc (default) or asc."
+            },
+            "highlight": {
+              "type": "boolean"
+            },
+            "team_id": {
+              "type": "string",
+              "maxLength": 32
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "query",
+            "messages"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "query": {
+              "type": "string"
+            },
+            "messages": {
+              "type": "object",
+              "required": [
+                "matches",
+                "pagination",
+                "paging",
+                "total"
+              ],
+              "properties": {
+                "matches": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "iid",
+                      "channel",
+                      "user",
+                      "username",
+                      "text",
+                      "ts",
+                      "team",
+                      "permalink"
+                    ],
+                    "properties": {
+                      "type": {
+                        "const": "message"
+                      },
+                      "iid": {
+                        "type": "string"
+                      },
+                      "channel": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "name",
+                          "is_channel",
+                          "is_private",
+                          "is_im",
+                          "is_mpim"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[CD][A-Z0-9]{8,10}$"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "is_channel": {
+                            "type": "boolean"
+                          },
+                          "is_private": {
+                            "type": "boolean"
+                          },
+                          "is_im": {
+                            "type": "boolean"
+                          },
+                          "is_mpim": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "user": {
+                        "type": "string",
+                        "pattern": "^U[A-Z0-9]{8,10}$"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "text": {
+                        "type": "string"
+                      },
+                      "ts": {
+                        "type": "string",
+                        "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+                      },
+                      "team": {
+                        "type": "string",
+                        "pattern": "^T[A-Z0-9]{8,10}$"
+                      },
+                      "permalink": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "pagination": {
+                  "type": "object",
+                  "required": [
+                    "total_count",
+                    "page",
+                    "per_page",
+                    "page_count",
+                    "first",
+                    "last"
+                  ],
+                  "properties": {
+                    "total_count": {
+                      "type": "integer"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "per_page": {
+                      "type": "integer"
+                    },
+                    "page_count": {
+                      "type": "integer"
+                    },
+                    "first": {
+                      "type": "integer"
+                    },
+                    "last": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "paging": {
+                  "type": "object",
+                  "required": [
+                    "count",
+                    "total",
+                    "page",
+                    "pages"
+                  ],
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "pages": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "total": {
+                  "type": "integer"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "NO_QUERY",
+          "RESPONSE_TOO_LARGE",
+          "SERVICE_UNAVAILABLE",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "users.info",
+        "description": "Read one workspace member (Slack users.info).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "user": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "User id (Web API spelling). Exactly one of user or user_id."
+            },
+            "user_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "User id (reference MCP server spelling). Exactly one of user or user_id."
+            },
+            "include_locale": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "user"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "user": {
+              "type": "object",
+              "required": [
+                "id",
+                "team_id",
+                "name",
+                "real_name",
+                "deleted",
+                "is_bot",
+                "is_admin",
+                "is_owner",
+                "tz",
+                "tz_label",
+                "tz_offset",
+                "updated",
+                "profile",
+                "is_app_user",
+                "is_email_confirmed"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^U[A-Z0-9]{8,10}$"
+                },
+                "team_id": {
+                  "type": "string",
+                  "pattern": "^T[A-Z0-9]{8,10}$"
+                },
+                "name": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9._-]{1,21}$"
+                },
+                "real_name": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "deleted": {
+                  "type": "boolean"
+                },
+                "is_bot": {
+                  "type": "boolean"
+                },
+                "is_admin": {
+                  "type": "boolean"
+                },
+                "is_owner": {
+                  "type": "boolean"
+                },
+                "tz": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "tz_label": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "tz_offset": {
+                  "type": "integer"
+                },
+                "updated": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "bot_id": {
+                  "type": "string",
+                  "pattern": "^B[A-Z0-9]{8,10}$"
+                },
+                "profile": {
+                  "type": "object",
+                  "required": [
+                    "real_name",
+                    "display_name",
+                    "first_name",
+                    "last_name",
+                    "title",
+                    "status_text",
+                    "status_emoji"
+                  ],
+                  "properties": {
+                    "real_name": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "display_name": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "first_name": {
+                      "type": "string",
+                      "maxLength": 100
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "maxLength": 100
+                    },
+                    "title": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "email": {
+                      "type": "string",
+                      "maxLength": 254
+                    },
+                    "phone": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "status_text": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "status_emoji": {
+                      "type": "string",
+                      "maxLength": 120
+                    },
+                    "image_24": {
+                      "type": "string",
+                      "maxLength": 512
+                    },
+                    "image_72": {
+                      "type": "string",
+                      "maxLength": 512
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "is_app_user": {
+                  "type": "boolean"
+                },
+                "is_email_confirmed": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "USER_NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "users.list",
+        "description": "List workspace members, deactivated and bot users included, with cursor pagination (Slack users.list).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Page size; values above the documented maximum are clamped, values below 1 fail with INVALID_ARGUMENTS."
+            },
+            "include_locale": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "members",
+            "cache_ts",
+            "response_metadata"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "members": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "team_id",
+                  "name",
+                  "real_name",
+                  "deleted",
+                  "is_bot",
+                  "is_admin",
+                  "is_owner",
+                  "tz",
+                  "tz_label",
+                  "tz_offset",
+                  "updated",
+                  "profile",
+                  "is_app_user",
+                  "is_email_confirmed"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^U[A-Z0-9]{8,10}$"
+                  },
+                  "team_id": {
+                    "type": "string",
+                    "pattern": "^T[A-Z0-9]{8,10}$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9._-]{1,21}$"
+                  },
+                  "real_name": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "deleted": {
+                    "type": "boolean"
+                  },
+                  "is_bot": {
+                    "type": "boolean"
+                  },
+                  "is_admin": {
+                    "type": "boolean"
+                  },
+                  "is_owner": {
+                    "type": "boolean"
+                  },
+                  "tz": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "tz_label": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "tz_offset": {
+                    "type": "integer"
+                  },
+                  "updated": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "bot_id": {
+                    "type": "string",
+                    "pattern": "^B[A-Z0-9]{8,10}$"
+                  },
+                  "profile": {
+                    "type": "object",
+                    "required": [
+                      "real_name",
+                      "display_name",
+                      "first_name",
+                      "last_name",
+                      "title",
+                      "status_text",
+                      "status_emoji"
+                    ],
+                    "properties": {
+                      "real_name": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "display_name": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "first_name": {
+                        "type": "string",
+                        "maxLength": 100
+                      },
+                      "last_name": {
+                        "type": "string",
+                        "maxLength": 100
+                      },
+                      "title": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "email": {
+                        "type": "string",
+                        "maxLength": 254
+                      },
+                      "phone": {
+                        "type": "string",
+                        "maxLength": 64
+                      },
+                      "status_text": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "status_emoji": {
+                        "type": "string",
+                        "maxLength": 120
+                      },
+                      "image_24": {
+                        "type": "string",
+                        "maxLength": 512
+                      },
+                      "image_72": {
+                        "type": "string",
+                        "maxLength": 512
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "is_app_user": {
+                    "type": "boolean"
+                  },
+                  "is_email_confirmed": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "cache_ts": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "response_metadata": {
+              "type": "object",
+              "required": [
+                "next_cursor"
+              ],
+              "properties": {
+                "next_cursor": {
+                  "type": "string",
+                  "maxLength": 512
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "INVALID_CURSOR",
+          "TOO_MANY_ROWS"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "slack_get_users",
+          "description": "Get a list of all users in the workspace with their basic profile information"
+        }
+      },
+      {
+        "id": "users.profile.get",
+        "description": "Read a member's profile; defaults to the acting member (Slack users.profile.get).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "user": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "User id (Web API spelling). Exactly one of user or user_id."
+            },
+            "user_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "User id (reference MCP server spelling). Exactly one of user or user_id."
+            },
+            "include_labels": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "ok",
+            "profile"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "profile": {
+              "type": "object",
+              "required": [
+                "real_name",
+                "display_name",
+                "first_name",
+                "last_name",
+                "title",
+                "status_text",
+                "status_emoji",
+                "avatar_hash"
+              ],
+              "properties": {
+                "real_name": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "display_name": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "first_name": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "last_name": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "title": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                "phone": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "status_text": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "status_emoji": {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                "image_24": {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                "image_72": {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                "avatar_hash": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENTS",
+          "INVALID_AUTH",
+          "USER_NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "slack_get_user_profile",
+          "description": "Get detailed profile information for a specific user"
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "channel.created",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "channel",
+            "name",
+            "creator",
+            "is_private"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "name": {
+              "type": "string"
+            },
+            "creator": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "is_private": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "message.deleted",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "channel",
+            "ts",
+            "user",
+            "tombstoned"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "user": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "tombstoned": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "message.posted",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "channel",
+            "ts",
+            "user",
+            "text"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "user": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "thread_ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "subtype": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 40000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "reaction.added",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "channel",
+            "ts",
+            "user",
+            "reaction"
+          ],
+          "properties": {
+            "channel": {
+              "type": "string",
+              "pattern": "^[CD][A-Z0-9]{8,10}$"
+            },
+            "ts": {
+              "type": "string",
+              "pattern": "^[0-9]{10}\\.[0-9]{6}$"
+            },
+            "user": {
+              "type": "string",
+              "pattern": "^U[A-Z0-9]{8,10}$"
+            },
+            "reaction": {
+              "type": "string",
+              "pattern": "^[a-z0-9_+-]{1,100}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "history-unavailable",
+        "appliesTo": [
+          "conversations.history",
+          "search.messages"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "service_unavailable",
+          "retryable": true
+        }
+      },
+      {
+        "id": "post-rate-limited",
+        "appliesTo": [
+          "chat.post-message",
+          "chat.reply",
+          "chat.update"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RATELIMITED",
+          "message": "ratelimited",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "get-auth-test",
+        "operationId": "auth.test",
+        "method": "GET",
+        "path": "/api/auth.test",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-conversations-history",
+        "operationId": "conversations.history",
+        "method": "GET",
+        "path": "/api/conversations.history",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-conversations-info",
+        "operationId": "conversations.info",
+        "method": "GET",
+        "path": "/api/conversations.info",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-conversations-list",
+        "operationId": "conversations.list",
+        "method": "GET",
+        "path": "/api/conversations.list",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-conversations-members",
+        "operationId": "conversations.members",
+        "method": "GET",
+        "path": "/api/conversations.members",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-conversations-replies",
+        "operationId": "conversations.replies",
+        "method": "GET",
+        "path": "/api/conversations.replies",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "THREAD_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-pins-list",
+        "operationId": "pins.list",
+        "method": "GET",
+        "path": "/api/pins.list",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-search-messages",
+        "operationId": "search.messages",
+        "method": "GET",
+        "path": "/api/search.messages",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "NO_QUERY",
+              "status": 400
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-users-info",
+        "operationId": "users.info",
+        "method": "GET",
+        "path": "/api/users.info",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "USER_NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-users-list",
+        "operationId": "users.list",
+        "method": "GET",
+        "path": "/api/users.list",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-users-profile-get",
+        "operationId": "users.profile.get",
+        "method": "GET",
+        "path": "/api/users.profile.get",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "USER_NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-auth-test",
+        "operationId": "auth.test",
+        "method": "POST",
+        "path": "/api/auth.test",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-chat-delete",
+        "operationId": "chat.delete",
+        "method": "POST",
+        "path": "/api/chat.delete",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CANT_DELETE_MESSAGE",
+              "status": 403
+            },
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "MESSAGE_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-chat-post-message",
+        "operationId": "chat.post-message",
+        "method": "POST",
+        "path": "/api/chat.postMessage",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_BLOCKS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_BLOCKS_FORMAT",
+              "status": 400
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "NO_TEXT",
+              "status": 400
+            },
+            {
+              "code": "RATELIMITED",
+              "status": 429
+            },
+            {
+              "code": "THREAD_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-chat-update",
+        "operationId": "chat.update",
+        "method": "POST",
+        "path": "/api/chat.update",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CANT_UPDATE_MESSAGE",
+              "status": 403
+            },
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_BLOCKS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_BLOCKS_FORMAT",
+              "status": 400
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "MESSAGE_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "NO_TEXT",
+              "status": 400
+            },
+            {
+              "code": "RATELIMITED",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-archive",
+        "operationId": "conversations.archive",
+        "method": "POST",
+        "path": "/api/conversations.archive",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ALREADY_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "METHOD_NOT_SUPPORTED_FOR_CHANNEL_TYPE",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-create",
+        "operationId": "conversations.create",
+        "method": "POST",
+        "path": "/api/conversations.create",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_NAME",
+              "status": 400
+            },
+            {
+              "code": "NAME_TAKEN",
+              "status": 409
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-history",
+        "operationId": "conversations.history",
+        "method": "POST",
+        "path": "/api/conversations.history",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-info",
+        "operationId": "conversations.info",
+        "method": "POST",
+        "path": "/api/conversations.info",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-invite",
+        "operationId": "conversations.invite",
+        "method": "POST",
+        "path": "/api/conversations.invite",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ALREADY_IN_CHANNEL",
+              "status": 409
+            },
+            {
+              "code": "CANT_INVITE_SELF",
+              "status": 400
+            },
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "METHOD_NOT_SUPPORTED_FOR_CHANNEL_TYPE",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            },
+            {
+              "code": "USER_NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-join",
+        "operationId": "conversations.join",
+        "method": "POST",
+        "path": "/api/conversations.join",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "METHOD_NOT_SUPPORTED_FOR_CHANNEL_TYPE",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-list",
+        "operationId": "conversations.list",
+        "method": "POST",
+        "path": "/api/conversations.list",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-members",
+        "operationId": "conversations.members",
+        "method": "POST",
+        "path": "/api/conversations.members",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-open",
+        "operationId": "conversations.open",
+        "method": "POST",
+        "path": "/api/conversations.open",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            },
+            {
+              "code": "USER_NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-replies",
+        "operationId": "conversations.replies",
+        "method": "POST",
+        "path": "/api/conversations.replies",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "THREAD_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-conversations-set-topic",
+        "operationId": "conversations.set-topic",
+        "method": "POST",
+        "path": "/api/conversations.setTopic",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-pins-add",
+        "operationId": "pins.add",
+        "method": "POST",
+        "path": "/api/pins.add",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ALREADY_PINNED",
+              "status": 409
+            },
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "MESSAGE_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-pins-list",
+        "operationId": "pins.list",
+        "method": "POST",
+        "path": "/api/pins.list",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-pins-remove",
+        "operationId": "pins.remove",
+        "method": "POST",
+        "path": "/api/pins.remove",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "NOT_PINNED",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-reactions-add",
+        "operationId": "reactions.add",
+        "method": "POST",
+        "path": "/api/reactions.add",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ALREADY_REACTED",
+              "status": 409
+            },
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_NAME",
+              "status": 400
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "MESSAGE_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "TOO_MANY_REACTIONS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-reactions-remove",
+        "operationId": "reactions.remove",
+        "method": "POST",
+        "path": "/api/reactions.remove",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CHANNEL_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_NAME",
+              "status": 400
+            },
+            {
+              "code": "IS_ARCHIVED",
+              "status": 400
+            },
+            {
+              "code": "MESSAGE_NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "NOT_IN_CHANNEL",
+              "status": 403
+            },
+            {
+              "code": "NO_REACTION",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-search-messages",
+        "operationId": "search.messages",
+        "method": "POST",
+        "path": "/api/search.messages",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "NO_QUERY",
+              "status": 400
+            },
+            {
+              "code": "RESPONSE_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-users-info",
+        "operationId": "users.info",
+        "method": "POST",
+        "path": "/api/users.info",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "USER_NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-users-list",
+        "operationId": "users.list",
+        "method": "POST",
+        "path": "/api/users.list",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "INVALID_CURSOR",
+              "status": 400
+            },
+            {
+              "code": "TOO_MANY_ROWS",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "post-users-profile-get",
+        "operationId": "users.profile.get",
+        "method": "POST",
+        "path": "/api/users.profile.get",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "text",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENTS",
+              "status": 400
+            },
+            {
+              "code": "INVALID_AUTH",
+              "status": 401
+            },
+            {
+              "code": "USER_NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": [],
+    "connections": [
+      {
+        "id": "slack-mcp",
+        "title": "Reference Slack MCP tool names (slack_list_channels, slack_post_message, ...)",
+        "protocol": "mcp",
+        "environment": {
+          "SLACK_MCP_URL": "FIREDRILL_MCP_URL",
+          "SLACK_MCP_TOKEN": "FIREDRILL_MCP_TOKEN"
+        },
+        "instructions": "Connect a Streamable HTTP MCP client to SLACK_MCP_URL with SLACK_MCP_TOKEN as a Bearer token. The eight tool names of the archived reference Slack MCP server are exposed as aliases next to the canonical slack.<operation> names."
+      },
+      {
+        "id": "slack-web-api",
+        "title": "Slack Web API client (base URL override)",
+        "protocol": "http",
+        "environment": {
+          "SLACK_API_URL": "FIREDRILL_HTTP_URL",
+          "SLACK_BOT_TOKEN": "FIREDRILL_HTTP_TOKEN"
+        },
+        "instructions": "Point the client's API base at SLACK_API_URL + '/api/' (@slack/web-api: slackApiUrl; slack_sdk: base_url) and pass SLACK_BOT_TOKEN as the token; the value is the isolated world token, not a real xoxb token. Test processes only. Errors come back with HTTP 4xx/5xx status codes and Slack-shaped { ok: false, error } bodies; write methods accept application/x-www-form-urlencoded only."
+      }
+    ]
+  }
+}

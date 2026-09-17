@@ -1,0 +1,6579 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "google-workspace",
+    "version": "0.1.2",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "contact-groups",
+        "schema": {
+          "type": "object",
+          "required": [
+            "groupId",
+            "ownerUserId",
+            "name",
+            "formattedName",
+            "groupType",
+            "etagVersion",
+            "createTimeUs",
+            "updateTimeUs",
+            "memberCount"
+          ],
+          "properties": {
+            "groupId": {
+              "type": "string",
+              "maxLength": 24,
+              "pattern": "^(myContacts|starred|friends|coworkers|[0-9a-f]{16})$"
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "formattedName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "groupType": {
+              "type": "string",
+              "enum": [
+                "SYSTEM_CONTACT_GROUP",
+                "USER_CONTACT_GROUP"
+              ]
+            },
+            "etagVersion": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "updateTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "memberCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "contact-tombstones",
+        "schema": {
+          "type": "object",
+          "required": [
+            "contactId",
+            "ownerUserId",
+            "deleteTimeUs"
+          ],
+          "properties": {
+            "contactId": {
+              "type": "string",
+              "maxLength": 20,
+              "pattern": "^c[0-9]{19}$"
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "deleteTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "contacts",
+        "schema": {
+          "type": "object",
+          "required": [
+            "contactId",
+            "ownerUserId",
+            "etagVersion",
+            "createTimeUs",
+            "updateTimeUs",
+            "names",
+            "nicknames",
+            "emailAddresses",
+            "phoneNumbers",
+            "organizations",
+            "addresses",
+            "urls",
+            "userDefined",
+            "memberships",
+            "sortName",
+            "searchText"
+          ],
+          "properties": {
+            "contactId": {
+              "type": "string",
+              "maxLength": 20,
+              "pattern": "^c[0-9]{19}$"
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "etagVersion": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "updateTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "names": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "givenName",
+                  "familyName",
+                  "displayName",
+                  "unstructuredName"
+                ],
+                "properties": {
+                  "givenName": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "familyName": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "middleName": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 120
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "unstructuredName": {
+                    "type": "string",
+                    "maxLength": 120
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 80
+              },
+              "maxItems": 3
+            },
+            "emailAddresses": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "type",
+                  "primary"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 254
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "displayName": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 120
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "primary": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 10
+            },
+            "phoneNumbers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "type",
+                  "primary"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "canonicalForm": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 40
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "primary": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 10
+            },
+            "organizations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "current"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "title": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 120
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "department": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 120
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "current": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 3
+            },
+            "addresses": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "formattedValue",
+                  "type"
+                ],
+                "properties": {
+                  "formattedValue": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "city": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 120
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "region": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 120
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "postalCode": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 20
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "country": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 120
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 3
+            },
+            "biography": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 4000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "birthday": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "month",
+                    "day"
+                  ],
+                  "properties": {
+                    "year": {
+                      "type": "integer",
+                      "minimum": 1900,
+                      "maximum": 2100
+                    },
+                    "month": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 12
+                    },
+                    "day": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 31
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "urls": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "type"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 40
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 5
+            },
+            "userDefined": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "key",
+                  "value"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "value": {
+                    "type": "string",
+                    "maxLength": 300
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 10
+            },
+            "photoUrl": {
+              "type": "string",
+              "maxLength": 400
+            },
+            "memberships": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 24,
+                "pattern": "^(myContacts|starred|friends|coworkers|[0-9a-f]{16})$"
+              },
+              "maxItems": 16
+            },
+            "sortName": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "searchText": {
+              "type": "string",
+              "maxLength": 1200
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "deployments",
+        "schema": {
+          "type": "object",
+          "required": [
+            "deploymentId",
+            "scriptId",
+            "manifestFileName",
+            "description",
+            "entryPointType",
+            "webAppAccess",
+            "webAppExecuteAs",
+            "createTimeUs",
+            "updateTimeUs",
+            "createdByUserId"
+          ],
+          "properties": {
+            "deploymentId": {
+              "type": "string",
+              "maxLength": 36,
+              "pattern": "^AKfycb[A-Za-z0-9_-]{30}$"
+            },
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44,
+              "pattern": "^1[A-Za-z0-9_-]{43}$"
+            },
+            "versionNumber": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "manifestFileName": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "entryPointType": {
+              "type": "string",
+              "enum": [
+                "WEB_APP",
+                "EXECUTION_API",
+                "ADD_ON"
+              ]
+            },
+            "webAppAccess": {
+              "type": "string",
+              "enum": [
+                "MYSELF",
+                "DOMAIN",
+                "ANYONE",
+                "ANYONE_ANONYMOUS"
+              ]
+            },
+            "webAppExecuteAs": {
+              "type": "string",
+              "enum": [
+                "USER_ACCESSING",
+                "USER_DEPLOYING"
+              ]
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "updateTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "createdByUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "executions",
+        "schema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "projectName",
+            "functionName",
+            "processType",
+            "processStatus",
+            "userAccessLevel",
+            "startTimeUs",
+            "durationUs",
+            "runtimeVersion"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44,
+              "pattern": "^1[A-Za-z0-9_-]{43}$"
+            },
+            "projectName": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "functionName": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "deploymentId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 36,
+                  "pattern": "^AKfycb[A-Za-z0-9_-]{30}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "processType": {
+              "type": "string",
+              "enum": [
+                "EXECUTION_API",
+                "WEBAPP",
+                "TRIGGER",
+                "EDITOR",
+                "SIMPLE_TRIGGER",
+                "MENU",
+                "BATCH_TASK"
+              ]
+            },
+            "processStatus": {
+              "type": "string",
+              "enum": [
+                "COMPLETED",
+                "FAILED",
+                "TIMED_OUT",
+                "CANCELED",
+                "RUNNING",
+                "PAUSED"
+              ]
+            },
+            "userAccessLevel": {
+              "type": "string",
+              "enum": [
+                "OWNER",
+                "WRITE",
+                "READ",
+                "NONE"
+              ]
+            },
+            "startTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "durationUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "runtimeVersion": {
+              "type": "string",
+              "enum": [
+                "V8",
+                "DEPRECATED_ES5"
+              ]
+            },
+            "errorMessage": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 400
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "group-members",
+        "schema": {
+          "type": "object",
+          "required": [
+            "addTimeUs"
+          ],
+          "properties": {
+            "addTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "meta",
+        "schema": {
+          "type": "object",
+          "required": [
+            "nextContactId",
+            "nextOtherContactId",
+            "nextGroupId",
+            "nextSubscriptionId",
+            "nextOperationId",
+            "nextScriptId",
+            "nextDeploymentId",
+            "nextExecutionSeq",
+            "objectCount"
+          ],
+          "properties": {
+            "nextContactId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextOtherContactId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextGroupId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextSubscriptionId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextOperationId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextScriptId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextDeploymentId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "nextExecutionSeq": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "objectCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "operations",
+        "schema": {
+          "type": "object",
+          "required": [
+            "operationId",
+            "ownerUserId",
+            "done",
+            "metadataType",
+            "resultKind",
+            "createTimeUs"
+          ],
+          "properties": {
+            "operationId": {
+              "type": "string",
+              "maxLength": 18,
+              "pattern": "^op[0-9]{16}$"
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "done": {
+              "type": "boolean"
+            },
+            "metadataType": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "resultKind": {
+              "type": "string",
+              "enum": [
+                "subscription",
+                "empty",
+                "error"
+              ]
+            },
+            "subscriptionId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 36,
+                  "pattern": "^[0-9a-f-]{36}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "errorCode": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "errorMessage": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 400
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "other-contacts",
+        "schema": {
+          "type": "object",
+          "required": [
+            "otherContactId",
+            "ownerUserId",
+            "emailAddresses",
+            "phoneNumbers",
+            "createTimeUs",
+            "updateTimeUs",
+            "sortName",
+            "searchText"
+          ],
+          "properties": {
+            "otherContactId": {
+              "type": "string",
+              "maxLength": 20,
+              "pattern": "^c[0-9]{19}$"
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "displayName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 240
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "emailAddresses": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "type"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 254
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 40
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 3,
+              "minItems": 1
+            },
+            "phoneNumbers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "type"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 40
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 2
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "updateTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "sortName": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "searchText": {
+              "type": "string",
+              "maxLength": 1200
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "resource-members",
+        "schema": {
+          "type": "object",
+          "required": [
+            "memberUserIds",
+            "label",
+            "exists"
+          ],
+          "properties": {
+            "memberUserIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 21,
+                "pattern": "^[0-9]{21}$"
+              },
+              "maxItems": 8
+            },
+            "label": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "exists": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "script-content",
+        "schema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "files",
+            "totalBytes"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44,
+              "pattern": "^1[A-Za-z0-9_-]{43}$"
+            },
+            "versionNumber": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "type",
+                  "source",
+                  "functionNames",
+                  "createTimeUs",
+                  "updateTimeUs",
+                  "lastModifyUserId"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "SERVER_JS",
+                      "HTML",
+                      "JSON"
+                    ]
+                  },
+                  "source": {
+                    "type": "string",
+                    "maxLength": 16384
+                  },
+                  "functionNames": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "maxItems": 20
+                  },
+                  "createTimeUs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "updateTimeUs": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "lastModifyUserId": {
+                    "type": "string",
+                    "maxLength": 21,
+                    "pattern": "^[0-9]{21}$"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 12,
+              "minItems": 1
+            },
+            "totalBytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 131072
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "script-deployments",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "versionNumber": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "script-projects",
+        "schema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "title",
+            "ownerUserId",
+            "creatorUserId",
+            "lastModifyUserId",
+            "editorUserIds",
+            "createTimeUs",
+            "updateTimeUs",
+            "headVersion",
+            "fileCount"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44,
+              "pattern": "^1[A-Za-z0-9_-]{43}$"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "parentId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "creatorUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "lastModifyUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "editorUserIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 21,
+                "pattern": "^[0-9]{21}$"
+              },
+              "maxItems": 8
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "updateTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "headVersion": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "fileCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "script-versions",
+        "schema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "versionNumber",
+            "description",
+            "createTimeUs",
+            "createdByUserId"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44,
+              "pattern": "^1[A-Za-z0-9_-]{43}$"
+            },
+            "versionNumber": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "createdByUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "subscriptions",
+        "schema": {
+          "type": "object",
+          "required": [
+            "subscriptionId",
+            "uid",
+            "ownerUserId",
+            "authority",
+            "targetResource",
+            "eventTypes",
+            "notificationEndpoint",
+            "state",
+            "etagVersion",
+            "reconciling",
+            "createTimeUs",
+            "updateTimeUs"
+          ],
+          "properties": {
+            "subscriptionId": {
+              "type": "string",
+              "maxLength": 36,
+              "pattern": "^[0-9a-f-]{36}$"
+            },
+            "uid": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "authority": {
+              "type": "string",
+              "maxLength": 254
+            },
+            "targetResource": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "eventTypes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "maxItems": 8,
+              "minItems": 1
+            },
+            "payloadOptions": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "includeResource"
+                  ],
+                  "properties": {
+                    "includeResource": {
+                      "type": "boolean"
+                    },
+                    "fieldMask": {
+                      "type": "string",
+                      "maxLength": 300
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "notificationEndpoint": {
+              "type": "object",
+              "required": [
+                "pubsubTopic"
+              ],
+              "properties": {
+                "pubsubTopic": {
+                  "type": "string",
+                  "maxLength": 300
+                }
+              },
+              "additionalProperties": false
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "SUSPENDED",
+                "DELETED"
+              ]
+            },
+            "suspensionReason": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "USER_SCOPE_REVOKED",
+                    "RESOURCE_DELETED",
+                    "USER_AUTHORIZATION_FAILURE",
+                    "ENDPOINT_PERMISSION_DENIED",
+                    "ENDPOINT_NOT_FOUND",
+                    "ENDPOINT_RESOURCE_EXHAUSTED",
+                    "OTHER"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "etagVersion": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "reconciling": {
+              "type": "boolean"
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "updateTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "expireTimeUs": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ttlUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "user-subscriptions",
+        "schema": {
+          "type": "object",
+          "required": [
+            "targetResource",
+            "state"
+          ],
+          "properties": {
+            "targetResource": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "SUSPENDED",
+                "DELETED"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "users",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "primaryEmail",
+            "givenName",
+            "familyName",
+            "displayName",
+            "domain",
+            "suspended",
+            "createTimeUs"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 21,
+              "pattern": "^[0-9]{21}$"
+            },
+            "primaryEmail": {
+              "type": "string",
+              "maxLength": 254
+            },
+            "givenName": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "familyName": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "displayName": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "jobTitle": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "department": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "photoUrl": {
+              "type": "string",
+              "maxLength": 400
+            },
+            "domain": {
+              "type": "string",
+              "maxLength": 253
+            },
+            "suspended": {
+              "type": "boolean"
+            },
+            "isAdmin": {
+              "type": "boolean"
+            },
+            "createTimeUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "syncFloorUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "contact-groups.create",
+        "description": "Create a user contact group (contactGroups.create; canonical operation only, see README).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "contactGroup"
+          ],
+          "properties": {
+            "contactGroup": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 4000
+                },
+                "clientData": {
+                  "type": "array",
+                  "items": {},
+                  "maxItems": 8
+                }
+              },
+              "additionalProperties": false
+            },
+            "readGroupFields": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "etag",
+            "memberCount"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "etag": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "metadata": {},
+            "groupType": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "formattedName": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "memberCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "memberResourceNames": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "ALREADY_EXISTS",
+          "INVALID_ARGUMENT",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "contact-groups.delete",
+        "description": "Delete a user contact group, optionally deleting the contacts whose only group it was (DELETE /v1/contactGroups/{resourceName}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "deleteContacts": {
+              "type": "boolean"
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "contact-groups.get",
+        "description": "Read one contact group, optionally with up to maxMembers member resource names (GET /v1/contactGroups/{resourceName}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "maxMembers": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "groupFields": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "etag",
+            "memberCount"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "etag": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "metadata": {},
+            "groupType": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "formattedName": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "memberCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "memberResourceNames": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "OUT_OF_RANGE",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "contact-groups.list",
+        "description": "List the caller's contact groups, system groups first (GET /v1/contactGroups).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "groupFields": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "pageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "syncToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "contactGroups",
+            "totalItems"
+          ],
+          "properties": {
+            "contactGroups": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "resourceName",
+                  "etag",
+                  "memberCount"
+                ],
+                "properties": {
+                  "resourceName": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "etag": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "metadata": {},
+                  "groupType": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "formattedName": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "memberCount": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "memberResourceNames": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    "maxItems": 1000
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "nextPageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "totalItems": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "OUT_OF_RANGE",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "contact-groups.modify-members",
+        "description": "Add or remove contacts in a contact group (POST /v1/contactGroups/{resourceName}/members:modify).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "resourceNamesToAdd": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "maxItems": 1000
+            },
+            "resourceNamesToRemove": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "maxItems": 1000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "notFoundResourceNames",
+            "canNotRemoveLastContactGroupResourceNames"
+          ],
+          "properties": {
+            "notFoundResourceNames": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "maxItems": 1000
+            },
+            "canNotRemoveLastContactGroupResourceNames": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "deployments.create",
+        "description": "Deploy a project at a version or at HEAD, deriving the entry point from its manifest (POST /v1/projects/{scriptId}/deployments).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "deploymentConfig"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "deploymentConfig": {
+              "type": "object",
+              "properties": {
+                "scriptId": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "versionNumber": {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                },
+                "manifestFileName": {
+                  "type": "string",
+                  "maxLength": 4000
+                },
+                "description": {
+                  "type": "string",
+                  "maxLength": 4000
+                }
+              },
+              "additionalProperties": false
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "deploymentId",
+            "deploymentConfig",
+            "updateTime",
+            "entryPoints"
+          ],
+          "properties": {
+            "deploymentId": {
+              "type": "string",
+              "maxLength": 36
+            },
+            "deploymentConfig": {
+              "type": "object",
+              "required": [
+                "scriptId"
+              ],
+              "properties": {
+                "scriptId": {
+                  "type": "string",
+                  "maxLength": 44
+                },
+                "versionNumber": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "manifestFileName": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "description": {
+                  "type": "string",
+                  "maxLength": 300
+                }
+              },
+              "additionalProperties": false
+            },
+            "updateTime": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "entryPoints": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "deployments.list",
+        "description": "List a project's deployments, newest first (GET /v1/projects/{scriptId}/deployments).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "pageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "deployments"
+          ],
+          "properties": {
+            "deployments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "deploymentId",
+                  "deploymentConfig",
+                  "updateTime",
+                  "entryPoints"
+                ],
+                "properties": {
+                  "deploymentId": {
+                    "type": "string",
+                    "maxLength": 36
+                  },
+                  "deploymentConfig": {
+                    "type": "object",
+                    "required": [
+                      "scriptId"
+                    ],
+                    "properties": {
+                      "scriptId": {
+                        "type": "string",
+                        "maxLength": 44
+                      },
+                      "versionNumber": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "manifestFileName": {
+                        "type": "string",
+                        "maxLength": 100
+                      },
+                      "description": {
+                        "type": "string",
+                        "maxLength": 300
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "updateTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "entryPoints": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 4
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 200
+            },
+            "nextPageToken": {
+              "type": "string",
+              "maxLength": 2048
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "OUT_OF_RANGE",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "operations.get",
+        "description": "Read a stored long-running operation produced by a subscriptions mutation (GET /v1/operations/{name}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "name",
+            "done"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "metadata": {},
+            "done": {
+              "type": "boolean"
+            },
+            "response": {},
+            "error": {}
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "other-contacts.list",
+        "description": "List the caller's other contacts: addresses seen in mail but never saved (GET /v1/otherContacts).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "readMask"
+          ],
+          "properties": {
+            "readMask": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "pageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "otherContacts",
+            "totalSize"
+          ],
+          "properties": {
+            "otherContacts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "resourceName",
+                  "etag"
+                ],
+                "properties": {
+                  "resourceName": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "etag": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "metadata": {},
+                  "names": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "nicknames": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "emailAddresses": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 16
+                  },
+                  "phoneNumbers": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 16
+                  },
+                  "organizations": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "addresses": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "biographies": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 4
+                  },
+                  "birthdays": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 4
+                  },
+                  "urls": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "userDefined": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 16
+                  },
+                  "memberships": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 24
+                  },
+                  "photos": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 4
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "nextPageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "totalSize": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "OUT_OF_RANGE",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "people.create-contact",
+        "description": "Create a private contact, adding it to myContacts and to any requested contact group (POST /v1/people:createContact).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "person"
+          ],
+          "properties": {
+            "person": {
+              "type": "object",
+              "properties": {
+                "resourceName": {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                "etag": {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                "metadata": {},
+                "photos": {
+                  "type": "array",
+                  "items": {},
+                  "maxItems": 4
+                },
+                "names": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "givenName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "familyName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "middleName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "unstructuredName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "honorificPrefix": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "honorificSuffix": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 4
+                },
+                "nicknames": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "value": {
+                            "type": "string",
+                            "maxLength": 4000
+                          },
+                          "type": {
+                            "type": "string",
+                            "maxLength": 60
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "properties": {
+                              "primary": {
+                                "type": "boolean"
+                              },
+                              "source": {},
+                              "verified": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "string",
+                        "maxLength": 4000
+                      }
+                    ]
+                  },
+                  "maxItems": 8
+                },
+                "emailAddresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32
+                },
+                "phoneNumbers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32
+                },
+                "organizations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "title": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "department": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "current": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 8
+                },
+                "addresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "formattedValue": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "streetAddress": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "city": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "region": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "postalCode": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "country": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "countryCode": {
+                        "type": "string",
+                        "maxLength": 8
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 8
+                },
+                "biographies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 20000
+                      },
+                      "contentType": {
+                        "type": "string",
+                        "maxLength": 60
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 4
+                },
+                "birthdays": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "object",
+                        "properties": {
+                          "year": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 4000
+                          },
+                          "month": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                          },
+                          "day": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "text": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 4
+                },
+                "urls": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 16
+                },
+                "userDefined": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "value": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32
+                },
+                "memberships": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "contactGroupMembership": {
+                        "type": "object",
+                        "properties": {
+                          "contactGroupId": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "contactGroupResourceName": {
+                            "type": "string",
+                            "maxLength": 600
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "domainMembership": {},
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32
+                }
+              },
+              "additionalProperties": false
+            },
+            "personFields": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "etag"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "etag": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "metadata": {},
+            "names": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "emailAddresses": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "phoneNumbers": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "organizations": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "addresses": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "biographies": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            },
+            "birthdays": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            },
+            "urls": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "userDefined": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "memberships": {
+              "type": "array",
+              "items": {},
+              "maxItems": 24
+            },
+            "photos": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "people.delete-contact",
+        "description": "Delete a private contact and write a tombstone so sync tokens report the deletion (DELETE /v1/people/{resourceName}:deleteContact).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "people.get-contact",
+        "description": "Read one person: the caller's own profile (people/me), a private contact (people/c…) or a colleague's domain profile (GET /v1/people/{resourceName}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "personFields"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "personFields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "maxItems": 8
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "etag"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "etag": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "metadata": {},
+            "names": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "emailAddresses": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "phoneNumbers": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "organizations": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "addresses": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "biographies": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            },
+            "birthdays": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            },
+            "urls": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "userDefined": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "memberships": {
+              "type": "array",
+              "items": {},
+              "maxItems": 24
+            },
+            "photos": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "people.list-connections",
+        "description": "List the caller's contacts with paging, sort order and People sync tokens (GET /v1/people/me/connections).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "personFields"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "personFields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "pageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "sortOrder": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "requestSyncToken": {
+              "type": "boolean"
+            },
+            "syncToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "connections",
+            "totalPeople",
+            "totalItems"
+          ],
+          "properties": {
+            "connections": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "resourceName",
+                  "etag"
+                ],
+                "properties": {
+                  "resourceName": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "etag": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "metadata": {},
+                  "names": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "nicknames": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "emailAddresses": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 16
+                  },
+                  "phoneNumbers": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 16
+                  },
+                  "organizations": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "addresses": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "biographies": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 4
+                  },
+                  "birthdays": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 4
+                  },
+                  "urls": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 8
+                  },
+                  "userDefined": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 16
+                  },
+                  "memberships": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 24
+                  },
+                  "photos": {
+                    "type": "array",
+                    "items": {},
+                    "maxItems": 4
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "nextPageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "nextSyncToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "totalPeople": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "totalItems": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "OUT_OF_RANGE",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "people.search-contacts",
+        "description": "Search the caller's contacts by name, nickname, e-mail, phone digits or organisation (people:searchContacts; canonical operation only, see README).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "readMask"
+          ],
+          "properties": {
+            "query": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "readMask": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "person"
+                ],
+                "properties": {
+                  "person": {
+                    "type": "object",
+                    "required": [
+                      "resourceName",
+                      "etag"
+                    ],
+                    "properties": {
+                      "resourceName": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "etag": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "metadata": {},
+                      "names": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 8
+                      },
+                      "nicknames": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 8
+                      },
+                      "emailAddresses": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 16
+                      },
+                      "phoneNumbers": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 16
+                      },
+                      "organizations": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 8
+                      },
+                      "addresses": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 8
+                      },
+                      "biographies": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 4
+                      },
+                      "birthdays": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 4
+                      },
+                      "urls": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 8
+                      },
+                      "userDefined": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 16
+                      },
+                      "memberships": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 24
+                      },
+                      "photos": {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 4
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 30
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "OUT_OF_RANGE",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "people.update-contact",
+        "description": "Update the masked fields of a private contact; the caller must send the person's current etag (PATCH /v1/people/{resourceName}:updateContact).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "updatePersonFields",
+            "person"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "updatePersonFields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "person": {
+              "type": "object",
+              "properties": {
+                "resourceName": {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                "etag": {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                "metadata": {},
+                "photos": {
+                  "type": "array",
+                  "items": {},
+                  "maxItems": 4
+                },
+                "names": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "givenName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "familyName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "middleName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "unstructuredName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "honorificPrefix": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "honorificSuffix": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 4
+                },
+                "nicknames": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "value": {
+                            "type": "string",
+                            "maxLength": 4000
+                          },
+                          "type": {
+                            "type": "string",
+                            "maxLength": 60
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "properties": {
+                              "primary": {
+                                "type": "boolean"
+                              },
+                              "source": {},
+                              "verified": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "string",
+                        "maxLength": 4000
+                      }
+                    ]
+                  },
+                  "maxItems": 8
+                },
+                "emailAddresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32
+                },
+                "phoneNumbers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32
+                },
+                "organizations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "title": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "department": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "current": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 8
+                },
+                "addresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "formattedValue": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "streetAddress": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "city": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "region": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "postalCode": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "country": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "countryCode": {
+                        "type": "string",
+                        "maxLength": 8
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 8
+                },
+                "biographies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 20000
+                      },
+                      "contentType": {
+                        "type": "string",
+                        "maxLength": 60
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 4
+                },
+                "birthdays": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "object",
+                        "properties": {
+                          "year": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 4000
+                          },
+                          "month": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                          },
+                          "day": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "text": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 4
+                },
+                "urls": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "type": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 16
+                },
+                "userDefined": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "value": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32
+                },
+                "memberships": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "contactGroupMembership": {
+                        "type": "object",
+                        "properties": {
+                          "contactGroupId": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "contactGroupResourceName": {
+                            "type": "string",
+                            "maxLength": 600
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "domainMembership": {},
+                      "metadata": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "boolean"
+                          },
+                          "source": {},
+                          "verified": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 32
+                }
+              },
+              "additionalProperties": false
+            },
+            "personFields": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "etag"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "etag": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "metadata": {},
+            "names": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "nicknames": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "emailAddresses": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "phoneNumbers": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "organizations": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "addresses": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "biographies": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            },
+            "birthdays": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            },
+            "urls": {
+              "type": "array",
+              "items": {},
+              "maxItems": 8
+            },
+            "userDefined": {
+              "type": "array",
+              "items": {},
+              "maxItems": 16
+            },
+            "memberships": {
+              "type": "array",
+              "items": {},
+              "maxItems": 24
+            },
+            "photos": {
+              "type": "array",
+              "items": {},
+              "maxItems": 4
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "processes.list",
+        "description": "List the caller's own script executions, newest first, with the API's user process filter (GET /v1/processes).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "pageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "userProcessFilter": {
+              "type": "object",
+              "properties": {
+                "scriptId": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "functionName": {
+                  "type": "string",
+                  "maxLength": 4000
+                },
+                "statuses": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "maxItems": 32
+                },
+                "types": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "maxItems": 32
+                },
+                "deploymentId": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "projectName": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "userAccessLevels": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "maxItems": 8
+                },
+                "endTime": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "startTime": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "additionalProperties": false
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "processes"
+          ],
+          "properties": {
+            "processes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "projectName",
+                  "functionName",
+                  "processType",
+                  "processStatus",
+                  "userAccessLevel",
+                  "startTime",
+                  "duration",
+                  "runtimeVersion"
+                ],
+                "properties": {
+                  "projectName": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "functionName": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "processType": {
+                    "type": "string",
+                    "maxLength": 30
+                  },
+                  "processStatus": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "userAccessLevel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "startTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "duration": {
+                    "type": "string",
+                    "maxLength": 30
+                  },
+                  "runtimeVersion": {
+                    "type": "string",
+                    "maxLength": 20
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 200
+            },
+            "nextPageToken": {
+              "type": "string",
+              "maxLength": 2048
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "OUT_OF_RANGE",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "script-projects.create",
+        "description": "Create an Apps Script project seeded with a `Code` file and the `appsscript` manifest (POST /v1/projects).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "title"
+          ],
+          "properties": {
+            "title": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "parentId": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "title",
+            "createTime",
+            "updateTime",
+            "creator",
+            "lastModifyUser",
+            "owner"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44
+            },
+            "title": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "parentId": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "createTime": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "updateTime": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "creator": {
+              "type": "object",
+              "required": [
+                "domain",
+                "email",
+                "name",
+                "photoUrl"
+              ],
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "maxLength": 253
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 240
+                },
+                "photoUrl": {
+                  "type": "string",
+                  "maxLength": 400
+                }
+              },
+              "additionalProperties": false
+            },
+            "lastModifyUser": {
+              "type": "object",
+              "required": [
+                "domain",
+                "email",
+                "name",
+                "photoUrl"
+              ],
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "maxLength": 253
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 240
+                },
+                "photoUrl": {
+                  "type": "string",
+                  "maxLength": 400
+                }
+              },
+              "additionalProperties": false
+            },
+            "owner": {
+              "type": "object",
+              "required": [
+                "domain",
+                "email",
+                "name",
+                "photoUrl"
+              ],
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "maxLength": 253
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 240
+                },
+                "photoUrl": {
+                  "type": "string",
+                  "maxLength": 400
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "script-projects.get",
+        "description": "Read an Apps Script project's metadata (GET /v1/projects/{scriptId}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "title",
+            "createTime",
+            "updateTime",
+            "creator",
+            "lastModifyUser",
+            "owner"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44
+            },
+            "title": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "parentId": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "createTime": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "updateTime": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "creator": {
+              "type": "object",
+              "required": [
+                "domain",
+                "email",
+                "name",
+                "photoUrl"
+              ],
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "maxLength": 253
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 240
+                },
+                "photoUrl": {
+                  "type": "string",
+                  "maxLength": 400
+                }
+              },
+              "additionalProperties": false
+            },
+            "lastModifyUser": {
+              "type": "object",
+              "required": [
+                "domain",
+                "email",
+                "name",
+                "photoUrl"
+              ],
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "maxLength": 253
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 240
+                },
+                "photoUrl": {
+                  "type": "string",
+                  "maxLength": 400
+                }
+              },
+              "additionalProperties": false
+            },
+            "owner": {
+              "type": "object",
+              "required": [
+                "domain",
+                "email",
+                "name",
+                "photoUrl"
+              ],
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "maxLength": 253
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 240
+                },
+                "photoUrl": {
+                  "type": "string",
+                  "maxLength": 400
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "script-projects.get-content",
+        "description": "Read the files of a project's HEAD content or of a numbered version (GET /v1/projects/{scriptId}/content).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "versionNumber": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "files"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "type",
+                  "source"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "source": {
+                    "type": "string",
+                    "maxLength": 16384
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "updateTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "lastModifyUser": {
+                    "type": "object",
+                    "required": [
+                      "domain",
+                      "email",
+                      "name",
+                      "photoUrl"
+                    ],
+                    "properties": {
+                      "domain": {
+                        "type": "string",
+                        "maxLength": 253
+                      },
+                      "email": {
+                        "type": "string",
+                        "maxLength": 254
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 240
+                      },
+                      "photoUrl": {
+                        "type": "string",
+                        "maxLength": 400
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "functionSet": {
+                    "type": "object",
+                    "properties": {
+                      "values": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "name"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "maxLength": 80
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "maxItems": 20
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 12
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "script-projects.update-content",
+        "description": "Replace a project's HEAD content wholesale and recompute each file's function set (PUT /v1/projects/{scriptId}/content).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "files"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "source": {
+                    "type": "string",
+                    "maxLength": 65536
+                  },
+                  "functionSet": {},
+                  "lastModifyUser": {},
+                  "createTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "updateTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 64
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "files"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "type",
+                  "source"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "type": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "source": {
+                    "type": "string",
+                    "maxLength": 16384
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "updateTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "lastModifyUser": {
+                    "type": "object",
+                    "required": [
+                      "domain",
+                      "email",
+                      "name",
+                      "photoUrl"
+                    ],
+                    "properties": {
+                      "domain": {
+                        "type": "string",
+                        "maxLength": 253
+                      },
+                      "email": {
+                        "type": "string",
+                        "maxLength": 254
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 240
+                      },
+                      "photoUrl": {
+                        "type": "string",
+                        "maxLength": 400
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "functionSet": {
+                    "type": "object",
+                    "properties": {
+                      "values": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "name"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "maxLength": 80
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "maxItems": 20
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 12
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "script-versions.create",
+        "description": "Freeze the current HEAD content as a new immutable version (POST /v1/projects/{scriptId}/versions).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "versionNumber",
+            "createTime"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44
+            },
+            "versionNumber": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "createTime": {
+              "type": "string",
+              "maxLength": 60
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "scripts.run",
+        "description": "Run a function through the simulated one-expression Apps Script runtime and record the execution (POST /v1/scripts/{scriptId}:run).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "function"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "function": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "parameters": {
+              "type": "array",
+              "items": {},
+              "maxItems": 64
+            },
+            "devMode": {
+              "type": "boolean"
+            },
+            "sessionState": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "done"
+          ],
+          "properties": {
+            "done": {
+              "type": "boolean"
+            },
+            "response": {},
+            "error": {}
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "subscriptions.create",
+        "description": "Subscribe to events on a Chat space, Drive item or Meet space; returns the long-running-operation envelope (POST /v1/subscriptions).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "subscription"
+          ],
+          "properties": {
+            "subscription": {
+              "type": "object",
+              "properties": {
+                "targetResource": {
+                  "type": "string",
+                  "maxLength": 4000
+                },
+                "eventTypes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  "maxItems": 64
+                },
+                "notificationEndpoint": {
+                  "type": "object",
+                  "properties": {
+                    "pubsubTopic": {
+                      "type": "string",
+                      "maxLength": 4000
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "payloadOptions": {
+                  "type": "object",
+                  "properties": {
+                    "includeResource": {
+                      "type": "boolean"
+                    },
+                    "fieldMask": {
+                      "type": "string",
+                      "maxLength": 4000
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "ttl": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "uid": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "expireTime": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "additionalProperties": false
+            },
+            "validateOnly": {
+              "type": "boolean"
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "name",
+            "done"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "metadata": {},
+            "done": {
+              "type": "boolean"
+            },
+            "response": {},
+            "error": {}
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "ALREADY_EXISTS",
+          "INTERNAL",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "subscriptions.delete",
+        "description": "Delete a subscription, optionally guarded by its etag (DELETE /v1/subscriptions/{name}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "validateOnly": {
+              "type": "boolean"
+            },
+            "allowMissing": {
+              "type": "boolean"
+            },
+            "etag": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "name",
+            "done"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "metadata": {},
+            "done": {
+              "type": "boolean"
+            },
+            "response": {},
+            "error": {}
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "subscriptions.get",
+        "description": "Read one of the caller's subscriptions (GET /v1/subscriptions/{name}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "name",
+            "uid",
+            "targetResource",
+            "eventTypes",
+            "notificationEndpoint",
+            "state",
+            "authority",
+            "createTime",
+            "updateTime",
+            "reconciling",
+            "etag"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "uid": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "targetResource": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "eventTypes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "maxItems": 8
+            },
+            "payloadOptions": {
+              "type": "object",
+              "properties": {
+                "includeResource": {
+                  "type": "boolean"
+                },
+                "fieldMask": {
+                  "type": "string",
+                  "maxLength": 300
+                }
+              },
+              "additionalProperties": false
+            },
+            "notificationEndpoint": {
+              "type": "object",
+              "required": [
+                "pubsubTopic"
+              ],
+              "properties": {
+                "pubsubTopic": {
+                  "type": "string",
+                  "maxLength": 300
+                }
+              },
+              "additionalProperties": false
+            },
+            "state": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "suspensionReason": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "authority": {
+              "type": "string",
+              "maxLength": 254
+            },
+            "createTime": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "updateTime": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "reconciling": {
+              "type": "boolean"
+            },
+            "etag": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "expireTime": {
+              "type": "string",
+              "maxLength": 60
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "subscriptions.list",
+        "description": "List the caller's subscriptions matching a filter on event_types and target_resource (GET /v1/subscriptions).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "filter"
+          ],
+          "properties": {
+            "filter": {
+              "type": "string",
+              "maxLength": 4096
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "pageToken": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "subscriptions"
+          ],
+          "properties": {
+            "subscriptions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "uid",
+                  "targetResource",
+                  "eventTypes",
+                  "notificationEndpoint",
+                  "state",
+                  "authority",
+                  "createTime",
+                  "updateTime",
+                  "reconciling",
+                  "etag"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "uid": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "targetResource": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "eventTypes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 120
+                    },
+                    "maxItems": 8
+                  },
+                  "payloadOptions": {
+                    "type": "object",
+                    "properties": {
+                      "includeResource": {
+                        "type": "boolean"
+                      },
+                      "fieldMask": {
+                        "type": "string",
+                        "maxLength": 300
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "notificationEndpoint": {
+                    "type": "object",
+                    "required": [
+                      "pubsubTopic"
+                    ],
+                    "properties": {
+                      "pubsubTopic": {
+                        "type": "string",
+                        "maxLength": 300
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "state": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "suspensionReason": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "authority": {
+                    "type": "string",
+                    "maxLength": 254
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "updateTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "reconciling": {
+                    "type": "boolean"
+                  },
+                  "etag": {
+                    "type": "string",
+                    "maxLength": 600
+                  },
+                  "expireTime": {
+                    "type": "string",
+                    "maxLength": 60
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 100
+            },
+            "nextPageToken": {
+              "type": "string",
+              "maxLength": 2048
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT",
+          "OUT_OF_RANGE",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "subscriptions.reactivate",
+        "description": "Reactivate a suspended subscription whose suspension reason allows it (POST /v1/subscriptions/{name}:reactivate).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "__request_error": {
+              "type": "string",
+              "maxLength": 300
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "name",
+            "done"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "metadata": {},
+            "done": {
+              "type": "boolean"
+            },
+            "response": {},
+            "error": {}
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RESOURCE_EXHAUSTED",
+          "UNAUTHENTICATED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      }
+    ],
+    "events": [
+      {
+        "id": "contact.changed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "resourceName",
+            "contactId",
+            "ownerUserId",
+            "change",
+            "displayName",
+            "primaryEmail",
+            "groupIds",
+            "changedAtUs"
+          ],
+          "properties": {
+            "resourceName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "contactId": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21
+            },
+            "change": {
+              "type": "string",
+              "enum": [
+                "created",
+                "updated",
+                "deleted",
+                "bulk"
+              ]
+            },
+            "displayName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 240
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "primaryEmail": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "groupIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 24
+              },
+              "maxItems": 16
+            },
+            "changedAtUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "affectedCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "script.executed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "scriptId",
+            "projectTitle",
+            "functionName",
+            "deploymentId",
+            "devMode",
+            "status",
+            "durationUs",
+            "executedByUserId",
+            "errorMessage"
+          ],
+          "properties": {
+            "scriptId": {
+              "type": "string",
+              "maxLength": 44
+            },
+            "projectTitle": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "functionName": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "deploymentId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 36
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "devMode": {
+              "type": "boolean"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETED",
+                "FAILED",
+                "TIMED_OUT",
+                "CANCELED"
+              ]
+            },
+            "durationUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "executedByUserId": {
+              "type": "string",
+              "maxLength": 21
+            },
+            "errorMessage": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 400
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "subscription.state-changed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "subscriptionName",
+            "uid",
+            "ownerUserId",
+            "authority",
+            "targetResource",
+            "eventTypes",
+            "state",
+            "previousState",
+            "suspensionReason",
+            "changedAtUs"
+          ],
+          "properties": {
+            "subscriptionName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "uid": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "ownerUserId": {
+              "type": "string",
+              "maxLength": 21
+            },
+            "authority": {
+              "type": "string",
+              "maxLength": 254
+            },
+            "targetResource": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "eventTypes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "maxItems": 8
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "SUSPENDED",
+                "DELETED"
+              ]
+            },
+            "previousState": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 20
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "suspensionReason": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "changedAtUs": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "contacts-backend-unavailable",
+        "appliesTo": [
+          "people.create-contact",
+          "people.delete-contact",
+          "people.update-contact",
+          "script-projects.update-content"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "UNAVAILABLE",
+          "message": "The service is currently unavailable.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "rate-limited",
+        "appliesTo": [
+          "contact-groups.list",
+          "other-contacts.list",
+          "people.list-connections",
+          "people.search-contacts",
+          "processes.list",
+          "subscriptions.list"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RESOURCE_EXHAUSTED",
+          "message": "Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute per user'.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "subscription-create-lost",
+        "appliesTo": [
+          "subscriptions.create"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "INTERNAL",
+          "message": "Internal error encountered.",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "contact-group-members-modify",
+        "operationId": "contact-groups.modify-members",
+        "method": "POST",
+        "path": "/people/v1/contactGroups/{group_id}/{members_method}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "contact-groups-delete",
+        "operationId": "contact-groups.delete",
+        "method": "DELETE",
+        "path": "/people/v1/contactGroups/{group_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "contact-groups-get",
+        "operationId": "contact-groups.get",
+        "method": "GET",
+        "path": "/people/v1/contactGroups/{group_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "OUT_OF_RANGE",
+              "status": 400
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "contact-groups-list",
+        "operationId": "contact-groups.list",
+        "method": "GET",
+        "path": "/people/v1/contactGroups",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "OUT_OF_RANGE",
+              "status": 400
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "operations-get",
+        "operationId": "operations.get",
+        "method": "GET",
+        "path": "/workspaceevents/v1/operations/{operation_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "other-contacts-list",
+        "operationId": "other-contacts.list",
+        "method": "GET",
+        "path": "/people/v1/otherContacts",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "OUT_OF_RANGE",
+              "status": 400
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "people-connections",
+        "operationId": "people.list-connections",
+        "method": "GET",
+        "path": "/people/v1/people/{person_id}/connections",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "OUT_OF_RANGE",
+              "status": 400
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "people-create-contact",
+        "operationId": "people.create-contact",
+        "method": "POST",
+        "path": "/people/v1/{collection_method}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      },
+      {
+        "id": "people-delete-contact",
+        "operationId": "people.delete-contact",
+        "method": "DELETE",
+        "path": "/people/v1/people/{person_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      },
+      {
+        "id": "people-get",
+        "operationId": "people.get-contact",
+        "method": "GET",
+        "path": "/people/v1/people/{person_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "people-update-contact",
+        "operationId": "people.update-contact",
+        "method": "PATCH",
+        "path": "/people/v1/people/{person_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      },
+      {
+        "id": "processes-list",
+        "operationId": "processes.list",
+        "method": "GET",
+        "path": "/script/v1/processes",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "OUT_OF_RANGE",
+              "status": 400
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "script-content-get",
+        "operationId": "script-projects.get-content",
+        "method": "GET",
+        "path": "/script/v1/projects/{script_id}/content",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "script-content-update",
+        "operationId": "script-projects.update-content",
+        "method": "PUT",
+        "path": "/script/v1/projects/{script_id}/content",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      },
+      {
+        "id": "script-deployments-create",
+        "operationId": "deployments.create",
+        "method": "POST",
+        "path": "/script/v1/projects/{script_id}/deployments",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "script-deployments-list",
+        "operationId": "deployments.list",
+        "method": "GET",
+        "path": "/script/v1/projects/{script_id}/deployments",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "OUT_OF_RANGE",
+              "status": 400
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "script-projects-create",
+        "operationId": "script-projects.create",
+        "method": "POST",
+        "path": "/script/v1/projects",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "script-projects-get",
+        "operationId": "script-projects.get",
+        "method": "GET",
+        "path": "/script/v1/projects/{script_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "script-versions-create",
+        "operationId": "script-versions.create",
+        "method": "POST",
+        "path": "/script/v1/projects/{script_id}/versions",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "scripts-run",
+        "operationId": "scripts.run",
+        "method": "POST",
+        "path": "/script/v1/scripts/{script_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "subscriptions-create",
+        "operationId": "subscriptions.create",
+        "method": "POST",
+        "path": "/workspaceevents/v1/subscriptions",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ALREADY_EXISTS",
+              "status": 409
+            },
+            {
+              "code": "INTERNAL",
+              "status": 500
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "subscriptions-delete",
+        "operationId": "subscriptions.delete",
+        "method": "DELETE",
+        "path": "/workspaceevents/v1/subscriptions/{subscription_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "subscriptions-get",
+        "operationId": "subscriptions.get",
+        "method": "GET",
+        "path": "/workspaceevents/v1/subscriptions/{subscription_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "subscriptions-list",
+        "operationId": "subscriptions.list",
+        "method": "GET",
+        "path": "/workspaceevents/v1/subscriptions",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "OUT_OF_RANGE",
+              "status": 400
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "subscriptions-reactivate",
+        "operationId": "subscriptions.reactivate",
+        "method": "POST",
+        "path": "/workspaceevents/v1/subscriptions/{subscription_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RESOURCE_EXHAUSTED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHENTICATED",
+              "status": 401
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": [],
+    "connections": [
+      {
+        "id": "google-workspace-rest",
+        "title": "Google API client (test process)",
+        "protocol": "http",
+        "environment": {
+          "GOOGLE_WORKSPACE_BASE_URL": "FIREDRILL_HTTP_URL",
+          "GOOGLE_WORKSPACE_ACCESS_TOKEN": "FIREDRILL_HTTP_TOKEN"
+        },
+        "instructions": "Point each API's root URL at GOOGLE_WORKSPACE_BASE_URL plus its service prefix (/people/v1, /workspaceevents/v1, /script/v1) and send GOOGLE_WORKSPACE_ACCESS_TOKEN as the Bearer token. Test processes only; no Google service is contacted."
+      }
+    ]
+  }
+}

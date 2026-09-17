@@ -1,0 +1,1556 @@
+{
+  "schemaVersion": 1,
+  "id": "unstructured-conformance-world",
+  "title": "Unstructured Tool conformance world (Northgate Research account)",
+  "virtualTimeUs": 1789549200000000,
+  "actors": [
+    {
+      "id": "analyst",
+      "description": "Northgate Research API key (attribute unstructuredWorkspaceId = ws_northgate). Main flows.",
+      "attributes": {
+        "unstructuredWorkspaceId": "ws_northgate"
+      },
+      "grants": [
+        {
+          "packageId": "unstructured",
+          "operationId": "general.partition"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.check_connection"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.get_connection_check"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.run"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.cancel"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get_details"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get_failed_files"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.download_output"
+        }
+      ]
+    },
+    {
+      "id": "fresh",
+      "description": "An actor without identity attributes, as `firedrill tool add` creates it; falls back to the seeded default workspace ws_northgate.",
+      "grants": [
+        {
+          "packageId": "unstructured",
+          "operationId": "general.partition"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.check_connection"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.get_connection_check"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.run"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.cancel"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get_details"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get_failed_files"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.download_output"
+        }
+      ]
+    },
+    {
+      "id": "archivist",
+      "description": "Northgate Archive API key (unstructuredWorkspaceId = ws_archive); sees only the archive connectors and workflow.",
+      "attributes": {
+        "unstructuredWorkspaceId": "ws_archive"
+      },
+      "grants": [
+        {
+          "packageId": "unstructured",
+          "operationId": "general.partition"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.check_connection"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.get_connection_check"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.run"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.cancel"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get_details"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get_failed_files"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.download_output"
+        }
+      ]
+    },
+    {
+      "id": "revoked",
+      "description": "A key claiming a workspace that does not exist (unstructuredWorkspaceId = ws_gone); every call answers 401 API key is invalid.",
+      "attributes": {
+        "unstructuredWorkspaceId": "ws_gone"
+      },
+      "grants": [
+        {
+          "packageId": "unstructured",
+          "operationId": "general.partition"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.check_connection"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "sources.get_connection_check"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "destinations.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.create"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.update"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.delete"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "workflows.run"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.list"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.cancel"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get_details"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.get_failed_files"
+        },
+        {
+          "packageId": "unstructured",
+          "operationId": "jobs.download_output"
+        }
+      ]
+    },
+    {
+      "id": "no-grants",
+      "description": "An actor without any operation grant; every call is denied by the framework before the Tool runs.",
+      "grants": []
+    }
+  ],
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "next_seq": 1000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "connectors": 2000,
+        "workflows": 5000,
+        "jobs": 5000,
+        "files_per_source": 200,
+        "source_file_bytes": 262144,
+        "response_bytes": 921600
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "workspaces",
+      "rowId": "ws_northgate",
+      "value": {
+        "id": "ws_northgate",
+        "name": "Northgate Research",
+        "created_at": "2026-03-02T08:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "workspaces",
+      "rowId": "ws_archive",
+      "value": {
+        "id": "ws_archive",
+        "name": "Northgate Archive",
+        "created_at": "2026-05-11T08:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "sources",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+      "value": {
+        "id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "workspace_id": "ws_northgate",
+        "seq": 101,
+        "name": "Policy archive",
+        "type": "s3",
+        "config": {
+          "remote_url": "s3://northgate-policies/",
+          "recursive": true,
+          "access_key_id": "AKIAEXAMPLE0000001",
+          "secret_access_key": "********"
+        },
+        "key": "policy-archive",
+        "created_at": "2026-06-01T09:15:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "sources",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502",
+      "value": {
+        "id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502",
+        "workspace_id": "ws_northgate",
+        "seq": 102,
+        "name": "Field notes",
+        "type": "google_drive",
+        "config": {
+          "drive_id": "1AbCdEfGhIjKlMnOpQrStUvWxYz012345",
+          "recursive": false,
+          "service_account_key": "********"
+        },
+        "key": null,
+        "created_at": "2026-06-03T14:20:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "sources",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503",
+      "value": {
+        "id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503",
+        "workspace_id": "ws_northgate",
+        "seq": 103,
+        "name": "Legacy scans",
+        "type": "azure",
+        "config": {
+          "remote_url": "az://legacy-scans/",
+          "account_name": "northgatelegacy",
+          "account_key": "********"
+        },
+        "key": "legacy-scans",
+        "created_at": "2026-07-19T11:05:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "sources",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e504",
+      "value": {
+        "id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e504",
+        "workspace_id": "ws_archive",
+        "seq": 104,
+        "name": "Archive dump",
+        "type": "s3",
+        "config": {
+          "remote_url": "s3://northgate-archive-dump/",
+          "recursive": true
+        },
+        "key": "archive-dump",
+        "created_at": "2026-07-20T10:00:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:handbook-md",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "file_id": "handbook-md",
+        "path": "s3://northgate-policies/handbook.md",
+        "filename": "handbook.md",
+        "content_type": "text/markdown",
+        "size_bytes": 1446,
+        "last_modified": "2026-08-12T10:00:00.000Z",
+        "content": "# Northgate Research Employee Handbook\n\nWelcome to Northgate Research. This handbook explains how we work together, what we expect from each other, and where to find help when something is unclear.\n\n## Working Hours\n\nCore hours run from 10:00 to 15:00 in each office's local time zone. Outside core hours, teams agree on their own schedules with their **team lead**.\n\n### Remote Work\n\nRemote work is allowed for up to *three* days per week. Requests for a fully remote arrangement go through the [people team](https://people.northgate-research.test/requests).\n\n- Book a desk before coming to the office.\n- Keep your calendar up to date.\n  - Mark focus time explicitly.\n  - Decline meetings without an agenda.\n- Log time off in the HR portal.\n\n## Equipment\n\n| Item | Standard | Refresh cycle |\n| --- | --- | --- |\n| Laptop | 14-inch, 32 GB RAM | 3 years |\n| Monitor | 27-inch, 4K | 5 years |\n| Headset | Noise cancelling | 2 years |\n\n### Requesting Equipment\n\nOpen a ticket with the tag `equipment` and include your cost centre.\n\n```bash\nngctl ticket create --tag equipment --cost-centre 4410\n```\n\n## Security\n\n1. Use the password manager for every account.\n2. Report lost devices within one hour to the [security desk](mailto:security@northgate-research.test).\n3. Never forward internal documents to personal mailboxes.\n\n## Questions\n\nIf anything in this handbook is unclear, ask in the people channel or write to people@northgate-research.test.\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:refund-policy-txt",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "file_id": "refund-policy-txt",
+        "path": "s3://northgate-policies/refund-policy.txt",
+        "filename": "refund-policy.txt",
+        "content_type": "text/plain",
+        "size_bytes": 965,
+        "last_modified": "2026-08-12T10:01:00.000Z",
+        "content": "REFUND POLICY\n\nNorthgate Research issues refunds for research subscriptions cancelled within fourteen days of the first invoice. Refunds are returned to the original payment method within ten working days.\n\nSubscriptions cancelled after fourteen days remain active until the end of the paid period and are not refunded. Enterprise agreements follow the terms of their own contract.\n\nTo request a refund, send the invoice number and the account owner's name to the billing desk. We answer every request within two working days.\n\n- Invoice number\n- Account owner\n- Reason for cancellation\n\nBilling Desk\n12 Harbour Street\nBristol BS1 4QD\nUnited Kingdom\n\nbilling@northgate-research.test\n\f\nExceptions\n\nRefunds are not available for one-off report purchases once the report has been downloaded. Partial refunds for unused seats are calculated per calendar day.\n\nQuestions about this policy can be sent to the billing desk at any time; we review the policy every January.\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:vendors-csv",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "file_id": "vendors-csv",
+        "path": "s3://northgate-policies/vendors.csv",
+        "filename": "vendors.csv",
+        "content_type": "text/csv",
+        "size_bytes": 754,
+        "last_modified": "2026-08-20T16:45:00.000Z",
+        "content": "name,category,country,annual_spend,notes\nHarbour Print Ltd,Printing,United Kingdom,18400,\"Preferred, quarterly review\"\nNordlys Data AS,Cloud,Norway,92000,Renewal due March\nAtlas Field Supplies,Equipment,Ireland,7600,\"Ships in 3-5 days\nBackorders possible\"\nBlue Pine Catering,Catering,United Kingdom,12250,\nKestrel Legal LLP,Legal,United Kingdom,45000,Retainer\nMeridian Translations,Services,Spain,9800,Per-word pricing\nOrbit Telecom,Telecoms,Netherlands,15300,Contract to 2027\nPaperclip Office,Supplies,United Kingdom,4100,\nQuartz Analytics,Software,Germany,38000,Annual licence\nRiverbank Travel,Travel,United Kingdom,26700,Corporate rates\nSummit Insurance,Insurance,Switzerland,54000,Policy NR-2291\nTallow Cleaning,Facilities,United Kingdom,8900,Weekly\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:release-notes-html",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "file_id": "release-notes-html",
+        "path": "s3://northgate-policies/release-notes.html",
+        "filename": "release-notes.html",
+        "content_type": "text/html",
+        "size_bytes": 1544,
+        "last_modified": "2026-09-01T09:00:00.000Z",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Northgate Field Kit 4.2 release notes</title>\n<style>body { font-family: sans-serif; } .page-break { page-break-after: always; }</style>\n<script>window.analytics = { track: function () { return \"never shown\"; } };</script>\n</head>\n<body>\n<header>Northgate Research &middot; Internal release notes</header>\n<h1>Field Kit 4.2</h1>\n<p>Field Kit 4.2 ships the offline synchronisation engine that teams asked for during the spring review. It replaces the polling client and reduces battery use by <strong>38 percent</strong> on the reference tablet.</p>\n<h2>What's new</h2>\n<ul>\n  <li>Offline forms queue locally and sync when a connection returns.</li>\n  <li>Photo attachments are compressed before upload.</li>\n  <li>The site map now supports <em>custom layers</em> from the <a href=\"https://fieldkit.northgate-research.test/docs/layers\">layer catalogue</a>.</li>\n</ul>\n<h2>Compatibility</h2>\n<table>\n  <tr><th>Platform</th><th>Minimum version</th><th>Status</th></tr>\n  <tr><td>Android</td><td>12</td><td>Supported</td></tr>\n  <tr><td>iPadOS</td><td>16</td><td>Supported</td></tr>\n  <tr><td>Windows</td><td>11</td><td>Preview</td></tr>\n</table>\n<h2>Upgrade steps</h2>\n<p>Run the migration before installing the new client:</p>\n<pre>ngctl fieldkit migrate --to 4.2\nngctl fieldkit verify</pre>\n<p>Report problems through the <a href=\"https://support.northgate-research.test\">support portal</a>.</p>\n<footer>&copy; 2026 Northgate Research. Confidential.</footer>\n</body>\n</html>\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:elements-json",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "file_id": "elements-json",
+        "path": "s3://northgate-policies/elements.json",
+        "filename": "elements.json",
+        "content_type": "application/json",
+        "size_bytes": 826,
+        "last_modified": "2026-09-02T09:00:00.000Z",
+        "content": "[\n  {\n    \"type\": \"Title\",\n    \"element_id\": \"4f3c2a1b9d8e7f6a5b4c3d2e1f0a9b8c\",\n    \"text\": \"Pre-partitioned quarterly summary\",\n    \"metadata\": { \"filename\": \"quarterly.pdf\", \"filetype\": \"application/pdf\", \"page_number\": 1, \"languages\": [\"eng\"], \"category_depth\": 0 }\n  },\n  {\n    \"type\": \"NarrativeText\",\n    \"element_id\": \"0a9b8c7d6e5f4a3b2c1d0e9f8a7b6c5d\",\n    \"text\": \"Revenue grew eleven percent quarter over quarter, driven by the field research practice.\",\n    \"metadata\": { \"filename\": \"quarterly.pdf\", \"filetype\": \"application/pdf\", \"page_number\": 1, \"languages\": [\"eng\"], \"parent_id\": \"4f3c2a1b9d8e7f6a5b4c3d2e1f0a9b8c\" }\n  },\n  {\n    \"type\": \"ListItem\",\n    \"text\": \"Headcount: 61 (+4)\",\n    \"metadata\": { \"filename\": \"quarterly.pdf\", \"filetype\": \"application/pdf\", \"page_number\": 2, \"languages\": [\"eng\"] }\n  }\n]\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:empty-txt",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "file_id": "empty-txt",
+        "path": "s3://northgate-policies/empty.txt",
+        "filename": "empty.txt",
+        "content_type": "text/plain",
+        "size_bytes": 0,
+        "last_modified": "2026-09-02T09:05:00.000Z",
+        "content": "",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:ledger-txt",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "file_id": "ledger-txt",
+        "path": "s3://northgate-policies/ledger.txt",
+        "filename": "ledger.txt",
+        "content_type": "text/plain",
+        "size_bytes": 56014,
+        "last_modified": "2026-09-03T09:00:00.000Z",
+        "content": "LEDGER EXPORT\n\nEntry 0001 posted.\n\nEntry 0002 posted.\n\nEntry 0003 posted.\n\nEntry 0004 posted.\n\nEntry 0005 posted.\n\nEntry 0006 posted.\n\nEntry 0007 posted.\n\nEntry 0008 posted.\n\nEntry 0009 posted.\n\nEntry 0010 posted.\n\nEntry 0011 posted.\n\nEntry 0012 posted.\n\nEntry 0013 posted.\n\nEntry 0014 posted.\n\nEntry 0015 posted.\n\nEntry 0016 posted.\n\nEntry 0017 posted.\n\nEntry 0018 posted.\n\nEntry 0019 posted.\n\nEntry 0020 posted.\n\nEntry 0021 posted.\n\nEntry 0022 posted.\n\nEntry 0023 posted.\n\nEntry 0024 posted.\n\nEntry 0025 posted.\n\nEntry 0026 posted.\n\nEntry 0027 posted.\n\nEntry 0028 posted.\n\nEntry 0029 posted.\n\nEntry 0030 posted.\n\nEntry 0031 posted.\n\nEntry 0032 posted.\n\nEntry 0033 posted.\n\nEntry 0034 posted.\n\nEntry 0035 posted.\n\nEntry 0036 posted.\n\nEntry 0037 posted.\n\nEntry 0038 posted.\n\nEntry 0039 posted.\n\nEntry 0040 posted.\n\nEntry 0041 posted.\n\nEntry 0042 posted.\n\nEntry 0043 posted.\n\nEntry 0044 posted.\n\nEntry 0045 posted.\n\nEntry 0046 posted.\n\nEntry 0047 posted.\n\nEntry 0048 posted.\n\nEntry 0049 posted.\n\nEntry 0050 posted.\n\nEntry 0051 posted.\n\nEntry 0052 posted.\n\nEntry 0053 posted.\n\nEntry 0054 posted.\n\nEntry 0055 posted.\n\nEntry 0056 posted.\n\nEntry 0057 posted.\n\nEntry 0058 posted.\n\nEntry 0059 posted.\n\nEntry 0060 posted.\n\nEntry 0061 posted.\n\nEntry 0062 posted.\n\nEntry 0063 posted.\n\nEntry 0064 posted.\n\nEntry 0065 posted.\n\nEntry 0066 posted.\n\nEntry 0067 posted.\n\nEntry 0068 posted.\n\nEntry 0069 posted.\n\nEntry 0070 posted.\n\nEntry 0071 posted.\n\nEntry 0072 posted.\n\nEntry 0073 posted.\n\nEntry 0074 posted.\n\nEntry 0075 posted.\n\nEntry 0076 posted.\n\nEntry 0077 posted.\n\nEntry 0078 posted.\n\nEntry 0079 posted.\n\nEntry 0080 posted.\n\nEntry 0081 posted.\n\nEntry 0082 posted.\n\nEntry 0083 posted.\n\nEntry 0084 posted.\n\nEntry 0085 posted.\n\nEntry 0086 posted.\n\nEntry 0087 posted.\n\nEntry 0088 posted.\n\nEntry 0089 posted.\n\nEntry 0090 posted.\n\nEntry 0091 posted.\n\nEntry 0092 posted.\n\nEntry 0093 posted.\n\nEntry 0094 posted.\n\nEntry 0095 posted.\n\nEntry 0096 posted.\n\nEntry 0097 posted.\n\nEntry 0098 posted.\n\nEntry 0099 posted.\n\nEntry 0100 posted.\n\nEntry 0101 posted.\n\nEntry 0102 posted.\n\nEntry 0103 posted.\n\nEntry 0104 posted.\n\nEntry 0105 posted.\n\nEntry 0106 posted.\n\nEntry 0107 posted.\n\nEntry 0108 posted.\n\nEntry 0109 posted.\n\nEntry 0110 posted.\n\nEntry 0111 posted.\n\nEntry 0112 posted.\n\nEntry 0113 posted.\n\nEntry 0114 posted.\n\nEntry 0115 posted.\n\nEntry 0116 posted.\n\nEntry 0117 posted.\n\nEntry 0118 posted.\n\nEntry 0119 posted.\n\nEntry 0120 posted.\n\nEntry 0121 posted.\n\nEntry 0122 posted.\n\nEntry 0123 posted.\n\nEntry 0124 posted.\n\nEntry 0125 posted.\n\nEntry 0126 posted.\n\nEntry 0127 posted.\n\nEntry 0128 posted.\n\nEntry 0129 posted.\n\nEntry 0130 posted.\n\nEntry 0131 posted.\n\nEntry 0132 posted.\n\nEntry 0133 posted.\n\nEntry 0134 posted.\n\nEntry 0135 posted.\n\nEntry 0136 posted.\n\nEntry 0137 posted.\n\nEntry 0138 posted.\n\nEntry 0139 posted.\n\nEntry 0140 posted.\n\nEntry 0141 posted.\n\nEntry 0142 posted.\n\nEntry 0143 posted.\n\nEntry 0144 posted.\n\nEntry 0145 posted.\n\nEntry 0146 posted.\n\nEntry 0147 posted.\n\nEntry 0148 posted.\n\nEntry 0149 posted.\n\nEntry 0150 posted.\n\nEntry 0151 posted.\n\nEntry 0152 posted.\n\nEntry 0153 posted.\n\nEntry 0154 posted.\n\nEntry 0155 posted.\n\nEntry 0156 posted.\n\nEntry 0157 posted.\n\nEntry 0158 posted.\n\nEntry 0159 posted.\n\nEntry 0160 posted.\n\nEntry 0161 posted.\n\nEntry 0162 posted.\n\nEntry 0163 posted.\n\nEntry 0164 posted.\n\nEntry 0165 posted.\n\nEntry 0166 posted.\n\nEntry 0167 posted.\n\nEntry 0168 posted.\n\nEntry 0169 posted.\n\nEntry 0170 posted.\n\nEntry 0171 posted.\n\nEntry 0172 posted.\n\nEntry 0173 posted.\n\nEntry 0174 posted.\n\nEntry 0175 posted.\n\nEntry 0176 posted.\n\nEntry 0177 posted.\n\nEntry 0178 posted.\n\nEntry 0179 posted.\n\nEntry 0180 posted.\n\nEntry 0181 posted.\n\nEntry 0182 posted.\n\nEntry 0183 posted.\n\nEntry 0184 posted.\n\nEntry 0185 posted.\n\nEntry 0186 posted.\n\nEntry 0187 posted.\n\nEntry 0188 posted.\n\nEntry 0189 posted.\n\nEntry 0190 posted.\n\nEntry 0191 posted.\n\nEntry 0192 posted.\n\nEntry 0193 posted.\n\nEntry 0194 posted.\n\nEntry 0195 posted.\n\nEntry 0196 posted.\n\nEntry 0197 posted.\n\nEntry 0198 posted.\n\nEntry 0199 posted.\n\nEntry 0200 posted.\n\nEntry 0201 posted.\n\nEntry 0202 posted.\n\nEntry 0203 posted.\n\nEntry 0204 posted.\n\nEntry 0205 posted.\n\nEntry 0206 posted.\n\nEntry 0207 posted.\n\nEntry 0208 posted.\n\nEntry 0209 posted.\n\nEntry 0210 posted.\n\nEntry 0211 posted.\n\nEntry 0212 posted.\n\nEntry 0213 posted.\n\nEntry 0214 posted.\n\nEntry 0215 posted.\n\nEntry 0216 posted.\n\nEntry 0217 posted.\n\nEntry 0218 posted.\n\nEntry 0219 posted.\n\nEntry 0220 posted.\n\nEntry 0221 posted.\n\nEntry 0222 posted.\n\nEntry 0223 posted.\n\nEntry 0224 posted.\n\nEntry 0225 posted.\n\nEntry 0226 posted.\n\nEntry 0227 posted.\n\nEntry 0228 posted.\n\nEntry 0229 posted.\n\nEntry 0230 posted.\n\nEntry 0231 posted.\n\nEntry 0232 posted.\n\nEntry 0233 posted.\n\nEntry 0234 posted.\n\nEntry 0235 posted.\n\nEntry 0236 posted.\n\nEntry 0237 posted.\n\nEntry 0238 posted.\n\nEntry 0239 posted.\n\nEntry 0240 posted.\n\nEntry 0241 posted.\n\nEntry 0242 posted.\n\nEntry 0243 posted.\n\nEntry 0244 posted.\n\nEntry 0245 posted.\n\nEntry 0246 posted.\n\nEntry 0247 posted.\n\nEntry 0248 posted.\n\nEntry 0249 posted.\n\nEntry 0250 posted.\n\nEntry 0251 posted.\n\nEntry 0252 posted.\n\nEntry 0253 posted.\n\nEntry 0254 posted.\n\nEntry 0255 posted.\n\nEntry 0256 posted.\n\nEntry 0257 posted.\n\nEntry 0258 posted.\n\nEntry 0259 posted.\n\nEntry 0260 posted.\n\nEntry 0261 posted.\n\nEntry 0262 posted.\n\nEntry 0263 posted.\n\nEntry 0264 posted.\n\nEntry 0265 posted.\n\nEntry 0266 posted.\n\nEntry 0267 posted.\n\nEntry 0268 posted.\n\nEntry 0269 posted.\n\nEntry 0270 posted.\n\nEntry 0271 posted.\n\nEntry 0272 posted.\n\nEntry 0273 posted.\n\nEntry 0274 posted.\n\nEntry 0275 posted.\n\nEntry 0276 posted.\n\nEntry 0277 posted.\n\nEntry 0278 posted.\n\nEntry 0279 posted.\n\nEntry 0280 posted.\n\nEntry 0281 posted.\n\nEntry 0282 posted.\n\nEntry 0283 posted.\n\nEntry 0284 posted.\n\nEntry 0285 posted.\n\nEntry 0286 posted.\n\nEntry 0287 posted.\n\nEntry 0288 posted.\n\nEntry 0289 posted.\n\nEntry 0290 posted.\n\nEntry 0291 posted.\n\nEntry 0292 posted.\n\nEntry 0293 posted.\n\nEntry 0294 posted.\n\nEntry 0295 posted.\n\nEntry 0296 posted.\n\nEntry 0297 posted.\n\nEntry 0298 posted.\n\nEntry 0299 posted.\n\nEntry 0300 posted.\n\nEntry 0301 posted.\n\nEntry 0302 posted.\n\nEntry 0303 posted.\n\nEntry 0304 posted.\n\nEntry 0305 posted.\n\nEntry 0306 posted.\n\nEntry 0307 posted.\n\nEntry 0308 posted.\n\nEntry 0309 posted.\n\nEntry 0310 posted.\n\nEntry 0311 posted.\n\nEntry 0312 posted.\n\nEntry 0313 posted.\n\nEntry 0314 posted.\n\nEntry 0315 posted.\n\nEntry 0316 posted.\n\nEntry 0317 posted.\n\nEntry 0318 posted.\n\nEntry 0319 posted.\n\nEntry 0320 posted.\n\nEntry 0321 posted.\n\nEntry 0322 posted.\n\nEntry 0323 posted.\n\nEntry 0324 posted.\n\nEntry 0325 posted.\n\nEntry 0326 posted.\n\nEntry 0327 posted.\n\nEntry 0328 posted.\n\nEntry 0329 posted.\n\nEntry 0330 posted.\n\nEntry 0331 posted.\n\nEntry 0332 posted.\n\nEntry 0333 posted.\n\nEntry 0334 posted.\n\nEntry 0335 posted.\n\nEntry 0336 posted.\n\nEntry 0337 posted.\n\nEntry 0338 posted.\n\nEntry 0339 posted.\n\nEntry 0340 posted.\n\nEntry 0341 posted.\n\nEntry 0342 posted.\n\nEntry 0343 posted.\n\nEntry 0344 posted.\n\nEntry 0345 posted.\n\nEntry 0346 posted.\n\nEntry 0347 posted.\n\nEntry 0348 posted.\n\nEntry 0349 posted.\n\nEntry 0350 posted.\n\nEntry 0351 posted.\n\nEntry 0352 posted.\n\nEntry 0353 posted.\n\nEntry 0354 posted.\n\nEntry 0355 posted.\n\nEntry 0356 posted.\n\nEntry 0357 posted.\n\nEntry 0358 posted.\n\nEntry 0359 posted.\n\nEntry 0360 posted.\n\nEntry 0361 posted.\n\nEntry 0362 posted.\n\nEntry 0363 posted.\n\nEntry 0364 posted.\n\nEntry 0365 posted.\n\nEntry 0366 posted.\n\nEntry 0367 posted.\n\nEntry 0368 posted.\n\nEntry 0369 posted.\n\nEntry 0370 posted.\n\nEntry 0371 posted.\n\nEntry 0372 posted.\n\nEntry 0373 posted.\n\nEntry 0374 posted.\n\nEntry 0375 posted.\n\nEntry 0376 posted.\n\nEntry 0377 posted.\n\nEntry 0378 posted.\n\nEntry 0379 posted.\n\nEntry 0380 posted.\n\nEntry 0381 posted.\n\nEntry 0382 posted.\n\nEntry 0383 posted.\n\nEntry 0384 posted.\n\nEntry 0385 posted.\n\nEntry 0386 posted.\n\nEntry 0387 posted.\n\nEntry 0388 posted.\n\nEntry 0389 posted.\n\nEntry 0390 posted.\n\nEntry 0391 posted.\n\nEntry 0392 posted.\n\nEntry 0393 posted.\n\nEntry 0394 posted.\n\nEntry 0395 posted.\n\nEntry 0396 posted.\n\nEntry 0397 posted.\n\nEntry 0398 posted.\n\nEntry 0399 posted.\n\nEntry 0400 posted.\n\nEntry 0401 posted.\n\nEntry 0402 posted.\n\nEntry 0403 posted.\n\nEntry 0404 posted.\n\nEntry 0405 posted.\n\nEntry 0406 posted.\n\nEntry 0407 posted.\n\nEntry 0408 posted.\n\nEntry 0409 posted.\n\nEntry 0410 posted.\n\nEntry 0411 posted.\n\nEntry 0412 posted.\n\nEntry 0413 posted.\n\nEntry 0414 posted.\n\nEntry 0415 posted.\n\nEntry 0416 posted.\n\nEntry 0417 posted.\n\nEntry 0418 posted.\n\nEntry 0419 posted.\n\nEntry 0420 posted.\n\nEntry 0421 posted.\n\nEntry 0422 posted.\n\nEntry 0423 posted.\n\nEntry 0424 posted.\n\nEntry 0425 posted.\n\nEntry 0426 posted.\n\nEntry 0427 posted.\n\nEntry 0428 posted.\n\nEntry 0429 posted.\n\nEntry 0430 posted.\n\nEntry 0431 posted.\n\nEntry 0432 posted.\n\nEntry 0433 posted.\n\nEntry 0434 posted.\n\nEntry 0435 posted.\n\nEntry 0436 posted.\n\nEntry 0437 posted.\n\nEntry 0438 posted.\n\nEntry 0439 posted.\n\nEntry 0440 posted.\n\nEntry 0441 posted.\n\nEntry 0442 posted.\n\nEntry 0443 posted.\n\nEntry 0444 posted.\n\nEntry 0445 posted.\n\nEntry 0446 posted.\n\nEntry 0447 posted.\n\nEntry 0448 posted.\n\nEntry 0449 posted.\n\nEntry 0450 posted.\n\nEntry 0451 posted.\n\nEntry 0452 posted.\n\nEntry 0453 posted.\n\nEntry 0454 posted.\n\nEntry 0455 posted.\n\nEntry 0456 posted.\n\nEntry 0457 posted.\n\nEntry 0458 posted.\n\nEntry 0459 posted.\n\nEntry 0460 posted.\n\nEntry 0461 posted.\n\nEntry 0462 posted.\n\nEntry 0463 posted.\n\nEntry 0464 posted.\n\nEntry 0465 posted.\n\nEntry 0466 posted.\n\nEntry 0467 posted.\n\nEntry 0468 posted.\n\nEntry 0469 posted.\n\nEntry 0470 posted.\n\nEntry 0471 posted.\n\nEntry 0472 posted.\n\nEntry 0473 posted.\n\nEntry 0474 posted.\n\nEntry 0475 posted.\n\nEntry 0476 posted.\n\nEntry 0477 posted.\n\nEntry 0478 posted.\n\nEntry 0479 posted.\n\nEntry 0480 posted.\n\nEntry 0481 posted.\n\nEntry 0482 posted.\n\nEntry 0483 posted.\n\nEntry 0484 posted.\n\nEntry 0485 posted.\n\nEntry 0486 posted.\n\nEntry 0487 posted.\n\nEntry 0488 posted.\n\nEntry 0489 posted.\n\nEntry 0490 posted.\n\nEntry 0491 posted.\n\nEntry 0492 posted.\n\nEntry 0493 posted.\n\nEntry 0494 posted.\n\nEntry 0495 posted.\n\nEntry 0496 posted.\n\nEntry 0497 posted.\n\nEntry 0498 posted.\n\nEntry 0499 posted.\n\nEntry 0500 posted.\n\nEntry 0501 posted.\n\nEntry 0502 posted.\n\nEntry 0503 posted.\n\nEntry 0504 posted.\n\nEntry 0505 posted.\n\nEntry 0506 posted.\n\nEntry 0507 posted.\n\nEntry 0508 posted.\n\nEntry 0509 posted.\n\nEntry 0510 posted.\n\nEntry 0511 posted.\n\nEntry 0512 posted.\n\nEntry 0513 posted.\n\nEntry 0514 posted.\n\nEntry 0515 posted.\n\nEntry 0516 posted.\n\nEntry 0517 posted.\n\nEntry 0518 posted.\n\nEntry 0519 posted.\n\nEntry 0520 posted.\n\nEntry 0521 posted.\n\nEntry 0522 posted.\n\nEntry 0523 posted.\n\nEntry 0524 posted.\n\nEntry 0525 posted.\n\nEntry 0526 posted.\n\nEntry 0527 posted.\n\nEntry 0528 posted.\n\nEntry 0529 posted.\n\nEntry 0530 posted.\n\nEntry 0531 posted.\n\nEntry 0532 posted.\n\nEntry 0533 posted.\n\nEntry 0534 posted.\n\nEntry 0535 posted.\n\nEntry 0536 posted.\n\nEntry 0537 posted.\n\nEntry 0538 posted.\n\nEntry 0539 posted.\n\nEntry 0540 posted.\n\nEntry 0541 posted.\n\nEntry 0542 posted.\n\nEntry 0543 posted.\n\nEntry 0544 posted.\n\nEntry 0545 posted.\n\nEntry 0546 posted.\n\nEntry 0547 posted.\n\nEntry 0548 posted.\n\nEntry 0549 posted.\n\nEntry 0550 posted.\n\nEntry 0551 posted.\n\nEntry 0552 posted.\n\nEntry 0553 posted.\n\nEntry 0554 posted.\n\nEntry 0555 posted.\n\nEntry 0556 posted.\n\nEntry 0557 posted.\n\nEntry 0558 posted.\n\nEntry 0559 posted.\n\nEntry 0560 posted.\n\nEntry 0561 posted.\n\nEntry 0562 posted.\n\nEntry 0563 posted.\n\nEntry 0564 posted.\n\nEntry 0565 posted.\n\nEntry 0566 posted.\n\nEntry 0567 posted.\n\nEntry 0568 posted.\n\nEntry 0569 posted.\n\nEntry 0570 posted.\n\nEntry 0571 posted.\n\nEntry 0572 posted.\n\nEntry 0573 posted.\n\nEntry 0574 posted.\n\nEntry 0575 posted.\n\nEntry 0576 posted.\n\nEntry 0577 posted.\n\nEntry 0578 posted.\n\nEntry 0579 posted.\n\nEntry 0580 posted.\n\nEntry 0581 posted.\n\nEntry 0582 posted.\n\nEntry 0583 posted.\n\nEntry 0584 posted.\n\nEntry 0585 posted.\n\nEntry 0586 posted.\n\nEntry 0587 posted.\n\nEntry 0588 posted.\n\nEntry 0589 posted.\n\nEntry 0590 posted.\n\nEntry 0591 posted.\n\nEntry 0592 posted.\n\nEntry 0593 posted.\n\nEntry 0594 posted.\n\nEntry 0595 posted.\n\nEntry 0596 posted.\n\nEntry 0597 posted.\n\nEntry 0598 posted.\n\nEntry 0599 posted.\n\nEntry 0600 posted.\n\nEntry 0601 posted.\n\nEntry 0602 posted.\n\nEntry 0603 posted.\n\nEntry 0604 posted.\n\nEntry 0605 posted.\n\nEntry 0606 posted.\n\nEntry 0607 posted.\n\nEntry 0608 posted.\n\nEntry 0609 posted.\n\nEntry 0610 posted.\n\nEntry 0611 posted.\n\nEntry 0612 posted.\n\nEntry 0613 posted.\n\nEntry 0614 posted.\n\nEntry 0615 posted.\n\nEntry 0616 posted.\n\nEntry 0617 posted.\n\nEntry 0618 posted.\n\nEntry 0619 posted.\n\nEntry 0620 posted.\n\nEntry 0621 posted.\n\nEntry 0622 posted.\n\nEntry 0623 posted.\n\nEntry 0624 posted.\n\nEntry 0625 posted.\n\nEntry 0626 posted.\n\nEntry 0627 posted.\n\nEntry 0628 posted.\n\nEntry 0629 posted.\n\nEntry 0630 posted.\n\nEntry 0631 posted.\n\nEntry 0632 posted.\n\nEntry 0633 posted.\n\nEntry 0634 posted.\n\nEntry 0635 posted.\n\nEntry 0636 posted.\n\nEntry 0637 posted.\n\nEntry 0638 posted.\n\nEntry 0639 posted.\n\nEntry 0640 posted.\n\nEntry 0641 posted.\n\nEntry 0642 posted.\n\nEntry 0643 posted.\n\nEntry 0644 posted.\n\nEntry 0645 posted.\n\nEntry 0646 posted.\n\nEntry 0647 posted.\n\nEntry 0648 posted.\n\nEntry 0649 posted.\n\nEntry 0650 posted.\n\nEntry 0651 posted.\n\nEntry 0652 posted.\n\nEntry 0653 posted.\n\nEntry 0654 posted.\n\nEntry 0655 posted.\n\nEntry 0656 posted.\n\nEntry 0657 posted.\n\nEntry 0658 posted.\n\nEntry 0659 posted.\n\nEntry 0660 posted.\n\nEntry 0661 posted.\n\nEntry 0662 posted.\n\nEntry 0663 posted.\n\nEntry 0664 posted.\n\nEntry 0665 posted.\n\nEntry 0666 posted.\n\nEntry 0667 posted.\n\nEntry 0668 posted.\n\nEntry 0669 posted.\n\nEntry 0670 posted.\n\nEntry 0671 posted.\n\nEntry 0672 posted.\n\nEntry 0673 posted.\n\nEntry 0674 posted.\n\nEntry 0675 posted.\n\nEntry 0676 posted.\n\nEntry 0677 posted.\n\nEntry 0678 posted.\n\nEntry 0679 posted.\n\nEntry 0680 posted.\n\nEntry 0681 posted.\n\nEntry 0682 posted.\n\nEntry 0683 posted.\n\nEntry 0684 posted.\n\nEntry 0685 posted.\n\nEntry 0686 posted.\n\nEntry 0687 posted.\n\nEntry 0688 posted.\n\nEntry 0689 posted.\n\nEntry 0690 posted.\n\nEntry 0691 posted.\n\nEntry 0692 posted.\n\nEntry 0693 posted.\n\nEntry 0694 posted.\n\nEntry 0695 posted.\n\nEntry 0696 posted.\n\nEntry 0697 posted.\n\nEntry 0698 posted.\n\nEntry 0699 posted.\n\nEntry 0700 posted.\n\nEntry 0701 posted.\n\nEntry 0702 posted.\n\nEntry 0703 posted.\n\nEntry 0704 posted.\n\nEntry 0705 posted.\n\nEntry 0706 posted.\n\nEntry 0707 posted.\n\nEntry 0708 posted.\n\nEntry 0709 posted.\n\nEntry 0710 posted.\n\nEntry 0711 posted.\n\nEntry 0712 posted.\n\nEntry 0713 posted.\n\nEntry 0714 posted.\n\nEntry 0715 posted.\n\nEntry 0716 posted.\n\nEntry 0717 posted.\n\nEntry 0718 posted.\n\nEntry 0719 posted.\n\nEntry 0720 posted.\n\nEntry 0721 posted.\n\nEntry 0722 posted.\n\nEntry 0723 posted.\n\nEntry 0724 posted.\n\nEntry 0725 posted.\n\nEntry 0726 posted.\n\nEntry 0727 posted.\n\nEntry 0728 posted.\n\nEntry 0729 posted.\n\nEntry 0730 posted.\n\nEntry 0731 posted.\n\nEntry 0732 posted.\n\nEntry 0733 posted.\n\nEntry 0734 posted.\n\nEntry 0735 posted.\n\nEntry 0736 posted.\n\nEntry 0737 posted.\n\nEntry 0738 posted.\n\nEntry 0739 posted.\n\nEntry 0740 posted.\n\nEntry 0741 posted.\n\nEntry 0742 posted.\n\nEntry 0743 posted.\n\nEntry 0744 posted.\n\nEntry 0745 posted.\n\nEntry 0746 posted.\n\nEntry 0747 posted.\n\nEntry 0748 posted.\n\nEntry 0749 posted.\n\nEntry 0750 posted.\n\nEntry 0751 posted.\n\nEntry 0752 posted.\n\nEntry 0753 posted.\n\nEntry 0754 posted.\n\nEntry 0755 posted.\n\nEntry 0756 posted.\n\nEntry 0757 posted.\n\nEntry 0758 posted.\n\nEntry 0759 posted.\n\nEntry 0760 posted.\n\nEntry 0761 posted.\n\nEntry 0762 posted.\n\nEntry 0763 posted.\n\nEntry 0764 posted.\n\nEntry 0765 posted.\n\nEntry 0766 posted.\n\nEntry 0767 posted.\n\nEntry 0768 posted.\n\nEntry 0769 posted.\n\nEntry 0770 posted.\n\nEntry 0771 posted.\n\nEntry 0772 posted.\n\nEntry 0773 posted.\n\nEntry 0774 posted.\n\nEntry 0775 posted.\n\nEntry 0776 posted.\n\nEntry 0777 posted.\n\nEntry 0778 posted.\n\nEntry 0779 posted.\n\nEntry 0780 posted.\n\nEntry 0781 posted.\n\nEntry 0782 posted.\n\nEntry 0783 posted.\n\nEntry 0784 posted.\n\nEntry 0785 posted.\n\nEntry 0786 posted.\n\nEntry 0787 posted.\n\nEntry 0788 posted.\n\nEntry 0789 posted.\n\nEntry 0790 posted.\n\nEntry 0791 posted.\n\nEntry 0792 posted.\n\nEntry 0793 posted.\n\nEntry 0794 posted.\n\nEntry 0795 posted.\n\nEntry 0796 posted.\n\nEntry 0797 posted.\n\nEntry 0798 posted.\n\nEntry 0799 posted.\n\nEntry 0800 posted.\n\nEntry 0801 posted.\n\nEntry 0802 posted.\n\nEntry 0803 posted.\n\nEntry 0804 posted.\n\nEntry 0805 posted.\n\nEntry 0806 posted.\n\nEntry 0807 posted.\n\nEntry 0808 posted.\n\nEntry 0809 posted.\n\nEntry 0810 posted.\n\nEntry 0811 posted.\n\nEntry 0812 posted.\n\nEntry 0813 posted.\n\nEntry 0814 posted.\n\nEntry 0815 posted.\n\nEntry 0816 posted.\n\nEntry 0817 posted.\n\nEntry 0818 posted.\n\nEntry 0819 posted.\n\nEntry 0820 posted.\n\nEntry 0821 posted.\n\nEntry 0822 posted.\n\nEntry 0823 posted.\n\nEntry 0824 posted.\n\nEntry 0825 posted.\n\nEntry 0826 posted.\n\nEntry 0827 posted.\n\nEntry 0828 posted.\n\nEntry 0829 posted.\n\nEntry 0830 posted.\n\nEntry 0831 posted.\n\nEntry 0832 posted.\n\nEntry 0833 posted.\n\nEntry 0834 posted.\n\nEntry 0835 posted.\n\nEntry 0836 posted.\n\nEntry 0837 posted.\n\nEntry 0838 posted.\n\nEntry 0839 posted.\n\nEntry 0840 posted.\n\nEntry 0841 posted.\n\nEntry 0842 posted.\n\nEntry 0843 posted.\n\nEntry 0844 posted.\n\nEntry 0845 posted.\n\nEntry 0846 posted.\n\nEntry 0847 posted.\n\nEntry 0848 posted.\n\nEntry 0849 posted.\n\nEntry 0850 posted.\n\nEntry 0851 posted.\n\nEntry 0852 posted.\n\nEntry 0853 posted.\n\nEntry 0854 posted.\n\nEntry 0855 posted.\n\nEntry 0856 posted.\n\nEntry 0857 posted.\n\nEntry 0858 posted.\n\nEntry 0859 posted.\n\nEntry 0860 posted.\n\nEntry 0861 posted.\n\nEntry 0862 posted.\n\nEntry 0863 posted.\n\nEntry 0864 posted.\n\nEntry 0865 posted.\n\nEntry 0866 posted.\n\nEntry 0867 posted.\n\nEntry 0868 posted.\n\nEntry 0869 posted.\n\nEntry 0870 posted.\n\nEntry 0871 posted.\n\nEntry 0872 posted.\n\nEntry 0873 posted.\n\nEntry 0874 posted.\n\nEntry 0875 posted.\n\nEntry 0876 posted.\n\nEntry 0877 posted.\n\nEntry 0878 posted.\n\nEntry 0879 posted.\n\nEntry 0880 posted.\n\nEntry 0881 posted.\n\nEntry 0882 posted.\n\nEntry 0883 posted.\n\nEntry 0884 posted.\n\nEntry 0885 posted.\n\nEntry 0886 posted.\n\nEntry 0887 posted.\n\nEntry 0888 posted.\n\nEntry 0889 posted.\n\nEntry 0890 posted.\n\nEntry 0891 posted.\n\nEntry 0892 posted.\n\nEntry 0893 posted.\n\nEntry 0894 posted.\n\nEntry 0895 posted.\n\nEntry 0896 posted.\n\nEntry 0897 posted.\n\nEntry 0898 posted.\n\nEntry 0899 posted.\n\nEntry 0900 posted.\n\nEntry 0901 posted.\n\nEntry 0902 posted.\n\nEntry 0903 posted.\n\nEntry 0904 posted.\n\nEntry 0905 posted.\n\nEntry 0906 posted.\n\nEntry 0907 posted.\n\nEntry 0908 posted.\n\nEntry 0909 posted.\n\nEntry 0910 posted.\n\nEntry 0911 posted.\n\nEntry 0912 posted.\n\nEntry 0913 posted.\n\nEntry 0914 posted.\n\nEntry 0915 posted.\n\nEntry 0916 posted.\n\nEntry 0917 posted.\n\nEntry 0918 posted.\n\nEntry 0919 posted.\n\nEntry 0920 posted.\n\nEntry 0921 posted.\n\nEntry 0922 posted.\n\nEntry 0923 posted.\n\nEntry 0924 posted.\n\nEntry 0925 posted.\n\nEntry 0926 posted.\n\nEntry 0927 posted.\n\nEntry 0928 posted.\n\nEntry 0929 posted.\n\nEntry 0930 posted.\n\nEntry 0931 posted.\n\nEntry 0932 posted.\n\nEntry 0933 posted.\n\nEntry 0934 posted.\n\nEntry 0935 posted.\n\nEntry 0936 posted.\n\nEntry 0937 posted.\n\nEntry 0938 posted.\n\nEntry 0939 posted.\n\nEntry 0940 posted.\n\nEntry 0941 posted.\n\nEntry 0942 posted.\n\nEntry 0943 posted.\n\nEntry 0944 posted.\n\nEntry 0945 posted.\n\nEntry 0946 posted.\n\nEntry 0947 posted.\n\nEntry 0948 posted.\n\nEntry 0949 posted.\n\nEntry 0950 posted.\n\nEntry 0951 posted.\n\nEntry 0952 posted.\n\nEntry 0953 posted.\n\nEntry 0954 posted.\n\nEntry 0955 posted.\n\nEntry 0956 posted.\n\nEntry 0957 posted.\n\nEntry 0958 posted.\n\nEntry 0959 posted.\n\nEntry 0960 posted.\n\nEntry 0961 posted.\n\nEntry 0962 posted.\n\nEntry 0963 posted.\n\nEntry 0964 posted.\n\nEntry 0965 posted.\n\nEntry 0966 posted.\n\nEntry 0967 posted.\n\nEntry 0968 posted.\n\nEntry 0969 posted.\n\nEntry 0970 posted.\n\nEntry 0971 posted.\n\nEntry 0972 posted.\n\nEntry 0973 posted.\n\nEntry 0974 posted.\n\nEntry 0975 posted.\n\nEntry 0976 posted.\n\nEntry 0977 posted.\n\nEntry 0978 posted.\n\nEntry 0979 posted.\n\nEntry 0980 posted.\n\nEntry 0981 posted.\n\nEntry 0982 posted.\n\nEntry 0983 posted.\n\nEntry 0984 posted.\n\nEntry 0985 posted.\n\nEntry 0986 posted.\n\nEntry 0987 posted.\n\nEntry 0988 posted.\n\nEntry 0989 posted.\n\nEntry 0990 posted.\n\nEntry 0991 posted.\n\nEntry 0992 posted.\n\nEntry 0993 posted.\n\nEntry 0994 posted.\n\nEntry 0995 posted.\n\nEntry 0996 posted.\n\nEntry 0997 posted.\n\nEntry 0998 posted.\n\nEntry 0999 posted.\n\nEntry 1000 posted.\n\nEntry 1001 posted.\n\nEntry 1002 posted.\n\nEntry 1003 posted.\n\nEntry 1004 posted.\n\nEntry 1005 posted.\n\nEntry 1006 posted.\n\nEntry 1007 posted.\n\nEntry 1008 posted.\n\nEntry 1009 posted.\n\nEntry 1010 posted.\n\nEntry 1011 posted.\n\nEntry 1012 posted.\n\nEntry 1013 posted.\n\nEntry 1014 posted.\n\nEntry 1015 posted.\n\nEntry 1016 posted.\n\nEntry 1017 posted.\n\nEntry 1018 posted.\n\nEntry 1019 posted.\n\nEntry 1020 posted.\n\nEntry 1021 posted.\n\nEntry 1022 posted.\n\nEntry 1023 posted.\n\nEntry 1024 posted.\n\nEntry 1025 posted.\n\nEntry 1026 posted.\n\nEntry 1027 posted.\n\nEntry 1028 posted.\n\nEntry 1029 posted.\n\nEntry 1030 posted.\n\nEntry 1031 posted.\n\nEntry 1032 posted.\n\nEntry 1033 posted.\n\nEntry 1034 posted.\n\nEntry 1035 posted.\n\nEntry 1036 posted.\n\nEntry 1037 posted.\n\nEntry 1038 posted.\n\nEntry 1039 posted.\n\nEntry 1040 posted.\n\nEntry 1041 posted.\n\nEntry 1042 posted.\n\nEntry 1043 posted.\n\nEntry 1044 posted.\n\nEntry 1045 posted.\n\nEntry 1046 posted.\n\nEntry 1047 posted.\n\nEntry 1048 posted.\n\nEntry 1049 posted.\n\nEntry 1050 posted.\n\nEntry 1051 posted.\n\nEntry 1052 posted.\n\nEntry 1053 posted.\n\nEntry 1054 posted.\n\nEntry 1055 posted.\n\nEntry 1056 posted.\n\nEntry 1057 posted.\n\nEntry 1058 posted.\n\nEntry 1059 posted.\n\nEntry 1060 posted.\n\nEntry 1061 posted.\n\nEntry 1062 posted.\n\nEntry 1063 posted.\n\nEntry 1064 posted.\n\nEntry 1065 posted.\n\nEntry 1066 posted.\n\nEntry 1067 posted.\n\nEntry 1068 posted.\n\nEntry 1069 posted.\n\nEntry 1070 posted.\n\nEntry 1071 posted.\n\nEntry 1072 posted.\n\nEntry 1073 posted.\n\nEntry 1074 posted.\n\nEntry 1075 posted.\n\nEntry 1076 posted.\n\nEntry 1077 posted.\n\nEntry 1078 posted.\n\nEntry 1079 posted.\n\nEntry 1080 posted.\n\nEntry 1081 posted.\n\nEntry 1082 posted.\n\nEntry 1083 posted.\n\nEntry 1084 posted.\n\nEntry 1085 posted.\n\nEntry 1086 posted.\n\nEntry 1087 posted.\n\nEntry 1088 posted.\n\nEntry 1089 posted.\n\nEntry 1090 posted.\n\nEntry 1091 posted.\n\nEntry 1092 posted.\n\nEntry 1093 posted.\n\nEntry 1094 posted.\n\nEntry 1095 posted.\n\nEntry 1096 posted.\n\nEntry 1097 posted.\n\nEntry 1098 posted.\n\nEntry 1099 posted.\n\nEntry 1100 posted.\n\nEntry 1101 posted.\n\nEntry 1102 posted.\n\nEntry 1103 posted.\n\nEntry 1104 posted.\n\nEntry 1105 posted.\n\nEntry 1106 posted.\n\nEntry 1107 posted.\n\nEntry 1108 posted.\n\nEntry 1109 posted.\n\nEntry 1110 posted.\n\nEntry 1111 posted.\n\nEntry 1112 posted.\n\nEntry 1113 posted.\n\nEntry 1114 posted.\n\nEntry 1115 posted.\n\nEntry 1116 posted.\n\nEntry 1117 posted.\n\nEntry 1118 posted.\n\nEntry 1119 posted.\n\nEntry 1120 posted.\n\nEntry 1121 posted.\n\nEntry 1122 posted.\n\nEntry 1123 posted.\n\nEntry 1124 posted.\n\nEntry 1125 posted.\n\nEntry 1126 posted.\n\nEntry 1127 posted.\n\nEntry 1128 posted.\n\nEntry 1129 posted.\n\nEntry 1130 posted.\n\nEntry 1131 posted.\n\nEntry 1132 posted.\n\nEntry 1133 posted.\n\nEntry 1134 posted.\n\nEntry 1135 posted.\n\nEntry 1136 posted.\n\nEntry 1137 posted.\n\nEntry 1138 posted.\n\nEntry 1139 posted.\n\nEntry 1140 posted.\n\nEntry 1141 posted.\n\nEntry 1142 posted.\n\nEntry 1143 posted.\n\nEntry 1144 posted.\n\nEntry 1145 posted.\n\nEntry 1146 posted.\n\nEntry 1147 posted.\n\nEntry 1148 posted.\n\nEntry 1149 posted.\n\nEntry 1150 posted.\n\nEntry 1151 posted.\n\nEntry 1152 posted.\n\nEntry 1153 posted.\n\nEntry 1154 posted.\n\nEntry 1155 posted.\n\nEntry 1156 posted.\n\nEntry 1157 posted.\n\nEntry 1158 posted.\n\nEntry 1159 posted.\n\nEntry 1160 posted.\n\nEntry 1161 posted.\n\nEntry 1162 posted.\n\nEntry 1163 posted.\n\nEntry 1164 posted.\n\nEntry 1165 posted.\n\nEntry 1166 posted.\n\nEntry 1167 posted.\n\nEntry 1168 posted.\n\nEntry 1169 posted.\n\nEntry 1170 posted.\n\nEntry 1171 posted.\n\nEntry 1172 posted.\n\nEntry 1173 posted.\n\nEntry 1174 posted.\n\nEntry 1175 posted.\n\nEntry 1176 posted.\n\nEntry 1177 posted.\n\nEntry 1178 posted.\n\nEntry 1179 posted.\n\nEntry 1180 posted.\n\nEntry 1181 posted.\n\nEntry 1182 posted.\n\nEntry 1183 posted.\n\nEntry 1184 posted.\n\nEntry 1185 posted.\n\nEntry 1186 posted.\n\nEntry 1187 posted.\n\nEntry 1188 posted.\n\nEntry 1189 posted.\n\nEntry 1190 posted.\n\nEntry 1191 posted.\n\nEntry 1192 posted.\n\nEntry 1193 posted.\n\nEntry 1194 posted.\n\nEntry 1195 posted.\n\nEntry 1196 posted.\n\nEntry 1197 posted.\n\nEntry 1198 posted.\n\nEntry 1199 posted.\n\nEntry 1200 posted.\n\nEntry 1201 posted.\n\nEntry 1202 posted.\n\nEntry 1203 posted.\n\nEntry 1204 posted.\n\nEntry 1205 posted.\n\nEntry 1206 posted.\n\nEntry 1207 posted.\n\nEntry 1208 posted.\n\nEntry 1209 posted.\n\nEntry 1210 posted.\n\nEntry 1211 posted.\n\nEntry 1212 posted.\n\nEntry 1213 posted.\n\nEntry 1214 posted.\n\nEntry 1215 posted.\n\nEntry 1216 posted.\n\nEntry 1217 posted.\n\nEntry 1218 posted.\n\nEntry 1219 posted.\n\nEntry 1220 posted.\n\nEntry 1221 posted.\n\nEntry 1222 posted.\n\nEntry 1223 posted.\n\nEntry 1224 posted.\n\nEntry 1225 posted.\n\nEntry 1226 posted.\n\nEntry 1227 posted.\n\nEntry 1228 posted.\n\nEntry 1229 posted.\n\nEntry 1230 posted.\n\nEntry 1231 posted.\n\nEntry 1232 posted.\n\nEntry 1233 posted.\n\nEntry 1234 posted.\n\nEntry 1235 posted.\n\nEntry 1236 posted.\n\nEntry 1237 posted.\n\nEntry 1238 posted.\n\nEntry 1239 posted.\n\nEntry 1240 posted.\n\nEntry 1241 posted.\n\nEntry 1242 posted.\n\nEntry 1243 posted.\n\nEntry 1244 posted.\n\nEntry 1245 posted.\n\nEntry 1246 posted.\n\nEntry 1247 posted.\n\nEntry 1248 posted.\n\nEntry 1249 posted.\n\nEntry 1250 posted.\n\nEntry 1251 posted.\n\nEntry 1252 posted.\n\nEntry 1253 posted.\n\nEntry 1254 posted.\n\nEntry 1255 posted.\n\nEntry 1256 posted.\n\nEntry 1257 posted.\n\nEntry 1258 posted.\n\nEntry 1259 posted.\n\nEntry 1260 posted.\n\nEntry 1261 posted.\n\nEntry 1262 posted.\n\nEntry 1263 posted.\n\nEntry 1264 posted.\n\nEntry 1265 posted.\n\nEntry 1266 posted.\n\nEntry 1267 posted.\n\nEntry 1268 posted.\n\nEntry 1269 posted.\n\nEntry 1270 posted.\n\nEntry 1271 posted.\n\nEntry 1272 posted.\n\nEntry 1273 posted.\n\nEntry 1274 posted.\n\nEntry 1275 posted.\n\nEntry 1276 posted.\n\nEntry 1277 posted.\n\nEntry 1278 posted.\n\nEntry 1279 posted.\n\nEntry 1280 posted.\n\nEntry 1281 posted.\n\nEntry 1282 posted.\n\nEntry 1283 posted.\n\nEntry 1284 posted.\n\nEntry 1285 posted.\n\nEntry 1286 posted.\n\nEntry 1287 posted.\n\nEntry 1288 posted.\n\nEntry 1289 posted.\n\nEntry 1290 posted.\n\nEntry 1291 posted.\n\nEntry 1292 posted.\n\nEntry 1293 posted.\n\nEntry 1294 posted.\n\nEntry 1295 posted.\n\nEntry 1296 posted.\n\nEntry 1297 posted.\n\nEntry 1298 posted.\n\nEntry 1299 posted.\n\nEntry 1300 posted.\n\nEntry 1301 posted.\n\nEntry 1302 posted.\n\nEntry 1303 posted.\n\nEntry 1304 posted.\n\nEntry 1305 posted.\n\nEntry 1306 posted.\n\nEntry 1307 posted.\n\nEntry 1308 posted.\n\nEntry 1309 posted.\n\nEntry 1310 posted.\n\nEntry 1311 posted.\n\nEntry 1312 posted.\n\nEntry 1313 posted.\n\nEntry 1314 posted.\n\nEntry 1315 posted.\n\nEntry 1316 posted.\n\nEntry 1317 posted.\n\nEntry 1318 posted.\n\nEntry 1319 posted.\n\nEntry 1320 posted.\n\nEntry 1321 posted.\n\nEntry 1322 posted.\n\nEntry 1323 posted.\n\nEntry 1324 posted.\n\nEntry 1325 posted.\n\nEntry 1326 posted.\n\nEntry 1327 posted.\n\nEntry 1328 posted.\n\nEntry 1329 posted.\n\nEntry 1330 posted.\n\nEntry 1331 posted.\n\nEntry 1332 posted.\n\nEntry 1333 posted.\n\nEntry 1334 posted.\n\nEntry 1335 posted.\n\nEntry 1336 posted.\n\nEntry 1337 posted.\n\nEntry 1338 posted.\n\nEntry 1339 posted.\n\nEntry 1340 posted.\n\nEntry 1341 posted.\n\nEntry 1342 posted.\n\nEntry 1343 posted.\n\nEntry 1344 posted.\n\nEntry 1345 posted.\n\nEntry 1346 posted.\n\nEntry 1347 posted.\n\nEntry 1348 posted.\n\nEntry 1349 posted.\n\nEntry 1350 posted.\n\nEntry 1351 posted.\n\nEntry 1352 posted.\n\nEntry 1353 posted.\n\nEntry 1354 posted.\n\nEntry 1355 posted.\n\nEntry 1356 posted.\n\nEntry 1357 posted.\n\nEntry 1358 posted.\n\nEntry 1359 posted.\n\nEntry 1360 posted.\n\nEntry 1361 posted.\n\nEntry 1362 posted.\n\nEntry 1363 posted.\n\nEntry 1364 posted.\n\nEntry 1365 posted.\n\nEntry 1366 posted.\n\nEntry 1367 posted.\n\nEntry 1368 posted.\n\nEntry 1369 posted.\n\nEntry 1370 posted.\n\nEntry 1371 posted.\n\nEntry 1372 posted.\n\nEntry 1373 posted.\n\nEntry 1374 posted.\n\nEntry 1375 posted.\n\nEntry 1376 posted.\n\nEntry 1377 posted.\n\nEntry 1378 posted.\n\nEntry 1379 posted.\n\nEntry 1380 posted.\n\nEntry 1381 posted.\n\nEntry 1382 posted.\n\nEntry 1383 posted.\n\nEntry 1384 posted.\n\nEntry 1385 posted.\n\nEntry 1386 posted.\n\nEntry 1387 posted.\n\nEntry 1388 posted.\n\nEntry 1389 posted.\n\nEntry 1390 posted.\n\nEntry 1391 posted.\n\nEntry 1392 posted.\n\nEntry 1393 posted.\n\nEntry 1394 posted.\n\nEntry 1395 posted.\n\nEntry 1396 posted.\n\nEntry 1397 posted.\n\nEntry 1398 posted.\n\nEntry 1399 posted.\n\nEntry 1400 posted.\n\nEntry 1401 posted.\n\nEntry 1402 posted.\n\nEntry 1403 posted.\n\nEntry 1404 posted.\n\nEntry 1405 posted.\n\nEntry 1406 posted.\n\nEntry 1407 posted.\n\nEntry 1408 posted.\n\nEntry 1409 posted.\n\nEntry 1410 posted.\n\nEntry 1411 posted.\n\nEntry 1412 posted.\n\nEntry 1413 posted.\n\nEntry 1414 posted.\n\nEntry 1415 posted.\n\nEntry 1416 posted.\n\nEntry 1417 posted.\n\nEntry 1418 posted.\n\nEntry 1419 posted.\n\nEntry 1420 posted.\n\nEntry 1421 posted.\n\nEntry 1422 posted.\n\nEntry 1423 posted.\n\nEntry 1424 posted.\n\nEntry 1425 posted.\n\nEntry 1426 posted.\n\nEntry 1427 posted.\n\nEntry 1428 posted.\n\nEntry 1429 posted.\n\nEntry 1430 posted.\n\nEntry 1431 posted.\n\nEntry 1432 posted.\n\nEntry 1433 posted.\n\nEntry 1434 posted.\n\nEntry 1435 posted.\n\nEntry 1436 posted.\n\nEntry 1437 posted.\n\nEntry 1438 posted.\n\nEntry 1439 posted.\n\nEntry 1440 posted.\n\nEntry 1441 posted.\n\nEntry 1442 posted.\n\nEntry 1443 posted.\n\nEntry 1444 posted.\n\nEntry 1445 posted.\n\nEntry 1446 posted.\n\nEntry 1447 posted.\n\nEntry 1448 posted.\n\nEntry 1449 posted.\n\nEntry 1450 posted.\n\nEntry 1451 posted.\n\nEntry 1452 posted.\n\nEntry 1453 posted.\n\nEntry 1454 posted.\n\nEntry 1455 posted.\n\nEntry 1456 posted.\n\nEntry 1457 posted.\n\nEntry 1458 posted.\n\nEntry 1459 posted.\n\nEntry 1460 posted.\n\nEntry 1461 posted.\n\nEntry 1462 posted.\n\nEntry 1463 posted.\n\nEntry 1464 posted.\n\nEntry 1465 posted.\n\nEntry 1466 posted.\n\nEntry 1467 posted.\n\nEntry 1468 posted.\n\nEntry 1469 posted.\n\nEntry 1470 posted.\n\nEntry 1471 posted.\n\nEntry 1472 posted.\n\nEntry 1473 posted.\n\nEntry 1474 posted.\n\nEntry 1475 posted.\n\nEntry 1476 posted.\n\nEntry 1477 posted.\n\nEntry 1478 posted.\n\nEntry 1479 posted.\n\nEntry 1480 posted.\n\nEntry 1481 posted.\n\nEntry 1482 posted.\n\nEntry 1483 posted.\n\nEntry 1484 posted.\n\nEntry 1485 posted.\n\nEntry 1486 posted.\n\nEntry 1487 posted.\n\nEntry 1488 posted.\n\nEntry 1489 posted.\n\nEntry 1490 posted.\n\nEntry 1491 posted.\n\nEntry 1492 posted.\n\nEntry 1493 posted.\n\nEntry 1494 posted.\n\nEntry 1495 posted.\n\nEntry 1496 posted.\n\nEntry 1497 posted.\n\nEntry 1498 posted.\n\nEntry 1499 posted.\n\nEntry 1500 posted.\n\nEntry 1501 posted.\n\nEntry 1502 posted.\n\nEntry 1503 posted.\n\nEntry 1504 posted.\n\nEntry 1505 posted.\n\nEntry 1506 posted.\n\nEntry 1507 posted.\n\nEntry 1508 posted.\n\nEntry 1509 posted.\n\nEntry 1510 posted.\n\nEntry 1511 posted.\n\nEntry 1512 posted.\n\nEntry 1513 posted.\n\nEntry 1514 posted.\n\nEntry 1515 posted.\n\nEntry 1516 posted.\n\nEntry 1517 posted.\n\nEntry 1518 posted.\n\nEntry 1519 posted.\n\nEntry 1520 posted.\n\nEntry 1521 posted.\n\nEntry 1522 posted.\n\nEntry 1523 posted.\n\nEntry 1524 posted.\n\nEntry 1525 posted.\n\nEntry 1526 posted.\n\nEntry 1527 posted.\n\nEntry 1528 posted.\n\nEntry 1529 posted.\n\nEntry 1530 posted.\n\nEntry 1531 posted.\n\nEntry 1532 posted.\n\nEntry 1533 posted.\n\nEntry 1534 posted.\n\nEntry 1535 posted.\n\nEntry 1536 posted.\n\nEntry 1537 posted.\n\nEntry 1538 posted.\n\nEntry 1539 posted.\n\nEntry 1540 posted.\n\nEntry 1541 posted.\n\nEntry 1542 posted.\n\nEntry 1543 posted.\n\nEntry 1544 posted.\n\nEntry 1545 posted.\n\nEntry 1546 posted.\n\nEntry 1547 posted.\n\nEntry 1548 posted.\n\nEntry 1549 posted.\n\nEntry 1550 posted.\n\nEntry 1551 posted.\n\nEntry 1552 posted.\n\nEntry 1553 posted.\n\nEntry 1554 posted.\n\nEntry 1555 posted.\n\nEntry 1556 posted.\n\nEntry 1557 posted.\n\nEntry 1558 posted.\n\nEntry 1559 posted.\n\nEntry 1560 posted.\n\nEntry 1561 posted.\n\nEntry 1562 posted.\n\nEntry 1563 posted.\n\nEntry 1564 posted.\n\nEntry 1565 posted.\n\nEntry 1566 posted.\n\nEntry 1567 posted.\n\nEntry 1568 posted.\n\nEntry 1569 posted.\n\nEntry 1570 posted.\n\nEntry 1571 posted.\n\nEntry 1572 posted.\n\nEntry 1573 posted.\n\nEntry 1574 posted.\n\nEntry 1575 posted.\n\nEntry 1576 posted.\n\nEntry 1577 posted.\n\nEntry 1578 posted.\n\nEntry 1579 posted.\n\nEntry 1580 posted.\n\nEntry 1581 posted.\n\nEntry 1582 posted.\n\nEntry 1583 posted.\n\nEntry 1584 posted.\n\nEntry 1585 posted.\n\nEntry 1586 posted.\n\nEntry 1587 posted.\n\nEntry 1588 posted.\n\nEntry 1589 posted.\n\nEntry 1590 posted.\n\nEntry 1591 posted.\n\nEntry 1592 posted.\n\nEntry 1593 posted.\n\nEntry 1594 posted.\n\nEntry 1595 posted.\n\nEntry 1596 posted.\n\nEntry 1597 posted.\n\nEntry 1598 posted.\n\nEntry 1599 posted.\n\nEntry 1600 posted.\n\nEntry 1601 posted.\n\nEntry 1602 posted.\n\nEntry 1603 posted.\n\nEntry 1604 posted.\n\nEntry 1605 posted.\n\nEntry 1606 posted.\n\nEntry 1607 posted.\n\nEntry 1608 posted.\n\nEntry 1609 posted.\n\nEntry 1610 posted.\n\nEntry 1611 posted.\n\nEntry 1612 posted.\n\nEntry 1613 posted.\n\nEntry 1614 posted.\n\nEntry 1615 posted.\n\nEntry 1616 posted.\n\nEntry 1617 posted.\n\nEntry 1618 posted.\n\nEntry 1619 posted.\n\nEntry 1620 posted.\n\nEntry 1621 posted.\n\nEntry 1622 posted.\n\nEntry 1623 posted.\n\nEntry 1624 posted.\n\nEntry 1625 posted.\n\nEntry 1626 posted.\n\nEntry 1627 posted.\n\nEntry 1628 posted.\n\nEntry 1629 posted.\n\nEntry 1630 posted.\n\nEntry 1631 posted.\n\nEntry 1632 posted.\n\nEntry 1633 posted.\n\nEntry 1634 posted.\n\nEntry 1635 posted.\n\nEntry 1636 posted.\n\nEntry 1637 posted.\n\nEntry 1638 posted.\n\nEntry 1639 posted.\n\nEntry 1640 posted.\n\nEntry 1641 posted.\n\nEntry 1642 posted.\n\nEntry 1643 posted.\n\nEntry 1644 posted.\n\nEntry 1645 posted.\n\nEntry 1646 posted.\n\nEntry 1647 posted.\n\nEntry 1648 posted.\n\nEntry 1649 posted.\n\nEntry 1650 posted.\n\nEntry 1651 posted.\n\nEntry 1652 posted.\n\nEntry 1653 posted.\n\nEntry 1654 posted.\n\nEntry 1655 posted.\n\nEntry 1656 posted.\n\nEntry 1657 posted.\n\nEntry 1658 posted.\n\nEntry 1659 posted.\n\nEntry 1660 posted.\n\nEntry 1661 posted.\n\nEntry 1662 posted.\n\nEntry 1663 posted.\n\nEntry 1664 posted.\n\nEntry 1665 posted.\n\nEntry 1666 posted.\n\nEntry 1667 posted.\n\nEntry 1668 posted.\n\nEntry 1669 posted.\n\nEntry 1670 posted.\n\nEntry 1671 posted.\n\nEntry 1672 posted.\n\nEntry 1673 posted.\n\nEntry 1674 posted.\n\nEntry 1675 posted.\n\nEntry 1676 posted.\n\nEntry 1677 posted.\n\nEntry 1678 posted.\n\nEntry 1679 posted.\n\nEntry 1680 posted.\n\nEntry 1681 posted.\n\nEntry 1682 posted.\n\nEntry 1683 posted.\n\nEntry 1684 posted.\n\nEntry 1685 posted.\n\nEntry 1686 posted.\n\nEntry 1687 posted.\n\nEntry 1688 posted.\n\nEntry 1689 posted.\n\nEntry 1690 posted.\n\nEntry 1691 posted.\n\nEntry 1692 posted.\n\nEntry 1693 posted.\n\nEntry 1694 posted.\n\nEntry 1695 posted.\n\nEntry 1696 posted.\n\nEntry 1697 posted.\n\nEntry 1698 posted.\n\nEntry 1699 posted.\n\nEntry 1700 posted.\n\nEntry 1701 posted.\n\nEntry 1702 posted.\n\nEntry 1703 posted.\n\nEntry 1704 posted.\n\nEntry 1705 posted.\n\nEntry 1706 posted.\n\nEntry 1707 posted.\n\nEntry 1708 posted.\n\nEntry 1709 posted.\n\nEntry 1710 posted.\n\nEntry 1711 posted.\n\nEntry 1712 posted.\n\nEntry 1713 posted.\n\nEntry 1714 posted.\n\nEntry 1715 posted.\n\nEntry 1716 posted.\n\nEntry 1717 posted.\n\nEntry 1718 posted.\n\nEntry 1719 posted.\n\nEntry 1720 posted.\n\nEntry 1721 posted.\n\nEntry 1722 posted.\n\nEntry 1723 posted.\n\nEntry 1724 posted.\n\nEntry 1725 posted.\n\nEntry 1726 posted.\n\nEntry 1727 posted.\n\nEntry 1728 posted.\n\nEntry 1729 posted.\n\nEntry 1730 posted.\n\nEntry 1731 posted.\n\nEntry 1732 posted.\n\nEntry 1733 posted.\n\nEntry 1734 posted.\n\nEntry 1735 posted.\n\nEntry 1736 posted.\n\nEntry 1737 posted.\n\nEntry 1738 posted.\n\nEntry 1739 posted.\n\nEntry 1740 posted.\n\nEntry 1741 posted.\n\nEntry 1742 posted.\n\nEntry 1743 posted.\n\nEntry 1744 posted.\n\nEntry 1745 posted.\n\nEntry 1746 posted.\n\nEntry 1747 posted.\n\nEntry 1748 posted.\n\nEntry 1749 posted.\n\nEntry 1750 posted.\n\nEntry 1751 posted.\n\nEntry 1752 posted.\n\nEntry 1753 posted.\n\nEntry 1754 posted.\n\nEntry 1755 posted.\n\nEntry 1756 posted.\n\nEntry 1757 posted.\n\nEntry 1758 posted.\n\nEntry 1759 posted.\n\nEntry 1760 posted.\n\nEntry 1761 posted.\n\nEntry 1762 posted.\n\nEntry 1763 posted.\n\nEntry 1764 posted.\n\nEntry 1765 posted.\n\nEntry 1766 posted.\n\nEntry 1767 posted.\n\nEntry 1768 posted.\n\nEntry 1769 posted.\n\nEntry 1770 posted.\n\nEntry 1771 posted.\n\nEntry 1772 posted.\n\nEntry 1773 posted.\n\nEntry 1774 posted.\n\nEntry 1775 posted.\n\nEntry 1776 posted.\n\nEntry 1777 posted.\n\nEntry 1778 posted.\n\nEntry 1779 posted.\n\nEntry 1780 posted.\n\nEntry 1781 posted.\n\nEntry 1782 posted.\n\nEntry 1783 posted.\n\nEntry 1784 posted.\n\nEntry 1785 posted.\n\nEntry 1786 posted.\n\nEntry 1787 posted.\n\nEntry 1788 posted.\n\nEntry 1789 posted.\n\nEntry 1790 posted.\n\nEntry 1791 posted.\n\nEntry 1792 posted.\n\nEntry 1793 posted.\n\nEntry 1794 posted.\n\nEntry 1795 posted.\n\nEntry 1796 posted.\n\nEntry 1797 posted.\n\nEntry 1798 posted.\n\nEntry 1799 posted.\n\nEntry 1800 posted.\n\nEntry 1801 posted.\n\nEntry 1802 posted.\n\nEntry 1803 posted.\n\nEntry 1804 posted.\n\nEntry 1805 posted.\n\nEntry 1806 posted.\n\nEntry 1807 posted.\n\nEntry 1808 posted.\n\nEntry 1809 posted.\n\nEntry 1810 posted.\n\nEntry 1811 posted.\n\nEntry 1812 posted.\n\nEntry 1813 posted.\n\nEntry 1814 posted.\n\nEntry 1815 posted.\n\nEntry 1816 posted.\n\nEntry 1817 posted.\n\nEntry 1818 posted.\n\nEntry 1819 posted.\n\nEntry 1820 posted.\n\nEntry 1821 posted.\n\nEntry 1822 posted.\n\nEntry 1823 posted.\n\nEntry 1824 posted.\n\nEntry 1825 posted.\n\nEntry 1826 posted.\n\nEntry 1827 posted.\n\nEntry 1828 posted.\n\nEntry 1829 posted.\n\nEntry 1830 posted.\n\nEntry 1831 posted.\n\nEntry 1832 posted.\n\nEntry 1833 posted.\n\nEntry 1834 posted.\n\nEntry 1835 posted.\n\nEntry 1836 posted.\n\nEntry 1837 posted.\n\nEntry 1838 posted.\n\nEntry 1839 posted.\n\nEntry 1840 posted.\n\nEntry 1841 posted.\n\nEntry 1842 posted.\n\nEntry 1843 posted.\n\nEntry 1844 posted.\n\nEntry 1845 posted.\n\nEntry 1846 posted.\n\nEntry 1847 posted.\n\nEntry 1848 posted.\n\nEntry 1849 posted.\n\nEntry 1850 posted.\n\nEntry 1851 posted.\n\nEntry 1852 posted.\n\nEntry 1853 posted.\n\nEntry 1854 posted.\n\nEntry 1855 posted.\n\nEntry 1856 posted.\n\nEntry 1857 posted.\n\nEntry 1858 posted.\n\nEntry 1859 posted.\n\nEntry 1860 posted.\n\nEntry 1861 posted.\n\nEntry 1862 posted.\n\nEntry 1863 posted.\n\nEntry 1864 posted.\n\nEntry 1865 posted.\n\nEntry 1866 posted.\n\nEntry 1867 posted.\n\nEntry 1868 posted.\n\nEntry 1869 posted.\n\nEntry 1870 posted.\n\nEntry 1871 posted.\n\nEntry 1872 posted.\n\nEntry 1873 posted.\n\nEntry 1874 posted.\n\nEntry 1875 posted.\n\nEntry 1876 posted.\n\nEntry 1877 posted.\n\nEntry 1878 posted.\n\nEntry 1879 posted.\n\nEntry 1880 posted.\n\nEntry 1881 posted.\n\nEntry 1882 posted.\n\nEntry 1883 posted.\n\nEntry 1884 posted.\n\nEntry 1885 posted.\n\nEntry 1886 posted.\n\nEntry 1887 posted.\n\nEntry 1888 posted.\n\nEntry 1889 posted.\n\nEntry 1890 posted.\n\nEntry 1891 posted.\n\nEntry 1892 posted.\n\nEntry 1893 posted.\n\nEntry 1894 posted.\n\nEntry 1895 posted.\n\nEntry 1896 posted.\n\nEntry 1897 posted.\n\nEntry 1898 posted.\n\nEntry 1899 posted.\n\nEntry 1900 posted.\n\nEntry 1901 posted.\n\nEntry 1902 posted.\n\nEntry 1903 posted.\n\nEntry 1904 posted.\n\nEntry 1905 posted.\n\nEntry 1906 posted.\n\nEntry 1907 posted.\n\nEntry 1908 posted.\n\nEntry 1909 posted.\n\nEntry 1910 posted.\n\nEntry 1911 posted.\n\nEntry 1912 posted.\n\nEntry 1913 posted.\n\nEntry 1914 posted.\n\nEntry 1915 posted.\n\nEntry 1916 posted.\n\nEntry 1917 posted.\n\nEntry 1918 posted.\n\nEntry 1919 posted.\n\nEntry 1920 posted.\n\nEntry 1921 posted.\n\nEntry 1922 posted.\n\nEntry 1923 posted.\n\nEntry 1924 posted.\n\nEntry 1925 posted.\n\nEntry 1926 posted.\n\nEntry 1927 posted.\n\nEntry 1928 posted.\n\nEntry 1929 posted.\n\nEntry 1930 posted.\n\nEntry 1931 posted.\n\nEntry 1932 posted.\n\nEntry 1933 posted.\n\nEntry 1934 posted.\n\nEntry 1935 posted.\n\nEntry 1936 posted.\n\nEntry 1937 posted.\n\nEntry 1938 posted.\n\nEntry 1939 posted.\n\nEntry 1940 posted.\n\nEntry 1941 posted.\n\nEntry 1942 posted.\n\nEntry 1943 posted.\n\nEntry 1944 posted.\n\nEntry 1945 posted.\n\nEntry 1946 posted.\n\nEntry 1947 posted.\n\nEntry 1948 posted.\n\nEntry 1949 posted.\n\nEntry 1950 posted.\n\nEntry 1951 posted.\n\nEntry 1952 posted.\n\nEntry 1953 posted.\n\nEntry 1954 posted.\n\nEntry 1955 posted.\n\nEntry 1956 posted.\n\nEntry 1957 posted.\n\nEntry 1958 posted.\n\nEntry 1959 posted.\n\nEntry 1960 posted.\n\nEntry 1961 posted.\n\nEntry 1962 posted.\n\nEntry 1963 posted.\n\nEntry 1964 posted.\n\nEntry 1965 posted.\n\nEntry 1966 posted.\n\nEntry 1967 posted.\n\nEntry 1968 posted.\n\nEntry 1969 posted.\n\nEntry 1970 posted.\n\nEntry 1971 posted.\n\nEntry 1972 posted.\n\nEntry 1973 posted.\n\nEntry 1974 posted.\n\nEntry 1975 posted.\n\nEntry 1976 posted.\n\nEntry 1977 posted.\n\nEntry 1978 posted.\n\nEntry 1979 posted.\n\nEntry 1980 posted.\n\nEntry 1981 posted.\n\nEntry 1982 posted.\n\nEntry 1983 posted.\n\nEntry 1984 posted.\n\nEntry 1985 posted.\n\nEntry 1986 posted.\n\nEntry 1987 posted.\n\nEntry 1988 posted.\n\nEntry 1989 posted.\n\nEntry 1990 posted.\n\nEntry 1991 posted.\n\nEntry 1992 posted.\n\nEntry 1993 posted.\n\nEntry 1994 posted.\n\nEntry 1995 posted.\n\nEntry 1996 posted.\n\nEntry 1997 posted.\n\nEntry 1998 posted.\n\nEntry 1999 posted.\n\nEntry 2000 posted.\n\nEntry 2001 posted.\n\nEntry 2002 posted.\n\nEntry 2003 posted.\n\nEntry 2004 posted.\n\nEntry 2005 posted.\n\nEntry 2006 posted.\n\nEntry 2007 posted.\n\nEntry 2008 posted.\n\nEntry 2009 posted.\n\nEntry 2010 posted.\n\nEntry 2011 posted.\n\nEntry 2012 posted.\n\nEntry 2013 posted.\n\nEntry 2014 posted.\n\nEntry 2015 posted.\n\nEntry 2016 posted.\n\nEntry 2017 posted.\n\nEntry 2018 posted.\n\nEntry 2019 posted.\n\nEntry 2020 posted.\n\nEntry 2021 posted.\n\nEntry 2022 posted.\n\nEntry 2023 posted.\n\nEntry 2024 posted.\n\nEntry 2025 posted.\n\nEntry 2026 posted.\n\nEntry 2027 posted.\n\nEntry 2028 posted.\n\nEntry 2029 posted.\n\nEntry 2030 posted.\n\nEntry 2031 posted.\n\nEntry 2032 posted.\n\nEntry 2033 posted.\n\nEntry 2034 posted.\n\nEntry 2035 posted.\n\nEntry 2036 posted.\n\nEntry 2037 posted.\n\nEntry 2038 posted.\n\nEntry 2039 posted.\n\nEntry 2040 posted.\n\nEntry 2041 posted.\n\nEntry 2042 posted.\n\nEntry 2043 posted.\n\nEntry 2044 posted.\n\nEntry 2045 posted.\n\nEntry 2046 posted.\n\nEntry 2047 posted.\n\nEntry 2048 posted.\n\nEntry 2049 posted.\n\nEntry 2050 posted.\n\nEntry 2051 posted.\n\nEntry 2052 posted.\n\nEntry 2053 posted.\n\nEntry 2054 posted.\n\nEntry 2055 posted.\n\nEntry 2056 posted.\n\nEntry 2057 posted.\n\nEntry 2058 posted.\n\nEntry 2059 posted.\n\nEntry 2060 posted.\n\nEntry 2061 posted.\n\nEntry 2062 posted.\n\nEntry 2063 posted.\n\nEntry 2064 posted.\n\nEntry 2065 posted.\n\nEntry 2066 posted.\n\nEntry 2067 posted.\n\nEntry 2068 posted.\n\nEntry 2069 posted.\n\nEntry 2070 posted.\n\nEntry 2071 posted.\n\nEntry 2072 posted.\n\nEntry 2073 posted.\n\nEntry 2074 posted.\n\nEntry 2075 posted.\n\nEntry 2076 posted.\n\nEntry 2077 posted.\n\nEntry 2078 posted.\n\nEntry 2079 posted.\n\nEntry 2080 posted.\n\nEntry 2081 posted.\n\nEntry 2082 posted.\n\nEntry 2083 posted.\n\nEntry 2084 posted.\n\nEntry 2085 posted.\n\nEntry 2086 posted.\n\nEntry 2087 posted.\n\nEntry 2088 posted.\n\nEntry 2089 posted.\n\nEntry 2090 posted.\n\nEntry 2091 posted.\n\nEntry 2092 posted.\n\nEntry 2093 posted.\n\nEntry 2094 posted.\n\nEntry 2095 posted.\n\nEntry 2096 posted.\n\nEntry 2097 posted.\n\nEntry 2098 posted.\n\nEntry 2099 posted.\n\nEntry 2100 posted.\n\nEntry 2101 posted.\n\nEntry 2102 posted.\n\nEntry 2103 posted.\n\nEntry 2104 posted.\n\nEntry 2105 posted.\n\nEntry 2106 posted.\n\nEntry 2107 posted.\n\nEntry 2108 posted.\n\nEntry 2109 posted.\n\nEntry 2110 posted.\n\nEntry 2111 posted.\n\nEntry 2112 posted.\n\nEntry 2113 posted.\n\nEntry 2114 posted.\n\nEntry 2115 posted.\n\nEntry 2116 posted.\n\nEntry 2117 posted.\n\nEntry 2118 posted.\n\nEntry 2119 posted.\n\nEntry 2120 posted.\n\nEntry 2121 posted.\n\nEntry 2122 posted.\n\nEntry 2123 posted.\n\nEntry 2124 posted.\n\nEntry 2125 posted.\n\nEntry 2126 posted.\n\nEntry 2127 posted.\n\nEntry 2128 posted.\n\nEntry 2129 posted.\n\nEntry 2130 posted.\n\nEntry 2131 posted.\n\nEntry 2132 posted.\n\nEntry 2133 posted.\n\nEntry 2134 posted.\n\nEntry 2135 posted.\n\nEntry 2136 posted.\n\nEntry 2137 posted.\n\nEntry 2138 posted.\n\nEntry 2139 posted.\n\nEntry 2140 posted.\n\nEntry 2141 posted.\n\nEntry 2142 posted.\n\nEntry 2143 posted.\n\nEntry 2144 posted.\n\nEntry 2145 posted.\n\nEntry 2146 posted.\n\nEntry 2147 posted.\n\nEntry 2148 posted.\n\nEntry 2149 posted.\n\nEntry 2150 posted.\n\nEntry 2151 posted.\n\nEntry 2152 posted.\n\nEntry 2153 posted.\n\nEntry 2154 posted.\n\nEntry 2155 posted.\n\nEntry 2156 posted.\n\nEntry 2157 posted.\n\nEntry 2158 posted.\n\nEntry 2159 posted.\n\nEntry 2160 posted.\n\nEntry 2161 posted.\n\nEntry 2162 posted.\n\nEntry 2163 posted.\n\nEntry 2164 posted.\n\nEntry 2165 posted.\n\nEntry 2166 posted.\n\nEntry 2167 posted.\n\nEntry 2168 posted.\n\nEntry 2169 posted.\n\nEntry 2170 posted.\n\nEntry 2171 posted.\n\nEntry 2172 posted.\n\nEntry 2173 posted.\n\nEntry 2174 posted.\n\nEntry 2175 posted.\n\nEntry 2176 posted.\n\nEntry 2177 posted.\n\nEntry 2178 posted.\n\nEntry 2179 posted.\n\nEntry 2180 posted.\n\nEntry 2181 posted.\n\nEntry 2182 posted.\n\nEntry 2183 posted.\n\nEntry 2184 posted.\n\nEntry 2185 posted.\n\nEntry 2186 posted.\n\nEntry 2187 posted.\n\nEntry 2188 posted.\n\nEntry 2189 posted.\n\nEntry 2190 posted.\n\nEntry 2191 posted.\n\nEntry 2192 posted.\n\nEntry 2193 posted.\n\nEntry 2194 posted.\n\nEntry 2195 posted.\n\nEntry 2196 posted.\n\nEntry 2197 posted.\n\nEntry 2198 posted.\n\nEntry 2199 posted.\n\nEntry 2200 posted.\n\nEntry 2201 posted.\n\nEntry 2202 posted.\n\nEntry 2203 posted.\n\nEntry 2204 posted.\n\nEntry 2205 posted.\n\nEntry 2206 posted.\n\nEntry 2207 posted.\n\nEntry 2208 posted.\n\nEntry 2209 posted.\n\nEntry 2210 posted.\n\nEntry 2211 posted.\n\nEntry 2212 posted.\n\nEntry 2213 posted.\n\nEntry 2214 posted.\n\nEntry 2215 posted.\n\nEntry 2216 posted.\n\nEntry 2217 posted.\n\nEntry 2218 posted.\n\nEntry 2219 posted.\n\nEntry 2220 posted.\n\nEntry 2221 posted.\n\nEntry 2222 posted.\n\nEntry 2223 posted.\n\nEntry 2224 posted.\n\nEntry 2225 posted.\n\nEntry 2226 posted.\n\nEntry 2227 posted.\n\nEntry 2228 posted.\n\nEntry 2229 posted.\n\nEntry 2230 posted.\n\nEntry 2231 posted.\n\nEntry 2232 posted.\n\nEntry 2233 posted.\n\nEntry 2234 posted.\n\nEntry 2235 posted.\n\nEntry 2236 posted.\n\nEntry 2237 posted.\n\nEntry 2238 posted.\n\nEntry 2239 posted.\n\nEntry 2240 posted.\n\nEntry 2241 posted.\n\nEntry 2242 posted.\n\nEntry 2243 posted.\n\nEntry 2244 posted.\n\nEntry 2245 posted.\n\nEntry 2246 posted.\n\nEntry 2247 posted.\n\nEntry 2248 posted.\n\nEntry 2249 posted.\n\nEntry 2250 posted.\n\nEntry 2251 posted.\n\nEntry 2252 posted.\n\nEntry 2253 posted.\n\nEntry 2254 posted.\n\nEntry 2255 posted.\n\nEntry 2256 posted.\n\nEntry 2257 posted.\n\nEntry 2258 posted.\n\nEntry 2259 posted.\n\nEntry 2260 posted.\n\nEntry 2261 posted.\n\nEntry 2262 posted.\n\nEntry 2263 posted.\n\nEntry 2264 posted.\n\nEntry 2265 posted.\n\nEntry 2266 posted.\n\nEntry 2267 posted.\n\nEntry 2268 posted.\n\nEntry 2269 posted.\n\nEntry 2270 posted.\n\nEntry 2271 posted.\n\nEntry 2272 posted.\n\nEntry 2273 posted.\n\nEntry 2274 posted.\n\nEntry 2275 posted.\n\nEntry 2276 posted.\n\nEntry 2277 posted.\n\nEntry 2278 posted.\n\nEntry 2279 posted.\n\nEntry 2280 posted.\n\nEntry 2281 posted.\n\nEntry 2282 posted.\n\nEntry 2283 posted.\n\nEntry 2284 posted.\n\nEntry 2285 posted.\n\nEntry 2286 posted.\n\nEntry 2287 posted.\n\nEntry 2288 posted.\n\nEntry 2289 posted.\n\nEntry 2290 posted.\n\nEntry 2291 posted.\n\nEntry 2292 posted.\n\nEntry 2293 posted.\n\nEntry 2294 posted.\n\nEntry 2295 posted.\n\nEntry 2296 posted.\n\nEntry 2297 posted.\n\nEntry 2298 posted.\n\nEntry 2299 posted.\n\nEntry 2300 posted.\n\nEntry 2301 posted.\n\nEntry 2302 posted.\n\nEntry 2303 posted.\n\nEntry 2304 posted.\n\nEntry 2305 posted.\n\nEntry 2306 posted.\n\nEntry 2307 posted.\n\nEntry 2308 posted.\n\nEntry 2309 posted.\n\nEntry 2310 posted.\n\nEntry 2311 posted.\n\nEntry 2312 posted.\n\nEntry 2313 posted.\n\nEntry 2314 posted.\n\nEntry 2315 posted.\n\nEntry 2316 posted.\n\nEntry 2317 posted.\n\nEntry 2318 posted.\n\nEntry 2319 posted.\n\nEntry 2320 posted.\n\nEntry 2321 posted.\n\nEntry 2322 posted.\n\nEntry 2323 posted.\n\nEntry 2324 posted.\n\nEntry 2325 posted.\n\nEntry 2326 posted.\n\nEntry 2327 posted.\n\nEntry 2328 posted.\n\nEntry 2329 posted.\n\nEntry 2330 posted.\n\nEntry 2331 posted.\n\nEntry 2332 posted.\n\nEntry 2333 posted.\n\nEntry 2334 posted.\n\nEntry 2335 posted.\n\nEntry 2336 posted.\n\nEntry 2337 posted.\n\nEntry 2338 posted.\n\nEntry 2339 posted.\n\nEntry 2340 posted.\n\nEntry 2341 posted.\n\nEntry 2342 posted.\n\nEntry 2343 posted.\n\nEntry 2344 posted.\n\nEntry 2345 posted.\n\nEntry 2346 posted.\n\nEntry 2347 posted.\n\nEntry 2348 posted.\n\nEntry 2349 posted.\n\nEntry 2350 posted.\n\nEntry 2351 posted.\n\nEntry 2352 posted.\n\nEntry 2353 posted.\n\nEntry 2354 posted.\n\nEntry 2355 posted.\n\nEntry 2356 posted.\n\nEntry 2357 posted.\n\nEntry 2358 posted.\n\nEntry 2359 posted.\n\nEntry 2360 posted.\n\nEntry 2361 posted.\n\nEntry 2362 posted.\n\nEntry 2363 posted.\n\nEntry 2364 posted.\n\nEntry 2365 posted.\n\nEntry 2366 posted.\n\nEntry 2367 posted.\n\nEntry 2368 posted.\n\nEntry 2369 posted.\n\nEntry 2370 posted.\n\nEntry 2371 posted.\n\nEntry 2372 posted.\n\nEntry 2373 posted.\n\nEntry 2374 posted.\n\nEntry 2375 posted.\n\nEntry 2376 posted.\n\nEntry 2377 posted.\n\nEntry 2378 posted.\n\nEntry 2379 posted.\n\nEntry 2380 posted.\n\nEntry 2381 posted.\n\nEntry 2382 posted.\n\nEntry 2383 posted.\n\nEntry 2384 posted.\n\nEntry 2385 posted.\n\nEntry 2386 posted.\n\nEntry 2387 posted.\n\nEntry 2388 posted.\n\nEntry 2389 posted.\n\nEntry 2390 posted.\n\nEntry 2391 posted.\n\nEntry 2392 posted.\n\nEntry 2393 posted.\n\nEntry 2394 posted.\n\nEntry 2395 posted.\n\nEntry 2396 posted.\n\nEntry 2397 posted.\n\nEntry 2398 posted.\n\nEntry 2399 posted.\n\nEntry 2400 posted.\n\nEntry 2401 posted.\n\nEntry 2402 posted.\n\nEntry 2403 posted.\n\nEntry 2404 posted.\n\nEntry 2405 posted.\n\nEntry 2406 posted.\n\nEntry 2407 posted.\n\nEntry 2408 posted.\n\nEntry 2409 posted.\n\nEntry 2410 posted.\n\nEntry 2411 posted.\n\nEntry 2412 posted.\n\nEntry 2413 posted.\n\nEntry 2414 posted.\n\nEntry 2415 posted.\n\nEntry 2416 posted.\n\nEntry 2417 posted.\n\nEntry 2418 posted.\n\nEntry 2419 posted.\n\nEntry 2420 posted.\n\nEntry 2421 posted.\n\nEntry 2422 posted.\n\nEntry 2423 posted.\n\nEntry 2424 posted.\n\nEntry 2425 posted.\n\nEntry 2426 posted.\n\nEntry 2427 posted.\n\nEntry 2428 posted.\n\nEntry 2429 posted.\n\nEntry 2430 posted.\n\nEntry 2431 posted.\n\nEntry 2432 posted.\n\nEntry 2433 posted.\n\nEntry 2434 posted.\n\nEntry 2435 posted.\n\nEntry 2436 posted.\n\nEntry 2437 posted.\n\nEntry 2438 posted.\n\nEntry 2439 posted.\n\nEntry 2440 posted.\n\nEntry 2441 posted.\n\nEntry 2442 posted.\n\nEntry 2443 posted.\n\nEntry 2444 posted.\n\nEntry 2445 posted.\n\nEntry 2446 posted.\n\nEntry 2447 posted.\n\nEntry 2448 posted.\n\nEntry 2449 posted.\n\nEntry 2450 posted.\n\nEntry 2451 posted.\n\nEntry 2452 posted.\n\nEntry 2453 posted.\n\nEntry 2454 posted.\n\nEntry 2455 posted.\n\nEntry 2456 posted.\n\nEntry 2457 posted.\n\nEntry 2458 posted.\n\nEntry 2459 posted.\n\nEntry 2460 posted.\n\nEntry 2461 posted.\n\nEntry 2462 posted.\n\nEntry 2463 posted.\n\nEntry 2464 posted.\n\nEntry 2465 posted.\n\nEntry 2466 posted.\n\nEntry 2467 posted.\n\nEntry 2468 posted.\n\nEntry 2469 posted.\n\nEntry 2470 posted.\n\nEntry 2471 posted.\n\nEntry 2472 posted.\n\nEntry 2473 posted.\n\nEntry 2474 posted.\n\nEntry 2475 posted.\n\nEntry 2476 posted.\n\nEntry 2477 posted.\n\nEntry 2478 posted.\n\nEntry 2479 posted.\n\nEntry 2480 posted.\n\nEntry 2481 posted.\n\nEntry 2482 posted.\n\nEntry 2483 posted.\n\nEntry 2484 posted.\n\nEntry 2485 posted.\n\nEntry 2486 posted.\n\nEntry 2487 posted.\n\nEntry 2488 posted.\n\nEntry 2489 posted.\n\nEntry 2490 posted.\n\nEntry 2491 posted.\n\nEntry 2492 posted.\n\nEntry 2493 posted.\n\nEntry 2494 posted.\n\nEntry 2495 posted.\n\nEntry 2496 posted.\n\nEntry 2497 posted.\n\nEntry 2498 posted.\n\nEntry 2499 posted.\n\nEntry 2500 posted.\n\nEntry 2501 posted.\n\nEntry 2502 posted.\n\nEntry 2503 posted.\n\nEntry 2504 posted.\n\nEntry 2505 posted.\n\nEntry 2506 posted.\n\nEntry 2507 posted.\n\nEntry 2508 posted.\n\nEntry 2509 posted.\n\nEntry 2510 posted.\n\nEntry 2511 posted.\n\nEntry 2512 posted.\n\nEntry 2513 posted.\n\nEntry 2514 posted.\n\nEntry 2515 posted.\n\nEntry 2516 posted.\n\nEntry 2517 posted.\n\nEntry 2518 posted.\n\nEntry 2519 posted.\n\nEntry 2520 posted.\n\nEntry 2521 posted.\n\nEntry 2522 posted.\n\nEntry 2523 posted.\n\nEntry 2524 posted.\n\nEntry 2525 posted.\n\nEntry 2526 posted.\n\nEntry 2527 posted.\n\nEntry 2528 posted.\n\nEntry 2529 posted.\n\nEntry 2530 posted.\n\nEntry 2531 posted.\n\nEntry 2532 posted.\n\nEntry 2533 posted.\n\nEntry 2534 posted.\n\nEntry 2535 posted.\n\nEntry 2536 posted.\n\nEntry 2537 posted.\n\nEntry 2538 posted.\n\nEntry 2539 posted.\n\nEntry 2540 posted.\n\nEntry 2541 posted.\n\nEntry 2542 posted.\n\nEntry 2543 posted.\n\nEntry 2544 posted.\n\nEntry 2545 posted.\n\nEntry 2546 posted.\n\nEntry 2547 posted.\n\nEntry 2548 posted.\n\nEntry 2549 posted.\n\nEntry 2550 posted.\n\nEntry 2551 posted.\n\nEntry 2552 posted.\n\nEntry 2553 posted.\n\nEntry 2554 posted.\n\nEntry 2555 posted.\n\nEntry 2556 posted.\n\nEntry 2557 posted.\n\nEntry 2558 posted.\n\nEntry 2559 posted.\n\nEntry 2560 posted.\n\nEntry 2561 posted.\n\nEntry 2562 posted.\n\nEntry 2563 posted.\n\nEntry 2564 posted.\n\nEntry 2565 posted.\n\nEntry 2566 posted.\n\nEntry 2567 posted.\n\nEntry 2568 posted.\n\nEntry 2569 posted.\n\nEntry 2570 posted.\n\nEntry 2571 posted.\n\nEntry 2572 posted.\n\nEntry 2573 posted.\n\nEntry 2574 posted.\n\nEntry 2575 posted.\n\nEntry 2576 posted.\n\nEntry 2577 posted.\n\nEntry 2578 posted.\n\nEntry 2579 posted.\n\nEntry 2580 posted.\n\nEntry 2581 posted.\n\nEntry 2582 posted.\n\nEntry 2583 posted.\n\nEntry 2584 posted.\n\nEntry 2585 posted.\n\nEntry 2586 posted.\n\nEntry 2587 posted.\n\nEntry 2588 posted.\n\nEntry 2589 posted.\n\nEntry 2590 posted.\n\nEntry 2591 posted.\n\nEntry 2592 posted.\n\nEntry 2593 posted.\n\nEntry 2594 posted.\n\nEntry 2595 posted.\n\nEntry 2596 posted.\n\nEntry 2597 posted.\n\nEntry 2598 posted.\n\nEntry 2599 posted.\n\nEntry 2600 posted.\n\nEntry 2601 posted.\n\nEntry 2602 posted.\n\nEntry 2603 posted.\n\nEntry 2604 posted.\n\nEntry 2605 posted.\n\nEntry 2606 posted.\n\nEntry 2607 posted.\n\nEntry 2608 posted.\n\nEntry 2609 posted.\n\nEntry 2610 posted.\n\nEntry 2611 posted.\n\nEntry 2612 posted.\n\nEntry 2613 posted.\n\nEntry 2614 posted.\n\nEntry 2615 posted.\n\nEntry 2616 posted.\n\nEntry 2617 posted.\n\nEntry 2618 posted.\n\nEntry 2619 posted.\n\nEntry 2620 posted.\n\nEntry 2621 posted.\n\nEntry 2622 posted.\n\nEntry 2623 posted.\n\nEntry 2624 posted.\n\nEntry 2625 posted.\n\nEntry 2626 posted.\n\nEntry 2627 posted.\n\nEntry 2628 posted.\n\nEntry 2629 posted.\n\nEntry 2630 posted.\n\nEntry 2631 posted.\n\nEntry 2632 posted.\n\nEntry 2633 posted.\n\nEntry 2634 posted.\n\nEntry 2635 posted.\n\nEntry 2636 posted.\n\nEntry 2637 posted.\n\nEntry 2638 posted.\n\nEntry 2639 posted.\n\nEntry 2640 posted.\n\nEntry 2641 posted.\n\nEntry 2642 posted.\n\nEntry 2643 posted.\n\nEntry 2644 posted.\n\nEntry 2645 posted.\n\nEntry 2646 posted.\n\nEntry 2647 posted.\n\nEntry 2648 posted.\n\nEntry 2649 posted.\n\nEntry 2650 posted.\n\nEntry 2651 posted.\n\nEntry 2652 posted.\n\nEntry 2653 posted.\n\nEntry 2654 posted.\n\nEntry 2655 posted.\n\nEntry 2656 posted.\n\nEntry 2657 posted.\n\nEntry 2658 posted.\n\nEntry 2659 posted.\n\nEntry 2660 posted.\n\nEntry 2661 posted.\n\nEntry 2662 posted.\n\nEntry 2663 posted.\n\nEntry 2664 posted.\n\nEntry 2665 posted.\n\nEntry 2666 posted.\n\nEntry 2667 posted.\n\nEntry 2668 posted.\n\nEntry 2669 posted.\n\nEntry 2670 posted.\n\nEntry 2671 posted.\n\nEntry 2672 posted.\n\nEntry 2673 posted.\n\nEntry 2674 posted.\n\nEntry 2675 posted.\n\nEntry 2676 posted.\n\nEntry 2677 posted.\n\nEntry 2678 posted.\n\nEntry 2679 posted.\n\nEntry 2680 posted.\n\nEntry 2681 posted.\n\nEntry 2682 posted.\n\nEntry 2683 posted.\n\nEntry 2684 posted.\n\nEntry 2685 posted.\n\nEntry 2686 posted.\n\nEntry 2687 posted.\n\nEntry 2688 posted.\n\nEntry 2689 posted.\n\nEntry 2690 posted.\n\nEntry 2691 posted.\n\nEntry 2692 posted.\n\nEntry 2693 posted.\n\nEntry 2694 posted.\n\nEntry 2695 posted.\n\nEntry 2696 posted.\n\nEntry 2697 posted.\n\nEntry 2698 posted.\n\nEntry 2699 posted.\n\nEntry 2700 posted.\n\nEntry 2701 posted.\n\nEntry 2702 posted.\n\nEntry 2703 posted.\n\nEntry 2704 posted.\n\nEntry 2705 posted.\n\nEntry 2706 posted.\n\nEntry 2707 posted.\n\nEntry 2708 posted.\n\nEntry 2709 posted.\n\nEntry 2710 posted.\n\nEntry 2711 posted.\n\nEntry 2712 posted.\n\nEntry 2713 posted.\n\nEntry 2714 posted.\n\nEntry 2715 posted.\n\nEntry 2716 posted.\n\nEntry 2717 posted.\n\nEntry 2718 posted.\n\nEntry 2719 posted.\n\nEntry 2720 posted.\n\nEntry 2721 posted.\n\nEntry 2722 posted.\n\nEntry 2723 posted.\n\nEntry 2724 posted.\n\nEntry 2725 posted.\n\nEntry 2726 posted.\n\nEntry 2727 posted.\n\nEntry 2728 posted.\n\nEntry 2729 posted.\n\nEntry 2730 posted.\n\nEntry 2731 posted.\n\nEntry 2732 posted.\n\nEntry 2733 posted.\n\nEntry 2734 posted.\n\nEntry 2735 posted.\n\nEntry 2736 posted.\n\nEntry 2737 posted.\n\nEntry 2738 posted.\n\nEntry 2739 posted.\n\nEntry 2740 posted.\n\nEntry 2741 posted.\n\nEntry 2742 posted.\n\nEntry 2743 posted.\n\nEntry 2744 posted.\n\nEntry 2745 posted.\n\nEntry 2746 posted.\n\nEntry 2747 posted.\n\nEntry 2748 posted.\n\nEntry 2749 posted.\n\nEntry 2750 posted.\n\nEntry 2751 posted.\n\nEntry 2752 posted.\n\nEntry 2753 posted.\n\nEntry 2754 posted.\n\nEntry 2755 posted.\n\nEntry 2756 posted.\n\nEntry 2757 posted.\n\nEntry 2758 posted.\n\nEntry 2759 posted.\n\nEntry 2760 posted.\n\nEntry 2761 posted.\n\nEntry 2762 posted.\n\nEntry 2763 posted.\n\nEntry 2764 posted.\n\nEntry 2765 posted.\n\nEntry 2766 posted.\n\nEntry 2767 posted.\n\nEntry 2768 posted.\n\nEntry 2769 posted.\n\nEntry 2770 posted.\n\nEntry 2771 posted.\n\nEntry 2772 posted.\n\nEntry 2773 posted.\n\nEntry 2774 posted.\n\nEntry 2775 posted.\n\nEntry 2776 posted.\n\nEntry 2777 posted.\n\nEntry 2778 posted.\n\nEntry 2779 posted.\n\nEntry 2780 posted.\n\nEntry 2781 posted.\n\nEntry 2782 posted.\n\nEntry 2783 posted.\n\nEntry 2784 posted.\n\nEntry 2785 posted.\n\nEntry 2786 posted.\n\nEntry 2787 posted.\n\nEntry 2788 posted.\n\nEntry 2789 posted.\n\nEntry 2790 posted.\n\nEntry 2791 posted.\n\nEntry 2792 posted.\n\nEntry 2793 posted.\n\nEntry 2794 posted.\n\nEntry 2795 posted.\n\nEntry 2796 posted.\n\nEntry 2797 posted.\n\nEntry 2798 posted.\n\nEntry 2799 posted.\n\nEntry 2800 posted.\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:site-visit-txt",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502",
+        "file_id": "site-visit-txt",
+        "path": "gdrive://Field notes/2026-09-08-site-visit.txt",
+        "filename": "2026-09-08-site-visit.txt",
+        "content_type": "text/plain",
+        "size_bytes": 729,
+        "last_modified": "2026-09-08T18:00:00.000Z",
+        "content": "Harbour Street Site Visit\n\nThe team visited the Harbour Street building on the morning of 8 September to confirm the sensor layout for the autumn deployment. The landlord walked us through the ground floor and the two upper floors, pointing out the areas where the roof works are still in progress.\n\nThe ground floor is ready for installation. Power is available in every room, and the network cabinet has space for the gateway. The first floor needs two additional sockets in the east corridor before the sensors can be mounted.\n\nThe second floor cannot be surveyed until the roof works finish at the end of September. We agreed to return in the first week of October and to keep the original device count of forty-two sensors.\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:inbound-eml",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502",
+        "file_id": "inbound-eml",
+        "path": "gdrive://Field notes/inbound.eml",
+        "filename": "inbound.eml",
+        "content_type": "message/rfc822",
+        "size_bytes": 828,
+        "last_modified": "2026-09-08T17:16:00.000Z",
+        "content": "From: Priya Raman <priya.raman@northgate-research.test>\nTo: Field Notes <field-notes@northgate-research.test>, Tomas Berg <tomas.berg@northgate-research.test>\nCc: archive@northgate-research.test\nSubject: Site visit follow-up: Harbour Street\nMessage-ID: <20260908-1715.4a1@mail.northgate-research.test>\nDate: Tue, 08 Sep 2026 17:15:00 +0000\nContent-Type: text/plain; charset=utf-8\nX-Long-Header: this header is folded across\n two physical lines to test unfolding\n\nHello both,\n\nThanks for joining the Harbour Street visit this morning. The landlord confirmed that the roof works finish on 25 September, so the sensor install can go ahead in the first week of October.\n\nAction items before Friday:\n\n- Tomas: send the revised floor plan to the landlord.\n- Priya: book the electrician for the week of 5 October.\n\nBest regards,\nPriya\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:glossary-md",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502",
+        "file_id": "glossary-md",
+        "path": "gdrive://Field notes/glossary.md",
+        "filename": "glossary.md",
+        "content_type": "text/markdown",
+        "size_bytes": 2956,
+        "last_modified": "2026-09-10T08:30:00.000Z",
+        "content": "# Northgate Glossary\n\n## Purpose\n\nA glossary entry explains one research term in the plain language the field teams use on site. Entries are reviewed every quarter by the methods group and archived when a term falls out of use. Where two offices use different words for the same idea, the Zürich spelling is preferred in reports. Each definition names the owning team so that questions reach the right people quickly. A glossary entry explains one research term in the plain language the field teams use on site. Entries are reviewed every quarter by the methods group and archived when a term falls out of use. Where two offices use different words for the same idea, the Zürich spelling is preferred in reports. Each definition names the owning team so that questions reach the right people quickly. A glossary entry explains one research term in the plain language the field teams use on site. Entries are reviewed every quarter by the methods group and archived when a term falls out of use. Where two offices use different words for the same idea, the Zürich spelling is preferred in reports. Each definition names the owning team so that questions reach the right people quickly. A glossary entry explains one research term in the plain language the field teams use on site. Entries are reviewed every quarter by the methods group and archived when a term falls out of use. Where two offices use different words for the same idea, the Zürich spelling is preferred in reports. Each definition names the owning team so that questions reach the right people quickly. A glossary entry explains one research term in the plain language the field teams use on site. Entries are reviewed every quarter by the methods group and archived when a term falls out of use. Where two offices use different words for the same idea, the Zürich spelling is preferred in reports. Each definition names the owning team so that questions reach the right people quickly. A glossary entry explains one research term in the plain language the field teams use on site. Entries are reviewed every quarter by the methods group and archived when a term falls out of use. Where two offices use different words for the same idea, the Zürich spelling is preferred in reports. Each definition names the owning team so that questions reach the right people quickly. A glossary entry explains one research term in the plain language the field teams use on site. Entries are reviewed every quarter by the methods group and archived when a term falls out of use.\n\n## Terms\n\n- **Zürich baseline**: the reference measurement set captured at the Zürich office in 2024.\n- **Naïve survey**: a first-pass site survey taken without historical data.\n- **現地調査**: the Japanese term the Osaka team uses for a site visit.\n- **Sensor swarm 🐝**: the informal name of a dense temporary deployment.\n\n## Contacts\n\nQuestions go to the methods group at methods@northgate-research.test.\n",
+        "error": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503:scan-001-pdf",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503",
+        "file_id": "scan-001-pdf",
+        "path": "az://legacy-scans/scan-001.pdf",
+        "filename": "scan-001.pdf",
+        "content_type": "application/pdf",
+        "size_bytes": 0,
+        "last_modified": "2025-11-30T12:00:00.000Z",
+        "content": "",
+        "error": "File is encrypted. Please decrypt it with password."
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "source-files",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503:photo-png",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503",
+        "file_id": "photo-png",
+        "path": "az://legacy-scans/photo.png",
+        "filename": "photo.png",
+        "content_type": "image/png",
+        "size_bytes": 0,
+        "last_modified": "2025-12-04T12:00:00.000Z",
+        "content": "",
+        "error": "image/png not currently supported"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "destinations",
+      "rowId": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f601",
+      "value": {
+        "id": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f601",
+        "workspace_id": "ws_northgate",
+        "seq": 201,
+        "name": "Parsed output bucket",
+        "type": "s3",
+        "config": {
+          "remote_url": "s3://northgate-parsed/",
+          "access_key_id": "AKIAEXAMPLE0000002",
+          "secret_access_key": "********"
+        },
+        "key": "parsed-bucket",
+        "created_at": "2026-06-01T09:30:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "destinations",
+      "rowId": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f602",
+      "value": {
+        "id": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f602",
+        "workspace_id": "ws_northgate",
+        "seq": 202,
+        "name": "Policy index",
+        "type": "pinecone",
+        "config": {
+          "index_name": "policies",
+          "namespace": "default",
+          "api_key": "********",
+          "batch_size": 50
+        },
+        "key": "policy-index",
+        "created_at": "2026-06-02T09:00:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "destinations",
+      "rowId": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f603",
+      "value": {
+        "id": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f603",
+        "workspace_id": "ws_archive",
+        "seq": 203,
+        "name": "Archive output",
+        "type": "s3",
+        "config": {
+          "remote_url": "s3://northgate-archive-out/"
+        },
+        "key": null,
+        "created_at": "2026-07-20T10:05:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "workflows",
+      "rowId": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60701",
+      "value": {
+        "id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60701",
+        "workspace_id": "ws_northgate",
+        "seq": 301,
+        "name": "policy-ingest",
+        "workflow_type": "custom",
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "destination_id": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f602",
+        "status": "active",
+        "schedule": "daily",
+        "workflow_nodes": [
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "fast",
+            "settings": {}
+          },
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000002",
+            "name": "Chunker",
+            "type": "chunk",
+            "subtype": "chunk_by_title",
+            "settings": {
+              "max_characters": 800,
+              "new_after_n_chars": 800,
+              "combine_under_n_chars": 200,
+              "include_orig_elements": true
+            }
+          },
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000003",
+            "name": "Embedder",
+            "type": "embed",
+            "subtype": "azure_openai",
+            "settings": {
+              "model_name": "text-embedding-3-small"
+            }
+          }
+        ],
+        "reprocess_all": false,
+        "key": "policy-ingest",
+        "created_at": "2026-06-04T09:00:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "workflows",
+      "rowId": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60702",
+      "value": {
+        "id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60702",
+        "workspace_id": "ws_northgate",
+        "seq": 302,
+        "name": "notes-basic",
+        "workflow_type": "auto",
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502",
+        "destination_id": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f601",
+        "status": "active",
+        "schedule": null,
+        "workflow_nodes": [
+          {
+            "id": "f1a2b3c4-0002-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "auto",
+            "settings": {}
+          },
+          {
+            "id": "f1a2b3c4-0002-4a01-8000-000000000002",
+            "name": "Chunker",
+            "type": "chunk",
+            "subtype": "chunk_by_title",
+            "settings": {
+              "max_characters": 1500,
+              "new_after_n_chars": 1500,
+              "overlap": 0
+            }
+          }
+        ],
+        "reprocess_all": false,
+        "key": null,
+        "created_at": "2026-06-10T09:00:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "workflows",
+      "rowId": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60703",
+      "value": {
+        "id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60703",
+        "workspace_id": "ws_northgate",
+        "seq": 303,
+        "name": "legacy-scan",
+        "workflow_type": "custom",
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503",
+        "destination_id": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f601",
+        "status": "inactive",
+        "schedule": null,
+        "workflow_nodes": [
+          {
+            "id": "f1a2b3c4-0003-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "hi_res",
+            "settings": {}
+          }
+        ],
+        "reprocess_all": false,
+        "key": "legacy-scan",
+        "created_at": "2026-07-21T09:00:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "workflows",
+      "rowId": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60704",
+      "value": {
+        "id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60704",
+        "workspace_id": "ws_archive",
+        "seq": 304,
+        "name": "archive-flow",
+        "workflow_type": "auto",
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e504",
+        "destination_id": "9d2b0f3a-4c5e-4d6f-9a71-b2c3d4e5f603",
+        "status": "active",
+        "schedule": "weekly",
+        "workflow_nodes": [
+          {
+            "id": "f1a2b3c4-0004-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "auto",
+            "settings": {}
+          },
+          {
+            "id": "f1a2b3c4-0004-4a01-8000-000000000002",
+            "name": "Chunker",
+            "type": "chunk",
+            "subtype": "chunk_by_title",
+            "settings": {
+              "max_characters": 1500,
+              "new_after_n_chars": 1500,
+              "overlap": 0
+            }
+          }
+        ],
+        "reprocess_all": false,
+        "key": null,
+        "created_at": "2026-07-22T09:00:00.000Z",
+        "updated_at": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "rowId": "e5f60718-7a92-4b3c-9d4e-f60718293a01",
+      "value": {
+        "id": "e5f60718-7a92-4b3c-9d4e-f60718293a01",
+        "workspace_id": "ws_northgate",
+        "seq": 401,
+        "workflow_id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60701",
+        "workflow_name": "policy-ingest",
+        "job_type": "ephemeral",
+        "created_at": "2026-09-07T03:00:00.000Z",
+        "cancelled_at": null,
+        "stop_requested": false,
+        "files": [
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:handbook-md",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:handbook-md",
+            "filename": "handbook.md",
+            "path": "s3://northgate-policies/handbook.md",
+            "content_type": "text/markdown",
+            "size_bytes": 1446,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:refund-policy-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:refund-policy-txt",
+            "filename": "refund-policy.txt",
+            "path": "s3://northgate-policies/refund-policy.txt",
+            "content_type": "text/plain",
+            "size_bytes": 965,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:vendors-csv",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:vendors-csv",
+            "filename": "vendors.csv",
+            "path": "s3://northgate-policies/vendors.csv",
+            "content_type": "text/csv",
+            "size_bytes": 754,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:release-notes-html",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:release-notes-html",
+            "filename": "release-notes.html",
+            "path": "s3://northgate-policies/release-notes.html",
+            "content_type": "text/html",
+            "size_bytes": 1544,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:elements-json",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:elements-json",
+            "filename": "elements.json",
+            "path": "s3://northgate-policies/elements.json",
+            "content_type": "application/json",
+            "size_bytes": 826,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:empty-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:empty-txt",
+            "filename": "empty.txt",
+            "path": "s3://northgate-policies/empty.txt",
+            "content_type": "text/plain",
+            "size_bytes": 0,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:ledger-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:ledger-txt",
+            "filename": "ledger.txt",
+            "path": "s3://northgate-policies/ledger.txt",
+            "content_type": "text/plain",
+            "size_bytes": 56014,
+            "error": null
+          }
+        ],
+        "nodes": [
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "fast",
+            "settings": {}
+          },
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000002",
+            "name": "Chunker",
+            "type": "chunk",
+            "subtype": "chunk_by_title",
+            "settings": {
+              "max_characters": 800,
+              "new_after_n_chars": 800,
+              "combine_under_n_chars": 200,
+              "include_orig_elements": true
+            }
+          },
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000003",
+            "name": "Embedder",
+            "type": "embed",
+            "subtype": "azure_openai",
+            "settings": {
+              "model_name": "text-embedding-3-small"
+            }
+          }
+        ],
+        "destination_node_id": "f1a2b3c4-0001-4a01-8000-000000000003",
+        "created_by": "analyst"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "rowId": "e5f60718-7a92-4b3c-9d4e-f60718293a02",
+      "value": {
+        "id": "e5f60718-7a92-4b3c-9d4e-f60718293a02",
+        "workspace_id": "ws_northgate",
+        "seq": 402,
+        "workflow_id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60701",
+        "workflow_name": "policy-ingest",
+        "job_type": "ephemeral",
+        "created_at": "2026-09-15T03:00:00.000Z",
+        "cancelled_at": null,
+        "stop_requested": false,
+        "files": [
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:handbook-md",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:handbook-md",
+            "filename": "handbook.md",
+            "path": "s3://northgate-policies/handbook.md",
+            "content_type": "text/markdown",
+            "size_bytes": 1446,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:refund-policy-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:refund-policy-txt",
+            "filename": "refund-policy.txt",
+            "path": "s3://northgate-policies/refund-policy.txt",
+            "content_type": "text/plain",
+            "size_bytes": 965,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:vendors-csv",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:vendors-csv",
+            "filename": "vendors.csv",
+            "path": "s3://northgate-policies/vendors.csv",
+            "content_type": "text/csv",
+            "size_bytes": 754,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:release-notes-html",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:release-notes-html",
+            "filename": "release-notes.html",
+            "path": "s3://northgate-policies/release-notes.html",
+            "content_type": "text/html",
+            "size_bytes": 1544,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:elements-json",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:elements-json",
+            "filename": "elements.json",
+            "path": "s3://northgate-policies/elements.json",
+            "content_type": "application/json",
+            "size_bytes": 826,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:empty-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:empty-txt",
+            "filename": "empty.txt",
+            "path": "s3://northgate-policies/empty.txt",
+            "content_type": "text/plain",
+            "size_bytes": 0,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:ledger-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:ledger-txt",
+            "filename": "ledger.txt",
+            "path": "s3://northgate-policies/ledger.txt",
+            "content_type": "text/plain",
+            "size_bytes": 56014,
+            "error": null
+          }
+        ],
+        "nodes": [
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "fast",
+            "settings": {}
+          },
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000002",
+            "name": "Chunker",
+            "type": "chunk",
+            "subtype": "chunk_by_title",
+            "settings": {
+              "max_characters": 800,
+              "new_after_n_chars": 800,
+              "combine_under_n_chars": 200,
+              "include_orig_elements": true
+            }
+          },
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000003",
+            "name": "Embedder",
+            "type": "embed",
+            "subtype": "azure_openai",
+            "settings": {
+              "model_name": "text-embedding-3-small"
+            }
+          }
+        ],
+        "destination_node_id": "f1a2b3c4-0001-4a01-8000-000000000003",
+        "created_by": "analyst"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "rowId": "e5f60718-7a92-4b3c-9d4e-f60718293a03",
+      "value": {
+        "id": "e5f60718-7a92-4b3c-9d4e-f60718293a03",
+        "workspace_id": "ws_northgate",
+        "seq": 403,
+        "workflow_id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60702",
+        "workflow_name": "notes-basic",
+        "job_type": "ephemeral",
+        "created_at": "2026-09-14T10:00:00.000Z",
+        "cancelled_at": "2026-09-14T10:00:20.000Z",
+        "stop_requested": true,
+        "files": [
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:site-visit-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:site-visit-txt",
+            "filename": "2026-09-08-site-visit.txt",
+            "path": "gdrive://Field notes/2026-09-08-site-visit.txt",
+            "content_type": "text/plain",
+            "size_bytes": 729,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:inbound-eml",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:inbound-eml",
+            "filename": "inbound.eml",
+            "path": "gdrive://Field notes/inbound.eml",
+            "content_type": "message/rfc822",
+            "size_bytes": 828,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:glossary-md",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:glossary-md",
+            "filename": "glossary.md",
+            "path": "gdrive://Field notes/glossary.md",
+            "content_type": "text/markdown",
+            "size_bytes": 2956,
+            "error": null
+          }
+        ],
+        "nodes": [
+          {
+            "id": "f1a2b3c4-0002-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "auto",
+            "settings": {}
+          },
+          {
+            "id": "f1a2b3c4-0002-4a01-8000-000000000002",
+            "name": "Chunker",
+            "type": "chunk",
+            "subtype": "chunk_by_title",
+            "settings": {
+              "max_characters": 1500,
+              "new_after_n_chars": 1500,
+              "overlap": 0
+            }
+          }
+        ],
+        "destination_node_id": "f1a2b3c4-0002-4a01-8000-000000000002",
+        "created_by": "analyst"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "rowId": "e5f60718-7a92-4b3c-9d4e-f60718293a04",
+      "value": {
+        "id": "e5f60718-7a92-4b3c-9d4e-f60718293a04",
+        "workspace_id": "ws_northgate",
+        "seq": 404,
+        "workflow_id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60703",
+        "workflow_name": "legacy-scan",
+        "job_type": "ephemeral",
+        "created_at": "2026-09-13T08:00:00.000Z",
+        "cancelled_at": null,
+        "stop_requested": false,
+        "files": [
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503:scan-001-pdf",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503:scan-001-pdf",
+            "filename": "scan-001.pdf",
+            "path": "az://legacy-scans/scan-001.pdf",
+            "content_type": "application/pdf",
+            "size_bytes": 0,
+            "error": "File is encrypted. Please decrypt it with password."
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503:photo-png",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503:photo-png",
+            "filename": "photo.png",
+            "path": "az://legacy-scans/photo.png",
+            "content_type": "image/png",
+            "size_bytes": 0,
+            "error": "image/png not currently supported"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "f1a2b3c4-0003-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "hi_res",
+            "settings": {}
+          }
+        ],
+        "destination_node_id": "f1a2b3c4-0003-4a01-8000-000000000001",
+        "created_by": "analyst"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "rowId": "e5f60718-7a92-4b3c-9d4e-f60718293a05",
+      "value": {
+        "id": "e5f60718-7a92-4b3c-9d4e-f60718293a05",
+        "workspace_id": "ws_northgate",
+        "seq": 405,
+        "workflow_id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60702",
+        "workflow_name": "notes-basic",
+        "job_type": "ephemeral",
+        "created_at": "2026-09-16T08:59:40.000Z",
+        "cancelled_at": null,
+        "stop_requested": false,
+        "files": [
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:site-visit-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:site-visit-txt",
+            "filename": "2026-09-08-site-visit.txt",
+            "path": "gdrive://Field notes/2026-09-08-site-visit.txt",
+            "content_type": "text/plain",
+            "size_bytes": 729,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:inbound-eml",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:inbound-eml",
+            "filename": "inbound.eml",
+            "path": "gdrive://Field notes/inbound.eml",
+            "content_type": "message/rfc822",
+            "size_bytes": 828,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:glossary-md",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e502:glossary-md",
+            "filename": "glossary.md",
+            "path": "gdrive://Field notes/glossary.md",
+            "content_type": "text/markdown",
+            "size_bytes": 2956,
+            "error": null
+          }
+        ],
+        "nodes": [
+          {
+            "id": "f1a2b3c4-0002-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "auto",
+            "settings": {}
+          },
+          {
+            "id": "f1a2b3c4-0002-4a01-8000-000000000002",
+            "name": "Chunker",
+            "type": "chunk",
+            "subtype": "chunk_by_title",
+            "settings": {
+              "max_characters": 1500,
+              "new_after_n_chars": 1500,
+              "overlap": 0
+            }
+          }
+        ],
+        "destination_node_id": "f1a2b3c4-0002-4a01-8000-000000000002",
+        "created_by": "analyst"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "jobs",
+      "rowId": "e5f60718-7a92-4b3c-9d4e-f60718293a06",
+      "value": {
+        "id": "e5f60718-7a92-4b3c-9d4e-f60718293a06",
+        "workspace_id": "ws_northgate",
+        "seq": 406,
+        "workflow_id": "b3c4d5e6-5f60-4718-8a92-c3d4e5f60701",
+        "workflow_name": "policy-ingest",
+        "job_type": "ephemeral",
+        "created_at": "2026-09-16T08:59:58.000Z",
+        "cancelled_at": null,
+        "stop_requested": false,
+        "files": [
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:handbook-md",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:handbook-md",
+            "filename": "handbook.md",
+            "path": "s3://northgate-policies/handbook.md",
+            "content_type": "text/markdown",
+            "size_bytes": 1446,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:refund-policy-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:refund-policy-txt",
+            "filename": "refund-policy.txt",
+            "path": "s3://northgate-policies/refund-policy.txt",
+            "content_type": "text/plain",
+            "size_bytes": 965,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:vendors-csv",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:vendors-csv",
+            "filename": "vendors.csv",
+            "path": "s3://northgate-policies/vendors.csv",
+            "content_type": "text/csv",
+            "size_bytes": 754,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:release-notes-html",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:release-notes-html",
+            "filename": "release-notes.html",
+            "path": "s3://northgate-policies/release-notes.html",
+            "content_type": "text/html",
+            "size_bytes": 1544,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:elements-json",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:elements-json",
+            "filename": "elements.json",
+            "path": "s3://northgate-policies/elements.json",
+            "content_type": "application/json",
+            "size_bytes": 826,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:empty-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:empty-txt",
+            "filename": "empty.txt",
+            "path": "s3://northgate-policies/empty.txt",
+            "content_type": "text/plain",
+            "size_bytes": 0,
+            "error": null
+          },
+          {
+            "file_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:ledger-txt",
+            "source_row": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501:ledger-txt",
+            "filename": "ledger.txt",
+            "path": "s3://northgate-policies/ledger.txt",
+            "content_type": "text/plain",
+            "size_bytes": 56014,
+            "error": null
+          }
+        ],
+        "nodes": [
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000001",
+            "name": "Partitioner",
+            "type": "partition",
+            "subtype": "fast",
+            "settings": {}
+          },
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000002",
+            "name": "Chunker",
+            "type": "chunk",
+            "subtype": "chunk_by_title",
+            "settings": {
+              "max_characters": 800,
+              "new_after_n_chars": 800,
+              "combine_under_n_chars": 200,
+              "include_orig_elements": true
+            }
+          },
+          {
+            "id": "f1a2b3c4-0001-4a01-8000-000000000003",
+            "name": "Embedder",
+            "type": "embed",
+            "subtype": "azure_openai",
+            "settings": {
+              "model_name": "text-embedding-3-small"
+            }
+          }
+        ],
+        "destination_node_id": "f1a2b3c4-0001-4a01-8000-000000000003",
+        "created_by": "analyst"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "connection-checks",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e501",
+        "status": "SUCCESS",
+        "reason": null,
+        "created_at": "2026-09-10T09:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "connection-checks",
+      "rowId": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503",
+      "value": {
+        "source_id": "7c1a9e2f-3b4d-4c5e-8f60-a1b2c3d4e503",
+        "status": "FAILURE",
+        "reason": "AuthorizationFailure: the account key is invalid",
+        "created_at": "2026-09-13T07:59:00.000Z"
+      }
+    }
+  ]
+}

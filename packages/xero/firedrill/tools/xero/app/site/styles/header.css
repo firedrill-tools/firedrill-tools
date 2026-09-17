@@ -1,0 +1,70 @@
+/* Xero top navigation bar, dropdown menus, dialogs and header search. */
+.xhdr { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; height: 56px; padding: 0 12px 0 8px; background: var(--x-navy); color: #fff; }
+.xhdr-left { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.xhdr-logo { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 50%; }
+.xhdr-logo:hover { background: rgba(255, 255, 255, .1); }
+.xhdr-logo img { display: block; }
+.xhdr-org { display: inline-flex; align-items: center; gap: 4px; height: 40px; padding: 0 8px 0 10px; margin-right: 8px; border: 0; border-radius: var(--radius); background: transparent; color: #fff; font-weight: 700; font-size: 15px; cursor: pointer; max-width: 260px; }
+.xhdr-org:hover, .xhdr-org.open { background: rgba(255, 255, 255, .1); }
+.xhdr-org-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.xhdr-caret .ic { width: 18px; height: 18px; opacity: .85; }
+.xnav { display: flex; align-items: stretch; height: 56px; flex: 1; min-width: 0; }
+.xnav-item { position: relative; display: inline-flex; align-items: center; padding: 0 12px; border: 0; background: transparent; color: rgba(255, 255, 255, .92); font-weight: 500; font-size: 14px; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.xnav-item:hover, .xnav-item.open { background: rgba(255, 255, 255, .1); color: #fff; text-decoration: none; }
+.xnav-item.active { color: #fff; font-weight: 600; }
+.xnav-item.active::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--x-blue); }
+.xhdr-right { display: flex; align-items: center; gap: 2px; }
+.xhdr-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
+.xhdr-icon:hover, .xhdr-icon.open { background: rgba(255, 255, 255, .12); }
+.xhdr-icon .ic { width: 22px; height: 22px; }
+#create-btn { background: rgba(255, 255, 255, .14); margin-right: 4px; }
+#create-btn:hover, #create-btn.open { background: rgba(255, 255, 255, .24); }
+.xhdr-avatar { width: 32px; height: 32px; margin-left: 8px; border-radius: 50%; border: 0; background: #fa8200; color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; }
+.xhdr-avatar:hover, .xhdr-avatar.open { box-shadow: 0 0 0 3px rgba(255, 255, 255, .25); }
+.xhdr-burger { display: none; }
+.sim-chip { margin-right: 10px; padding: 3px 8px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .35); font-size: 12px; color: rgba(255, 255, 255, .85); white-space: nowrap; }
+
+.menu-pop { position: fixed; z-index: 70; min-width: 220px; padding: 8px 0; background: #fff; border-radius: var(--radius); box-shadow: 0 0 0 1px rgba(0, 10, 30, .08), 0 8px 24px rgba(0, 10, 30, .18); color: var(--x-text); }
+.menu-head { padding: 6px 16px 8px; font-size: 12px; font-weight: 600; color: var(--x-text-2); }
+.menu-divider { height: 1px; margin: 6px 0; background: var(--x-border-soft); }
+.mi { display: flex; justify-content: space-between; gap: 16px; width: 100%; padding: 8px 16px; border: 0; background: transparent; text-align: left; cursor: pointer; font-size: 14px; }
+.mi:hover:not(:disabled), .mi:focus-visible { background: var(--x-row-hover); outline: none; box-shadow: inset 3px 0 0 var(--x-action); }
+.mi:disabled { color: var(--x-text-3); cursor: not-allowed; }
+.mi-hint { color: var(--x-text-3); font-size: 12px; }
+
+.xsearch { position: fixed; top: 64px; right: 16px; z-index: 50; width: min(480px, calc(100vw - 32px)); background: #fff; border-radius: 8px; box-shadow: var(--shadow), 0 0 0 1px rgba(0, 10, 30, .08); overflow: hidden; }
+.xsearch-box { display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 14px; border-bottom: 1px solid var(--x-border-soft); }
+.xsearch-glyph { color: var(--x-text-2); display: inline-flex; }
+.xsearch-box input::-webkit-search-cancel-button { display: none; }
+.xsearch-box input { flex: 1; border: 0; outline: none; height: 36px; font-size: 15px; }
+.xsearch-close { border: 0; background: transparent; cursor: pointer; color: var(--x-text-2); display: inline-flex; padding: 6px; border-radius: 50%; }
+.xsearch-close:hover { background: #eceef0; }
+.xsearch-results { max-height: 420px; overflow: auto; padding: 6px 0; }
+.res-head { padding: 8px 16px 4px; font-size: 12px; font-weight: 600; color: var(--x-text-2); text-transform: none; }
+.res { display: flex; justify-content: space-between; gap: 12px; width: 100%; padding: 8px 16px; border: 0; background: transparent; text-align: left; cursor: pointer; }
+.res:hover, .res:focus-visible { background: var(--x-row-hover); outline: none; }
+.res-kind { color: var(--x-text-2); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.res-empty { padding: 14px 16px; color: var(--x-text-2); }
+.res-empty.error { color: var(--x-negative); }
+
+.scrim { position: fixed; inset: 0; z-index: 80; display: flex; align-items: flex-start; justify-content: center; padding: 10vh 16px 16px; background: rgba(0, 10, 30, .45); overflow: auto; }
+.dialog { width: min(480px, 100%); background: #fff; border-radius: 8px; box-shadow: 0 12px 40px rgba(0, 10, 30, .3); }
+.dialog.wide { width: min(720px, 100%); }
+.dialog-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 16px 12px 24px; border-bottom: 1px solid var(--x-border-soft); }
+.dialog-head h2 { font-size: 20px; }
+.dialog-body { padding: 16px 24px; }
+.dialog-body p { margin: 0 0 10px; }
+.dialog-foot { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 24px 20px; }
+
+@media (max-width: 1100px) {
+  .sim-chip { display: none; }
+  .xnav-item { padding: 0 8px; }
+}
+@media (max-width: 900px) {
+  .xhdr-burger { display: inline-flex; }
+  .xnav { display: none; position: absolute; top: 56px; left: 0; right: 0; height: auto; flex-direction: column; background: var(--x-navy); padding: 8px 0; }
+  .xhdr.nav-open .xnav { display: flex; }
+  .xnav-item { height: 44px; padding: 0 20px; }
+  .xnav-item.active::after { left: 0; right: auto; top: 8px; bottom: 8px; width: 3px; height: auto; }
+  .xhdr-org { max-width: 150px; }
+}

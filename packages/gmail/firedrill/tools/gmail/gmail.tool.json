@@ -1,0 +1,4701 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "ui": {
+    "root": "app/site",
+    "entry": "index.html"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "gmail",
+    "version": "0.1.1",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "attachments",
+        "schema": {
+          "type": "object",
+          "required": [
+            "mailbox",
+            "attachmentId",
+            "messageId",
+            "filename",
+            "mimeType",
+            "size",
+            "data"
+          ],
+          "properties": {
+            "mailbox": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "attachmentId": {
+              "type": "string",
+              "pattern": "^att_[0-9a-f]{16}$"
+            },
+            "messageId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "filename": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "mimeType": {
+              "type": "string",
+              "maxLength": 128
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "data": {
+              "type": "string",
+              "maxLength": 262144
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Attachment bodies keyed \"<mailbox>:<attachmentId>\" (authored data; the API reads them only)."
+      },
+      {
+        "namespace": "drafts",
+        "schema": {
+          "type": "object",
+          "required": [
+            "mailbox",
+            "id",
+            "messageId"
+          ],
+          "properties": {
+            "mailbox": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^r[0-9]{1,19}$"
+            },
+            "messageId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Draft handles keyed \"<mailbox>:<draftId>\"; the content is the DRAFT-labelled message row."
+      },
+      {
+        "namespace": "labels",
+        "schema": {
+          "type": "object",
+          "required": [
+            "mailbox",
+            "id",
+            "name",
+            "type",
+            "messageListVisibility",
+            "labelListVisibility"
+          ],
+          "properties": {
+            "mailbox": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^Label_[0-9]{1,12}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 225
+            },
+            "type": {
+              "const": "user"
+            },
+            "messageListVisibility": {
+              "type": "string",
+              "enum": [
+                "show",
+                "hide"
+              ]
+            },
+            "labelListVisibility": {
+              "type": "string",
+              "enum": [
+                "labelShow",
+                "labelShowIfUnread",
+                "labelHide"
+              ]
+            },
+            "color": {
+              "type": "object",
+              "required": [
+                "textColor",
+                "backgroundColor"
+              ],
+              "properties": {
+                "textColor": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "maxLength": 16
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "User labels keyed \"<mailbox>:<labelId>\". System labels are constants, not rows."
+      },
+      {
+        "namespace": "mailboxes",
+        "schema": {
+          "type": "object",
+          "required": [
+            "emailAddress",
+            "displayName",
+            "historyId",
+            "messagesTotal",
+            "threadsTotal",
+            "sequence"
+          ],
+          "properties": {
+            "emailAddress": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "displayName": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "historyId": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "messagesTotal": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "threadsTotal": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limits": {
+              "type": "object",
+              "description": "Optional per-namespace row bounds of this mailbox (defaults: messages 5000, labels 500, drafts 500). Whole-mailbox reads refuse a mailbox beyond a bound with FAILED_PRECONDITION; writes refuse to fill it further.",
+              "properties": {
+                "messages": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                },
+                "labels": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                },
+                "drafts": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "One row per synthetic account, keyed by lower-case address; holds the id counter, history id and optional row bounds. The row with the lowest row id is the account an actor without an `email` attribute acts as."
+      },
+      {
+        "namespace": "messages",
+        "schema": {
+          "type": "object",
+          "required": [
+            "mailbox",
+            "id",
+            "threadId",
+            "labelIds",
+            "snippet",
+            "historyId",
+            "internalDate",
+            "sizeEstimate",
+            "headers",
+            "body",
+            "attachments",
+            "version"
+          ],
+          "properties": {
+            "mailbox": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            },
+            "snippet": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "historyId": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "internalDate": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "sizeEstimate": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "headers": {
+              "type": "object",
+              "required": [
+                "from",
+                "to",
+                "cc",
+                "bcc",
+                "subject",
+                "date",
+                "messageId",
+                "references"
+              ],
+              "properties": {
+                "from": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 254
+                },
+                "fromName": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "to": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 254
+                  },
+                  "maxItems": 50
+                },
+                "cc": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 254
+                  },
+                  "maxItems": 50
+                },
+                "bcc": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 254
+                  },
+                  "maxItems": 50
+                },
+                "subject": {
+                  "type": "string",
+                  "maxLength": 998
+                },
+                "date": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "messageId": {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "inReplyTo": {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "references": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 300
+                  },
+                  "maxItems": 20
+                }
+              },
+              "additionalProperties": false
+            },
+            "body": {
+              "type": "object",
+              "required": [
+                "text"
+              ],
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "maxLength": 65536
+                },
+                "html": {
+                  "type": "string",
+                  "maxLength": 131072
+                }
+              },
+              "additionalProperties": false
+            },
+            "attachments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "attachmentId",
+                  "filename",
+                  "mimeType",
+                  "size"
+                ],
+                "properties": {
+                  "attachmentId": {
+                    "type": "string",
+                    "pattern": "^att_[0-9a-f]{16}$"
+                  },
+                  "filename": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "mimeType": {
+                    "type": "string",
+                    "maxLength": 128
+                  },
+                  "size": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 10
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "One row per message copy per mailbox, keyed \"<mailbox>:<messageId>\"."
+      },
+      {
+        "namespace": "threads",
+        "schema": {
+          "type": "object",
+          "required": [
+            "mailbox",
+            "id",
+            "messageIds",
+            "snippet",
+            "historyId",
+            "lastInternalDate",
+            "labelIds"
+          ],
+          "properties": {
+            "mailbox": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "messageIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{16}$"
+              },
+              "maxItems": 200
+            },
+            "snippet": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "historyId": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "lastInternalDate": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Thread index keyed \"<mailbox>:<threadId>\"; labelIds is the union over its messages."
+      }
+    ],
+    "operations": [
+      {
+        "id": "attachments.get",
+        "description": "Read an attachment body (base64url) of one message.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "messageId",
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "messageId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "attachmentId",
+            "size",
+            "data"
+          ],
+          "properties": {
+            "attachmentId": {
+              "type": "string"
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "data": {
+              "type": "string",
+              "maxLength": 262144
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "drafts.create",
+        "description": "Create a draft (structured fields or raw); attachments are not supported. FAILED_PRECONDITION when the mailbox or the target thread (200 messages) is full.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "raw": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1048576,
+              "description": "base64url RFC 2822 message (Gmail wire format). Mutually exclusive with structured fields."
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "cc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "bcc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "subject": {
+              "type": "string",
+              "maxLength": 998
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 65536
+            },
+            "htmlBody": {
+              "type": "string",
+              "maxLength": 131072
+            },
+            "replyToMessageId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "attachments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  },
+                  "filename": {
+                    "type": "string"
+                  },
+                  "mimeType": {
+                    "type": "string"
+                  },
+                  "inline": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 10
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "messageId",
+            "threadId",
+            "subject",
+            "toRecipients",
+            "ccRecipients",
+            "bccRecipients",
+            "plaintextBody",
+            "date",
+            "internalDate",
+            "historyId"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^r[0-9]{1,19}$"
+            },
+            "messageId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "subject": {
+              "type": "string",
+              "maxLength": 998
+            },
+            "toRecipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "ccRecipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "bccRecipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "plaintextBody": {
+              "type": "string"
+            },
+            "htmlBody": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "internalDate": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "create_draft",
+          "description": "Creates a new draft email in the authenticated user's mailbox."
+        }
+      },
+      {
+        "id": "drafts.delete",
+        "description": "Delete a draft and its message.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "deleted"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^r[0-9]{1,19}$"
+            },
+            "deleted": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "drafts.get",
+        "description": "Read one draft with its message resource.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "minimal",
+                "metadata",
+                "full"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "message"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^r[0-9]{1,19}$"
+            },
+            "message": {
+              "type": "object",
+              "required": [
+                "id",
+                "threadId",
+                "labelIds",
+                "snippet",
+                "historyId",
+                "internalDate",
+                "sizeEstimate"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$"
+                },
+                "threadId": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$"
+                },
+                "labelIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_]{1,64}$"
+                  },
+                  "maxItems": 64
+                },
+                "snippet": {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                "historyId": {
+                  "type": "string",
+                  "pattern": "^[0-9]{1,16}$"
+                },
+                "internalDate": {
+                  "type": "string",
+                  "pattern": "^[0-9]{1,16}$"
+                },
+                "sizeEstimate": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "payload": {
+                  "type": "object",
+                  "required": [
+                    "partId",
+                    "mimeType",
+                    "filename",
+                    "headers",
+                    "body"
+                  ],
+                  "properties": {
+                    "partId": {
+                      "type": "string"
+                    },
+                    "mimeType": {
+                      "type": "string"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "headers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "body": {
+                      "type": "object",
+                      "required": [
+                        "size"
+                      ],
+                      "properties": {
+                        "size": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "data": {
+                          "type": "string"
+                        },
+                        "attachmentId": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "parts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "partId",
+                          "mimeType",
+                          "filename",
+                          "headers",
+                          "body"
+                        ],
+                        "properties": {
+                          "partId": {
+                            "type": "string"
+                          },
+                          "mimeType": {
+                            "type": "string"
+                          },
+                          "filename": {
+                            "type": "string"
+                          },
+                          "headers": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "name",
+                                "value"
+                              ],
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "additionalProperties": false
+                            }
+                          },
+                          "body": {
+                            "type": "object",
+                            "required": [
+                              "size"
+                            ],
+                            "properties": {
+                              "size": {
+                                "type": "integer",
+                                "minimum": 0
+                              },
+                              "data": {
+                                "type": "string"
+                              },
+                              "attachmentId": {
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "parts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "partId",
+                                "mimeType",
+                                "filename",
+                                "headers",
+                                "body"
+                              ],
+                              "properties": {
+                                "partId": {
+                                  "type": "string"
+                                },
+                                "mimeType": {
+                                  "type": "string"
+                                },
+                                "filename": {
+                                  "type": "string"
+                                },
+                                "headers": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "required": [
+                                      "name",
+                                      "value"
+                                    ],
+                                    "properties": {
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "additionalProperties": false
+                                  }
+                                },
+                                "body": {
+                                  "type": "object",
+                                  "required": [
+                                    "size"
+                                  ],
+                                  "properties": {
+                                    "size": {
+                                      "type": "integer",
+                                      "minimum": 0
+                                    },
+                                    "data": {
+                                      "type": "string"
+                                    },
+                                    "attachmentId": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "additionalProperties": false
+                                }
+                              },
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "drafts.list",
+        "description": "List drafts matching a query.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "query": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "pageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "drafts",
+            "resultSizeEstimate"
+          ],
+          "properties": {
+            "drafts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "messageId",
+                  "threadId",
+                  "subject",
+                  "toRecipients",
+                  "ccRecipients",
+                  "bccRecipients",
+                  "plaintextBody",
+                  "date",
+                  "internalDate",
+                  "historyId"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^r[0-9]{1,19}$"
+                  },
+                  "messageId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "threadId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "maxLength": 998
+                  },
+                  "toRecipients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 254
+                    },
+                    "maxItems": 50
+                  },
+                  "ccRecipients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 254
+                    },
+                    "maxItems": 50
+                  },
+                  "bccRecipients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 254
+                    },
+                    "maxItems": 50
+                  },
+                  "plaintextBody": {
+                    "type": "string"
+                  },
+                  "htmlBody": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "internalDate": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  },
+                  "historyId": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 100
+            },
+            "nextPageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "resultSizeEstimate": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "INVALID_PAGE_TOKEN"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "list_drafts",
+          "description": "Lists drafts in the authenticated user's mailbox."
+        }
+      },
+      {
+        "id": "drafts.send",
+        "description": "Send a draft: the draft disappears and a SENT message with a new id appears. FAILED_PRECONDITION when a recipient mailbox or its thread (200 messages) is full.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "threadId",
+            "labelIds"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "drafts.update",
+        "description": "Replace the content of a draft (PUT semantics); threadId or replyToMessageId moves it into that thread (FAILED_PRECONDITION when that thread already holds 200 messages).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "raw": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1048576,
+              "description": "base64url RFC 2822 message (Gmail wire format). Mutually exclusive with structured fields."
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$",
+              "description": "Move the draft into this existing thread (NOT_FOUND otherwise); In-Reply-To/References are set to the thread's last message. Omit to keep the draft where it is."
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "cc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "bcc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "subject": {
+              "type": "string",
+              "maxLength": 998
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 65536
+            },
+            "htmlBody": {
+              "type": "string",
+              "maxLength": 131072
+            },
+            "replyToMessageId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "messageId",
+            "threadId",
+            "subject",
+            "toRecipients",
+            "ccRecipients",
+            "bccRecipients",
+            "plaintextBody",
+            "date",
+            "internalDate",
+            "historyId"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^r[0-9]{1,19}$"
+            },
+            "messageId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "subject": {
+              "type": "string",
+              "maxLength": 998
+            },
+            "toRecipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "ccRecipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "bccRecipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "plaintextBody": {
+              "type": "string"
+            },
+            "htmlBody": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "internalDate": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "labels.create",
+        "description": "Create a user label.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "displayName"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "displayName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 225
+            },
+            "color": {
+              "type": "object",
+              "required": [
+                "textColor",
+                "backgroundColor"
+              ],
+              "properties": {
+                "textColor": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "maxLength": 16
+                }
+              },
+              "additionalProperties": false
+            },
+            "messageListVisibility": {
+              "type": "string",
+              "enum": [
+                "show",
+                "hide"
+              ]
+            },
+            "labelListVisibility": {
+              "type": "string",
+              "enum": [
+                "labelShow",
+                "labelShowIfUnread",
+                "labelHide"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "labelId",
+            "name",
+            "type",
+            "messageListVisibility",
+            "labelListVisibility",
+            "threadsTotal",
+            "threadsUnread"
+          ],
+          "properties": {
+            "labelId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]{1,64}$"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 225
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "user",
+                "system"
+              ]
+            },
+            "messageListVisibility": {
+              "type": "string",
+              "enum": [
+                "show",
+                "hide"
+              ]
+            },
+            "labelListVisibility": {
+              "type": "string",
+              "enum": [
+                "labelShow",
+                "labelShowIfUnread",
+                "labelHide"
+              ]
+            },
+            "color": {
+              "type": "object",
+              "required": [
+                "textColor",
+                "backgroundColor"
+              ],
+              "properties": {
+                "textColor": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "maxLength": 16
+                }
+              },
+              "additionalProperties": false
+            },
+            "threadsTotal": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "threadsUnread": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "ALREADY_EXISTS",
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "create_label",
+          "description": "Creates a new label in the authenticated user's mailbox."
+        }
+      },
+      {
+        "id": "labels.delete",
+        "description": "Delete a user label and remove it from every message and thread.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "labelId"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "labelId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "labelId",
+            "deleted",
+            "messagesUpdated"
+          ],
+          "properties": {
+            "labelId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]{1,64}$"
+            },
+            "deleted": {
+              "const": true
+            },
+            "messagesUpdated": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "delete_label",
+          "description": "Deletes a label in the authenticated user's mailbox."
+        }
+      },
+      {
+        "id": "labels.list",
+        "description": "List labels with per-label thread counts. Defaults to user labels; type=all adds the fixed system labels.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000,
+              "description": "Labels per page (default 20). Pages also stop before about 900 KB of UTF-8 JSON and carry a nextPageToken. The REST route passes 10000 so GET …/labels is unpaged like Gmail's; a whole list above that byte budget is refused with FAILED_PRECONDITION. User labels are bounded by the mailbox's label bound (500 unless mailboxes.limits.labels says otherwise)."
+            },
+            "pageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "user",
+                "system",
+                "all"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "labels"
+          ],
+          "properties": {
+            "labels": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "labelId",
+                  "name",
+                  "type",
+                  "messageListVisibility",
+                  "labelListVisibility",
+                  "threadsTotal",
+                  "threadsUnread"
+                ],
+                "properties": {
+                  "labelId": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_]{1,64}$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 225
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "user",
+                      "system"
+                    ]
+                  },
+                  "messageListVisibility": {
+                    "type": "string",
+                    "enum": [
+                      "show",
+                      "hide"
+                    ]
+                  },
+                  "labelListVisibility": {
+                    "type": "string",
+                    "enum": [
+                      "labelShow",
+                      "labelShowIfUnread",
+                      "labelHide"
+                    ]
+                  },
+                  "color": {
+                    "type": "object",
+                    "required": [
+                      "textColor",
+                      "backgroundColor"
+                    ],
+                    "properties": {
+                      "textColor": {
+                        "type": "string",
+                        "maxLength": 16
+                      },
+                      "backgroundColor": {
+                        "type": "string",
+                        "maxLength": 16
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "threadsTotal": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "threadsUnread": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 10014
+            },
+            "nextPageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_PAGE_TOKEN"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "list_labels",
+          "description": "Lists user labels in the authenticated user's mailbox."
+        }
+      },
+      {
+        "id": "labels.update",
+        "description": "Rename, recolour or change visibility of a user label.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "labelId"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "labelId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]{1,64}$"
+            },
+            "displayName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 225
+            },
+            "color": {
+              "type": "object",
+              "required": [
+                "textColor",
+                "backgroundColor"
+              ],
+              "properties": {
+                "textColor": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "maxLength": 16
+                }
+              },
+              "additionalProperties": false
+            },
+            "messageListVisibility": {
+              "type": "string",
+              "enum": [
+                "show",
+                "hide"
+              ]
+            },
+            "labelListVisibility": {
+              "type": "string",
+              "enum": [
+                "labelShow",
+                "labelShowIfUnread",
+                "labelHide"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "labelId",
+            "name",
+            "type",
+            "messageListVisibility",
+            "labelListVisibility",
+            "threadsTotal",
+            "threadsUnread"
+          ],
+          "properties": {
+            "labelId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]{1,64}$"
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 225
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "user",
+                "system"
+              ]
+            },
+            "messageListVisibility": {
+              "type": "string",
+              "enum": [
+                "show",
+                "hide"
+              ]
+            },
+            "labelListVisibility": {
+              "type": "string",
+              "enum": [
+                "labelShow",
+                "labelShowIfUnread",
+                "labelHide"
+              ]
+            },
+            "color": {
+              "type": "object",
+              "required": [
+                "textColor",
+                "backgroundColor"
+              ],
+              "properties": {
+                "textColor": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "maxLength": 16
+                }
+              },
+              "additionalProperties": false
+            },
+            "threadsTotal": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "threadsUnread": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "ALREADY_EXISTS",
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "update_label",
+          "description": "Updates an existing label in the authenticated user's mailbox."
+        }
+      },
+      {
+        "id": "messages.batch-modify",
+        "description": "Add and remove labels on up to 100 messages atomically.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "ids"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-]{1,64}$"
+              },
+              "minItems": 1,
+              "maxItems": 100
+            },
+            "addLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 20
+            },
+            "removeLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "modified"
+          ],
+          "properties": {
+            "modified": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "messages.get",
+        "description": "Read one message as a Gmail REST Message resource (minimal, metadata or full).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "minimal",
+                "metadata",
+                "full",
+                "raw"
+              ]
+            },
+            "metadataHeaders": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "threadId",
+            "labelIds",
+            "snippet",
+            "historyId",
+            "internalDate",
+            "sizeEstimate"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            },
+            "snippet": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "internalDate": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "sizeEstimate": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "partId",
+                "mimeType",
+                "filename",
+                "headers",
+                "body"
+              ],
+              "properties": {
+                "partId": {
+                  "type": "string"
+                },
+                "mimeType": {
+                  "type": "string"
+                },
+                "filename": {
+                  "type": "string"
+                },
+                "headers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "value"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "body": {
+                  "type": "object",
+                  "required": [
+                    "size"
+                  ],
+                  "properties": {
+                    "size": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "data": {
+                      "type": "string"
+                    },
+                    "attachmentId": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "parts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "partId",
+                      "mimeType",
+                      "filename",
+                      "headers",
+                      "body"
+                    ],
+                    "properties": {
+                      "partId": {
+                        "type": "string"
+                      },
+                      "mimeType": {
+                        "type": "string"
+                      },
+                      "filename": {
+                        "type": "string"
+                      },
+                      "headers": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "name",
+                            "value"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "body": {
+                        "type": "object",
+                        "required": [
+                          "size"
+                        ],
+                        "properties": {
+                          "size": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "data": {
+                            "type": "string"
+                          },
+                          "attachmentId": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "parts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "partId",
+                            "mimeType",
+                            "filename",
+                            "headers",
+                            "body"
+                          ],
+                          "properties": {
+                            "partId": {
+                              "type": "string"
+                            },
+                            "mimeType": {
+                              "type": "string"
+                            },
+                            "filename": {
+                              "type": "string"
+                            },
+                            "headers": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "name",
+                                  "value"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "additionalProperties": false
+                              }
+                            },
+                            "body": {
+                              "type": "object",
+                              "required": [
+                                "size"
+                              ],
+                              "properties": {
+                                "size": {
+                                  "type": "integer",
+                                  "minimum": 0
+                                },
+                                "data": {
+                                  "type": "string"
+                                },
+                                "attachmentId": {
+                                  "type": "string"
+                                }
+                              },
+                              "additionalProperties": false
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "messages.label",
+        "description": "Add labels to one message.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "messageId",
+            "labelIds"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "messageId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "minItems": 1,
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "messageId",
+            "threadId",
+            "labelIds"
+          ],
+          "properties": {
+            "messageId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "label_message",
+          "description": "Adds one or more labels to a specific message."
+        }
+      },
+      {
+        "id": "messages.list",
+        "description": "List message ids matching a Gmail search query; TRASH and SPAM are excluded unless requested.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "q": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 10
+            },
+            "maxResults": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500
+            },
+            "pageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "includeSpamTrash": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "messages",
+            "resultSizeEstimate"
+          ],
+          "properties": {
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "threadId"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "threadId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 100
+            },
+            "nextPageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "resultSizeEstimate": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "BACKEND_ERROR",
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "INVALID_PAGE_TOKEN"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "messages.modify",
+        "description": "Add and remove labels on one message.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "addLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 20
+            },
+            "removeLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "threadId",
+            "labelIds",
+            "snippet",
+            "historyId",
+            "internalDate",
+            "sizeEstimate"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            },
+            "snippet": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "internalDate": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "sizeEstimate": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "messages.send",
+        "description": "Synthetic send: stores a SENT copy and delivers INBOX copies only to mailboxes in this world. FAILED_PRECONDITION when the mailbox, a recipient mailbox or the target thread (200 messages) is full.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "raw": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1048576,
+              "description": "base64url RFC 2822 message (Gmail wire format). Mutually exclusive with structured fields."
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "cc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "bcc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "subject": {
+              "type": "string",
+              "maxLength": 998
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 65536
+            },
+            "htmlBody": {
+              "type": "string",
+              "maxLength": 131072
+            },
+            "replyToMessageId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "threadId",
+            "labelIds"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "messages.trash",
+        "description": "Move one message to TRASH (removes INBOX).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "threadId",
+            "labelIds",
+            "snippet",
+            "historyId",
+            "internalDate",
+            "sizeEstimate"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            },
+            "snippet": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "internalDate": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "sizeEstimate": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "messages.unlabel",
+        "description": "Remove labels from one message.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "messageId",
+            "labelIds"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "messageId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "minItems": 1,
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "messageId",
+            "threadId",
+            "labelIds"
+          ],
+          "properties": {
+            "messageId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "unlabel_message",
+          "description": "Removes one or more labels from a specific message."
+        }
+      },
+      {
+        "id": "messages.untrash",
+        "description": "Restore one message from TRASH to INBOX.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "threadId",
+            "labelIds",
+            "snippet",
+            "historyId",
+            "internalDate",
+            "sizeEstimate"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            },
+            "snippet": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "internalDate": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "sizeEstimate": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "profile.get",
+        "description": "Read the current mailbox profile (address, counts, history id) plus the world's virtual time.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "emailAddress",
+            "messagesTotal",
+            "threadsTotal",
+            "historyId",
+            "serverTime"
+          ],
+          "properties": {
+            "emailAddress": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "messagesTotal": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "threadsTotal": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "serverTime": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,3})?Z$",
+              "description": "The world's virtual now (RFC 3339, UTC). Canonical/MCP only: the REST profile route strips it because Gmail's Profile resource has no such field."
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "threads.get",
+        "description": "Read one thread with its messages in chronological order.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "threadId"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "messageFormat": {
+              "type": "string",
+              "enum": [
+                "MESSAGE_FORMAT_UNSPECIFIED",
+                "MINIMAL",
+                "FULL_CONTENT"
+              ]
+            },
+            "metadataOnly": {
+              "type": "boolean"
+            },
+            "restFormat": {
+              "type": "string",
+              "enum": [
+                "minimal",
+                "metadata",
+                "full"
+              ],
+              "description": "Render the thread for a Gmail REST Message format (the get-thread route sets it from ?format=). minimal returns only the REST minimal fields of each message; metadata and full return the summaries (full implies FULL_CONTENT). The byte budget is measured on what is returned and on its REST rendering, whichever is larger."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "historyId",
+            "snippet",
+            "messages"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "snippet": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "threadId",
+                  "labelIds",
+                  "snippet",
+                  "historyId",
+                  "internalDate",
+                  "sizeEstimate"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "threadId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "labelIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_]{1,64}$"
+                    },
+                    "maxItems": 64
+                  },
+                  "snippet": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "historyId": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  },
+                  "internalDate": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  },
+                  "sizeEstimate": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "date": {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                  },
+                  "rfc2822Date": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "maxLength": 998
+                  },
+                  "sender": {
+                    "type": "string"
+                  },
+                  "senderName": {
+                    "type": "string"
+                  },
+                  "toRecipients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 254
+                    },
+                    "maxItems": 50
+                  },
+                  "ccRecipients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 254
+                    },
+                    "maxItems": 50
+                  },
+                  "bccRecipients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 254
+                    },
+                    "maxItems": 50
+                  },
+                  "messageIdHeader": {
+                    "type": "string"
+                  },
+                  "inReplyTo": {
+                    "type": "string"
+                  },
+                  "references": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 20
+                  },
+                  "hasHtml": {
+                    "type": "boolean"
+                  },
+                  "attachmentCount": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "plaintextBody": {
+                    "type": "string"
+                  },
+                  "htmlBody": {
+                    "type": "string"
+                  },
+                  "attachmentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 10
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "filename",
+                        "mimeType",
+                        "size"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "filename": {
+                          "type": "string"
+                        },
+                        "mimeType": {
+                          "type": "string"
+                        },
+                        "size": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "maxItems": 10
+                  }
+                },
+                "additionalProperties": false,
+                "description": "A message summary. With restFormat \"minimal\" only the REST minimal fields (id, threadId, labelIds, snippet, historyId, internalDate, sizeEstimate) are returned; otherwise every summary field listed as present is returned."
+              },
+              "maxItems": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "get_thread",
+          "description": "Retrieves a specific thread, including its messages."
+        }
+      },
+      {
+        "id": "threads.label",
+        "description": "Add labels to every message of a thread.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "threadId",
+            "labelIds"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "minItems": 1,
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "threadId",
+            "labelIds"
+          ],
+          "properties": {
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "label_thread",
+          "description": "Adds labels to an entire thread."
+        }
+      },
+      {
+        "id": "threads.list",
+        "description": "Search threads (a thread matches when any visible message matches).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "query": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "pageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "includeTrash": {
+              "type": "boolean"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 10
+            },
+            "withoutMessages": {
+              "type": "boolean",
+              "description": "Return each thread as id, snippet and historyId only, without message summaries (the Gmail REST threads.list shape). Pages are filled up to the response byte budget on the shape returned."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "threads",
+            "resultSizeEstimate"
+          ],
+          "properties": {
+            "threads": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "snippet",
+                  "historyId"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "snippet": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "historyId": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  },
+                  "messages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "threadId",
+                        "labelIds",
+                        "snippet",
+                        "historyId",
+                        "internalDate",
+                        "sizeEstimate",
+                        "date",
+                        "rfc2822Date",
+                        "subject",
+                        "sender",
+                        "toRecipients",
+                        "ccRecipients",
+                        "bccRecipients",
+                        "messageIdHeader",
+                        "references",
+                        "hasHtml",
+                        "attachmentCount"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{16}$"
+                        },
+                        "threadId": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{16}$"
+                        },
+                        "labelIds": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9_]{1,64}$"
+                          },
+                          "maxItems": 64
+                        },
+                        "snippet": {
+                          "type": "string",
+                          "maxLength": 200
+                        },
+                        "historyId": {
+                          "type": "string",
+                          "pattern": "^[0-9]{1,16}$"
+                        },
+                        "internalDate": {
+                          "type": "string",
+                          "pattern": "^[0-9]{1,16}$"
+                        },
+                        "sizeEstimate": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "date": {
+                          "type": "string",
+                          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                        },
+                        "rfc2822Date": {
+                          "type": "string"
+                        },
+                        "subject": {
+                          "type": "string",
+                          "maxLength": 998
+                        },
+                        "sender": {
+                          "type": "string"
+                        },
+                        "senderName": {
+                          "type": "string"
+                        },
+                        "toRecipients": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 254
+                          },
+                          "maxItems": 50
+                        },
+                        "ccRecipients": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 254
+                          },
+                          "maxItems": 50
+                        },
+                        "bccRecipients": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 254
+                          },
+                          "maxItems": 50
+                        },
+                        "messageIdHeader": {
+                          "type": "string"
+                        },
+                        "inReplyTo": {
+                          "type": "string"
+                        },
+                        "references": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "maxItems": 20
+                        },
+                        "hasHtml": {
+                          "type": "boolean"
+                        },
+                        "attachmentCount": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "plaintextBody": {
+                          "type": "string"
+                        },
+                        "htmlBody": {
+                          "type": "string"
+                        },
+                        "attachmentIds": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "maxItems": 10
+                        },
+                        "attachments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "filename",
+                              "mimeType",
+                              "size"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "filename": {
+                                "type": "string"
+                              },
+                              "mimeType": {
+                                "type": "string"
+                              },
+                              "size": {
+                                "type": "integer",
+                                "minimum": 0
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "maxItems": 10
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "maxItems": 200
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 100
+            },
+            "nextPageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "resultSizeEstimate": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "BACKEND_ERROR",
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "INVALID_PAGE_TOKEN"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "search_threads",
+          "description": "Searches threads in the authenticated user's mailbox using Gmail query syntax."
+        }
+      },
+      {
+        "id": "threads.modify",
+        "description": "Add and remove labels on every message of a thread.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "addLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 20
+            },
+            "removeLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "historyId",
+            "messages"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "threadId",
+                  "labelIds",
+                  "snippet",
+                  "historyId",
+                  "internalDate",
+                  "sizeEstimate"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "threadId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "labelIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_]{1,64}$"
+                    },
+                    "maxItems": 64
+                  },
+                  "snippet": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "historyId": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  },
+                  "internalDate": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  },
+                  "sizeEstimate": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "threads.trash",
+        "description": "Move every message of a thread to TRASH.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "historyId",
+            "messages"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "historyId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,16}$"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "threadId",
+                  "labelIds",
+                  "snippet",
+                  "historyId",
+                  "internalDate",
+                  "sizeEstimate"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "threadId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{16}$"
+                  },
+                  "labelIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_]{1,64}$"
+                    },
+                    "maxItems": 64
+                  },
+                  "snippet": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "historyId": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  },
+                  "internalDate": {
+                    "type": "string",
+                    "pattern": "^[0-9]{1,16}$"
+                  },
+                  "sizeEstimate": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 200
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "FORBIDDEN",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "threads.unlabel",
+        "description": "Remove labels from every message of a thread.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "threadId",
+            "labelIds"
+          ],
+          "properties": {
+            "userId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 254,
+              "description": "\"me\" or the actor's own mailbox address; anything else is refused with FORBIDDEN."
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "minItems": 1,
+              "maxItems": 20
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "threadId",
+            "labelIds"
+          ],
+          "properties": {
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FORBIDDEN",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "unlabel_thread",
+          "description": "Removes labels from an entire thread."
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "message.labels-changed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "mailbox",
+            "messageIds",
+            "addLabelIds",
+            "removeLabelIds"
+          ],
+          "properties": {
+            "mailbox": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "messageIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{16}$"
+              },
+              "minItems": 1,
+              "maxItems": 200
+            },
+            "addLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            },
+            "removeLabelIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_]{1,64}$"
+              },
+              "maxItems": 64
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "message.sent",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "mailbox",
+            "messageId",
+            "threadId",
+            "to",
+            "cc",
+            "subject",
+            "deliveredTo"
+          ],
+          "properties": {
+            "mailbox": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "messageId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "cc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            },
+            "subject": {
+              "type": "string"
+            },
+            "deliveredTo": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 254
+              },
+              "maxItems": 50
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "message.trashed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "mailbox",
+            "messageIds",
+            "threadId"
+          ],
+          "properties": {
+            "mailbox": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254
+            },
+            "messageIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{16}$"
+              },
+              "minItems": 1,
+              "maxItems": 200
+            },
+            "threadId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "mailbox-unavailable",
+        "appliesTo": [
+          "messages.list",
+          "threads.list"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "BACKEND_ERROR",
+          "message": "The service is currently unavailable.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "send-rate-limited",
+        "appliesTo": [
+          "drafts.send",
+          "messages.send"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RATE_LIMITED",
+          "message": "User-rate limit exceeded. Retry after 2026-09-14T09:01:00Z",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "batch-modify-messages",
+        "operationId": "messages.batch-modify",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/messages/batchModify",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-draft",
+        "operationId": "drafts.create",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/drafts",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-label",
+        "operationId": "labels.create",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/labels",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ALREADY_EXISTS",
+              "status": 409
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-draft",
+        "operationId": "drafts.delete",
+        "method": "DELETE",
+        "path": "/gmail/v1/users/{userId}/drafts/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-label",
+        "operationId": "labels.delete",
+        "method": "DELETE",
+        "path": "/gmail/v1/users/{userId}/labels/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-attachment",
+        "operationId": "attachments.get",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-draft",
+        "operationId": "drafts.get",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/drafts/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-message",
+        "operationId": "messages.get",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/messages/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-profile",
+        "operationId": "profile.get",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/profile",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-thread",
+        "operationId": "threads.get",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/threads/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-drafts",
+        "operationId": "drafts.list",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/drafts",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PAGE_TOKEN",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-labels",
+        "operationId": "labels.list",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/labels",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_PAGE_TOKEN",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-messages",
+        "operationId": "messages.list",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/messages",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "BACKEND_ERROR",
+              "status": 503
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PAGE_TOKEN",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-threads",
+        "operationId": "threads.list",
+        "method": "GET",
+        "path": "/gmail/v1/users/{userId}/threads",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "BACKEND_ERROR",
+              "status": 503
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PAGE_TOKEN",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "modify-message",
+        "operationId": "messages.modify",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/messages/{id}/modify",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "modify-thread",
+        "operationId": "threads.modify",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/threads/{id}/modify",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "patch-label",
+        "operationId": "labels.update",
+        "method": "PATCH",
+        "path": "/gmail/v1/users/{userId}/labels/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ALREADY_EXISTS",
+              "status": 409
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "send-draft",
+        "operationId": "drafts.send",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/drafts/send",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "send-message",
+        "operationId": "messages.send",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/messages/send",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "trash-message",
+        "operationId": "messages.trash",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/messages/{id}/trash",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "trash-thread",
+        "operationId": "threads.trash",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/threads/{id}/trash",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "untrash-message",
+        "operationId": "messages.untrash",
+        "method": "POST",
+        "path": "/gmail/v1/users/{userId}/messages/{id}/untrash",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-draft",
+        "operationId": "drafts.update",
+        "method": "PUT",
+        "path": "/gmail/v1/users/{userId}/drafts/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-label",
+        "operationId": "labels.update",
+        "method": "PUT",
+        "path": "/gmail/v1/users/{userId}/labels/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "ALREADY_EXISTS",
+              "status": 409
+            },
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "FORBIDDEN",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": [],
+    "connections": [
+      {
+        "id": "gmail-mcp",
+        "title": "Gmail MCP tool names (search_threads, get_thread, create_draft, ...)",
+        "protocol": "mcp",
+        "environment": {
+          "GMAIL_MCP_URL": "FIREDRILL_MCP_URL",
+          "GMAIL_MCP_TOKEN": "FIREDRILL_MCP_TOKEN"
+        },
+        "instructions": "Connect a Streamable HTTP MCP client to GMAIL_MCP_URL with GMAIL_MCP_TOKEN as a Bearer token. The 12 Google Gmail MCP tool names are exposed as aliases next to the canonical gmail.<operation> names."
+      },
+      {
+        "id": "googleapis-http",
+        "title": "Gmail REST client (base URL override)",
+        "protocol": "http",
+        "environment": {
+          "GMAIL_API_BASE_URL": "FIREDRILL_HTTP_URL",
+          "GMAIL_ACCESS_TOKEN": "FIREDRILL_HTTP_TOKEN"
+        },
+        "instructions": "Point your Gmail client's root URL at GMAIL_API_BASE_URL and send GMAIL_ACCESS_TOKEN as `Authorization: Bearer`. Routes live under /gmail/v1/users/{userId}/... with userId `me`. Test processes only; OAuth is not emulated."
+      }
+    ]
+  }
+}

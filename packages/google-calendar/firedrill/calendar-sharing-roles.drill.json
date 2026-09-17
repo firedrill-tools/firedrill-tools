@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "id": "calendar-sharing-roles",
+  "title": "Access roles as the colleague: writer on the team calendar, free/busy-only on the room, guest restrictions on the organizer's events, owner deleting a shared calendar",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "colleague",
+  "task": {
+    "instruction": "Run the sharing-roles conformance flow against the synthetic Google Calendar Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "calendar-list-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendar-list.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-insert-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.insert"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-patch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.patch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "events-respond-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.respond"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "freebusy-query-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "freebusy.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "calendars-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendars.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-patch-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.patch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-get-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "events-instances-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.instances"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-delete-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "calendars-patch-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendars.patch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "calendars-delete-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendars.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "dana-sees-retro-prep-title",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000013",
+      "path": [
+        "summary"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Retro prep (agenda added)"
+      }
+    },
+    {
+      "id": "dana-sees-sam-declined",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000002",
+      "path": [
+        "attendees",
+        1,
+        "responseStatus"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "declined"
+      }
+    },
+    {
+      "id": "dana-copy-of-1-1-cancelled",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000008",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "cancelled"
+      }
+    },
+    {
+      "id": "dana-row-keeps-own-colour",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000002",
+      "path": [
+        "colorId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "5"
+      }
+    },
+    {
+      "id": "deploy-window-lives-on-team-calendar",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "c_st000000000000000000000001@group.calendar.google.com:fd000000000000000000000001",
+      "path": [
+        "organizer",
+        "email"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "c_st000000000000000000000001@group.calendar.google.com"
+      }
+    },
+    {
+      "id": "holiday-calendar-entries-gone",
+      "kind": "state.count",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "holiday-calendar-removed",
+      "kind": "state.count",
+      "packageId": "google-calendar",
+      "namespace": "calendars",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "cancelled-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.cancelled"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    }
+  ]
+}

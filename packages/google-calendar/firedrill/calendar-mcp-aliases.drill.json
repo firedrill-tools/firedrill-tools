@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "id": "calendar-mcp-aliases",
+  "title": "Google Calendar MCP tool names (all nine aliases) plus the route-less canonical operations (search, respond, suggest, instances, now) and their errors",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the mcp-aliases conformance flow against the synthetic Google Calendar Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "calendar-list-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "calendar-list.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-search-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.search"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-insert-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.insert"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-patch-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.patch"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-delete-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-respond-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.respond"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "time-suggest-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "time.suggest"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "time-now-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "time.now"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-instances-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.instances"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-respond-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.respond"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "events-search-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "events.search"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "time-suggest-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-calendar",
+        "operationId": "time.suggest"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "updated-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "cancelled-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-calendar",
+        "eventId": "event.cancelled"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "sam-sees-dana-accepted",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000008",
+      "path": [
+        "attendees",
+        1,
+        "responseStatus"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "accepted"
+      }
+    },
+    {
+      "id": "sam-sees-dana-comment",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000008",
+      "path": [
+        "attendees",
+        1,
+        "comment"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "See you there"
+      }
+    },
+    {
+      "id": "removed-attendee-copy-cancelled",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:fd000000000000000000000001",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "cancelled"
+      }
+    },
+    {
+      "id": "offsite-cancelled",
+      "kind": "state.value",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:fd000000000000000000000001",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "cancelled"
+      }
+    },
+    {
+      "id": "alias-order",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "google-calendar",
+              "operationId": "calendar-list.list"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-calendar",
+              "operationId": "events.insert"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-calendar",
+              "operationId": "events.patch"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-calendar",
+              "operationId": "events.respond"
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-calendar",
+              "operationId": "events.delete"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

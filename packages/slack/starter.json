@@ -1,0 +1,1562 @@
+{
+  "schemaVersion": 1,
+  "virtualTimeUs": 1789376400000000,
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "workspace",
+      "rowId": "team",
+      "value": {
+        "id": "T01EXAMPLE0",
+        "name": "Example Team",
+        "domain": "example-team",
+        "url": "https://example-team.slack.com/",
+        "id_sequence": 50,
+        "message_sequence": 300
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "users",
+      "rowId": "U01DANA0001",
+      "value": {
+        "id": "U01DANA0001",
+        "team_id": "T01EXAMPLE0",
+        "name": "dana.reyes",
+        "real_name": "Dana Reyes",
+        "deleted": false,
+        "is_bot": false,
+        "is_admin": true,
+        "is_owner": true,
+        "tz": "America/New_York",
+        "tz_label": "Eastern Daylight Time",
+        "tz_offset": -14400,
+        "updated": 1787126400,
+        "profile": {
+          "real_name": "Dana Reyes",
+          "display_name": "dana.reyes",
+          "first_name": "Dana",
+          "last_name": "Reyes",
+          "title": "Engineering Manager",
+          "status_text": "",
+          "status_emoji": "",
+          "image_24": "",
+          "image_72": "",
+          "email": "dana.reyes@example.test"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "users",
+      "rowId": "U01SAM00002",
+      "value": {
+        "id": "U01SAM00002",
+        "team_id": "T01EXAMPLE0",
+        "name": "sam.okafor",
+        "real_name": "Sam Okafor",
+        "deleted": false,
+        "is_bot": false,
+        "is_admin": false,
+        "is_owner": false,
+        "tz": "Europe/London",
+        "tz_label": "British Summer Time",
+        "tz_offset": 3600,
+        "updated": 1787126400,
+        "profile": {
+          "real_name": "Sam Okafor",
+          "display_name": "sam.okafor",
+          "first_name": "Sam",
+          "last_name": "Okafor",
+          "title": "Backend Engineer",
+          "status_text": "",
+          "status_emoji": "",
+          "image_24": "",
+          "image_72": "",
+          "email": "sam.okafor@example.test"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "users",
+      "rowId": "U01PRIYA003",
+      "value": {
+        "id": "U01PRIYA003",
+        "team_id": "T01EXAMPLE0",
+        "name": "priya.n",
+        "real_name": "Priya Natarajan",
+        "deleted": false,
+        "is_bot": false,
+        "is_admin": false,
+        "is_owner": false,
+        "tz": "Europe/Berlin",
+        "tz_label": "Central European Summer Time",
+        "tz_offset": 7200,
+        "updated": 1787126400,
+        "profile": {
+          "real_name": "Priya Natarajan",
+          "display_name": "priya.n",
+          "first_name": "Priya",
+          "last_name": "Natarajan",
+          "title": "Contractor",
+          "status_text": "",
+          "status_emoji": "",
+          "image_24": "",
+          "image_72": "",
+          "email": "priya.n@example.test"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "users",
+      "rowId": "U01LEE00004",
+      "value": {
+        "id": "U01LEE00004",
+        "team_id": "T01EXAMPLE0",
+        "name": "lee.marsh",
+        "real_name": "Lee Marsh",
+        "deleted": true,
+        "is_bot": false,
+        "is_admin": false,
+        "is_owner": false,
+        "tz": "America/Los_Angeles",
+        "tz_label": "Pacific Daylight Time",
+        "tz_offset": -25200,
+        "updated": 1787126400,
+        "profile": {
+          "real_name": "Lee Marsh",
+          "display_name": "lee.marsh",
+          "first_name": "Lee",
+          "last_name": "Marsh",
+          "title": "Former Designer",
+          "status_text": "",
+          "status_emoji": "",
+          "image_24": "",
+          "image_72": "",
+          "email": "lee.marsh@example.test"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "users",
+      "rowId": "U01OPSBOT05",
+      "value": {
+        "id": "U01OPSBOT05",
+        "team_id": "T01EXAMPLE0",
+        "name": "opsbot",
+        "real_name": "Ops Bot",
+        "deleted": false,
+        "is_bot": true,
+        "is_admin": false,
+        "is_owner": false,
+        "tz": "Etc/UTC",
+        "tz_label": "Coordinated Universal Time",
+        "tz_offset": 0,
+        "updated": 1787126400,
+        "bot_id": "B01OPSBOT01",
+        "profile": {
+          "real_name": "Ops Bot",
+          "display_name": "opsbot",
+          "first_name": "Ops",
+          "last_name": "Bot",
+          "title": "Deployment and alerting bot",
+          "status_text": "",
+          "status_emoji": "",
+          "image_24": "",
+          "image_72": ""
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "users",
+      "rowId": "U01MIRA0006",
+      "value": {
+        "id": "U01MIRA0006",
+        "team_id": "T01EXAMPLE0",
+        "name": "mira.chen",
+        "real_name": "Mira Chen",
+        "deleted": false,
+        "is_bot": false,
+        "is_admin": false,
+        "is_owner": false,
+        "tz": "Asia/Singapore",
+        "tz_label": "Singapore Standard Time",
+        "tz_offset": 28800,
+        "updated": 1787126400,
+        "profile": {
+          "real_name": "Mira Chen",
+          "display_name": "mira.chen",
+          "first_name": "Mira",
+          "last_name": "Chen",
+          "title": "Platform Engineer",
+          "status_text": "Out until Sept 16",
+          "status_emoji": ":palm_tree:",
+          "image_24": "",
+          "image_72": "",
+          "email": "mira.chen@example.test"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01GENERAL1",
+      "value": {
+        "name": "general",
+        "is_channel": true,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": false,
+        "is_private": false,
+        "is_archived": false,
+        "is_general": true,
+        "created": 1787216400,
+        "creator": "U01DANA0001",
+        "topic": {
+          "value": "Company-wide announcements",
+          "creator": "U01DANA0001",
+          "last_set": 1787216460
+        },
+        "purpose": {
+          "value": "This channel is for team-wide communication and announcements. All team members are in this channel.",
+          "creator": "U01DANA0001",
+          "last_set": 1787216400
+        },
+        "updated": 1787216400000,
+        "id": "C01GENERAL1",
+        "name_normalized": "general"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01GENERAL1:U01DANA0001",
+      "value": {
+        "channel": "C01GENERAL1",
+        "user": "U01DANA0001",
+        "joined": 1787216400
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01GENERAL1:U01SAM00002",
+      "value": {
+        "channel": "C01GENERAL1",
+        "user": "U01SAM00002",
+        "joined": 1787216400
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01GENERAL1:U01PRIYA003",
+      "value": {
+        "channel": "C01GENERAL1",
+        "user": "U01PRIYA003",
+        "joined": 1787216400
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01GENERAL1:U01MIRA0006",
+      "value": {
+        "channel": "C01GENERAL1",
+        "user": "U01MIRA0006",
+        "joined": 1787216400
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01GENERAL1:U01OPSBOT05",
+      "value": {
+        "channel": "C01GENERAL1",
+        "user": "U01OPSBOT05",
+        "joined": 1787216400
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01ENGINEER",
+      "value": {
+        "name": "engineering",
+        "is_channel": true,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": false,
+        "is_private": false,
+        "is_archived": false,
+        "is_general": false,
+        "created": 1787217000,
+        "creator": "U01DANA0001",
+        "topic": {
+          "value": "Next deploy window: Tue 2026-09-16",
+          "creator": "U01DANA0001",
+          "last_set": 1789116660
+        },
+        "purpose": {
+          "value": "Engineering discussion, deploy coordination and build notifications.",
+          "creator": "U01DANA0001",
+          "last_set": 1787217000
+        },
+        "updated": 1787217000000,
+        "id": "C01ENGINEER",
+        "name_normalized": "engineering"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01ENGINEER:U01DANA0001",
+      "value": {
+        "channel": "C01ENGINEER",
+        "user": "U01DANA0001",
+        "joined": 1787217000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01ENGINEER:U01SAM00002",
+      "value": {
+        "channel": "C01ENGINEER",
+        "user": "U01SAM00002",
+        "joined": 1787217000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01ENGINEER:U01MIRA0006",
+      "value": {
+        "channel": "C01ENGINEER",
+        "user": "U01MIRA0006",
+        "joined": 1787217000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01ENGINEER:U01OPSBOT05",
+      "value": {
+        "channel": "C01ENGINEER",
+        "user": "U01OPSBOT05",
+        "joined": 1787217000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01INCIDENT",
+      "value": {
+        "name": "incidents",
+        "is_channel": true,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": false,
+        "is_private": true,
+        "is_archived": false,
+        "is_general": false,
+        "created": 1787217600,
+        "creator": "U01SAM00002",
+        "topic": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "purpose": {
+          "value": "Private incident response coordination.",
+          "creator": "U01SAM00002",
+          "last_set": 1787217600
+        },
+        "updated": 1787217600000,
+        "id": "C01INCIDENT",
+        "name_normalized": "incidents"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01INCIDENT:U01DANA0001",
+      "value": {
+        "channel": "C01INCIDENT",
+        "user": "U01DANA0001",
+        "joined": 1787217600
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01INCIDENT:U01SAM00002",
+      "value": {
+        "channel": "C01INCIDENT",
+        "user": "U01SAM00002",
+        "joined": 1787217600
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01INCIDENT:U01OPSBOT05",
+      "value": {
+        "channel": "C01INCIDENT",
+        "user": "U01OPSBOT05",
+        "joined": 1787217600
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01RANDOM01",
+      "value": {
+        "name": "random",
+        "is_channel": true,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": false,
+        "is_private": false,
+        "is_archived": false,
+        "is_general": false,
+        "created": 1787216520,
+        "creator": "U01DANA0001",
+        "topic": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "purpose": {
+          "value": "Non-work banter and water cooler conversation.",
+          "creator": "U01DANA0001",
+          "last_set": 1787216520
+        },
+        "updated": 1787216520000,
+        "id": "C01RANDOM01",
+        "name_normalized": "random"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01RANDOM01:U01DANA0001",
+      "value": {
+        "channel": "C01RANDOM01",
+        "user": "U01DANA0001",
+        "joined": 1787216520
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01RANDOM01:U01SAM00002",
+      "value": {
+        "channel": "C01RANDOM01",
+        "user": "U01SAM00002",
+        "joined": 1787216520
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01RANDOM01:U01PRIYA003",
+      "value": {
+        "channel": "C01RANDOM01",
+        "user": "U01PRIYA003",
+        "joined": 1787216520
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01RANDOM01:U01MIRA0006",
+      "value": {
+        "channel": "C01RANDOM01",
+        "user": "U01MIRA0006",
+        "joined": 1787216520
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01RANDOM01:U01OPSBOT05",
+      "value": {
+        "channel": "C01RANDOM01",
+        "user": "U01OPSBOT05",
+        "joined": 1787216520
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01LAUNCHQ3",
+      "value": {
+        "name": "launch-q3",
+        "is_channel": true,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": false,
+        "is_private": false,
+        "is_archived": true,
+        "is_general": false,
+        "created": 1787220000,
+        "creator": "U01MIRA0006",
+        "topic": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "purpose": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "updated": 1787308260000,
+        "id": "C01LAUNCHQ3",
+        "name_normalized": "launch-q3"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01LAUNCHQ3:U01DANA0001",
+      "value": {
+        "channel": "C01LAUNCHQ3",
+        "user": "U01DANA0001",
+        "joined": 1787220000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01LAUNCHQ3:U01MIRA0006",
+      "value": {
+        "channel": "C01LAUNCHQ3",
+        "user": "U01MIRA0006",
+        "joined": 1787220000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01DESIGN01",
+      "value": {
+        "name": "design",
+        "is_channel": true,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": false,
+        "is_private": false,
+        "is_archived": false,
+        "is_general": false,
+        "created": 1787385600,
+        "creator": "U01MIRA0006",
+        "topic": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "purpose": {
+          "value": "Design reviews and mockups.",
+          "creator": "U01MIRA0006",
+          "last_set": 1787385600
+        },
+        "updated": 1787385600000,
+        "id": "C01DESIGN01",
+        "name_normalized": "design"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01DESIGN01:U01SAM00002",
+      "value": {
+        "channel": "C01DESIGN01",
+        "user": "U01SAM00002",
+        "joined": 1787385600
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01DESIGN01:U01MIRA0006",
+      "value": {
+        "channel": "C01DESIGN01",
+        "user": "U01MIRA0006",
+        "joined": 1787385600
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01LEADERS1",
+      "value": {
+        "name": "leadership",
+        "is_channel": true,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": false,
+        "is_private": true,
+        "is_archived": false,
+        "is_general": false,
+        "created": 1787387400,
+        "creator": "U01SAM00002",
+        "topic": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "purpose": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "updated": 1787387400000,
+        "id": "C01LEADERS1",
+        "name_normalized": "leadership"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01LEADERS1:U01SAM00002",
+      "value": {
+        "channel": "C01LEADERS1",
+        "user": "U01SAM00002",
+        "joined": 1787387400
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01LEADERS1:U01MIRA0006",
+      "value": {
+        "channel": "C01LEADERS1",
+        "user": "U01MIRA0006",
+        "joined": 1787387400
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "D01DANASAM1",
+      "value": {
+        "name": "",
+        "is_channel": false,
+        "is_group": false,
+        "is_im": true,
+        "is_mpim": false,
+        "is_private": true,
+        "is_archived": false,
+        "is_general": false,
+        "created": 1787223600,
+        "creator": "",
+        "topic": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "purpose": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "updated": 1787223600000,
+        "user": "U01SAM00002",
+        "id": "D01DANASAM1",
+        "name_normalized": ""
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "D01DANASAM1:U01DANA0001",
+      "value": {
+        "channel": "D01DANASAM1",
+        "user": "U01DANA0001",
+        "joined": 1787223600
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "D01DANASAM1:U01SAM00002",
+      "value": {
+        "channel": "D01DANASAM1",
+        "user": "U01SAM00002",
+        "joined": 1787223600
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01MPDM0001",
+      "value": {
+        "name": "mpdm-dana.reyes--mira.chen--sam.okafor-1",
+        "is_channel": false,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": true,
+        "is_private": true,
+        "is_archived": false,
+        "is_general": false,
+        "created": 1789127940,
+        "creator": "U01DANA0001",
+        "topic": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "purpose": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "updated": 1789127940000,
+        "id": "C01MPDM0001",
+        "name_normalized": "mpdm-dana.reyes--mira.chen--sam.okafor-1"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01MPDM0001:U01DANA0001",
+      "value": {
+        "channel": "C01MPDM0001",
+        "user": "U01DANA0001",
+        "joined": 1789127940
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01MPDM0001:U01SAM00002",
+      "value": {
+        "channel": "C01MPDM0001",
+        "user": "U01SAM00002",
+        "joined": 1789127940
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01MPDM0001:U01MIRA0006",
+      "value": {
+        "channel": "C01MPDM0001",
+        "user": "U01MIRA0006",
+        "joined": 1789127940
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C01ONBOARD1",
+      "value": {
+        "name": "onboarding",
+        "is_channel": true,
+        "is_group": false,
+        "is_im": false,
+        "is_mpim": false,
+        "is_private": false,
+        "is_archived": false,
+        "is_general": false,
+        "created": 1789200000,
+        "creator": "U01DANA0001",
+        "topic": {
+          "value": "",
+          "creator": "",
+          "last_set": 0
+        },
+        "purpose": {
+          "value": "Help for new joiners.",
+          "creator": "U01DANA0001",
+          "last_set": 1789200000
+        },
+        "updated": 1789200000000,
+        "id": "C01ONBOARD1",
+        "name_normalized": "onboarding"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01ONBOARD1:U01DANA0001",
+      "value": {
+        "channel": "C01ONBOARD1",
+        "user": "U01DANA0001",
+        "joined": 1789200000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "rowId": "C01ONBOARD1:U01MIRA0006",
+      "value": {
+        "channel": "C01ONBOARD1",
+        "user": "U01MIRA0006",
+        "joined": 1789200000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1787216400.000101",
+      "value": {
+        "channel": "C01GENERAL1",
+        "ts": "1787216400.000101",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Welcome to Example Team! This is #general — company-wide announcements only. Please keep discussion in the topic channels.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01GENERAL1/p1787216400000101",
+        "team": "T01EXAMPLE0",
+        "pinned_to": [
+          "C01GENERAL1"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1788249600.000102",
+      "value": {
+        "channel": "C01GENERAL1",
+        "ts": "1788249600.000102",
+        "type": "message",
+        "user": "U01OPSBOT05",
+        "text": "Reminder: the monthly all-hands is on Thursday at 15:00 UTC.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01GENERAL1/p1788249600000102",
+        "team": "T01EXAMPLE0",
+        "subtype": "bot_message",
+        "bot_id": "B01OPSBOT01"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1789036200.000103",
+      "value": {
+        "channel": "C01GENERAL1",
+        "ts": "1789036200.000103",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "Heads-up: I'm out Sept 14–16, Sam covers on-call.",
+        "reactions": [
+          {
+            "name": "wave",
+            "users": [
+              "U01SAM00002"
+            ],
+            "count": 1
+          }
+        ],
+        "permalink": "https://example-team.slack.com/archives/C01GENERAL1/p1789036200000103",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787561880.000119",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1787561880.000119",
+        "type": "message",
+        "user": "U01OPSBOT05",
+        "text": "<@U01OPSBOT05> has joined the channel",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1787561880000119",
+        "team": "T01EXAMPLE0",
+        "subtype": "channel_join",
+        "bot_id": "B01OPSBOT01"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787562900.000120",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1787562900.000120",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Kicking off the payments-service migration this week. Design doc is in the shared drive.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1787562900000120",
+        "team": "T01EXAMPLE0",
+        "thread_ts": "1787562900.000120",
+        "reply_count": 4,
+        "reply_users": [
+          "U01DANA0001",
+          "U01MIRA0006",
+          "U01OPSBOT05"
+        ],
+        "reply_users_count": 3,
+        "latest_reply": "1787669100.000124"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787564400.000121",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1787564400.000121",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Great — let's make sure the postgres schema changes are backwards compatible.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1787564400000121",
+        "team": "T01EXAMPLE0",
+        "thread_ts": "1787562900.000120"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787565900.000122",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1787565900.000122",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "I can review the migration scripts tomorrow.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1787565900000122",
+        "team": "T01EXAMPLE0",
+        "thread_ts": "1787562900.000120"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787667600.000123",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1787667600.000123",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "Update for everyone: the migration is scheduled for Thursday's deploy window.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1787667600000123",
+        "team": "T01EXAMPLE0",
+        "thread_ts": "1787562900.000120",
+        "subtype": "thread_broadcast"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787669100.000124",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1787669100.000124",
+        "type": "message",
+        "user": "U01OPSBOT05",
+        "text": "Change ticket CHG-2041 created for the Thursday window.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1787669100000124",
+        "team": "T01EXAMPLE0",
+        "thread_ts": "1787562900.000120",
+        "subtype": "bot_message",
+        "bot_id": "B01OPSBOT01"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787828400.000125",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1787828400.000125",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Deploy checklist for Thursday: freeze at 14:00 UTC, smoke tests, then announce in #general.",
+        "reactions": [
+          {
+            "name": "+1",
+            "users": [
+              "U01SAM00002",
+              "U01MIRA0006"
+            ],
+            "count": 2
+          }
+        ],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1787828400000125",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1787934600.000126",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1787934600.000126",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Deploy went out cleanly. Error rate flat, p95 latency down 8%.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1787934600000126",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1788430200.000128",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1788430200.000128",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "Postgres 16 upgrade notes are up. Main change: the connection pooler config moves to the new file.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1788430200000128",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1788526800.000129",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1788526800.000129",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Reminder to write a rollback plan before every production change. Template is pinned in #incidents.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1788526800000129",
+        "team": "T01EXAMPLE0",
+        "edited": {
+          "user": "U01DANA0001",
+          "ts": "1788526920.000000"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1788773400.000130",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1788773400.000130",
+        "type": "message",
+        "user": "U01OPSBOT05",
+        "text": "Nightly build #4821 passed (312 tests, 0 failures).",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1788773400000130",
+        "team": "T01EXAMPLE0",
+        "blocks": [
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "*Nightly build #4821* passed\n312 tests, 0 failures"
+            }
+          }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B01OPSBOT01"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1788882300.000131",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1788882300.000131",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Anyone else seeing flaky results from the integration suite on the ci-runner-3 box?",
+        "reactions": [
+          {
+            "name": "eyes",
+            "users": [
+              "U01DANA0001"
+            ],
+            "count": 1
+          }
+        ],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1788882300000131",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1788952800.000132",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1788952800.000132",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "Fixed the flaky suite — the test container was reusing a port. PR #418 is ready for review.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1788952800000132",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1789116600.000133",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1789116600.000133",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Next deploy window is Tuesday 2026-09-16. Add your changes to the release sheet by Monday noon.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1789116600000133",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01ENGINEER:1789375200.000134",
+      "value": {
+        "channel": "C01ENGINEER",
+        "ts": "1789375200.000134",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Morning! Standup moved to 09:30 UTC today because of the incident review.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01ENGINEER/p1789375200000134",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01INCIDENT:1788055800.000141",
+      "value": {
+        "channel": "C01INCIDENT",
+        "ts": "1788055800.000141",
+        "type": "message",
+        "user": "U01OPSBOT05",
+        "text": "ALERT: checkout-api error rate above 5% for 10 minutes (INC-77).",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01INCIDENT/p1788055800000141",
+        "team": "T01EXAMPLE0",
+        "subtype": "bot_message",
+        "bot_id": "B01OPSBOT01",
+        "thread_ts": "1788055800.000141",
+        "reply_count": 2,
+        "reply_users": [
+          "U01SAM00002"
+        ],
+        "reply_users_count": 1,
+        "latest_reply": "1788057060.000143"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01INCIDENT:1788056040.000142",
+      "value": {
+        "channel": "C01INCIDENT",
+        "ts": "1788056040.000142",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "On it. Rolling back the 02:00 config change.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01INCIDENT/p1788056040000142",
+        "team": "T01EXAMPLE0",
+        "thread_ts": "1788055800.000141"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01INCIDENT:1788057060.000143",
+      "value": {
+        "channel": "C01INCIDENT",
+        "ts": "1788057060.000143",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Recovered at 02:29. Root cause: a bad feature-flag default. Post-mortem tomorrow.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01INCIDENT/p1788057060000143",
+        "team": "T01EXAMPLE0",
+        "thread_ts": "1788055800.000141"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01INCIDENT:1788166800.000144",
+      "value": {
+        "channel": "C01INCIDENT",
+        "ts": "1788166800.000144",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Incident runbook and rollback template: https://wiki.example.test/runbooks/checkout — please read before your next on-call shift.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01INCIDENT/p1788166800000144",
+        "team": "T01EXAMPLE0",
+        "pinned_to": [
+          "C01INCIDENT"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01INCIDENT:1789374000.000145",
+      "value": {
+        "channel": "C01INCIDENT",
+        "ts": "1789374000.000145",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Incident review for INC-77 starts at 09:00 UTC in the ops room.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01INCIDENT/p1789374000000145",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01RANDOM01:1787400000.000151",
+      "value": {
+        "channel": "C01RANDOM01",
+        "ts": "1787400000.000151",
+        "type": "message",
+        "user": "U01PRIYA003",
+        "text": "Anyone have a good lunch spot recommendation near the office?",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01RANDOM01/p1787400000000151",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01RANDOM01:1787400300.000152",
+      "value": {
+        "channel": "C01RANDOM01",
+        "ts": "1787400300.000152",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": ":tada:",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01RANDOM01/p1787400300000152",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01RANDOM01:1788629400.000153",
+      "value": {
+        "channel": "C01RANDOM01",
+        "ts": "1788629400.000153",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "<@U01DANA0001> the team photo from the offsite is in the shared album!",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01RANDOM01/p1788629400000153",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01RANDOM01:1789204500.000154",
+      "value": {
+        "channel": "C01RANDOM01",
+        "ts": "1789204500.000154",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Friday reminder: submit your expense reports by end of day.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01RANDOM01/p1789204500000154",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01LAUNCHQ3:1787306400.000161",
+      "value": {
+        "channel": "C01LAUNCHQ3",
+        "ts": "1787306400.000161",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "Q3 launch retrospective notes are in the doc. Thanks everyone!",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01LAUNCHQ3/p1787306400000161",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01LAUNCHQ3:1787308200.000162",
+      "value": {
+        "channel": "C01LAUNCHQ3",
+        "ts": "1787308200.000162",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Archiving this channel now that the launch is done.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01LAUNCHQ3/p1787308200000162",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01DESIGN01:1788357600.000171",
+      "value": {
+        "channel": "C01DESIGN01",
+        "ts": "1788357600.000171",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "New onboarding flow mockups are ready for feedback.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01DESIGN01/p1788357600000171",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01DESIGN01:1788427200.000172",
+      "value": {
+        "channel": "C01DESIGN01",
+        "ts": "1788427200.000172",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Looks great — the empty state copy could be shorter.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01DESIGN01/p1788427200000172",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01LEADERS1:1788854400.000181",
+      "value": {
+        "channel": "C01LEADERS1",
+        "ts": "1788854400.000181",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Hiring plan for Q4 draft is ready.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01LEADERS1/p1788854400000181",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01LEADERS1:1788856200.000182",
+      "value": {
+        "channel": "C01LEADERS1",
+        "ts": "1788856200.000182",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "Reviewed. Let's discuss on Wednesday.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01LEADERS1/p1788856200000182",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "D01DANASAM1:1789056000.000191",
+      "value": {
+        "channel": "D01DANASAM1",
+        "ts": "1789056000.000191",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Do you have five minutes to talk about the on-call rota?",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/D01DANASAM1/p1789056000000191",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "D01DANASAM1:1789056120.000192",
+      "value": {
+        "channel": "D01DANASAM1",
+        "ts": "1789056120.000192",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Sure, calling you now.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/D01DANASAM1/p1789056120000192",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "D01DANASAM1:1789058400.000193",
+      "value": {
+        "channel": "D01DANASAM1",
+        "ts": "1789058400.000193",
+        "type": "message",
+        "user": "U01SAM00002",
+        "text": "Thanks — updated the rota sheet.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/D01DANASAM1/p1789058400000193",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01MPDM0001:1789128000.000196",
+      "value": {
+        "channel": "C01MPDM0001",
+        "ts": "1789128000.000196",
+        "type": "message",
+        "user": "U01MIRA0006",
+        "text": "Lunch on Friday to celebrate the migration?",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01MPDM0001/p1789128000000196",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01MPDM0001:1789128180.000197",
+      "value": {
+        "channel": "C01MPDM0001",
+        "ts": "1789128180.000197",
+        "type": "message",
+        "user": "U01DANA0001",
+        "text": "Count me in.",
+        "reactions": [],
+        "permalink": "https://example-team.slack.com/archives/C01MPDM0001/p1789128180000197",
+        "team": "T01EXAMPLE0"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "pins",
+      "rowId": "C01GENERAL1:1787216400.000101",
+      "value": {
+        "channel": "C01GENERAL1",
+        "message_ts": "1787216400.000101",
+        "created": 1787216700,
+        "created_by": "U01DANA0001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "pins",
+      "rowId": "C01INCIDENT:1788166800.000144",
+      "value": {
+        "channel": "C01INCIDENT",
+        "message_ts": "1788166800.000144",
+        "created": 1788166920,
+        "created_by": "U01SAM00002"
+      }
+    }
+  ]
+}

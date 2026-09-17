@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "id": "sheets-append-lost",
+  "title": "Scenario append-lost: the append commits but answers 503, so a blind retry leaves two copies of the row — the trap a careful agent avoids by re-reading first",
+  "targetId": "conformance-agent",
+  "scenarioId": "append-lost",
+  "actorId": "avery",
+  "task": {
+    "instruction": "Run the google-sheets conformance flow `append-lost` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "values-append-tool-error-equals-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.append"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "values-append-ok-equals-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "values.append"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "append-append-read",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "google-sheets",
+              "operationId": "values.append"
+            }
+          ],
+          "outcomes": [
+            "tool_error"
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-sheets",
+              "operationId": "values.append"
+            }
+          ],
+          "outcomes": [
+            "tool_error"
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "google-sheets",
+              "operationId": "values.get"
+            }
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "event-values-changed-equals-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "values.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "first-copy",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc:0000000000:0000016",
+      "path": [
+        "cells",
+        0,
+        "value",
+        "string"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Quartz Robotics"
+      }
+    },
+    {
+      "id": "duplicate-copy",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1CxCustomerPipeline2026SeedB4tR0123456789abc:0000000000:0000019",
+      "path": [
+        "cells",
+        0,
+        "value",
+        "string"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Quartz Robotics"
+      }
+    }
+  ]
+}

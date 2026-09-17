@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "contacts-outage",
+  "title": "Contact creation commits but the caller sees HTTP 500 application_error",
+  "faults": [
+    {
+      "packageId": "resend",
+      "faultId": "contacts-create-unavailable"
+    }
+  ]
+}

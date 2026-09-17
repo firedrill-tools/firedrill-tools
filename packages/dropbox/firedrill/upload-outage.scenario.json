@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "upload-outage",
+  "title": "Uploads commit, then the caller sees a 500",
+  "faults": [
+    {
+      "packageId": "dropbox",
+      "faultId": "upload-outage-after-commit"
+    }
+  ]
+}

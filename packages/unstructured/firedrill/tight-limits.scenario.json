@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "meta/limits lowered so every bounded scan fails INTERNAL_ERROR instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "connectors": 2,
+        "workflows": 2,
+        "jobs": 2,
+        "files_per_source": 2,
+        "source_file_bytes": 262144,
+        "response_bytes": 921600
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "ns-invalid-login",
+  "title": "A token issued for another account fails every operation",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "wrong-account",
+  "task": {
+    "instruction": "Run the invalid-login conformance flow against the synthetic NetSuite Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "list-401",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "create-401",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "customers-unchanged",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "customers",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "linkedin-reactions-outage",
+  "title": "Reaction create and delete answer 503 and write nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "reactions-outage",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the reactions-outage flow against the synthetic LinkedIn Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "reactions-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "reactions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "reactions.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reactions-count",
+      "kind": "state.count",
+      "packageId": "linkedin",
+      "namespace": "reactions",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    },
+    {
+      "id": "reaction-created-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linkedin",
+        "eventId": "reaction.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

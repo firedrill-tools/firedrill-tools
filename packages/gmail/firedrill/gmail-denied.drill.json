@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "id": "gmail-denied",
+  "title": "An actor without grants is denied by the framework over HTTP and MCP",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic Gmail Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "profile-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "threads-list-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "nothing-succeeded-profile",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "nothing-succeeded-threads",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "baseline-untouched",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    }
+  ]
+}

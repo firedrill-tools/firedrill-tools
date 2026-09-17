@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notion (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/notion.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="notion-app" id="app">
+      <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+      <nav class="sidebar" id="sidebar" aria-label="Workspace">
+        <div class="sidebar-top">
+          <button type="button" class="switcher" id="switcher" aria-expanded="false" aria-label="Workspace">
+            <span class="switcher-icon" id="switcher-icon" aria-hidden="true"></span>
+            <span class="switcher-name" id="switcher-name">Loading…</span>
+            <span class="switcher-chevron" data-icon="chevron_down"></span>
+          </button>
+          <button type="button" class="icon-btn sidebar-collapse" id="sidebar-collapse" aria-label="Close sidebar" title="Close sidebar"><span data-icon="double_chevron_left"></span></button>
+          <button type="button" class="icon-btn sidebar-new" id="new-page-top" aria-label="Create a new page" title="Create a new page"><span data-icon="compose"></span></button>
+        </div>
+        <ul class="sidebar-list sidebar-main" id="sidebar-main">
+          <li><button type="button" class="side-item" id="nav-search"><span class="side-icon" data-icon="search"></span><span class="side-label">Search</span></button></li>
+          <li><a class="side-item" href="#/home" data-route="home"><span class="side-icon" data-icon="home"></span><span class="side-label">Home</span></a></li>
+          <li><button type="button" class="side-item" id="nav-meetings" title="Meetings"><span class="side-icon" data-icon="calendar"></span><span class="side-label">Meetings</span></button></li>
+          <li><button type="button" class="side-item sidebar-ai" id="nav-ai" title="Notion AI"><span class="side-icon" data-icon="ai"></span><span class="side-label">Notion AI</span></button></li>
+          <li><button type="button" class="side-item" id="nav-inbox" aria-expanded="false"><span class="side-icon" data-icon="inbox"></span><span class="side-label">Inbox</span><span class="side-badge" id="inbox-badge" hidden></span></button></li>
+        </ul>
+        <div class="sidebar-stub" id="section-teamspaces">
+          <div class="section-head">
+            <button type="button" class="section-title section-toggle" id="nav-teamspaces" title="Teamspaces are not simulated by this Tool">Teamspaces</button>
+            <span class="section-actions">
+              <button type="button" class="icon-btn tiny" id="teamspaces-more" aria-label="Teamspace settings" title="Teamspace settings"><span data-icon="more"></span></button>
+              <button type="button" class="icon-btn tiny" id="teamspaces-add" aria-label="Create a teamspace" title="Create a teamspace"><span data-icon="plus"></span></button>
+            </span>
+          </div>
+          <button type="button" class="side-item stub-item" id="teamspaces-browse"><span class="side-icon" data-icon="teamspace"></span><span class="side-label">Browse teamspaces</span></button>
+        </div>
+        <div class="sidebar-stub" id="section-shared">
+          <div class="section-head">
+            <button type="button" class="section-title section-toggle" id="nav-shared" title="Shared pages are not simulated by this Tool">Shared</button>
+            <span class="section-actions">
+              <button type="button" class="icon-btn tiny" id="shared-add" aria-label="Start collaborating" title="Start collaborating"><span data-icon="plus"></span></button>
+            </span>
+          </div>
+          <button type="button" class="side-item stub-item" id="shared-start"><span class="side-icon" data-icon="invite"></span><span class="side-label">Start collaborating</span></button>
+        </div>
+        <div class="sidebar-section">
+          <div class="section-head">
+            <span class="section-title">Private</span>
+            <button type="button" class="icon-btn tiny" id="new-page-section" aria-label="Add a page" title="Add a page"><span data-icon="plus"></span></button>
+          </div>
+          <div class="tree" id="tree" role="tree" aria-label="Pages"><div class="tree-loading">Loading pages…</div></div>
+        </div>
+        <ul class="sidebar-list sidebar-bottom">
+          <li><button type="button" class="side-item" id="nav-marketplace" title="Marketplace"><span class="side-icon" data-icon="gallery"></span><span class="side-label">Marketplace</span></button></li>
+          <li><button type="button" class="side-item" id="nav-settings"><span class="side-icon" data-icon="settings"></span><span class="side-label">Settings</span></button></li>
+          <li><button type="button" class="side-item" id="nav-templates"><span class="side-icon" data-icon="templates"></span><span class="side-label">Templates</span></button></li>
+          <li><button type="button" class="side-item" id="nav-trash" aria-expanded="false"><span class="side-icon" data-icon="trash"></span><span class="side-label">Trash</span></button></li>
+        </ul>
+        <div class="sidebar-footer">
+          <button type="button" class="side-item" id="nav-invite"><span class="side-icon" data-icon="invite"></span><span class="side-label">Invite members</span></button>
+        </div>
+      </nav>
+
+      <div class="workspace" id="workspace">
+        <header class="topbar" id="topbar">
+          <div class="topbar-start">
+            <button type="button" class="icon-btn topbar-menu" id="sidebar-open" aria-label="Open sidebar" title="Open sidebar"><span data-icon="menu"></span></button>
+            <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
+          </div>
+          <div class="topbar-end" id="topbar-actions"></div>
+        </header>
+        <main class="main" id="main" tabindex="-1">
+          <div class="page-loading" id="boot" role="status">Loading…</div>
+        </main>
+        <aside class="side-panel" id="side-panel" hidden aria-label="Side panel"></aside>
+        <aside class="peek" id="peek" hidden aria-label="Page peek"></aside>
+        <button type="button" class="help-btn" id="help" aria-label="Help" aria-expanded="false" title="Help"><span data-icon="help"></span></button>
+      </div>
+
+      <div class="popover-host" id="popover-host"></div>
+      <div class="snackbar" id="snackbar" role="status" aria-live="polite" hidden>
+        <span class="snackbar-text" id="snackbar-text"></span>
+        <button type="button" class="snackbar-action" id="snackbar-action" hidden></button>
+        <button type="button" class="icon-btn small snackbar-close" id="snackbar-close" aria-label="Dismiss"><span data-icon="close"></span></button>
+      </div>
+    </div>
+
+    <dialog class="confirm" id="confirm-dialog">
+      <form method="dialog">
+        <p class="confirm-title" id="confirm-title"></p>
+        <p class="confirm-text" id="confirm-text"></p>
+        <div class="confirm-actions">
+          <button type="submit" class="btn confirm-ok" id="confirm-ok" value="ok">Delete</button>
+          <button type="submit" class="btn" value="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="search-dialog" id="search-dialog" aria-label="Search">
+      <div class="search-box">
+        <div class="search-input-row">
+          <span class="search-glyph" data-icon="search"></span>
+          <input id="search-input" type="text" placeholder="Search in workspace…" autocomplete="off" spellcheck="false" aria-label="Search" />
+          <button type="button" class="icon-btn small" id="search-close" aria-label="Close search"><span data-icon="close"></span></button>
+        </div>
+        <div class="search-filters" id="search-filters">
+          <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="chip" data-filter="page" aria-pressed="false">Pages</button>
+          <button type="button" class="chip" data-filter="data_source" aria-pressed="false">Databases</button>
+          <button type="button" class="chip" id="search-sort" aria-pressed="false">Sort: Last edited</button>
+        </div>
+        <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
+        <div class="search-footer">
+          <span><kbd>↑</kbd><kbd>↓</kbd> Select</span>
+          <span><kbd>↵</kbd> Open</span>
+          <span><kbd>esc</kbd> Close</span>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

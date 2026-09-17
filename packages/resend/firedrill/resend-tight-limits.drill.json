@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "id": "resend-tight-limits",
+  "title": "Scanning operations fail application_error instead of truncating and remove nothing",
+  "targetId": "conformance-agent",
+  "scenarioId": "tight-limits",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the tight-limits flow against the synthetic Resend Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "emails-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "domains-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "domains.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "api-keys-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "api_keys.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "segments-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "segments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-list-segments-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.list_segments"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "segments-remove-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "segments.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-remove-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "contacts.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "segments-count",
+      "kind": "state.count",
+      "packageId": "resend",
+      "namespace": "segments",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "resend",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    },
+    {
+      "id": "segment-members-count",
+      "kind": "state.count",
+      "packageId": "resend",
+      "namespace": "segment-members",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    }
+  ]
+}

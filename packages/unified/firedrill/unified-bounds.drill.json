@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "id": "unified-bounds",
+  "title": "With the workspace scan bound lowered to 5 rows, scans over larger namespaces fail FAILED_PRECONDITION instead of truncating",
+  "targetId": "conformance-agent",
+  "scenarioId": "bounds",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the bounds flow against the synthetic Unified.to Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "contacts-list-error-306",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-list-error-307",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-list-error-308",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-list-ok-309",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-create-error-310",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "contacts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-remove-error-311",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.remove"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-get-ok-312",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "unified",
+        "operationId": "connections.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "connections-count-313",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "connections",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "contacts-count-314",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    },
+    {
+      "id": "messages-count-315",
+      "kind": "state.count",
+      "packageId": "unified",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 20
+      }
+    }
+  ]
+}

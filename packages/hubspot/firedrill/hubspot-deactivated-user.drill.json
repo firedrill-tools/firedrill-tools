@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "hubspot-deactivated-user",
+  "title": "A deactivated (archived) owner fails 401 on every operation",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "former",
+  "task": {
+    "instruction": "Run the deactivated-user conformance flow against the synthetic HubSpot Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "account-get-details-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "account.get-details"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-list-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "contacts-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "contacts",
+      "comparison": {
+        "operator": "equals",
+        "value": 14
+      }
+    }
+  ]
+}

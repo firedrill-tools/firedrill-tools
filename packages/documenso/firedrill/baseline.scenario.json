@@ -1,0 +1,6010 @@
+{
+  "schemaVersion": 1,
+  "id": "baseline",
+  "title": "Northwind Group: 2 teams, 18 documents, 4 templates, every document status",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "meta",
+      "rowId": "org",
+      "value": {
+        "name": "Northwind Group",
+        "defaultUserId": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "users",
+      "rowId": "0000000001",
+      "value": {
+        "id": 1,
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "users",
+      "rowId": "0000000002",
+      "value": {
+        "id": 2,
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "users",
+      "rowId": "0000000003",
+      "value": {
+        "id": 3,
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "users",
+      "rowId": "0000000004",
+      "value": {
+        "id": 4,
+        "name": "Sam Reyes",
+        "email": "sam.reyes@harborstudio.example.com"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "teams",
+      "rowId": "0000000001",
+      "value": {
+        "id": 1,
+        "name": "Northwind Legal",
+        "url": "northwind-legal",
+        "plan": "team",
+        "monthlyDocumentLimit": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "teams",
+      "rowId": "0000000002",
+      "value": {
+        "id": 2,
+        "name": "Harbor Studio",
+        "url": "harbor-studio",
+        "plan": "free",
+        "monthlyDocumentLimit": 5
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "team-members",
+      "rowId": "0000000001/0000000001",
+      "value": {
+        "teamId": 1,
+        "userId": 1,
+        "role": "ADMIN"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "user-teams",
+      "rowId": "0000000001/0000000001",
+      "value": {
+        "userId": 1,
+        "teamId": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "team-members",
+      "rowId": "0000000001/0000000002",
+      "value": {
+        "teamId": 1,
+        "userId": 2,
+        "role": "MANAGER"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "user-teams",
+      "rowId": "0000000002/0000000001",
+      "value": {
+        "userId": 2,
+        "teamId": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "team-members",
+      "rowId": "0000000001/0000000003",
+      "value": {
+        "teamId": 1,
+        "userId": 3,
+        "role": "MEMBER"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "user-teams",
+      "rowId": "0000000003/0000000001",
+      "value": {
+        "userId": 3,
+        "teamId": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "team-members",
+      "rowId": "0000000002/0000000004",
+      "value": {
+        "teamId": 2,
+        "userId": 4,
+        "role": "ADMIN"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "user-teams",
+      "rowId": "0000000004/0000000002",
+      "value": {
+        "userId": 4,
+        "teamId": 2
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "team-members",
+      "rowId": "0000000002/0000000001",
+      "value": {
+        "teamId": 2,
+        "userId": 1,
+        "role": "MEMBER"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "user-teams",
+      "rowId": "0000000001/0000000002",
+      "value": {
+        "userId": 1,
+        "teamId": 2
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "usage",
+      "rowId": "0000000001/2026-09",
+      "value": {
+        "teamId": 1,
+        "month": "2026-09",
+        "documentsCreated": 9
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "usage",
+      "rowId": "0000000002/2026-09",
+      "value": {
+        "teamId": 2,
+        "month": "2026-09",
+        "documentsCreated": 4
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003001",
+      "value": {
+        "id": 3001,
+        "parentKind": "document",
+        "parentId": 1001,
+        "email": "ana.silva@bluefin.example.com",
+        "name": "Ana Silva",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1001_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001001/0000003001",
+      "value": {
+        "recipientId": 3001
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1001_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3001
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004001",
+      "value": {
+        "id": 4001,
+        "parentKind": "document",
+        "parentId": 1001,
+        "recipientId": 3001,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001001/0000004001",
+      "value": {
+        "fieldId": 4001
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004002",
+      "value": {
+        "id": 4002,
+        "parentKind": "document",
+        "parentId": 1001,
+        "recipientId": 3001,
+        "type": "DATE",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 80,
+        "width": 25,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001001/0000004002",
+      "value": {
+        "fieldId": 4002
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003002",
+      "value": {
+        "id": 3002,
+        "parentKind": "document",
+        "parentId": 1001,
+        "email": "priya.raman@northwind.test",
+        "name": "Priya Raman",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1001_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001001/0000003002",
+      "value": {
+        "recipientId": 3002
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1001_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3002
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004003",
+      "value": {
+        "id": 4003,
+        "parentKind": "document",
+        "parentId": 1001,
+        "recipientId": 3002,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 90,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001001/0000004003",
+      "value": {
+        "fieldId": 4003
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1001seed0000000/0000000001",
+      "value": {
+        "id": "audit_1",
+        "createdAtUs": 1789290000000000,
+        "envelopeId": "envelope_d1001seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Mutual NDA — Bluefin Analytics"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1001seed0000000/0000000002",
+      "value": {
+        "id": "audit_2",
+        "createdAtUs": 1789290000000000,
+        "envelopeId": "envelope_d1001seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3001,
+          "recipientEmail": "ana.silva@bluefin.example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1001seed0000000/0000000003",
+      "value": {
+        "id": "audit_3",
+        "createdAtUs": 1789290000000000,
+        "envelopeId": "envelope_d1001seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3002,
+          "recipientEmail": "priya.raman@northwind.test",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1001seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1001
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001001",
+      "value": {
+        "id": 1001,
+        "envelopeId": "envelope_d1001seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Mutual NDA — Bluefin Analytics",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "DRAFT",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Mutual NDA — Bluefin Analytics\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "mutual-nda-bluefin-analytics.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1789290000000000,
+        "updatedAtUs": 1789290000000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1002seed0000000/0000000004",
+      "value": {
+        "id": "audit_4",
+        "createdAtUs": 1789203600000000,
+        "envelopeId": "envelope_d1002seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "title": "Office lease renewal 2027"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1002seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1002
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001002",
+      "value": {
+        "id": 1002,
+        "envelopeId": "envelope_d1002seed0000000",
+        "teamId": 1,
+        "userId": 2,
+        "title": "Office lease renewal 2027",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "DRAFT",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Office lease renewal 2027\n\nPage 1 of 2\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.\fOffice lease renewal 2027\n\nPage 2 of 2\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 2,
+        "fileName": "office-lease-renewal-2027.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1789203600000000,
+        "updatedAtUs": 1789203600000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003003",
+      "value": {
+        "id": 3003,
+        "parentKind": "document",
+        "parentId": 1003,
+        "email": "j.alvarez@example.com",
+        "name": "Javier Alvarez",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1003_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001003/0000003003",
+      "value": {
+        "recipientId": 3003
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1003_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3003
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004004",
+      "value": {
+        "id": 4004,
+        "parentKind": "document",
+        "parentId": 1003,
+        "recipientId": 3003,
+        "type": "TEXT",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 40,
+        "width": 40,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": {
+          "label": "Hourly rate",
+          "required": true,
+          "type": "text"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001003/0000004004",
+      "value": {
+        "fieldId": 4004
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1003seed0000000/0000000005",
+      "value": {
+        "id": "audit_5",
+        "createdAtUs": 1789117200000000,
+        "envelopeId": "envelope_d1003seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test",
+        "userId": 3,
+        "data": {
+          "title": "Contractor agreement — J. Alvarez"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1003seed0000000/0000000006",
+      "value": {
+        "id": "audit_6",
+        "createdAtUs": 1789117200000000,
+        "envelopeId": "envelope_d1003seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test",
+        "userId": 3,
+        "data": {
+          "recipientId": 3003,
+          "recipientEmail": "j.alvarez@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1003seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1003
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001003",
+      "value": {
+        "id": 1003,
+        "envelopeId": "envelope_d1003seed0000000",
+        "teamId": 1,
+        "userId": 3,
+        "title": "Contractor agreement — J. Alvarez",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "DRAFT",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Contractor agreement — J. Alvarez\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "contractor-agreement-j-alvarez.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1789117200000000,
+        "updatedAtUs": 1789117200000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003004",
+      "value": {
+        "id": 3004,
+        "parentKind": "document",
+        "parentId": 1004,
+        "email": "m.holm@example.com",
+        "name": "Marguerite Holm",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1004_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001004/0000003004",
+      "value": {
+        "recipientId": 3004
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1004_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3004
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004005",
+      "value": {
+        "id": 4005,
+        "parentKind": "document",
+        "parentId": 1004,
+        "recipientId": 3004,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001004/0000004005",
+      "value": {
+        "fieldId": 4005
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1004seed0000000/0000000007",
+      "value": {
+        "id": "audit_7",
+        "createdAtUs": 1789030800000000,
+        "envelopeId": "envelope_d1004seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Board consent (ADMIN)"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1004seed0000000/0000000008",
+      "value": {
+        "id": "audit_8",
+        "createdAtUs": 1789030800000000,
+        "envelopeId": "envelope_d1004seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3004,
+          "recipientEmail": "m.holm@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1004seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1004
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001004",
+      "value": {
+        "id": 1004,
+        "envelopeId": "envelope_d1004seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Board consent (ADMIN)",
+        "externalId": null,
+        "visibility": "ADMIN",
+        "status": "DRAFT",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Board consent (ADMIN)\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "board-consent-admin.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1789030800000000,
+        "updatedAtUs": 1789030800000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003005",
+      "value": {
+        "id": 3005,
+        "parentKind": "document",
+        "parentId": 1005,
+        "email": "quinn@vendorco.example.com",
+        "name": "Quinn Vendor",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1005_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001005/0000003005",
+      "value": {
+        "recipientId": 3005
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1005_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3005
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004006",
+      "value": {
+        "id": 4006,
+        "parentKind": "document",
+        "parentId": 1005,
+        "recipientId": 3005,
+        "type": "SIGNATURE",
+        "page": 3,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001005/0000004006",
+      "value": {
+        "fieldId": 4006
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004007",
+      "value": {
+        "id": 4007,
+        "parentKind": "document",
+        "parentId": 1005,
+        "recipientId": 3005,
+        "type": "NAME",
+        "page": 3,
+        "positionX": 10,
+        "positionY": 70,
+        "width": 30,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001005/0000004007",
+      "value": {
+        "fieldId": 4007
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004008",
+      "value": {
+        "id": 4008,
+        "parentKind": "document",
+        "parentId": 1005,
+        "recipientId": 3005,
+        "type": "DATE",
+        "page": 3,
+        "positionX": 60,
+        "positionY": 80,
+        "width": 25,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001005/0000004008",
+      "value": {
+        "fieldId": 4008
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003006",
+      "value": {
+        "id": 3006,
+        "parentKind": "document",
+        "parentId": 1005,
+        "email": "tomas.okafor@northwind.test",
+        "name": "Tomas Okafor",
+        "role": "APPROVER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1005_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001005/0000003006",
+      "value": {
+        "recipientId": 3006
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1005_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3006
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1005seed0000000/0000000009",
+      "value": {
+        "id": "audit_9",
+        "createdAtUs": 1788944400000000,
+        "envelopeId": "envelope_d1005seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Q4 vendor MSA"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1005seed0000000/0000000010",
+      "value": {
+        "id": "audit_10",
+        "createdAtUs": 1788944400000000,
+        "envelopeId": "envelope_d1005seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3005,
+          "recipientEmail": "quinn@vendorco.example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1005seed0000000/0000000011",
+      "value": {
+        "id": "audit_11",
+        "createdAtUs": 1788944400000000,
+        "envelopeId": "envelope_d1005seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3006,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "APPROVER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1005seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1005
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001005",
+      "value": {
+        "id": 1005,
+        "envelopeId": "envelope_d1005seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Q4 vendor MSA",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "DRAFT",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Q4 vendor MSA\n\nPage 1 of 3\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.\fQ4 vendor MSA\n\nPage 2 of 3\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.\fQ4 vendor MSA\n\nPage 3 of 3\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 3,
+        "fileName": "q4-vendor-msa.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1788944400000000,
+        "updatedAtUs": 1788944400000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003007",
+      "value": {
+        "id": 3007,
+        "parentKind": "document",
+        "parentId": 1006,
+        "email": "harriet@maple.example.com",
+        "name": "Harriet Maple",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "OPENED",
+        "signingStatus": "SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1006_1xxxxxxxxxxx",
+        "signedAtUs": 1788868800000000,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001006/0000003007",
+      "value": {
+        "recipientId": 3007
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1006_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3007
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004009",
+      "value": {
+        "id": 4009,
+        "parentKind": "document",
+        "parentId": 1006,
+        "recipientId": 3007,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "Harriet Maple",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001006/0000004009",
+      "value": {
+        "fieldId": 4009
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004010",
+      "value": {
+        "id": 4010,
+        "parentKind": "document",
+        "parentId": 1006,
+        "recipientId": 3007,
+        "type": "DATE",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 80,
+        "width": 25,
+        "height": 5,
+        "customText": "2026-09-08 12:00 PM",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001006/0000004010",
+      "value": {
+        "fieldId": 4010
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003008",
+      "value": {
+        "id": 3008,
+        "parentKind": "document",
+        "parentId": 1006,
+        "email": "tomas.okafor@northwind.test",
+        "name": "Tomas Okafor",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1006_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001006/0000003008",
+      "value": {
+        "recipientId": 3008
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1006_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3008
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004011",
+      "value": {
+        "id": 4011,
+        "parentKind": "document",
+        "parentId": 1006,
+        "recipientId": 3008,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 90,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001006/0000004011",
+      "value": {
+        "fieldId": 4011
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004012",
+      "value": {
+        "id": 4012,
+        "parentKind": "document",
+        "parentId": 1006,
+        "recipientId": 3008,
+        "type": "CHECKBOX",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 60,
+        "width": 5,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": {
+          "label": "Accept terms",
+          "required": true,
+          "type": "checkbox"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001006/0000004012",
+      "value": {
+        "fieldId": 4012
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000012",
+      "value": {
+        "id": "audit_12",
+        "createdAtUs": 1788858000000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Consulting SOW — Maple & Co"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000013",
+      "value": {
+        "id": "audit_13",
+        "createdAtUs": 1788858000000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3007,
+          "recipientEmail": "harriet@maple.example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000014",
+      "value": {
+        "id": "audit_14",
+        "createdAtUs": 1788858000000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3008,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000015",
+      "value": {
+        "id": "audit_15",
+        "createdAtUs": 1788861600000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000016",
+      "value": {
+        "id": "audit_16",
+        "createdAtUs": 1788861600000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3007,
+          "recipientEmail": "harriet@maple.example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000017",
+      "value": {
+        "id": "audit_17",
+        "createdAtUs": 1788861600000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3008,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000018",
+      "value": {
+        "id": "audit_18",
+        "createdAtUs": 1788865200000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Harriet Maple",
+        "email": "harriet@maple.example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3007,
+          "recipientEmail": "harriet@maple.example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000019",
+      "value": {
+        "id": "audit_19",
+        "createdAtUs": 1788868800000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Harriet Maple",
+        "email": "harriet@maple.example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4009,
+          "fieldType": "SIGNATURE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000020",
+      "value": {
+        "id": "audit_20",
+        "createdAtUs": 1788868800000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Harriet Maple",
+        "email": "harriet@maple.example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4010,
+          "fieldType": "DATE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1006seed0000000/0000000021",
+      "value": {
+        "id": "audit_21",
+        "createdAtUs": 1788868800000000,
+        "envelopeId": "envelope_d1006seed0000000",
+        "type": "DOCUMENT_RECIPIENT_COMPLETED",
+        "name": "Harriet Maple",
+        "email": "harriet@maple.example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3007,
+          "recipientEmail": "harriet@maple.example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1006seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1006
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001006",
+      "value": {
+        "id": 1006,
+        "envelopeId": "envelope_d1006seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Consulting SOW — Maple & Co",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "PENDING",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Consulting SOW — Maple & Co\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "consulting-sow-maple-co.txt",
+        "meta": {
+          "subject": "Please sign: Consulting SOW — Maple & Co",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1788858000000000,
+        "updatedAtUs": 1788868800000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003009",
+      "value": {
+        "id": 3009,
+        "parentKind": "document",
+        "parentId": 1007,
+        "email": "olu.adeyemi@example.com",
+        "name": "Olu Adeyemi",
+        "role": "SIGNER",
+        "signingOrder": 1,
+        "readStatus": "OPENED",
+        "signingStatus": "SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1007_1xxxxxxxxxxx",
+        "signedAtUs": 1788782400000000,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001007/0000003009",
+      "value": {
+        "recipientId": 3009
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1007_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3009
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004013",
+      "value": {
+        "id": 4013,
+        "parentKind": "document",
+        "parentId": 1007,
+        "recipientId": 3009,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 60,
+        "width": 30,
+        "height": 8,
+        "customText": "Olu Adeyemi",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001007/0000004013",
+      "value": {
+        "fieldId": 4013
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003010",
+      "value": {
+        "id": 3010,
+        "parentKind": "document",
+        "parentId": 1007,
+        "email": "mei.chen@example.com",
+        "name": "Mei Chen",
+        "role": "SIGNER",
+        "signingOrder": 2,
+        "readStatus": "OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1007_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001007/0000003010",
+      "value": {
+        "recipientId": 3010
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1007_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3010
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004014",
+      "value": {
+        "id": 4014,
+        "parentKind": "document",
+        "parentId": 1007,
+        "recipientId": 3010,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 72,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001007/0000004014",
+      "value": {
+        "fieldId": 4014
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004015",
+      "value": {
+        "id": 4015,
+        "parentKind": "document",
+        "parentId": 1007,
+        "recipientId": 3010,
+        "type": "INITIALS",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 72,
+        "width": 10,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001007/0000004015",
+      "value": {
+        "fieldId": 4015
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003011",
+      "value": {
+        "id": 3011,
+        "parentKind": "document",
+        "parentId": 1007,
+        "email": "lena.park@northwind.test",
+        "name": "Lena Park",
+        "role": "SIGNER",
+        "signingOrder": 3,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1007_3xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001007/0000003011",
+      "value": {
+        "recipientId": 3011
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1007_3xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3011
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004016",
+      "value": {
+        "id": 4016,
+        "parentKind": "document",
+        "parentId": 1007,
+        "recipientId": 3011,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 84,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001007/0000004016",
+      "value": {
+        "fieldId": 4016
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000022",
+      "value": {
+        "id": "audit_22",
+        "createdAtUs": 1788771600000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "title": "Share purchase agreement"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000023",
+      "value": {
+        "id": "audit_23",
+        "createdAtUs": 1788771600000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3009,
+          "recipientEmail": "olu.adeyemi@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000024",
+      "value": {
+        "id": "audit_24",
+        "createdAtUs": 1788771600000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3010,
+          "recipientEmail": "mei.chen@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000025",
+      "value": {
+        "id": "audit_25",
+        "createdAtUs": 1788771600000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3011,
+          "recipientEmail": "lena.park@northwind.test",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000026",
+      "value": {
+        "id": "audit_26",
+        "createdAtUs": 1788775200000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000027",
+      "value": {
+        "id": "audit_27",
+        "createdAtUs": 1788775200000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3009,
+          "recipientEmail": "olu.adeyemi@example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000028",
+      "value": {
+        "id": "audit_28",
+        "createdAtUs": 1788775200000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3010,
+          "recipientEmail": "mei.chen@example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000029",
+      "value": {
+        "id": "audit_29",
+        "createdAtUs": 1788775200000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3011,
+          "recipientEmail": "lena.park@northwind.test",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000030",
+      "value": {
+        "id": "audit_30",
+        "createdAtUs": 1788778800000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Olu Adeyemi",
+        "email": "olu.adeyemi@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3009,
+          "recipientEmail": "olu.adeyemi@example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000031",
+      "value": {
+        "id": "audit_31",
+        "createdAtUs": 1788779400000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Mei Chen",
+        "email": "mei.chen@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3010,
+          "recipientEmail": "mei.chen@example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000032",
+      "value": {
+        "id": "audit_32",
+        "createdAtUs": 1788782400000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Olu Adeyemi",
+        "email": "olu.adeyemi@example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4013,
+          "fieldType": "SIGNATURE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1007seed0000000/0000000033",
+      "value": {
+        "id": "audit_33",
+        "createdAtUs": 1788782400000000,
+        "envelopeId": "envelope_d1007seed0000000",
+        "type": "DOCUMENT_RECIPIENT_COMPLETED",
+        "name": "Olu Adeyemi",
+        "email": "olu.adeyemi@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3009,
+          "recipientEmail": "olu.adeyemi@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1007seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1007
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001007",
+      "value": {
+        "id": 1007,
+        "envelopeId": "envelope_d1007seed0000000",
+        "teamId": 1,
+        "userId": 2,
+        "title": "Share purchase agreement",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "PENDING",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Share purchase agreement\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "share-purchase-agreement.txt",
+        "meta": {
+          "subject": "Please sign: Share purchase agreement",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "SEQUENTIAL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1788771600000000,
+        "updatedAtUs": 1788782400000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003012",
+      "value": {
+        "id": 3012,
+        "parentKind": "document",
+        "parentId": 1008,
+        "email": "noah.brandt@example.com",
+        "name": "Noah Brandt",
+        "role": "VIEWER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1008_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001008/0000003012",
+      "value": {
+        "recipientId": 3012
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1008_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3012
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003013",
+      "value": {
+        "id": 3013,
+        "parentKind": "document",
+        "parentId": 1008,
+        "email": "tomas.okafor@northwind.test",
+        "name": "Tomas Okafor",
+        "role": "APPROVER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1008_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001008/0000003013",
+      "value": {
+        "recipientId": 3013
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1008_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3013
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004017",
+      "value": {
+        "id": 4017,
+        "parentKind": "document",
+        "parentId": 1008,
+        "recipientId": 3013,
+        "type": "TEXT",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 50,
+        "width": 40,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": {
+          "label": "Comments",
+          "required": false,
+          "type": "text"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001008/0000004017",
+      "value": {
+        "fieldId": 4017
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1008seed0000000/0000000034",
+      "value": {
+        "id": "audit_34",
+        "createdAtUs": 1788685200000000,
+        "envelopeId": "envelope_d1008seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Employee handbook acknowledgement"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1008seed0000000/0000000035",
+      "value": {
+        "id": "audit_35",
+        "createdAtUs": 1788685200000000,
+        "envelopeId": "envelope_d1008seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3012,
+          "recipientEmail": "noah.brandt@example.com",
+          "recipientRole": "VIEWER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1008seed0000000/0000000036",
+      "value": {
+        "id": "audit_36",
+        "createdAtUs": 1788685200000000,
+        "envelopeId": "envelope_d1008seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3013,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "APPROVER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1008seed0000000/0000000037",
+      "value": {
+        "id": "audit_37",
+        "createdAtUs": 1788688800000000,
+        "envelopeId": "envelope_d1008seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "distributionMethod": "NONE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1008seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1008
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001008",
+      "value": {
+        "id": 1008,
+        "envelopeId": "envelope_d1008seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Employee handbook acknowledgement",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "PENDING",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Employee handbook acknowledgement\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "employee-handbook-acknowledgement.txt",
+        "meta": {
+          "subject": "Please sign: Employee handbook acknowledgement",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "NONE",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1788685200000000,
+        "updatedAtUs": 1788692400000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003014",
+      "value": {
+        "id": 3014,
+        "parentKind": "document",
+        "parentId": 1009,
+        "email": "iris.novak@example.com",
+        "name": "Iris Novak",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1009_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001009/0000003014",
+      "value": {
+        "recipientId": 3014
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1009_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3014
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004018",
+      "value": {
+        "id": 4018,
+        "parentKind": "document",
+        "parentId": 1009,
+        "recipientId": 3014,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001009/0000004018",
+      "value": {
+        "fieldId": 4018
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004019",
+      "value": {
+        "id": 4019,
+        "parentKind": "document",
+        "parentId": 1009,
+        "recipientId": 3014,
+        "type": "NAME",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 70,
+        "width": 30,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001009/0000004019",
+      "value": {
+        "fieldId": 4019
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003015",
+      "value": {
+        "id": 3015,
+        "parentKind": "document",
+        "parentId": 1009,
+        "email": "archive@northwind.test",
+        "name": "Legal archive",
+        "role": "CC",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1009_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001009/0000003015",
+      "value": {
+        "recipientId": 3015
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1009_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3015
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1009seed0000000/0000000038",
+      "value": {
+        "id": "audit_38",
+        "createdAtUs": 1788598800000000,
+        "envelopeId": "envelope_d1009seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test",
+        "userId": 3,
+        "data": {
+          "title": "Photography release"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1009seed0000000/0000000039",
+      "value": {
+        "id": "audit_39",
+        "createdAtUs": 1788598800000000,
+        "envelopeId": "envelope_d1009seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test",
+        "userId": 3,
+        "data": {
+          "recipientId": 3014,
+          "recipientEmail": "iris.novak@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1009seed0000000/0000000040",
+      "value": {
+        "id": "audit_40",
+        "createdAtUs": 1788598800000000,
+        "envelopeId": "envelope_d1009seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test",
+        "userId": 3,
+        "data": {
+          "recipientId": 3015,
+          "recipientEmail": "archive@northwind.test",
+          "recipientRole": "CC"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1009seed0000000/0000000041",
+      "value": {
+        "id": "audit_41",
+        "createdAtUs": 1788602400000000,
+        "envelopeId": "envelope_d1009seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test",
+        "userId": 3,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1009seed0000000/0000000042",
+      "value": {
+        "id": "audit_42",
+        "createdAtUs": 1788602400000000,
+        "envelopeId": "envelope_d1009seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test",
+        "userId": 3,
+        "data": {
+          "recipientId": 3014,
+          "recipientEmail": "iris.novak@example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1009seed0000000/0000000043",
+      "value": {
+        "id": "audit_43",
+        "createdAtUs": 1788602400000000,
+        "envelopeId": "envelope_d1009seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Lena Park",
+        "email": "lena.park@northwind.test",
+        "userId": 3,
+        "data": {
+          "recipientId": 3015,
+          "recipientEmail": "archive@northwind.test",
+          "recipientRole": "CC",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1009seed0000000/0000000044",
+      "value": {
+        "id": "audit_44",
+        "createdAtUs": 1788606000000000,
+        "envelopeId": "envelope_d1009seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Iris Novak",
+        "email": "iris.novak@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3014,
+          "recipientEmail": "iris.novak@example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1009seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1009
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001009",
+      "value": {
+        "id": 1009,
+        "envelopeId": "envelope_d1009seed0000000",
+        "teamId": 1,
+        "userId": 3,
+        "title": "Photography release",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "PENDING",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Photography release\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "photography-release.txt",
+        "meta": {
+          "subject": "Please sign: Photography release",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1788598800000000,
+        "updatedAtUs": 1788606000000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003016",
+      "value": {
+        "id": 3016,
+        "parentKind": "document",
+        "parentId": 1010,
+        "email": "dana@whitfield.example.com",
+        "name": "Dana Whitfield",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1010_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001010/0000003016",
+      "value": {
+        "recipientId": 3016
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1010_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3016
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004020",
+      "value": {
+        "id": 4020,
+        "parentKind": "document",
+        "parentId": 1010,
+        "recipientId": 3016,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001010/0000004020",
+      "value": {
+        "fieldId": 4020
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003017",
+      "value": {
+        "id": 3017,
+        "parentKind": "document",
+        "parentId": 1010,
+        "email": "tomas.okafor@northwind.test",
+        "name": "Tomas Okafor",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1010_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001010/0000003017",
+      "value": {
+        "recipientId": 3017
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1010_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3017
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004021",
+      "value": {
+        "id": 4021,
+        "parentKind": "document",
+        "parentId": 1010,
+        "recipientId": 3017,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 90,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001010/0000004021",
+      "value": {
+        "fieldId": 4021
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1010seed0000000/0000000045",
+      "value": {
+        "id": "audit_45",
+        "createdAtUs": 1788512400000000,
+        "envelopeId": "envelope_d1010seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "title": "Partnership LOI (managers)"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1010seed0000000/0000000046",
+      "value": {
+        "id": "audit_46",
+        "createdAtUs": 1788512400000000,
+        "envelopeId": "envelope_d1010seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3016,
+          "recipientEmail": "dana@whitfield.example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1010seed0000000/0000000047",
+      "value": {
+        "id": "audit_47",
+        "createdAtUs": 1788512400000000,
+        "envelopeId": "envelope_d1010seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3017,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1010seed0000000/0000000048",
+      "value": {
+        "id": "audit_48",
+        "createdAtUs": 1788516000000000,
+        "envelopeId": "envelope_d1010seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1010seed0000000/0000000049",
+      "value": {
+        "id": "audit_49",
+        "createdAtUs": 1788516000000000,
+        "envelopeId": "envelope_d1010seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3016,
+          "recipientEmail": "dana@whitfield.example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1010seed0000000/0000000050",
+      "value": {
+        "id": "audit_50",
+        "createdAtUs": 1788516000000000,
+        "envelopeId": "envelope_d1010seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3017,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1010seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1010
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001010",
+      "value": {
+        "id": 1010,
+        "envelopeId": "envelope_d1010seed0000000",
+        "teamId": 1,
+        "userId": 2,
+        "title": "Partnership LOI (managers)",
+        "externalId": null,
+        "visibility": "MANAGER_AND_ABOVE",
+        "status": "PENDING",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Partnership LOI (managers)\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "partnership-loi-managers.txt",
+        "meta": {
+          "subject": "Please sign: Partnership LOI (managers)",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1788512400000000,
+        "updatedAtUs": 1788519600000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003018",
+      "value": {
+        "id": 3018,
+        "parentKind": "document",
+        "parentId": 1011,
+        "email": "kenji.watanabe@example.com",
+        "name": "Kenji Watanabe",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "OPENED",
+        "signingStatus": "SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1011_1xxxxxxxxxxx",
+        "signedAtUs": 1787745600000000,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001011/0000003018",
+      "value": {
+        "recipientId": 3018
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1011_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3018
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004022",
+      "value": {
+        "id": 4022,
+        "parentKind": "document",
+        "parentId": 1011,
+        "recipientId": 3018,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "Kenji Watanabe",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001011/0000004022",
+      "value": {
+        "fieldId": 4022
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004023",
+      "value": {
+        "id": 4023,
+        "parentKind": "document",
+        "parentId": 1011,
+        "recipientId": 3018,
+        "type": "DATE",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 80,
+        "width": 25,
+        "height": 5,
+        "customText": "2026-08-26 12:00 PM",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001011/0000004023",
+      "value": {
+        "fieldId": 4023
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000051",
+      "value": {
+        "id": "audit_51",
+        "createdAtUs": 1787734800000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Distributor agreement — 東京支社"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000052",
+      "value": {
+        "id": "audit_52",
+        "createdAtUs": 1787734800000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3018,
+          "recipientEmail": "kenji.watanabe@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000053",
+      "value": {
+        "id": "audit_53",
+        "createdAtUs": 1787738400000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000054",
+      "value": {
+        "id": "audit_54",
+        "createdAtUs": 1787738400000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3018,
+          "recipientEmail": "kenji.watanabe@example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000055",
+      "value": {
+        "id": "audit_55",
+        "createdAtUs": 1787742000000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Kenji Watanabe",
+        "email": "kenji.watanabe@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3018,
+          "recipientEmail": "kenji.watanabe@example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000056",
+      "value": {
+        "id": "audit_56",
+        "createdAtUs": 1787745600000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Kenji Watanabe",
+        "email": "kenji.watanabe@example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4022,
+          "fieldType": "SIGNATURE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000057",
+      "value": {
+        "id": "audit_57",
+        "createdAtUs": 1787745600000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Kenji Watanabe",
+        "email": "kenji.watanabe@example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4023,
+          "fieldType": "DATE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000058",
+      "value": {
+        "id": "audit_58",
+        "createdAtUs": 1787745600000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "DOCUMENT_RECIPIENT_COMPLETED",
+        "name": "Kenji Watanabe",
+        "email": "kenji.watanabe@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3018,
+          "recipientEmail": "kenji.watanabe@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1011seed0000000/0000000059",
+      "value": {
+        "id": "audit_59",
+        "createdAtUs": 1787745600000000,
+        "envelopeId": "envelope_d1011seed0000000",
+        "type": "DOCUMENT_COMPLETED",
+        "name": null,
+        "email": null,
+        "userId": null,
+        "data": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1011seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1011
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001011",
+      "value": {
+        "id": 1011,
+        "envelopeId": "envelope_d1011seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Distributor agreement — 東京支社",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "COMPLETED",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Distributor agreement — 東京支社\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "distributor-agreement.txt",
+        "meta": {
+          "subject": "Please sign: Distributor agreement — 東京支社",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1787734800000000,
+        "updatedAtUs": 1787745600000000,
+        "completedAtUs": 1787745600000000,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003019",
+      "value": {
+        "id": 3019,
+        "parentKind": "document",
+        "parentId": 1012,
+        "email": "tomas.okafor@northwind.test",
+        "name": "Tomas Okafor",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "OPENED",
+        "signingStatus": "SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1012_1xxxxxxxxxxx",
+        "signedAtUs": 1787313600000000,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001012/0000003019",
+      "value": {
+        "recipientId": 3019
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1012_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3019
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004024",
+      "value": {
+        "id": 4024,
+        "parentKind": "document",
+        "parentId": 1012,
+        "recipientId": 3019,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "Tomas Okafor",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001012/0000004024",
+      "value": {
+        "fieldId": 4024
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004025",
+      "value": {
+        "id": 4025,
+        "parentKind": "document",
+        "parentId": 1012,
+        "recipientId": 3019,
+        "type": "DATE",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 80,
+        "width": 25,
+        "height": 5,
+        "customText": "2026-08-21 12:00 PM",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001012/0000004025",
+      "value": {
+        "fieldId": 4025
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003020",
+      "value": {
+        "id": 3020,
+        "parentKind": "document",
+        "parentId": 1012,
+        "email": "rafael@orchidlabs.example.com",
+        "name": "Rafael Ortiz",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "OPENED",
+        "signingStatus": "SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1012_2xxxxxxxxxxx",
+        "signedAtUs": 1787314200000000,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001012/0000003020",
+      "value": {
+        "recipientId": 3020
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1012_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3020
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004026",
+      "value": {
+        "id": 4026,
+        "parentKind": "document",
+        "parentId": 1012,
+        "recipientId": 3020,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 90,
+        "width": 30,
+        "height": 8,
+        "customText": "Rafael Ortiz",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001012/0000004026",
+      "value": {
+        "fieldId": 4026
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004027",
+      "value": {
+        "id": 4027,
+        "parentKind": "document",
+        "parentId": 1012,
+        "recipientId": 3020,
+        "type": "DATE",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 90,
+        "width": 25,
+        "height": 5,
+        "customText": "2026-08-21 12:10 PM",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001012/0000004027",
+      "value": {
+        "fieldId": 4027
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000060",
+      "value": {
+        "id": "audit_60",
+        "createdAtUs": 1787302800000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "title": "Mutual NDA — Orchid Labs"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000061",
+      "value": {
+        "id": "audit_61",
+        "createdAtUs": 1787302800000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3019,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000062",
+      "value": {
+        "id": "audit_62",
+        "createdAtUs": 1787302800000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3020,
+          "recipientEmail": "rafael@orchidlabs.example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000063",
+      "value": {
+        "id": "audit_63",
+        "createdAtUs": 1787306400000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000064",
+      "value": {
+        "id": "audit_64",
+        "createdAtUs": 1787306400000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3019,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000065",
+      "value": {
+        "id": "audit_65",
+        "createdAtUs": 1787306400000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3020,
+          "recipientEmail": "rafael@orchidlabs.example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000066",
+      "value": {
+        "id": "audit_66",
+        "createdAtUs": 1787310000000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": null,
+        "data": {
+          "recipientId": 3019,
+          "recipientEmail": "tomas.okafor@northwind.test"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000067",
+      "value": {
+        "id": "audit_67",
+        "createdAtUs": 1787310600000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Rafael Ortiz",
+        "email": "rafael@orchidlabs.example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3020,
+          "recipientEmail": "rafael@orchidlabs.example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000068",
+      "value": {
+        "id": "audit_68",
+        "createdAtUs": 1787313600000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": null,
+        "data": {
+          "fieldId": 4024,
+          "fieldType": "SIGNATURE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000069",
+      "value": {
+        "id": "audit_69",
+        "createdAtUs": 1787313600000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": null,
+        "data": {
+          "fieldId": 4025,
+          "fieldType": "DATE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000070",
+      "value": {
+        "id": "audit_70",
+        "createdAtUs": 1787313600000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_RECIPIENT_COMPLETED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": null,
+        "data": {
+          "recipientId": 3019,
+          "recipientEmail": "tomas.okafor@northwind.test",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000071",
+      "value": {
+        "id": "audit_71",
+        "createdAtUs": 1787314200000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Rafael Ortiz",
+        "email": "rafael@orchidlabs.example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4026,
+          "fieldType": "SIGNATURE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000072",
+      "value": {
+        "id": "audit_72",
+        "createdAtUs": 1787314200000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Rafael Ortiz",
+        "email": "rafael@orchidlabs.example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4027,
+          "fieldType": "DATE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000073",
+      "value": {
+        "id": "audit_73",
+        "createdAtUs": 1787314200000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_RECIPIENT_COMPLETED",
+        "name": "Rafael Ortiz",
+        "email": "rafael@orchidlabs.example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3020,
+          "recipientEmail": "rafael@orchidlabs.example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1012seed0000000/0000000074",
+      "value": {
+        "id": "audit_74",
+        "createdAtUs": 1787314200000000,
+        "envelopeId": "envelope_d1012seed0000000",
+        "type": "DOCUMENT_COMPLETED",
+        "name": null,
+        "email": null,
+        "userId": null,
+        "data": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1012seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1012
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001012",
+      "value": {
+        "id": 1012,
+        "envelopeId": "envelope_d1012seed0000000",
+        "teamId": 1,
+        "userId": 2,
+        "title": "Mutual NDA — Orchid Labs",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "COMPLETED",
+        "source": "TEMPLATE",
+        "templateId": 2001,
+        "content": "Mutual NDA — Orchid Labs\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "mutual-nda-orchid-labs.txt",
+        "meta": {
+          "subject": "Please sign: Mutual NDA — Orchid Labs",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1787302800000000,
+        "updatedAtUs": 1787314200000000,
+        "completedAtUs": 1787314200000000,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003021",
+      "value": {
+        "id": 3021,
+        "parentKind": "document",
+        "parentId": 1013,
+        "email": "elodie.marchand@example.com",
+        "name": "Élodie Marchand",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "OPENED",
+        "signingStatus": "SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1013_1xxxxxxxxxxx",
+        "signedAtUs": 1786881600000000,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001013/0000003021",
+      "value": {
+        "recipientId": 3021
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1013_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3021
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004028",
+      "value": {
+        "id": 4028,
+        "parentKind": "document",
+        "parentId": 1013,
+        "recipientId": 3021,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "Élodie Marchand",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001013/0000004028",
+      "value": {
+        "fieldId": 4028
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1013seed0000000/0000000075",
+      "value": {
+        "id": "audit_75",
+        "createdAtUs": 1786870800000000,
+        "envelopeId": "envelope_d1013seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Contrat de prestation — Société Générale Démo"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1013seed0000000/0000000076",
+      "value": {
+        "id": "audit_76",
+        "createdAtUs": 1786870800000000,
+        "envelopeId": "envelope_d1013seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3021,
+          "recipientEmail": "elodie.marchand@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1013seed0000000/0000000077",
+      "value": {
+        "id": "audit_77",
+        "createdAtUs": 1786874400000000,
+        "envelopeId": "envelope_d1013seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1013seed0000000/0000000078",
+      "value": {
+        "id": "audit_78",
+        "createdAtUs": 1786874400000000,
+        "envelopeId": "envelope_d1013seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3021,
+          "recipientEmail": "elodie.marchand@example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1013seed0000000/0000000079",
+      "value": {
+        "id": "audit_79",
+        "createdAtUs": 1786878000000000,
+        "envelopeId": "envelope_d1013seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Élodie Marchand",
+        "email": "elodie.marchand@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3021,
+          "recipientEmail": "elodie.marchand@example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1013seed0000000/0000000080",
+      "value": {
+        "id": "audit_80",
+        "createdAtUs": 1786881600000000,
+        "envelopeId": "envelope_d1013seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Élodie Marchand",
+        "email": "elodie.marchand@example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4028,
+          "fieldType": "SIGNATURE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1013seed0000000/0000000081",
+      "value": {
+        "id": "audit_81",
+        "createdAtUs": 1786881600000000,
+        "envelopeId": "envelope_d1013seed0000000",
+        "type": "DOCUMENT_RECIPIENT_COMPLETED",
+        "name": "Élodie Marchand",
+        "email": "elodie.marchand@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3021,
+          "recipientEmail": "elodie.marchand@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1013seed0000000/0000000082",
+      "value": {
+        "id": "audit_82",
+        "createdAtUs": 1786881600000000,
+        "envelopeId": "envelope_d1013seed0000000",
+        "type": "DOCUMENT_COMPLETED",
+        "name": null,
+        "email": null,
+        "userId": null,
+        "data": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1013seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1013
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001013",
+      "value": {
+        "id": 1013,
+        "envelopeId": "envelope_d1013seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Contrat de prestation — Société Générale Démo",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "COMPLETED",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Contrat de prestation — Société Générale Démo\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "contrat-de-prestation-soci-t-g-n-rale-d-mo.txt",
+        "meta": {
+          "subject": "Please sign: Contrat de prestation — Société Générale Démo",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1786870800000000,
+        "updatedAtUs": 1786881600000000,
+        "completedAtUs": 1786881600000000,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003022",
+      "value": {
+        "id": 3022,
+        "parentKind": "document",
+        "parentId": 1014,
+        "email": "victor.lang@example.com",
+        "name": "Victor Lang",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "OPENED",
+        "signingStatus": "REJECTED",
+        "sendStatus": "SENT",
+        "token": "tok_1014_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": "Payment terms changed",
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001014/0000003022",
+      "value": {
+        "recipientId": 3022
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1014_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3022
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004029",
+      "value": {
+        "id": 4029,
+        "parentKind": "document",
+        "parentId": 1014,
+        "recipientId": 3022,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001014/0000004029",
+      "value": {
+        "fieldId": 4029
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1014seed0000000/0000000083",
+      "value": {
+        "id": "audit_83",
+        "createdAtUs": 1788426000000000,
+        "envelopeId": "envelope_d1014seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Supplier pricing addendum"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1014seed0000000/0000000084",
+      "value": {
+        "id": "audit_84",
+        "createdAtUs": 1788426000000000,
+        "envelopeId": "envelope_d1014seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3022,
+          "recipientEmail": "victor.lang@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1014seed0000000/0000000085",
+      "value": {
+        "id": "audit_85",
+        "createdAtUs": 1788429600000000,
+        "envelopeId": "envelope_d1014seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1014seed0000000/0000000086",
+      "value": {
+        "id": "audit_86",
+        "createdAtUs": 1788429600000000,
+        "envelopeId": "envelope_d1014seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3022,
+          "recipientEmail": "victor.lang@example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1014seed0000000/0000000087",
+      "value": {
+        "id": "audit_87",
+        "createdAtUs": 1788433200000000,
+        "envelopeId": "envelope_d1014seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Victor Lang",
+        "email": "victor.lang@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3022,
+          "recipientEmail": "victor.lang@example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1014seed0000000/0000000088",
+      "value": {
+        "id": "audit_88",
+        "createdAtUs": 1788436800000000,
+        "envelopeId": "envelope_d1014seed0000000",
+        "type": "DOCUMENT_RECIPIENT_REJECTED",
+        "name": "Victor Lang",
+        "email": "victor.lang@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3022,
+          "recipientEmail": "victor.lang@example.com",
+          "reason": "Payment terms changed"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1014seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1014
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001014",
+      "value": {
+        "id": 1014,
+        "envelopeId": "envelope_d1014seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Supplier pricing addendum",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "REJECTED",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Supplier pricing addendum\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "supplier-pricing-addendum.txt",
+        "meta": {
+          "subject": "Please sign: Supplier pricing addendum",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1788426000000000,
+        "updatedAtUs": 1788436800000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003023",
+      "value": {
+        "id": 3023,
+        "parentKind": "document",
+        "parentId": 1015,
+        "email": "grace.obi@example.com",
+        "name": "Grace Obi",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1015_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001015/0000003023",
+      "value": {
+        "recipientId": 3023
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1015_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3023
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004030",
+      "value": {
+        "id": 4030,
+        "parentKind": "document",
+        "parentId": 1015,
+        "recipientId": 3023,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001015/0000004030",
+      "value": {
+        "fieldId": 4030
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1015seed0000000/0000000089",
+      "value": {
+        "id": "audit_89",
+        "createdAtUs": 1788253200000000,
+        "envelopeId": "envelope_d1015seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "title": "Event sponsorship agreement"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1015seed0000000/0000000090",
+      "value": {
+        "id": "audit_90",
+        "createdAtUs": 1788253200000000,
+        "envelopeId": "envelope_d1015seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3023,
+          "recipientEmail": "grace.obi@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1015seed0000000/0000000091",
+      "value": {
+        "id": "audit_91",
+        "createdAtUs": 1788256800000000,
+        "envelopeId": "envelope_d1015seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1015seed0000000/0000000092",
+      "value": {
+        "id": "audit_92",
+        "createdAtUs": 1788256800000000,
+        "envelopeId": "envelope_d1015seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "recipientId": 3023,
+          "recipientEmail": "grace.obi@example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1015seed0000000/0000000093",
+      "value": {
+        "id": "audit_93",
+        "createdAtUs": 1788271200000000,
+        "envelopeId": "envelope_d1015seed0000000",
+        "type": "DOCUMENT_CANCELLED",
+        "name": "Tomas Okafor",
+        "email": "tomas.okafor@northwind.test",
+        "userId": 2,
+        "data": {
+          "reason": "Event postponed"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1015seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1015
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001015",
+      "value": {
+        "id": 1015,
+        "envelopeId": "envelope_d1015seed0000000",
+        "teamId": 1,
+        "userId": 2,
+        "title": "Event sponsorship agreement",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "CANCELLED",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Event sponsorship agreement\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "event-sponsorship-agreement.txt",
+        "meta": {
+          "subject": "Please sign: Event sponsorship agreement",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1788253200000000,
+        "updatedAtUs": 1788271200000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": "Event postponed"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003024",
+      "value": {
+        "id": 3024,
+        "parentKind": "document",
+        "parentId": 1016,
+        "email": "pat.morgan@example.com",
+        "name": "Pat Morgan",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "OPENED",
+        "signingStatus": "SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1016_1xxxxxxxxxxx",
+        "signedAtUs": 1784289600000000,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001016/0000003024",
+      "value": {
+        "recipientId": 3024
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1016_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3024
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004031",
+      "value": {
+        "id": 4031,
+        "parentKind": "document",
+        "parentId": 1016,
+        "recipientId": 3024,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "Pat Morgan",
+        "inserted": true,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001016/0000004031",
+      "value": {
+        "fieldId": 4031
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000094",
+      "value": {
+        "id": "audit_94",
+        "createdAtUs": 1784278800000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "title": "Old consulting agreement 2025"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000095",
+      "value": {
+        "id": "audit_95",
+        "createdAtUs": 1784278800000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3024,
+          "recipientEmail": "pat.morgan@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000096",
+      "value": {
+        "id": "audit_96",
+        "createdAtUs": 1784282400000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000097",
+      "value": {
+        "id": "audit_97",
+        "createdAtUs": 1784282400000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "recipientId": 3024,
+          "recipientEmail": "pat.morgan@example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000098",
+      "value": {
+        "id": "audit_98",
+        "createdAtUs": 1784286000000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "DOCUMENT_OPENED",
+        "name": "Pat Morgan",
+        "email": "pat.morgan@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3024,
+          "recipientEmail": "pat.morgan@example.com"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000099",
+      "value": {
+        "id": "audit_99",
+        "createdAtUs": 1784289600000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "DOCUMENT_FIELD_INSERTED",
+        "name": "Pat Morgan",
+        "email": "pat.morgan@example.com",
+        "userId": null,
+        "data": {
+          "fieldId": 4031,
+          "fieldType": "SIGNATURE"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000100",
+      "value": {
+        "id": "audit_100",
+        "createdAtUs": 1784289600000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "DOCUMENT_RECIPIENT_COMPLETED",
+        "name": "Pat Morgan",
+        "email": "pat.morgan@example.com",
+        "userId": null,
+        "data": {
+          "recipientId": 3024,
+          "recipientEmail": "pat.morgan@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000101",
+      "value": {
+        "id": "audit_101",
+        "createdAtUs": 1784289600000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "DOCUMENT_COMPLETED",
+        "name": null,
+        "email": null,
+        "userId": null,
+        "data": {}
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1016seed0000000/0000000102",
+      "value": {
+        "id": "audit_102",
+        "createdAtUs": 1786006800000000,
+        "envelopeId": "envelope_d1016seed0000000",
+        "type": "DOCUMENT_DELETED",
+        "name": "Priya Raman",
+        "email": "priya.raman@northwind.test",
+        "userId": 1,
+        "data": {
+          "previousStatus": "COMPLETED"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1016seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1016
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001016",
+      "value": {
+        "id": 1016,
+        "envelopeId": "envelope_d1016seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Old consulting agreement 2025",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "COMPLETED",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Old consulting agreement 2025\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "old-consulting-agreement-2025.txt",
+        "meta": {
+          "subject": "Please sign: Old consulting agreement 2025",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1784278800000000,
+        "updatedAtUs": 1786006800000000,
+        "completedAtUs": 1784289600000000,
+        "deletedAtUs": 1786006800000000,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003025",
+      "value": {
+        "id": 3025,
+        "parentKind": "document",
+        "parentId": 1017,
+        "email": "ravi@lumenfilms.example.com",
+        "name": "Ravi Menon",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "SENT",
+        "token": "tok_1017_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001017/0000003025",
+      "value": {
+        "recipientId": 3025
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1017_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3025
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004032",
+      "value": {
+        "id": 4032,
+        "parentKind": "document",
+        "parentId": 1017,
+        "recipientId": 3025,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001017/0000004032",
+      "value": {
+        "fieldId": 4032
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1017seed0000000/0000000103",
+      "value": {
+        "id": "audit_103",
+        "createdAtUs": 1789203600000000,
+        "envelopeId": "envelope_d1017seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Sam Reyes",
+        "email": "sam.reyes@harborstudio.example.com",
+        "userId": 4,
+        "data": {
+          "title": "Studio booking terms — Lumen Films"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1017seed0000000/0000000104",
+      "value": {
+        "id": "audit_104",
+        "createdAtUs": 1789203600000000,
+        "envelopeId": "envelope_d1017seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Sam Reyes",
+        "email": "sam.reyes@harborstudio.example.com",
+        "userId": 4,
+        "data": {
+          "recipientId": 3025,
+          "recipientEmail": "ravi@lumenfilms.example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1017seed0000000/0000000105",
+      "value": {
+        "id": "audit_105",
+        "createdAtUs": 1789207200000000,
+        "envelopeId": "envelope_d1017seed0000000",
+        "type": "DOCUMENT_SENT",
+        "name": "Sam Reyes",
+        "email": "sam.reyes@harborstudio.example.com",
+        "userId": 4,
+        "data": {
+          "distributionMethod": "EMAIL"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1017seed0000000/0000000106",
+      "value": {
+        "id": "audit_106",
+        "createdAtUs": 1789207200000000,
+        "envelopeId": "envelope_d1017seed0000000",
+        "type": "EMAIL_SENT",
+        "name": "Sam Reyes",
+        "email": "sam.reyes@harborstudio.example.com",
+        "userId": 4,
+        "data": {
+          "recipientId": 3025,
+          "recipientEmail": "ravi@lumenfilms.example.com",
+          "recipientRole": "SIGNER",
+          "isResending": false
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1017seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1017
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001017",
+      "value": {
+        "id": 1017,
+        "envelopeId": "envelope_d1017seed0000000",
+        "teamId": 2,
+        "userId": 4,
+        "title": "Studio booking terms — Lumen Films",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "PENDING",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Studio booking terms — Lumen Films\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "studio-booking-terms-lumen-films.txt",
+        "meta": {
+          "subject": "Please sign: Studio booking terms — Lumen Films",
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1789203600000000,
+        "updatedAtUs": 1789210800000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003026",
+      "value": {
+        "id": 3026,
+        "parentKind": "document",
+        "parentId": 1018,
+        "email": "aiko.tan@example.com",
+        "name": "Aiko Tan",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tok_1018_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "D0000001018/0000003026",
+      "value": {
+        "recipientId": 3026
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tok_1018_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3026
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004033",
+      "value": {
+        "id": 4033,
+        "parentKind": "document",
+        "parentId": 1018,
+        "recipientId": 3026,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "D0000001018/0000004033",
+      "value": {
+        "fieldId": 4033
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1018seed0000000/0000000107",
+      "value": {
+        "id": "audit_107",
+        "createdAtUs": 1789376400000000,
+        "envelopeId": "envelope_d1018seed0000000",
+        "type": "DOCUMENT_CREATED",
+        "name": "Sam Reyes",
+        "email": "sam.reyes@harborstudio.example.com",
+        "userId": 4,
+        "data": {
+          "title": "Model release — Aiko Tan"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "audit-logs",
+      "rowId": "envelope_d1018seed0000000/0000000108",
+      "value": {
+        "id": "audit_108",
+        "createdAtUs": 1789376400000000,
+        "envelopeId": "envelope_d1018seed0000000",
+        "type": "RECIPIENT_CREATED",
+        "name": "Sam Reyes",
+        "email": "sam.reyes@harborstudio.example.com",
+        "userId": 4,
+        "data": {
+          "recipientId": 3026,
+          "recipientEmail": "aiko.tan@example.com",
+          "recipientRole": "SIGNER"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_d1018seed0000000",
+      "value": {
+        "kind": "document",
+        "id": 1018
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "documents",
+      "rowId": "0000001018",
+      "value": {
+        "id": 1018,
+        "envelopeId": "envelope_d1018seed0000000",
+        "teamId": 2,
+        "userId": 4,
+        "title": "Model release — Aiko Tan",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "status": "DRAFT",
+        "source": "DOCUMENT",
+        "templateId": null,
+        "content": "Model release — Aiko Tan\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "model-release-aiko-tan.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "globalAccessAuth": [],
+        "globalActionAuth": [],
+        "createdAtUs": 1789376400000000,
+        "updatedAtUs": 1789376400000000,
+        "completedAtUs": null,
+        "deletedAtUs": null,
+        "cancelReason": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003027",
+      "value": {
+        "id": 3027,
+        "parentKind": "template",
+        "parentId": 2001,
+        "email": "",
+        "name": "Company",
+        "role": "SIGNER",
+        "signingOrder": 1,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tpl_2001_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "T0000002001/0000003027",
+      "value": {
+        "recipientId": 3027
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tpl_2001_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3027
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004034",
+      "value": {
+        "id": 4034,
+        "parentKind": "template",
+        "parentId": 2001,
+        "recipientId": 3027,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "T0000002001/0000004034",
+      "value": {
+        "fieldId": 4034
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004035",
+      "value": {
+        "id": 4035,
+        "parentKind": "template",
+        "parentId": 2001,
+        "recipientId": 3027,
+        "type": "DATE",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 80,
+        "width": 25,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "T0000002001/0000004035",
+      "value": {
+        "fieldId": 4035
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003028",
+      "value": {
+        "id": 3028,
+        "parentKind": "template",
+        "parentId": 2001,
+        "email": "",
+        "name": "Counterparty",
+        "role": "SIGNER",
+        "signingOrder": 2,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tpl_2001_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "T0000002001/0000003028",
+      "value": {
+        "recipientId": 3028
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tpl_2001_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3028
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004036",
+      "value": {
+        "id": 4036,
+        "parentKind": "template",
+        "parentId": 2001,
+        "recipientId": 3028,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 90,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "T0000002001/0000004036",
+      "value": {
+        "fieldId": 4036
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004037",
+      "value": {
+        "id": 4037,
+        "parentKind": "template",
+        "parentId": 2001,
+        "recipientId": 3028,
+        "type": "DATE",
+        "page": 1,
+        "positionX": 60,
+        "positionY": 90,
+        "width": 25,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "T0000002001/0000004037",
+      "value": {
+        "fieldId": 4037
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_t2001seed0000000",
+      "value": {
+        "kind": "template",
+        "id": 2001
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "templates",
+      "rowId": "0000002001",
+      "value": {
+        "id": 2001,
+        "envelopeId": "envelope_t2001seed0000000",
+        "teamId": 1,
+        "userId": 1,
+        "title": "Mutual NDA (standard)",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "type": "PRIVATE",
+        "content": "Mutual NDA (standard)\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "mutual-nda-standard.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "publicTitle": "",
+        "publicDescription": "",
+        "createdAtUs": 1781686800000000,
+        "updatedAtUs": 1781686800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003029",
+      "value": {
+        "id": 3029,
+        "parentKind": "template",
+        "parentId": 2002,
+        "email": "",
+        "name": "Candidate",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tpl_2002_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "T0000002002/0000003029",
+      "value": {
+        "recipientId": 3029
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tpl_2002_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3029
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004038",
+      "value": {
+        "id": 4038,
+        "parentKind": "template",
+        "parentId": 2002,
+        "recipientId": 3029,
+        "type": "SIGNATURE",
+        "page": 2,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "T0000002002/0000004038",
+      "value": {
+        "fieldId": 4038
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004039",
+      "value": {
+        "id": 4039,
+        "parentKind": "template",
+        "parentId": 2002,
+        "recipientId": 3029,
+        "type": "NAME",
+        "page": 2,
+        "positionX": 10,
+        "positionY": 70,
+        "width": 30,
+        "height": 5,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "T0000002002/0000004039",
+      "value": {
+        "fieldId": 4039
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003030",
+      "value": {
+        "id": 3030,
+        "parentKind": "template",
+        "parentId": 2002,
+        "email": "people-ops@northwind.test",
+        "name": "People Ops",
+        "role": "CC",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tpl_2002_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "T0000002002/0000003030",
+      "value": {
+        "recipientId": 3030
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tpl_2002_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3030
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_t2002seed0000000",
+      "value": {
+        "kind": "template",
+        "id": 2002
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "templates",
+      "rowId": "0000002002",
+      "value": {
+        "id": 2002,
+        "envelopeId": "envelope_t2002seed0000000",
+        "teamId": 1,
+        "userId": 2,
+        "title": "Offer letter",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "type": "PRIVATE",
+        "content": "Offer letter\n\nPage 1 of 2\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.\fOffer letter\n\nPage 2 of 2\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 2,
+        "fileName": "offer-letter.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "publicTitle": "",
+        "publicDescription": "",
+        "createdAtUs": 1782550800000000,
+        "updatedAtUs": 1782550800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003031",
+      "value": {
+        "id": 3031,
+        "parentKind": "template",
+        "parentId": 2003,
+        "email": "",
+        "name": "Freelancer",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tpl_2003_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "T0000002003/0000003031",
+      "value": {
+        "recipientId": 3031
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tpl_2003_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3031
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004040",
+      "value": {
+        "id": 4040,
+        "parentKind": "template",
+        "parentId": 2003,
+        "recipientId": 3031,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "T0000002003/0000004040",
+      "value": {
+        "fieldId": 4040
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003032",
+      "value": {
+        "id": 3032,
+        "parentKind": "template",
+        "parentId": 2003,
+        "email": "finance@northwind.test",
+        "name": "Finance approver",
+        "role": "APPROVER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tpl_2003_2xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "T0000002003/0000003032",
+      "value": {
+        "recipientId": 3032
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tpl_2003_2xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3032
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_t2003seed0000000",
+      "value": {
+        "kind": "template",
+        "id": 2003
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "templates",
+      "rowId": "0000002003",
+      "value": {
+        "id": 2003,
+        "envelopeId": "envelope_t2003seed0000000",
+        "teamId": 1,
+        "userId": 3,
+        "title": "Freelancer agreement",
+        "externalId": null,
+        "visibility": "MANAGER_AND_ABOVE",
+        "type": "PUBLIC",
+        "content": "Freelancer agreement\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "freelancer-agreement.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "publicTitle": "Work with Northwind",
+        "publicDescription": "Standard freelancer agreement for Northwind Legal projects.",
+        "createdAtUs": 1783414800000000,
+        "updatedAtUs": 1783414800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipients",
+      "rowId": "0000003033",
+      "value": {
+        "id": 3033,
+        "parentKind": "template",
+        "parentId": 2004,
+        "email": "",
+        "name": "Client",
+        "role": "SIGNER",
+        "signingOrder": null,
+        "readStatus": "NOT_OPENED",
+        "signingStatus": "NOT_SIGNED",
+        "sendStatus": "NOT_SENT",
+        "token": "tpl_2004_1xxxxxxxxxxx",
+        "signedAtUs": null,
+        "rejectionReason": null,
+        "accessAuth": [],
+        "actionAuth": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-index",
+      "rowId": "T0000002004/0000003033",
+      "value": {
+        "recipientId": 3033
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "recipient-tokens",
+      "rowId": "tpl_2004_1xxxxxxxxxxx",
+      "value": {
+        "recipientId": 3033
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "fields",
+      "rowId": "0000004041",
+      "value": {
+        "id": 4041,
+        "parentKind": "template",
+        "parentId": 2004,
+        "recipientId": 3033,
+        "type": "SIGNATURE",
+        "page": 1,
+        "positionX": 10,
+        "positionY": 80,
+        "width": 30,
+        "height": 8,
+        "customText": "",
+        "inserted": false,
+        "fieldMeta": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "field-index",
+      "rowId": "T0000002004/0000004041",
+      "value": {
+        "fieldId": 4041
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "envelope-ids",
+      "rowId": "envelope_t2004seed0000000",
+      "value": {
+        "kind": "template",
+        "id": 2004
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "templates",
+      "rowId": "0000002004",
+      "value": {
+        "id": 2004,
+        "envelopeId": "envelope_t2004seed0000000",
+        "teamId": 2,
+        "userId": 4,
+        "title": "Studio booking terms",
+        "externalId": null,
+        "visibility": "EVERYONE",
+        "type": "PRIVATE",
+        "content": "Studio booking terms\n\nPage 1 of 1\n\nThis agreement is entered into between the parties named on the signature page.\n\n1. Purpose. The parties wish to record the terms set out below for the project described in Schedule A.\n\n2. Term. This agreement starts on the date of the last signature and continues for twelve months.\n\n3. Confidentiality. Each party keeps the other party's non-public information confidential.\n\n4. Governing law. This agreement is governed by the laws stated in Schedule B.",
+        "pageCount": 1,
+        "fileName": "studio-booking-terms.txt",
+        "meta": {
+          "subject": null,
+          "message": null,
+          "timezone": "Etc/UTC",
+          "dateFormat": "yyyy-MM-dd hh:mm a",
+          "distributionMethod": "EMAIL",
+          "signingOrder": "PARALLEL",
+          "redirectUrl": null,
+          "language": "en",
+          "typedSignatureEnabled": true,
+          "uploadSignatureEnabled": true,
+          "drawSignatureEnabled": true
+        },
+        "publicTitle": "",
+        "publicDescription": "",
+        "createdAtUs": 1785142800000000,
+        "updatedAtUs": 1785142800000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "documents": 1018,
+        "templates": 2004,
+        "recipients": 3033,
+        "fields": 4041,
+        "auditLogs": 108
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 5000,
+        "responseBytes": 900000
+      }
+    }
+  ]
+}

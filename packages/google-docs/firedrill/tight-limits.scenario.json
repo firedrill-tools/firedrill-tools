@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "meta.limits tightened to just under the starter data so every documented bound refuses with FAILED_PRECONDITION instead of truncating.",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-docs",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxDocuments": 9,
+        "maxComments": 6,
+        "maxReplies": 3,
+        "maxPermissions": 3,
+        "maxRequestsPerBatch": 3,
+        "maxTextLength": 500
+      }
+    }
+  ]
+}

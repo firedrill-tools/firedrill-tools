@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "id": "gitlab-denied",
+  "title": "An actor without grants is denied by the framework over REST and MCP",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run the denied conformance flow against the synthetic GitLab Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "issues-list-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "issues-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "issues-get-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "issues-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "rows-issues",
+      "kind": "state.count",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    }
+  ]
+}

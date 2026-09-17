@@ -1,0 +1,341 @@
+{
+  "schemaVersion": 1,
+  "id": "check-payroll-run",
+  "title": "Run the J3 payroll: items, preview, stale preview, approve, reopen; create and delete a draft",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the payroll-run conformance flow against the synthetic Check Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "payrolls-preview-ok-min3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.preview"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "payrolls-preview-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.preview"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-approve-ok-eq1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.approve"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-approve-tool-error-min3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.approve"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "payrolls-reopen-ok-eq1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.reopen"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-create-ok-min2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "payroll-items-create-tool-error-min3",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 3
+      }
+    },
+    {
+      "id": "payroll-items-update-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-update-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-delete-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payroll-items-delete-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payroll_items.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-create-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-delete-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.delete"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-delete-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "payrolls-get-ok-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "payrolls.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-payroll-approved-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "check",
+        "eventId": "payroll.approved"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-payroll-reopened-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "check",
+        "eventId": "payroll.reopened"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "preview-approve-reopen",
+      "kind": "operation.order",
+      "sequence": [
+        {
+          "anyOf": [
+            {
+              "packageId": "check",
+              "operationId": "payrolls.preview"
+            }
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "check",
+              "operationId": "payrolls.approve"
+            }
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "packageId": "check",
+              "operationId": "payrolls.reopen"
+            }
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "j3-back-to-draft",
+      "kind": "state.value",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_9KwRxHvvOUypb6MK3MPW",
+      "path": [
+        "stored_status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "draft"
+      }
+    },
+    {
+      "id": "j3-preview-cleared",
+      "kind": "state.value",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "rowId": "pay_9KwRxHvvOUypb6MK3MPW",
+      "path": [
+        "preview"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": null
+      }
+    },
+    {
+      "id": "count-payrolls-7",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "payrolls",
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    }
+  ]
+}

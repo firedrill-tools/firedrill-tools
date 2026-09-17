@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "id": "salesforce-fresh-install",
+  "title": "An actor without a username resolves to the org's default identity (the seeded System Administrator), as a freshly installed world does",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the fresh-install conformance flow against the synthetic Salesforce Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "userinfo-get-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "userinfo.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "query-execute-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "query.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "records-create-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "salesforce",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "fresh-owner",
+      "kind": "state.value",
+      "packageId": "salesforce",
+      "namespace": "accounts",
+      "rowId": "001Fd0000001001IAA",
+      "path": [
+        "fields",
+        "OwnerId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "005Fd0000000001IAA"
+      }
+    },
+    {
+      "id": "event-record-created-eq-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "salesforce",
+        "eventId": "record.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

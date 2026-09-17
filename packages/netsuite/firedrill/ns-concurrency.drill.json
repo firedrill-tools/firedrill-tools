@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "ns-concurrency",
+  "title": "The concurrency limit blocks every operation",
+  "targetId": "conformance-agent",
+  "scenarioId": "concurrency-limited",
+  "actorId": "administrator",
+  "task": {
+    "instruction": "Run the concurrency conformance flow against the synthetic NetSuite Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "list-429",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "customer.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "transform-429",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "netsuite",
+        "operationId": "sales-order.transform"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "invoices-unchanged",
+      "kind": "state.count",
+      "packageId": "netsuite",
+      "namespace": "invoices",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    }
+  ]
+}

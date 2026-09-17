@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "id": "attio-create-committed-lost",
+  "title": "A create whose response is lost has committed: retries conflict or duplicate",
+  "targetId": "conformance-agent",
+  "scenarioId": "create-committed-lost",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the create-committed-lost conformance flow against the synthetic Attio Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "records-create-tool_error-eq-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "records.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "tasks-create-tool_error-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "tasks.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-people-13",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "people",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "count-companies-11",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "companies",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "count-tasks-8",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "event-record-created-3",
+      "kind": "event.count",
+      "event": {
+        "packageId": "attio",
+        "eventId": "record.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    }
+  ]
+}

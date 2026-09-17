@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "refund-committed-lost",
+  "title": "Refunds commit but the caller sees HTTP 503; a retry with a new Idempotency-Key refunds twice",
+  "faults": [
+    {
+      "packageId": "stripe",
+      "faultId": "refund-committed-lost"
+    }
+  ]
+}

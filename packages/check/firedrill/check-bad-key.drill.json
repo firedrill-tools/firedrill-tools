@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "check-bad-key",
+  "title": "Malformed key attributes answer 401 on reads and writes",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "bad-key",
+  "task": {
+    "instruction": "Run the bad-key conformance flow against the synthetic Check Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "companies-list-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "workplaces-create-tool-error-min1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "workplaces.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "companies-list-ok-eq0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "check",
+        "operationId": "companies.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "count-workplaces-4",
+      "kind": "state.count",
+      "packageId": "check",
+      "namespace": "workplaces",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    }
+  ]
+}

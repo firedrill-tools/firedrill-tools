@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-denied",
+  "title": "An actor without grants is denied by the framework with Discord's 50013 body",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "auditor",
+  "task": {
+    "instruction": "Run flow:denied against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "me-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "send-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    }
+  ]
+}

@@ -1,0 +1,2024 @@
+{
+  "schemaVersion": 1,
+  "id": "baseline",
+  "title": "Baseline: the fictional Stellarforge Robotics site exactly as authored (no faults)",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "site",
+      "rowId": "site",
+      "value": {
+        "cloudId": "3f9c2b1e-7d4a-4c6e-9b8f-2a1d5e6f7c80",
+        "name": "stellarforge",
+        "baseUrl": "https://stellarforge.jira.example",
+        "serverTitle": "Stellarforge Jira",
+        "timeZone": "Europe/Berlin",
+        "locale": "en_US",
+        "defaultAssigneeType": "PROJECT_LEAD",
+        "limits": {
+          "maxUsers": 1000,
+          "maxProjects": 1000,
+          "maxMembersPerProject": 1000,
+          "maxBoards": 1000,
+          "maxSprints": 1000,
+          "maxIssues": 10000,
+          "maxCommentsPerIssue": 500
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "nextIssueId": 10200,
+        "nextCommentId": 10300
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "users",
+      "rowId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+      "value": {
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "accountType": "atlassian",
+        "emailAddress": "priya.natarajan@stellarforge.example.com",
+        "displayName": "Priya Natarajan",
+        "active": true,
+        "timeZone": "Europe/Berlin",
+        "locale": "en_US",
+        "siteAdmin": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "users",
+      "rowId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+      "value": {
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "accountType": "atlassian",
+        "emailAddress": "marcus.oyelaran@stellarforge.example.com",
+        "displayName": "Marcus Oyelaran",
+        "active": true,
+        "timeZone": "Europe/London",
+        "locale": "en_US",
+        "siteAdmin": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "users",
+      "rowId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+      "value": {
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "accountType": "atlassian",
+        "emailAddress": "elena.sokolova@stellarforge.example.com",
+        "displayName": "Elena Sokolova",
+        "active": true,
+        "timeZone": "Europe/Berlin",
+        "locale": "en_US",
+        "siteAdmin": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "users",
+      "rowId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+      "value": {
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+        "accountType": "atlassian",
+        "emailAddress": "tomasz.wisniewski@stellarforge.example.com",
+        "displayName": "Tomasz Wiśniewski",
+        "active": true,
+        "timeZone": "Europe/Warsaw",
+        "locale": "en_US",
+        "siteAdmin": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "users",
+      "rowId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000005",
+      "value": {
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000005",
+        "accountType": "atlassian",
+        "emailAddress": "aiko.tanaka@stellarforge.example.com",
+        "displayName": "Aiko Tanaka",
+        "active": false,
+        "timeZone": "Asia/Tokyo",
+        "locale": "en_US",
+        "siteAdmin": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "users",
+      "rowId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000006",
+      "value": {
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000006",
+        "accountType": "app",
+        "emailAddress": "",
+        "displayName": "Automation for Jira",
+        "active": true,
+        "timeZone": "UTC",
+        "locale": "en_US",
+        "siteAdmin": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "projects",
+      "rowId": "0000010000",
+      "value": {
+        "id": "10000",
+        "key": "SFR",
+        "name": "Stellarforge Rover",
+        "description": "Autonomous rover platform: navigation, docking and field operations.",
+        "projectTypeKey": "software",
+        "style": "next-gen",
+        "simplified": true,
+        "accessLevel": "open",
+        "leadAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "assigneeType": "PROJECT_LEAD",
+        "issueTypeIds": [
+          "10000",
+          "10001",
+          "10002",
+          "10003",
+          "10004"
+        ],
+        "workflowId": "simplified",
+        "issueKeyCounter": 14,
+        "avatarId": "10400"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "projects",
+      "rowId": "0000010001",
+      "value": {
+        "id": "10001",
+        "key": "PLAT",
+        "name": "Platform Services",
+        "description": "Shared telemetry, messaging and infrastructure services.",
+        "projectTypeKey": "software",
+        "style": "classic",
+        "simplified": false,
+        "accessLevel": "limited",
+        "leadAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "assigneeType": "UNASSIGNED",
+        "issueTypeIds": [
+          "10002",
+          "10003",
+          "10004"
+        ],
+        "workflowId": "classic",
+        "issueKeyCounter": 6,
+        "avatarId": "10401"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "projects",
+      "rowId": "0000010002",
+      "value": {
+        "id": "10002",
+        "key": "SEC",
+        "name": "Security Response",
+        "description": "Security incidents and access reviews (restricted).",
+        "projectTypeKey": "business",
+        "style": "classic",
+        "simplified": false,
+        "accessLevel": "private",
+        "leadAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "assigneeType": "PROJECT_LEAD",
+        "issueTypeIds": [
+          "10002"
+        ],
+        "workflowId": "classic",
+        "issueKeyCounter": 2,
+        "avatarId": "10402"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "project-members",
+      "rowId": "0000010000/712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+      "value": {
+        "projectId": "10000",
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "role": "Member"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "project-members",
+      "rowId": "0000010001/712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+      "value": {
+        "projectId": "10001",
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "role": "Administrator"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "project-members",
+      "rowId": "0000010001/712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+      "value": {
+        "projectId": "10001",
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "role": "Member"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "project-members",
+      "rowId": "0000010001/712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+      "value": {
+        "projectId": "10001",
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+        "role": "Viewer"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "project-members",
+      "rowId": "0000010002/712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+      "value": {
+        "projectId": "10002",
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "role": "Member"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "project-members",
+      "rowId": "0000010002/712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+      "value": {
+        "projectId": "10002",
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "role": "Administrator"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "project-members",
+      "rowId": "0000010002/712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+      "value": {
+        "projectId": "10002",
+        "accountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "role": "Viewer"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issue-types",
+      "rowId": "10000",
+      "value": {
+        "id": "10000",
+        "name": "Epic",
+        "description": "A big user story that needs to be broken down.",
+        "subtask": false,
+        "hierarchyLevel": 1,
+        "iconId": "10307"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issue-types",
+      "rowId": "10001",
+      "value": {
+        "id": "10001",
+        "name": "Story",
+        "description": "Functionality or a feature expressed as a user goal.",
+        "subtask": false,
+        "hierarchyLevel": 0,
+        "iconId": "10315"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issue-types",
+      "rowId": "10002",
+      "value": {
+        "id": "10002",
+        "name": "Task",
+        "description": "A small, distinct piece of work.",
+        "subtask": false,
+        "hierarchyLevel": 0,
+        "iconId": "10318"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issue-types",
+      "rowId": "10003",
+      "value": {
+        "id": "10003",
+        "name": "Bug",
+        "description": "A problem that impairs or prevents the functions of a product.",
+        "subtask": false,
+        "hierarchyLevel": 0,
+        "iconId": "10303"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issue-types",
+      "rowId": "10004",
+      "value": {
+        "id": "10004",
+        "name": "Subtask",
+        "description": "A small piece of work that is part of a larger task.",
+        "subtask": true,
+        "hierarchyLevel": -1,
+        "iconId": "10316"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "10000",
+      "value": {
+        "id": "10000",
+        "name": "To Do",
+        "description": "",
+        "statusCategoryId": 2
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "10001",
+      "value": {
+        "id": "10001",
+        "name": "In Progress",
+        "description": "",
+        "statusCategoryId": 4
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "10002",
+      "value": {
+        "id": "10002",
+        "name": "In Review",
+        "description": "",
+        "statusCategoryId": 4
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "10003",
+      "value": {
+        "id": "10003",
+        "name": "Done",
+        "description": "",
+        "statusCategoryId": 3
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "1",
+      "value": {
+        "id": "1",
+        "name": "Open",
+        "description": "The issue is open and ready for the assignee to start work on it.",
+        "statusCategoryId": 2
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "3",
+      "value": {
+        "id": "3",
+        "name": "In Progress",
+        "description": "This issue is being actively worked on at the moment by the assignee.",
+        "statusCategoryId": 4
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "4",
+      "value": {
+        "id": "4",
+        "name": "Reopened",
+        "description": "This issue was once resolved, but the resolution was deemed incorrect.",
+        "statusCategoryId": 2
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "5",
+      "value": {
+        "id": "5",
+        "name": "Resolved",
+        "description": "A resolution has been taken, and it is awaiting verification by reporter.",
+        "statusCategoryId": 3
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "statuses",
+      "rowId": "6",
+      "value": {
+        "id": "6",
+        "name": "Closed",
+        "description": "The issue is considered finished, the resolution is correct.",
+        "statusCategoryId": 3
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "priorities",
+      "rowId": "1",
+      "value": {
+        "id": "1",
+        "name": "Highest",
+        "description": "This problem will block progress.",
+        "statusColor": "#d04437",
+        "iconName": "highest"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "priorities",
+      "rowId": "2",
+      "value": {
+        "id": "2",
+        "name": "High",
+        "description": "Serious problem that could block progress.",
+        "statusColor": "#f15C75",
+        "iconName": "high"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "priorities",
+      "rowId": "3",
+      "value": {
+        "id": "3",
+        "name": "Medium",
+        "description": "Has the potential to affect progress.",
+        "statusColor": "#f79232",
+        "iconName": "medium"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "priorities",
+      "rowId": "4",
+      "value": {
+        "id": "4",
+        "name": "Low",
+        "description": "Minor problem or easily worked around.",
+        "statusColor": "#707070",
+        "iconName": "low"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "priorities",
+      "rowId": "5",
+      "value": {
+        "id": "5",
+        "name": "Lowest",
+        "description": "Trivial problem with little or no impact on progress.",
+        "statusColor": "#999999",
+        "iconName": "lowest"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "workflows",
+      "rowId": "simplified",
+      "value": {
+        "id": "simplified",
+        "name": "Simplified workflow",
+        "initialStatusId": "10000",
+        "statusIds": [
+          "10000",
+          "10001",
+          "10002",
+          "10003"
+        ],
+        "transitions": [
+          {
+            "id": "11",
+            "name": "To Do",
+            "from": [],
+            "to": "10000"
+          },
+          {
+            "id": "21",
+            "name": "In Progress",
+            "from": [],
+            "to": "10001"
+          },
+          {
+            "id": "31",
+            "name": "In Review",
+            "from": [],
+            "to": "10002"
+          },
+          {
+            "id": "41",
+            "name": "Done",
+            "from": [],
+            "to": "10003"
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "workflows",
+      "rowId": "classic",
+      "value": {
+        "id": "classic",
+        "name": "Jira default workflow",
+        "initialStatusId": "1",
+        "statusIds": [
+          "1",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "transitions": [
+          {
+            "id": "11",
+            "name": "Start Progress",
+            "from": [
+              "1",
+              "4"
+            ],
+            "to": "3"
+          },
+          {
+            "id": "51",
+            "name": "Stop Progress",
+            "from": [
+              "3"
+            ],
+            "to": "1"
+          },
+          {
+            "id": "21",
+            "name": "Resolve Issue",
+            "from": [
+              "1",
+              "4",
+              "3"
+            ],
+            "to": "5"
+          },
+          {
+            "id": "31",
+            "name": "Close Issue",
+            "from": [
+              "1",
+              "4",
+              "3",
+              "5"
+            ],
+            "to": "6"
+          },
+          {
+            "id": "41",
+            "name": "Reopen Issue",
+            "from": [
+              "5",
+              "6"
+            ],
+            "to": "4"
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "boards",
+      "rowId": "0000000001",
+      "value": {
+        "id": "1",
+        "name": "SFR board",
+        "type": "scrum",
+        "projectId": "10000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "boards",
+      "rowId": "0000000002",
+      "value": {
+        "id": "2",
+        "name": "PLAT Kanban",
+        "type": "kanban",
+        "projectId": "10001"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "sprints",
+      "rowId": "0000000001",
+      "value": {
+        "id": "1",
+        "name": "SFR Sprint 1",
+        "state": "closed",
+        "boardId": "1",
+        "originBoardId": "1",
+        "goal": "Docking camera bring-up",
+        "startDate": "2026-08-24T07:00:00.000Z",
+        "endDate": "2026-09-04T16:00:00.000Z",
+        "completeDate": "2026-09-04T16:12:00.000Z",
+        "createdDate": "2026-08-20T09:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "sprints",
+      "rowId": "0000000002",
+      "value": {
+        "id": "2",
+        "name": "SFR Sprint 2",
+        "state": "active",
+        "boardId": "1",
+        "originBoardId": "1",
+        "goal": "Autonomous docking demo",
+        "startDate": "2026-09-07T07:00:00.000Z",
+        "endDate": "2026-09-18T16:00:00.000Z",
+        "completeDate": null,
+        "createdDate": "2026-09-04T16:20:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "sprints",
+      "rowId": "0000000003",
+      "value": {
+        "id": "3",
+        "name": "SFR Sprint 3",
+        "state": "future",
+        "boardId": "1",
+        "originBoardId": "1",
+        "goal": "",
+        "startDate": null,
+        "endDate": null,
+        "completeDate": null,
+        "createdDate": "2026-09-11T08:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010100",
+      "value": {
+        "id": "10100",
+        "key": "SFR-1",
+        "projectId": "10000",
+        "issueTypeId": "10000",
+        "summary": "Autonomous docking",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Rover docks to the charging cradle without operator input."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10000",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": null,
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-06-02T08:15:00.000+0000",
+        "updated": "2026-09-01T10:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-06-02T08:15:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010101",
+      "value": {
+        "id": "10101",
+        "key": "SFR-2",
+        "projectId": "10000",
+        "issueTypeId": "10001",
+        "summary": "Fuse lidar and wheel odometry for the approach path",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Blend lidar point clouds with wheel odometry so the rover keeps a stable approach path in low light."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10001",
+        "priorityId": "2",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [
+          "lidar",
+          "navigation"
+        ],
+        "parentId": "10100",
+        "sprintId": "2",
+        "dueDate": null,
+        "created": "2026-06-05T09:00:00.000+0000",
+        "updated": "2026-09-12T15:45:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-12T15:45:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010102",
+      "value": {
+        "id": "10102",
+        "key": "SFR-3",
+        "projectId": "10000",
+        "issueTypeId": "10001",
+        "summary": "Cradle alignment controller",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Closed-loop controller that aligns the rover with the cradle contacts."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10002",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "labels": [],
+        "parentId": "10100",
+        "sprintId": "2",
+        "dueDate": null,
+        "created": "2026-06-09T11:30:00.000+0000",
+        "updated": "2026-09-11T09:10:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-11T09:10:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010103",
+      "value": {
+        "id": "10103",
+        "key": "SFR-4",
+        "projectId": "10000",
+        "issueTypeId": "10004",
+        "summary": "Tune PID gains on rover 2",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Gains tuned on the bench rig; verified on rover 2."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10003",
+        "priorityId": "3",
+        "resolutionId": "10000",
+        "resolutionDate": "2026-09-09T14:00:00.000+0000",
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [],
+        "parentId": "10102",
+        "sprintId": "2",
+        "dueDate": null,
+        "created": "2026-06-12T08:00:00.000+0000",
+        "updated": "2026-09-09T14:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-09T14:00:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010104",
+      "value": {
+        "id": "10104",
+        "key": "SFR-5",
+        "projectId": "10000",
+        "issueTypeId": "10004",
+        "summary": "Write alignment test plan",
+        "description": null,
+        "statusId": "10000",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": null,
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [],
+        "parentId": "10102",
+        "sprintId": "2",
+        "dueDate": null,
+        "created": "2026-06-12T08:05:00.000+0000",
+        "updated": "2026-06-12T08:05:00.000+0000",
+        "statusCategoryChangeDate": "2026-06-12T08:05:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010105",
+      "value": {
+        "id": "10105",
+        "key": "SFR-6",
+        "projectId": "10000",
+        "issueTypeId": "10003",
+        "summary": "Charging contacts arc when docking at low battery",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Reported automatically from field telemetry: arcing observed on rover 3 below 12% battery."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10000",
+        "priorityId": "1",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000006",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [
+          "hardware"
+        ],
+        "parentId": null,
+        "sprintId": "2",
+        "dueDate": "2026-09-10",
+        "created": "2026-08-28T06:40:00.000+0000",
+        "updated": "2026-09-10T07:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-08-28T06:40:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010106",
+      "value": {
+        "id": "10106",
+        "key": "SFR-7",
+        "projectId": "10000",
+        "issueTypeId": "10002",
+        "summary": "Bench-test docking camera exposure",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Exposure table validated for dusk and indoor lighting."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10003",
+        "priorityId": "3",
+        "resolutionId": "10000",
+        "resolutionDate": "2026-09-02T16:30:00.000+0000",
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [],
+        "parentId": null,
+        "sprintId": "1",
+        "dueDate": null,
+        "created": "2026-08-20T10:00:00.000+0000",
+        "updated": "2026-09-02T16:30:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-02T16:30:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010107",
+      "value": {
+        "id": "10107",
+        "key": "SFR-8",
+        "projectId": "10000",
+        "issueTypeId": "10002",
+        "summary": "Evaluate ultra-wideband beacons",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Beacons add cost without improving docking accuracy; not pursued."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10003",
+        "priorityId": "4",
+        "resolutionId": "10001",
+        "resolutionDate": "2026-09-03T12:00:00.000+0000",
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [],
+        "parentId": null,
+        "sprintId": "1",
+        "dueDate": null,
+        "created": "2026-08-21T09:20:00.000+0000",
+        "updated": "2026-09-03T12:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-03T12:00:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010108",
+      "value": {
+        "id": "10108",
+        "key": "SFR-9",
+        "projectId": "10000",
+        "issueTypeId": "10001",
+        "summary": "Dock from any approach angle",
+        "description": null,
+        "statusId": "10000",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": null,
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [],
+        "parentId": null,
+        "sprintId": "3",
+        "dueDate": null,
+        "created": "2026-09-08T13:00:00.000+0000",
+        "updated": "2026-09-11T08:05:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-08T13:00:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010109",
+      "value": {
+        "id": "10109",
+        "key": "SFR-10",
+        "projectId": "10000",
+        "issueTypeId": "10003",
+        "summary": "Stale battery gauge after cold boot",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Gauge shows the previous session's value for about a minute after a cold boot."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10000",
+        "priorityId": "5",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000005",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000005",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000005",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-07-01T07:45:00.000+0000",
+        "updated": "2026-07-01T07:45:00.000+0000",
+        "statusCategoryChangeDate": "2026-07-01T07:45:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010110",
+      "value": {
+        "id": "10110",
+        "key": "SFR-11",
+        "projectId": "10000",
+        "issueTypeId": "10002",
+        "summary": "Document the rover field checklist",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Pre-flight and post-run checklist for field operators."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10000",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": null,
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "labels": [
+          "docs"
+        ],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-07-15T14:20:00.000+0000",
+        "updated": "2026-07-15T14:20:00.000+0000",
+        "statusCategoryChangeDate": "2026-07-15T14:20:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010111",
+      "value": {
+        "id": "10111",
+        "key": "SFR-12",
+        "projectId": "10000",
+        "issueTypeId": "10002",
+        "summary": "Wake-up sequence drops the first lidar frames",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "After the rover wakes from sleep the first lidar frames are dropped and the planner starts without a map."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10001",
+        "priorityId": "2",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [
+          "navigation"
+        ],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-08-03T09:00:00.000+0000",
+        "updated": "2026-09-13T16:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-13T16:00:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010112",
+      "value": {
+        "id": "10112",
+        "key": "SFR-13",
+        "projectId": "10000",
+        "issueTypeId": "10002",
+        "summary": "Order spare docking cradle contacts",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Two spare contact sets for the field kit."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10000",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": "2026-09-20",
+        "created": "2026-09-10T10:10:00.000+0000",
+        "updated": "2026-09-10T10:10:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-10T10:10:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010113",
+      "value": {
+        "id": "10113",
+        "key": "SFR-14",
+        "projectId": "10000",
+        "issueTypeId": "10001",
+        "summary": "Überwachung der Ladeströme im Dock",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Charging current monitoring while the rover sits in the dock."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "10000",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": null,
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-09-13T10:20:00.000+0000",
+        "updated": "2026-09-13T10:20:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-13T10:20:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010114",
+      "value": {
+        "id": "10114",
+        "key": "PLAT-1",
+        "projectId": "10001",
+        "issueTypeId": "10002",
+        "summary": "Rotate service tokens",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Rotate the long-lived service tokens used by the telemetry ingest."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "1",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-06-20T08:00:00.000+0000",
+        "updated": "2026-08-15T09:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-06-20T08:00:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010115",
+      "value": {
+        "id": "10115",
+        "key": "PLAT-2",
+        "projectId": "10001",
+        "issueTypeId": "10003",
+        "summary": "Telemetry ingest drops packets under load",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Packet loss above 4k msg/s on the ingest gateway."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "3",
+        "priorityId": "2",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-07-08T12:30:00.000+0000",
+        "updated": "2026-09-12T11:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-12T11:00:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010116",
+      "value": {
+        "id": "10116",
+        "key": "PLAT-3",
+        "projectId": "10001",
+        "issueTypeId": "10002",
+        "summary": "Upgrade message broker to 4.x",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Broker upgraded in staging and production."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "5",
+        "priorityId": "3",
+        "resolutionId": "10000",
+        "resolutionDate": "2026-08-30T15:00:00.000+0000",
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-07-22T09:00:00.000+0000",
+        "updated": "2026-08-30T15:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-08-30T15:00:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010117",
+      "value": {
+        "id": "10117",
+        "key": "PLAT-4",
+        "projectId": "10001",
+        "issueTypeId": "10003",
+        "summary": "Dashboard shows negative uptime",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Could not reproduce after the clock fix."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "6",
+        "priorityId": "4",
+        "resolutionId": "10003",
+        "resolutionDate": "2026-08-26T10:30:00.000+0000",
+        "assigneeAccountId": null,
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-08-05T15:15:00.000+0000",
+        "updated": "2026-08-26T10:30:00.000+0000",
+        "statusCategoryChangeDate": "2026-08-26T10:30:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010118",
+      "value": {
+        "id": "10118",
+        "key": "PLAT-5",
+        "projectId": "10001",
+        "issueTypeId": "10002",
+        "summary": "Archive 2025 telemetry partitions",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Reopened: the archive job skipped two partitions."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "4",
+        "priorityId": "4",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-08-12T08:30:00.000+0000",
+        "updated": "2026-09-05T09:45:00.000+0000",
+        "statusCategoryChangeDate": "2026-08-12T08:30:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010119",
+      "value": {
+        "id": "10119",
+        "key": "PLAT-6",
+        "projectId": "10001",
+        "issueTypeId": "10004",
+        "summary": "Rotate CI deploy token",
+        "description": null,
+        "statusId": "1",
+        "priorityId": "3",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "labels": [],
+        "parentId": "10114",
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-08-15T09:05:00.000+0000",
+        "updated": "2026-08-15T09:05:00.000+0000",
+        "statusCategoryChangeDate": "2026-08-15T09:05:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010120",
+      "value": {
+        "id": "10120",
+        "key": "SEC-1",
+        "projectId": "10002",
+        "issueTypeId": "10002",
+        "summary": "Incident 2026-09: exposed staging credentials",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Staging credentials were committed to a public gist; rotate and audit access."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "1",
+        "priorityId": "1",
+        "resolutionId": null,
+        "resolutionDate": null,
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "labels": [
+          "incident"
+        ],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-09-05T07:30:00.000+0000",
+        "updated": "2026-09-06T08:00:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-05T07:30:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "issues",
+      "rowId": "0000010121",
+      "value": {
+        "id": "10121",
+        "key": "SEC-2",
+        "projectId": "10002",
+        "issueTypeId": "10002",
+        "summary": "Quarterly access review",
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Q3 access review completed; two stale accounts removed."
+                }
+              ]
+            }
+          ]
+        },
+        "statusId": "5",
+        "priorityId": "3",
+        "resolutionId": "10000",
+        "resolutionDate": "2026-09-01T11:20:00.000+0000",
+        "assigneeAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "reporterAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "creatorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "labels": [],
+        "parentId": null,
+        "sprintId": null,
+        "dueDate": null,
+        "created": "2026-08-01T09:00:00.000+0000",
+        "updated": "2026-09-01T11:20:00.000+0000",
+        "statusCategoryChangeDate": "2026-09-01T11:20:00.000+0000"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010111/0000010250",
+      "value": {
+        "id": "10250",
+        "issueId": "10111",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Reproduced on rover 1 and rover 3 after a 20 minute sleep."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-08-03T09:30:00.000+0000",
+        "updated": "2026-08-03T09:30:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010111/0000010251",
+      "value": {
+        "id": "10251",
+        "issueId": "10111",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Frames look stale for about two seconds after wake; the driver reuses the last buffer."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-08-04T08:10:00.000+0000",
+        "updated": "2026-08-04T08:10:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010111/0000010252",
+      "value": {
+        "id": "10252",
+        "issueId": "10111",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Same symptom on the bench unit."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-08-05T10:00:00.000+0000",
+        "updated": "2026-08-05T10:00:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010111/0000010253",
+      "value": {
+        "id": "10253",
+        "issueId": "10111",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Priority raised to High",
+                  "marks": [
+                    {
+                      "type": "strong"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " before the docking demo."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-08-20T11:00:00.000+0000",
+        "updated": "2026-08-20T11:00:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010111/0000010254",
+      "value": {
+        "id": "10254",
+        "issueId": "10111",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000005",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000005",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Driver patch drafted before I left; see the branch in the notes."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-08-21T06:00:00.000+0000",
+        "updated": "2026-08-21T06:00:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010111/0000010255",
+      "value": {
+        "id": "10255",
+        "issueId": "10111",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Patch under test on rover 2."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Will reopen the discussion if the planner still starts without a map."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-09-13T16:00:00.000+0000",
+        "updated": "2026-09-13T16:00:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010101/0000010256",
+      "value": {
+        "id": "10256",
+        "issueId": "10101",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Odometry drift is within budget on flat ground."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-09-10T09:00:00.000+0000",
+        "updated": "2026-09-10T09:00:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010101/0000010257",
+      "value": {
+        "id": "10257",
+        "issueId": "10101",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000001",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Please add the slope test before review."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-09-12T15:45:00.000+0000",
+        "updated": "2026-09-12T15:45:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010105/0000010258",
+      "value": {
+        "id": "10258",
+        "issueId": "10105",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000006",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000006",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Telemetry attached: 3 arcing events between 06:12 and 06:38 UTC."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-08-28T06:41:00.000+0000",
+        "updated": "2026-08-28T06:41:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010115/0000010259",
+      "value": {
+        "id": "10259",
+        "issueId": "10115",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000002",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Loss starts at roughly 4k messages per second."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-07-09T08:00:00.000+0000",
+        "updated": "2026-07-09T08:00:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010115/0000010260",
+      "value": {
+        "id": "10260",
+        "issueId": "10115",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000004",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Dashboard confirms the drop; graph attached to the runbook."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-09-12T11:00:00.000+0000",
+        "updated": "2026-09-12T11:00:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010120/0000010261",
+      "value": {
+        "id": "10261",
+        "issueId": "10120",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Credentials rotated; audit of the incident window in progress."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-09-05T08:00:00.000+0000",
+        "updated": "2026-09-05T08:00:00.000+0000",
+        "jsdPublic": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "comments",
+      "rowId": "0000010117/0000010262",
+      "value": {
+        "id": "10262",
+        "issueId": "10117",
+        "authorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "updateAuthorAccountId": "712020:0f3b4a6e-1c2d-4e5f-8a9b-000000000003",
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Closing as cannot reproduce after the NTP fix."
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2026-08-26T10:30:00.000+0000",
+        "updated": "2026-08-26T10:30:00.000+0000",
+        "jsdPublic": true
+      }
+    }
+  ]
+}

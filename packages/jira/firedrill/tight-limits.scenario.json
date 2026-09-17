@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Site limits lowered below the starter data so every bounded scan fails FAILED_PRECONDITION instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "jira",
+      "namespace": "site",
+      "rowId": "site",
+      "value": {
+        "cloudId": "3f9c2b1e-7d4a-4c6e-9b8f-2a1d5e6f7c80",
+        "name": "stellarforge",
+        "baseUrl": "https://stellarforge.jira.example",
+        "serverTitle": "Stellarforge Jira",
+        "timeZone": "Europe/Berlin",
+        "locale": "en_US",
+        "defaultAssigneeType": "PROJECT_LEAD",
+        "limits": {
+          "maxUsers": 2,
+          "maxProjects": 2,
+          "maxMembersPerProject": 1,
+          "maxBoards": 1,
+          "maxSprints": 2,
+          "maxIssues": 5,
+          "maxCommentsPerIssue": 2
+        }
+      }
+    }
+  ]
+}

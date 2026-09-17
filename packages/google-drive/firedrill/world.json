@@ -1,0 +1,2306 @@
+{
+  "schemaVersion": 1,
+  "id": "google-drive-conformance-world",
+  "title": "Google Drive Tool conformance world",
+  "virtualTimeUs": 1789376400000000,
+  "actors": [
+    {
+      "id": "owner",
+      "description": "Dana Reyes: owns most of the starter Drive and shares folders with Sam; every operation granted.",
+      "attributes": {
+        "email": "dana.reyes@example.test",
+        "displayName": "Dana Reyes"
+      },
+      "grants": [
+        {
+          "packageId": "google-drive",
+          "operationId": "about.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.list"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.recent"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.create"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.update"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.copy"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.delete"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.empty-trash"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.export"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.download"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.read-content"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.list"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.create"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.update"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.delete"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "changes.start-page-token"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "changes.list"
+        }
+      ]
+    },
+    {
+      "id": "colleague",
+      "description": "Sam Okafor: owns his own Drive, edits Dana's Billing v2 folder by a direct share; every operation granted (restrictions come from roles).",
+      "attributes": {
+        "email": "sam.okafor@example.test",
+        "displayName": "Sam Okafor"
+      },
+      "grants": [
+        {
+          "packageId": "google-drive",
+          "operationId": "about.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.list"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.recent"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.create"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.update"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.copy"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.delete"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.empty-trash"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.export"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.download"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.read-content"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.list"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.create"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.update"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.delete"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "changes.start-page-token"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "changes.list"
+        }
+      ]
+    },
+    {
+      "id": "intern",
+      "description": "Ravi Menon: an almost-full 4 KiB storage quota so STORAGE_QUOTA_EXCEEDED is reachable without a fault; every operation granted.",
+      "attributes": {
+        "email": "ravi.menon@example.test",
+        "displayName": "Ravi Menon"
+      },
+      "grants": [
+        {
+          "packageId": "google-drive",
+          "operationId": "about.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.list"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.recent"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.create"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.update"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.copy"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.delete"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.empty-trash"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.export"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.download"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.read-content"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.list"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.create"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.update"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.delete"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "changes.start-page-token"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "changes.list"
+        }
+      ]
+    },
+    {
+      "id": "local-dev",
+      "description": "Fresh-install shaped actor: no identity attributes, every operation granted. Must act as the primary seeded user (dana.reyes@example.test).",
+      "grants": [
+        {
+          "packageId": "google-drive",
+          "operationId": "about.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.list"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.recent"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.create"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.update"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.copy"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.delete"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.empty-trash"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.export"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.download"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "files.read-content"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.list"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.get"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.create"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.update"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "permissions.delete"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "changes.start-page-token"
+        },
+        {
+          "packageId": "google-drive",
+          "operationId": "changes.list"
+        }
+      ]
+    },
+    {
+      "id": "auditor",
+      "description": "Has an address but no grants; every call is denied by the framework.",
+      "attributes": {
+        "email": "audit@example.test"
+      },
+      "grants": []
+    }
+  ],
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st000000000000000000000000000003",
+      "value": {
+        "fileId": "1st000000000000000000000000000003",
+        "kind": "text",
+        "data": "Billing v2 - design notes\n\nGoal\nReplace the monthly invoice batch with per-account billing runs that can be replayed. Every run reads the ledger\nsnapshot at 00:00 UTC and writes invoices, credit notes and the reconciliation report to the Billing v2 folder.\n\nDecisions so far\n1. Invoices are immutable once issued; corrections are credit notes.\n2. Tax rates come from the finance table, never from the account record.\n3. Runs are idempotent: re-running a day produces byte-identical documents.\n4. The vendor comparison (see the PDF in this folder) settled on the in-house renderer.\n\nOpen questions\n- Who approves credit notes above 2,000? Proposal: finance lead plus the account owner.\n- Do we keep the legacy batch for six months or three?\n- Which accounts need the invoice schedule sheet reviewed before go-live?\n\nNext steps\nSam drafts the schema changes; Dana updates the invoice schedule; kickoff deck review on Thursday.\nReviewers: Sam Okafor, Priya Natarajan (external), finance@example.test (group).\n\nAppendix: the reconciliation report lists every account with its opening balance, charges, payments and closing\nbalance, grouped by currency. Discrepancies above 0.01 are flagged for manual review; the report is a Google Sheet\ngenerated per run and linked from the run summary. Retention: seven years, in line with the finance policy.",
+        "byteLength": 1341
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st000000000000000000000000000004",
+      "value": {
+        "fileId": "1st000000000000000000000000000004",
+        "kind": "text",
+        "data": "account,plan,cadence,next_run,amount,currency,owner,status\nACME Ltd,enterprise,monthly,2026-10-01,12400.00,EUR,dana.reyes@example.test,active\nBorealis GmbH,team,monthly,2026-10-01,1890.00,EUR,sam.okafor@example.test,active\nCalder Studio,starter,annual,2027-01-15,480.00,USD,dana.reyes@example.test,active\nDelphine SA,team,monthly,2026-10-01,2250.00,EUR,sam.okafor@example.test,paused\nEverline Co,enterprise,quarterly,2026-12-01,31000.00,USD,dana.reyes@example.test,active\nFjord Labs,starter,monthly,2026-10-01,120.00,NOK,sam.okafor@example.test,active\nGranite Health,enterprise,monthly,2026-10-01,15800.00,USD,dana.reyes@example.test,review\nHalcyon Media,team,monthly,2026-10-01,1750.00,GBP,dana.reyes@example.test,active\nIris Robotics,starter,annual,2027-03-01,540.00,USD,sam.okafor@example.test,active\nJuniper Foods,team,monthly,2026-10-01,2100.00,USD,dana.reyes@example.test,active\nKestrel Air,enterprise,monthly,2026-10-01,22500.00,EUR,sam.okafor@example.test,active",
+        "byteLength": 970
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st000000000000000000000000000005",
+      "value": {
+        "fileId": "1st000000000000000000000000000005",
+        "kind": "text",
+        "data": "Slide 1 - Billing v2 kickoff\nReplayable per-account billing runs. Target: first production run on 1 October 2026.\n\nSlide 2 - Why now\nThe monthly batch fails silently on partial ledgers; finance reconciles by hand for two days each month.\n\nSlide 3 - Scope\nInvoices, credit notes, reconciliation report, invoice schedule. Out of scope: dunning, collections.\n\nSlide 4 - Team\nDana Reyes (lead), Sam Okafor (schema and runs), Priya Natarajan (external review), finance group (approvals).\n\nSlide 5 - Timeline\nSep 14 kickoff - Sep 25 schema freeze - Oct 1 first run - Oct 15 retro.\n\nSlide 6 - Risks\nTax table drift; renderer fonts; legacy batch overlap during the first month.",
+        "byteLength": 669
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st000000000000000000000000000006",
+      "value": {
+        "fileId": "1st000000000000000000000000000006",
+        "kind": "base64",
+        "data": "JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA1OTUgODQyXSAvUmVzb3VyY2VzIDw8IC9Gb250IDw8IC9GMSA1IDAgUiA+PiA+PiAvQ29udGVudHMgNCAwIFIgPj4KZW5kb2JqCjQgMCBvYmoKPDwgL0xlbmd0aCAyNjIyID4+CnN0cmVhbQpCVCAvRjEgMTEgVGYgMTQgVEwgNTYgNzgwIFRkIChSZW5kZXJlciB2ZW5kb3IgY29tcGFyaXNvbiAtIGZpbmFsKSAnICgpICcgKENyaXRlcmlhICAgICAgICAgIEluLWhvdXNlICAgVmVuZG9yIEEgICBWZW5kb3IgQikgJyAoQnl0ZS1pZGVudGljYWwgcmUtcnVucyAgIHllcyAgICAgICAgbm8gICAgICAgICBwYXJ0aWFsKSAnIChDcmVkaXQgbm90ZSB0ZW1wbGF0ZXMgICAgeWVzICAgICAgICB5ZXMgICAgICAgIG5vKSAnIChNb250aGx5IGNvc3QgICAgICAgICAgICAgaW5mcmEgICAgICAyLDQwMCAgICAgIDEsMTUwKSAnICgpICcgKERlY2lzaW9uOiBidWlsZCBvbiB0aGUgaW4taG91c2UgcmVuZGVyZXIuKSAnIChPd25lcjogRGFuYSBSZXllcy4gUmV2aWV3ZWQgd2l0aCBTYW0gT2thZm9yLCAyMDI2LTA2LTAyLikgJyBFVAolIC4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLgplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvQ291cmllciA+PgplbmRvYmoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE1IDAwMDAwIG4gCjAwMDAwMDAwNjQgMDAwMDAgbiAKMDAwMDAwMDEyMSAwMDAwMCBuIAowMDAwMDAwMjQ3IDAwMDAwIG4gCjAwMDAwMDI5MjAgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA2IC9Sb290IDEgMCBSID4+CnN0YXJ0eHJlZgoyOTg4CiUlRU9GCg==",
+        "byteLength": 3172
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st000000000000000000000000000007",
+      "value": {
+        "fileId": "1st000000000000000000000000000007",
+        "kind": "text",
+        "data": "# Platform roadmap (H2 2026)\n\n## Themes\n\n1. **Reliability first** - error budgets per service, paged only on customer-visible symptoms.\n2. **Observability** - one trace id from the edge to the ledger; structured logs everywhere; dashboards per team.\n3. **Billing v2** - replayable runs (see the Billing v2 folder under Projects).\n4. **Self-serve onboarding** - the checklist becomes an in-product flow.\n\n## Q3\n\n- Migrate the remaining batch jobs to the scheduler.\n- Ship the observability pipeline: OpenTelemetry collectors in every cluster, sampling at 10 percent.\n- Billing v2 schema freeze.\n\n## Q4\n\n- Billing v2 first production run (1 October) and retro.\n- Deprecate the legacy invoice batch after one clean month.\n- Cost review: storage tiers for archives older than a year.\n\n## Not doing\n\n- Multi-region writes (revisit in 2027).\n- A second data warehouse.\n\n## Owners\n\nDana Reyes (platform), Sam Okafor (billing), the design system group (self-serve onboarding).\n\n## Notes\n\nEvery item links to a tracking issue; this document is the narrative, not the source of truth. Updated on the\nfirst Monday of each month; ping Dana for edits.",
+        "byteLength": 1138
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st000000000000000000000000000009",
+      "value": {
+        "fileId": "1st000000000000000000000000000009",
+        "kind": "text",
+        "data": "2025 retro\n\nWhat went well: the scheduler migration, the offsite, fewer pages in December.\nWhat did not: the invoice batch, the archive cleanup, too many dashboards nobody reads.\nActions: replayable billing runs; one dashboard per team; archive policy.",
+        "byteLength": 252
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000a",
+      "value": {
+        "fileId": "1st00000000000000000000000000000a",
+        "kind": "text",
+        "data": "line,category,planned,actual,note\n1,infra,42000,44100,cluster growth\n2,tooling,9000,8700,license renewal\n3,travel,3000,2100,offsite moved to Q4\n4,training,4000,3900,security course\n5,contractors,12000,15600,design system\n6,software,7000,7000,fixed\n7,events,2500,900,one meetup\n8,recruiting,6000,4800,two hires\n9,hardware,5000,5300,laptops\n10,contingency,3000,0,unused\n11,total,93500,92400,\n12,variance,,-1100,under budget\n13,owner,dana.reyes@example.test,,\n14,reviewed,sam.okafor@example.test,,\n15,period,2025,,\n16,status,closed,,\n17,currency,EUR,,\n18,notes,see the 2025 retro,,\n19,,,,\n20,end,,,",
+        "byteLength": 595
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000b",
+      "value": {
+        "fileId": "1st00000000000000000000000000000b",
+        "kind": "text",
+        "data": "Team handbook\n\nWelcome. This handbook is shared with anyone who has the link so contractors and candidates can read it.\n\nHow we work\n- Written first: decisions live in documents, meetings confirm them.\n- Working hours are flexible; core overlap is 10:00-15:00 in the team's main zone.\n- Every change to production goes through review; no exceptions for emergencies (use the incident channel).\n\nCommunication\n- Async by default. Tag the owner, not the whole channel.\n- Weekly notes are published every Monday morning and archived in the Meeting notes documents.\n- Decisions are recorded with a date, the options considered and who decided.\n\nTools\n- Drive for documents and sheets; the Projects folder holds anything with a deadline.\n- The design system lives in Sam's folder and is shared with the platform team as editors.\n- The onboarding checklist is visible to everyone in the domain.\n\nLeave and travel\n- Book leave two weeks ahead where possible; offsites are announced a quarter ahead.\n- Expense reports are a spreadsheet per month, reviewed by the team lead.\n\nSecurity\n- Hardware keys for every account. Never share links to files marked confidential.\n- Report lost devices within the hour.\n\nReading list\n- The platform roadmap (Projects folder).\n- The 2025 retro (archived).\n- The billing v2 design notes once you join that project.\n\nQuestions go to Dana Reyes. This document is updated quarterly; the last review was in August 2026.",
+        "byteLength": 1440
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000c",
+      "value": {
+        "fileId": "1st00000000000000000000000000000c",
+        "kind": "text",
+        "data": "Onboarding checklist\n\nDay 1\n- Laptop, hardware key, accounts (mail, Drive, calendar, issue tracker).\n- Read the team handbook.\n- Meet your buddy.\n\nWeek 1\n- Ship one small change with review.\n- Join the weekly notes; add a line about what you learned.\n- Set up the local environment for the platform repo.\n\nMonth 1\n- Own one small project end to end.\n- Present a ten-minute lightning talk.\n- Give feedback on this checklist.\n\nOwner: Dana Reyes. Visible to everyone at example.test.",
+        "byteLength": 480
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000d",
+      "value": {
+        "fileId": "1st00000000000000000000000000000d",
+        "kind": "base64",
+        "data": "UEsDBBQAAAAIAABIwVzJTxqw6wAAAK4BAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbH1QvU7DMBDeeQrLK4odGBBCSTrwMwJDeYCTfUks7LPlc0v79jht6YAK4933q69b7YIXW8zsIvXyRrVSIJloHU29/Fi/NPdScAGy4CNhL/fIcjVcdet9QhZVTNzLuZT0oDWbGQOwigmpImPMAUo986QTmE+YUN+27Z02kQpSacriIYfuCUfY+CKed/V9LJLRsxSPR+KS1UtIyTsDpeJ6S/ZXSnNKUFV54PDsEl9XgtQXExbk74CT7q0uk51F8Q65vEKoLP0Vs9U2mk2oSvW/zYWecRydwbN+cUs5GmSukwevzkgARz/99WHu4RtQSwMEFAAAAAgAAEjBXLmBRHGwAAAAKgEAAAsAAABfcmVscy8ucmVsc43POw7CMAwG4J1TRN5pWgaEUJMuCKkrKgeIEjeNaB5KwqO3JwMDIAZG278/y233sDO5YUzGOwZNVQNBJ70yTjM4D8f1DkjKwikxe4cMFkzQ8VV7wlnkspMmExIpiEsMppzDntIkJ7QiVT6gK5PRRytyKaOmQciL0Eg3db2l8d0A/mGSXjGIvWqADEvAf2w/jkbiwcurRZd/nPhKFFlEjZnB3UdF1atdFRYob+nHi/wJUEsDBBQAAAAIAABIwVwWl5EsIwIAAMwEAAARAAAAd29yZC9kb2N1bWVudC54bWydlNtu2kAQhu/7FCNf9HCBDaSNKgJEQECq1DRRoA+w3h3wKt5DZ9cQv31mTSHtRaWKm4FdD/9888/g8e2LqWGPFLSzk2yQ9zNAK53SdjfJfm5Wva8ZhCisErWzOMlaDNnt9N34MFJONgZtBFawYXSYZFWMflQUQVZoRMidR8vPto6MiHykXXFwpDw5iSFwAVMXw37/ujBC22zKkqVTbfr0KVAKnfooeCG5ticMSHvMpvciRCRY80mzGMx2hNjB9ODuabbajAv+7TRF6qL/L9k5xgOiheWLML5GmOu6Zk74HhV8fP+rcfHmkdxeK6Tj6ROwMzBb3C9h4cg7EpF9POUumhCdOefml0EN8nOfOZzKw4HRgB3migixQuCvPSGla9iE8jc3NTaAwiBJl6hAW1jzbFTDrc0upBnmsEEyHLmmONvOK0IxAPc+gAcZXcmIw/7wuvOnw+A1AHa33iMYZ2MVLgS4ymGFyYqTu+BFGzoLOt26hS3iX73O2a1Y8c1VH1RKdltAIStO2jv29UKSz3kaOqFMM2egbyE0ncudaABBjGFME0VZ4w3It9zukREKoWxBEiodwbp4KciXBGK3vBc2alHr2OawTP15HkoLz4j+aJDjQB8C17I935S1lkx7/H+mtZV/iFyIso4iNmEEisQ2djMn3Gs8pEbXwsDDs0iXaSvuhBXwhG2a5Q93TA56Z1mA/uFEYP8eqeguju+K4u09NH0FUEsBAhQAFAAAAAgAAEjBXMlPGrDrAAAArgEAABMAAAAAAAAAAAAAAKQBAAAAAFtDb250ZW50X1R5cGVzXS54bWxQSwECFAAUAAAACAAASMFcuYFEcbAAAAAqAQAACwAAAAAAAAAAAAAApAEcAQAAX3JlbHMvLnJlbHNQSwECFAAUAAAACAAASMFcFpeRLCMCAADMBAAAEQAAAAAAAAAAAAAApAH1AQAAd29yZC9kb2N1bWVudC54bWxQSwUGAAAAAAMAAwC5AAAARwQAANoOU3ludGhldGljIGRvY3VtZW50IGZvciBGaXJlZHJpbGwgdGVzdCB3b3JsZHMuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA==",
+        "byteLength": 5104
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000g",
+      "value": {
+        "fileId": "1st00000000000000000000000000000g",
+        "kind": "base64",
+        "data": "UEsDBBQAAAAIAABIwVzFLx19AAEAAC4CAAATAAAAW0NvbnRlbnRfVHlwZXNdLnhtbK2RzU7DMBCE7zyF5WsVO+WAEErSQ4EjcCgPsDibxIr/5HVL+vY4aeGAClw4reyZ2W9kV5vJGnbASNq7mq9FyRk65Vvt+pq/7h6LW84ogWvBeIc1PyLxTXNV7Y4BieWwo5oPKYU7KUkNaIGED+iy0vloIeVj7GUANUKP8rosb6TyLqFLRZp38Ka6xw72JrGHKV+fikQ0xNn2ZJxZNYcQjFaQsi4Prv1GKc4EkZOLhwYdaJUNXF4kzMrPgHPuOb9M1C2yF4jpCWx2ycnIdx/HN+9H8fuSCy1912mFrVd7myOCQkRoaUBM1ohlCgvarf7mL2aSy1j/c5Gv/Z895PLdzQdQSwMEFAAAAAgAAEjBXAZZx4KxAAAAKAEAAAsAAABfcmVscy8ucmVsc43PsQ6CMBAG4N2naG6XgoMxhsJiTFgNPkBtj0KAXtNWhbe3oxoHx8v99/25sl7miT3Qh4GsgCLLgaFVpAdrBFzb8/YALERptZzIooAVA9TVprzgJGO6Cf3gAkuIDQL6GN2R86B6nGXIyKFNm478LGMaveFOqlEa5Ls833P/bkD1YbJGC/CNLoC1q8N/bOq6QeGJ1H1GG39UfCWSLL3BKGCZ+JP8eCMas4QCr0r+8WD1AlBLAwQUAAAACAAASMFcwsrPor8AAAAcAQAADwAAAHhsL3dvcmtib29rLnhtbI2PTW7CQAyF9z3FyPsygQVCURKEhJDYlwNMM04ySsaO7EkLt2eAsu/Kf3qf36v21ziZHxQNTDWsVwUYpJZ9oL6Gy9fpcwdGkyPvJias4YYK++aj+mUZv5lHk/WkNQwpzaW12g4Yna54RsqXjiW6lEfprc6CzuuAmOJkN0WxtdEFghehlP8wuOtCi0dul4iUXhDByaXsXocwKzTV84P+VUMuZteHpV805SSP3dnnoGCkDLmRs1+DbSr7ltl3suYOUEsDBBQAAAAIAABIwVyabzx8tQAAACkBAAAaAAAAeGwvX3JlbHMvd29ya2Jvb2sueG1sLnJlbHONz80KwjAMB/C7T1Fyd9k8iMi6XUTYVeYDlC77YFtbmvqxt7d4EAcePIXkT34hefmcJ3Enz4M1ErIkBUFG22YwnYRrfd4eQHBQplGTNSRhIYay2OQXmlSIO9wPjkVEDEvoQ3BHRNY9zYoT68jEpLV+ViG2vkOn9Kg6wl2a7tF/G1CsTFE1EnzVZCDqxdE/tm3bQdPJ6ttMJvw4gQ/rR+6JQkSV7yhI+IwY3yVLogpY5Lj6sHgBUEsDBBQAAAAIAABIwVzgOSEDiAEAAFoFAAAYAAAAeGwvd29ya3NoZWV0cy9zaGVldDEueG1slZTNbsMgDIDvewrEvSEhP2unJFXXaLddtu4BUOo1aAlEwNLu7UejKZomo2q3YPwZf4qh3F6GnkxgrNSqokkUUwKq1UepThV9Ozyt1pRYJ9RR9FpBRb/A0m19V561+bAdgCO+gLIV7ZwbHxizbQeDsJEeQfmdd20G4fzSnJgdDYjjDA0943FcsEFIRetyjjXCibo0+kyMb8RH2+vHLqHEVVSqXip4dcbHpa1LV/t0KJmrS3Zds/Yn/zGU/wym7YRyCLMPMXt/xkmbL4RpQsxu0J9/T2HealHjixoPlOAxL1bxehVnmGCIehGyJ6OwFjMMQQcjJugxv2ubU53xKC/ZhGiki0Z6QyNJMI0QdQAxkP5TtR3mEaKeQfSYeJPOGkmyjjjukS0e2S2PDeYRovZavYPxdwmIk+0HoIMXgv1vkcpfQcwom43SbIP75ItPfsOH32M+IeogLhJTCOYHJyufBXga3QdGq1gUilBx7QRW+zEEYJ3/I7cp5p7zNI2yv02zX68XW57F+htQSwECFAAUAAAACAAASMFcxS8dfQABAAAuAgAAEwAAAAAAAAAAAAAApAEAAAAAW0NvbnRlbnRfVHlwZXNdLnhtbFBLAQIUABQAAAAIAABIwVwGWceCsQAAACgBAAALAAAAAAAAAAAAAACkATEBAABfcmVscy8ucmVsc1BLAQIUABQAAAAIAABIwVzCys+ivwAAABwBAAAPAAAAAAAAAAAAAACkAQsCAAB4bC93b3JrYm9vay54bWxQSwECFAAUAAAACAAASMFcmm88fLUAAAApAQAAGgAAAAAAAAAAAAAApAH3AgAAeGwvX3JlbHMvd29ya2Jvb2sueG1sLnJlbHNQSwECFAAUAAAACAAASMFc4DkhA4gBAABaBQAAGAAAAAAAAAAAAAAApAHkAwAAeGwvd29ya3NoZWV0cy9zaGVldDEueG1sUEsFBgAAAAAFAAUARQEAAKIFAACLClN5bnRoZXRpYyBkb2N1bWVudCBmb3IgRmlyZWRyaWxsIHRlc3Qgd29ybGRzLiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg",
+        "byteLength": 4488
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000h",
+      "value": {
+        "fileId": "1st00000000000000000000000000000h",
+        "kind": "text",
+        "data": "Meeting notes 2026-09-10\n\nAttendees: Dana, Sam, Ravi (intern).\n\nTopics\n1. Billing v2 schema: Sam walked through the account and invoice tables; Dana asked for the credit note flow.\n2. Offsite photos: Sam shared the folder; Dana to pick three for the newsletter.\n3. Intern project: Ravi will tidy the archive folder and propose a retention policy.\n\nDecisions\n- Schema freeze stays on 25 September.\n- Credit notes reference the original invoice id; no partial invoices.\n\nActions\n- Sam: publish the schema doc by Friday.\n- Dana: review the invoice schedule sheet.\n- Ravi: draft the retention policy in a new document.\n\nNext meeting: 12 September.",
+        "byteLength": 643
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000i",
+      "value": {
+        "fileId": "1st00000000000000000000000000000i",
+        "kind": "text",
+        "data": "Meeting notes 2026-09-12\n\nAttendees: Dana, Sam.\n\nTopics\n1. Schema doc published; Dana reviewed the credit note section.\n2. Kickoff deck: slide 6 risks need the legacy overlap plan.\n3. Vendor comparison: in-house renderer confirmed.\n\nDecisions\n- Kickoff on Monday 14 September at 10:00.\n- Sam becomes editor on the Billing v2 folder (already shared).\n\nActions\n- Dana: finish the deck.\n- Sam: prepare the demo data set.\n\nNext meeting: 17 September.",
+        "byteLength": 446
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000j",
+      "value": {
+        "fileId": "1st00000000000000000000000000000j",
+        "kind": "base64",
+        "data": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAD0XRFWHRDb21tZW50AGxvZ28ucG5nIC0gc3ludGhldGljIGJyYW5kIHRpbGUgZm9yIEZpcmVkcmlsbCB0ZXN0IHdvcmxkcy4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIJFbZ5AAAACqSURBVHja5VZBDoAgDJN+woPf9Bl+04OvQA6GEBDYcAyNxCO0a7sJxlo79VyYOi+TKljWoxlu3+YSwRPoHA3E0SOo7hlAvPwIUEvBPwhc8/lPniACpXO8w6LbeokiwEJ33R1ODIVjtEVR+enYV0WAO/rcXwu42XK3gWVOTkSBY1DI1fLpIsDKtmEDmrMlHrwuffEbzfNphdxsS9UuxTYVFBFC6T4dP/mqOAGOeFppjqSApgAAAABJRU5ErkJggg==",
+        "byteLength": 1216
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000l",
+      "value": {
+        "fileId": "1st00000000000000000000000000000l",
+        "kind": "text",
+        "data": "Q3 planning notes\n\nOwner: Sam Okafor. Shared with Dana as a viewer.\n\nObjectives\n1. Billing v2 schema frozen and reviewed.\n2. Design system tokens published as JSON and consumed by two apps.\n3. Component inventory complete with owners and status.\n\nKey results\n- Schema review sign-off from platform and finance by 25 September.\n- Tokens file (Tokens.json) published from the Design system folder; version 1.2.\n- Inventory sheet lists every component with a usage count and an owner.\n\nRisks\n- Finance review capacity in September.\n- Token naming changes ripple into two apps.\n\nWeekly checkpoints on Fridays; notes appended below.\n\nWeek 36: schema draft circulated. Week 37: kickoff scheduled; inventory at 70 percent.",
+        "byteLength": 715
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000m",
+      "value": {
+        "fileId": "1st00000000000000000000000000000m",
+        "kind": "text",
+        "data": "band,level,min,mid,max,currency\nIC1,junior,42000,48000,54000,EUR\nIC2,mid,54000,62000,70000,EUR\nIC3,senior,70000,82000,94000,EUR\nIC4,staff,94000,108000,122000,EUR\nM1,lead,86000,98000,110000,EUR\nM2,head,110000,128000,146000,EUR\nnote,confidential - do not share,,,,",
+        "byteLength": 262
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000o",
+      "value": {
+        "fileId": "1st00000000000000000000000000000o",
+        "kind": "text",
+        "data": "{\n  \"$schema\": \"https://design.example.test/tokens.schema.json\",\n  \"version\": \"1.2.0\",\n  \"color\": {\n    \"brand\": {\n      \"primary\": \"#0b57d0\",\n      \"secondary\": \"#c2e7ff\",\n      \"accent\": \"#ea4335\"\n    },\n    \"surface\": {\n      \"background\": \"#f8fafd\",\n      \"container\": \"#ffffff\",\n      \"hover\": \"rgba(68,71,70,0.08)\"\n    },\n    \"text\": {\n      \"primary\": \"#1f1f1f\",\n      \"secondary\": \"#444746\",\n      \"disabled\": \"#9aa0a6\"\n    },\n    \"state\": {\n      \"success\": \"#34a853\",\n      \"warning\": \"#fbbc04\",\n      \"error\": \"#ea4335\"\n    }\n  },\n  \"radius\": {\n    \"small\": 8,\n    \"medium\": 16,\n    \"large\": 24,\n    \"pill\": 999\n  },\n  \"spacing\": {\n    \"xs\": 4,\n    \"sm\": 8,\n    \"md\": 16,\n    \"lg\": 24,\n    \"xl\": 32\n  },\n  \"typography\": {\n    \"family\": {\n      \"body\": \"Roboto, system-ui, sans-serif\",\n      \"heading\": \"Roboto, system-ui, sans-serif\"\n    },\n    \"size\": {\n      \"caption\": 12,\n      \"body\": 14,\n      \"title\": 16,\n      \"headline\": 22,\n      \"display\": 28\n    },\n    \"weight\": {\n      \"regular\": 400,\n      \"medium\": 500,\n      \"bold\": 700\n    }\n  },\n  \"elevation\": {\n    \"card\": \"0 1px 2px rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15)\",\n    \"menu\": \"0 2px 6px 2px rgba(60,64,67,0.15)\"\n  },\n  \"motion\": {\n    \"fast\": \"120ms\",\n    \"standard\": \"200ms\",\n    \"slow\": \"320ms\",\n    \"easing\": \"cubic-bezier(0.2, 0, 0, 1)\"\n  },\n  \"owners\": [\n    \"sam.okafor@example.test\"\n  ],\n  \"consumers\": [\n    \"billing-web\",\n    \"onboarding-flow\"\n  ]\n}",
+        "byteLength": 1451
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000p",
+      "value": {
+        "fileId": "1st00000000000000000000000000000p",
+        "kind": "text",
+        "data": "component,status,owner,usages,notes\nButton,stable,sam.okafor@example.test,214,three sizes\nTextField,stable,sam.okafor@example.test,98,error state pending\nDialog,beta,sam.okafor@example.test,31,focus trap review\nChip,stable,dana.reyes@example.test,57,filter chips only\nTable,beta,sam.okafor@example.test,12,virtualised rows\nSnackbar,stable,sam.okafor@example.test,40,queue of one\nAvatar,stable,dana.reyes@example.test,66,initials fallback",
+        "byteLength": 437
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000r",
+      "value": {
+        "fileId": "1st00000000000000000000000000000r",
+        "kind": "base64",
+        "data": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAkCAIAAABAJy5dAAABZXRFWHRDb21tZW50AElNR18wNDAxICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkxGhFAAABHklEQVR42mOs2PKaYTABJoZBBkYdRAgwtu15Q1DR//9EGMSIT7ZSqgqZ2/a0bSBDCM01QFAlXTVgDsJ0DX43Db40NPXIO4KK/hGRhphwpKEsoQpcWqa87RjN9oPQQdPedRAfX6A0tPjMB5qmIQiI4SpD5i762oUzUdPHQSSYM5qoCZVDm658IqjoLxGVGTMjI1XMGY2yoZeGDtz5MpqG8IaQTYUbQUWNyWsJqqmfG0wVc4hy0GguG1RpyDjHlqAiTh5Ogmq+f/lOFXOIctB/IrIrIxHZ/v9o1UGNNKSVaEJQEQcXB0E1P779oIo5RDnoPxFNPUYimozEmDOahgiGtFKoDkFF7FzsBNX8/PaTKuYQ5aB///4RDmomJqqYAwB08F4IBv5PXAAAAABJRU5ErkJggg==",
+        "byteLength": 712
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000s",
+      "value": {
+        "fileId": "1st00000000000000000000000000000s",
+        "kind": "base64",
+        "data": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAkCAIAAABAJy5dAAABZHRFWHRDb21tZW50AElNR18wNDAyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEMVgb8AAAERSURBVHjaY9SIWsUwmAATwyADow4iBBjNMjYTVPT//3/CBjEyUsWcoRNCJ/NQxM0m+gxkCKG5BghO5W+hUwi5lu9BE9oVj7NkcpkfitNnTIRD6N+//6PZfhiWQ8GtR9GE1gQuxKU6aG3cAKShkPXxpLqG5lGG6Sb6uAZ7lJEZ1FSKMsakKecIKvr79x9BNczMTFQxZzTbD71yqGDR9dE0hDeERKJ6CCqKdPUkqGb57u1UMYcoB43mskGVhgT9agnnIB5+wjnoy0eqmEOUg0Z0N2jwpSE+53zCrubiJdy0+PaZKuYQ5aD//wgX+YxMTFQxZzQNEQxpbvNEIuKeh4g09IUq5hDloP///hCRhlioYg4ADktlL22geR4AAAAASUVORK5CYII=",
+        "byteLength": 698
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "contents",
+      "rowId": "1st00000000000000000000000000000t",
+      "value": {
+        "fileId": "1st00000000000000000000000000000t",
+        "kind": "base64",
+        "data": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAkCAIAAABAJy5dAAABmnRFWHRDb21tZW50AElNR18wNDAzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICCn1cAAAAD8SURBVHjaY/w1LYphMAEmhkEGRh1ECDD+WpAyGkKjDqIsDa3OJ6zq/38iTGKkijmjUTYE09C2qtE0NOogytLQwVbCqv79wyPJKv4Ymfv7tTx55lAnhNBcAxIRfThgUYbpGsrdNAjT0JkJZKchVp4buHT8/qY1MGmI+iEU5WZDUNGCliBSQyi64Brx5pDsIDxg6QQtIl1Dp0SNaTclrqFCCFE/DfnZmhBUxMPJQVDNl+8/qGIOUQ6iY+tjtLYnHNLOJroEFXFxsBNU8+3HT6qYQ5SD/hHT9CQiEf0bbcJSIw2Z66gRjnt2NsJp6OcvqphDlIP+EdNsYGKiijkAA6lSQ5FvuqAAAAAASUVORK5CYII=",
+        "byteLength": 731
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000000",
+      "value": {
+        "id": "1st000000000000000000000000000000",
+        "name": "My Drive",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2024-01-08T09:00:00.000Z",
+        "modifiedTime": "2024-01-08T09:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000001",
+      "value": {
+        "id": "1st000000000000000000000000000001",
+        "name": "Projects",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-06-02T08:15:00.000Z",
+        "modifiedTime": "2026-09-01T10:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "folderColorRgb": "#4285f4"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000002",
+      "value": {
+        "id": "1st000000000000000000000000000002",
+        "name": "Billing v2",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000001"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-08-03T09:30:00.000Z",
+        "modifiedTime": "2026-09-12T16:20:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 3,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000003",
+      "value": {
+        "id": "1st000000000000000000000000000003",
+        "name": "Billing v2 - design notes",
+        "mimeType": "application/vnd.google-apps.document",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000002"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-08-04T10:00:00.000Z",
+        "modifiedTime": "2026-09-11T15:45:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 7,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "description": "Working notes for the replayable billing runs.",
+        "size": 1341
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000004",
+      "value": {
+        "id": "1st000000000000000000000000000004",
+        "name": "Invoice schedule",
+        "mimeType": "application/vnd.google-apps.spreadsheet",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000002"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-08-05T11:00:00.000Z",
+        "modifiedTime": "2026-09-10T09:05:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 4,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 970
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000005",
+      "value": {
+        "id": "1st000000000000000000000000000005",
+        "name": "Kickoff deck",
+        "mimeType": "application/vnd.google-apps.presentation",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000002"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-09-08T14:00:00.000Z",
+        "modifiedTime": "2026-09-12T17:30:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 5,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 669
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000006",
+      "value": {
+        "id": "1st000000000000000000000000000006",
+        "name": "Vendor comparison.pdf",
+        "mimeType": "application/pdf",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000002"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-08-20T13:10:00.000Z",
+        "modifiedTime": "2026-08-20T13:10:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 1,
+        "contentKind": "base64",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "description": "Renderer vendor comparison, final.",
+        "size": 3172,
+        "md5Checksum": "77bd78ab486dc68be7bb940b0c9863a1",
+        "headRevisionId": "0B00000000000000000001",
+        "originalFilename": "Vendor comparison.pdf"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000007",
+      "value": {
+        "id": "1st000000000000000000000000000007",
+        "name": "Platform roadmap.md",
+        "mimeType": "text/markdown",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000001"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-07-01T09:00:00.000Z",
+        "modifiedTime": "2026-09-07T08:40:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 6,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "properties": {
+          "team": "platform",
+          "quarter": "H2-2026"
+        },
+        "appProperties": {
+          "syncedBy": "roadmap-bot"
+        },
+        "size": 1138,
+        "md5Checksum": "f27140d505bec9ccff65ff7a58d65100",
+        "headRevisionId": "0B00000000000000000002",
+        "originalFilename": "Platform roadmap.md"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000008",
+      "value": {
+        "id": "1st000000000000000000000000000008",
+        "name": "Archive",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000001"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-01-12T10:00:00.000Z",
+        "modifiedTime": "2026-01-12T10:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st000000000000000000000000000009",
+      "value": {
+        "id": "1st000000000000000000000000000009",
+        "name": "2025 retro.txt",
+        "mimeType": "text/plain",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000008"
+        ],
+        "trashed": true,
+        "explicitlyTrashed": true,
+        "createdTime": "2025-12-19T16:00:00.000Z",
+        "modifiedTime": "2025-12-19T16:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 2,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "trashedTime": "2026-09-01T08:00:00.000Z",
+        "trashingUser": "dana.reyes@example.test",
+        "size": 252,
+        "md5Checksum": "3920d68ca8203609ad9cd2fe7ca4320f",
+        "headRevisionId": "0B00000000000000000003",
+        "originalFilename": "2025 retro.txt"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000a",
+      "value": {
+        "id": "1st00000000000000000000000000000a",
+        "name": "Old budget.csv",
+        "mimeType": "text/csv",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000008"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2025-11-03T09:00:00.000Z",
+        "modifiedTime": "2026-01-10T11:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 3,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 595,
+        "md5Checksum": "ebea8d43ffadfd91fbfdb7ec4d5625f6",
+        "headRevisionId": "0B00000000000000000004",
+        "originalFilename": "Old budget.csv"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000b",
+      "value": {
+        "id": "1st00000000000000000000000000000b",
+        "name": "Team handbook",
+        "mimeType": "application/vnd.google-apps.document",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2025-03-11T09:00:00.000Z",
+        "modifiedTime": "2026-08-18T10:30:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 12,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 1440
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000c",
+      "value": {
+        "id": "1st00000000000000000000000000000c",
+        "name": "Onboarding checklist",
+        "mimeType": "application/vnd.google-apps.document",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2025-05-06T09:00:00.000Z",
+        "modifiedTime": "2026-07-22T14:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 5,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 480
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000d",
+      "value": {
+        "id": "1st00000000000000000000000000000d",
+        "name": "Contract draft - ACME.docx",
+        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-09-02T12:00:00.000Z",
+        "modifiedTime": "2026-09-09T10:15:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 2,
+        "contentKind": "base64",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 5104,
+        "md5Checksum": "293f302ba888742ff5830fc6bfaa7d9d",
+        "headRevisionId": "0B00000000000000000005",
+        "originalFilename": "Contract draft - ACME.docx"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000e",
+      "value": {
+        "id": "1st00000000000000000000000000000e",
+        "name": "Screenshots",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-09-13T18:00:00.000Z",
+        "modifiedTime": "2026-09-13T18:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000f",
+      "value": {
+        "id": "1st00000000000000000000000000000f",
+        "name": "Shortcut to Q3 planning notes",
+        "mimeType": "application/vnd.google-apps.shortcut",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-09-09T09:20:00.000Z",
+        "modifiedTime": "2026-09-09T09:20:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "shortcutDetails": {
+          "targetId": "1st00000000000000000000000000000l",
+          "targetMimeType": "application/vnd.google-apps.document"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000g",
+      "value": {
+        "id": "1st00000000000000000000000000000g",
+        "name": "Expense report - August.xlsx",
+        "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-09-03T08:00:00.000Z",
+        "modifiedTime": "2026-09-04T09:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 2,
+        "contentKind": "base64",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 4488,
+        "md5Checksum": "bccc2ccf49034652ac166dfd0ef9e74d",
+        "headRevisionId": "0B00000000000000000006",
+        "originalFilename": "Expense report - August.xlsx"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000h",
+      "value": {
+        "id": "1st00000000000000000000000000000h",
+        "name": "Meeting notes 2026-09-10",
+        "mimeType": "application/vnd.google-apps.document",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-09-10T10:00:00.000Z",
+        "modifiedTime": "2026-09-10T11:05:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 3,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 643
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000i",
+      "value": {
+        "id": "1st00000000000000000000000000000i",
+        "name": "Meeting notes 2026-09-12",
+        "mimeType": "application/vnd.google-apps.document",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-09-12T10:00:00.000Z",
+        "modifiedTime": "2026-09-12T10:50:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 2,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 446
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000j",
+      "value": {
+        "id": "1st00000000000000000000000000000j",
+        "name": "logo.png",
+        "mimeType": "image/png",
+        "ownerEmail": "dana.reyes@example.test",
+        "parents": [
+          "1st000000000000000000000000000000"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-05-20T15:00:00.000Z",
+        "modifiedTime": "2026-05-20T15:00:00.000Z",
+        "lastModifyingUser": "dana.reyes@example.test",
+        "version": 1,
+        "contentKind": "base64",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 1216,
+        "md5Checksum": "3c5a8706bdefa092825b0822fe83c2d7",
+        "headRevisionId": "0B00000000000000000007",
+        "originalFilename": "logo.png"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000k",
+      "value": {
+        "id": "1st00000000000000000000000000000k",
+        "name": "My Drive",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2024-02-19T09:00:00.000Z",
+        "modifiedTime": "2024-02-19T09:00:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000l",
+      "value": {
+        "id": "1st00000000000000000000000000000l",
+        "name": "Q3 planning notes",
+        "mimeType": "application/vnd.google-apps.document",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000k"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-07-14T09:00:00.000Z",
+        "modifiedTime": "2026-09-11T17:00:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 9,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 715
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000m",
+      "value": {
+        "id": "1st00000000000000000000000000000m",
+        "name": "Private - salary bands",
+        "mimeType": "application/vnd.google-apps.spreadsheet",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000k"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-03-02T09:00:00.000Z",
+        "modifiedTime": "2026-06-30T12:00:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 4,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 262
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000n",
+      "value": {
+        "id": "1st00000000000000000000000000000n",
+        "name": "Design system",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000k"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-04-07T09:00:00.000Z",
+        "modifiedTime": "2026-09-05T09:00:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 2,
+        "contentKind": "none",
+        "writersCanShare": false,
+        "copyRequiresWriterPermission": false,
+        "root": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000o",
+      "value": {
+        "id": "1st00000000000000000000000000000o",
+        "name": "Tokens.json",
+        "mimeType": "application/json",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000n"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-04-07T09:30:00.000Z",
+        "modifiedTime": "2026-09-05T09:00:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 5,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 1451,
+        "md5Checksum": "21e0de1b5d70990145bab6accf29b906",
+        "headRevisionId": "0B00000000000000000008",
+        "originalFilename": "Tokens.json"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000p",
+      "value": {
+        "id": "1st00000000000000000000000000000p",
+        "name": "Component inventory",
+        "mimeType": "application/vnd.google-apps.spreadsheet",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000k"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-04-08T09:00:00.000Z",
+        "modifiedTime": "2026-09-06T16:00:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 6,
+        "contentKind": "text",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": true,
+        "root": false,
+        "size": 437
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000q",
+      "value": {
+        "id": "1st00000000000000000000000000000q",
+        "name": "Offsite photos",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000k"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-08-29T20:00:00.000Z",
+        "modifiedTime": "2026-08-29T21:00:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000r",
+      "value": {
+        "id": "1st00000000000000000000000000000r",
+        "name": "IMG_0401.png",
+        "mimeType": "image/png",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000q"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-08-29T20:01:00.000Z",
+        "modifiedTime": "2026-08-29T20:01:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 1,
+        "contentKind": "base64",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 712,
+        "md5Checksum": "213623329c5197d32043dd891eb11eb4",
+        "headRevisionId": "0B00000000000000000009",
+        "originalFilename": "IMG_0401.png"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000s",
+      "value": {
+        "id": "1st00000000000000000000000000000s",
+        "name": "IMG_0402.png",
+        "mimeType": "image/png",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000q"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-08-29T20:02:00.000Z",
+        "modifiedTime": "2026-08-29T20:02:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 1,
+        "contentKind": "base64",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 698,
+        "md5Checksum": "039e8a4553dbb6ca82f312ff22f260a9",
+        "headRevisionId": "0B0000000000000000000a",
+        "originalFilename": "IMG_0402.png"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000t",
+      "value": {
+        "id": "1st00000000000000000000000000000t",
+        "name": "IMG_0403.png",
+        "mimeType": "image/png",
+        "ownerEmail": "sam.okafor@example.test",
+        "parents": [
+          "1st00000000000000000000000000000q"
+        ],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-08-29T20:03:00.000Z",
+        "modifiedTime": "2026-08-29T20:03:00.000Z",
+        "lastModifyingUser": "sam.okafor@example.test",
+        "version": 1,
+        "contentKind": "base64",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": false,
+        "size": 731,
+        "md5Checksum": "294832abb1e6821072757f02163787c6",
+        "headRevisionId": "0B0000000000000000000b",
+        "originalFilename": "IMG_0403.png"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "files",
+      "rowId": "1st00000000000000000000000000000u",
+      "value": {
+        "id": "1st00000000000000000000000000000u",
+        "name": "My Drive",
+        "mimeType": "application/vnd.google-apps.folder",
+        "ownerEmail": "ravi.menon@example.test",
+        "parents": [],
+        "trashed": false,
+        "explicitlyTrashed": false,
+        "createdTime": "2026-09-01T09:00:00.000Z",
+        "modifiedTime": "2026-09-01T09:00:00.000Z",
+        "lastModifyingUser": "ravi.menon@example.test",
+        "version": 1,
+        "contentKind": "none",
+        "writersCanShare": true,
+        "copyRequiresWriterPermission": false,
+        "root": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "fileSequence": 0,
+        "permissionSequence": 0,
+        "changeSequence": 0,
+        "userSequence": 0,
+        "revisionSequence": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000000:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000000",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2024-01-08T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000001:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000001",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-06-02T08:15:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000002:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000002",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-08-03T09:30:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000002:06000000000000000002",
+      "value": {
+        "fileId": "1st000000000000000000000000000002",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "writer",
+        "createdTime": "2026-08-03T09:35:00.000Z",
+        "version": 1,
+        "emailAddress": "sam.okafor@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000003:05000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000003",
+        "id": "05000000000000000001",
+        "type": "user",
+        "role": "reader",
+        "createdTime": "2026-09-05T10:00:00.000Z",
+        "version": 1,
+        "emailAddress": "priya.natarajan@example.com",
+        "displayName": "Priya Natarajan"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000003:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000003",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-08-04T10:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000004:05000000000000000002",
+      "value": {
+        "fileId": "1st000000000000000000000000000004",
+        "id": "05000000000000000002",
+        "type": "group",
+        "role": "commenter",
+        "createdTime": "2026-09-06T10:00:00.000Z",
+        "version": 1,
+        "emailAddress": "finance@example.test",
+        "displayName": "Finance"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000004:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000004",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-08-05T11:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000005:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000005",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-09-08T14:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000006:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000006",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-08-20T13:10:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000007:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000007",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-07-01T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000007:06000000000000000002",
+      "value": {
+        "fileId": "1st000000000000000000000000000007",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "reader",
+        "createdTime": "2026-07-02T09:00:00.000Z",
+        "version": 1,
+        "emailAddress": "sam.okafor@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000008:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000008",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-01-12T10:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st000000000000000000000000000009:06000000000000000001",
+      "value": {
+        "fileId": "1st000000000000000000000000000009",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2025-12-19T16:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000a:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000a",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2025-11-03T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000b:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000b",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2025-03-11T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000b:anyoneWithLink",
+      "value": {
+        "fileId": "1st00000000000000000000000000000b",
+        "id": "anyoneWithLink",
+        "type": "anyone",
+        "role": "reader",
+        "createdTime": "2025-03-11T09:10:00.000Z",
+        "version": 1,
+        "allowFileDiscovery": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000c:05000000000000000003",
+      "value": {
+        "fileId": "1st00000000000000000000000000000c",
+        "id": "05000000000000000003",
+        "type": "domain",
+        "role": "reader",
+        "createdTime": "2025-05-06T09:10:00.000Z",
+        "version": 1,
+        "domain": "example.test",
+        "allowFileDiscovery": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000c:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000c",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2025-05-06T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000d:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000d",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-09-02T12:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000d:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000d",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "writer",
+        "createdTime": "2026-09-02T12:05:00.000Z",
+        "version": 1,
+        "emailAddress": "sam.okafor@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000e:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000e",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-09-13T18:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000f:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000f",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-09-09T09:20:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000g:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000g",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-09-03T08:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000g:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000g",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "commenter",
+        "createdTime": "2026-09-03T08:05:00.000Z",
+        "version": 1,
+        "emailAddress": "sam.okafor@example.test",
+        "expirationTime": "2026-10-01T00:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000h:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000h",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-09-10T10:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000i:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000i",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-09-12T10:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000j:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000j",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "dana.reyes@example.test",
+        "createdTime": "2026-05-20T15:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000k:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000k",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2024-02-19T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000l:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000l",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "reader",
+        "createdTime": "2026-09-08T09:00:00.000Z",
+        "version": 1,
+        "emailAddress": "dana.reyes@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000l:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000l",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-07-14T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000m:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000m",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-03-02T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000n:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000n",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "writer",
+        "createdTime": "2026-04-07T09:05:00.000Z",
+        "version": 1,
+        "emailAddress": "dana.reyes@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000n:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000n",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-04-07T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000o:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000o",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-04-07T09:30:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000p:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000p",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-04-08T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000p:06000000000000000003",
+      "value": {
+        "fileId": "1st00000000000000000000000000000p",
+        "id": "06000000000000000003",
+        "type": "user",
+        "role": "reader",
+        "createdTime": "2026-09-02T09:00:00.000Z",
+        "version": 1,
+        "emailAddress": "ravi.menon@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000q:06000000000000000001",
+      "value": {
+        "fileId": "1st00000000000000000000000000000q",
+        "id": "06000000000000000001",
+        "type": "user",
+        "role": "reader",
+        "createdTime": "2026-08-30T08:00:00.000Z",
+        "version": 1,
+        "emailAddress": "dana.reyes@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000q:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000q",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-08-29T20:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000r:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000r",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-08-29T20:01:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000s:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000s",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-08-29T20:02:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000t:06000000000000000002",
+      "value": {
+        "fileId": "1st00000000000000000000000000000t",
+        "id": "06000000000000000002",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "sam.okafor@example.test",
+        "createdTime": "2026-08-29T20:03:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "permissions",
+      "rowId": "1st00000000000000000000000000000u:06000000000000000003",
+      "value": {
+        "fileId": "1st00000000000000000000000000000u",
+        "id": "06000000000000000003",
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "ravi.menon@example.test",
+        "createdTime": "2026-09-01T09:00:00.000Z",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "dana.reyes@example.test:1st00000000000000000000000000000a",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "fileId": "1st00000000000000000000000000000a",
+        "starred": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "dana.reyes@example.test:1st00000000000000000000000000000h",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "fileId": "1st00000000000000000000000000000h",
+        "starred": false,
+        "viewedByMeTime": "2026-09-11T09:30:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "dana.reyes@example.test:1st00000000000000000000000000000i",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "fileId": "1st00000000000000000000000000000i",
+        "starred": false,
+        "viewedByMeTime": "2026-09-13T08:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "dana.reyes@example.test:1st00000000000000000000000000000l",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "fileId": "1st00000000000000000000000000000l",
+        "starred": false,
+        "sharedWithMeTime": "2026-09-08T09:00:00.000Z",
+        "sharingUser": "sam.okafor@example.test",
+        "viewedByMeTime": "2026-09-08T09:15:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "dana.reyes@example.test:1st00000000000000000000000000000n",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "fileId": "1st00000000000000000000000000000n",
+        "starred": false,
+        "sharedWithMeTime": "2026-04-07T09:05:00.000Z",
+        "sharingUser": "sam.okafor@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "dana.reyes@example.test:1st00000000000000000000000000000q",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "fileId": "1st00000000000000000000000000000q",
+        "starred": false,
+        "sharedWithMeTime": "2026-08-30T08:00:00.000Z",
+        "sharingUser": "sam.okafor@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "ravi.menon@example.test:1st00000000000000000000000000000p",
+      "value": {
+        "emailAddress": "ravi.menon@example.test",
+        "fileId": "1st00000000000000000000000000000p",
+        "starred": false,
+        "sharedWithMeTime": "2026-09-02T09:00:00.000Z",
+        "sharingUser": "sam.okafor@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "sam.okafor@example.test:1st000000000000000000000000000002",
+      "value": {
+        "emailAddress": "sam.okafor@example.test",
+        "fileId": "1st000000000000000000000000000002",
+        "starred": true,
+        "sharedWithMeTime": "2026-08-03T09:35:00.000Z",
+        "sharingUser": "dana.reyes@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "sam.okafor@example.test:1st000000000000000000000000000003",
+      "value": {
+        "emailAddress": "sam.okafor@example.test",
+        "fileId": "1st000000000000000000000000000003",
+        "starred": false,
+        "viewedByMeTime": "2026-09-11T15:45:00.000Z",
+        "modifiedByMeTime": "2026-09-11T15:45:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "sam.okafor@example.test:1st000000000000000000000000000007",
+      "value": {
+        "emailAddress": "sam.okafor@example.test",
+        "fileId": "1st000000000000000000000000000007",
+        "starred": false,
+        "sharedWithMeTime": "2026-07-02T09:00:00.000Z",
+        "sharingUser": "dana.reyes@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "sam.okafor@example.test:1st00000000000000000000000000000d",
+      "value": {
+        "emailAddress": "sam.okafor@example.test",
+        "fileId": "1st00000000000000000000000000000d",
+        "starred": false,
+        "sharedWithMeTime": "2026-09-02T12:05:00.000Z",
+        "sharingUser": "dana.reyes@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "user-files",
+      "rowId": "sam.okafor@example.test:1st00000000000000000000000000000g",
+      "value": {
+        "emailAddress": "sam.okafor@example.test",
+        "fileId": "1st00000000000000000000000000000g",
+        "starred": false,
+        "sharedWithMeTime": "2026-09-03T08:05:00.000Z",
+        "sharingUser": "dana.reyes@example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "users",
+      "rowId": "dana.reyes@example.test",
+      "value": {
+        "emailAddress": "dana.reyes@example.test",
+        "displayName": "Dana Reyes",
+        "permissionId": "06000000000000000001",
+        "rootFolderId": "1st000000000000000000000000000000",
+        "storageQuotaLimit": 16106127360,
+        "domain": "example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "users",
+      "rowId": "ravi.menon@example.test",
+      "value": {
+        "emailAddress": "ravi.menon@example.test",
+        "displayName": "Ravi Menon",
+        "permissionId": "06000000000000000003",
+        "rootFolderId": "1st00000000000000000000000000000u",
+        "storageQuotaLimit": 4096,
+        "domain": "example.test"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-drive",
+      "namespace": "users",
+      "rowId": "sam.okafor@example.test",
+      "value": {
+        "emailAddress": "sam.okafor@example.test",
+        "displayName": "Sam Okafor",
+        "permissionId": "06000000000000000002",
+        "rootFolderId": "1st00000000000000000000000000000k",
+        "storageQuotaLimit": 16106127360,
+        "domain": "example.test"
+      }
+    }
+  ]
+}

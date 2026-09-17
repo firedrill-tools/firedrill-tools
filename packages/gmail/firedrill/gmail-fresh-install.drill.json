@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "gmail-fresh-install",
+  "title": "An actor without identity attributes opens the primary seeded mailbox (dana.reyes@example.test) and can read, search and send",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "newcomer",
+  "task": {
+    "instruction": "Run the fresh-install conformance flow against the synthetic Gmail Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "profile-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "messages-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "threads-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "threads.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "send-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "messages.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "delegation-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gmail",
+        "operationId": "profile.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "sent-from-dana",
+      "kind": "state.value",
+      "packageId": "gmail",
+      "namespace": "mailboxes",
+      "rowId": "dana.reyes@example.test",
+      "path": [
+        "messagesTotal"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 21
+      }
+    },
+    {
+      "id": "delivered-to-sam",
+      "kind": "state.value",
+      "packageId": "gmail",
+      "namespace": "mailboxes",
+      "rowId": "sam.okafor@example.test",
+      "path": [
+        "messagesTotal"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "no-stray-mailbox",
+      "kind": "state.count",
+      "packageId": "gmail",
+      "namespace": "mailboxes",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "append-lost",
+  "title": "values.append commits the row but the caller sees 503: a blind retry duplicates the row.",
+  "faults": [
+    {
+      "packageId": "google-sheets",
+      "faultId": "append-response-lost"
+    }
+  ]
+}

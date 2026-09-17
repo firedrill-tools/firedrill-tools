@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "id": "github-permissions-triage",
+  "title": "A triage collaborator labels, assigns and closes but cannot push, open pulls, merge or satisfy protection",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "reader",
+  "task": {
+    "instruction": "Run the permissions-triage conformance flow against the synthetic GitHub Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "create-branch-forbidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.create-branch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "file-forbidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.create-or-update-file"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pull-create-forbidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-forbidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.merge"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "pull-update-forbidden",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reviews-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "pulls.create-review"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "pull-46-blocked",
+      "kind": "state.value",
+      "packageId": "github",
+      "namespace": "pulls",
+      "rowId": "acme-robotics/telemetry-service#00046",
+      "path": [
+        "mergeable_state"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "blocked"
+      }
+    },
+    {
+      "id": "issue-31-closed",
+      "kind": "state.value",
+      "packageId": "github",
+      "namespace": "issues",
+      "rowId": "acme-robotics/telemetry-service#00031",
+      "path": [
+        "state"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "closed"
+      }
+    },
+    {
+      "id": "branches",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "branches",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "commits",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "commits",
+      "comparison": {
+        "operator": "equals",
+        "value": 13
+      }
+    },
+    {
+      "id": "reviews",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "reviews",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Emails · Resend (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/resend-icon-white.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./views.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" id="sidebar" aria-label="Dashboard navigation">
+        <div class="sidebar-top">
+          <a class="brand" href="#/emails" aria-label="Resend home"><img src="./assets/resend-wordmark-white.svg" alt="" width="72" height="16" /></a>
+          <button type="button" class="team" id="team-switcher" aria-label="Switch team" title="Switch team">
+            <span class="team-avatar" id="team-avatar" aria-hidden="true">N</span>
+            <span class="team-name" id="team-name">Loading…</span>
+            <span data-icon="chevronsUpDown" data-size="14" class="team-chevron"></span>
+          </button>
+        </div>
+        <nav class="nav" id="nav">
+          <a href="#/emails" data-route="emails"><span data-icon="mail"></span><span>Emails</span></a>
+          <button type="button" data-soon="Broadcasts"><span data-icon="broadcast"></span><span>Broadcasts</span></button>
+          <button type="button" data-soon="Templates"><span data-icon="template"></span><span>Templates</span></button>
+          <a href="#/audience/contacts" data-route="audience"><span data-icon="audience"></span><span>Audience</span></a>
+          <div class="nav-sub" id="audience-sub">
+            <a href="#/audience/contacts" data-route="contacts"><span>Contacts</span></a>
+            <a href="#/audience/segments" data-route="segments"><span>Segments</span></a>
+            <button type="button" data-soon="Topics"><span>Topics</span></button>
+            <button type="button" data-soon="Properties"><span>Properties</span></button>
+          </div>
+          <button type="button" data-soon="Metrics"><span data-icon="metrics"></span><span>Metrics</span></button>
+          <a href="#/domains" data-route="domains"><span data-icon="globe"></span><span>Domains</span></a>
+          <button type="button" data-soon="Logs"><span data-icon="logs"></span><span>Logs</span></button>
+          <a href="#/api-keys" data-route="api-keys"><span data-icon="key"></span><span>API Keys</span></a>
+          <button type="button" data-soon="Webhooks"><span data-icon="webhook"></span><span>Webhooks</span></button>
+          <button type="button" data-soon="Settings"><span data-icon="settings"></span><span>Settings</span></button>
+        </nav>
+        <div class="sidebar-foot">
+          <div class="usage" id="usage" aria-live="polite"></div>
+          <button type="button" class="foot-link" data-soon="Docs"><span data-icon="book"></span><span>Docs</span></button>
+          <button type="button" class="foot-link" data-soon="Help"><span data-icon="help"></span><span>Help</span></button>
+          <button type="button" class="user" id="user-menu" data-soon="Account"><span class="user-avatar" id="user-avatar" aria-hidden="true">P</span><span class="user-name" id="user-name">Production</span><span data-icon="more" data-size="14"></span></button>
+        </div>
+      </aside>
+      <main class="main" id="main" tabindex="-1">
+        <button type="button" class="icon-btn mobile-menu" id="mobile-menu" aria-label="Open navigation" title="Open navigation"><span data-icon="menu"></span></button>
+        <div id="view"></div>
+      </main>
+    </div>
+    <div id="dialogs"></div>
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+  </body>
+</html>

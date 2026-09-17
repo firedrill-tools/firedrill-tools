@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "box-at-cap",
+  "title": "At the 2,000-object cap reads work and every create fails",
+  "targetId": "conformance-agent",
+  "scenarioId": "at-cap",
+  "actorId": "maya",
+  "task": {
+    "instruction": "Run the at-cap flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "folders-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "folders",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "files-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "comments-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    }
+  ]
+}

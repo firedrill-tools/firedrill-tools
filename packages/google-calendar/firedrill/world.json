@@ -1,0 +1,2143 @@
+{
+  "schemaVersion": 1,
+  "id": "google-calendar-conformance-world",
+  "title": "Google Calendar Tool conformance world",
+  "virtualTimeUs": 1789376400000000,
+  "actors": [
+    {
+      "id": "owner",
+      "description": "Dana Reyes: owns her primary and the Platform Team calendar, reads Office Holidays and the Aurora room; every operation granted.",
+      "attributes": {
+        "email": "dana.reyes@example.test",
+        "displayName": "Dana Reyes"
+      },
+      "grants": [
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.insert"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.delete"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.insert"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.delete"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.quick-add"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.move"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.instances"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.respond"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.search"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "freebusy.query"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "time.suggest"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "time.now"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "colors.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "settings.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "settings.get"
+        }
+      ]
+    },
+    {
+      "id": "colleague",
+      "description": "Sam Okafor: owns his primary and Office Holidays, writes Platform Team, sees only free/busy of Aurora; every operation granted (restrictions come from access roles).",
+      "attributes": {
+        "email": "sam.okafor@example.test",
+        "displayName": "Sam Okafor"
+      },
+      "grants": [
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.insert"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.delete"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.insert"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.delete"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.quick-add"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.move"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.instances"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.respond"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.search"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "freebusy.query"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "time.suggest"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "time.now"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "colors.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "settings.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "settings.get"
+        }
+      ]
+    },
+    {
+      "id": "auditor",
+      "description": "Has an address but no grants; every call is denied by the framework.",
+      "attributes": {
+        "email": "audit@example.test"
+      },
+      "grants": []
+    },
+    {
+      "id": "newcomer",
+      "description": "Fresh-install shaped actor: no identity attributes, every operation granted. Must act as the primary seeded user (dana.reyes@example.test).",
+      "grants": [
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendar-list.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.insert"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "calendars.delete"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.insert"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.patch"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.delete"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.quick-add"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.move"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.instances"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.respond"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "events.search"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "freebusy.query"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "time.suggest"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "time.now"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "colors.get"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "settings.list"
+        },
+        {
+          "packageId": "google-calendar",
+          "operationId": "settings.get"
+        }
+      ]
+    }
+  ],
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "eventSequence": 0,
+        "calendarSequence": 0,
+        "etagSequence": 42,
+        "meetSequence": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendars",
+      "rowId": "dana.reyes@example.test",
+      "value": {
+        "id": "dana.reyes@example.test",
+        "summary": "Dana Reyes",
+        "timeZone": "Europe/London",
+        "ownerEmail": "dana.reyes@example.test",
+        "primary": true,
+        "resource": false,
+        "etag": "\"3000000000000001\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendars",
+      "rowId": "sam.okafor@example.test",
+      "value": {
+        "id": "sam.okafor@example.test",
+        "summary": "Sam Okafor",
+        "timeZone": "America/New_York",
+        "ownerEmail": "sam.okafor@example.test",
+        "primary": true,
+        "resource": false,
+        "etag": "\"3000000000000002\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendars",
+      "rowId": "c_st000000000000000000000001@group.calendar.google.com",
+      "value": {
+        "id": "c_st000000000000000000000001@group.calendar.google.com",
+        "summary": "Platform Team",
+        "description": "Shared calendar of the platform engineering team.",
+        "timeZone": "Europe/London",
+        "ownerEmail": "dana.reyes@example.test",
+        "primary": false,
+        "resource": false,
+        "etag": "\"3000000000000003\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendars",
+      "rowId": "c_st000000000000000000000002@group.calendar.google.com",
+      "value": {
+        "id": "c_st000000000000000000000002@group.calendar.google.com",
+        "summary": "Office Holidays",
+        "description": "Company holidays and office closures (read-only for most people).",
+        "timeZone": "America/New_York",
+        "ownerEmail": "sam.okafor@example.test",
+        "primary": false,
+        "resource": false,
+        "etag": "\"3000000000000004\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendars",
+      "rowId": "room-aurora@resource.calendar.google.com",
+      "value": {
+        "id": "room-aurora@resource.calendar.google.com",
+        "summary": "Aurora (4) - 2nd floor",
+        "description": "Meeting room, seats 4, video bar.",
+        "location": "2nd floor, east wing",
+        "timeZone": "Europe/London",
+        "ownerEmail": "admin@example.test",
+        "primary": false,
+        "resource": true,
+        "etag": "\"3000000000000005\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "rowId": "dana.reyes@example.test:dana.reyes@example.test",
+      "value": {
+        "userEmail": "dana.reyes@example.test",
+        "calendarId": "dana.reyes@example.test",
+        "accessRole": "owner",
+        "colorId": "14",
+        "backgroundColor": "#9fe1e7",
+        "foregroundColor": "#000000",
+        "selected": true,
+        "hidden": false,
+        "primary": true,
+        "defaultReminders": [
+          {
+            "method": "popup",
+            "minutes": 10
+          }
+        ],
+        "etag": "\"3000000000000006\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "rowId": "dana.reyes@example.test:c_st000000000000000000000001@group.calendar.google.com",
+      "value": {
+        "userEmail": "dana.reyes@example.test",
+        "calendarId": "c_st000000000000000000000001@group.calendar.google.com",
+        "accessRole": "owner",
+        "colorId": "9",
+        "backgroundColor": "#7bd148",
+        "foregroundColor": "#000000",
+        "selected": true,
+        "hidden": false,
+        "primary": false,
+        "defaultReminders": [
+          {
+            "method": "popup",
+            "minutes": 10
+          }
+        ],
+        "etag": "\"3000000000000007\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "rowId": "dana.reyes@example.test:c_st000000000000000000000002@group.calendar.google.com",
+      "value": {
+        "userEmail": "dana.reyes@example.test",
+        "calendarId": "c_st000000000000000000000002@group.calendar.google.com",
+        "accessRole": "reader",
+        "colorId": "7",
+        "backgroundColor": "#42d692",
+        "foregroundColor": "#000000",
+        "selected": true,
+        "hidden": false,
+        "primary": false,
+        "defaultReminders": [],
+        "etag": "\"3000000000000008\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "rowId": "dana.reyes@example.test:room-aurora@resource.calendar.google.com",
+      "value": {
+        "userEmail": "dana.reyes@example.test",
+        "calendarId": "room-aurora@resource.calendar.google.com",
+        "accessRole": "reader",
+        "colorId": "17",
+        "backgroundColor": "#9a9cff",
+        "foregroundColor": "#000000",
+        "selected": true,
+        "hidden": true,
+        "primary": false,
+        "defaultReminders": [],
+        "etag": "\"3000000000000009\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "rowId": "sam.okafor@example.test:sam.okafor@example.test",
+      "value": {
+        "userEmail": "sam.okafor@example.test",
+        "calendarId": "sam.okafor@example.test",
+        "accessRole": "owner",
+        "colorId": "3",
+        "backgroundColor": "#f83a22",
+        "foregroundColor": "#000000",
+        "selected": true,
+        "hidden": false,
+        "primary": true,
+        "defaultReminders": [
+          {
+            "method": "popup",
+            "minutes": 30
+          },
+          {
+            "method": "email",
+            "minutes": 1440
+          }
+        ],
+        "etag": "\"3000000000000010\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "rowId": "sam.okafor@example.test:c_st000000000000000000000001@group.calendar.google.com",
+      "value": {
+        "userEmail": "sam.okafor@example.test",
+        "calendarId": "c_st000000000000000000000001@group.calendar.google.com",
+        "accessRole": "writer",
+        "colorId": "9",
+        "backgroundColor": "#7bd148",
+        "foregroundColor": "#000000",
+        "selected": true,
+        "hidden": false,
+        "primary": false,
+        "defaultReminders": [
+          {
+            "method": "popup",
+            "minutes": 10
+          }
+        ],
+        "etag": "\"3000000000000011\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "rowId": "sam.okafor@example.test:c_st000000000000000000000002@group.calendar.google.com",
+      "value": {
+        "userEmail": "sam.okafor@example.test",
+        "calendarId": "c_st000000000000000000000002@group.calendar.google.com",
+        "accessRole": "owner",
+        "colorId": "7",
+        "backgroundColor": "#42d692",
+        "foregroundColor": "#000000",
+        "selected": true,
+        "hidden": false,
+        "primary": false,
+        "defaultReminders": [],
+        "etag": "\"3000000000000012\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "calendar-list",
+      "rowId": "sam.okafor@example.test:room-aurora@resource.calendar.google.com",
+      "value": {
+        "userEmail": "sam.okafor@example.test",
+        "calendarId": "room-aurora@resource.calendar.google.com",
+        "accessRole": "freeBusyReader",
+        "colorId": "17",
+        "backgroundColor": "#9a9cff",
+        "foregroundColor": "#000000",
+        "selected": false,
+        "hidden": false,
+        "primary": false,
+        "defaultReminders": [],
+        "etag": "\"3000000000000013\"",
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "settings",
+      "rowId": "dana.reyes@example.test",
+      "value": {
+        "userEmail": "dana.reyes@example.test",
+        "timezone": "Europe/London",
+        "weekStart": "1",
+        "format24HourTime": "true",
+        "defaultEventLength": "30",
+        "hideWeekends": "false",
+        "locale": "en_GB",
+        "showDeclinedEvents": "true",
+        "remindOnRespondedEventsOnly": "false",
+        "etag": "\"3000000000000014\""
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "settings",
+      "rowId": "sam.okafor@example.test",
+      "value": {
+        "userEmail": "sam.okafor@example.test",
+        "timezone": "America/New_York",
+        "weekStart": "0",
+        "format24HourTime": "false",
+        "defaultEventLength": "60",
+        "hideWeekends": "false",
+        "locale": "en_US",
+        "showDeclinedEvents": "true",
+        "remindOnRespondedEventsOnly": "false",
+        "etag": "\"3000000000000015\""
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "c_st000000000000000000000001@group.calendar.google.com:st000000000000000000000001",
+      "value": {
+        "calendarId": "c_st000000000000000000000001@group.calendar.google.com",
+        "id": "st000000000000000000000001",
+        "iCalUID": "st000000000000000000000001@google.com",
+        "etag": "\"3000000000000016\"",
+        "status": "confirmed",
+        "summary": "Platform standup",
+        "description": "Daily sync of the platform team. Blockers first.",
+        "start": {
+          "dateTime": "2026-09-14T09:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-14T09:45:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "recurrence": [
+          "RRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR",
+          "EXDATE;TZID=Europe/London:20260921T093000"
+        ],
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "organizer": {
+          "email": "c_st000000000000000000000001@group.calendar.google.com",
+          "displayName": "Platform Team",
+          "self": true
+        },
+        "attendees": [
+          {
+            "email": "c_st000000000000000000000001@group.calendar.google.com",
+            "displayName": "Platform Team",
+            "responseStatus": "accepted",
+            "organizer": true,
+            "self": true
+          },
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "accepted"
+          },
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "accepted"
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEgY19zdDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t",
+        "created": "2026-08-31T08:00:00.000Z",
+        "updated": "2026-09-01T07:30:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000001",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000001",
+        "iCalUID": "st000000000000000000000001@google.com",
+        "etag": "\"3000000000000017\"",
+        "status": "confirmed",
+        "summary": "Platform standup",
+        "description": "Daily sync of the platform team. Blockers first.",
+        "colorId": "9",
+        "start": {
+          "dateTime": "2026-09-14T09:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-14T09:45:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "recurrence": [
+          "RRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR",
+          "EXDATE;TZID=Europe/London:20260921T093000"
+        ],
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "c_st000000000000000000000001@group.calendar.google.com",
+          "displayName": "Platform Team"
+        },
+        "attendees": [
+          {
+            "email": "c_st000000000000000000000001@group.calendar.google.com",
+            "displayName": "Platform Team",
+            "responseStatus": "accepted",
+            "organizer": true
+          },
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "accepted",
+            "self": true
+          },
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "accepted"
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-08-31T08:00:00.000Z",
+        "updated": "2026-09-01T07:30:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000001",
+      "value": {
+        "calendarId": "sam.okafor@example.test",
+        "id": "st000000000000000000000001",
+        "iCalUID": "st000000000000000000000001@google.com",
+        "etag": "\"3000000000000018\"",
+        "status": "confirmed",
+        "summary": "Platform standup",
+        "description": "Daily sync of the platform team. Blockers first.",
+        "start": {
+          "dateTime": "2026-09-14T09:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-14T09:45:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "recurrence": [
+          "RRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR",
+          "EXDATE;TZID=Europe/London:20260921T093000"
+        ],
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "organizer": {
+          "email": "c_st000000000000000000000001@group.calendar.google.com",
+          "displayName": "Platform Team"
+        },
+        "attendees": [
+          {
+            "email": "c_st000000000000000000000001@group.calendar.google.com",
+            "displayName": "Platform Team",
+            "responseStatus": "accepted",
+            "organizer": true
+          },
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "accepted"
+          },
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "accepted",
+            "self": true
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEgc2FtLm9rYWZvckBleGFtcGxlLnRlc3Q",
+        "created": "2026-08-31T08:00:00.000Z",
+        "updated": "2026-09-01T07:30:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000002",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000002",
+        "iCalUID": "st000000000000000000000002@google.com",
+        "etag": "\"3000000000000019\"",
+        "status": "confirmed",
+        "summary": "Design review - billing v2",
+        "description": "Walk through the billing v2 designs before the sprint starts.\nAgenda:\n1. Invoice layout\n2. Dunning flow\n3. Open questions",
+        "location": "Aurora (4) - 2nd floor",
+        "start": {
+          "dateTime": "2026-09-15T14:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-15T15:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "attendees": [
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "accepted",
+            "organizer": true,
+            "self": true
+          },
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "needsAction"
+          },
+          {
+            "email": "priya.natarajan@example.com",
+            "displayName": "Priya Natarajan",
+            "responseStatus": "needsAction"
+          },
+          {
+            "email": "room-aurora@resource.calendar.google.com",
+            "displayName": "Aurora (4) - 2nd floor",
+            "resource": true,
+            "responseStatus": "accepted"
+          }
+        ],
+        "reminders": {
+          "useDefault": false,
+          "overrides": [
+            {
+              "method": "popup",
+              "minutes": 10
+            }
+          ]
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDIgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-08T10:15:00.000Z",
+        "updated": "2026-09-10T16:05:00.000Z",
+        "sequence": 1,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000002",
+      "value": {
+        "calendarId": "sam.okafor@example.test",
+        "id": "st000000000000000000000002",
+        "iCalUID": "st000000000000000000000002@google.com",
+        "etag": "\"3000000000000020\"",
+        "status": "confirmed",
+        "summary": "Design review - billing v2",
+        "description": "Walk through the billing v2 designs before the sprint starts.\nAgenda:\n1. Invoice layout\n2. Dunning flow\n3. Open questions",
+        "location": "Aurora (4) - 2nd floor",
+        "start": {
+          "dateTime": "2026-09-15T14:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-15T15:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "attendees": [
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "accepted",
+            "organizer": true
+          },
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "needsAction",
+            "self": true
+          },
+          {
+            "email": "priya.natarajan@example.com",
+            "displayName": "Priya Natarajan",
+            "responseStatus": "needsAction"
+          },
+          {
+            "email": "room-aurora@resource.calendar.google.com",
+            "displayName": "Aurora (4) - 2nd floor",
+            "resource": true,
+            "responseStatus": "accepted"
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDIgc2FtLm9rYWZvckBleGFtcGxlLnRlc3Q",
+        "created": "2026-09-08T10:15:00.000Z",
+        "updated": "2026-09-10T16:05:00.000Z",
+        "sequence": 1,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "room-aurora@resource.calendar.google.com:st000000000000000000000002",
+      "value": {
+        "calendarId": "room-aurora@resource.calendar.google.com",
+        "id": "st000000000000000000000002",
+        "iCalUID": "st000000000000000000000002@google.com",
+        "etag": "\"3000000000000021\"",
+        "status": "confirmed",
+        "summary": "Design review - billing v2",
+        "description": "Walk through the billing v2 designs before the sprint starts.\nAgenda:\n1. Invoice layout\n2. Dunning flow\n3. Open questions",
+        "location": "Aurora (4) - 2nd floor",
+        "start": {
+          "dateTime": "2026-09-15T14:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-15T15:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "attendees": [
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "accepted",
+            "organizer": true
+          },
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "needsAction"
+          },
+          {
+            "email": "priya.natarajan@example.com",
+            "displayName": "Priya Natarajan",
+            "responseStatus": "needsAction"
+          },
+          {
+            "email": "room-aurora@resource.calendar.google.com",
+            "displayName": "Aurora (4) - 2nd floor",
+            "resource": true,
+            "responseStatus": "accepted",
+            "self": true
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDIgcm9vbS1hdXJvcmFAcmVzb3VyY2UuY2FsZW5kYXIuZ29vZ2xlLmNvbQ",
+        "created": "2026-09-08T10:15:00.000Z",
+        "updated": "2026-09-10T16:05:00.000Z",
+        "sequence": 1,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "c_st000000000000000000000002@group.calendar.google.com:st000000000000000000000003",
+      "value": {
+        "calendarId": "c_st000000000000000000000002@group.calendar.google.com",
+        "id": "st000000000000000000000003",
+        "iCalUID": "st000000000000000000000003@google.com",
+        "etag": "\"3000000000000022\"",
+        "status": "confirmed",
+        "summary": "Autumn bank holiday (office closed)",
+        "start": {
+          "date": "2026-09-21"
+        },
+        "end": {
+          "date": "2026-09-22"
+        },
+        "creator": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor"
+        },
+        "organizer": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor"
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "transparent",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDMgY19zdDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t",
+        "created": "2026-01-05T14:00:00.000Z",
+        "updated": "2026-01-05T14:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000004",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000004",
+        "iCalUID": "st000000000000000000000004@google.com",
+        "etag": "\"3000000000000023\"",
+        "status": "confirmed",
+        "summary": "Focus time",
+        "colorId": "8",
+        "start": {
+          "dateTime": "2026-09-18T13:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-18T16:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "focusTime",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDQgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-07T09:00:00.000Z",
+        "updated": "2026-09-07T09:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000005",
+      "value": {
+        "calendarId": "sam.okafor@example.test",
+        "id": "st000000000000000000000005",
+        "iCalUID": "st000000000000000000000005@google.com",
+        "etag": "\"3000000000000024\"",
+        "status": "confirmed",
+        "summary": "Out of office - conference",
+        "description": "Attending the platform conference. Slow to respond.",
+        "start": {
+          "date": "2026-09-23"
+        },
+        "end": {
+          "date": "2026-09-26"
+        },
+        "creator": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor",
+          "self": true
+        },
+        "organizer": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "outOfOffice",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDUgc2FtLm9rYWZvckBleGFtcGxlLnRlc3Q",
+        "created": "2026-08-20T13:00:00.000Z",
+        "updated": "2026-08-20T13:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000006",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000006",
+        "iCalUID": "st000000000000000000000006@google.com",
+        "etag": "\"3000000000000025\"",
+        "status": "cancelled",
+        "summary": "Vendor call (cancelled)",
+        "start": {
+          "dateTime": "2026-09-16T11:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-16T11:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDYgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-02T11:00:00.000Z",
+        "updated": "2026-09-11T08:45:00.000Z",
+        "sequence": 1,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000007",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000007",
+        "iCalUID": "st000000000000000000000007@google.com",
+        "etag": "\"3000000000000026\"",
+        "status": "confirmed",
+        "summary": "Invoice run",
+        "description": "Run the monthly invoice batch and check the dunning report.",
+        "start": {
+          "dateTime": "2026-10-01T09:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-10-01T09:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "recurrence": [
+          "RRULE:FREQ=MONTHLY;BYMONTHDAY=1;COUNT=6"
+        ],
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDcgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-01T09:00:00.000Z",
+        "updated": "2026-09-01T09:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000007_20261101T090000Z",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000007_20261101T090000Z",
+        "iCalUID": "st000000000000000000000007@google.com",
+        "etag": "\"3000000000000027\"",
+        "status": "confirmed",
+        "summary": "Invoice run (moved: 1 Nov is a Sunday)",
+        "description": "Run the monthly invoice batch and check the dunning report.",
+        "start": {
+          "dateTime": "2026-11-02T10:00:00Z",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-11-02T10:30:00Z",
+          "timeZone": "Europe/London"
+        },
+        "recurringEventId": "st000000000000000000000007",
+        "originalStartTime": {
+          "dateTime": "2026-11-01T09:00:00Z",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDdfMjAyNjExMDFUMDkwMDAwWiBkYW5hLnJleWVzQGV4YW1wbGUudGVzdA",
+        "created": "2026-09-01T09:00:00.000Z",
+        "updated": "2026-09-12T15:20:00.000Z",
+        "sequence": 1,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000008",
+      "value": {
+        "calendarId": "sam.okafor@example.test",
+        "id": "st000000000000000000000008",
+        "iCalUID": "st000000000000000000000008@google.com",
+        "etag": "\"3000000000000028\"",
+        "status": "confirmed",
+        "summary": "1:1 Sam / Dana",
+        "start": {
+          "dateTime": "2026-09-17T10:00:00-04:00",
+          "timeZone": "America/New_York"
+        },
+        "end": {
+          "dateTime": "2026-09-17T10:30:00-04:00",
+          "timeZone": "America/New_York"
+        },
+        "creator": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor",
+          "self": true
+        },
+        "organizer": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor",
+          "self": true
+        },
+        "attendees": [
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "accepted",
+            "organizer": true,
+            "self": true
+          },
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "tentative",
+            "comment": "May be 5 min late"
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "conferenceData": {
+          "conferenceId": "stb-aaaa-bbb",
+          "conferenceSolution": {
+            "key": {
+              "type": "hangoutsMeet"
+            },
+            "name": "Google Meet"
+          },
+          "entryPoints": [
+            {
+              "entryPointType": "video",
+              "uri": "https://meet.google.com/stb-aaaa-bbb",
+              "label": "meet.google.com/stb-aaaa-bbb"
+            }
+          ]
+        },
+        "hangoutLink": "https://meet.google.com/stb-aaaa-bbb",
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDggc2FtLm9rYWZvckBleGFtcGxlLnRlc3Q",
+        "created": "2026-09-03T14:00:00.000Z",
+        "updated": "2026-09-09T12:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000008",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000008",
+        "iCalUID": "st000000000000000000000008@google.com",
+        "etag": "\"3000000000000029\"",
+        "status": "confirmed",
+        "summary": "1:1 Sam / Dana",
+        "start": {
+          "dateTime": "2026-09-17T10:00:00-04:00",
+          "timeZone": "America/New_York"
+        },
+        "end": {
+          "dateTime": "2026-09-17T10:30:00-04:00",
+          "timeZone": "America/New_York"
+        },
+        "creator": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor"
+        },
+        "organizer": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor"
+        },
+        "attendees": [
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "accepted",
+            "organizer": true
+          },
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "tentative",
+            "comment": "May be 5 min late",
+            "self": true
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "conferenceData": {
+          "conferenceId": "stb-aaaa-bbb",
+          "conferenceSolution": {
+            "key": {
+              "type": "hangoutsMeet"
+            },
+            "name": "Google Meet"
+          },
+          "entryPoints": [
+            {
+              "entryPointType": "video",
+              "uri": "https://meet.google.com/stb-aaaa-bbb",
+              "label": "meet.google.com/stb-aaaa-bbb"
+            }
+          ]
+        },
+        "hangoutLink": "https://meet.google.com/stb-aaaa-bbb",
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDggZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-03T14:00:00.000Z",
+        "updated": "2026-09-09T12:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "c_st000000000000000000000001@group.calendar.google.com:st000000000000000000000009",
+      "value": {
+        "calendarId": "c_st000000000000000000000001@group.calendar.google.com",
+        "id": "st000000000000000000000009",
+        "iCalUID": "st000000000000000000000009@google.com",
+        "etag": "\"3000000000000030\"",
+        "status": "confirmed",
+        "summary": "Q3 planning",
+        "description": "Quarterly planning session.",
+        "location": "Boardroom",
+        "start": {
+          "dateTime": "2026-08-20T10:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-08-20T12:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "organizer": {
+          "email": "c_st000000000000000000000001@group.calendar.google.com",
+          "displayName": "Platform Team",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDkgY19zdDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t",
+        "created": "2026-08-01T09:00:00.000Z",
+        "updated": "2026-08-19T16:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000010",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000010",
+        "iCalUID": "st000000000000000000000010@google.com",
+        "etag": "\"3000000000000031\"",
+        "status": "confirmed",
+        "summary": "Annual review",
+        "start": {
+          "dateTime": "2027-01-12T09:00:00Z",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2027-01-12T10:00:00Z",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTAgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-10T09:00:00.000Z",
+        "updated": "2026-09-10T09:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000011",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000011",
+        "iCalUID": "st000000000000000000000011@google.com",
+        "etag": "\"3000000000000032\"",
+        "status": "confirmed",
+        "summary": "Contract walkthrough",
+        "description": "Priya walks us through the renewed vendor contract.",
+        "start": {
+          "dateTime": "2026-09-16T16:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-16T16:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "priya.natarajan@example.com",
+          "displayName": "Priya Natarajan"
+        },
+        "organizer": {
+          "email": "priya.natarajan@example.com",
+          "displayName": "Priya Natarajan"
+        },
+        "attendees": [
+          {
+            "email": "priya.natarajan@example.com",
+            "displayName": "Priya Natarajan",
+            "responseStatus": "accepted",
+            "organizer": true
+          },
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "declined",
+            "comment": "Clashes with the hiring debrief",
+            "self": true
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTEgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-09T08:00:00.000Z",
+        "updated": "2026-09-11T10:30:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000012",
+      "value": {
+        "calendarId": "sam.okafor@example.test",
+        "id": "st000000000000000000000012",
+        "iCalUID": "st000000000000000000000012@google.com",
+        "etag": "\"3000000000000033\"",
+        "status": "confirmed",
+        "summary": "Dentist",
+        "start": {
+          "dateTime": "2026-09-15T08:00:00-04:00",
+          "timeZone": "America/New_York"
+        },
+        "end": {
+          "dateTime": "2026-09-15T09:00:00-04:00",
+          "timeZone": "America/New_York"
+        },
+        "creator": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor",
+          "self": true
+        },
+        "organizer": {
+          "email": "sam.okafor@example.test",
+          "displayName": "Sam Okafor",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "private",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTIgc2FtLm9rYWZvckBleGFtcGxlLnRlc3Q",
+        "created": "2026-08-28T19:00:00.000Z",
+        "updated": "2026-08-28T19:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000013",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000013",
+        "iCalUID": "st000000000000000000000013@google.com",
+        "etag": "\"3000000000000034\"",
+        "status": "confirmed",
+        "summary": "Retro prep",
+        "start": {
+          "dateTime": "2026-09-14T15:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-14T15:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "attendees": [
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "accepted",
+            "organizer": true,
+            "self": true
+          },
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "needsAction"
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": true,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTMgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T09:00:00.000Z",
+        "updated": "2026-09-11T09:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "sam.okafor@example.test:st000000000000000000000013",
+      "value": {
+        "calendarId": "sam.okafor@example.test",
+        "id": "st000000000000000000000013",
+        "iCalUID": "st000000000000000000000013@google.com",
+        "etag": "\"3000000000000035\"",
+        "status": "confirmed",
+        "summary": "Retro prep",
+        "start": {
+          "dateTime": "2026-09-14T15:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-14T15:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes"
+        },
+        "attendees": [
+          {
+            "email": "dana.reyes@example.test",
+            "displayName": "Dana Reyes",
+            "responseStatus": "accepted",
+            "organizer": true
+          },
+          {
+            "email": "sam.okafor@example.test",
+            "displayName": "Sam Okafor",
+            "responseStatus": "needsAction",
+            "self": true
+          }
+        ],
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": true,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTMgc2FtLm9rYWZvckBleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T09:00:00.000Z",
+        "updated": "2026-09-11T09:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000014",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000014",
+        "iCalUID": "st000000000000000000000014@google.com",
+        "etag": "\"3000000000000036\"",
+        "status": "confirmed",
+        "summary": "Inbox triage",
+        "start": {
+          "dateTime": "2026-09-14T08:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-14T09:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTQgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T17:00:00.000Z",
+        "updated": "2026-09-11T17:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000015",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000015",
+        "iCalUID": "st000000000000000000000015@google.com",
+        "etag": "\"3000000000000037\"",
+        "status": "confirmed",
+        "summary": "Roadmap sync",
+        "description": "Review the Q4 roadmap draft.",
+        "start": {
+          "dateTime": "2026-09-15T10:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-15T11:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTUgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T17:00:00.000Z",
+        "updated": "2026-09-11T17:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000016",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000016",
+        "iCalUID": "st000000000000000000000016@google.com",
+        "etag": "\"3000000000000038\"",
+        "status": "confirmed",
+        "summary": "Coffee with Priya",
+        "location": "Cafe Lumen",
+        "start": {
+          "dateTime": "2026-09-16T09:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-16T09:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTYgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T17:00:00.000Z",
+        "updated": "2026-09-11T17:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000017",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000017",
+        "iCalUID": "st000000000000000000000017@google.com",
+        "etag": "\"3000000000000039\"",
+        "status": "confirmed",
+        "summary": "Hiring debrief",
+        "start": {
+          "dateTime": "2026-09-17T11:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-17T11:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTcgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T17:00:00.000Z",
+        "updated": "2026-09-11T17:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000018",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000018",
+        "iCalUID": "st000000000000000000000018@google.com",
+        "etag": "\"3000000000000040\"",
+        "status": "confirmed",
+        "summary": "Security training",
+        "description": "Mandatory annual security awareness training.",
+        "location": "Training room B",
+        "start": {
+          "dateTime": "2026-09-17T16:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-17T17:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTggZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T17:00:00.000Z",
+        "updated": "2026-09-11T17:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000019",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000019",
+        "iCalUID": "st000000000000000000000019@google.com",
+        "etag": "\"3000000000000041\"",
+        "status": "confirmed",
+        "summary": "Budget check-in",
+        "start": {
+          "dateTime": "2026-09-18T10:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-18T10:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "opaque",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTkgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T17:00:00.000Z",
+        "updated": "2026-09-11T17:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-calendar",
+      "namespace": "events",
+      "rowId": "dana.reyes@example.test:st000000000000000000000020",
+      "value": {
+        "calendarId": "dana.reyes@example.test",
+        "id": "st000000000000000000000020",
+        "iCalUID": "st000000000000000000000020@google.com",
+        "etag": "\"3000000000000042\"",
+        "status": "confirmed",
+        "summary": "Lunch walk",
+        "start": {
+          "dateTime": "2026-09-18T12:00:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "end": {
+          "dateTime": "2026-09-18T12:30:00+01:00",
+          "timeZone": "Europe/London"
+        },
+        "creator": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "organizer": {
+          "email": "dana.reyes@example.test",
+          "displayName": "Dana Reyes",
+          "self": true
+        },
+        "reminders": {
+          "useDefault": true
+        },
+        "transparency": "transparent",
+        "visibility": "default",
+        "eventType": "default",
+        "guestsCanInviteOthers": true,
+        "guestsCanModify": false,
+        "guestsCanSeeOtherGuests": true,
+        "htmlLink": "https://www.google.com/calendar/event?eid=c3QwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMjAgZGFuYS5yZXllc0BleGFtcGxlLnRlc3Q",
+        "created": "2026-09-11T17:00:00.000Z",
+        "updated": "2026-09-11T17:00:00.000Z",
+        "sequence": 0,
+        "version": 1
+      }
+    }
+  ]
+}

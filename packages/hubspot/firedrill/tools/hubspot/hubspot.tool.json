@@ -1,0 +1,5524 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "hubspot",
+    "version": "0.1.0",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "association-labels",
+        "schema": {
+          "type": "object",
+          "required": [
+            "category",
+            "typeId",
+            "label",
+            "fromObjectTypeId",
+            "toObjectTypeId",
+            "inverseTypeId"
+          ],
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": [
+                "HUBSPOT_DEFINED",
+                "USER_DEFINED"
+              ]
+            },
+            "typeId": {
+              "type": "integer"
+            },
+            "label": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "fromObjectTypeId": {
+              "type": "string"
+            },
+            "toObjectTypeId": {
+              "type": "string"
+            },
+            "inverseTypeId": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Association type definitions keyed `{fromTypeId}/{toTypeId}/{typeId}`."
+      },
+      {
+        "namespace": "associations",
+        "schema": {
+          "type": "object",
+          "required": [
+            "fromObjectTypeId",
+            "fromObjectId",
+            "toObjectTypeId",
+            "toObjectId",
+            "typeIds",
+            "createdAt",
+            "updatedAt"
+          ],
+          "properties": {
+            "fromObjectTypeId": {
+              "type": "string"
+            },
+            "fromObjectId": {
+              "type": "string"
+            },
+            "toObjectTypeId": {
+              "type": "string"
+            },
+            "toObjectId": {
+              "type": "string"
+            },
+            "typeIds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "minItems": 1
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "One directed row per link direction keyed `{fromTypeId}/{fromId padded}/{toTypeId}/{toId padded}` with that direction's association type ids."
+      },
+      {
+        "namespace": "companies",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "properties",
+            "createdAt",
+            "updatedAt",
+            "archived",
+            "archivedAt"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,9}$"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "archivedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Companies keyed by the 10-digit zero-padded object id; property values are strings or null."
+      },
+      {
+        "namespace": "contacts",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "properties",
+            "createdAt",
+            "updatedAt",
+            "archived",
+            "archivedAt"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,9}$"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "archivedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Contacts keyed by the 10-digit zero-padded object id; property values are strings or null."
+      },
+      {
+        "namespace": "deals",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "properties",
+            "createdAt",
+            "updatedAt",
+            "archived",
+            "archivedAt"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,9}$"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "archivedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Deals keyed by the 10-digit zero-padded object id; property values are strings or null."
+      },
+      {
+        "namespace": "meta",
+        "schema": {
+          "type": "object",
+          "required": [
+            "nextObjectId"
+          ],
+          "properties": {
+            "nextObjectId": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "`counters`: the shared id sequence for contacts, companies, deals, notes and tasks."
+      },
+      {
+        "namespace": "notes",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "properties",
+            "createdAt",
+            "updatedAt",
+            "archived",
+            "archivedAt"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,9}$"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "archivedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Notes keyed by the 10-digit zero-padded object id; property values are strings or null."
+      },
+      {
+        "namespace": "owners",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "email",
+            "type",
+            "firstName",
+            "lastName",
+            "userId",
+            "userIdIncludingInactive",
+            "createdAt",
+            "updatedAt",
+            "archived",
+            "teams"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "userId": {
+              "type": "integer"
+            },
+            "userIdIncludingInactive": {
+              "type": "integer"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "teams": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "primary"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "primary": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Portal users keyed by the padded owner id; the actor attribute `email` must match one non-archived row."
+      },
+      {
+        "namespace": "pipelines",
+        "schema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "id",
+            "label",
+            "displayOrder",
+            "archived",
+            "createdAt",
+            "updatedAt",
+            "stages"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "displayOrder": {
+              "type": "integer"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "stages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "label",
+                  "displayOrder",
+                  "archived",
+                  "metadata",
+                  "createdAt",
+                  "updatedAt",
+                  "writePermissions"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "displayOrder": {
+                    "type": "integer"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "required": [
+                      "probability",
+                      "isClosed"
+                    ],
+                    "properties": {
+                      "probability": {
+                        "type": "string"
+                      },
+                      "isClosed": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "writePermissions": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Deal pipelines keyed `deals/{pipelineId}` with their stages."
+      },
+      {
+        "namespace": "properties",
+        "schema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "name",
+            "label",
+            "type",
+            "fieldType",
+            "groupName",
+            "description",
+            "options",
+            "displayOrder",
+            "hasUniqueValue",
+            "hidden",
+            "formField",
+            "calculated",
+            "externalOptions",
+            "archived",
+            "hubspotDefined",
+            "modificationMetadata",
+            "createdAt",
+            "updatedAt"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "string",
+                "number",
+                "enumeration",
+                "datetime",
+                "date",
+                "bool"
+              ]
+            },
+            "fieldType": {
+              "type": "string"
+            },
+            "groupName": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "label",
+                  "value",
+                  "displayOrder",
+                  "hidden"
+                ],
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "displayOrder": {
+                    "type": "integer"
+                  },
+                  "hidden": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "displayOrder": {
+              "type": "integer"
+            },
+            "hasUniqueValue": {
+              "type": "boolean"
+            },
+            "hidden": {
+              "type": "boolean"
+            },
+            "formField": {
+              "type": "boolean"
+            },
+            "calculated": {
+              "type": "boolean"
+            },
+            "externalOptions": {
+              "type": "boolean"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "hubspotDefined": {
+              "type": "boolean"
+            },
+            "modificationMetadata": {
+              "type": "object",
+              "required": [
+                "archivable",
+                "readOnlyDefinition",
+                "readOnlyValue"
+              ],
+              "properties": {
+                "archivable": {
+                  "type": "boolean"
+                },
+                "readOnlyDefinition": {
+                  "type": "boolean"
+                },
+                "readOnlyValue": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Custom (user-defined) property definitions keyed `{objectType}/{name}`; HubSpot-defined properties are constants."
+      },
+      {
+        "namespace": "tasks",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "properties",
+            "createdAt",
+            "updatedAt",
+            "archived",
+            "archivedAt"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,9}$"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "archivedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Tasks keyed by the 10-digit zero-padded object id; property values are strings or null."
+      }
+    ],
+    "operations": [
+      {
+        "id": "account.get-details",
+        "description": "Account details of the simulated portal and the user the actor's e-mail resolves to (GET /account-info/v3/details).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "portalId",
+            "accountType",
+            "timeZone",
+            "companyCurrency",
+            "additionalCurrencies",
+            "utcOffset",
+            "utcOffsetMilliseconds",
+            "uiDomain",
+            "dataHostingLocation",
+            "user",
+            "scopes"
+          ],
+          "properties": {
+            "portalId": {
+              "type": "integer"
+            },
+            "accountType": {
+              "type": "string"
+            },
+            "timeZone": {
+              "type": "string"
+            },
+            "companyCurrency": {
+              "type": "string"
+            },
+            "additionalCurrencies": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "utcOffset": {
+              "type": "string"
+            },
+            "utcOffsetMilliseconds": {
+              "type": "integer"
+            },
+            "uiDomain": {
+              "type": "string"
+            },
+            "dataHostingLocation": {
+              "type": "string"
+            },
+            "user": {
+              "type": "object",
+              "required": [
+                "id",
+                "email",
+                "firstName",
+                "lastName",
+                "ownerId"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "ownerId": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "scopes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "hubspot-get-user-details",
+          "description": "Authenticated user, account (hub) details and granted scopes of the simulated HubSpot portal."
+        }
+      },
+      {
+        "id": "associations.archive",
+        "description": "Remove every association type between two records in both directions (no error when they were not associated).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fromObjectType",
+            "fromObjectId",
+            "toObjectType",
+            "toObjectId"
+          ],
+          "properties": {
+            "fromObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "fromObjectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "toObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "toObjectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "associations.batch-create",
+        "description": "Create up to 100 labelled associations between two object types; missing records are reported in errors while the rest are created.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fromObjectType",
+            "toObjectType",
+            "inputs"
+          ],
+          "properties": {
+            "fromObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "toObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "from",
+                  "to",
+                  "types"
+                ],
+                "properties": {
+                  "from": {
+                    "type": "object",
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 512
+                          },
+                          {
+                            "type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "to": {
+                    "type": "object",
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 512
+                          },
+                          {
+                            "type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "associationTypeId"
+                      ],
+                      "properties": {
+                        "associationCategory": {
+                          "type": "string"
+                        },
+                        "associationTypeId": {
+                          "type": "integer"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "status",
+            "results",
+            "startedAt",
+            "completedAt"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE"
+              ]
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "fromObjectTypeId",
+                  "fromObjectId",
+                  "toObjectTypeId",
+                  "toObjectId",
+                  "labels"
+                ],
+                "properties": {
+                  "fromObjectTypeId": {
+                    "type": "string"
+                  },
+                  "fromObjectId": {
+                    "type": "string"
+                  },
+                  "toObjectTypeId": {
+                    "type": "string"
+                  },
+                  "toObjectId": {
+                    "type": "string"
+                  },
+                  "labels": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "startedAt": {
+              "type": "string"
+            },
+            "completedAt": {
+              "type": "string"
+            },
+            "numErrors": {
+              "type": "integer"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "category",
+                  "message"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "subCategory": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "hubspot-batch-create-associations",
+          "description": "Batch-create associations between CRM objects with explicit association types."
+        }
+      },
+      {
+        "id": "associations.batch-read",
+        "description": "Read the associations of up to 100 records towards one object type; records without associations are absent from results.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fromObjectType",
+            "toObjectType",
+            "inputs"
+          ],
+          "properties": {
+            "fromObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "toObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 512
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "status",
+            "results",
+            "startedAt",
+            "completedAt"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE"
+              ]
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "from",
+                  "to"
+                ],
+                "properties": {
+                  "from": {
+                    "type": "object",
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "to": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "toObjectId",
+                        "associationTypes"
+                      ],
+                      "properties": {
+                        "toObjectId": {
+                          "type": "string"
+                        },
+                        "associationTypes": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "category",
+                              "typeId",
+                              "label"
+                            ],
+                            "properties": {
+                              "category": {
+                                "type": "string"
+                              },
+                              "typeId": {
+                                "type": "integer"
+                              },
+                              "label": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "startedAt": {
+              "type": "string"
+            },
+            "completedAt": {
+              "type": "string"
+            },
+            "numErrors": {
+              "type": "integer"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "category",
+                  "message"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "subCategory": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "associations.create",
+        "description": "Associate two records with explicit association types (labels); a HubSpot-defined Primary label is exclusive per record and pair.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fromObjectType",
+            "fromObjectId",
+            "toObjectType",
+            "toObjectId",
+            "types"
+          ],
+          "properties": {
+            "fromObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "fromObjectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "toObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "toObjectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "types": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "associationTypeId"
+                ],
+                "properties": {
+                  "associationCategory": {
+                    "type": "string"
+                  },
+                  "associationTypeId": {
+                    "type": "integer"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "fromObjectTypeId",
+            "fromObjectId",
+            "toObjectTypeId",
+            "toObjectId",
+            "labels"
+          ],
+          "properties": {
+            "fromObjectTypeId": {
+              "type": "string"
+            },
+            "fromObjectId": {
+              "type": "string"
+            },
+            "toObjectTypeId": {
+              "type": "string"
+            },
+            "toObjectId": {
+              "type": "string"
+            },
+            "labels": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "associations.create-default",
+        "description": "Associate two records with the unlabeled HubSpot-defined type of their pair, in both directions (idempotent).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fromObjectType",
+            "fromObjectId",
+            "toObjectType",
+            "toObjectId"
+          ],
+          "properties": {
+            "fromObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "fromObjectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "toObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "toObjectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "fromObjectTypeId",
+                  "fromObjectId",
+                  "toObjectTypeId",
+                  "toObjectId",
+                  "associationSpec"
+                ],
+                "properties": {
+                  "fromObjectTypeId": {
+                    "type": "string"
+                  },
+                  "fromObjectId": {
+                    "type": "string"
+                  },
+                  "toObjectTypeId": {
+                    "type": "string"
+                  },
+                  "toObjectId": {
+                    "type": "string"
+                  },
+                  "associationSpec": {
+                    "type": "object",
+                    "required": [
+                      "associationCategory",
+                      "associationTypeId"
+                    ],
+                    "properties": {
+                      "associationCategory": {
+                        "type": "string"
+                      },
+                      "associationTypeId": {
+                        "type": "integer"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "associations.list",
+        "description": "List a record's associations to one object type with their association types (archived or hidden targets are omitted).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "objectId",
+            "toObjectType"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "objectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "toObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "limit": {
+              "description": "Page size; a non-integer value is rejected with VALIDATION_ERROR.",
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "after": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "toObjectId",
+                  "associationTypes"
+                ],
+                "properties": {
+                  "toObjectId": {
+                    "type": "string"
+                  },
+                  "associationTypes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "category",
+                        "typeId",
+                        "label"
+                      ],
+                      "properties": {
+                        "category": {
+                          "type": "string"
+                        },
+                        "typeId": {
+                          "type": "integer"
+                        },
+                        "label": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "paging": {
+              "type": "object",
+              "required": [
+                "next"
+              ],
+              "properties": {
+                "next": {
+                  "type": "object",
+                  "required": [
+                    "after",
+                    "link"
+                  ],
+                  "properties": {
+                    "after": {
+                      "type": "string"
+                    },
+                    "link": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "hubspot-list-associations",
+          "description": "List the associations of one CRM object towards another object type."
+        }
+      },
+      {
+        "id": "associations.list-labels",
+        "description": "The association type definitions (HubSpot-defined and user-defined labels) between two object types.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fromObjectType",
+            "toObjectType"
+          ],
+          "properties": {
+            "fromObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "toObjectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "category",
+                  "typeId",
+                  "label"
+                ],
+                "properties": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "typeId": {
+                    "type": "integer"
+                  },
+                  "label": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "hubspot-get-association-definitions",
+          "description": "Association type definitions (labels and type ids) between two object types."
+        }
+      },
+      {
+        "id": "objects.archive",
+        "description": "Archive (soft-delete) one CRM record; an archived record disappears from lists, searches and lookups unless archived=true is requested.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "objectId"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "objectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "objects.batch-create",
+        "description": "Create up to 100 records atomically: any invalid input (or a duplicate contact e-mail) rejects the whole batch and nothing is written.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "inputs"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "properties"
+                ],
+                "properties": {
+                  "properties": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "associations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "to",
+                        "types"
+                      ],
+                      "properties": {
+                        "to": {
+                          "type": "object",
+                          "required": [
+                            "id"
+                          ],
+                          "properties": {
+                            "id": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 512
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "types": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "associationTypeId"
+                            ],
+                            "properties": {
+                              "associationCategory": {
+                                "type": "string"
+                              },
+                              "associationTypeId": {
+                                "type": "integer"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "status",
+            "results",
+            "startedAt",
+            "completedAt"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE"
+              ]
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "properties",
+                  "createdAt",
+                  "updatedAt",
+                  "archived"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "archivedAt": {
+                    "type": "string"
+                  },
+                  "associations": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "required": [
+                        "results"
+                      ],
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "type"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "startedAt": {
+              "type": "string"
+            },
+            "completedAt": {
+              "type": "string"
+            },
+            "numErrors": {
+              "type": "integer"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "category",
+                  "message"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "subCategory": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CONFLICT",
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "hubspot-batch-create-objects",
+          "description": "Batch-create CRM objects of one type from property maps (all-or-nothing on validation errors)."
+        }
+      },
+      {
+        "id": "objects.batch-read",
+        "description": "Read up to 100 records by id (or by a unique idProperty) in input order; unknown ids are reported in errors.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "inputs"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 512
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "idProperty": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "status",
+            "results",
+            "startedAt",
+            "completedAt"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE"
+              ]
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "properties",
+                  "createdAt",
+                  "updatedAt",
+                  "archived"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "archivedAt": {
+                    "type": "string"
+                  },
+                  "associations": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "required": [
+                        "results"
+                      ],
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "type"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "startedAt": {
+              "type": "string"
+            },
+            "completedAt": {
+              "type": "string"
+            },
+            "numErrors": {
+              "type": "integer"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "category",
+                  "message"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "subCategory": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "hubspot-batch-read-objects",
+          "description": "Batch-read CRM objects by id with selected properties; missing ids are listed in errors."
+        }
+      },
+      {
+        "id": "objects.batch-update",
+        "description": "PATCH up to 100 records; unknown ids are reported in errors while the rest are updated, invalid values reject the whole batch.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "inputs"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "properties"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 512
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "properties": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "idProperty": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "status",
+            "results",
+            "startedAt",
+            "completedAt"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE"
+              ]
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "properties",
+                  "createdAt",
+                  "updatedAt",
+                  "archived"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "archivedAt": {
+                    "type": "string"
+                  },
+                  "associations": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "required": [
+                        "results"
+                      ],
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "type"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "startedAt": {
+              "type": "string"
+            },
+            "completedAt": {
+              "type": "string"
+            },
+            "numErrors": {
+              "type": "integer"
+            },
+            "errors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "category",
+                  "message"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "subCategory": {
+                    "type": "string"
+                  },
+                  "context": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CONFLICT",
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "hubspot-batch-update-objects",
+          "description": "Batch-update CRM objects by id with PATCH-merged property maps."
+        }
+      },
+      {
+        "id": "objects.create",
+        "description": "Create one CRM record with validated property values and optional inline associations (target type implied by the association type id).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "properties"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "properties": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "to",
+                  "types"
+                ],
+                "properties": {
+                  "to": {
+                    "type": "object",
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 512
+                          },
+                          {
+                            "type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "associationTypeId"
+                      ],
+                      "properties": {
+                        "associationCategory": {
+                          "type": "string"
+                        },
+                        "associationTypeId": {
+                          "type": "integer"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "properties",
+            "createdAt",
+            "updatedAt",
+            "archived"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "archivedAt": {
+              "type": "string"
+            },
+            "associations": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "required": [
+                  "results"
+                ],
+                "properties": {
+                  "results": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CONFLICT",
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "objects.get",
+        "description": "Read one CRM record by id or by a unique property (idProperty=email on contacts).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "objectId"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "objectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "idProperty": {
+              "type": "string"
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "properties",
+            "createdAt",
+            "updatedAt",
+            "archived"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "archivedAt": {
+              "type": "string"
+            },
+            "associations": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "required": [
+                  "results"
+                ],
+                "properties": {
+                  "results": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "objects.list",
+        "description": "Page through CRM records of one object type (contacts, companies, deals, notes, tasks) by ascending id, optionally with selected properties and inline associations.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "limit": {
+              "description": "Page size; a non-integer value is rejected with VALIDATION_ERROR.",
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "after": {
+              "type": "string"
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "properties",
+                  "createdAt",
+                  "updatedAt",
+                  "archived"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "archivedAt": {
+                    "type": "string"
+                  },
+                  "associations": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "required": [
+                        "results"
+                      ],
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "type"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "paging": {
+              "type": "object",
+              "required": [
+                "next"
+              ],
+              "properties": {
+                "next": {
+                  "type": "object",
+                  "required": [
+                    "after",
+                    "link"
+                  ],
+                  "properties": {
+                    "after": {
+                      "type": "string"
+                    },
+                    "link": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "hubspot-list-objects",
+          "description": "List CRM objects of a type with cursor paging (limit, after), selected properties and associations."
+        }
+      },
+      {
+        "id": "objects.search",
+        "description": "Search non-archived records with filterGroups (OR of ANDs), free-text query, one sort and offset paging (after is a decimal offset).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "filterGroups": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "filters"
+                ],
+                "properties": {
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "propertyName",
+                        "operator"
+                      ],
+                      "properties": {
+                        "propertyName": {
+                          "type": "string"
+                        },
+                        "operator": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "values": {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "highValue": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "query": {
+              "type": "string"
+            },
+            "sorts": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "propertyName"
+                    ],
+                    "properties": {
+                      "propertyName": {
+                        "type": "string"
+                      },
+                      "direction": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "maxItems": 500
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "after": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "total",
+            "results"
+          ],
+          "properties": {
+            "total": {
+              "type": "integer"
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "properties",
+                  "createdAt",
+                  "updatedAt",
+                  "archived"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "archivedAt": {
+                    "type": "string"
+                  },
+                  "associations": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "required": [
+                        "results"
+                      ],
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "type"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "paging": {
+              "type": "object",
+              "required": [
+                "next"
+              ],
+              "properties": {
+                "next": {
+                  "type": "object",
+                  "required": [
+                    "after"
+                  ],
+                  "properties": {
+                    "after": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "hubspot-search-objects",
+          "description": "Search CRM objects with filterGroups, query, sorts, properties, limit and after."
+        }
+      },
+      {
+        "id": "objects.update",
+        "description": "PATCH-merge property values into one CRM record (null clears a value); deal stage changes re-derive the closed flags and probability.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "objectId",
+            "properties"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "objectId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "properties": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "idProperty": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "properties",
+            "createdAt",
+            "updatedAt",
+            "archived"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "archivedAt": {
+              "type": "string"
+            },
+            "associations": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "required": [
+                  "results"
+                ],
+                "properties": {
+                  "results": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "type"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "CONFLICT",
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "SERVICE_UNAVAILABLE",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "owners.get",
+        "description": "Read one owner by owner id or (idProperty=userId) by user id; archived owners require archived=true.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "ownerId"
+          ],
+          "properties": {
+            "ownerId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "idProperty": {
+              "type": "string"
+            },
+            "archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "email",
+            "type",
+            "firstName",
+            "lastName",
+            "userId",
+            "userIdIncludingInactive",
+            "createdAt",
+            "updatedAt",
+            "archived",
+            "teams"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "userId": {
+              "type": "integer"
+            },
+            "userIdIncludingInactive": {
+              "type": "integer"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "teams": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "primary"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "primary": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "owners.list",
+        "description": "List portal users (owners), optionally filtered by e-mail or archived state, with cursor paging.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "limit": {
+              "description": "Page size; a non-integer value is rejected with VALIDATION_ERROR.",
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "after": {
+              "type": "string"
+            },
+            "archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "email",
+                  "type",
+                  "firstName",
+                  "lastName",
+                  "userId",
+                  "userIdIncludingInactive",
+                  "createdAt",
+                  "updatedAt",
+                  "archived",
+                  "teams"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "integer"
+                  },
+                  "userIdIncludingInactive": {
+                    "type": "integer"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "teams": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "name",
+                        "primary"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "primary": {
+                          "type": "boolean"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "paging": {
+              "type": "object",
+              "required": [
+                "next"
+              ],
+              "properties": {
+                "next": {
+                  "type": "object",
+                  "required": [
+                    "after",
+                    "link"
+                  ],
+                  "properties": {
+                    "after": {
+                      "type": "string"
+                    },
+                    "link": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "pipelines.get",
+        "description": "One deal pipeline with its stages.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "pipelineId"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "pipelineId": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "label",
+            "displayOrder",
+            "archived",
+            "createdAt",
+            "updatedAt",
+            "stages"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "displayOrder": {
+              "type": "integer"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            },
+            "stages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "label",
+                  "displayOrder",
+                  "archived",
+                  "metadata",
+                  "createdAt",
+                  "updatedAt",
+                  "writePermissions"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "displayOrder": {
+                    "type": "integer"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "required": [
+                      "probability",
+                      "isClosed"
+                    ],
+                    "properties": {
+                      "probability": {
+                        "type": "string"
+                      },
+                      "isClosed": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "writePermissions": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "pipelines.list",
+        "description": "Deal pipelines with their stages, ordered by displayOrder (deals only).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "label",
+                  "displayOrder",
+                  "archived",
+                  "createdAt",
+                  "updatedAt",
+                  "stages"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "displayOrder": {
+                    "type": "integer"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "stages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "label",
+                        "displayOrder",
+                        "archived",
+                        "metadata",
+                        "createdAt",
+                        "updatedAt",
+                        "writePermissions"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "displayOrder": {
+                          "type": "integer"
+                        },
+                        "archived": {
+                          "type": "boolean"
+                        },
+                        "metadata": {
+                          "type": "object",
+                          "required": [
+                            "probability",
+                            "isClosed"
+                          ],
+                          "properties": {
+                            "probability": {
+                              "type": "string"
+                            },
+                            "isClosed": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "writePermissions": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "pipelines.list-stages",
+        "description": "The stages of one deal pipeline (probability and isClosed metadata as strings, as HubSpot renders them).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "pipelineId"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "pipelineId": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "label",
+                  "displayOrder",
+                  "archived",
+                  "metadata",
+                  "createdAt",
+                  "updatedAt",
+                  "writePermissions"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "displayOrder": {
+                    "type": "integer"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "required": [
+                      "probability",
+                      "isClosed"
+                    ],
+                    "properties": {
+                      "probability": {
+                        "type": "string"
+                      },
+                      "isClosed": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "writePermissions": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "properties.get",
+        "description": "One property definition by internal name.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "propertyName"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "propertyName": {
+              "type": "string"
+            },
+            "archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "name",
+            "label",
+            "type",
+            "fieldType",
+            "groupName",
+            "description",
+            "options",
+            "displayOrder",
+            "hasUniqueValue",
+            "hidden",
+            "formField",
+            "calculated",
+            "externalOptions",
+            "archived",
+            "hubspotDefined",
+            "modificationMetadata",
+            "createdAt",
+            "updatedAt"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "string",
+                "number",
+                "enumeration",
+                "datetime",
+                "date",
+                "bool"
+              ]
+            },
+            "fieldType": {
+              "type": "string"
+            },
+            "groupName": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "label",
+                  "value",
+                  "displayOrder",
+                  "hidden"
+                ],
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "displayOrder": {
+                    "type": "integer"
+                  },
+                  "hidden": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "displayOrder": {
+              "type": "integer"
+            },
+            "hasUniqueValue": {
+              "type": "boolean"
+            },
+            "hidden": {
+              "type": "boolean"
+            },
+            "formField": {
+              "type": "boolean"
+            },
+            "calculated": {
+              "type": "boolean"
+            },
+            "externalOptions": {
+              "type": "boolean"
+            },
+            "archived": {
+              "type": "boolean"
+            },
+            "hubspotDefined": {
+              "type": "boolean"
+            },
+            "modificationMetadata": {
+              "type": "object",
+              "required": [
+                "archivable",
+                "readOnlyDefinition",
+                "readOnlyValue"
+              ],
+              "properties": {
+                "archivable": {
+                  "type": "boolean"
+                },
+                "readOnlyDefinition": {
+                  "type": "boolean"
+                },
+                "readOnlyValue": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "hubspot-get-property",
+          "description": "Read one property definition of a CRM object type."
+        }
+      },
+      {
+        "id": "properties.list",
+        "description": "Property definitions of one object type: the HubSpot-defined subset plus custom definitions from state (hidden ones on request).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "objectType"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "archived": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "includeHidden": {
+              "description": "Keep hidden property definitions; a non-boolean value is rejected with VALIDATION_ERROR.",
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "label",
+                  "type",
+                  "fieldType",
+                  "groupName",
+                  "description",
+                  "options",
+                  "displayOrder",
+                  "hasUniqueValue",
+                  "hidden",
+                  "formField",
+                  "calculated",
+                  "externalOptions",
+                  "archived",
+                  "hubspotDefined",
+                  "modificationMetadata",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "string",
+                      "number",
+                      "enumeration",
+                      "datetime",
+                      "date",
+                      "bool"
+                    ]
+                  },
+                  "fieldType": {
+                    "type": "string"
+                  },
+                  "groupName": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "label",
+                        "value",
+                        "displayOrder",
+                        "hidden"
+                      ],
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        },
+                        "displayOrder": {
+                          "type": "integer"
+                        },
+                        "hidden": {
+                          "type": "boolean"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "displayOrder": {
+                    "type": "integer"
+                  },
+                  "hasUniqueValue": {
+                    "type": "boolean"
+                  },
+                  "hidden": {
+                    "type": "boolean"
+                  },
+                  "formField": {
+                    "type": "boolean"
+                  },
+                  "calculated": {
+                    "type": "boolean"
+                  },
+                  "externalOptions": {
+                    "type": "boolean"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "hubspotDefined": {
+                    "type": "boolean"
+                  },
+                  "modificationMetadata": {
+                    "type": "object",
+                    "required": [
+                      "archivable",
+                      "readOnlyDefinition",
+                      "readOnlyValue"
+                    ],
+                    "properties": {
+                      "archivable": {
+                        "type": "boolean"
+                      },
+                      "readOnlyDefinition": {
+                        "type": "boolean"
+                      },
+                      "readOnlyValue": {
+                        "type": "boolean"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "MISSING_SCOPES",
+          "NOT_FOUND",
+          "RATE_LIMITED",
+          "UNAUTHORIZED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "hubspot-list-properties",
+          "description": "List the property definitions of a CRM object type (includeHidden to keep hidden ones)."
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "association.changed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "fromObjectTypeId",
+            "fromObjectId",
+            "toObjectTypeId",
+            "toObjectId",
+            "associationTypeIds",
+            "removed"
+          ],
+          "properties": {
+            "fromObjectTypeId": {
+              "type": "string"
+            },
+            "fromObjectId": {
+              "type": "string"
+            },
+            "toObjectTypeId": {
+              "type": "string"
+            },
+            "toObjectId": {
+              "type": "string"
+            },
+            "associationTypeIds": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "removed": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "object.created",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "objectTypeId",
+            "objectId",
+            "ownerId"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string"
+            },
+            "objectTypeId": {
+              "type": "string"
+            },
+            "objectId": {
+              "type": "string"
+            },
+            "ownerId": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "object.property-changed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "objectType",
+            "objectTypeId",
+            "objectId",
+            "propertyName",
+            "propertyValue",
+            "previousValue"
+          ],
+          "properties": {
+            "objectType": {
+              "type": "string"
+            },
+            "objectTypeId": {
+              "type": "string"
+            },
+            "objectId": {
+              "type": "string"
+            },
+            "propertyName": {
+              "type": "string"
+            },
+            "propertyValue": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "previousValue": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "rate-limited",
+        "appliesTo": [
+          "account.get-details",
+          "associations.archive",
+          "associations.batch-create",
+          "associations.batch-read",
+          "associations.create",
+          "associations.create-default",
+          "associations.list",
+          "associations.list-labels",
+          "objects.archive",
+          "objects.batch-create",
+          "objects.batch-read",
+          "objects.batch-update",
+          "objects.create",
+          "objects.get",
+          "objects.list",
+          "objects.search",
+          "objects.update",
+          "owners.get",
+          "owners.list",
+          "pipelines.get",
+          "pipelines.list",
+          "pipelines.list-stages",
+          "properties.get",
+          "properties.list"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RATE_LIMITED",
+          "message": "You have reached your secondly limit.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "write-committed-lost",
+        "appliesTo": [
+          "objects.batch-create",
+          "objects.create"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "The HubSpot CRM is temporarily unavailable. Please retry.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "write-unavailable",
+        "appliesTo": [
+          "associations.archive",
+          "associations.batch-create",
+          "associations.create",
+          "associations.create-default",
+          "objects.archive",
+          "objects.batch-create",
+          "objects.batch-update",
+          "objects.create",
+          "objects.update"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "The HubSpot CRM is temporarily unavailable. Please retry.",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "archive-association",
+        "operationId": "associations.archive",
+        "method": "DELETE",
+        "path": "/crm/v4/objects/{fromObjectType}/{fromObjectId}/associations/{toObjectType}/{toObjectId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "archive-object",
+        "operationId": "objects.archive",
+        "method": "DELETE",
+        "path": "/crm/v3/objects/{objectType}/{objectId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "batch-create-associations",
+        "operationId": "associations.batch-create",
+        "method": "POST",
+        "path": "/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/create",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "batch-create-objects",
+        "operationId": "objects.batch-create",
+        "method": "POST",
+        "path": "/crm/v3/objects/{objectType}/batch/create",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "batch-read-associations",
+        "operationId": "associations.batch-read",
+        "method": "POST",
+        "path": "/crm/v4/associations/{fromObjectType}/{toObjectType}/batch/read",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "batch-read-objects",
+        "operationId": "objects.batch-read",
+        "method": "POST",
+        "path": "/crm/v3/objects/{objectType}/batch/read",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "batch-update-objects",
+        "operationId": "objects.batch-update",
+        "method": "POST",
+        "path": "/crm/v3/objects/{objectType}/batch/update",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-association",
+        "operationId": "associations.create",
+        "method": "PUT",
+        "path": "/crm/v4/objects/{fromObjectType}/{fromObjectId}/associations/{toObjectType}/{toObjectId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-default-association",
+        "operationId": "associations.create-default",
+        "method": "PUT",
+        "path": "/crm/v4/objects/{fromObjectType}/{fromObjectId}/associations/default/{toObjectType}/{toObjectId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-object",
+        "operationId": "objects.create",
+        "method": "POST",
+        "path": "/crm/v3/objects/{objectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-account-details",
+        "operationId": "account.get-details",
+        "method": "GET",
+        "path": "/account-info/v3/details",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-object",
+        "operationId": "objects.get",
+        "method": "GET",
+        "path": "/crm/v3/objects/{objectType}/{objectId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-owner",
+        "operationId": "owners.get",
+        "method": "GET",
+        "path": "/crm/v3/owners/{ownerId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-pipeline",
+        "operationId": "pipelines.get",
+        "method": "GET",
+        "path": "/crm/v3/pipelines/{objectType}/{pipelineId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-property",
+        "operationId": "properties.get",
+        "method": "GET",
+        "path": "/crm/v3/properties/{objectType}/{propertyName}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-association-labels",
+        "operationId": "associations.list-labels",
+        "method": "GET",
+        "path": "/crm/v4/associations/{fromObjectType}/{toObjectType}/labels",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-associations",
+        "operationId": "associations.list",
+        "method": "GET",
+        "path": "/crm/v4/objects/{objectType}/{objectId}/associations/{toObjectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-objects",
+        "operationId": "objects.list",
+        "method": "GET",
+        "path": "/crm/v3/objects/{objectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-owners",
+        "operationId": "owners.list",
+        "method": "GET",
+        "path": "/crm/v3/owners",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-pipeline-stages",
+        "operationId": "pipelines.list-stages",
+        "method": "GET",
+        "path": "/crm/v3/pipelines/{objectType}/{pipelineId}/stages",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-pipelines",
+        "operationId": "pipelines.list",
+        "method": "GET",
+        "path": "/crm/v3/pipelines/{objectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-properties",
+        "operationId": "properties.list",
+        "method": "GET",
+        "path": "/crm/v3/properties/{objectType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "search-objects",
+        "operationId": "objects.search",
+        "method": "POST",
+        "path": "/crm/v3/objects/{objectType}/search",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-object",
+        "operationId": "objects.update",
+        "method": "PATCH",
+        "path": "/crm/v3/objects/{objectType}/{objectId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONFLICT",
+              "status": 409
+            },
+            {
+              "code": "MISSING_SCOPES",
+              "status": 403
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "SERVICE_UNAVAILABLE",
+              "status": 503
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": [],
+    "connections": [
+      {
+        "id": "hubspot-api-client",
+        "title": "HubSpot REST client (@hubspot/api-client basePath override)",
+        "protocol": "http",
+        "environment": {
+          "HUBSPOT_API_BASE_PATH": "FIREDRILL_HTTP_URL",
+          "HUBSPOT_ACCESS_TOKEN": "FIREDRILL_HTTP_TOKEN"
+        },
+        "instructions": "Construct the client with basePath = HUBSPOT_API_BASE_PATH and accessToken = HUBSPOT_ACCESS_TOKEN (the isolated world token, sent as a Bearer header; never a real private-app token). Only the documented route subset exists; every other HubSpot path answers 404."
+      },
+      {
+        "id": "hubspot-mcp",
+        "title": "HubSpot MCP server tool names (hubspot-list-objects, hubspot-search-objects, ...)",
+        "protocol": "mcp",
+        "environment": {
+          "HUBSPOT_MCP_URL": "FIREDRILL_MCP_URL",
+          "PRIVATE_APP_ACCESS_TOKEN": "FIREDRILL_MCP_TOKEN"
+        },
+        "instructions": "Connect a Streamable HTTP MCP client to HUBSPOT_MCP_URL with PRIVATE_APP_ACCESS_TOKEN as a Bearer token. Eleven tool names of HubSpot's published MCP server are exposed as aliases next to the canonical hubspot.<operation> names and return the REST JSON shapes. The official stdio server itself is not the client being run: it talks to api.hubapi.com."
+      }
+    ]
+  }
+}

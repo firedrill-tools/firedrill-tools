@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "resend-quota-exhausted",
+  "title": "The last email of the daily quota is accepted and the next sends answer 429",
+  "targetId": "conformance-agent",
+  "scenarioId": "quota-exhausted",
+  "actorId": "owner",
+  "task": {
+    "instruction": "Run the quota-exhausted flow against the synthetic Resend Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "emails-send-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-send-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-send-batch-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "resend",
+        "operationId": "emails.send_batch"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "emails-count",
+      "kind": "state.count",
+      "packageId": "resend",
+      "namespace": "emails",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "usage-full",
+      "kind": "state.value",
+      "packageId": "resend",
+      "namespace": "meta",
+      "rowId": "usage",
+      "path": [
+        "sent"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 100
+      }
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "id": "box-browse",
+  "title": "Browse, read, page, download, versions, comments, search and the event stream as Maya",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "maya",
+  "task": {
+    "instruction": "Run the browse flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-me-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "users.get-me"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-list-items-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.list-items"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-download-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.download"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-versions-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "files.list-versions"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-for-file-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "comments.list-for-file"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "search-query-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "search.query"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "events-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "events.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "collaborations-list-for-folder-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "collaborations.list-for-folder"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "files",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "folders-count",
+      "kind": "state.count",
+      "packageId": "box",
+      "namespace": "folders",
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "file-uploaded-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "box",
+        "eventId": "file.uploaded"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,422 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-canonical-errors",
+  "title": "NOT_FOUND and INVALID_INPUT on every operation that declares them, over the canonical endpoint; nothing changes",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the canonical-errors conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-list-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "users.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "users-get-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "teams-get-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "teams.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "workflow-states-list-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "workflow-states.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "labels-list-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "labels-create-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "labels.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "projects-list-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "projects.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "projects-get-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "projects.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "projects-save-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "projects.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "cycles-list-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "cycles.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-list-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-get-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-create-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-update-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-save-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "issues-archive-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.archive"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "comments-list-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "comments-create-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "comments-update-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "comments-save-tool-error-greater-than-or-equal-2",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 2
+      }
+    },
+    {
+      "id": "teams-list-tool-error-equals-25",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "teams.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 25
+      }
+    },
+    {
+      "id": "issues-list-ok-equals-4",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "issues-count-equals-24",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "comments-count-equals-12",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "labels-count-equals-8",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "labels",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "projects-count-equals-3",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "projects",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-issue-created-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-issue-updated-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-comment-created-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

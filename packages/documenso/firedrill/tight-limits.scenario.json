@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "Scans are bounded to one row, so every operation that needs a larger scan fails instead of truncating",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "documenso",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 1,
+        "responseBytes": 900000
+      }
+    }
+  ]
+}

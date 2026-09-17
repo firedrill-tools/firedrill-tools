@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "gitlab-default-identity",
+  "title": "An actor without attributes acts as the primary seeded user (mara.lindqvist)",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "newcomer",
+  "task": {
+    "instruction": "Run the default-identity conformance flow against the synthetic GitLab Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "fresh-issue-author",
+      "kind": "state.value",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "rowId": "p000101#000015",
+      "path": [
+        "author_id"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "event-issue-changed",
+      "kind": "event.count",
+      "event": {
+        "packageId": "gitlab",
+        "eventId": "issue.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

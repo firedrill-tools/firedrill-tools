@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 1,
+  "id": "xero-conformance-world",
+  "title": "Xero Tool conformance world (Kōwhai Joinery Ltd)",
+  "virtualTimeUs": 1789423200000000,
+  "actors": [
+    {
+      "id": "owner",
+      "description": "Adviser connected to Kōwhai Joinery Ltd with every accounting scope.",
+      "attributes": {
+        "xeroTenantId": "6d1c2f0e-4b8a-4c3e-9a51-2f7e0b9d4c11",
+        "scopes": "accounting.settings accounting.settings.read accounting.contacts accounting.contacts.read accounting.transactions accounting.transactions.read"
+      },
+      "grants": [
+        {
+          "packageId": "xero",
+          "operationId": "organisation.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "tax-rates.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.email"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.record"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.delete"
+        }
+      ]
+    },
+    {
+      "id": "fresh",
+      "description": "Actor without attributes, as created by `firedrill tool add`: seeded tenant and every scope (documented fallback).",
+      "attributes": {},
+      "grants": [
+        {
+          "packageId": "xero",
+          "operationId": "organisation.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "tax-rates.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.email"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.record"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.delete"
+        }
+      ]
+    },
+    {
+      "id": "read-only",
+      "description": "Token with only the three .read scopes.",
+      "attributes": {
+        "scopes": "accounting.settings.read accounting.contacts.read accounting.transactions.read"
+      },
+      "grants": [
+        {
+          "packageId": "xero",
+          "operationId": "organisation.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "tax-rates.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.email"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.record"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.delete"
+        }
+      ]
+    },
+    {
+      "id": "contacts-only",
+      "description": "Token with only accounting.contacts.",
+      "attributes": {
+        "scopes": "accounting.contacts"
+      },
+      "grants": [
+        {
+          "packageId": "xero",
+          "operationId": "organisation.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "tax-rates.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.email"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.record"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.delete"
+        }
+      ]
+    },
+    {
+      "id": "no-scopes",
+      "description": "Token without any accounting scope.",
+      "attributes": {
+        "scopes": "offline_access"
+      },
+      "grants": [
+        {
+          "packageId": "xero",
+          "operationId": "organisation.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "tax-rates.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.email"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.record"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.delete"
+        }
+      ]
+    },
+    {
+      "id": "other-tenant",
+      "description": "Token connected to a different organisation.",
+      "attributes": {
+        "xeroTenantId": "11111111-2222-4333-8444-555555555555",
+        "scopes": "accounting.settings accounting.settings.read accounting.contacts accounting.contacts.read accounting.transactions accounting.transactions.read"
+      },
+      "grants": [
+        {
+          "packageId": "xero",
+          "operationId": "organisation.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "tax-rates.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "contacts.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.save"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "invoices.email"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.list"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.record"
+        },
+        {
+          "packageId": "xero",
+          "operationId": "payments.delete"
+        }
+      ]
+    },
+    {
+      "id": "no-grants",
+      "description": "Every scope but no Firedrill operation grants.",
+      "attributes": {
+        "scopes": "accounting.settings accounting.settings.read accounting.contacts accounting.contacts.read accounting.transactions accounting.transactions.read"
+      },
+      "grants": []
+    }
+  ]
+}

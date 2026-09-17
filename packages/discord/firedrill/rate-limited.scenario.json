@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "rate-limited",
+  "title": "Channel writes (create, edit, add reaction) answer 429 with Discord rate-limit headers; reads still work",
+  "faults": [
+    {
+      "packageId": "discord",
+      "faultId": "channel-write-rate-limited"
+    }
+  ]
+}

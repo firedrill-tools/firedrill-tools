@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-byte-pages",
+  "title": "Pages of 2000-character control and emoji messages stay under 1 MiB and page with before/after without gaps or repeats",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "bot",
+  "task": {
+    "instruction": "Run flow:byte-pages against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "created",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 200
+      }
+    },
+    {
+      "id": "paged",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "no-list-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    }
+  ]
+}

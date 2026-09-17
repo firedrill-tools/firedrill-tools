@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "dropbox-quota-and-isolation",
+  "title": "A nearly full basic account cannot exceed its quota and cannot see another account",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "colleague",
+  "task": {
+    "instruction": "Run the quota flow against the synthetic Dropbox Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "files-upload-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-copy-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.copy"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-restore-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.restore"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-get-metadata-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.get-metadata"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-list-folder-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.list-folder"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sharing-revoke-shared-link-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "sharing.revoke-shared-link"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-upload-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "dropbox",
+        "operationId": "files.upload"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "files-changed-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "dropbox",
+        "eventId": "files.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "entries-count",
+      "kind": "state.count",
+      "packageId": "dropbox",
+      "namespace": "entries",
+      "comparison": {
+        "operator": "equals",
+        "value": 38
+      }
+    },
+    {
+      "id": "maya-brief-untouched",
+      "kind": "state.value",
+      "packageId": "dropbox",
+      "namespace": "entries",
+      "rowId": "dbid:AAAmaya000000000000000000000000000000001/id:AAAAAAAAAAAAAAAAAAAAAw",
+      "path": [
+        "rev"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "0015f8a3c00000003"
+      }
+    }
+  ]
+}

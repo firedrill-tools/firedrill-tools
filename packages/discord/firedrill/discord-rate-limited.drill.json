@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-rate-limited",
+  "title": "Channel writes answer 429 with rate-limit headers and change nothing; reads and removals still work",
+  "targetId": "conformance-agent",
+  "scenarioId": "rate-limited",
+  "actorId": "bot",
+  "task": {
+    "instruction": "Run flow:rate-limited against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "create-limited",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "edit-limited",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.edit"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "reaction-limited",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.add"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "remove-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "reactions.remove"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "nothing-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "nothing-reacted",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "reaction.added"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 23
+      }
+    },
+    {
+      "id": "reaction-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "comparison": {
+        "operator": "equals",
+        "value": 26
+      }
+    }
+  ]
+}

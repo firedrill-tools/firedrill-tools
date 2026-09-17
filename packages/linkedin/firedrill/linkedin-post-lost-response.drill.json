@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "linkedin-post-lost-response",
+  "title": "A post commits but the caller sees 500; a blind retry publishes a duplicate",
+  "targetId": "conformance-agent",
+  "scenarioId": "post-lost-response",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the post-lost-response flow against the synthetic LinkedIn Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "posts-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linkedin",
+        "operationId": "posts.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "posts-count",
+      "kind": "state.count",
+      "packageId": "linkedin",
+      "namespace": "posts",
+      "comparison": {
+        "operator": "equals",
+        "value": 21
+      }
+    },
+    {
+      "id": "activities-count",
+      "kind": "state.count",
+      "packageId": "linkedin",
+      "namespace": "activities",
+      "comparison": {
+        "operator": "equals",
+        "value": 21
+      }
+    },
+    {
+      "id": "post-published-events",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linkedin",
+        "eventId": "post.published"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    }
+  ]
+}

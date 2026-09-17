@@ -1,0 +1,62 @@
+{
+  "name": "@firedrill-tools/tool-waterfall",
+  "version": "0.1.0",
+  "description": "Synthetic Waterfall account (contact, phone and company enrichment jobs, contact and company search, job change, e-mail verification, account reporter, API keys; Waterfall-shaped REST routes) Tool package for Firedrill",
+  "keywords": [
+    "firedrill",
+    "tool-pack",
+    "waterfall",
+    "data-enrichment",
+    "email-verification",
+    "synthetic",
+    "testing",
+    "ai-agent"
+  ],
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "firedrill",
+    "test",
+    "firedrill.json",
+    "starter.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "firedrill": {
+    "layer": "tool-pack",
+    "tool": "firedrill/tools/waterfall/waterfall.tool.json",
+    "starter": "starter.json",
+    "lifecycle": "active",
+    "conformance": {
+      "schemaVersion": 1,
+      "project": "firedrill.json",
+      "suite": "conformance"
+    }
+  },
+  "scripts": {
+    "validate": "firedrill validate",
+    "test": "firedrill tool test waterfall"
+  },
+  "devDependencies": {
+    "@firedrill-tools/cli": "0.1.0-rc.1",
+    "@firedrill-tools/tool-sdk": "0.1.0-rc.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firedrill-tools/firedrill-tools.git",
+    "directory": "packages/waterfall"
+  },
+  "bugs": {
+    "url": "https://github.com/firedrill-tools/firedrill-tools/issues"
+  },
+  "homepage": "https://github.com/firedrill-tools/firedrill-tools/tree/main/packages/waterfall#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}

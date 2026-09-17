@@ -1,0 +1,5436 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "ui": {
+    "root": "app/site",
+    "entry": "index.html"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "google-sheets",
+    "version": "0.1.0",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "meta",
+        "schema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "spreadsheetSequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "sheetSequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "permissionSequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "namedRangeSequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "maxSpreadsheets": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxSheets": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxRowCount": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxColumnCount": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxGridCells": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxScanRows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxCellsPerWrite": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxRequestsPerBatch": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxRangesPerBatch": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxCellCharacters": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxEvaluationVisits": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxPermissions": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "maxNamedRanges": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Row `counters` (id sequences) and optional row `limits` (scenario-authored bounds; each key overrides a default)."
+      },
+      {
+        "namespace": "named-ranges",
+        "schema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "namedRangeId",
+            "name",
+            "sheetId"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "namedRangeId": {
+              "type": "string",
+              "minLength": 12,
+              "maxLength": 12,
+              "pattern": "^[a-z0-9]{12}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 250,
+              "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+            },
+            "sheetId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "startRowIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "endRowIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "startColumnIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18278
+            },
+            "endColumnIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18278
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Named ranges, row id = `<spreadsheetId>:<namedRangeId>`. Open sides are absent."
+      },
+      {
+        "namespace": "permissions",
+        "schema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "id",
+            "type",
+            "role",
+            "createdTime"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "pattern": "^([0-9]{20}|anyoneWithLink)$"
+            },
+            "type": {
+              "enum": [
+                "user",
+                "domain",
+                "anyone"
+              ]
+            },
+            "role": {
+              "enum": [
+                "owner",
+                "writer",
+                "commenter",
+                "reader"
+              ]
+            },
+            "emailAddress": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            },
+            "domain": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 253
+            },
+            "displayName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "allowFileDiscovery": {
+              "type": "boolean"
+            },
+            "createdTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Drive permissions, row id = `<spreadsheetId>:<permissionId>`. The owner row is created with the file."
+      },
+      {
+        "namespace": "rows",
+        "schema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "sheetId",
+            "rowIndex",
+            "cells"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "sheetId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "rowIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999999
+            },
+            "cells": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "columnIndex"
+                ],
+                "properties": {
+                  "columnIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 18277
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "required": [
+                          "kind",
+                          "string"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "string"
+                          },
+                          "string": {
+                            "type": "string",
+                            "minLength": 0,
+                            "maxLength": 50000
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "kind",
+                          "number"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "number"
+                          },
+                          "number": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "kind",
+                          "bool"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "bool"
+                          },
+                          "bool": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "kind",
+                          "formula"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "formula"
+                          },
+                          "formula": {
+                            "type": "string",
+                            "minLength": 2,
+                            "maxLength": 2000,
+                            "pattern": "^="
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "format": {
+                    "type": "object",
+                    "required": [],
+                    "properties": {
+                      "bold": {
+                        "type": "boolean"
+                      },
+                      "italic": {
+                        "type": "boolean"
+                      },
+                      "strikethrough": {
+                        "type": "boolean"
+                      },
+                      "underline": {
+                        "type": "boolean"
+                      },
+                      "fontSize": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 400
+                      },
+                      "foregroundColorRgb": {
+                        "type": "string",
+                        "minLength": 7,
+                        "maxLength": 7,
+                        "pattern": "^#[0-9a-f]{6}$"
+                      },
+                      "backgroundColorRgb": {
+                        "type": "string",
+                        "minLength": 7,
+                        "maxLength": 7,
+                        "pattern": "^#[0-9a-f]{6}$"
+                      },
+                      "horizontalAlignment": {
+                        "enum": [
+                          "LEFT",
+                          "CENTER",
+                          "RIGHT"
+                        ]
+                      },
+                      "wrapStrategy": {
+                        "enum": [
+                          "OVERFLOW_CELL",
+                          "CLIP",
+                          "WRAP"
+                        ]
+                      },
+                      "numberFormat": {
+                        "type": "object",
+                        "required": [
+                          "type"
+                        ],
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "TEXT",
+                              "NUMBER",
+                              "PERCENT",
+                              "CURRENCY",
+                              "DATE",
+                              "TIME",
+                              "DATE_TIME",
+                              "SCIENTIFIC"
+                            ]
+                          },
+                          "pattern": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 64
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "note": {
+                    "type": "string",
+                    "minLength": 0,
+                    "maxLength": 1000
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 18278,
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "One stored grid row, row id = `<spreadsheetId>:<sheetId 10 digits>:<rowIndex 7 digits>`. Sparse: only non-empty cells; formula results are evaluated on read, never stored."
+      },
+      {
+        "namespace": "sheets",
+        "schema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "sheetId",
+            "title",
+            "index",
+            "hidden",
+            "rowCount",
+            "columnCount",
+            "frozenRowCount",
+            "frozenColumnCount"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "sheetId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            "hidden": {
+              "type": "boolean"
+            },
+            "rowCount": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "columnCount": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 18278
+            },
+            "frozenRowCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "frozenColumnCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18278
+            },
+            "tabColorRgb": {
+              "type": "string",
+              "minLength": 7,
+              "maxLength": 7,
+              "pattern": "^#[0-9a-f]{6}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Sheets (tabs), row id = `<spreadsheetId>:<sheetId zero-padded to 10>`."
+      },
+      {
+        "namespace": "spreadsheets",
+        "schema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "title",
+            "locale",
+            "timeZone",
+            "ownerEmail",
+            "trashed",
+            "createdTime",
+            "modifiedTime",
+            "lastModifyingUser",
+            "version",
+            "sheetCount"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "locale": {
+              "const": "en_US"
+            },
+            "timeZone": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "ownerEmail": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            },
+            "trashed": {
+              "type": "boolean"
+            },
+            "trashedTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "createdTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "modifiedTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "lastModifyingUser": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000000
+            },
+            "sheetCount": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Spreadsheet metadata (Sheets properties + Drive file fields), row id = spreadsheetId. Cells live in `rows`."
+      },
+      {
+        "namespace": "user-files",
+        "schema": {
+          "type": "object",
+          "required": [
+            "emailAddress",
+            "spreadsheetId",
+            "starred"
+          ],
+          "properties": {
+            "emailAddress": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            },
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "starred": {
+              "type": "boolean"
+            },
+            "viewedByMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "modifiedByMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "sharedWithMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Per-user file state, row id = `<email>:<spreadsheetId>`. Absent row = not starred, never viewed."
+      },
+      {
+        "namespace": "users",
+        "schema": {
+          "type": "object",
+          "required": [
+            "emailAddress",
+            "displayName",
+            "permissionId",
+            "domain"
+          ],
+          "properties": {
+            "emailAddress": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            },
+            "displayName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "permissionId": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 20,
+              "pattern": "^[0-9]{20}$"
+            },
+            "domain": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 253
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "Synthetic Workspace users, row id = lower-case e-mail. The lowest row id is the identity of actors without an `email` attribute."
+      }
+    ],
+    "operations": [
+      {
+        "id": "about.get",
+        "description": "The signed-in synthetic user, plus the world's virtual `serverTime` and the bounds in force (both stripped by the REST route).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Applied by the REST routes."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "kind",
+            "user",
+            "serverTime",
+            "limits"
+          ],
+          "properties": {
+            "kind": {
+              "const": "drive#about"
+            },
+            "user": {
+              "type": "object",
+              "required": [
+                "kind",
+                "displayName",
+                "emailAddress",
+                "me",
+                "permissionId"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "drive#user"
+                },
+                "displayName": {
+                  "type": "string",
+                  "minLength": 0,
+                  "maxLength": 200
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 254,
+                  "description": "E-mail address of a synthetic user (example.test / example.com)."
+                },
+                "me": {
+                  "type": "boolean"
+                },
+                "permissionId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                }
+              },
+              "additionalProperties": false
+            },
+            "serverTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "limits": {
+              "type": "object",
+              "required": [
+                "maxSpreadsheets",
+                "maxSheets",
+                "maxRowCount",
+                "maxColumnCount",
+                "maxGridCells",
+                "maxScanRows",
+                "maxCellsPerWrite",
+                "maxRequestsPerBatch",
+                "maxRangesPerBatch",
+                "maxCellCharacters",
+                "maxEvaluationVisits",
+                "maxPermissions",
+                "maxNamedRanges"
+              ],
+              "properties": {
+                "maxSpreadsheets": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxSheets": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxRowCount": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxColumnCount": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxGridCells": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxScanRows": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxCellsPerWrite": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxRequestsPerBatch": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxRangesPerBatch": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxCellCharacters": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxEvaluationVisits": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxPermissions": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "maxNamedRanges": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_ARGUMENT"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "files.copy",
+        "description": "Copies a spreadsheet (all sheets, cells and named ranges; no shares) into a new file owned by the caller.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fileId"
+          ],
+          "properties": {
+            "fileId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "name": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 1024
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Applied by the REST routes."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "kind",
+            "id",
+            "name",
+            "mimeType",
+            "starred",
+            "trashed",
+            "createdTime",
+            "modifiedTime",
+            "owners",
+            "lastModifyingUser",
+            "shared",
+            "ownedByMe",
+            "capabilities",
+            "version"
+          ],
+          "properties": {
+            "kind": {
+              "const": "drive#file"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "mimeType": {
+              "const": "application/vnd.google-apps.spreadsheet"
+            },
+            "starred": {
+              "type": "boolean"
+            },
+            "trashed": {
+              "type": "boolean"
+            },
+            "explicitlyTrashed": {
+              "type": "boolean"
+            },
+            "trashedTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "createdTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "modifiedTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "modifiedByMe": {
+              "type": "boolean"
+            },
+            "modifiedByMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "viewedByMe": {
+              "type": "boolean"
+            },
+            "viewedByMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "sharedWithMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "owners": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "displayName",
+                  "emailAddress",
+                  "me",
+                  "permissionId"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "drive#user"
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "minLength": 0,
+                    "maxLength": 200
+                  },
+                  "emailAddress": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 254,
+                    "description": "E-mail address of a synthetic user (example.test / example.com)."
+                  },
+                  "me": {
+                    "type": "boolean"
+                  },
+                  "permissionId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1
+            },
+            "lastModifyingUser": {
+              "type": "object",
+              "required": [
+                "kind",
+                "displayName",
+                "emailAddress",
+                "me",
+                "permissionId"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "drive#user"
+                },
+                "displayName": {
+                  "type": "string",
+                  "minLength": 0,
+                  "maxLength": 200
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 254,
+                  "description": "E-mail address of a synthetic user (example.test / example.com)."
+                },
+                "me": {
+                  "type": "boolean"
+                },
+                "permissionId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                }
+              },
+              "additionalProperties": false
+            },
+            "shared": {
+              "type": "boolean"
+            },
+            "ownedByMe": {
+              "type": "boolean"
+            },
+            "capabilities": {
+              "type": "object",
+              "required": [
+                "canEdit",
+                "canComment",
+                "canShare",
+                "canCopy",
+                "canDelete",
+                "canTrash",
+                "canUntrash",
+                "canRename"
+              ],
+              "properties": {
+                "canEdit": {
+                  "type": "boolean"
+                },
+                "canComment": {
+                  "type": "boolean"
+                },
+                "canShare": {
+                  "type": "boolean"
+                },
+                "canCopy": {
+                  "type": "boolean"
+                },
+                "canDelete": {
+                  "type": "boolean"
+                },
+                "canTrash": {
+                  "type": "boolean"
+                },
+                "canUntrash": {
+                  "type": "boolean"
+                },
+                "canRename": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "permissionIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "maxItems": 1000
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20
+            },
+            "webViewLink": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "iconLink": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "spaces": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 16
+              },
+              "maxItems": 4
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.delete",
+        "description": "Permanently deletes a spreadsheet the caller owns with every sheet, row, named range, permission and per-user row.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fileId"
+          ],
+          "properties": {
+            "fileId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "PERMISSION_DENIED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "files.get",
+        "description": "Returns the Drive File for a visible spreadsheet. `alt=media` is refused (no binary content).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fileId"
+          ],
+          "properties": {
+            "fileId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Applied by the REST routes."
+            },
+            "alt": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "kind",
+            "id",
+            "name",
+            "mimeType",
+            "starred",
+            "trashed",
+            "createdTime",
+            "modifiedTime",
+            "owners",
+            "lastModifyingUser",
+            "shared",
+            "ownedByMe",
+            "capabilities",
+            "version"
+          ],
+          "properties": {
+            "kind": {
+              "const": "drive#file"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "mimeType": {
+              "const": "application/vnd.google-apps.spreadsheet"
+            },
+            "starred": {
+              "type": "boolean"
+            },
+            "trashed": {
+              "type": "boolean"
+            },
+            "explicitlyTrashed": {
+              "type": "boolean"
+            },
+            "trashedTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "createdTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "modifiedTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "modifiedByMe": {
+              "type": "boolean"
+            },
+            "modifiedByMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "viewedByMe": {
+              "type": "boolean"
+            },
+            "viewedByMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "sharedWithMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "owners": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "displayName",
+                  "emailAddress",
+                  "me",
+                  "permissionId"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "drive#user"
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "minLength": 0,
+                    "maxLength": 200
+                  },
+                  "emailAddress": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 254,
+                    "description": "E-mail address of a synthetic user (example.test / example.com)."
+                  },
+                  "me": {
+                    "type": "boolean"
+                  },
+                  "permissionId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1
+            },
+            "lastModifyingUser": {
+              "type": "object",
+              "required": [
+                "kind",
+                "displayName",
+                "emailAddress",
+                "me",
+                "permissionId"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "drive#user"
+                },
+                "displayName": {
+                  "type": "string",
+                  "minLength": 0,
+                  "maxLength": 200
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 254,
+                  "description": "E-mail address of a synthetic user (example.test / example.com)."
+                },
+                "me": {
+                  "type": "boolean"
+                },
+                "permissionId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                }
+              },
+              "additionalProperties": false
+            },
+            "shared": {
+              "type": "boolean"
+            },
+            "ownedByMe": {
+              "type": "boolean"
+            },
+            "capabilities": {
+              "type": "object",
+              "required": [
+                "canEdit",
+                "canComment",
+                "canShare",
+                "canCopy",
+                "canDelete",
+                "canTrash",
+                "canUntrash",
+                "canRename"
+              ],
+              "properties": {
+                "canEdit": {
+                  "type": "boolean"
+                },
+                "canComment": {
+                  "type": "boolean"
+                },
+                "canShare": {
+                  "type": "boolean"
+                },
+                "canCopy": {
+                  "type": "boolean"
+                },
+                "canDelete": {
+                  "type": "boolean"
+                },
+                "canTrash": {
+                  "type": "boolean"
+                },
+                "canUntrash": {
+                  "type": "boolean"
+                },
+                "canRename": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "permissionIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "maxItems": 1000
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20
+            },
+            "webViewLink": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "iconLink": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "spaces": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 16
+              },
+              "maxItems": 4
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "files.list",
+        "description": "Lists spreadsheets the caller owns or that are shared with the caller's address or domain, filtered by a documented `q` subset (trashed = false implied when `q` has no trashed term) with self-contained page tokens.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "q": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 2048
+            },
+            "orderBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "pageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "corpora": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "driveId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "includeItemsFromAllDrives": {
+              "type": "boolean"
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Applied by the REST routes."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "kind",
+            "incompleteSearch",
+            "files"
+          ],
+          "properties": {
+            "kind": {
+              "const": "drive#fileList"
+            },
+            "nextPageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "incompleteSearch": {
+              "type": "boolean"
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "id",
+                  "name",
+                  "mimeType",
+                  "starred",
+                  "trashed",
+                  "createdTime",
+                  "modifiedTime",
+                  "owners",
+                  "lastModifyingUser",
+                  "shared",
+                  "ownedByMe",
+                  "capabilities",
+                  "version"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "drive#file"
+                  },
+                  "id": {
+                    "type": "string",
+                    "minLength": 44,
+                    "maxLength": 44,
+                    "pattern": "^[A-Za-z0-9_-]{44}$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255
+                  },
+                  "mimeType": {
+                    "const": "application/vnd.google-apps.spreadsheet"
+                  },
+                  "starred": {
+                    "type": "boolean"
+                  },
+                  "trashed": {
+                    "type": "boolean"
+                  },
+                  "explicitlyTrashed": {
+                    "type": "boolean"
+                  },
+                  "trashedTime": {
+                    "type": "string",
+                    "minLength": 20,
+                    "maxLength": 40,
+                    "description": "RFC 3339 UTC timestamp."
+                  },
+                  "createdTime": {
+                    "type": "string",
+                    "minLength": 20,
+                    "maxLength": 40,
+                    "description": "RFC 3339 UTC timestamp."
+                  },
+                  "modifiedTime": {
+                    "type": "string",
+                    "minLength": 20,
+                    "maxLength": 40,
+                    "description": "RFC 3339 UTC timestamp."
+                  },
+                  "modifiedByMe": {
+                    "type": "boolean"
+                  },
+                  "modifiedByMeTime": {
+                    "type": "string",
+                    "minLength": 20,
+                    "maxLength": 40,
+                    "description": "RFC 3339 UTC timestamp."
+                  },
+                  "viewedByMe": {
+                    "type": "boolean"
+                  },
+                  "viewedByMeTime": {
+                    "type": "string",
+                    "minLength": 20,
+                    "maxLength": 40,
+                    "description": "RFC 3339 UTC timestamp."
+                  },
+                  "sharedWithMeTime": {
+                    "type": "string",
+                    "minLength": 20,
+                    "maxLength": 40,
+                    "description": "RFC 3339 UTC timestamp."
+                  },
+                  "owners": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "kind",
+                        "displayName",
+                        "emailAddress",
+                        "me",
+                        "permissionId"
+                      ],
+                      "properties": {
+                        "kind": {
+                          "const": "drive#user"
+                        },
+                        "displayName": {
+                          "type": "string",
+                          "minLength": 0,
+                          "maxLength": 200
+                        },
+                        "emailAddress": {
+                          "type": "string",
+                          "minLength": 3,
+                          "maxLength": 254,
+                          "description": "E-mail address of a synthetic user (example.test / example.com)."
+                        },
+                        "me": {
+                          "type": "boolean"
+                        },
+                        "permissionId": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 40
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "maxItems": 1
+                  },
+                  "lastModifyingUser": {
+                    "type": "object",
+                    "required": [
+                      "kind",
+                      "displayName",
+                      "emailAddress",
+                      "me",
+                      "permissionId"
+                    ],
+                    "properties": {
+                      "kind": {
+                        "const": "drive#user"
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 200
+                      },
+                      "emailAddress": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 254,
+                        "description": "E-mail address of a synthetic user (example.test / example.com)."
+                      },
+                      "me": {
+                        "type": "boolean"
+                      },
+                      "permissionId": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 40
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "shared": {
+                    "type": "boolean"
+                  },
+                  "ownedByMe": {
+                    "type": "boolean"
+                  },
+                  "capabilities": {
+                    "type": "object",
+                    "required": [
+                      "canEdit",
+                      "canComment",
+                      "canShare",
+                      "canCopy",
+                      "canDelete",
+                      "canTrash",
+                      "canUntrash",
+                      "canRename"
+                    ],
+                    "properties": {
+                      "canEdit": {
+                        "type": "boolean"
+                      },
+                      "canComment": {
+                        "type": "boolean"
+                      },
+                      "canShare": {
+                        "type": "boolean"
+                      },
+                      "canCopy": {
+                        "type": "boolean"
+                      },
+                      "canDelete": {
+                        "type": "boolean"
+                      },
+                      "canTrash": {
+                        "type": "boolean"
+                      },
+                      "canUntrash": {
+                        "type": "boolean"
+                      },
+                      "canRename": {
+                        "type": "boolean"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "permissionIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "maxItems": 1000
+                  },
+                  "version": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 20
+                  },
+                  "webViewLink": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
+                  "iconLink": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
+                  "spaces": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 16
+                    },
+                    "maxItems": 4
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "files.update",
+        "description": "Renames (writer; also the Sheets title), stars (per user, any role) or trashes/restores (owner) a spreadsheet.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fileId"
+          ],
+          "properties": {
+            "fileId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "name": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 1024
+            },
+            "starred": {
+              "type": "boolean"
+            },
+            "trashed": {
+              "type": "boolean"
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Applied by the REST routes."
+            },
+            "unwritableFields": {
+              "type": "array",
+              "maxItems": 32,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "description": "REST route only: names of request-body fields this Tool does not write; when non-empty the call fails with PERMISSION_DENIED (reason fieldNotWritable) before any change."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "kind",
+            "id",
+            "name",
+            "mimeType",
+            "starred",
+            "trashed",
+            "createdTime",
+            "modifiedTime",
+            "owners",
+            "lastModifyingUser",
+            "shared",
+            "ownedByMe",
+            "capabilities",
+            "version"
+          ],
+          "properties": {
+            "kind": {
+              "const": "drive#file"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "mimeType": {
+              "const": "application/vnd.google-apps.spreadsheet"
+            },
+            "starred": {
+              "type": "boolean"
+            },
+            "trashed": {
+              "type": "boolean"
+            },
+            "explicitlyTrashed": {
+              "type": "boolean"
+            },
+            "trashedTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "createdTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "modifiedTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "modifiedByMe": {
+              "type": "boolean"
+            },
+            "modifiedByMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "viewedByMe": {
+              "type": "boolean"
+            },
+            "viewedByMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "sharedWithMeTime": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 40,
+              "description": "RFC 3339 UTC timestamp."
+            },
+            "owners": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "displayName",
+                  "emailAddress",
+                  "me",
+                  "permissionId"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "drive#user"
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "minLength": 0,
+                    "maxLength": 200
+                  },
+                  "emailAddress": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 254,
+                    "description": "E-mail address of a synthetic user (example.test / example.com)."
+                  },
+                  "me": {
+                    "type": "boolean"
+                  },
+                  "permissionId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1
+            },
+            "lastModifyingUser": {
+              "type": "object",
+              "required": [
+                "kind",
+                "displayName",
+                "emailAddress",
+                "me",
+                "permissionId"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "drive#user"
+                },
+                "displayName": {
+                  "type": "string",
+                  "minLength": 0,
+                  "maxLength": 200
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 254,
+                  "description": "E-mail address of a synthetic user (example.test / example.com)."
+                },
+                "me": {
+                  "type": "boolean"
+                },
+                "permissionId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                }
+              },
+              "additionalProperties": false
+            },
+            "shared": {
+              "type": "boolean"
+            },
+            "ownedByMe": {
+              "type": "boolean"
+            },
+            "capabilities": {
+              "type": "object",
+              "required": [
+                "canEdit",
+                "canComment",
+                "canShare",
+                "canCopy",
+                "canDelete",
+                "canTrash",
+                "canUntrash",
+                "canRename"
+              ],
+              "properties": {
+                "canEdit": {
+                  "type": "boolean"
+                },
+                "canComment": {
+                  "type": "boolean"
+                },
+                "canShare": {
+                  "type": "boolean"
+                },
+                "canCopy": {
+                  "type": "boolean"
+                },
+                "canDelete": {
+                  "type": "boolean"
+                },
+                "canTrash": {
+                  "type": "boolean"
+                },
+                "canUntrash": {
+                  "type": "boolean"
+                },
+                "canRename": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "permissionIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "maxItems": 1000
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20
+            },
+            "webViewLink": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "iconLink": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "spaces": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 16
+              },
+              "maxItems": 4
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "permissions.create",
+        "description": "Shares a spreadsheet (owner only) with a user, a domain or anyone with the link; an existing grant for the same grantee has its role replaced. Never sends e-mail.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fileId",
+            "type",
+            "role"
+          ],
+          "properties": {
+            "fileId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "type": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "role": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "emailAddress": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 320
+            },
+            "domain": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 253
+            },
+            "allowFileDiscovery": {
+              "type": "boolean"
+            },
+            "transferOwnership": {
+              "type": "boolean"
+            },
+            "sendNotificationEmail": {
+              "type": "boolean"
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Applied by the REST routes."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "kind",
+            "id",
+            "type",
+            "role"
+          ],
+          "properties": {
+            "kind": {
+              "const": "drive#permission"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "type": {
+              "enum": [
+                "user",
+                "domain",
+                "anyone"
+              ]
+            },
+            "role": {
+              "enum": [
+                "owner",
+                "writer",
+                "commenter",
+                "reader"
+              ]
+            },
+            "emailAddress": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            },
+            "domain": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 253
+            },
+            "displayName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "allowFileDiscovery": {
+              "type": "boolean"
+            },
+            "deleted": {
+              "type": "boolean"
+            },
+            "pendingOwner": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "permissions.delete",
+        "description": "Removes a permission (owner only); the owner's own permission cannot be removed.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fileId",
+            "permissionId"
+          ],
+          "properties": {
+            "fileId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "permissionId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "NOT_FOUND",
+          "PERMISSION_DENIED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "permissions.list",
+        "description": "Lists a visible spreadsheet's permissions, owner first, with page tokens.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "fileId"
+          ],
+          "properties": {
+            "fileId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "pageSize": {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            "pageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Applied by the REST routes."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "kind",
+            "permissions"
+          ],
+          "properties": {
+            "kind": {
+              "const": "drive#permissionList"
+            },
+            "nextPageToken": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "permissions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "id",
+                  "type",
+                  "role"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "drive#permission"
+                  },
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40
+                  },
+                  "type": {
+                    "enum": [
+                      "user",
+                      "domain",
+                      "anyone"
+                    ]
+                  },
+                  "role": {
+                    "enum": [
+                      "owner",
+                      "writer",
+                      "commenter",
+                      "reader"
+                    ]
+                  },
+                  "emailAddress": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 254,
+                    "description": "E-mail address of a synthetic user (example.test / example.com)."
+                  },
+                  "domain": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 253
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "allowFileDiscovery": {
+                    "type": "boolean"
+                  },
+                  "deleted": {
+                    "type": "boolean"
+                  },
+                  "pendingOwner": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sheets.copy-to",
+        "description": "Copies one sheet (cells, formats, formulas verbatim) to the end of another spreadsheet the caller can edit; returns the new SheetProperties.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "sheetId",
+            "destinationSpreadsheetId"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "sheetId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "destinationSpreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Validated by the operation (400 INVALID_ARGUMENT for an unparseable or unknown selection) and applied by the REST route."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "sheetId",
+            "title",
+            "index",
+            "sheetType",
+            "gridProperties"
+          ],
+          "properties": {
+            "sheetId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            "sheetType": {
+              "const": "GRID"
+            },
+            "gridProperties": {
+              "type": "object",
+              "required": [
+                "rowCount",
+                "columnCount"
+              ],
+              "properties": {
+                "rowCount": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "columnCount": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 18278
+                },
+                "frozenRowCount": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "frozenColumnCount": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 18278
+                }
+              },
+              "additionalProperties": false
+            },
+            "hidden": {
+              "type": "boolean"
+            },
+            "tabColor": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "red": {
+                  "type": "number"
+                },
+                "green": {
+                  "type": "number"
+                },
+                "blue": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            },
+            "tabColorStyle": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "rgbColor": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "red": {
+                      "type": "number"
+                    },
+                    "green": {
+                      "type": "number"
+                    },
+                    "blue": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sheets.insert-dimension",
+        "description": "Inserts rows or columns [startIndex, endIndex) into a sheet, shifting cells and rewriting formulas and named ranges (the insertDimension request as its own call).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "sheetId",
+            "dimension",
+            "startIndex",
+            "endIndex"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "sheetId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "dimension": {
+              "enum": [
+                "ROWS",
+                "COLUMNS"
+              ]
+            },
+            "startIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "endIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "inheritFromBefore": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "replies"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "replies": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [],
+                "properties": {},
+                "additionalProperties": false
+              },
+              "maxItems": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "insert_dimension",
+          "description": "Insert empty rows or columns into a sheet."
+        }
+      },
+      {
+        "id": "spreadsheets.batch-update",
+        "description": "Applies 1-100 requests in order, all-or-nothing: addSheet, deleteSheet, updateSheetProperties, duplicateSheet, updateSpreadsheetProperties, insertDimension, deleteDimension, appendDimension, updateCells, repeatCell, findReplace, sortRange, addNamedRange, deleteNamedRange. Any other kind fails the whole batch with INVALID_ARGUMENT.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "requests"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "requests": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "includeSpreadsheetInResponse": {
+              "type": "boolean"
+            },
+            "responseRanges": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1024,
+                "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+              },
+              "maxItems": 1000
+            },
+            "responseIncludeGridData": {
+              "type": "boolean"
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Validated by the operation (400 INVALID_ARGUMENT for an unparseable or unknown selection) and applied by the REST route."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "replies"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "replies": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "updatedSpreadsheet": {
+              "type": "object",
+              "required": [
+                "spreadsheetId",
+                "properties",
+                "sheets",
+                "spreadsheetUrl"
+              ],
+              "properties": {
+                "spreadsheetId": {
+                  "type": "string",
+                  "minLength": 44,
+                  "maxLength": 44,
+                  "pattern": "^[A-Za-z0-9_-]{44}$"
+                },
+                "properties": {
+                  "type": "object",
+                  "required": [
+                    "title",
+                    "locale",
+                    "autoRecalc",
+                    "timeZone"
+                  ],
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    },
+                    "locale": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 16
+                    },
+                    "autoRecalc": {
+                      "const": "ON_CHANGE"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "sheets": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "properties"
+                    ],
+                    "properties": {
+                      "properties": {
+                        "type": "object",
+                        "required": [
+                          "sheetId",
+                          "title",
+                          "index",
+                          "sheetType",
+                          "gridProperties"
+                        ],
+                        "properties": {
+                          "sheetId": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 2147483647
+                          },
+                          "title": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                          },
+                          "index": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000
+                          },
+                          "sheetType": {
+                            "const": "GRID"
+                          },
+                          "gridProperties": {
+                            "type": "object",
+                            "required": [
+                              "rowCount",
+                              "columnCount"
+                            ],
+                            "properties": {
+                              "rowCount": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 1000000
+                              },
+                              "columnCount": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 18278
+                              },
+                              "frozenRowCount": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 1000000
+                              },
+                              "frozenColumnCount": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 18278
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "hidden": {
+                            "type": "boolean"
+                          },
+                          "tabColor": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "red": {
+                                "type": "number"
+                              },
+                              "green": {
+                                "type": "number"
+                              },
+                              "blue": {
+                                "type": "number"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "tabColorStyle": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "rgbColor": {
+                                "type": "object",
+                                "required": [],
+                                "properties": {
+                                  "red": {
+                                    "type": "number"
+                                  },
+                                  "green": {
+                                    "type": "number"
+                                  },
+                                  "blue": {
+                                    "type": "number"
+                                  }
+                                },
+                                "additionalProperties": false
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        },
+                        "maxItems": 100
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 1000
+                },
+                "namedRanges": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "namedRangeId",
+                      "name",
+                      "range"
+                    ],
+                    "properties": {
+                      "namedRangeId": {
+                        "type": "string",
+                        "minLength": 12,
+                        "maxLength": 12
+                      },
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 250
+                      },
+                      "range": {
+                        "type": "object",
+                        "required": [
+                          "sheetId"
+                        ],
+                        "properties": {
+                          "sheetId": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 2147483647
+                          },
+                          "startRowIndex": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000
+                          },
+                          "endRowIndex": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000
+                          },
+                          "startColumnIndex": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 18278
+                          },
+                          "endColumnIndex": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 18278
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "maxItems": 1000
+                },
+                "spreadsheetUrl": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 256
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "update_spreadsheet",
+          "description": "Apply a list of Sheets batchUpdate requests; if any request is invalid none is applied."
+        }
+      },
+      {
+        "id": "spreadsheets.create",
+        "description": "Creates a spreadsheet owned by the caller (default one 1000x26 `Sheet1`), with its owner permission. REST: POST /v4/spreadsheets. Only title/locale (en_US)/timeZone and sheet properties are honoured.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "properties": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 0,
+                  "maxLength": 256
+                },
+                "locale": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 16
+                },
+                "timeZone": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                }
+              },
+              "additionalProperties": false
+            },
+            "sheets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "properties": {
+                    "type": "object",
+                    "required": [],
+                    "properties": {
+                      "sheetId": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2147483647
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 256
+                      },
+                      "index": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000
+                      },
+                      "hidden": {
+                        "type": "boolean"
+                      },
+                      "gridProperties": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "rowCount": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 1000000
+                          },
+                          "columnCount": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 18278
+                          },
+                          "frozenRowCount": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000
+                          },
+                          "frozenColumnCount": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 18278
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "tabColorStyle": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "rgbColor": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "red": {
+                                "type": "number"
+                              },
+                              "green": {
+                                "type": "number"
+                              },
+                              "blue": {
+                                "type": "number"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Validated by the operation (400 INVALID_ARGUMENT for an unparseable or unknown selection) and applied by the REST route."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "properties",
+            "sheets",
+            "spreadsheetUrl"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "properties": {
+              "type": "object",
+              "required": [
+                "title",
+                "locale",
+                "autoRecalc",
+                "timeZone"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "locale": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 16
+                },
+                "autoRecalc": {
+                  "const": "ON_CHANGE"
+                },
+                "timeZone": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                }
+              },
+              "additionalProperties": false
+            },
+            "sheets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "properties"
+                ],
+                "properties": {
+                  "properties": {
+                    "type": "object",
+                    "required": [
+                      "sheetId",
+                      "title",
+                      "index",
+                      "sheetType",
+                      "gridProperties"
+                    ],
+                    "properties": {
+                      "sheetId": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2147483647
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "index": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000
+                      },
+                      "sheetType": {
+                        "const": "GRID"
+                      },
+                      "gridProperties": {
+                        "type": "object",
+                        "required": [
+                          "rowCount",
+                          "columnCount"
+                        ],
+                        "properties": {
+                          "rowCount": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 1000000
+                          },
+                          "columnCount": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 18278
+                          },
+                          "frozenRowCount": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000
+                          },
+                          "frozenColumnCount": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 18278
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "hidden": {
+                        "type": "boolean"
+                      },
+                      "tabColor": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "red": {
+                            "type": "number"
+                          },
+                          "green": {
+                            "type": "number"
+                          },
+                          "blue": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "tabColorStyle": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "rgbColor": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "red": {
+                                "type": "number"
+                              },
+                              "green": {
+                                "type": "number"
+                              },
+                              "blue": {
+                                "type": "number"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    },
+                    "maxItems": 100
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "namedRanges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "namedRangeId",
+                  "name",
+                  "range"
+                ],
+                "properties": {
+                  "namedRangeId": {
+                    "type": "string",
+                    "minLength": 12,
+                    "maxLength": 12
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 250
+                  },
+                  "range": {
+                    "type": "object",
+                    "required": [
+                      "sheetId"
+                    ],
+                    "properties": {
+                      "sheetId": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2147483647
+                      },
+                      "startRowIndex": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000000
+                      },
+                      "endRowIndex": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000000
+                      },
+                      "startColumnIndex": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 18278
+                      },
+                      "endColumnIndex": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 18278
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "spreadsheetUrl": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "spreadsheets.get",
+        "description": "Returns a Spreadsheet: properties, sheets, named ranges and, with includeGridData, CellData (userEnteredValue, effectiveValue, formattedValue, userEnteredFormat, note) for `ranges` or each sheet's used range. `markViewed` records viewedByMeTime (used by the browser app; REST never sets it).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "includeGridData": {
+              "type": "boolean"
+            },
+            "ranges": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1024,
+                "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+              },
+              "maxItems": 1000
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Applied by the REST routes."
+            },
+            "markViewed": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "properties",
+            "sheets",
+            "spreadsheetUrl"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "properties": {
+              "type": "object",
+              "required": [
+                "title",
+                "locale",
+                "autoRecalc",
+                "timeZone"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "locale": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 16
+                },
+                "autoRecalc": {
+                  "const": "ON_CHANGE"
+                },
+                "timeZone": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                }
+              },
+              "additionalProperties": false
+            },
+            "sheets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "properties"
+                ],
+                "properties": {
+                  "properties": {
+                    "type": "object",
+                    "required": [
+                      "sheetId",
+                      "title",
+                      "index",
+                      "sheetType",
+                      "gridProperties"
+                    ],
+                    "properties": {
+                      "sheetId": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2147483647
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
+                      },
+                      "index": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000
+                      },
+                      "sheetType": {
+                        "const": "GRID"
+                      },
+                      "gridProperties": {
+                        "type": "object",
+                        "required": [
+                          "rowCount",
+                          "columnCount"
+                        ],
+                        "properties": {
+                          "rowCount": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 1000000
+                          },
+                          "columnCount": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 18278
+                          },
+                          "frozenRowCount": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000000
+                          },
+                          "frozenColumnCount": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 18278
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "hidden": {
+                        "type": "boolean"
+                      },
+                      "tabColor": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "red": {
+                            "type": "number"
+                          },
+                          "green": {
+                            "type": "number"
+                          },
+                          "blue": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "tabColorStyle": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "rgbColor": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                              "red": {
+                                "type": "number"
+                              },
+                              "green": {
+                                "type": "number"
+                              },
+                              "blue": {
+                                "type": "number"
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    },
+                    "maxItems": 100
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "namedRanges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "namedRangeId",
+                  "name",
+                  "range"
+                ],
+                "properties": {
+                  "namedRangeId": {
+                    "type": "string",
+                    "minLength": 12,
+                    "maxLength": 12
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 250
+                  },
+                  "range": {
+                    "type": "object",
+                    "required": [
+                      "sheetId"
+                    ],
+                    "properties": {
+                      "sheetId": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 2147483647
+                      },
+                      "startRowIndex": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000000
+                      },
+                      "endRowIndex": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000000
+                      },
+                      "startColumnIndex": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 18278
+                      },
+                      "endColumnIndex": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 18278
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "spreadsheetUrl": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "get_spreadsheet",
+          "description": "Get a spreadsheet's metadata and, optionally, its grid data."
+        }
+      },
+      {
+        "id": "values.append",
+        "description": "Finds the table in the range (the first non-empty row at or below the range top, through the last row before an empty row) and writes after it; OVERWRITE grows the grid if needed, INSERT_ROWS inserts rows first and adjusts formulas.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "range",
+            "values",
+            "valueInputOption"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "range": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024,
+              "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "minLength": 0,
+                      "maxLength": 50000
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "maxItems": 20000
+              },
+              "maxItems": 1000000
+            },
+            "majorDimension": {
+              "enum": [
+                "ROWS",
+                "COLUMNS"
+              ]
+            },
+            "valueInputOption": {
+              "enum": [
+                "INPUT_VALUE_OPTION_UNSPECIFIED",
+                "RAW",
+                "USER_ENTERED"
+              ]
+            },
+            "insertDataOption": {
+              "enum": [
+                "OVERWRITE",
+                "INSERT_ROWS"
+              ]
+            },
+            "includeValuesInResponse": {
+              "type": "boolean"
+            },
+            "responseValueRenderOption": {
+              "enum": [
+                "FORMATTED_VALUE",
+                "UNFORMATTED_VALUE",
+                "FORMULA"
+              ]
+            },
+            "responseDateTimeRenderOption": {
+              "enum": [
+                "SERIAL_NUMBER",
+                "FORMATTED_STRING"
+              ]
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Validated by the operation (400 INVALID_ARGUMENT for an unparseable or unknown selection) and applied by the REST route."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "updates"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "tableRange": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200
+            },
+            "updates": {
+              "type": "object",
+              "required": [
+                "spreadsheetId",
+                "updatedRange"
+              ],
+              "properties": {
+                "spreadsheetId": {
+                  "type": "string",
+                  "minLength": 44,
+                  "maxLength": 44,
+                  "pattern": "^[A-Za-z0-9_-]{44}$"
+                },
+                "updatedRange": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1200
+                },
+                "updatedRows": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "updatedColumns": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "updatedCells": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "updatedData": {
+                  "type": "object",
+                  "required": [
+                    "range",
+                    "majorDimension"
+                  ],
+                  "properties": {
+                    "range": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1200
+                    },
+                    "majorDimension": {
+                      "enum": [
+                        "ROWS",
+                        "COLUMNS"
+                      ]
+                    },
+                    "values": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "string",
+                              "minLength": 0,
+                              "maxLength": 50000
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        "maxItems": 20000
+                      },
+                      "maxItems": 1000000
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RATE_LIMITED",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "values.batch-get",
+        "description": "Reads 1-100 ranges in request order.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "ranges"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "ranges": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1024,
+                "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+              },
+              "maxItems": 1000
+            },
+            "majorDimension": {
+              "enum": [
+                "ROWS",
+                "COLUMNS"
+              ]
+            },
+            "valueRenderOption": {
+              "enum": [
+                "FORMATTED_VALUE",
+                "UNFORMATTED_VALUE",
+                "FORMULA"
+              ]
+            },
+            "dateTimeRenderOption": {
+              "enum": [
+                "SERIAL_NUMBER",
+                "FORMATTED_STRING"
+              ]
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Validated by the operation (400 INVALID_ARGUMENT for an unparseable or unknown selection) and applied by the REST route."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "valueRanges"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "valueRanges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "range",
+                  "majorDimension"
+                ],
+                "properties": {
+                  "range": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1200
+                  },
+                  "majorDimension": {
+                    "enum": [
+                      "ROWS",
+                      "COLUMNS"
+                    ]
+                  },
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "minLength": 0,
+                            "maxLength": 50000
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      },
+                      "maxItems": 20000
+                    },
+                    "maxItems": 1000000
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "values.batch-update",
+        "description": "Validates every ValueRange first, then writes them all atomically.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "valueInputOption",
+            "data"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "valueInputOption": {
+              "enum": [
+                "INPUT_VALUE_OPTION_UNSPECIFIED",
+                "RAW",
+                "USER_ENTERED"
+              ]
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "range",
+                  "values"
+                ],
+                "properties": {
+                  "range": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1024,
+                    "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+                  },
+                  "majorDimension": {
+                    "enum": [
+                      "ROWS",
+                      "COLUMNS"
+                    ]
+                  },
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "minLength": 0,
+                            "maxLength": 50000
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "maxItems": 20000
+                    },
+                    "maxItems": 1000000
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "includeValuesInResponse": {
+              "type": "boolean"
+            },
+            "responseValueRenderOption": {
+              "enum": [
+                "FORMATTED_VALUE",
+                "UNFORMATTED_VALUE",
+                "FORMULA"
+              ]
+            },
+            "responseDateTimeRenderOption": {
+              "enum": [
+                "SERIAL_NUMBER",
+                "FORMATTED_STRING"
+              ]
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Validated by the operation (400 INVALID_ARGUMENT for an unparseable or unknown selection) and applied by the REST route."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "responses"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "totalUpdatedRows": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "totalUpdatedColumns": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "totalUpdatedCells": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "totalUpdatedSheets": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            "responses": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "spreadsheetId",
+                  "updatedRange"
+                ],
+                "properties": {
+                  "spreadsheetId": {
+                    "type": "string",
+                    "minLength": 44,
+                    "maxLength": 44,
+                    "pattern": "^[A-Za-z0-9_-]{44}$"
+                  },
+                  "updatedRange": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1200
+                  },
+                  "updatedRows": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  },
+                  "updatedColumns": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  },
+                  "updatedCells": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  },
+                  "updatedData": {
+                    "type": "object",
+                    "required": [
+                      "range",
+                      "majorDimension"
+                    ],
+                    "properties": {
+                      "range": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1200
+                      },
+                      "majorDimension": {
+                        "enum": [
+                          "ROWS",
+                          "COLUMNS"
+                        ]
+                      },
+                      "values": {
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "oneOf": [
+                              {
+                                "type": "string",
+                                "minLength": 0,
+                                "maxLength": 50000
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          },
+                          "maxItems": 20000
+                        },
+                        "maxItems": 1000000
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "values.clear",
+        "description": "Clears values in a range (formats and notes are kept). No REST route: `…/values/{range}:clear` shares its path shape with `:append`.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "range"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "range": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024,
+              "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "clearedRange"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "clearedRange": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "values.get",
+        "description": "Reads a range as a ValueRange with the requested render options; trailing empty rows and cells are omitted and an empty range has no `values`.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "range"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "range": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024,
+              "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+            },
+            "majorDimension": {
+              "enum": [
+                "ROWS",
+                "COLUMNS"
+              ]
+            },
+            "valueRenderOption": {
+              "enum": [
+                "FORMATTED_VALUE",
+                "UNFORMATTED_VALUE",
+                "FORMULA"
+              ]
+            },
+            "dateTimeRenderOption": {
+              "enum": [
+                "SERIAL_NUMBER",
+                "FORMATTED_STRING"
+              ]
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Validated by the operation (400 INVALID_ARGUMENT for an unparseable or unknown selection) and applied by the REST route."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "range",
+            "majorDimension"
+          ],
+          "properties": {
+            "range": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200
+            },
+            "majorDimension": {
+              "enum": [
+                "ROWS",
+                "COLUMNS"
+              ]
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "minLength": 0,
+                      "maxLength": 50000
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "maxItems": 20000
+              },
+              "maxItems": 1000000
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "get_values",
+          "description": "Read the values of a range in A1 notation."
+        }
+      },
+      {
+        "id": "values.update",
+        "description": "Writes `values` from the range's top-left cell. RAW stores values as given; USER_ENTERED parses formulas, numbers, percentages, currency and dates. `null` leaves a cell unchanged, \"\" clears it. Canonical default input option is RAW; the REST route requires it.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "range",
+            "values"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "range": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024,
+              "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "minLength": 0,
+                      "maxLength": 50000
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "maxItems": 20000
+              },
+              "maxItems": 1000000
+            },
+            "majorDimension": {
+              "enum": [
+                "ROWS",
+                "COLUMNS"
+              ]
+            },
+            "valueInputOption": {
+              "enum": [
+                "INPUT_VALUE_OPTION_UNSPECIFIED",
+                "RAW",
+                "USER_ENTERED"
+              ]
+            },
+            "includeValuesInResponse": {
+              "type": "boolean"
+            },
+            "responseValueRenderOption": {
+              "enum": [
+                "FORMATTED_VALUE",
+                "UNFORMATTED_VALUE",
+                "FORMULA"
+              ]
+            },
+            "responseDateTimeRenderOption": {
+              "enum": [
+                "SERIAL_NUMBER",
+                "FORMATTED_STRING"
+              ]
+            },
+            "fields": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Google `fields` mask (`a,b(c,d)`, `a/b`, `*`). Validated by the operation (400 INVALID_ARGUMENT for an unparseable or unknown selection) and applied by the REST route."
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "updatedRange"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "updatedRange": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200
+            },
+            "updatedRows": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "updatedColumns": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "updatedCells": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "updatedData": {
+              "type": "object",
+              "required": [
+                "range",
+                "majorDimension"
+              ],
+              "properties": {
+                "range": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1200
+                },
+                "majorDimension": {
+                  "enum": [
+                    "ROWS",
+                    "COLUMNS"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "minLength": 0,
+                          "maxLength": 50000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "maxItems": 20000
+                  },
+                  "maxItems": 1000000
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RATE_LIMITED",
+          "UNAVAILABLE"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "update_values",
+          "description": "Write values to a range (RAW input parsing)."
+        }
+      },
+      {
+        "id": "values.update-formulas",
+        "description": "Writes `formulas` (and any other typed input) to a range with USER_ENTERED parsing.",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "range",
+            "formulas"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "description": "Spreadsheet id (44 characters for a real file; other values answer NOT_FOUND)."
+            },
+            "range": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024,
+              "description": "A1 notation (Sheet1!A1:B2, 'Q3 Budget'!A:C, Sheet1, A1:B2) or a named range."
+            },
+            "formulas": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "minLength": 0,
+                      "maxLength": 50000
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "maxItems": 20000
+              },
+              "maxItems": 1000000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "updatedRange"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "updatedRange": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200
+            },
+            "updatedRows": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "updatedColumns": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "updatedCells": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "updatedData": {
+              "type": "object",
+              "required": [
+                "range",
+                "majorDimension"
+              ],
+              "properties": {
+                "range": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1200
+                },
+                "majorDimension": {
+                  "enum": [
+                    "ROWS",
+                    "COLUMNS"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "minLength": 0,
+                          "maxLength": 50000
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "maxItems": 20000
+                  },
+                  "maxItems": 1000000
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "FAILED_PRECONDITION",
+          "INVALID_ARGUMENT",
+          "NOT_FOUND",
+          "PERMISSION_DENIED",
+          "RATE_LIMITED"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "update_formulas",
+          "description": "Write formulas to a range."
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "sheet.changed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "sheetId",
+            "title",
+            "change",
+            "actorEmail"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "sheetId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "change": {
+              "enum": [
+                "added",
+                "deleted",
+                "renamed",
+                "resized",
+                "duplicated",
+                "copied",
+                "hidden",
+                "shown",
+                "reordered"
+              ]
+            },
+            "actorEmail": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "spreadsheet.created",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "title",
+            "ownerEmail",
+            "source",
+            "sheetCount"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "ownerEmail": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            },
+            "source": {
+              "enum": [
+                "create",
+                "copy"
+              ]
+            },
+            "sheetCount": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "values.changed",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "spreadsheetId",
+            "sheetId",
+            "sheetTitle",
+            "updatedRange",
+            "updatedCells",
+            "source",
+            "actorEmail"
+          ],
+          "properties": {
+            "spreadsheetId": {
+              "type": "string",
+              "minLength": 44,
+              "maxLength": 44,
+              "pattern": "^[A-Za-z0-9_-]{44}$"
+            },
+            "sheetId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2147483647
+            },
+            "sheetTitle": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "updatedRange": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1200
+            },
+            "updatedCells": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "source": {
+              "enum": [
+                "update",
+                "formulas",
+                "append",
+                "batchUpdate",
+                "clear",
+                "updateCells",
+                "repeatCell",
+                "findReplace",
+                "sortRange",
+                "duplicateSheet"
+              ]
+            },
+            "actorEmail": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 254,
+              "description": "E-mail address of a synthetic user (example.test / example.com)."
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "append-response-lost",
+        "appliesTo": [
+          "values.append"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "UNAVAILABLE",
+          "message": "The service is currently unavailable.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "sheets-backend-unavailable",
+        "appliesTo": [
+          "spreadsheets.get",
+          "values.batch-get",
+          "values.get",
+          "values.update"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "UNAVAILABLE",
+          "message": "The service is currently unavailable.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "write-rate-limited",
+        "appliesTo": [
+          "files.copy",
+          "files.update",
+          "permissions.create",
+          "spreadsheets.batch-update",
+          "spreadsheets.create",
+          "values.append",
+          "values.batch-update",
+          "values.update",
+          "values.update-formulas"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RATE_LIMITED",
+          "message": "Quota exceeded for quota metric 'Write requests' and limit 'Write requests per minute per user' of service 'sheets.googleapis.com'.",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "append-values",
+        "operationId": "values.append",
+        "method": "POST",
+        "path": "/v4/spreadsheets/{spreadsheetId}/values/{range}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      },
+      {
+        "id": "batch-get-values",
+        "operationId": "values.batch-get",
+        "method": "GET",
+        "path": "/v4/spreadsheets/{spreadsheetId}/{collectionMethod}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      },
+      {
+        "id": "batch-update-spreadsheet",
+        "operationId": "spreadsheets.batch-update",
+        "method": "POST",
+        "path": "/v4/spreadsheets/{spreadsheetId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "batch-update-values",
+        "operationId": "values.batch-update",
+        "method": "POST",
+        "path": "/v4/spreadsheets/{spreadsheetId}/{collectionMethod}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "copy-file",
+        "operationId": "files.copy",
+        "method": "POST",
+        "path": "/drive/v3/files/{fileId}/copy",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "copy-sheet-to",
+        "operationId": "sheets.copy-to",
+        "method": "POST",
+        "path": "/v4/spreadsheets/{spreadsheetId}/sheets/{sheetId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-permission",
+        "operationId": "permissions.create",
+        "method": "POST",
+        "path": "/drive/v3/files/{fileId}/permissions",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-spreadsheet",
+        "operationId": "spreadsheets.create",
+        "method": "POST",
+        "path": "/v4/spreadsheets",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-file",
+        "operationId": "files.delete",
+        "method": "DELETE",
+        "path": "/drive/v3/files/{fileId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "delete-permission",
+        "operationId": "permissions.delete",
+        "method": "DELETE",
+        "path": "/drive/v3/files/{fileId}/permissions/{permissionId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-about",
+        "operationId": "about.get",
+        "method": "GET",
+        "path": "/drive/v3/about",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-file",
+        "operationId": "files.get",
+        "method": "GET",
+        "path": "/drive/v3/files/{fileId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-spreadsheet",
+        "operationId": "spreadsheets.get",
+        "method": "GET",
+        "path": "/v4/spreadsheets/{spreadsheetId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-values",
+        "operationId": "values.get",
+        "method": "GET",
+        "path": "/v4/spreadsheets/{spreadsheetId}/values/{range}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-files",
+        "operationId": "files.list",
+        "method": "GET",
+        "path": "/drive/v3/files",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-permissions",
+        "operationId": "permissions.list",
+        "method": "GET",
+        "path": "/drive/v3/files/{fileId}/permissions",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-file",
+        "operationId": "files.update",
+        "method": "PATCH",
+        "path": "/drive/v3/files/{fileId}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 403
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-values",
+        "operationId": "values.update",
+        "method": "PUT",
+        "path": "/v4/spreadsheets/{spreadsheetId}/values/{range}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "FAILED_PRECONDITION",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ARGUMENT",
+              "status": 400
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "PERMISSION_DENIED",
+              "status": 403
+            },
+            {
+              "code": "RATE_LIMITED",
+              "status": 429
+            },
+            {
+              "code": "UNAVAILABLE",
+              "status": 503
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": []
+  }
+}

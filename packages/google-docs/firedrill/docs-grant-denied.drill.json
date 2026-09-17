@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-grant-denied",
+  "title": "An actor holding read grants only is refused by the framework on every write, and the world is untouched",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "reader-only",
+  "task": {
+    "instruction": "Run the google-docs conformance flow `grant-denied` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "documents-batch-update-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "files-update-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.update"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "permissions-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "permissions.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "comments-create-denied",
+      "kind": "operation.denied",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "denied"
+      ],
+      "attemptRequired": true
+    },
+    {
+      "id": "files-list-ok-greater_than_or_equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "files.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "documents-batch-update-ok-equals-0",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-docs",
+        "operationId": "documents.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "state-documents-equals-9",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "documents",
+      "comparison": {
+        "operator": "equals",
+        "value": 9
+      }
+    },
+    {
+      "id": "state-permissions-equals-17",
+      "kind": "state.count",
+      "packageId": "google-docs",
+      "namespace": "permissions",
+      "comparison": {
+        "operator": "equals",
+        "value": 17
+      }
+    }
+  ]
+}

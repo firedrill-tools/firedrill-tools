@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "gitlab-permissions-reporter",
+  "title": "Reporter: no branches, merge requests or merges; labels, locked-discussion comments and confidential issues allowed",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "reporter",
+  "task": {
+    "instruction": "Run the permissions-reporter conformance flow against the synthetic GitLab Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "branches-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "branches.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-save-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "merge-requests-merge-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.merge"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-update-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-save-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "notes.save"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issue-7-labels",
+      "kind": "state.value",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "rowId": "p000101#000007",
+      "path": [
+        "labels"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "documentation",
+          "needs review",
+          "feature"
+        ]
+      }
+    },
+    {
+      "id": "rows-branches",
+      "kind": "state.count",
+      "packageId": "gitlab",
+      "namespace": "branches",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "rows-merge-requests",
+      "kind": "state.count",
+      "packageId": "gitlab",
+      "namespace": "merge_requests",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    }
+  ]
+}

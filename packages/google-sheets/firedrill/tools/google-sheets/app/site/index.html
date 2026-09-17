@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Google Sheets</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/google-sheets-2026.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="boot" id="boot" role="status" aria-live="polite">
+      <img src="./assets/google-sheets-2026.svg" alt="" width="64" height="47" />
+      <div class="boot-bar" aria-hidden="true"><span></span></div>
+      <p class="visually-hidden">Loading Google Sheets…</p>
+    </div>
+
+    <!-- ============================== Sheets home ============================== -->
+    <div class="home" id="home" hidden>
+      <header class="home-header">
+        <div class="home-header-start">
+          <button type="button" class="icon-btn large" id="drawer-toggle" aria-label="Main menu" aria-expanded="false" title="Main menu"><span data-icon="menu"></span></button>
+          <a class="home-logo" href="#" id="home-logo" aria-label="Sheets home"><img src="./assets/google-sheets-2026.svg" alt="" width="40" height="29" /><span class="home-logo-text">Sheets</span></a>
+        </div>
+        <form class="home-search" id="search-form" role="search">
+          <button type="submit" class="icon-btn" aria-label="Search" title="Search"><span data-icon="search"></span></button>
+          <label class="visually-hidden" for="search-input">Search</label>
+          <input id="search-input" type="text" placeholder="Search" autocomplete="off" spellcheck="false" />
+          <button type="button" class="icon-btn" id="search-clear" aria-label="Clear search" title="Clear search" hidden><span data-icon="close"></span></button>
+        </form>
+        <div class="home-header-end">
+          <button type="button" class="icon-btn large" id="apps-btn" aria-label="Google apps" title="Google apps" aria-expanded="false"><span data-icon="apps"></span></button>
+          <button type="button" class="account-btn" id="account-btn" aria-label="Google Account" aria-expanded="false"><span class="avatar" id="account-avatar" aria-hidden="true">?</span></button>
+        </div>
+        <div class="progress" hidden></div>
+      </header>
+
+      <nav class="drawer" id="drawer" aria-label="Views" hidden>
+        <div class="drawer-head"><span class="drawer-brand">Google</span><span class="drawer-product">Sheets</span></div>
+        <div class="drawer-apps">
+          <button type="button" class="drawer-item drawer-app" data-app="Docs"><img src="./assets/google-docs-2026.svg" alt="" width="24" height="24" /><span>Docs</span></button>
+          <button type="button" class="drawer-item drawer-app active" id="drawer-sheets" aria-current="page"><img src="./assets/google-sheets-2026.svg" alt="" width="24" height="24" /><span>Sheets</span></button>
+          <div class="drawer-items drawer-views" id="drawer-items" role="group" aria-label="Sheets views"></div>
+          <button type="button" class="drawer-item drawer-app" data-app="Slides"><img src="./assets/google-slides-2026.svg" alt="" width="24" height="24" /><span>Slides</span></button>
+          <button type="button" class="drawer-item drawer-app" data-app="Forms"><img src="./assets/google-forms-2026.svg" alt="" width="24" height="24" /><span>Forms</span></button>
+        </div>
+        <div class="drawer-divider" role="separator"></div>
+        <button type="button" class="drawer-item" data-app="Settings"><span data-icon="settings"></span><span>Settings</span></button>
+        <button type="button" class="drawer-item" data-app="Help &amp; Feedback"><span data-icon="feedback"></span><span>Help &amp; Feedback</span></button>
+        <div class="drawer-divider" role="separator"></div>
+        <button type="button" class="drawer-item drawer-app" data-app="Drive"><img src="./assets/google-drive-2026.svg" alt="" width="24" height="24" /><span>Drive</span></button>
+      </nav>
+      <div class="scrim" id="scrim" hidden></div>
+
+      <main class="home-main" id="home-main">
+        <section class="templates" id="templates" aria-labelledby="templates-title">
+          <div class="templates-inner">
+            <div class="templates-head">
+              <h2 id="templates-title">Start a new spreadsheet</h2>
+              <div class="gallery-actions">
+                <button type="button" class="gallery-btn" id="gallery-btn" aria-label="Template gallery" title="Template gallery"><span>Template gallery</span><span data-icon="unfold_more"></span></button>
+                <button type="button" class="icon-btn" id="templates-more" aria-label="More actions" title="More actions"><span data-icon="more_vert"></span></button>
+              </div>
+            </div>
+            <div class="templates-row">
+              <button type="button" class="template" id="new-blank">
+                <span class="template-thumb blank-thumb" aria-hidden="true"><span class="blank-plus"></span></span>
+                <span class="template-label">Blank spreadsheet</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs" aria-labelledby="docs-title">
+          <div class="docs-inner">
+            <div class="docs-head">
+              <h2 id="docs-title">Recent spreadsheets</h2>
+              <div class="docs-owner">
+                <button type="button" class="dropdown-btn" id="owner-btn" aria-haspopup="menu" aria-expanded="false"><span id="owner-label">Owned by anyone</span><span data-icon="arrow_drop_down"></span></button>
+              </div>
+              <div class="docs-tools">
+                <button type="button" class="icon-btn" id="layout-btn" aria-label="List view" title="List view"><span data-icon="view_list"></span></button>
+                <button type="button" class="icon-btn" id="sort-btn" aria-label="Sort options" title="Sort options" aria-haspopup="menu" aria-expanded="false"><span data-icon="sort_by_alpha"></span></button>
+                <button type="button" class="icon-btn" id="picker-btn" aria-label="Open file picker" title="Open file picker"><span data-icon="folder_open"></span></button>
+              </div>
+            </div>
+            <div class="query-hint" id="query-hint" hidden></div>
+            <div class="banner" id="home-banner" role="alert" hidden>
+              <span data-icon="error"></span><span class="banner-text" id="home-banner-text"></span>
+              <button type="button" class="text-btn" id="home-retry">Try again</button>
+            </div>
+            <div class="docs-list" id="docs" aria-live="polite"></div>
+            <div class="docs-more" id="docs-more" hidden><span class="spinner" aria-hidden="true"></span><button type="button" class="text-btn" id="load-more">Load more</button></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ============================== Spreadsheet editor ============================== -->
+    <div class="editor" id="editor" hidden>
+      <header class="titlebar">
+        <a class="titlebar-logo" href="#" id="editor-home" aria-label="Sheets home" title="Sheets home"><img src="./assets/google-sheets-2026.svg" alt="" width="40" height="29" /></a>
+        <div class="titlebar-main">
+          <div class="title-row">
+            <label class="visually-hidden" for="doc-title">Rename</label>
+            <input class="doc-title" id="doc-title" type="text" spellcheck="false" autocomplete="off" />
+            <button type="button" class="icon-btn small" id="star-btn" aria-label="Star" title="Star" aria-pressed="false"><span data-icon="star_border"></span></button>
+            <span class="badge" id="view-only" hidden>View only</span>
+            <button type="button" class="icon-btn small" id="move-btn" aria-label="Move" title="Move"><span data-icon="drive_file_move"></span></button>
+            <span class="save-state" id="save-state" title="All changes saved in Drive"><span data-icon="cloud_done"></span></span>
+          </div>
+          <nav class="menubar" id="menubar" aria-label="Menu bar"></nav>
+        </div>
+        <div class="titlebar-end">
+          <button type="button" class="icon-btn large" id="history-btn" aria-label="Last edit" title="Last edit"><span data-icon="history"></span></button>
+          <button type="button" class="icon-btn large" id="comments-btn" aria-label="Open comment history" title="Open comment history"><span data-icon="comment"></span></button>
+          <button type="button" class="meet-btn" id="meet-btn" aria-label="Join a call here or present this tab to the call" title="Join a call here or present this tab to the call"><span data-icon="videocam"></span><span class="tb-drop" data-icon="arrow_drop_down"></span></button>
+          <button type="button" class="share-btn" id="share-btn"><span data-icon="lock"></span><span>Share</span></button>
+          <button type="button" class="account-btn" id="editor-account" aria-label="Google Account"><span class="avatar" id="editor-avatar" aria-hidden="true">?</span></button>
+        </div>
+        <div class="progress" hidden></div>
+      </header>
+
+      <div class="toolbar" id="toolbar" role="toolbar" aria-label="Formatting"></div>
+
+      <div class="doc-banner" id="doc-banner" role="alert" hidden>
+        <span class="doc-banner-text" id="doc-banner-text"></span>
+        <span class="doc-banner-actions" id="doc-banner-actions"></span>
+      </div>
+
+      <div class="formula-bar">
+        <div class="name-box">
+          <label class="visually-hidden" for="name-box">Name box</label>
+          <input id="name-box" type="text" spellcheck="false" autocomplete="off" />
+          <button type="button" class="name-box-drop" id="name-box-drop" aria-label="Named ranges" title="Named ranges" aria-haspopup="menu"><span data-icon="arrow_drop_down"></span></button>
+        </div>
+        <span class="fx" aria-hidden="true">fx</span>
+        <label class="visually-hidden" for="formula-input">Formula bar</label>
+        <input class="formula-input" id="formula-input" type="text" spellcheck="false" autocomplete="off" />
+      </div>
+
+      <div class="workspace">
+        <div class="grid" id="grid" tabindex="0" role="grid" aria-label="Spreadsheet grid" aria-multiselectable="true">
+          <div class="grid-corner" id="grid-corner"></div>
+          <div class="grid-colhead" id="grid-colhead"></div>
+          <div class="grid-rowhead" id="grid-rowhead"></div>
+          <div class="grid-body" id="grid-body"><div class="grid-spacer" id="grid-spacer"></div></div>
+          <div class="grid-state" id="grid-state" hidden></div>
+        </div>
+        <aside class="side-panel" id="side-panel" aria-label="Named ranges" hidden></aside>
+      </div>
+
+      <footer class="sheetbar">
+        <button type="button" class="icon-btn" id="add-sheet" aria-label="Add Sheet" title="Add Sheet"><span data-icon="add"></span></button>
+        <button type="button" class="icon-btn" id="all-sheets" aria-label="All Sheets" title="All Sheets" aria-haspopup="menu" aria-expanded="false"><span data-icon="menu"></span></button>
+        <div class="tabs" id="tabs" role="tablist" aria-label="Sheets"></div>
+        <button type="button" class="stat-chip" id="stat-chip" aria-haspopup="menu" hidden></button>
+        <button type="button" class="explore-btn" id="explore-btn" aria-label="Explore" title="Explore (Alt+Shift+X)"><span data-icon="explore"></span><span>Explore</span></button>
+      </footer>
+
+      <div class="cell-tooltip" id="cell-tooltip" role="tooltip" hidden></div>
+    </div>
+
+    <!-- ============================== Not found / denied ============================== -->
+    <div class="fullpage" id="fullpage" hidden>
+      <img src="./assets/google-sheets-2026.svg" alt="" width="88" height="64" />
+      <h1 id="fullpage-title"></h1>
+      <p id="fullpage-text"></p>
+      <a class="filled-btn" href="#" id="fullpage-home">Go to Sheets home</a>
+    </div>
+
+    <dialog class="dialog" id="modal" aria-labelledby="modal-title">
+      <h2 id="modal-title"></h2>
+      <div id="modal-body"></div>
+      <div class="dialog-actions" id="modal-actions"></div>
+    </dialog>
+
+    <dialog class="dialog confirm" id="confirm" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <h2 id="confirm-title"></h2>
+        <p id="confirm-text"></p>
+        <div class="dialog-actions" id="confirm-actions"></div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+      <span id="toast-text"></span>
+      <button type="button" class="toast-action" id="toast-action" hidden></button>
+      <button type="button" class="icon-btn small toast-close" id="toast-close" aria-label="Dismiss" title="Dismiss"><span data-icon="close"></span></button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,2344 @@
+{
+  "schemaVersion": 1,
+  "id": "throttled",
+  "title": "Baseline company with the throttled fault",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "meta",
+      "rowId": "counters",
+      "value": {
+        "customer": 72,
+        "item": 28,
+        "invoice": 1050,
+        "payment": 196,
+        "account": 100,
+        "docNumber": 1050
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 5000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "company",
+      "rowId": "company",
+      "value": {
+        "realmId": "9341453172839201",
+        "Id": "1",
+        "SyncToken": "4",
+        "CompanyName": "Brightwater Studio LLC",
+        "LegalName": "Brightwater Studio LLC",
+        "CompanyAddr": {
+          "Id": "1",
+          "Line1": "418 Kettner Blvd",
+          "Line2": null,
+          "City": "San Diego",
+          "CountrySubDivisionCode": "CA",
+          "PostalCode": "92101",
+          "Country": "USA"
+        },
+        "Email": {
+          "Address": "hello@brightwater.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0142"
+        },
+        "WebAddr": {
+          "URI": "https://brightwater.example.com"
+        },
+        "Country": "US",
+        "FiscalYearStartMonth": "January",
+        "CompanyStartDate": "2019-03-01",
+        "SupportedLanguages": "en",
+        "DefaultTimeZone": "America/Los_Angeles",
+        "utcOffsetMinutes": -420,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000001",
+      "value": {
+        "Id": "1",
+        "SyncToken": "0",
+        "Name": "Checking",
+        "FullyQualifiedName": "Checking",
+        "AccountType": "Bank",
+        "AccountSubType": "Checking",
+        "Classification": "Asset",
+        "AcctNum": "1010",
+        "Description": "Operating account at Harborline Credit Union",
+        "Active": true,
+        "openingBalance": 12480,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000004",
+      "value": {
+        "Id": "4",
+        "SyncToken": "0",
+        "Name": "Undeposited Funds",
+        "FullyQualifiedName": "Undeposited Funds",
+        "AccountType": "Other Current Asset",
+        "AccountSubType": "UndepositedFunds",
+        "Classification": "Asset",
+        "AcctNum": null,
+        "Description": null,
+        "Active": true,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000030",
+      "value": {
+        "Id": "30",
+        "SyncToken": "0",
+        "Name": "Owner's Equity",
+        "FullyQualifiedName": "Owner's Equity",
+        "AccountType": "Equity",
+        "AccountSubType": "OwnersEquity",
+        "Classification": "Equity",
+        "AcctNum": null,
+        "Description": null,
+        "Active": true,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000045",
+      "value": {
+        "Id": "45",
+        "SyncToken": "0",
+        "Name": "Design Income",
+        "FullyQualifiedName": "Design Income",
+        "AccountType": "Income",
+        "AccountSubType": "ServiceFeeIncome",
+        "Classification": "Revenue",
+        "AcctNum": null,
+        "Description": null,
+        "Active": true,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000046",
+      "value": {
+        "Id": "46",
+        "SyncToken": "0",
+        "Name": "Photography Income",
+        "FullyQualifiedName": "Photography Income",
+        "AccountType": "Income",
+        "AccountSubType": "ServiceFeeIncome",
+        "Classification": "Revenue",
+        "AcctNum": null,
+        "Description": null,
+        "Active": true,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000047",
+      "value": {
+        "Id": "47",
+        "SyncToken": "0",
+        "Name": "Printing Income",
+        "FullyQualifiedName": "Printing Income",
+        "AccountType": "Income",
+        "AccountSubType": "SalesOfProductIncome",
+        "Classification": "Revenue",
+        "AcctNum": null,
+        "Description": null,
+        "Active": true,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000048",
+      "value": {
+        "Id": "48",
+        "SyncToken": "0",
+        "Name": "Legacy Retainers",
+        "FullyQualifiedName": "Legacy Retainers",
+        "AccountType": "Income",
+        "AccountSubType": "ServiceFeeIncome",
+        "Classification": "Revenue",
+        "AcctNum": null,
+        "Description": "Closed 2024; kept for history",
+        "Active": false,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000060",
+      "value": {
+        "Id": "60",
+        "SyncToken": "0",
+        "Name": "Printing Costs",
+        "FullyQualifiedName": "Printing Costs",
+        "AccountType": "Cost of Goods Sold",
+        "AccountSubType": "SuppliesMaterialsCogs",
+        "Classification": "Expense",
+        "AcctNum": null,
+        "Description": null,
+        "Active": true,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000061",
+      "value": {
+        "Id": "61",
+        "SyncToken": "0",
+        "Name": "Software Subscriptions",
+        "FullyQualifiedName": "Software Subscriptions",
+        "AccountType": "Expense",
+        "AccountSubType": "OfficeGeneralAdministrativeExpenses",
+        "Classification": "Expense",
+        "AcctNum": null,
+        "Description": null,
+        "Active": true,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "accounts",
+      "rowId": "0000000084",
+      "value": {
+        "Id": "84",
+        "SyncToken": "0",
+        "Name": "Accounts Receivable (A/R)",
+        "FullyQualifiedName": "Accounts Receivable (A/R)",
+        "AccountType": "Accounts Receivable",
+        "AccountSubType": "AccountsReceivable",
+        "Classification": "Asset",
+        "AcctNum": null,
+        "Description": null,
+        "Active": true,
+        "openingBalance": 0,
+        "MetaData": {
+          "CreateTime": "2019-03-01T09:00:00-07:00",
+          "LastUpdatedTime": "2019-03-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000058",
+      "value": {
+        "Id": "58",
+        "SyncToken": "0",
+        "DisplayName": "Harbor Coffee Co.",
+        "Title": null,
+        "GivenName": "Dana",
+        "MiddleName": null,
+        "FamilyName": "Reyes",
+        "Suffix": null,
+        "CompanyName": "Harbor Coffee Co.",
+        "PrintOnCheckName": "Harbor Coffee Co.",
+        "PrimaryEmailAddr": {
+          "Address": "ap@harborcoffee.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0101"
+        },
+        "Mobile": null,
+        "BillAddr": {
+          "Id": "58",
+          "Line1": "1220 Harbor Dr",
+          "Line2": null,
+          "City": "San Diego",
+          "CountrySubDivisionCode": "CA",
+          "PostalCode": "92101",
+          "Country": "USA"
+        },
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000059",
+      "value": {
+        "Id": "59",
+        "SyncToken": "0",
+        "DisplayName": "Harbor Lights Dental",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Harbor Lights Dental",
+        "PrintOnCheckName": "Harbor Lights Dental",
+        "PrimaryEmailAddr": {
+          "Address": "office@harborlights.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0102"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000060",
+      "value": {
+        "Id": "60",
+        "SyncToken": "0",
+        "DisplayName": "O'Neill Bakery",
+        "Title": null,
+        "GivenName": "Siobhan",
+        "MiddleName": null,
+        "FamilyName": "O'Neill",
+        "Suffix": null,
+        "CompanyName": "O'Neill Bakery",
+        "PrintOnCheckName": "O'Neill Bakery",
+        "PrimaryEmailAddr": {
+          "Address": "orders@oneillbakery.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0103"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000061",
+      "value": {
+        "Id": "61",
+        "SyncToken": "0",
+        "DisplayName": "Maple & Birch Realty",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Maple & Birch Realty",
+        "PrintOnCheckName": "Maple & Birch Realty",
+        "PrimaryEmailAddr": {
+          "Address": "accounts@maplebirch.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0104"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000062",
+      "value": {
+        "Id": "62",
+        "SyncToken": "0",
+        "DisplayName": "Juniper Yoga",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Juniper Yoga",
+        "PrintOnCheckName": "Juniper Yoga",
+        "PrimaryEmailAddr": null,
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0105"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": "Prefers printed invoices; no e-mail on file.",
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Print",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000063",
+      "value": {
+        "Id": "63",
+        "SyncToken": "0",
+        "DisplayName": "Fernwood Café",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Fernwood Café",
+        "PrintOnCheckName": "Fernwood Café",
+        "PrimaryEmailAddr": {
+          "Address": "hola@fernwood.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0106"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000064",
+      "value": {
+        "Id": "64",
+        "SyncToken": "0",
+        "DisplayName": "Quartz Legal Group",
+        "Title": null,
+        "GivenName": "Priya",
+        "MiddleName": null,
+        "FamilyName": "Nandakumar",
+        "Suffix": null,
+        "CompanyName": "Quartz Legal Group",
+        "PrintOnCheckName": "Quartz Legal Group",
+        "PrimaryEmailAddr": {
+          "Address": "billing@quartzlegal.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0107"
+        },
+        "Mobile": null,
+        "BillAddr": {
+          "Id": "64",
+          "Line1": "600 W Broadway Ste 1400",
+          "Line2": null,
+          "City": "San Diego",
+          "CountrySubDivisionCode": "CA",
+          "PostalCode": "92101",
+          "Country": "USA"
+        },
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000065",
+      "value": {
+        "Id": "65",
+        "SyncToken": "0",
+        "DisplayName": "Old Town Florist",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Old Town Florist",
+        "PrintOnCheckName": "Old Town Florist",
+        "PrimaryEmailAddr": {
+          "Address": "shop@oldtownflorist.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0108"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": false,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000066",
+      "value": {
+        "Id": "66",
+        "SyncToken": "0",
+        "DisplayName": "Summit Outfitters",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Summit Outfitters",
+        "PrintOnCheckName": "Summit Outfitters",
+        "PrimaryEmailAddr": {
+          "Address": "finance@summitoutfitters.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0109"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000067",
+      "value": {
+        "Id": "67",
+        "SyncToken": "0",
+        "DisplayName": "Nova Dental Lab",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Nova Dental Lab",
+        "PrintOnCheckName": "Nova Dental Lab",
+        "PrimaryEmailAddr": {
+          "Address": "lab@novadental.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0110"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000068",
+      "value": {
+        "Id": "68",
+        "SyncToken": "0",
+        "DisplayName": "Pacific Rowing Club",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Pacific Rowing Club",
+        "PrintOnCheckName": "Pacific Rowing Club",
+        "PrimaryEmailAddr": {
+          "Address": "treasurer@pacificrowing.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0111"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000069",
+      "value": {
+        "Id": "69",
+        "SyncToken": "0",
+        "DisplayName": "Cedar Lane Tutoring",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Cedar Lane Tutoring",
+        "PrintOnCheckName": "Cedar Lane Tutoring",
+        "PrimaryEmailAddr": {
+          "Address": "hello@cedarlane.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0112"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000070",
+      "value": {
+        "Id": "70",
+        "SyncToken": "0",
+        "DisplayName": "Bluefin Charters",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Bluefin Charters",
+        "PrintOnCheckName": "Bluefin Charters",
+        "PrimaryEmailAddr": {
+          "Address": "captain@bluefin.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0113"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "customers",
+      "rowId": "0000000071",
+      "value": {
+        "Id": "71",
+        "SyncToken": "0",
+        "DisplayName": "Lumen Architects",
+        "Title": null,
+        "GivenName": null,
+        "MiddleName": null,
+        "FamilyName": null,
+        "Suffix": null,
+        "CompanyName": "Lumen Architects",
+        "PrintOnCheckName": "Lumen Architects",
+        "PrimaryEmailAddr": {
+          "Address": "studio@lumenarch.example.com"
+        },
+        "PrimaryPhone": {
+          "FreeFormNumber": "(619) 555-0114"
+        },
+        "Mobile": null,
+        "BillAddr": null,
+        "ShipAddr": null,
+        "Notes": null,
+        "Taxable": false,
+        "PreferredDeliveryMethod": "Email",
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "PaymentMethodRef": null,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2025-02-03T09:00:00-07:00",
+          "LastUpdatedTime": "2025-02-03T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "rowId": "0000000020",
+      "value": {
+        "Id": "20",
+        "SyncToken": "0",
+        "Name": "Design consulting",
+        "Sku": null,
+        "Description": "Design consulting (per hour)",
+        "Type": "Service",
+        "UnitPrice": 150,
+        "IncomeAccountRef": {
+          "value": "45",
+          "name": "Design Income"
+        },
+        "ExpenseAccountRef": null,
+        "Taxable": false,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2024-01-08T09:00:00-07:00",
+          "LastUpdatedTime": "2024-01-08T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "rowId": "0000000021",
+      "value": {
+        "Id": "21",
+        "SyncToken": "0",
+        "Name": "Brand workshop",
+        "Sku": null,
+        "Description": "Half-day brand strategy workshop",
+        "Type": "Service",
+        "UnitPrice": 1200,
+        "IncomeAccountRef": {
+          "value": "45",
+          "name": "Design Income"
+        },
+        "ExpenseAccountRef": null,
+        "Taxable": false,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2024-01-08T09:00:00-07:00",
+          "LastUpdatedTime": "2024-01-08T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "rowId": "0000000022",
+      "value": {
+        "Id": "22",
+        "SyncToken": "0",
+        "Name": "Product photography",
+        "Sku": null,
+        "Description": "Studio product photography (per set)",
+        "Type": "Service",
+        "UnitPrice": 200,
+        "IncomeAccountRef": {
+          "value": "46",
+          "name": "Photography Income"
+        },
+        "ExpenseAccountRef": null,
+        "Taxable": false,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2024-01-08T09:00:00-07:00",
+          "LastUpdatedTime": "2024-01-08T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "rowId": "0000000023",
+      "value": {
+        "Id": "23",
+        "SyncToken": "0",
+        "Name": "Hours",
+        "Sku": null,
+        "Description": null,
+        "Type": "Service",
+        "UnitPrice": 0,
+        "IncomeAccountRef": {
+          "value": "45",
+          "name": "Design Income"
+        },
+        "ExpenseAccountRef": null,
+        "Taxable": false,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2024-01-08T09:00:00-07:00",
+          "LastUpdatedTime": "2024-01-08T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "rowId": "0000000024",
+      "value": {
+        "Id": "24",
+        "SyncToken": "0",
+        "Name": "Printed brochures",
+        "Sku": "BRO-100",
+        "Description": "Tri-fold brochure, 100 lb gloss",
+        "Type": "NonInventory",
+        "UnitPrice": 2.5,
+        "IncomeAccountRef": {
+          "value": "47",
+          "name": "Printing Income"
+        },
+        "ExpenseAccountRef": {
+          "value": "60",
+          "name": "Printing Costs"
+        },
+        "Taxable": true,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2024-01-08T09:00:00-07:00",
+          "LastUpdatedTime": "2024-01-08T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "rowId": "0000000025",
+      "value": {
+        "Id": "25",
+        "SyncToken": "0",
+        "Name": "Poster print A2",
+        "Sku": "POS-A2",
+        "Description": "A2 poster print, matte",
+        "Type": "NonInventory",
+        "UnitPrice": 18,
+        "IncomeAccountRef": {
+          "value": "47",
+          "name": "Printing Income"
+        },
+        "ExpenseAccountRef": {
+          "value": "60",
+          "name": "Printing Costs"
+        },
+        "Taxable": true,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2024-01-08T09:00:00-07:00",
+          "LastUpdatedTime": "2024-01-08T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "rowId": "0000000026",
+      "value": {
+        "Id": "26",
+        "SyncToken": "0",
+        "Name": "Legacy retainer",
+        "Sku": null,
+        "Description": "Monthly retainer (discontinued)",
+        "Type": "Service",
+        "UnitPrice": 500,
+        "IncomeAccountRef": {
+          "value": "48",
+          "name": "Legacy Retainers"
+        },
+        "ExpenseAccountRef": null,
+        "Taxable": false,
+        "Active": false,
+        "MetaData": {
+          "CreateTime": "2024-01-08T09:00:00-07:00",
+          "LastUpdatedTime": "2024-01-08T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "items",
+      "rowId": "0000000027",
+      "value": {
+        "Id": "27",
+        "SyncToken": "0",
+        "Name": "Rush fee",
+        "Sku": null,
+        "Description": "Rush turnaround surcharge",
+        "Type": "Service",
+        "UnitPrice": 75,
+        "IncomeAccountRef": {
+          "value": "45",
+          "name": "Design Income"
+        },
+        "ExpenseAccountRef": null,
+        "Taxable": false,
+        "Active": true,
+        "MetaData": {
+          "CreateTime": "2024-01-08T09:00:00-07:00",
+          "LastUpdatedTime": "2024-01-08T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001036",
+      "value": {
+        "Id": "1036",
+        "SyncToken": "1",
+        "DocNumber": "1036",
+        "TxnDate": "2026-07-10",
+        "DueDate": "2026-08-09",
+        "CustomerRef": {
+          "value": "58",
+          "name": "Harbor Coffee Co."
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "ap@harborcoffee.example.com"
+        },
+        "BillAddr": {
+          "Id": "58",
+          "Line1": "1220 Harbor Dr",
+          "Line2": null,
+          "City": "San Diego",
+          "CountrySubDivisionCode": "CA",
+          "PostalCode": "92101",
+          "Country": "USA"
+        },
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Design consulting (per hour)",
+            "Amount": 1200,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "20",
+                "name": "Design consulting"
+              },
+              "Qty": 8,
+              "UnitPrice": 150,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 1200,
+        "Balance": 0,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-07-10T09:00:00-07:00",
+          "LastUpdatedTime": "2026-07-10T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001037",
+      "value": {
+        "Id": "1037",
+        "SyncToken": "1",
+        "DocNumber": "1037",
+        "TxnDate": "2026-07-20",
+        "DueDate": "2026-08-19",
+        "CustomerRef": {
+          "value": "63",
+          "name": "Fernwood Café"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "hola@fernwood.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Studio product photography (per set)",
+            "Amount": 600,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "22",
+                "name": "Product photography"
+              },
+              "Qty": 3,
+              "UnitPrice": 200,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 600,
+        "Balance": 0,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-07-20T09:00:00-07:00",
+          "LastUpdatedTime": "2026-07-20T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001038",
+      "value": {
+        "Id": "1038",
+        "SyncToken": "1",
+        "DocNumber": "1038",
+        "TxnDate": "2026-07-28",
+        "DueDate": "2026-08-27",
+        "CustomerRef": {
+          "value": "63",
+          "name": "Fernwood Café"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "hola@fernwood.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "A2 poster print, matte",
+            "Amount": 360,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "25",
+                "name": "Poster print A2"
+              },
+              "Qty": 20,
+              "UnitPrice": 18,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "TAX"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 360,
+        "Balance": 0,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-07-28T09:00:00-07:00",
+          "LastUpdatedTime": "2026-07-28T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001039",
+      "value": {
+        "Id": "1039",
+        "SyncToken": "1",
+        "DocNumber": "1039",
+        "TxnDate": "2026-08-01",
+        "DueDate": "2026-08-31",
+        "CustomerRef": {
+          "value": "60",
+          "name": "O'Neill Bakery"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "orders@oneillbakery.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Half-day brand strategy workshop",
+            "Amount": 1200,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "21",
+                "name": "Brand workshop"
+              },
+              "Qty": 1,
+              "UnitPrice": 1200,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          },
+          {
+            "Id": "2",
+            "LineNum": 2,
+            "Description": null,
+            "Amount": 0,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "23",
+                "name": "Hours"
+              },
+              "Qty": 4,
+              "UnitPrice": 0,
+              "ServiceDate": "2026-07-30",
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          },
+          {
+            "Id": "3",
+            "LineNum": 3,
+            "Description": "Studio product photography (per set)",
+            "Amount": 400,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "22",
+                "name": "Product photography"
+              },
+              "Qty": 2,
+              "UnitPrice": 200,
+              "ServiceDate": "2026-07-31",
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          },
+          {
+            "Id": "4",
+            "LineNum": 4,
+            "Description": "Tri-fold brochure, 100 lb gloss",
+            "Amount": 500,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "24",
+                "name": "Printed brochures"
+              },
+              "Qty": 200,
+              "UnitPrice": 2.5,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "TAX"
+              }
+            }
+          },
+          {
+            "Id": "5",
+            "LineNum": 5,
+            "Description": "Rush turnaround surcharge",
+            "Amount": 75,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "27",
+                "name": "Rush fee"
+              },
+              "Qty": 1,
+              "UnitPrice": 75,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          },
+          {
+            "Id": "6",
+            "LineNum": 6,
+            "Description": "Design consulting (per hour)",
+            "Amount": 300,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "20",
+                "name": "Design consulting"
+              },
+              "Qty": 2,
+              "UnitPrice": 150,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 2475,
+        "Balance": 0,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-08-01T09:00:00-07:00",
+          "LastUpdatedTime": "2026-08-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001040",
+      "value": {
+        "Id": "1040",
+        "SyncToken": "1",
+        "DocNumber": "1040",
+        "TxnDate": "2026-08-05",
+        "DueDate": "2026-09-04",
+        "CustomerRef": {
+          "value": "66",
+          "name": "Summit Outfitters"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "finance@summitoutfitters.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Design consulting (per hour)",
+            "Amount": 0,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "20",
+                "name": "Design consulting"
+              },
+              "Qty": 2,
+              "UnitPrice": 150,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": "Voided",
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 0,
+        "Balance": 0,
+        "voided": true,
+        "MetaData": {
+          "CreateTime": "2026-08-05T09:00:00-07:00",
+          "LastUpdatedTime": "2026-08-06T14:20:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001041",
+      "value": {
+        "Id": "1041",
+        "SyncToken": "0",
+        "DocNumber": "1041",
+        "TxnDate": "2026-07-15",
+        "DueDate": "2026-08-14",
+        "CustomerRef": {
+          "value": "64",
+          "name": "Quartz Legal Group"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "billing@quartzlegal.example.com"
+        },
+        "BillAddr": {
+          "Id": "64",
+          "Line1": "600 W Broadway Ste 1400",
+          "Line2": null,
+          "City": "San Diego",
+          "CountrySubDivisionCode": "CA",
+          "PostalCode": "92101",
+          "Country": "USA"
+        },
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Design consulting (per hour)",
+            "Amount": 1800,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "20",
+                "name": "Design consulting"
+              },
+              "Qty": 12,
+              "UnitPrice": 150,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "EmailSent",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": {
+          "DeliveryType": "Email",
+          "DeliveryTime": "2026-07-15T10:12:00-07:00"
+        },
+        "TotalAmt": 1800,
+        "Balance": 1800,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-07-15T09:00:00-07:00",
+          "LastUpdatedTime": "2026-07-15T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001042",
+      "value": {
+        "Id": "1042",
+        "SyncToken": "1",
+        "DocNumber": "1042",
+        "TxnDate": "2026-08-20",
+        "DueDate": "2026-09-19",
+        "CustomerRef": {
+          "value": "59",
+          "name": "Harbor Lights Dental"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "office@harborlights.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Studio product photography (per set)",
+            "Amount": 2400,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "22",
+                "name": "Product photography"
+              },
+              "Qty": 12,
+              "UnitPrice": 200,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 2400,
+        "Balance": 900,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-08-20T09:00:00-07:00",
+          "LastUpdatedTime": "2026-08-20T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001043",
+      "value": {
+        "Id": "1043",
+        "SyncToken": "0",
+        "DocNumber": "1043",
+        "TxnDate": "2026-08-01",
+        "DueDate": "2026-08-31",
+        "CustomerRef": {
+          "value": "68",
+          "name": "Pacific Rowing Club"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "treasurer@pacificrowing.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Half-day brand strategy workshop",
+            "Amount": 1200,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "21",
+                "name": "Brand workshop"
+              },
+              "Qty": 1,
+              "UnitPrice": 1200,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 1200,
+        "Balance": 1200,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-08-01T09:00:00-07:00",
+          "LastUpdatedTime": "2026-08-01T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001044",
+      "value": {
+        "Id": "1044",
+        "SyncToken": "0",
+        "DocNumber": "1044",
+        "TxnDate": "2026-08-30",
+        "DueDate": "2026-09-14",
+        "CustomerRef": {
+          "value": "64",
+          "name": "Quartz Legal Group"
+        },
+        "SalesTermRef": {
+          "value": "2",
+          "name": "Net 15"
+        },
+        "BillEmail": {
+          "Address": "billing@quartzlegal.example.com"
+        },
+        "BillAddr": {
+          "Id": "64",
+          "Line1": "600 W Broadway Ste 1400",
+          "Line2": null,
+          "City": "San Diego",
+          "CountrySubDivisionCode": "CA",
+          "PostalCode": "92101",
+          "Country": "USA"
+        },
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Design consulting (per hour)",
+            "Amount": 450,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "20",
+                "name": "Design consulting"
+              },
+              "Qty": 3,
+              "UnitPrice": 150,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          },
+          {
+            "Id": "2",
+            "LineNum": 2,
+            "Description": "Studio product photography (per set)",
+            "Amount": 200,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "22",
+                "name": "Product photography"
+              },
+              "Qty": 1,
+              "UnitPrice": 200,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 650,
+        "Balance": 650,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-08-30T09:00:00-07:00",
+          "LastUpdatedTime": "2026-08-30T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001045",
+      "value": {
+        "Id": "1045",
+        "SyncToken": "2",
+        "DocNumber": "1045",
+        "TxnDate": "2026-07-25",
+        "DueDate": "2026-08-24",
+        "CustomerRef": {
+          "value": "69",
+          "name": "Cedar Lane Tutoring"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "hello@cedarlane.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Design consulting (per hour)",
+            "Amount": 750,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "20",
+                "name": "Design consulting"
+              },
+              "Qty": 5,
+              "UnitPrice": 150,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 750,
+        "Balance": 750,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-07-25T09:00:00-07:00",
+          "LastUpdatedTime": "2026-07-25T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001046",
+      "value": {
+        "Id": "1046",
+        "SyncToken": "0",
+        "DocNumber": "1046",
+        "TxnDate": "2026-08-16",
+        "DueDate": "2026-09-15",
+        "CustomerRef": {
+          "value": "70",
+          "name": "Bluefin Charters"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "captain@bluefin.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Studio product photography (per set)",
+            "Amount": 800,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "22",
+                "name": "Product photography"
+              },
+              "Qty": 4,
+              "UnitPrice": 200,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          },
+          {
+            "Id": "2",
+            "LineNum": 2,
+            "Description": "Rush turnaround surcharge",
+            "Amount": 75,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "27",
+                "name": "Rush fee"
+              },
+              "Qty": 1,
+              "UnitPrice": 75,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": {
+          "value": "Thank you for sailing with us!"
+        },
+        "PrivateNote": "Deposit expected at the dock",
+        "EmailStatus": "NotSet",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 875,
+        "Balance": 875,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-08-16T09:00:00-07:00",
+          "LastUpdatedTime": "2026-08-16T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001047",
+      "value": {
+        "Id": "1047",
+        "SyncToken": "0",
+        "DocNumber": "BW-2026-07",
+        "TxnDate": "2026-09-05",
+        "DueDate": "2026-10-05",
+        "CustomerRef": {
+          "value": "71",
+          "name": "Lumen Architects"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "studio@lumenarch.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Half-day brand strategy workshop",
+            "Amount": 1200,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "21",
+                "name": "Brand workshop"
+              },
+              "Qty": 1,
+              "UnitPrice": 1200,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          },
+          {
+            "Id": "2",
+            "LineNum": 2,
+            "Description": "Tri-fold brochure, 100 lb gloss",
+            "Amount": 1250,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "24",
+                "name": "Printed brochures"
+              },
+              "Qty": 500,
+              "UnitPrice": 2.5,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "TAX"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "EmailSent",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": {
+          "DeliveryType": "Email",
+          "DeliveryTime": "2026-09-05T11:30:00-07:00"
+        },
+        "TotalAmt": 2450,
+        "Balance": 2450,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-09-05T09:00:00-07:00",
+          "LastUpdatedTime": "2026-09-05T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001048",
+      "value": {
+        "Id": "1048",
+        "SyncToken": "0",
+        "DocNumber": "1048",
+        "TxnDate": "2026-09-10",
+        "DueDate": "2026-10-10",
+        "CustomerRef": {
+          "value": "62",
+          "name": "Juniper Yoga"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": null,
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "A2 poster print, matte",
+            "Amount": 180,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "25",
+                "name": "Poster print A2"
+              },
+              "Qty": 10,
+              "UnitPrice": 18,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "TAX"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NeedToSend",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 180,
+        "Balance": 180,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-09-10T09:00:00-07:00",
+          "LastUpdatedTime": "2026-09-10T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "invoices",
+      "rowId": "0000001049",
+      "value": {
+        "Id": "1049",
+        "SyncToken": "0",
+        "DocNumber": "1049",
+        "TxnDate": "2026-09-12",
+        "DueDate": "2026-10-12",
+        "CustomerRef": {
+          "value": "61",
+          "name": "Maple & Birch Realty"
+        },
+        "SalesTermRef": {
+          "value": "3",
+          "name": "Net 30"
+        },
+        "BillEmail": {
+          "Address": "accounts@maplebirch.example.com"
+        },
+        "BillAddr": null,
+        "Line": [
+          {
+            "Id": "1",
+            "LineNum": 1,
+            "Description": "Studio product photography (per set)",
+            "Amount": 1000,
+            "DetailType": "SalesItemLineDetail",
+            "SalesItemLineDetail": {
+              "ItemRef": {
+                "value": "22",
+                "name": "Product photography"
+              },
+              "Qty": 5,
+              "UnitPrice": 200,
+              "ServiceDate": null,
+              "TaxCodeRef": {
+                "value": "NON"
+              }
+            }
+          }
+        ],
+        "CustomerMemo": null,
+        "PrivateNote": null,
+        "EmailStatus": "NeedToSend",
+        "PrintStatus": "NotSet",
+        "DeliveryInfo": null,
+        "TotalAmt": 1000,
+        "Balance": 1000,
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-09-12T09:00:00-07:00",
+          "LastUpdatedTime": "2026-09-12T09:00:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "payments",
+      "rowId": "0000000190",
+      "value": {
+        "Id": "190",
+        "SyncToken": "0",
+        "TxnDate": "2026-08-05",
+        "CustomerRef": {
+          "value": "58",
+          "name": "Harbor Coffee Co."
+        },
+        "TotalAmt": 1200,
+        "PaymentRefNum": "CHK-3318",
+        "PaymentMethodRef": {
+          "value": "2",
+          "name": "Check"
+        },
+        "DepositToAccountRef": {
+          "value": "1",
+          "name": "Checking"
+        },
+        "PrivateNote": null,
+        "Line": [
+          {
+            "Amount": 1200,
+            "LinkedTxn": [
+              {
+                "TxnId": "1036",
+                "TxnType": "Invoice"
+              }
+            ]
+          }
+        ],
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-08-05T15:30:00-07:00",
+          "LastUpdatedTime": "2026-08-05T15:30:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "payments",
+      "rowId": "0000000191",
+      "value": {
+        "Id": "191",
+        "SyncToken": "0",
+        "TxnDate": "2026-08-25",
+        "CustomerRef": {
+          "value": "63",
+          "name": "Fernwood Café"
+        },
+        "TotalAmt": 960,
+        "PaymentRefNum": null,
+        "PaymentMethodRef": null,
+        "DepositToAccountRef": {
+          "value": "4",
+          "name": "Undeposited Funds"
+        },
+        "PrivateNote": null,
+        "Line": [
+          {
+            "Amount": 600,
+            "LinkedTxn": [
+              {
+                "TxnId": "1037",
+                "TxnType": "Invoice"
+              }
+            ]
+          },
+          {
+            "Amount": 360,
+            "LinkedTxn": [
+              {
+                "TxnId": "1038",
+                "TxnType": "Invoice"
+              }
+            ]
+          }
+        ],
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-08-25T15:30:00-07:00",
+          "LastUpdatedTime": "2026-08-25T15:30:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "payments",
+      "rowId": "0000000192",
+      "value": {
+        "Id": "192",
+        "SyncToken": "0",
+        "TxnDate": "2026-09-01",
+        "CustomerRef": {
+          "value": "59",
+          "name": "Harbor Lights Dental"
+        },
+        "TotalAmt": 1500,
+        "PaymentRefNum": "CHK-4471",
+        "PaymentMethodRef": {
+          "value": "2",
+          "name": "Check"
+        },
+        "DepositToAccountRef": {
+          "value": "4",
+          "name": "Undeposited Funds"
+        },
+        "PrivateNote": null,
+        "Line": [
+          {
+            "Amount": 1500,
+            "LinkedTxn": [
+              {
+                "TxnId": "1042",
+                "TxnType": "Invoice"
+              }
+            ]
+          }
+        ],
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-09-01T15:30:00-07:00",
+          "LastUpdatedTime": "2026-09-01T15:30:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "payments",
+      "rowId": "0000000193",
+      "value": {
+        "Id": "193",
+        "SyncToken": "0",
+        "TxnDate": "2026-09-08",
+        "CustomerRef": {
+          "value": "61",
+          "name": "Maple & Birch Realty"
+        },
+        "TotalAmt": 500,
+        "PaymentRefNum": null,
+        "PaymentMethodRef": null,
+        "DepositToAccountRef": {
+          "value": "1",
+          "name": "Checking"
+        },
+        "PrivateNote": "Retainer received before invoicing",
+        "Line": [],
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-09-08T15:30:00-07:00",
+          "LastUpdatedTime": "2026-09-08T15:30:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "payments",
+      "rowId": "0000000194",
+      "value": {
+        "Id": "194",
+        "SyncToken": "0",
+        "TxnDate": "2026-08-28",
+        "CustomerRef": {
+          "value": "60",
+          "name": "O'Neill Bakery"
+        },
+        "TotalAmt": 2475,
+        "PaymentRefNum": null,
+        "PaymentMethodRef": null,
+        "DepositToAccountRef": {
+          "value": "1",
+          "name": "Checking"
+        },
+        "PrivateNote": null,
+        "Line": [
+          {
+            "Amount": 2475,
+            "LinkedTxn": [
+              {
+                "TxnId": "1039",
+                "TxnType": "Invoice"
+              }
+            ]
+          }
+        ],
+        "voided": false,
+        "MetaData": {
+          "CreateTime": "2026-08-28T15:30:00-07:00",
+          "LastUpdatedTime": "2026-08-28T15:30:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "payments",
+      "rowId": "0000000195",
+      "value": {
+        "Id": "195",
+        "SyncToken": "1",
+        "TxnDate": "2026-08-20",
+        "CustomerRef": {
+          "value": "69",
+          "name": "Cedar Lane Tutoring"
+        },
+        "TotalAmt": 0,
+        "PaymentRefNum": null,
+        "PaymentMethodRef": null,
+        "DepositToAccountRef": {
+          "value": "4",
+          "name": "Undeposited Funds"
+        },
+        "PrivateNote": "Voided - applied to the wrong invoice",
+        "Line": [],
+        "voided": true,
+        "MetaData": {
+          "CreateTime": "2026-08-20T15:30:00-07:00",
+          "LastUpdatedTime": "2026-08-20T15:30:00-07:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "deliveries",
+      "rowId": "0000001041/0001",
+      "value": {
+        "invoiceId": "1041",
+        "sendTo": "billing@quartzlegal.example.com",
+        "deliveryTime": "2026-07-15T10:12:00-07:00",
+        "actorId": "admin",
+        "source": "invoices.send"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "quickbooks",
+      "namespace": "deliveries",
+      "rowId": "0000001047/0001",
+      "value": {
+        "invoiceId": "1047",
+        "sendTo": "studio@lumenarch.example.com",
+        "deliveryTime": "2026-09-05T11:30:00-07:00",
+        "actorId": "admin",
+        "source": "invoices.send"
+      }
+    }
+  ],
+  "faults": [
+    {
+      "packageId": "quickbooks",
+      "faultId": "throttled"
+    }
+  ]
+}

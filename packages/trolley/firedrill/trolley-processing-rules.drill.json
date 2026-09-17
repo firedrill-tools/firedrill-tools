@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "trolley-processing-rules",
+  "title": "Processing rules: expired quote, insufficient funds, route minimum, empty batch, per-payment failures",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "ops",
+  "task": {
+    "instruction": "Run the processing-rules conformance flow against the synthetic Trolley Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "batches-start-processing-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.start_processing"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 4
+      }
+    },
+    {
+      "id": "batches-start-processing-ok-exact",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "trolley",
+        "operationId": "batches.start_processing"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-batch-processing",
+      "kind": "event.count",
+      "event": {
+        "packageId": "trolley",
+        "eventId": "batch.processing"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-payment-processed",
+      "kind": "event.count",
+      "event": {
+        "packageId": "trolley",
+        "eventId": "payment.processed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "event-payment-failed",
+      "kind": "event.count",
+      "event": {
+        "packageId": "trolley",
+        "eventId": "payment.failed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "b3-still-open",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003H",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "open"
+      }
+    },
+    {
+      "id": "b5-still-open",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003J",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "open"
+      }
+    },
+    {
+      "id": "b4-complete",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "batches",
+      "rowId": "B-000000000000000000003I",
+      "path": [
+        "status"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "complete"
+      }
+    },
+    {
+      "id": "usd-balance",
+      "kind": "state.value",
+      "packageId": "trolley",
+      "namespace": "balances",
+      "rowId": "paymentrails:USD",
+      "path": [
+        "amount"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "16820.55"
+      }
+    }
+  ]
+}

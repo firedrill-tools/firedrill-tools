@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "attio-default-identity",
+  "title": "An actor without identity attributes acts as the first admin member",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the default-identity conformance flow against the synthetic Attio Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "self-identify-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "self.identify"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "lists-list-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "lists.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "tasks-create-ok-eq-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "attio",
+        "operationId": "tasks.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "count-tasks-8",
+      "kind": "state.count",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "fresh-task-actor",
+      "kind": "state.value",
+      "packageId": "attio",
+      "namespace": "tasks",
+      "rowId": "00000008-0000-4000-8000-000000001000",
+      "path": [
+        "created_by_actor",
+        "type"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "api-token"
+      }
+    }
+  ]
+}

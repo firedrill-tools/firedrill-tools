@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitHub (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/github.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./chrome.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="AppHeader" id="app-header">
+      <div class="AppHeader-globalBar">
+        <div class="AppHeader-globalBar-start">
+          <button type="button" class="btn btn-icon-only AppHeader-menu" id="global-menu" aria-label="Open global navigation menu" aria-expanded="false"><span data-icon="three-bars"></span></button>
+          <a class="AppHeader-logo" href="#/" aria-label="Homepage"><img src="./assets/github.svg" alt="" width="32" height="32" /></a>
+          <nav class="AppHeader-context" aria-label="Page context"><ol class="AppHeader-context-list" id="context-crumbs"></ol></nav>
+        </div>
+        <div class="AppHeader-globalBar-end">
+          <form class="AppHeader-search" id="global-search-form" role="search">
+            <label class="visually-hidden" for="global-search">Search or jump to…</label>
+            <span class="AppHeader-search-icon" data-icon="search"></span>
+            <input id="global-search" type="text" placeholder="Type / to search" autocomplete="off" spellcheck="false" />
+            <kbd class="AppHeader-search-kbd" aria-hidden="true">/</kbd>
+          </form>
+          <button type="button" class="btn AppHeader-button" id="header-command-palette" aria-label="Command palette" title="Command palette"><span data-icon="command-palette"></span></button>
+          <div class="btn-group AppHeader-copilot">
+            <button type="button" class="btn AppHeader-button" id="header-copilot" aria-label="Chat with Copilot" title="Chat with Copilot"><span data-icon="copilot"></span></button>
+            <button type="button" class="btn AppHeader-button AppHeader-copilot-caret" id="header-copilot-menu" aria-label="Open Copilot menu" title="Open Copilot…"><span data-icon="triangle-down"></span></button>
+          </div>
+          <span class="AppHeader-divider" role="separator"></span>
+          <div class="AppHeader-actions">
+            <button type="button" class="btn AppHeader-button AppHeader-create" id="create-menu" aria-label="Create something new" aria-expanded="false"><span data-icon="plus"></span><span data-icon="triangle-down" class="AppHeader-caret"></span></button>
+            <a class="btn AppHeader-button" id="header-issues" href="#/issues" aria-label="Your issues" title="Your issues"><span data-icon="issue-opened"></span></a>
+            <a class="btn AppHeader-button" id="header-pulls" href="#/pulls" aria-label="Your pull requests" title="Your pull requests"><span data-icon="git-pull-request"></span></a>
+            <button type="button" class="btn AppHeader-button" id="header-notifications" aria-label="You have no unread notifications" title="Notifications"><span data-icon="inbox"></span></button>
+            <button type="button" class="AppHeader-user" id="user-menu" aria-label="Open user navigation menu" aria-expanded="false"><span class="avatar avatar-32" id="user-avatar" aria-hidden="true">?</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="AppHeader-localBar" id="local-bar" hidden><nav class="UnderlineNav" id="repo-nav" aria-label="Repository"></nav></div>
+    </header>
+
+    <div class="flash-host" id="flash" hidden></div>
+    <div class="progress-bar" id="progress" aria-hidden="true"></div>
+
+    <main class="application-main" id="main" aria-live="polite">
+      <div class="blankslate blankslate-loading" id="initial-loading"><span class="spinner" aria-hidden="true"></span><p>Loading…</p></div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span class="footer-mark"><img src="./assets/github.svg" alt="" width="24" height="24" /><span>© 2026 GitHub,&nbsp;Inc.</span></span>
+        <ul class="footer-links" aria-label="Footer">
+          <li><a href="#" data-not-simulated="Terms of service">Terms</a></li>
+          <li><a href="#" data-not-simulated="Privacy statement">Privacy</a></li>
+          <li><a href="#" data-not-simulated="GitHub security">Security</a></li>
+          <li><a href="#" data-not-simulated="GitHub status">Status</a></li>
+          <li><a href="#" data-not-simulated="GitHub Community">Community</a></li>
+          <li><a href="#" data-not-simulated="GitHub Docs">Docs</a></li>
+          <li><a href="#" data-not-simulated="Contacting GitHub">Contact</a></li>
+          <li><a href="#" data-not-simulated="Cookie preferences">Manage cookies</a></li>
+          <li><a href="#" data-not-simulated="Privacy choices">Do not share my personal information</a></li>
+        </ul>
+      </div>
+      <p class="footer-note">Synthetic GitHub instance served by Firedrill · nothing here reaches github.com</p>
+    </footer>
+
+    <dialog class="Dialog" id="confirm-dialog" aria-labelledby="confirm-title">
+      <form method="dialog" class="Dialog-form">
+        <header class="Dialog-header"><h2 id="confirm-title">Are you sure?</h2><button type="submit" value="cancel" class="btn btn-icon-only Dialog-close" aria-label="Close"><span data-icon="x"></span></button></header>
+        <div class="Dialog-body"><p id="confirm-text"></p></div>
+        <footer class="Dialog-footer">
+          <button type="submit" value="cancel" class="btn">Cancel</button>
+          <button type="submit" value="ok" class="btn btn-primary" id="confirm-ok">OK</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="Dialog" id="form-dialog" aria-labelledby="form-dialog-title">
+      <div class="Dialog-form">
+        <header class="Dialog-header"><h2 id="form-dialog-title"></h2><button type="button" class="btn btn-icon-only Dialog-close" id="form-dialog-close" aria-label="Close"><span data-icon="x"></span></button></header>
+        <div class="Dialog-body" id="form-dialog-body"></div>
+      </div>
+    </dialog>
+  </body>
+</html>

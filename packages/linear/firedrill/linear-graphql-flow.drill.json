@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-graphql-flow",
+  "title": "GraphQL queries, pagination, fragments, directives and every mutation over POST /graphql as the admin",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the graphql-flow conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "graphql-execute-ok-greater-than-or-equal-40",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 40
+      }
+    },
+    {
+      "id": "graphql-execute-tool-error-greater-than-or-equal-10",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 10
+      }
+    },
+    {
+      "id": "first-call-is-viewer",
+      "kind": "operation.arguments",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "occurrence": 1,
+      "contains": {
+        "query": "{ viewer { id name email admin isMe organization { urlKey } teams { nodes { key } } } }"
+      }
+    },
+    {
+      "id": "event-issue-created-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "event-issue-updated-equals-2",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "event-comment-created-equals-4",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "comment.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "eng-15-archived",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000000-0000-4000-8000-0000000003e8",
+      "path": [
+        "archivedAt"
+      ],
+      "comparison": {
+        "operator": "not_equals",
+        "value": null
+      }
+    },
+    {
+      "id": "eng-15-labels",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "issues",
+      "rowId": "00000000-0000-4000-8000-0000000003e8",
+      "path": [
+        "labelIds"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "0000000d-0000-4000-8000-000000000001",
+          "0000000d-0000-4000-8000-000000000005"
+        ]
+      }
+    },
+    {
+      "id": "eng-issue-count-15",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "teams",
+      "rowId": "0000000b-0000-4000-8000-000000000001",
+      "path": [
+        "issueCount"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 15
+      }
+    },
+    {
+      "id": "last-sync-id-4212",
+      "kind": "state.value",
+      "packageId": "linear",
+      "namespace": "meta",
+      "rowId": "counters",
+      "path": [
+        "lastSyncId"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4212
+      }
+    },
+    {
+      "id": "issues-count-equals-25",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 25
+      }
+    },
+    {
+      "id": "comments-count-equals-16",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "comments",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    },
+    {
+      "id": "projects-count-equals-4",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "projects",
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "labels-count-equals-10",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "labels",
+      "comparison": {
+        "operator": "equals",
+        "value": 10
+      }
+    }
+  ]
+}

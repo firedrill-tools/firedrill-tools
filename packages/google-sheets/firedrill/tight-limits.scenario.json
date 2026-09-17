@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "tight-limits",
+  "title": "meta/limits tightened (and Team Offsite shared with 12 people, over the 10-row scan bound) so every documented bound refuses with FAILED_PRECONDITION instead of truncating.",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "maxScanRows": 10,
+        "maxCellsPerWrite": 20,
+        "maxSheets": 4,
+        "maxEvaluationVisits": 50,
+        "maxPermissions": 3
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000001",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000001",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest01@example.test",
+        "displayName": "Guest 01",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000002",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000002",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest02@example.test",
+        "displayName": "Guest 02",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000003",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000003",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest03@example.test",
+        "displayName": "Guest 03",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000004",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000004",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest04@example.test",
+        "displayName": "Guest 04",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000005",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000005",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest05@example.test",
+        "displayName": "Guest 05",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000006",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000006",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest06@example.test",
+        "displayName": "Guest 06",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000007",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000007",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest07@example.test",
+        "displayName": "Guest 07",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000008",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000008",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest08@example.test",
+        "displayName": "Guest 08",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000009",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000009",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest09@example.test",
+        "displayName": "Guest 09",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "google-sheets",
+      "namespace": "permissions",
+      "rowId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd:20000000000000000010",
+      "value": {
+        "spreadsheetId": "1DxTeamOffsitePlanningSeedC9wQ0123456789abcd",
+        "id": "20000000000000000010",
+        "type": "user",
+        "role": "reader",
+        "emailAddress": "guest10@example.test",
+        "displayName": "Guest 10",
+        "createdTime": "2026-09-04T12:00:00.000Z"
+      }
+    }
+  ]
+}

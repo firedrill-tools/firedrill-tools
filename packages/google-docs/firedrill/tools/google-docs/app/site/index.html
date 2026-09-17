@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Google Docs (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/google-docs-2026.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="progress" id="progress" role="progressbar" aria-label="Loading" hidden></div>
+
+    <!-- ------------------------------------------------------------------ Docs home -->
+    <div class="home" id="home-view" hidden>
+      <header class="home-header">
+        <div class="home-header-start">
+          <button type="button" class="icon-btn large" id="drawer-toggle" aria-label="Main menu" aria-expanded="false" aria-haspopup="menu"><span data-icon="menu"></span></button>
+          <a class="product" href="#/home" id="home-logo" aria-label="Docs home">
+            <img src="./assets/google-docs-2026.svg" alt="" width="40" height="40" />
+            <span class="product-name">Docs</span>
+          </a>
+        </div>
+        <form class="home-search" id="search-form" role="search">
+          <button type="submit" class="icon-btn home-search-icon" aria-label="Search"><span data-icon="search"></span></button>
+          <label class="sr-only" for="home-search-input">Search documents</label>
+          <input id="home-search-input" type="text" placeholder="Search" autocomplete="off" spellcheck="false" />
+          <button type="button" class="icon-btn" id="search-clear" aria-label="Clear search" hidden><span data-icon="close"></span></button>
+        </form>
+        <div class="home-header-end">
+          <button type="button" class="icon-btn large" id="apps-btn" aria-label="Google apps" aria-haspopup="dialog" aria-expanded="false"><span data-icon="apps"></span></button>
+          <button type="button" class="avatar-btn" id="account-btn" aria-haspopup="dialog" aria-expanded="false" aria-label="Account"><span class="avatar" id="home-avatar" aria-hidden="true"></span></button>
+        </div>
+      </header>
+
+      <div class="band" id="template-band">
+        <div class="band-inner">
+          <div class="band-head">
+            <h1 class="band-title">Start a new document</h1>
+            <div class="band-tools">
+              <button type="button" class="text-link" id="gallery-toggle" aria-expanded="true">Template gallery<span data-icon="expand_more"></span></button>
+              <button type="button" class="icon-btn" id="band-more" aria-label="Hide templates" aria-haspopup="menu" aria-expanded="false"><span data-icon="more_vert"></span></button>
+            </div>
+          </div>
+          <div class="templates" id="templates"></div>
+        </div>
+      </div>
+
+      <main class="recent" id="recent">
+        <div class="recent-head">
+          <h2 class="recent-title">Recent documents</h2>
+          <div class="recent-tools">
+            <button type="button" class="menu-btn" id="owner-filter" aria-haspopup="menu" aria-expanded="false">Owned by anyone<span data-icon="arrow_drop_down"></span></button>
+            <button type="button" class="icon-btn" id="sort-btn" aria-label="Sort options" aria-haspopup="menu" aria-expanded="false"><span data-icon="swap_vert"></span></button>
+            <button type="button" class="icon-btn" id="layout-btn" aria-label="Grid view" aria-pressed="false"><span data-icon="grid_view"></span></button>
+            <button type="button" class="icon-btn" id="picker-btn" aria-label="Open file picker" aria-haspopup="dialog"><span data-icon="folder_open"></span></button>
+          </div>
+        </div>
+        <div class="recent-banner" id="home-banner" role="alert" hidden>
+          <span data-icon="error"></span>
+          <span class="recent-banner-text" id="home-banner-text"></span>
+          <button type="button" class="text-btn" id="home-banner-retry">Retry</button>
+        </div>
+        <div class="recent-columns" id="recent-columns">
+          <span class="col-name">Name</span>
+          <span class="col-owner">Owned by</span>
+          <span class="col-date" id="col-date">Last opened by me</span>
+          <span class="col-actions"></span>
+        </div>
+        <div class="recent-list" id="recent-list" aria-live="polite"></div>
+        <div class="recent-more" id="recent-more" hidden><button type="button" class="text-btn" id="load-more">Load more</button></div>
+      </main>
+    </div>
+
+    <!-- ------------------------------------------------------------------ Document editor -->
+    <div class="editor" id="editor-view" hidden>
+      <header class="doc-header">
+        <a class="doc-home-link" href="#/home" id="editor-logo" aria-label="Docs home"><img src="./assets/google-docs-2026.svg" alt="" width="36" height="36" /></a>
+        <div class="doc-headings">
+          <div class="doc-title-row">
+            <label class="sr-only" for="doc-title">Document title</label>
+            <input class="doc-title" id="doc-title" type="text" spellcheck="false" autocomplete="off" />
+            <button type="button" class="icon-btn small" id="star-btn" aria-label="Star" aria-pressed="false"><span data-icon="star"></span></button>
+            <button type="button" class="icon-btn small" id="move-btn" aria-label="Move" disabled title="Folders are out of scope in this synthetic Docs"><span data-icon="drive_file_move"></span></button>
+            <button type="button" class="icon-btn small" id="status-btn" aria-label="Document status"><span data-icon="cloud_done"></span></button>
+            <span class="save-chip" id="save-chip" aria-live="polite"></span>
+          </div>
+          <nav class="menubar" id="menubar" aria-label="Document menus"></nav>
+        </div>
+        <div class="doc-header-end">
+          <button type="button" class="icon-btn" id="history-btn" aria-label="Open version history"><span data-icon="history"></span></button>
+          <button type="button" class="icon-btn" id="comments-btn" aria-label="Open comment history" aria-expanded="false"><span data-icon="mode_comment"></span></button>
+          <button type="button" class="icon-btn meet-btn" id="meet-btn" aria-label="Join a call" disabled title="Meet is not part of this synthetic Docs"><span data-icon="videocam"></span></button>
+          <button type="button" class="share-btn" id="share-btn"><span data-icon="lock"></span><span class="share-label">Share</span></button>
+          <button type="button" class="avatar-btn" id="doc-account" aria-haspopup="dialog" aria-expanded="false" aria-label="Account"><span class="avatar" id="doc-avatar" aria-hidden="true"></span></button>
+        </div>
+      </header>
+
+      <div class="toolbar-wrap">
+        <div class="toolbar" id="toolbar" role="toolbar" aria-label="Document formatting"></div>
+      </div>
+
+      <div class="doc-banner" id="doc-banner" role="status" hidden>
+        <span data-icon="visibility"></span><span id="doc-banner-text"></span>
+        <button type="button" class="text-btn" id="doc-banner-action" hidden></button>
+      </div>
+
+      <div class="doc-body">
+        <aside class="outline" id="outline" aria-label="Tabs and outline" hidden></aside>
+        <div class="outline-rail" id="outline-rail" hidden>
+          <button type="button" class="icon-btn" id="outline-show" aria-label="Show tabs and outline" title="Show tabs and outline"><span data-icon="left_panel_open"></span></button>
+        </div>
+        <div class="canvas" id="canvas">
+          <div class="ruler" id="ruler" aria-hidden="true">
+            <div class="ruler-inner">
+              <span class="ruler-margin"></span>
+              <span class="ruler-text"></span>
+              <span class="ruler-margin"></span>
+              <span class="ruler-indent left"></span>
+              <span class="ruler-indent right"></span>
+            </div>
+          </div>
+          <div class="page-scroll" id="page-scroll">
+            <div class="page" id="page">
+              <div class="page-content" id="page-content" aria-label="Document body"></div>
+              <span class="doc-caret" id="doc-caret" aria-hidden="true" hidden></span>
+            </div>
+            <div class="page-actions" id="page-actions">
+              <button type="button" class="fab" id="fab-comment" aria-label="Add comment"><span data-icon="add_comment"></span></button>
+              <button type="button" class="fab" id="fab-emoji" aria-label="Add emoji reaction" disabled title="Emoji reactions are not simulated by this Tool"><span data-icon="mood"></span></button>
+            </div>
+            <div class="margin-comments" id="margin-comments" aria-hidden="true"></div>
+          </div>
+        </div>
+        <aside class="side-panel" id="side-panel" aria-label="Side panel" hidden></aside>
+        <div class="app-rail" id="app-rail" role="toolbar" aria-label="Side panel apps"></div>
+        <button type="button" class="rail-show" id="rail-show" aria-label="Show side panel" title="Show side panel" hidden><span data-icon="right_panel_open"></span></button>
+      </div>
+
+      <div class="request-drawer" id="request-drawer" hidden>
+        <div class="request-head">
+          <span class="request-title">Last Docs API call</span>
+          <button type="button" class="icon-btn small" id="request-close" aria-label="Hide the last API call"><span data-icon="close"></span></button>
+        </div>
+        <pre class="request-json" id="request-json"></pre>
+      </div>
+      <button type="button" class="request-tab" id="request-tab" aria-expanded="false">Last API call</button>
+    </div>
+
+    <!-- ------------------------------------------------------------------ Shared chrome -->
+    <div class="boot" id="boot"><span class="boot-spinner" aria-hidden="true"></span><span>Connecting to the Docs Tool…</span></div>
+    <div class="fatal" id="fatal" role="alert" hidden><h2 id="fatal-title"></h2><p id="fatal-text"></p></div>
+
+    <div class="menu-layer" id="menu-layer" hidden></div>
+
+    <dialog class="dialog" id="dialog" aria-labelledby="dialog-title">
+      <h2 class="dialog-title" id="dialog-title"></h2>
+      <div class="dialog-body" id="dialog-body"></div>
+      <div class="dialog-actions" id="dialog-actions"></div>
+    </dialog>
+
+    <div class="snackbar" id="snackbar" role="status" aria-live="polite" hidden>
+      <span id="snackbar-text"></span>
+      <button type="button" class="snackbar-action" id="snackbar-action" hidden></button>
+    </div>
+  </body>
+</html>

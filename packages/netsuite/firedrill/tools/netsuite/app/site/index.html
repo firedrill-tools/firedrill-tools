@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NetSuite (synthetic) · Firedrill</title>
+    <link rel="icon" href="./assets/oracle.svg" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/chrome.css" />
+    <link rel="stylesheet" href="./styles/tables.css" />
+    <link rel="stylesheet" href="./styles/pages.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to main content</a>
+
+    <header class="appbar" id="appbar">
+      <button type="button" class="nav-toggle" id="menu-toggle" aria-expanded="false" aria-label="Show menu"></button>
+      <a class="brand" href="#/home" aria-label="Oracle NetSuite home">
+        <img src="./assets/oracle-netsuite.svg" alt="Oracle NetSuite" />
+      </a>
+
+      <div class="appbar-right">
+        <form class="global-search" id="global-search" role="search">
+          <label class="visually-hidden" for="global-search-input">Search</label>
+          <input type="search" id="global-search-input" name="q" placeholder="Search" autocomplete="off" />
+          <button type="submit" class="gs-go" aria-label="Search"></button>
+        </form>
+        <button type="button" class="bar-btn" id="recent-btn" aria-haspopup="true" aria-expanded="false" title="Recent Records"><span class="bar-label">Recent Records</span></button>
+        <button type="button" class="bar-btn" id="create-btn" aria-haspopup="true" aria-expanded="false" title="Create New"><span class="bar-label">Create New</span></button>
+        <button type="button" class="bar-btn" id="shortcuts-btn" aria-haspopup="true" aria-expanded="false" title="Shortcuts"><span class="bar-label">Shortcuts</span></button>
+        <button type="button" class="bar-btn" id="help-btn" title="Help"><span class="bar-label">Help</span></button>
+        <button type="button" class="user-btn" id="user-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar" id="user-initials" aria-hidden="true"></span>
+          <span class="user-lines">
+            <span class="user-name" id="user-name">Connecting…</span>
+            <span class="user-role" id="user-role"></span>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="menubar" id="menubar" aria-label="Global navigation"></nav>
+
+    <div class="account-strip">
+      <span class="acct-name" id="acct-name"></span>
+      <span class="acct-sep" aria-hidden="true">·</span>
+      <button type="button" class="acct-role" id="role-btn" aria-haspopup="true" aria-expanded="false"><span id="role-label">Role</span></button>
+      <span class="acct-chip" id="acct-chip" title="This account is simulated locally by a Firedrill Tool">Firedrill synthetic account</span>
+      <span class="acct-date" id="acct-date"></span>
+    </div>
+
+    <main id="main" class="page" tabindex="-1"></main>
+
+    <footer class="ns-footer">
+      <span id="footer-account"></span>
+      <span class="foot-links">
+        <button type="button" class="foot-link" data-not-simulated="Release Preview">Release Preview</button>
+        <button type="button" class="foot-link" data-not-simulated="Privacy Policy">Privacy Policy</button>
+        <button type="button" class="foot-link" data-not-simulated="Terms of Service">Terms of Service</button>
+      </span>
+      <span class="foot-note">Synthetic NetSuite account served by a Firedrill Tool. No Oracle service is contacted.</span>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <div id="overlay-root"></div>
+  </body>
+</html>

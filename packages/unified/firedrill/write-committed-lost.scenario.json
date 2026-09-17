@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "write-committed-lost",
+  "title": "messages.create commits the message and both events, then answers 500: a blind retry posts a duplicate",
+  "faults": [
+    {
+      "packageId": "unified",
+      "faultId": "write-committed-lost"
+    }
+  ]
+}

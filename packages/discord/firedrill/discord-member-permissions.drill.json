@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-member-permissions",
+  "title": "A Maintainer: private threads, @everyone, archived-thread auto-unarchive, locked and moderation denials",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "theo",
+  "task": {
+    "instruction": "Run flow:member-permissions against the synthetic Discord Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "archived-thread-reopened",
+      "kind": "state.value",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01510946006630400029",
+      "path": [
+        "thread_metadata",
+        "archived"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": false
+      }
+    },
+    {
+      "id": "messages-created",
+      "kind": "event.count",
+      "event": {
+        "packageId": "discord",
+        "eventId": "message.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "delete-denied",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "edit-locked",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "messages.edit"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "private-thread",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "discord",
+        "operationId": "threads.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "message-rows",
+      "kind": "state.count",
+      "packageId": "discord",
+      "namespace": "messages",
+      "comparison": {
+        "operator": "equals",
+        "value": 25
+      }
+    }
+  ]
+}

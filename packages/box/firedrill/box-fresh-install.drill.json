@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "box-fresh-install",
+  "title": "An actor without identity attributes acts as the default seeded user",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "local-dev",
+  "task": {
+    "instruction": "Run the fresh-install flow against the synthetic Box Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "users-get-me-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "users.get-me"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "folders-list-items-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "box",
+        "operationId": "folders.list-items"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "github-response-budget",
+  "title": "Large comments, issues, files and directories stay under the 1 MiB response cap with complete byte-sized pages",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "maintainer",
+  "task": {
+    "instruction": "Run the response-budget conformance flow against the synthetic GitHub Tool and fail loudly on any unexpected status, oversized body, missing or duplicated item."
+  },
+  "assertions": [
+    {
+      "id": "large-comments-created",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.add-comment"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "large-issues-created",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "issues.write"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 7
+      }
+    },
+    {
+      "id": "files-committed",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.create-or-update-file"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 26
+      }
+    },
+    {
+      "id": "directory-too-large",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "github",
+        "operationId": "repos.get-content"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues",
+      "kind": "state.count",
+      "packageId": "github",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 22
+      }
+    }
+  ]
+}

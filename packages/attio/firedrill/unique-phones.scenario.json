@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "unique-phones",
+  "title": "people.phone_numbers is configured as a unique attribute",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "attio",
+      "namespace": "attributes",
+      "rowId": "objects/people/phone_numbers",
+      "value": {
+        "attribute_id": "00000003-0000-4000-8000-000000000004",
+        "target": "objects",
+        "parent_id": "00000002-0000-4000-8000-000000000001",
+        "title": "Phone numbers",
+        "description": null,
+        "api_slug": "phone_numbers",
+        "type": "phone-number",
+        "is_system_attribute": true,
+        "is_writable": true,
+        "is_required": false,
+        "is_unique": true,
+        "is_multiselect": true,
+        "is_default_value_enabled": false,
+        "is_archived": false,
+        "default_value": null,
+        "relationship": null,
+        "config": {
+          "currency": {
+            "default_currency_code": null,
+            "display_type": null
+          },
+          "record_reference": {
+            "allowed_object_ids": null
+          }
+        },
+        "options": [],
+        "statuses": [],
+        "position": 3,
+        "created_at": "2025-03-02T09:00:00.000000000Z"
+      }
+    }
+  ]
+}

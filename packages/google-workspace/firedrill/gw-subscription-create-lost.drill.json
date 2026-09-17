@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "gw-subscription-create-lost",
+  "title": "A subscription commits but the caller sees 500, so the naive retry answers 409",
+  "targetId": "conformance-agent",
+  "scenarioId": "subscription-create-lost",
+  "actorId": "ada",
+  "task": {
+    "instruction": "Run the subscription-create-lost flow against the synthetic Google Workspace Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "create-errors",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "subscriptions.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-workspace",
+        "operationId": "subscriptions.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "one-state-change",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-workspace",
+        "eventId": "subscription.state-changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "one-subscription-added",
+      "kind": "state.count",
+      "packageId": "google-workspace",
+      "namespace": "subscriptions",
+      "comparison": {
+        "operator": "equals",
+        "value": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,4804 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "ui": {
+    "root": "app/site",
+    "entry": "index.html"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "resend",
+    "version": "0.1.0",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "random.draw",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "api-keys",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "permission",
+            "domainId",
+            "tokenPreview",
+            "createdAtUs",
+            "lastUsedAtUs"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "permission": {
+              "type": "string",
+              "enum": [
+                "full_access",
+                "sending_access"
+              ]
+            },
+            "domainId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "tokenPreview": {
+              "type": "string",
+              "pattern": "^re_[0-9A-Za-z]{6}$"
+            },
+            "createdAtUs": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "lastUsedAtUs": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "contact-emails",
+        "schema": {
+          "type": "object",
+          "required": [
+            "contactId"
+          ],
+          "properties": {
+            "contactId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "contact-segments",
+        "schema": {
+          "type": "object",
+          "required": [
+            "segmentId",
+            "contactId"
+          ],
+          "properties": {
+            "segmentId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "contactId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "contacts",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "email",
+            "firstName",
+            "lastName",
+            "unsubscribed",
+            "properties",
+            "createdAtUs"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "email": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 320
+            },
+            "firstName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "lastName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unsubscribed": {
+              "type": "boolean"
+            },
+            "properties": {
+              "type": "object",
+              "maxProperties": 20,
+              "propertyNames": {
+                "pattern": "^[a-z][a-z0-9_]{0,49}$"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "createdAtUs": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "domain-names",
+        "schema": {
+          "type": "object",
+          "required": [
+            "domainId"
+          ],
+          "properties": {
+            "domainId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "domains",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "region",
+            "status",
+            "openTracking",
+            "clickTracking",
+            "tls",
+            "customReturnPath",
+            "capabilities",
+            "records",
+            "createdAtUs"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 4,
+              "maxLength": 253
+            },
+            "region": {
+              "type": "string",
+              "enum": [
+                "us-east-1",
+                "eu-west-1",
+                "sa-east-1",
+                "ap-northeast-1"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "not_started",
+                "pending",
+                "verified",
+                "failed"
+              ]
+            },
+            "openTracking": {
+              "type": "boolean"
+            },
+            "clickTracking": {
+              "type": "boolean"
+            },
+            "tls": {
+              "type": "string",
+              "enum": [
+                "opportunistic",
+                "enforced"
+              ]
+            },
+            "customReturnPath": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 63
+            },
+            "capabilities": {
+              "type": "object",
+              "required": [
+                "sending",
+                "receiving"
+              ],
+              "properties": {
+                "sending": {
+                  "type": "string",
+                  "enum": [
+                    "enabled",
+                    "disabled"
+                  ]
+                },
+                "receiving": {
+                  "type": "string",
+                  "enum": [
+                    "enabled",
+                    "disabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "record",
+                  "name",
+                  "type",
+                  "ttl",
+                  "status",
+                  "value",
+                  "priority"
+                ],
+                "properties": {
+                  "record": {
+                    "type": "string",
+                    "enum": [
+                      "SPF",
+                      "DKIM",
+                      "Receiving"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 320
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "MX",
+                      "TXT"
+                    ]
+                  },
+                  "ttl": {
+                    "type": "string",
+                    "enum": [
+                      "Auto"
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "not_started",
+                      "pending",
+                      "verified",
+                      "failed"
+                    ]
+                  },
+                  "value": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1024
+                  },
+                  "priority": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 65535
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "minItems": 2,
+              "maxItems": 4
+            },
+            "createdAtUs": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "emails",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "from",
+            "to",
+            "cc",
+            "bcc",
+            "replyTo",
+            "subject",
+            "html",
+            "text",
+            "headers",
+            "tags",
+            "createdAtUs",
+            "scheduledAtUs",
+            "status",
+            "apiKeyId",
+            "batchId"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "from": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 320
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 320
+              },
+              "minItems": 1,
+              "maxItems": 50
+            },
+            "cc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 320
+              },
+              "maxItems": 50
+            },
+            "bcc": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 320
+              },
+              "maxItems": 50
+            },
+            "replyTo": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 320
+              },
+              "maxItems": 50
+            },
+            "subject": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 998
+            },
+            "html": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "text": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "headers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 998
+              },
+              "maxProperties": 30
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
+                  "value": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 10
+            },
+            "createdAtUs": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "scheduledAtUs": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "delivered",
+                "bounced",
+                "scheduled",
+                "canceled",
+                "sent"
+              ]
+            },
+            "apiKeyId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "batchId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "meta",
+        "schema": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "name",
+                "defaultApiKeyId",
+                "dailyQuota",
+                "plan"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "defaultApiKeyId": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "dailyQuota": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100000
+                },
+                "plan": {
+                  "type": "string",
+                  "enum": [
+                    "free",
+                    "pro",
+                    "scale"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": [
+                "day",
+                "sent"
+              ],
+              "properties": {
+                "day": {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                },
+                "sent": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": [
+                "emails",
+                "domains",
+                "apiKeys",
+                "segments",
+                "contacts"
+              ],
+              "properties": {
+                "emails": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "domains": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "apiKeys": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "segments": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "contacts": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": [
+                "maxScanRows"
+              ],
+              "properties": {
+                "maxScanRows": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      {
+        "namespace": "segment-members",
+        "schema": {
+          "type": "object",
+          "required": [
+            "segmentId",
+            "contactId",
+            "addedAtUs"
+          ],
+          "properties": {
+            "segmentId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "contactId": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "addedAtUs": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "namespace": "segments",
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "createdAtUs"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "createdAtUs": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "api_keys.create",
+        "description": "Create an API key; the token is returned once (POST /api-keys).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "permission": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "domainId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "token"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "token": {
+              "type": "string",
+              "pattern": "^re_[0-9A-Za-z]{32}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "MISSING_REQUIRED_FIELD",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "create-api-key"
+        }
+      },
+      {
+        "id": "api_keys.list",
+        "description": "List API keys newest first (GET /api-keys).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32
+                }
+              ]
+            },
+            "after": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "before": {
+              "type": "string",
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "has_more",
+            "data"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "list"
+              ]
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "created_at",
+                  "last_used_at"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                  },
+                  "last_used_at": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "list-api-keys"
+        }
+      },
+      {
+        "id": "api_keys.remove",
+        "description": "Remove an API key (DELETE /api-keys/{api_key_id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id",
+            "deleted"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "api_key"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "deleted": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "remove-api-key"
+        }
+      },
+      {
+        "id": "contacts.add_segment",
+        "description": "Add a contact to a segment (POST /contacts/{contact_id}/segments/{segment_id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "contactId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "segmentId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "contact_id",
+            "segment_id"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "contact_segment"
+              ]
+            },
+            "contact_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "segment_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "MISSING_REQUIRED_FIELD",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "add-contact-to-segment"
+        }
+      },
+      {
+        "id": "contacts.create",
+        "description": "Create a contact, optionally in segments (POST /contacts).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "email": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "firstName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "lastName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unsubscribed": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "properties": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "maxProperties": 1000,
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 10000
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "segmentIds": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 512
+                  },
+                  "maxItems": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "topics": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {},
+                  "maxItems": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "audienceId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "contact"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "MISSING_REQUIRED_FIELD",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "create-contact"
+        }
+      },
+      {
+        "id": "contacts.get",
+        "description": "Retrieve a contact by id or e-mail (GET /contacts/{id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id",
+            "email",
+            "first_name",
+            "last_name",
+            "created_at",
+            "unsubscribed",
+            "properties"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "contact"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "email": {
+              "type": "string"
+            },
+            "first_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "last_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+            },
+            "unsubscribed": {
+              "type": "boolean"
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_PARAMETER",
+          "MISSING_REQUIRED_FIELD",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "get-contact"
+        }
+      },
+      {
+        "id": "contacts.list",
+        "description": "List contacts newest first, optionally in one segment (GET /contacts).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32
+                }
+              ]
+            },
+            "after": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "before": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "segmentId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "query": {
+              "type": "string",
+              "maxLength": 1000
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "has_more",
+            "data"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "list"
+              ]
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "email",
+                  "first_name",
+                  "last_name",
+                  "created_at",
+                  "unsubscribed"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "last_name": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                  },
+                  "unsubscribed": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "INVALID_PARAMETER",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "list-contacts"
+        }
+      },
+      {
+        "id": "contacts.list_segments",
+        "description": "List the segments of a contact (GET /contacts/{contact_id}/segments).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "contactId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32
+                }
+              ]
+            },
+            "after": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "before": {
+              "type": "string",
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "has_more",
+            "data"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "list"
+              ]
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "created_at"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "INVALID_PARAMETER",
+          "MISSING_REQUIRED_FIELD",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "list-contact-segments"
+        }
+      },
+      {
+        "id": "contacts.remove",
+        "description": "Remove a contact by id or e-mail (DELETE /contacts/{id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id",
+            "deleted"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "contact"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "deleted": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "MISSING_REQUIRED_FIELD",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "remove-contact"
+        }
+      },
+      {
+        "id": "contacts.remove_segment",
+        "description": "Remove a contact from a segment (DELETE /contacts/{contact_id}/segments/{segment_id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "contactId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "segmentId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "contact_id",
+            "segment_id",
+            "deleted"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "contact_segment"
+              ]
+            },
+            "contact_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "segment_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "deleted": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "MISSING_REQUIRED_FIELD",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "remove-contact-from-segment"
+        }
+      },
+      {
+        "id": "contacts.update",
+        "description": "Update a contact by id or e-mail (PATCH /contacts/{id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "firstName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "lastName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unsubscribed": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "properties": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "maxProperties": 1000,
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 10000
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "newEmail": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "contact"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "MISSING_REQUIRED_FIELD",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "update-contact"
+        }
+      },
+      {
+        "id": "domains.create",
+        "description": "Add a sending domain and generate its DNS records (POST /domains).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "region": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "customReturnPath": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "openTracking": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "clickTracking": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "tls": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "trackingSubdomain": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "capabilities": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "maxProperties": 100,
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 100
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "status",
+            "created_at",
+            "region",
+            "open_tracking",
+            "click_tracking",
+            "capabilities",
+            "records"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "name": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+            },
+            "region": {
+              "type": "string"
+            },
+            "open_tracking": {
+              "type": "boolean"
+            },
+            "click_tracking": {
+              "type": "boolean"
+            },
+            "capabilities": {
+              "type": "object",
+              "required": [
+                "sending",
+                "receiving"
+              ],
+              "properties": {
+                "sending": {
+                  "type": "string",
+                  "enum": [
+                    "enabled",
+                    "disabled"
+                  ]
+                },
+                "receiving": {
+                  "type": "string",
+                  "enum": [
+                    "enabled",
+                    "disabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "record",
+                  "name",
+                  "type",
+                  "ttl",
+                  "status",
+                  "value"
+                ],
+                "properties": {
+                  "record": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "ttl": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "integer"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "MISSING_REQUIRED_FIELD",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "create-domain"
+        }
+      },
+      {
+        "id": "domains.get",
+        "description": "Retrieve a domain with its DNS records (GET /domains/{domain_id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id",
+            "name",
+            "status",
+            "created_at",
+            "region",
+            "open_tracking",
+            "click_tracking",
+            "capabilities",
+            "records"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "domain"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "name": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+            },
+            "region": {
+              "type": "string"
+            },
+            "open_tracking": {
+              "type": "boolean"
+            },
+            "click_tracking": {
+              "type": "boolean"
+            },
+            "capabilities": {
+              "type": "object",
+              "required": [
+                "sending",
+                "receiving"
+              ],
+              "properties": {
+                "sending": {
+                  "type": "string",
+                  "enum": [
+                    "enabled",
+                    "disabled"
+                  ]
+                },
+                "receiving": {
+                  "type": "string",
+                  "enum": [
+                    "enabled",
+                    "disabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "record",
+                  "name",
+                  "type",
+                  "ttl",
+                  "status",
+                  "value"
+                ],
+                "properties": {
+                  "record": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "ttl": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "integer"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_PARAMETER",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "get-domain"
+        }
+      },
+      {
+        "id": "domains.list",
+        "description": "List domains newest first (GET /domains).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32
+                }
+              ]
+            },
+            "after": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "before": {
+              "type": "string",
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "has_more",
+            "data"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "list"
+              ]
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "status",
+                  "created_at",
+                  "region",
+                  "open_tracking",
+                  "click_tracking",
+                  "capabilities"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                  },
+                  "region": {
+                    "type": "string"
+                  },
+                  "open_tracking": {
+                    "type": "boolean"
+                  },
+                  "click_tracking": {
+                    "type": "boolean"
+                  },
+                  "capabilities": {
+                    "type": "object",
+                    "required": [
+                      "sending",
+                      "receiving"
+                    ],
+                    "properties": {
+                      "sending": {
+                        "type": "string",
+                        "enum": [
+                          "enabled",
+                          "disabled"
+                        ]
+                      },
+                      "receiving": {
+                        "type": "string",
+                        "enum": [
+                          "enabled",
+                          "disabled"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "list-domains"
+        }
+      },
+      {
+        "id": "domains.remove",
+        "description": "Remove a domain (DELETE /domains/{domain_id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id",
+            "deleted"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "domain"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "deleted": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "remove-domain"
+        }
+      },
+      {
+        "id": "domains.verify",
+        "description": "Verify a domain's DNS records (synthetic, instant; POST /domains/{domain_id}/verify).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "domain"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "verify-domain"
+        }
+      },
+      {
+        "id": "emails.cancel",
+        "description": "Cancel a scheduled email (POST /emails/{email_id}/cancel).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "email"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "cancel-email"
+        }
+      },
+      {
+        "id": "emails.get",
+        "description": "Retrieve one email (GET /emails/{email_id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id",
+            "to",
+            "from",
+            "created_at",
+            "subject",
+            "bcc",
+            "cc",
+            "reply_to",
+            "last_event",
+            "scheduled_at",
+            "html",
+            "text",
+            "tags"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "email"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "from": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+            },
+            "subject": {
+              "type": "string"
+            },
+            "bcc": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "cc": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "reply_to": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "last_event": {
+              "type": "string",
+              "enum": [
+                "delivered",
+                "bounced",
+                "scheduled",
+                "canceled",
+                "sent"
+              ]
+            },
+            "scheduled_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "html": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "text": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
+                  "value": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_PARAMETER",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "get-email"
+        }
+      },
+      {
+        "id": "emails.list",
+        "description": "List sent emails newest first with cursor pagination (GET /emails).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32
+                }
+              ]
+            },
+            "after": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "before": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "query": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "status": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "has_more",
+            "data"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "list"
+              ]
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "object",
+                  "id",
+                  "to",
+                  "from",
+                  "created_at",
+                  "subject",
+                  "bcc",
+                  "cc",
+                  "reply_to",
+                  "last_event",
+                  "scheduled_at"
+                ],
+                "properties": {
+                  "object": {
+                    "type": "string",
+                    "enum": [
+                      "email"
+                    ]
+                  },
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "to": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "from": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "bcc": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "cc": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "reply_to": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "last_event": {
+                    "type": "string",
+                    "enum": [
+                      "delivered",
+                      "bounced",
+                      "scheduled",
+                      "canceled",
+                      "sent"
+                    ]
+                  },
+                  "scheduled_at": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "list-emails"
+        }
+      },
+      {
+        "id": "emails.send",
+        "description": "Send one email synchronously (synthetic delivery; POST /emails).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "from": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "to": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "maxLength": 1000
+                      },
+                      "maxItems": 1000
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "subject": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "html": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 2000000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "text": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 2000000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "cc": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "maxLength": 1000
+                      },
+                      "maxItems": 1000
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "bcc": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "maxLength": 1000
+                      },
+                      "maxItems": 1000
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "replyTo": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 1000
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "maxLength": 1000
+                      },
+                      "maxItems": 1000
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scheduledAt": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "headers": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "maxProperties": 1000,
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 100000
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "tags": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "maxItems": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "attachments": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {},
+                  "maxItems": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "template": {
+              "anyOf": [
+                {
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "topicId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "DAILY_QUOTA_EXCEEDED",
+          "DOMAIN_NOT_VERIFIED",
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "MISSING_REQUIRED_FIELD",
+          "RATE_LIMIT_EXCEEDED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "send-email"
+        }
+      },
+      {
+        "id": "emails.send_batch",
+        "description": "Send up to 100 emails atomically (POST /emails/batch).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "emails": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "from": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "to": {
+                    "anyOf": [
+                      {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "maxLength": 1000
+                            },
+                            "maxItems": 1000
+                          }
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "subject": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 100000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "html": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 2000000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "text": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 2000000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "cc": {
+                    "anyOf": [
+                      {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "maxLength": 1000
+                            },
+                            "maxItems": 1000
+                          }
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "bcc": {
+                    "anyOf": [
+                      {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "maxLength": 1000
+                            },
+                            "maxItems": 1000
+                          }
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "replyTo": {
+                    "anyOf": [
+                      {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 1000
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "maxLength": 1000
+                            },
+                            "maxItems": 1000
+                          }
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "scheduledAt": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 100
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "headers": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "maxProperties": 1000,
+                        "additionalProperties": {
+                          "type": "string",
+                          "maxLength": 100000
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "tags": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        },
+                        "maxItems": 1000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "attachments": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {},
+                        "maxItems": 1000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "template": {
+                    "anyOf": [
+                      {
+                        "type": "object"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "topicId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxItems": 1000
+            },
+            "batchValidation": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "DAILY_QUOTA_EXCEEDED",
+          "DOMAIN_NOT_VERIFIED",
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "MISSING_REQUIRED_FIELD",
+          "RATE_LIMIT_EXCEEDED",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "send-batch-emails"
+        }
+      },
+      {
+        "id": "emails.update",
+        "description": "Reschedule a scheduled email (PATCH /emails/{email_id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "scheduledAt": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "email"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "MISSING_REQUIRED_FIELD",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "update-email"
+        }
+      },
+      {
+        "id": "segments.create",
+        "description": "Create a segment (POST /segments).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "filter": {},
+            "audienceId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 512
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id",
+            "name"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "segment"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "MISSING_REQUIRED_FIELD",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "create-segment"
+        }
+      },
+      {
+        "id": "segments.list",
+        "description": "List segments newest first (GET /segments).",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32
+                }
+              ]
+            },
+            "after": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "before": {
+              "type": "string",
+              "maxLength": 512
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "has_more",
+            "data"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "list"
+              ]
+            },
+            "has_more": {
+              "type": "boolean"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "created_at"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "RESTRICTED_API_KEY",
+          "VALIDATION_ERROR"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "list-segments"
+        }
+      },
+      {
+        "id": "segments.remove",
+        "description": "Remove a segment and its memberships (DELETE /segments/{id}).",
+        "inputSchema": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "object",
+            "id",
+            "deleted"
+          ],
+          "properties": {
+            "object": {
+              "type": "string",
+              "enum": [
+                "segment"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "deleted": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "APPLICATION_ERROR",
+          "INVALID_API_KEY",
+          "INVALID_IDEMPOTENCY_KEY",
+          "INVALID_PARAMETER",
+          "NOT_FOUND",
+          "RESTRICTED_API_KEY"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "remove-segment"
+        }
+      },
+      {
+        "id": "workspace.context",
+        "description": "Team, calling API key and virtual time for the dashboard app.",
+        "inputSchema": {
+          "type": "object",
+          "required": [],
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "required": [
+            "now",
+            "today",
+            "team",
+            "apiKey"
+          ],
+          "properties": {
+            "now": {
+              "type": "string"
+            },
+            "today": {
+              "type": "string"
+            },
+            "team": {
+              "type": "object",
+              "required": [
+                "name",
+                "plan",
+                "dailyQuota",
+                "sentToday"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "plan": {
+                  "type": "string"
+                },
+                "dailyQuota": {
+                  "type": "integer"
+                },
+                "sentToday": {
+                  "type": "integer"
+                }
+              },
+              "additionalProperties": false
+            },
+            "apiKey": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "permission",
+                "domainId"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "permission": {
+                  "type": "string"
+                },
+                "domainId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "declaredErrors": [
+          "INVALID_API_KEY"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      }
+    ],
+    "events": [
+      {
+        "id": "email.bounced",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "email_id",
+            "to",
+            "created_at",
+            "bounce"
+          ],
+          "properties": {
+            "email_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "maxItems": 50
+            },
+            "created_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+            },
+            "bounce": {
+              "type": "object",
+              "required": [
+                "type",
+                "message"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "Permanent"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "email.delivered",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "email_id",
+            "to",
+            "created_at"
+          ],
+          "properties": {
+            "email_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "maxItems": 50
+            },
+            "created_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "email.sent",
+        "payloadSchema": {
+          "type": "object",
+          "required": [
+            "email_id",
+            "from",
+            "to",
+            "subject",
+            "created_at",
+            "batch_id"
+          ],
+          "properties": {
+            "email_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            "from": {
+              "type": "string"
+            },
+            "to": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "maxItems": 50
+            },
+            "subject": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{6}\\+00$"
+            },
+            "batch_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "contacts-create-unavailable",
+        "appliesTo": [
+          "contacts.create"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "APPLICATION_ERROR",
+          "message": "Internal server error. We are unable to process your request right now, please try again later.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "send-rate-limited",
+        "appliesTo": [
+          "emails.send",
+          "emails.send_batch"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RATE_LIMIT_EXCEEDED",
+          "message": "Too many requests. You can only make 10 requests per second.",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "add-contact-segment",
+        "operationId": "contacts.add_segment",
+        "method": "POST",
+        "path": "/contacts/{contact_id}/segments/{segment_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "cancel-email",
+        "operationId": "emails.cancel",
+        "method": "POST",
+        "path": "/emails/{email_id}/cancel",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-api-key",
+        "operationId": "api_keys.create",
+        "method": "POST",
+        "path": "/api-keys",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-contact",
+        "operationId": "contacts.create",
+        "method": "POST",
+        "path": "/contacts",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-domain",
+        "operationId": "domains.create",
+        "method": "POST",
+        "path": "/domains",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "create-segment",
+        "operationId": "segments.create",
+        "method": "POST",
+        "path": "/segments",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 201,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-contact",
+        "operationId": "contacts.get",
+        "method": "GET",
+        "path": "/contacts/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-domain",
+        "operationId": "domains.get",
+        "method": "GET",
+        "path": "/domains/{domain_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "get-email",
+        "operationId": "emails.get",
+        "method": "GET",
+        "path": "/emails/{email_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-api-keys",
+        "operationId": "api_keys.list",
+        "method": "GET",
+        "path": "/api-keys",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-contact-segments",
+        "operationId": "contacts.list_segments",
+        "method": "GET",
+        "path": "/contacts/{contact_id}/segments",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-contacts",
+        "operationId": "contacts.list",
+        "method": "GET",
+        "path": "/contacts",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-domains",
+        "operationId": "domains.list",
+        "method": "GET",
+        "path": "/domains",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-emails",
+        "operationId": "emails.list",
+        "method": "GET",
+        "path": "/emails",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "list-segments",
+        "operationId": "segments.list",
+        "method": "GET",
+        "path": "/segments",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "remove-api-key",
+        "operationId": "api_keys.remove",
+        "method": "DELETE",
+        "path": "/api-keys/{api_key_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "remove-contact",
+        "operationId": "contacts.remove",
+        "method": "DELETE",
+        "path": "/contacts/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "remove-contact-segment",
+        "operationId": "contacts.remove_segment",
+        "method": "DELETE",
+        "path": "/contacts/{contact_id}/segments/{segment_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "remove-domain",
+        "operationId": "domains.remove",
+        "method": "DELETE",
+        "path": "/domains/{domain_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "remove-segment",
+        "operationId": "segments.remove",
+        "method": "DELETE",
+        "path": "/segments/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "APPLICATION_ERROR",
+              "status": 500
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "send-batch",
+        "operationId": "emails.send_batch",
+        "method": "POST",
+        "path": "/emails/batch",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "DAILY_QUOTA_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "DOMAIN_NOT_VERIFIED",
+              "status": 403
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "RATE_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "send-email",
+        "operationId": "emails.send",
+        "method": "POST",
+        "path": "/emails",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "DAILY_QUOTA_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "DOMAIN_NOT_VERIFIED",
+              "status": 403
+            },
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "RATE_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-contact",
+        "operationId": "contacts.update",
+        "method": "PATCH",
+        "path": "/contacts/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "update-email",
+        "operationId": "emails.update",
+        "method": "PATCH",
+        "path": "/emails/{email_id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "MISSING_REQUIRED_FIELD",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            },
+            {
+              "code": "VALIDATION_ERROR",
+              "status": 422
+            }
+          ]
+        }
+      },
+      {
+        "id": "verify-domain",
+        "operationId": "domains.verify",
+        "method": "POST",
+        "path": "/domains/{domain_id}/verify",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "INVALID_API_KEY",
+              "status": 403
+            },
+            {
+              "code": "INVALID_IDEMPOTENCY_KEY",
+              "status": 400
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 422
+            },
+            {
+              "code": "NOT_FOUND",
+              "status": 404
+            },
+            {
+              "code": "RESTRICTED_API_KEY",
+              "status": 401
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": [],
+    "connections": [
+      {
+        "id": "resend-rest",
+        "title": "Resend-shaped REST subset (Bearer API key, JSON bodies)",
+        "protocol": "http",
+        "environment": {
+          "RESEND_BASE_URL": "FIREDRILL_HTTP_URL",
+          "RESEND_API_KEY": "FIREDRILL_HTTP_TOKEN"
+        },
+        "instructions": "Point a client's Resend base URL at RESEND_BASE_URL and send RESEND_API_KEY as the Bearer token. Routes mirror /emails, /domains, /api-keys, /segments and /contacts; the calling key is the actor attribute resendApiKeyId, not the token. Compatibility with official SDKs is not verified."
+      }
+    ]
+  }
+}

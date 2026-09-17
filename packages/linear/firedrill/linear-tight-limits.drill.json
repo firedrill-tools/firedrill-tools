@@ -1,0 +1,419 @@
+{
+  "schemaVersion": 1,
+  "id": "linear-tight-limits",
+  "title": "With organization.limits below the starter data every bounded scan fails FAILED_PRECONDITION; an id lookup still works",
+  "targetId": "conformance-agent",
+  "scenarioId": "tight-limits",
+  "actorId": "admin",
+  "task": {
+    "instruction": "Run the tight-limits conformance flow against the synthetic Linear Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "organization-get-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "organization.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "viewer-get-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "viewer.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-list-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "users.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "users-get-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "users.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "teams-list-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "teams.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "teams-get-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "teams.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "workflow-states-list-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "workflow-states.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-list-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "labels.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "labels-create-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "labels.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-list-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "projects.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-get-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "projects.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "projects-save-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "projects.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "cycles-list-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "cycles.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-list-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-get-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-create-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-update-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-save-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-list-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-create-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-update-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "comments-save-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "comments.save"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "graphql-execute-tool-error-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "graphql.execute"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-archive-ok-equals-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "linear",
+        "operationId": "issues.archive"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-count-equals-24",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 24
+      }
+    },
+    {
+      "id": "labels-count-equals-8",
+      "kind": "state.count",
+      "packageId": "linear",
+      "namespace": "labels",
+      "comparison": {
+        "operator": "equals",
+        "value": 8
+      }
+    },
+    {
+      "id": "event-issue-created-equals-0",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "event-issue-updated-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "linear",
+        "eventId": "issue.updated"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

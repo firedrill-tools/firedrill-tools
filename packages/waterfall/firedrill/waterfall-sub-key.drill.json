@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "id": "waterfall-sub-key",
+  "title": "A sub-key: billable search lands on its own usage row, no prices, API-key management refused",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "outbound",
+  "task": {
+    "instruction": "Run the sub-key flow against the synthetic Waterfall Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "search-contact-run-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "search.contact.run"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "account-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "account.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "api_keys-list-errors-auth_need_master_api_key",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.list"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "api_keys-create-errors-auth_need_master_api_key",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "api_keys-modify-errors-auth_need_master_api_key",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "waterfall",
+        "operationId": "api_keys.modify"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "outbound-found",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000002/2026-09-16",
+      "path": [
+        "search_contact_found"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    },
+    {
+      "id": "outbound-requests",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "usage",
+      "rowId": "00000001-0000-4000-8000-000000000002/2026-09-16",
+      "path": [
+        "search_contact_requests"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "balance",
+      "kind": "state.value",
+      "packageId": "waterfall",
+      "namespace": "meta",
+      "rowId": "account",
+      "path": [
+        "balance_remaining_micros"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 249880000
+      }
+    },
+    {
+      "id": "api-keys-count",
+      "kind": "state.count",
+      "packageId": "waterfall",
+      "namespace": "api-keys",
+      "comparison": {
+        "operator": "equals",
+        "value": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Google Calendar (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/google-calendar-2026.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./chrome.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="gc" id="app">
+      <header class="gc-header" id="header">
+        <div class="gc-header-start">
+          <button type="button" class="icon-btn large" id="menu-toggle" aria-label="Main drawer" aria-expanded="true" title="Main drawer"><span data-icon="menu"></span></button>
+          <a class="gc-logo" href="#" id="logo-link" aria-label="Calendar"><img src="./assets/google-calendar-2026.svg" alt="" width="40" height="40" /><span class="gc-logo-text">Calendar</span></a>
+        </div>
+        <div class="gc-header-nav" id="header-nav">
+          <button type="button" class="gc-outlined-btn" id="today-btn" title="">Today</button>
+          <button type="button" class="icon-btn" id="prev-btn" aria-label="Previous period" title="Previous period"><span data-icon="chevron_left"></span></button>
+          <button type="button" class="icon-btn" id="next-btn" aria-label="Next period" title="Next period"><span data-icon="chevron_right"></span></button>
+          <h1 class="gc-range-title" id="range-title"></h1>
+        </div>
+        <form class="gc-search" id="search-form" role="search" hidden>
+          <button type="button" class="icon-btn" id="search-back" aria-label="Close search" title="Close search"><span data-icon="arrow_back"></span></button>
+          <label class="visually-hidden" for="search">Search</label>
+          <input id="search" type="text" placeholder="Search" autocomplete="off" spellcheck="false" />
+          <button type="button" class="icon-btn" id="search-clear" aria-label="Clear search" title="Clear search" hidden><span data-icon="close"></span></button>
+          <button type="submit" class="icon-btn" id="search-submit" aria-label="Search" title="Search"><span data-icon="search"></span></button>
+        </form>
+        <div class="gc-header-end">
+          <button type="button" class="icon-btn large" id="search-toggle" aria-label="Search" title="Search"><span data-icon="search"></span></button>
+          <button type="button" class="icon-btn large" id="help-btn" aria-label="Support" aria-haspopup="dialog" title="Support"><span data-icon="help"></span></button>
+          <button type="button" class="icon-btn large" id="settings-btn" aria-label="Settings menu" aria-expanded="false" title="Settings menu"><span data-icon="settings"></span></button>
+          <button type="button" class="gc-outlined-btn gc-view-btn" id="view-btn" aria-expanded="false" aria-label="Change view"><span id="view-label">Week</span><span data-icon="arrow_drop_down"></span></button>
+          <div class="gc-switch" role="group" aria-label="Switch between Calendar and Tasks">
+            <button type="button" class="gc-switch-btn is-selected" id="calendar-switch" aria-pressed="true" aria-label="Switch to Calendar" title="Switch to Calendar"><span data-icon="calendar_month"></span></button>
+            <button type="button" class="gc-switch-btn" id="tasks-switch" aria-pressed="false" aria-label="Switch to Tasks" title="Switch to Tasks"><span data-icon="task_alt"></span></button>
+          </div>
+          <button type="button" class="icon-btn large" id="apps-btn" aria-label="Google apps" aria-expanded="false" title="Google apps"><span data-icon="apps"></span></button>
+          <button type="button" class="gc-account" id="account-btn" aria-label="Google Account" aria-expanded="false" title="Google Account"><span class="gc-avatar small" id="account-avatar" aria-hidden="true">?</span></button>
+        </div>
+        <div class="gc-progress" id="loading" role="progressbar" aria-label="Loading" hidden></div>
+      </header>
+
+      <div class="gc-body">
+        <aside class="gc-sidebar" id="sidebar" aria-label="Calendar navigation">
+          <button type="button" class="gc-create" id="create-btn" aria-expanded="false" aria-haspopup="menu"><span data-icon="create_plus"></span><span class="gc-create-label">Create</span><span data-icon="arrow_drop_down" class="gc-create-arrow"></span></button>
+          <div class="gc-mini" id="mini" aria-label="Mini calendar"></div>
+          <button type="button" class="gc-people-search" id="people-search" aria-label="Search for people" aria-expanded="false"><span data-icon="person_search"></span><span>Search for people</span></button>
+          <section class="gc-cal-group gc-booking" aria-label="Booking pages">
+            <div class="gc-group-head-row">
+              <span class="gc-group-title">Booking pages</span>
+              <button type="button" class="icon-btn small" id="booking-add" aria-label="Create a booking page" aria-expanded="false" title="Create a booking page"><span data-icon="add"></span></button>
+            </div>
+          </section>
+          <section class="gc-cal-group" id="my-calendars">
+            <button type="button" class="gc-group-head" data-group="mine" aria-expanded="true"><span class="label">My calendars</span><span data-icon="expand_less" class="gc-group-arrow"></span></button>
+            <ul class="gc-cal-list" id="my-calendar-list" aria-label="My calendars"></ul>
+          </section>
+          <section class="gc-cal-group" id="other-calendars">
+            <div class="gc-group-head-row">
+              <button type="button" class="gc-group-head" data-group="other" aria-expanded="true"><span class="label">Other calendars</span><span data-icon="expand_less" class="gc-group-arrow"></span></button>
+              <button type="button" class="icon-btn small" id="add-calendar-btn" aria-label="Add other calendars" aria-expanded="false" title="Add other calendars"><span data-icon="add"></span></button>
+            </div>
+            <ul class="gc-cal-list" id="other-calendar-list" aria-label="Other calendars"></ul>
+          </section>
+          <p class="gc-sidebar-note">Synthetic calendar — invitations never leave this Firedrill world.</p>
+        </aside>
+        <div class="gc-scrim" id="scrim" hidden></div>
+
+        <main class="gc-main" id="main">
+          <div class="gc-banner" id="banner" role="alert" hidden>
+            <span data-icon="error_outline"></span>
+            <span class="gc-banner-text" id="banner-text"></span>
+            <button type="button" class="gc-text-btn" id="banner-retry">Retry</button>
+          </div>
+          <div class="gc-view" id="view" aria-live="polite"></div>
+        </main>
+        <aside class="gc-side-panel" id="side-panel" aria-label="Side panel"></aside>
+      </div>
+    </div>
+
+    <div class="gc-popover" id="popover" role="dialog" aria-label="Event details" hidden></div>
+    <div class="gc-quick" id="quick" role="dialog" aria-label="New event" hidden></div>
+
+    <dialog class="gc-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <h2 id="confirm-title">Confirm</h2>
+        <p id="confirm-text"></p>
+        <div class="gc-dialog-actions" id="confirm-actions"></div>
+      </form>
+    </dialog>
+
+    <dialog class="gc-dialog gc-help" id="help-dialog" aria-labelledby="help-title">
+      <form method="dialog">
+        <h2 id="help-title">Keyboard shortcuts</h2>
+        <dl class="gc-shortcuts">
+          <div><dt>t</dt><dd>Go to today</dd></div>
+          <div><dt>j / k</dt><dd>Next / previous period</dd></div>
+          <div><dt>d · w · m · a</dt><dd>Day · week · month · schedule view</dd></div>
+          <div><dt>c</dt><dd>Create event</dd></div>
+          <div><dt>/</dt><dd>Search</dd></div>
+          <div><dt>Esc</dt><dd>Close dialogs</dd></div>
+        </dl>
+        <p class="gc-help-note">This is a synthetic Google Calendar served by a Firedrill Tool. Everything shown is fictional world state; no invitation, e-mail or Meet room ever leaves the local environment.</p>
+        <div class="gc-dialog-actions"><button type="submit" class="gc-text-btn gc-text-btn-primary">Close</button></div>
+      </form>
+    </dialog>
+
+    <div class="gc-snackbar" id="snackbar" role="status" aria-live="polite" hidden>
+      <span id="snackbar-text"></span>
+      <button type="button" class="gc-snackbar-action" id="snackbar-action" hidden></button>
+    </div>
+  </body>
+</html>

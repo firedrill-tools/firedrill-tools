@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discord (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/discord.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="boot" id="boot" role="status" aria-live="polite">
+      <img class="boot-logo" src="./assets/discord.svg" alt="" />
+      <div class="boot-title">Loading</div>
+      <div class="boot-tip"><span class="boot-tip-label">Did you know</span><span id="boot-tip-text">Press Escape to close any dialog or cancel a reply.</span></div>
+    </div>
+
+    <div class="fatal" id="fatal" hidden>
+      <div class="fatal-card">
+        <img class="fatal-wordmark" src="./assets/discord-wordmark.svg" alt="Discord" />
+        <h1 class="fatal-title" id="fatal-title">Something went wrong</h1>
+        <p class="fatal-text" id="fatal-text"></p>
+        <button type="button" class="btn btn-primary" id="fatal-retry">Try Again</button>
+      </div>
+    </div>
+
+    <div class="app" id="app" hidden>
+      <nav class="guilds" id="guilds" aria-label="Servers">
+        <div class="guild-slot" id="home-slot">
+          <span class="guild-pill" aria-hidden="true"></span>
+          <button type="button" class="guild-tile home-tile" id="home-button" aria-label="Direct Messages" data-tooltip="Direct Messages" data-tooltip-side="right">
+            <img class="home-mark" src="./assets/discord.svg" alt="" />
+          </button>
+        </div>
+        <div class="guild-separator" role="separator"></div>
+        <div class="guild-list" id="guild-list"></div>
+        <div class="guild-separator" role="separator"></div>
+        <div class="guild-slot guild-action" id="add-server-slot">
+          <span class="guild-pill" aria-hidden="true"></span>
+          <button type="button" class="guild-tile action-tile" id="add-server-button" aria-label="Add a Server" data-tooltip="Add a Server" data-tooltip-side="right"><span data-icon="plus" data-size="24"></span></button>
+        </div>
+        <div class="guild-slot guild-action" id="discover-slot">
+          <span class="guild-pill" aria-hidden="true"></span>
+          <button type="button" class="guild-tile action-tile" id="discover-button" aria-label="Discover" data-tooltip="Discover" data-tooltip-side="right"><span data-icon="compass" data-size="24"></span></button>
+        </div>
+      </nav>
+
+      <aside class="sidebar" id="sidebar" aria-label="Channels">
+        <header class="sidebar-header" id="sidebar-header"></header>
+        <div class="sidebar-scroll" id="sidebar-list"></div>
+        <section class="user-panel" id="user-panel" aria-label="User area"></section>
+      </aside>
+
+      <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+      <main class="content" id="content"></main>
+    </div>
+
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+  </body>
+</html>

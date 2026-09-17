@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "documenso-tight-limits-fresh",
+  "title": "A user in two teams cannot list teams under a one-row scan bound",
+  "targetId": "conformance-agent",
+  "scenarioId": "tight-limits",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the tight-limits-fresh flow against the synthetic Documenso Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "workspace-context-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "documenso",
+        "operationId": "workspace.context"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

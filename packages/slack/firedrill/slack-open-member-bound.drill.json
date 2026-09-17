@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-open-member-bound",
+  "title": "conversations.open over the member bound answers 400 too_many_rows naming no conversation id and stores nothing; the ids it would have used go to the next IM and channel",
+  "targetId": "conformance-agent",
+  "scenarioId": "open-member-bound",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the open-member-bound conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "open-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.open"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "open-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.open"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "info-of-unallocated-id-not-found",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.info"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "conversations.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "conversations-only-im-and-channel-added",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "comparison": {
+        "operator": "equals",
+        "value": 12
+      }
+    },
+    {
+      "id": "memberships-only-im-and-channel-added",
+      "kind": "state.count",
+      "packageId": "slack",
+      "namespace": "memberships",
+      "comparison": {
+        "operator": "equals",
+        "value": 33
+      }
+    },
+    {
+      "id": "id-sequence-advanced-twice",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "workspace",
+      "rowId": "team",
+      "path": [
+        "id_sequence"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 52
+      }
+    },
+    {
+      "id": "im-took-first-free-id",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "D000000001F",
+      "path": [
+        "user"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "U01PRIYA003"
+      }
+    },
+    {
+      "id": "channel-took-next-id",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "conversations",
+      "rowId": "C000000001G",
+      "path": [
+        "name"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "after-refused-open"
+      }
+    }
+  ]
+}

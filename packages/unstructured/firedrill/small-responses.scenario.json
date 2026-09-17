@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "small-responses",
+  "title": "meta/limits.response_bytes lowered to 520 so every list or page that would pass the response budget fails RESPONSE_TOO_LARGE instead of being shortened",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "unstructured",
+      "namespace": "meta",
+      "rowId": "limits",
+      "value": {
+        "connectors": 2000,
+        "workflows": 5000,
+        "jobs": 5000,
+        "files_per_source": 200,
+        "source_file_bytes": 262144,
+        "response_bytes": 520
+      }
+    }
+  ]
+}

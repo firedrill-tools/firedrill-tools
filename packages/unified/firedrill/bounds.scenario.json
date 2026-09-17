@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "bounds",
+  "title": "The workspace scan bound is lowered to 5 rows per namespace per connection, so crm-main contacts and chat messages exceed it",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "unified",
+      "namespace": "workspaces",
+      "rowId": "68c8000000000000000000a1",
+      "value": {
+        "id": "68c8000000000000000000a1",
+        "name": "Brightline Sales Ops",
+        "region": "north-america",
+        "limits": {
+          "max_rows_per_namespace": 5
+        },
+        "created_at": "2026-06-01T09:00:00.000Z",
+        "updated_at": "2026-06-01T09:00:00.000Z"
+      }
+    }
+  ]
+}

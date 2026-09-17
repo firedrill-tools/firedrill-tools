@@ -1,0 +1,4888 @@
+{
+  "schemaVersion": 1,
+  "module": "./behavior.mjs",
+  "ui": {
+    "root": "app/site",
+    "entry": "index.html"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "id": "netsuite",
+    "version": "0.1.1",
+    "engine": ">=0.1.0 <0.2.0",
+    "capabilities": [
+      "clock.read",
+      "event.emit",
+      "state.read",
+      "state.write"
+    ],
+    "state": [
+      {
+        "namespace": "customer-payments",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "tranId",
+            "tranDate",
+            "entityId",
+            "subsidiaryId",
+            "payment",
+            "unapplied",
+            "accountName",
+            "memo",
+            "currencyId",
+            "applied",
+            "status",
+            "createdDate",
+            "lastModifiedDate",
+            "createdById",
+            "version"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "tranId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 45
+            },
+            "tranDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            },
+            "entityId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "subsidiaryId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "payment": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000000000
+            },
+            "unapplied": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000
+            },
+            "accountName": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "memo": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 999
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "currencyId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "applied": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "invoiceId",
+                  "amount"
+                ],
+                "properties": {
+                  "invoiceId": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{0,14}$",
+                    "maxLength": 15
+                  },
+                  "amount": {
+                    "type": "number"
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 20
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "deposited",
+                "notDeposited"
+              ]
+            },
+            "createdDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "lastModifiedDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "createdById": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          }
+        },
+        "description": "Customer payments, created by transforming an invoice; each carries its applications."
+      },
+      {
+        "namespace": "customers",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "entityId",
+            "companyName",
+            "isPerson",
+            "firstName",
+            "lastName",
+            "middleName",
+            "email",
+            "phone",
+            "altPhone",
+            "subsidiaryId",
+            "currencyId",
+            "termsId",
+            "creditLimit",
+            "comments",
+            "isInactive",
+            "categoryId",
+            "defaultAddress",
+            "addressBook",
+            "dateCreated",
+            "createdDate",
+            "lastModifiedDate",
+            "createdById",
+            "lastModifiedById",
+            "version"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "entityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 83
+            },
+            "companyName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 83
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "isPerson": {
+              "type": "boolean"
+            },
+            "firstName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "lastName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "middleName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "email": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 254
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "phone": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 22
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "altPhone": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 22
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "subsidiaryId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "currencyId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "termsId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "creditLimit": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1000000000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "comments": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 999
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "isInactive": {
+              "type": "boolean"
+            },
+            "categoryId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "defaultAddress": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 500
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "addressBook": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "addrId",
+                  "label",
+                  "addressee",
+                  "addr1",
+                  "addr2",
+                  "city",
+                  "state",
+                  "zip",
+                  "country",
+                  "defaultBilling",
+                  "defaultShipping"
+                ],
+                "properties": {
+                  "addrId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 15
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "addressee": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "addr1": {
+                    "type": "string",
+                    "maxLength": 150
+                  },
+                  "addr2": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 150
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "city": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "state": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "zip": {
+                    "type": "string",
+                    "maxLength": 36
+                  },
+                  "country": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                  },
+                  "defaultBilling": {
+                    "type": "boolean"
+                  },
+                  "defaultShipping": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "maxItems": 4
+            },
+            "dateCreated": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "createdDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "lastModifiedDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "createdById": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "lastModifiedById": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          }
+        },
+        "description": "Customer records; rowId is the NetSuite internal id. Balances are computed from transactions on read, never stored."
+      },
+      {
+        "namespace": "employees",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "entityId",
+            "firstName",
+            "lastName",
+            "email",
+            "title",
+            "subsidiaryId",
+            "supervisorId",
+            "isInactive",
+            "roleIds",
+            "lastModifiedDate"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "entityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 83
+            },
+            "firstName": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "lastName": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 254
+            },
+            "title": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "subsidiaryId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "supervisorId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "isInactive": {
+              "type": "boolean"
+            },
+            "roleIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[1-9][0-9]{0,14}$",
+                "maxLength": 15
+              },
+              "maxItems": 8
+            },
+            "lastModifiedDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            }
+          }
+        },
+        "description": "Read-only employees; backs the acting identity, the SuiteQL `employee` table and record audit fields."
+      },
+      {
+        "namespace": "invoices",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "tranId",
+            "tranDate",
+            "dueDate",
+            "entityId",
+            "subsidiaryId",
+            "createdFromId",
+            "status",
+            "memo",
+            "otherRefNum",
+            "currencyId",
+            "termsId",
+            "lines",
+            "subtotal",
+            "taxTotal",
+            "total",
+            "amountPaid",
+            "appliedPaymentIds",
+            "createdDate",
+            "lastModifiedDate",
+            "createdById",
+            "lastModifiedById",
+            "version"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "tranId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 45
+            },
+            "tranDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            },
+            "dueDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            },
+            "entityId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "subsidiaryId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "createdFromId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "open",
+                "paidInFull",
+                "pendingApproval",
+                "voided"
+              ]
+            },
+            "memo": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 999
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "otherRefNum": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 45
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "currencyId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "termsId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "lines": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "line",
+                  "itemId",
+                  "quantity",
+                  "rate",
+                  "amount",
+                  "description",
+                  "taxRate",
+                  "taxAmount",
+                  "orderLine",
+                  "quantityBilled"
+                ],
+                "properties": {
+                  "line": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100000
+                  },
+                  "itemId": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{0,14}$",
+                    "maxLength": 15
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  },
+                  "rate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100000000
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 999
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "taxRate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.25
+                  },
+                  "taxAmount": {
+                    "type": "number"
+                  },
+                  "orderLine": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "quantityBilled": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  }
+                }
+              },
+              "minItems": 0,
+              "maxItems": 200
+            },
+            "subtotal": {
+              "type": "number"
+            },
+            "taxTotal": {
+              "type": "number"
+            },
+            "total": {
+              "type": "number"
+            },
+            "amountPaid": {
+              "type": "number",
+              "minimum": 0
+            },
+            "appliedPaymentIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[1-9][0-9]{0,14}$",
+                "maxLength": 15
+              },
+              "maxItems": 100
+            },
+            "createdDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "lastModifiedDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "createdById": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "lastModifiedById": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          }
+        },
+        "description": "Invoices, standalone or created from a sales order; amountRemaining is computed on read."
+      },
+      {
+        "namespace": "items",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "itemType",
+            "itemId",
+            "displayName",
+            "description",
+            "basePrice",
+            "cost",
+            "quantityOnHand",
+            "incomeAccountName",
+            "taxScheduleName",
+            "subsidiaryIds",
+            "isInactive",
+            "lastModifiedDate"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "itemType": {
+              "type": "string",
+              "enum": [
+                "inventoryItem",
+                "serviceSaleItem"
+              ]
+            },
+            "itemId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60
+            },
+            "displayName": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 60
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 999
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "basePrice": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "cost": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100000000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "quantityOnHand": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "incomeAccountName": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "taxScheduleName": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "subsidiaryIds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[1-9][0-9]{0,14}$",
+                "maxLength": 15
+              },
+              "minItems": 1,
+              "maxItems": 2
+            },
+            "isInactive": {
+              "type": "boolean"
+            },
+            "lastModifiedDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            }
+          }
+        },
+        "description": "Inventory and service items; the inventoryItem endpoints expose only `inventoryItem` rows, SuiteQL `item` exposes both."
+      },
+      {
+        "namespace": "line-counters",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nextLine"
+          ],
+          "properties": {
+            "nextLine": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000
+            }
+          }
+        },
+        "description": "Per-transaction line sequence, so a removed line number is never reused within that transaction."
+      },
+      {
+        "namespace": "meta",
+        "schema": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "accountId",
+                "companyName",
+                "defaultEmployeeId",
+                "baseCurrency",
+                "dateFormat",
+                "timeZoneOffsetMinutes",
+                "isOneWorld",
+                "defaultSubsidiaryId"
+              ],
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9_]{6,24}$"
+                },
+                "companyName": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "defaultEmployeeId": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                },
+                "baseCurrency": {
+                  "type": "string",
+                  "enum": [
+                    "USD"
+                  ]
+                },
+                "dateFormat": {
+                  "type": "string",
+                  "enum": [
+                    "M/D/YYYY"
+                  ]
+                },
+                "timeZoneOffsetMinutes": {
+                  "type": "integer",
+                  "minimum": -720,
+                  "maximum": 840
+                },
+                "isOneWorld": {
+                  "type": "boolean"
+                },
+                "defaultSubsidiaryId": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "nextEntityId",
+                "nextItemId",
+                "nextTransactionId"
+              ],
+              "properties": {
+                "nextEntityId": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 999999999
+                },
+                "nextItemId": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 999999999
+                },
+                "nextTransactionId": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 999999999
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "maxScanRows",
+                "maxPageBytes"
+              ],
+              "properties": {
+                "maxScanRows": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10000
+                },
+                "maxPageBytes": {
+                  "type": "integer",
+                  "minimum": 1000,
+                  "maximum": 1000000
+                }
+              }
+            }
+          ]
+        },
+        "description": "Row `account` (the simulated NetSuite account), row `counters` (entity/item/transaction id sequences) and row `limits` (scan and page bounds)."
+      },
+      {
+        "namespace": "roles",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "name",
+            "isAdmin",
+            "subsidiaryId",
+            "permissions"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "isAdmin": {
+              "type": "boolean"
+            },
+            "subsidiaryId": {
+              "type": "string",
+              "pattern": "^[0-9]{1,15}$"
+            },
+            "permissions": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [],
+              "properties": {
+                "LIST_CUSTJOB": {
+                  "type": "string",
+                  "enum": [
+                    "view",
+                    "create",
+                    "edit",
+                    "full"
+                  ]
+                },
+                "TRAN_SALESORD": {
+                  "type": "string",
+                  "enum": [
+                    "view",
+                    "create",
+                    "edit",
+                    "full"
+                  ]
+                },
+                "TRAN_CUSTINVC": {
+                  "type": "string",
+                  "enum": [
+                    "view",
+                    "create",
+                    "edit",
+                    "full"
+                  ]
+                },
+                "TRAN_CUSTPYMT": {
+                  "type": "string",
+                  "enum": [
+                    "view",
+                    "create",
+                    "edit",
+                    "full"
+                  ]
+                },
+                "LIST_ITEM": {
+                  "type": "string",
+                  "enum": [
+                    "view",
+                    "create",
+                    "edit",
+                    "full"
+                  ]
+                },
+                "LIST_SUBSIDIARY": {
+                  "type": "string",
+                  "enum": [
+                    "view",
+                    "create",
+                    "edit",
+                    "full"
+                  ]
+                },
+                "SETUP_RECORD_METADATA": {
+                  "type": "string",
+                  "enum": [
+                    "view",
+                    "create",
+                    "edit",
+                    "full"
+                  ]
+                },
+                "REPO_ANALYTICS": {
+                  "type": "string",
+                  "enum": [
+                    "view",
+                    "create",
+                    "edit",
+                    "full"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "description": "Read-only role definitions: permission levels and the role's subsidiary restriction (\"0\" = all)."
+      },
+      {
+        "namespace": "sales-orders",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "tranId",
+            "tranDate",
+            "entityId",
+            "subsidiaryId",
+            "status",
+            "memo",
+            "otherRefNum",
+            "currencyId",
+            "termsId",
+            "lines",
+            "subtotal",
+            "taxTotal",
+            "total",
+            "billedTotal",
+            "createdFromId",
+            "createdDate",
+            "lastModifiedDate",
+            "createdById",
+            "lastModifiedById",
+            "version"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "tranId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 45
+            },
+            "tranDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            },
+            "entityId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "subsidiaryId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "pendingApproval",
+                "pendingFulfillment",
+                "partiallyFulfilled",
+                "pendingBillingPartFulfilled",
+                "pendingBilling",
+                "billed",
+                "closed"
+              ]
+            },
+            "memo": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 999
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "otherRefNum": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 45
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "currencyId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "termsId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "lines": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "line",
+                  "itemId",
+                  "quantity",
+                  "rate",
+                  "amount",
+                  "description",
+                  "taxRate",
+                  "taxAmount",
+                  "orderLine",
+                  "quantityBilled"
+                ],
+                "properties": {
+                  "line": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100000
+                  },
+                  "itemId": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{0,14}$",
+                    "maxLength": 15
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  },
+                  "rate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100000000
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 999
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "taxRate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.25
+                  },
+                  "taxAmount": {
+                    "type": "number"
+                  },
+                  "orderLine": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "quantityBilled": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 200
+            },
+            "subtotal": {
+              "type": "number"
+            },
+            "taxTotal": {
+              "type": "number"
+            },
+            "total": {
+              "type": "number"
+            },
+            "billedTotal": {
+              "type": "number"
+            },
+            "createdFromId": {
+              "type": "null"
+            },
+            "createdDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "lastModifiedDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "createdById": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "lastModifiedById": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "version": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            }
+          }
+        },
+        "description": "Sales orders with their item sublist; status is derived from billed quantities."
+      },
+      {
+        "namespace": "subsidiaries",
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "name",
+            "parentId",
+            "country",
+            "currencyName",
+            "isElimination",
+            "isInactive",
+            "fiscalCalendarName",
+            "lastModifiedDate"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "parentId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]{0,14}$",
+                  "maxLength": 15
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "country": {
+              "type": "string",
+              "enum": [
+                "US",
+                "CA"
+              ]
+            },
+            "currencyName": {
+              "type": "string",
+              "enum": [
+                "USD",
+                "CAD"
+              ]
+            },
+            "isElimination": {
+              "type": "boolean"
+            },
+            "isInactive": {
+              "type": "boolean"
+            },
+            "fiscalCalendarName": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "lastModifiedDate": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            }
+          }
+        },
+        "description": "Read-only OneWorld subsidiary hierarchy; rowId is the internal id."
+      }
+    ],
+    "operations": [
+      {
+        "id": "customer-payment.get",
+        "description": "GET /services/rest/record/v1/customerPayment/{id} — read one customer payment record by internal id (permission TRAN_CUSTPYMT, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expandSubResources": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "simpleEnumFormat": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object"
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "NONEXISTENT_ID",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "customer-payment.list",
+        "description": "GET /services/rest/record/v1/customerPayment — list customer payment records as a NetSuite record collection, filtered by `q` and paged by limit/offset (permission TRAN_CUSTPYMT, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "q": {
+              "type": "string"
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "links",
+            "items",
+            "count",
+            "offset",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "href": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              },
+              "maxItems": 8
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "customer.create",
+        "description": "POST /services/rest/record/v1/customer — create a customer from a NetSuite wire body; answers 204 with a Location header (permission LIST_CUSTJOB, create).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "body"
+          ],
+          "properties": {
+            "body": {
+              "type": "object"
+            },
+            "propertyNameValidation": {
+              "type": "string",
+              "enum": [
+                "ignore",
+                "warning",
+                "error"
+              ]
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "location"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 400
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_KEY_OR_REF",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "customer.delete",
+        "description": "DELETE /services/rest/record/v1/customer/{id} — delete a customer that no transaction references (permission LIST_CUSTJOB, full).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "NONEXISTENT_ID",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "customer.get",
+        "description": "GET /services/rest/record/v1/customer/{id} — read one customer record by internal id (permission LIST_CUSTJOB, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expandSubResources": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "simpleEnumFormat": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object"
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "NONEXISTENT_ID",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "customer.list",
+        "description": "GET /services/rest/record/v1/customer — list customer records as a NetSuite record collection, filtered by `q` and paged by limit/offset (permission LIST_CUSTJOB, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "q": {
+              "type": "string"
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "links",
+            "items",
+            "count",
+            "offset",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "href": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              },
+              "maxItems": 8
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "customer.update",
+        "description": "PATCH /services/rest/record/v1/customer/{id} — merge-patch a customer; `replace` clears the named fields first (permission LIST_CUSTJOB, edit).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId",
+            "body"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "body": {
+              "type": "object"
+            },
+            "replace": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "maxItems": 20
+            },
+            "propertyNameValidation": {
+              "type": "string",
+              "enum": [
+                "ignore",
+                "warning",
+                "error"
+              ]
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "ifMatchVersion": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "location"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 400
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_ID",
+          "INVALID_KEY_OR_REF",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "NONEXISTENT_ID",
+          "RCRD_HAS_BEEN_CHANGED",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "inventory-item.get",
+        "description": "GET /services/rest/record/v1/inventoryItem/{id} — read one inventory item record by internal id (permission LIST_ITEM, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expandSubResources": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "simpleEnumFormat": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object"
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "NONEXISTENT_ID"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "inventory-item.list",
+        "description": "GET /services/rest/record/v1/inventoryItem — list inventory item records as a NetSuite record collection, filtered by `q` and paged by limit/offset (permission LIST_ITEM, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "q": {
+              "type": "string"
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "links",
+            "items",
+            "count",
+            "offset",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "href": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              },
+              "maxItems": 8
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "invoice.create",
+        "description": "POST /services/rest/record/v1/invoice — create a invoice from a NetSuite wire body; answers 204 with a Location header (permission TRAN_CUSTINVC, create).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "body"
+          ],
+          "properties": {
+            "body": {
+              "type": "object"
+            },
+            "propertyNameValidation": {
+              "type": "string",
+              "enum": [
+                "ignore",
+                "warning",
+                "error"
+              ]
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "location"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 400
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_KEY_OR_REF",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "invoice.get",
+        "description": "GET /services/rest/record/v1/invoice/{id} — read one invoice record by internal id (permission TRAN_CUSTINVC, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expandSubResources": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "simpleEnumFormat": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object"
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "NONEXISTENT_ID",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "invoice.list",
+        "description": "GET /services/rest/record/v1/invoice — list invoice records as a NetSuite record collection, filtered by `q` and paged by limit/offset (permission TRAN_CUSTINVC, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "q": {
+              "type": "string"
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "links",
+            "items",
+            "count",
+            "offset",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "href": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              },
+              "maxItems": 8
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "invoice.transform",
+        "description": "POST /services/rest/record/v1/invoice/{id}/!transform/customerPayment — accept a customer payment against an invoice (permissions TRAN_CUSTINVC view and TRAN_CUSTPYMT create).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId",
+            "target",
+            "transformMarker"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "target": {
+              "type": "string",
+              "enum": [
+                "customerPayment"
+              ]
+            },
+            "transformMarker": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "body": {
+              "type": "object"
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "ifMatchVersion": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "location"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 400
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "NONEXISTENT_ID",
+          "RCRD_HAS_BEEN_CHANGED",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "invoice.update",
+        "description": "PATCH /services/rest/record/v1/invoice/{id} — merge-patch a invoice; `replace` clears the named fields first (permission TRAN_CUSTINVC, edit).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId",
+            "body"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "body": {
+              "type": "object"
+            },
+            "replace": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "maxItems": 20
+            },
+            "propertyNameValidation": {
+              "type": "string",
+              "enum": [
+                "ignore",
+                "warning",
+                "error"
+              ]
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "ifMatchVersion": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "location"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 400
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_ID",
+          "INVALID_KEY_OR_REF",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "NONEXISTENT_ID",
+          "RCRD_HAS_BEEN_CHANGED",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "record.get",
+        "description": "Read one record of any supported type by internal id, with sublists expanded; the argument shape matches the MCP Standard Tools ns_getRecord tool. The permission of the named record type is checked at view level.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordType",
+            "recordId"
+          ],
+          "properties": {
+            "recordType": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object"
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "NONEXISTENT_ID",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "ns_getRecord",
+          "description": "Get a NetSuite record by record type and internal id."
+        }
+      },
+      {
+        "id": "record.metadata",
+        "description": "GET /services/rest/record/v1/metadata-catalog[/{recordType}] — list the supported record types, or describe one type's fields as an application/schema+json-shaped body derived from this Tool's own state schemas (permission SETUP_RECORD_METADATA, view). Also carries the account's server time.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "recordType": {
+              "type": "string",
+              "maxLength": 120
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object"
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_LOGIN"
+        ],
+        "idempotency": "none",
+        "fidelity": "contract",
+        "mcp": {
+          "name": "ns_getRecordTypeMetadata",
+          "description": "Describe the fields of a NetSuite record type, or list the supported record types."
+        }
+      },
+      {
+        "id": "sales-order.create",
+        "description": "POST /services/rest/record/v1/salesOrder — create a sales order from a NetSuite wire body; answers 204 with a Location header (permission TRAN_SALESORD, create).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "body"
+          ],
+          "properties": {
+            "body": {
+              "type": "object"
+            },
+            "propertyNameValidation": {
+              "type": "string",
+              "enum": [
+                "ignore",
+                "warning",
+                "error"
+              ]
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "location"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 400
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_KEY_OR_REF",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sales-order.get",
+        "description": "GET /services/rest/record/v1/salesOrder/{id} — read one sales order record by internal id (permission TRAN_SALESORD, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expandSubResources": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "simpleEnumFormat": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object"
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "NONEXISTENT_ID",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sales-order.items.list",
+        "description": "GET /services/rest/record/v1/salesOrder/{id}/item — page the item sublist of one sales order (permission TRAN_SALESORD, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "links",
+            "items",
+            "count",
+            "offset",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "href": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              },
+              "maxItems": 8
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "NONEXISTENT_ID",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "sales-order.list",
+        "description": "GET /services/rest/record/v1/salesOrder — list sales order records as a NetSuite record collection, filtered by `q` and paged by limit/offset (permission TRAN_SALESORD, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "q": {
+              "type": "string"
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "links",
+            "items",
+            "count",
+            "offset",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "href": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              },
+              "maxItems": 8
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sales-order.transform",
+        "description": "POST /services/rest/record/v1/salesOrder/{id}/!transform/invoice — bill a sales order into an invoice, raising each billed line's quantityBilled (permissions TRAN_SALESORD view and TRAN_CUSTINVC create).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId",
+            "target",
+            "transformMarker"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "target": {
+              "type": "string",
+              "enum": [
+                "invoice"
+              ]
+            },
+            "transformMarker": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "body": {
+              "type": "object"
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "ifMatchVersion": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "location"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 400
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_ID",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "NONEXISTENT_ID",
+          "RCRD_HAS_BEEN_CHANGED",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "sales-order.update",
+        "description": "PATCH /services/rest/record/v1/salesOrder/{id} — merge-patch a sales order; `replace` clears the named fields first (permission TRAN_SALESORD, edit).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordId",
+            "body"
+          ],
+          "properties": {
+            "recordId": {
+              "type": "string",
+              "maxLength": 512
+            },
+            "body": {
+              "type": "object"
+            },
+            "replace": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "maxItems": 20
+            },
+            "propertyNameValidation": {
+              "type": "string",
+              "enum": [
+                "ignore",
+                "warning",
+                "error"
+              ]
+            },
+            "idempotencyKeyHeader": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "ifMatchVersion": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "location"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 400
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_CONTENT",
+          "INVALID_ID",
+          "INVALID_KEY_OR_REF",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "NONEXISTENT_ID",
+          "RCRD_HAS_BEEN_CHANGED",
+          "RESULT_SET_TOO_LARGE",
+          "UNEXPECTED_ERROR",
+          "USER_ERROR"
+        ],
+        "idempotency": "optional",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "session.get",
+        "description": "The signed-in SuiteTalk session: account, employee, role with its permission levels, subsidiary scope and the account server time. NetSuite exposes this through its application shell rather than a REST resource, so this operation has no HTTP route; it is what the browser app reads to render the account/role chrome and to date every screen from world time (permission SETUP_RECORD_METADATA, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {}
+        },
+        "outputSchema": {
+          "type": "object"
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful"
+      },
+      {
+        "id": "subsidiary.list",
+        "description": "GET /services/rest/record/v1/subsidiary — list the account's subsidiaries (permission LIST_SUBSIDIARY, view). The REST route answers a record collection; the canonical/MCP shape carries the full subsidiary objects.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "links",
+            "items",
+            "count",
+            "offset",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "href": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              },
+              "maxItems": 8
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "stateful",
+        "mcp": {
+          "name": "ns_getSubsidiaries",
+          "description": "List the subsidiaries defined in this NetSuite account."
+        }
+      },
+      {
+        "id": "suiteql.query",
+        "description": "POST /services/rest/query/v1/suiteql — run one read-only SELECT over the analytics tables customer, transaction, transactionLine, item, employee and subsidiary. Requires the Prefer: transient header and permission REPO_ANALYTICS, view. Every scalar is rendered as a JSON string, as NetSuite does.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "q"
+          ],
+          "properties": {
+            "q": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 20000
+            },
+            "params": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 2000
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "maxItems": 50
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000
+                }
+              ]
+            },
+            "offset": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "integer",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              ]
+            },
+            "prefer": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "bodyError": {
+              "type": "string",
+              "enum": [
+                "depth",
+                "prototype",
+                "not-json"
+              ]
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "links",
+            "items",
+            "count",
+            "offset",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "href": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              },
+              "maxItems": 8
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN",
+          "INVALID_PARAMETER",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral"
+      },
+      {
+        "id": "suiteql.run",
+        "description": "Run a read-only SuiteQL SELECT and return the rows directly; the argument shape matches the MCP Standard Tools ns_runCustomSuiteQL tool (permission REPO_ANALYTICS, view).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 20000
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "items",
+            "count",
+            "hasMore",
+            "totalResults"
+          ],
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "maxItems": 1000
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hasMore": {
+              "type": "boolean"
+            },
+            "totalResults": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "declaredErrors": [
+          "CONCURRENCY_LIMIT_EXCEEDED",
+          "INSUFFICIENT_PERMISSION",
+          "INVALID_LOGIN",
+          "INVALID_REQUEST",
+          "RESULT_SET_TOO_LARGE"
+        ],
+        "idempotency": "none",
+        "fidelity": "behavioral",
+        "mcp": {
+          "name": "ns_runCustomSuiteQL",
+          "description": "Run a read-only SuiteQL SELECT statement and return the resulting rows."
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "record.changed",
+        "payloadSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordType",
+            "recordId",
+            "changeType",
+            "occurredAt",
+            "employeeId",
+            "subsidiaryId"
+          ],
+          "properties": {
+            "recordType": {
+              "type": "string",
+              "enum": [
+                "customer",
+                "salesOrder",
+                "invoice",
+                "customerPayment"
+              ]
+            },
+            "recordId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "changeType": {
+              "type": "string",
+              "enum": [
+                "CREATE",
+                "UPDATE",
+                "DELETE"
+              ]
+            },
+            "occurredAt": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "employeeId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "subsidiaryId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            }
+          }
+        }
+      },
+      {
+        "id": "transaction.status-changed",
+        "payloadSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recordType",
+            "recordId",
+            "tranId",
+            "previousStatus",
+            "status",
+            "occurredAt",
+            "total",
+            "amountRemaining"
+          ],
+          "properties": {
+            "recordType": {
+              "type": "string",
+              "enum": [
+                "salesOrder",
+                "invoice"
+              ]
+            },
+            "recordId": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,14}$",
+              "maxLength": 15
+            },
+            "tranId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 45
+            },
+            "previousStatus": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "status": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "occurredAt": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            "total": {
+              "type": "number"
+            },
+            "amountRemaining": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "faults": [
+      {
+        "id": "concurrency-limit",
+        "appliesTo": [
+          "customer-payment.get",
+          "customer-payment.list",
+          "customer.create",
+          "customer.delete",
+          "customer.get",
+          "customer.list",
+          "customer.update",
+          "inventory-item.get",
+          "inventory-item.list",
+          "invoice.create",
+          "invoice.get",
+          "invoice.list",
+          "invoice.transform",
+          "invoice.update",
+          "record.get",
+          "record.metadata",
+          "sales-order.create",
+          "sales-order.get",
+          "sales-order.items.list",
+          "sales-order.list",
+          "sales-order.transform",
+          "sales-order.update",
+          "session.get",
+          "subsidiary.list",
+          "suiteql.query",
+          "suiteql.run"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "CONCURRENCY_LIMIT_EXCEEDED",
+          "message": "Concurrent request limit exceeded. Request blocked.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "record-locked",
+        "appliesTo": [
+          "customer.update",
+          "invoice.transform",
+          "invoice.update",
+          "sales-order.transform",
+          "sales-order.update"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "RCRD_HAS_BEEN_CHANGED",
+          "message": "Record has been changed. Please refresh the record and try again.",
+          "retryable": true
+        }
+      },
+      {
+        "id": "transform-response-lost",
+        "appliesTo": [
+          "invoice.transform",
+          "sales-order.transform"
+        ],
+        "timing": "after_commit",
+        "error": {
+          "code": "UNEXPECTED_ERROR",
+          "message": "An unexpected error occurred. Error ID: firedrill-transform-response-lost",
+          "retryable": true
+        }
+      },
+      {
+        "id": "write-outage",
+        "appliesTo": [
+          "customer.create",
+          "customer.delete",
+          "customer.update",
+          "invoice.create",
+          "invoice.transform",
+          "invoice.update",
+          "sales-order.create",
+          "sales-order.transform",
+          "sales-order.update"
+        ],
+        "timing": "before",
+        "error": {
+          "code": "UNEXPECTED_ERROR",
+          "message": "An unexpected error occurred. Error ID: firedrill-write-outage",
+          "retryable": true
+        }
+      }
+    ],
+    "subscriptions": [],
+    "http": [
+      {
+        "id": "customer-create",
+        "operationId": "customer.create",
+        "method": "POST",
+        "path": "/services/rest/record/v1/customer",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_KEY_OR_REF",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "customer-delete",
+        "operationId": "customer.delete",
+        "method": "DELETE",
+        "path": "/services/rest/record/v1/customer/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "customer-get",
+        "operationId": "customer.get",
+        "method": "GET",
+        "path": "/services/rest/record/v1/customer/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "customer-list",
+        "operationId": "customer.list",
+        "method": "GET",
+        "path": "/services/rest/record/v1/customer",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "customer-payment-get",
+        "operationId": "customer-payment.get",
+        "method": "GET",
+        "path": "/services/rest/record/v1/customerPayment/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "customer-payment-list",
+        "operationId": "customer-payment.list",
+        "method": "GET",
+        "path": "/services/rest/record/v1/customerPayment",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "customer-update",
+        "operationId": "customer.update",
+        "method": "PATCH",
+        "path": "/services/rest/record/v1/customer/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_KEY_OR_REF",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RCRD_HAS_BEEN_CHANGED",
+              "status": 409
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "inventory-item-get",
+        "operationId": "inventory-item.get",
+        "method": "GET",
+        "path": "/services/rest/record/v1/inventoryItem/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            }
+          ]
+        }
+      },
+      {
+        "id": "inventory-item-list",
+        "operationId": "inventory-item.list",
+        "method": "GET",
+        "path": "/services/rest/record/v1/inventoryItem",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "invoice-create",
+        "operationId": "invoice.create",
+        "method": "POST",
+        "path": "/services/rest/record/v1/invoice",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_KEY_OR_REF",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "invoice-get",
+        "operationId": "invoice.get",
+        "method": "GET",
+        "path": "/services/rest/record/v1/invoice/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "invoice-list",
+        "operationId": "invoice.list",
+        "method": "GET",
+        "path": "/services/rest/record/v1/invoice",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "invoice-transform",
+        "operationId": "invoice.transform",
+        "method": "POST",
+        "path": "/services/rest/record/v1/invoice/{id}/{transformMarker}/customerPayment",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RCRD_HAS_BEEN_CHANGED",
+              "status": 409
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "invoice-update",
+        "operationId": "invoice.update",
+        "method": "PATCH",
+        "path": "/services/rest/record/v1/invoice/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_KEY_OR_REF",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RCRD_HAS_BEEN_CHANGED",
+              "status": 409
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "metadata-catalog-list",
+        "operationId": "record.metadata",
+        "method": "GET",
+        "path": "/services/rest/record/v1/metadata-catalog",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "metadata-catalog-type",
+        "operationId": "record.metadata",
+        "method": "GET",
+        "path": "/services/rest/record/v1/metadata-catalog/{recordType}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            }
+          ]
+        }
+      },
+      {
+        "id": "sales-order-create",
+        "operationId": "sales-order.create",
+        "method": "POST",
+        "path": "/services/rest/record/v1/salesOrder",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_KEY_OR_REF",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "sales-order-get",
+        "operationId": "sales-order.get",
+        "method": "GET",
+        "path": "/services/rest/record/v1/salesOrder/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "sales-order-items",
+        "operationId": "sales-order.items.list",
+        "method": "GET",
+        "path": "/services/rest/record/v1/salesOrder/{id}/item",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "sales-order-list",
+        "operationId": "sales-order.list",
+        "method": "GET",
+        "path": "/services/rest/record/v1/salesOrder",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "sales-order-transform",
+        "operationId": "sales-order.transform",
+        "method": "POST",
+        "path": "/services/rest/record/v1/salesOrder/{id}/{transformMarker}/invoice",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RCRD_HAS_BEEN_CHANGED",
+              "status": 409
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "sales-order-update",
+        "operationId": "sales-order.update",
+        "method": "PATCH",
+        "path": "/services/rest/record/v1/salesOrder/{id}",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 204,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_CONTENT",
+              "status": 400
+            },
+            {
+              "code": "INVALID_ID",
+              "status": 400
+            },
+            {
+              "code": "INVALID_KEY_OR_REF",
+              "status": 400
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "NONEXISTENT_ID",
+              "status": 404
+            },
+            {
+              "code": "RCRD_HAS_BEEN_CHANGED",
+              "status": 409
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            },
+            {
+              "code": "UNEXPECTED_ERROR",
+              "status": 500
+            },
+            {
+              "code": "USER_ERROR",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "subsidiary-list",
+        "operationId": "subsidiary.list",
+        "method": "GET",
+        "path": "/services/rest/record/v1/subsidiary",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "none",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      },
+      {
+        "id": "suiteql",
+        "operationId": "suiteql.query",
+        "method": "POST",
+        "path": "/services/rest/query/v1/suiteql",
+        "auth": {
+          "kind": "bearer",
+          "schemes": [
+            "Bearer"
+          ]
+        },
+        "requestBody": "json",
+        "response": {
+          "successStatus": 200,
+          "errors": [
+            {
+              "code": "CONCURRENCY_LIMIT_EXCEEDED",
+              "status": 429
+            },
+            {
+              "code": "INSUFFICIENT_PERMISSION",
+              "status": 403
+            },
+            {
+              "code": "INVALID_LOGIN",
+              "status": 401
+            },
+            {
+              "code": "INVALID_PARAMETER",
+              "status": 400
+            },
+            {
+              "code": "INVALID_REQUEST",
+              "status": 400
+            },
+            {
+              "code": "RESULT_SET_TOO_LARGE",
+              "status": 400
+            }
+          ]
+        }
+      }
+    ],
+    "callbacks": [],
+    "compatibility": []
+  }
+}

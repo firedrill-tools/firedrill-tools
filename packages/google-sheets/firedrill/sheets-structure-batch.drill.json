@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "id": "sheets-structure-batch",
+  "title": "Spreadsheet metadata and grid data, an ordered all-or-nothing batchUpdate across the supported request kinds, insert_dimension, copyTo and create",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "avery",
+  "task": {
+    "instruction": "Run the google-sheets conformance flow `structure-batch` and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "spreadsheets-get-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "spreadsheets.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "spreadsheets-batch-update-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "spreadsheets.batch-update"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sheets-insert-dimension-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "sheets.insert-dimension"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sheets-copy-to-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "sheets.copy-to"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "spreadsheets-create-ok-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "spreadsheets.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "spreadsheets-get-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "spreadsheets.get"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "spreadsheets-batch-update-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "spreadsheets.batch-update"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sheets-insert-dimension-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "sheets.insert-dimension"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "sheets-copy-to-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "sheets.copy-to"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "spreadsheets-create-tool-error-greater-than-or-equal-1",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "google-sheets",
+        "operationId": "spreadsheets.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 1
+      }
+    },
+    {
+      "id": "budget-renamed",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "sheets",
+      "rowId": "1BxQ3MarketingBudgetSeedA7kLm2Np0123456789ab:0000000000",
+      "path": [
+        "title"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Budget FY26"
+      }
+    },
+    {
+      "id": "assumptions-formula-requalified",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "rows",
+      "rowId": "1BxQ3MarketingBudgetSeedA7kLm2Np0123456789ab:1843712905:0000006",
+      "path": [
+        "cells",
+        1,
+        "value",
+        "formula"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "='Budget FY26'!B12/B3"
+      }
+    },
+    {
+      "id": "spreadsheet-retitled",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "spreadsheets",
+      "rowId": "1BxQ3MarketingBudgetSeedA7kLm2Np0123456789ab",
+      "path": [
+        "title"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "Q3 Marketing Budget (FY26)"
+      }
+    },
+    {
+      "id": "state-named-ranges-equals-1",
+      "kind": "state.count",
+      "packageId": "google-sheets",
+      "namespace": "named-ranges",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "total-budget-shifted",
+      "kind": "state.value",
+      "packageId": "google-sheets",
+      "namespace": "named-ranges",
+      "rowId": "1BxQ3MarketingBudgetSeedA7kLm2Np0123456789ab:nrseed000001",
+      "path": [
+        "startRowIndex"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 11
+      }
+    },
+    {
+      "id": "event-sheet-changed-greater-than-or-equal-8",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "sheet.changed"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "greater_than_or_equal",
+        "value": 8
+      }
+    },
+    {
+      "id": "event-spreadsheet-created-equals-1",
+      "kind": "event.count",
+      "event": {
+        "packageId": "google-sheets",
+        "eventId": "spreadsheet.created"
+      },
+      "phase": "emitted",
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    }
+  ]
+}

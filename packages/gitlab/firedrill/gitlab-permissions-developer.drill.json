@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "id": "gitlab-permissions-developer",
+  "title": "Developer: private project hidden, merge into main allowed, direct push to protected main and issue delete refused",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "developer",
+  "task": {
+    "instruction": "Run the permissions-developer conformance flow against the synthetic GitLab Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "merge-requests-merge-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "merge-requests.merge"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "commits-create-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "commits.create"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "issues-delete-tool-error",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "issues.delete"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "branches-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "gitlab",
+        "operationId": "branches.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "mr-2-merged-by-developer",
+      "kind": "state.value",
+      "packageId": "gitlab",
+      "namespace": "merge_requests",
+      "rowId": "p000101!000002",
+      "path": [
+        "merged_by_id"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 4
+      }
+    },
+    {
+      "id": "issue-1-labels",
+      "kind": "state.value",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "rowId": "p000101#000001",
+      "path": [
+        "labels"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": [
+          "bug",
+          "priority::high",
+          "documentation"
+        ]
+      }
+    },
+    {
+      "id": "rows-issues",
+      "kind": "state.count",
+      "packageId": "gitlab",
+      "namespace": "issues",
+      "comparison": {
+        "operator": "equals",
+        "value": 16
+      }
+    }
+  ]
+}

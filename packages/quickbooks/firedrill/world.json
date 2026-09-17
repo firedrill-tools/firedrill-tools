@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 1,
+  "id": "quickbooks-conformance-world",
+  "title": "QuickBooks Online Tool conformance world",
+  "virtualTimeUs": 1789462800000000,
+  "actors": [
+    {
+      "id": "admin",
+      "description": "Company admin of Brightwater Studio LLC (realmId 9341453172839201); every operation granted.",
+      "attributes": {
+        "realmId": "9341453172839201",
+        "role": "company_admin"
+      },
+      "grants": [
+        {
+          "packageId": "quickbooks",
+          "operationId": "company-info.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "query.run"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.pdf"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.send"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.search"
+        }
+      ]
+    },
+    {
+      "id": "fresh",
+      "description": "No identity attributes, as `firedrill tool add` creates: falls back to the seeded realm and the company_admin role.",
+      "grants": [
+        {
+          "packageId": "quickbooks",
+          "operationId": "company-info.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "query.run"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.pdf"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.send"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.search"
+        }
+      ]
+    },
+    {
+      "id": "ar-clerk",
+      "description": "Standard user limited to customers: customers, invoices, payments read/write; items read-only; no chart of accounts.",
+      "attributes": {
+        "role": "standard_limited_customers"
+      },
+      "grants": [
+        {
+          "packageId": "quickbooks",
+          "operationId": "company-info.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "query.run"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.pdf"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.send"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.search"
+        }
+      ]
+    },
+    {
+      "id": "reports",
+      "description": "Reports-only user: only company info.",
+      "attributes": {
+        "role": "reports_only"
+      },
+      "grants": [
+        {
+          "packageId": "quickbooks",
+          "operationId": "company-info.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "query.run"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.pdf"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.send"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.search"
+        }
+      ]
+    },
+    {
+      "id": "other-realm",
+      "description": "Token issued for another company: every call is refused with AuthenticationFailed.",
+      "attributes": {
+        "realmId": "4620816365000000000"
+      },
+      "grants": [
+        {
+          "packageId": "quickbooks",
+          "operationId": "company-info.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "query.run"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "customers.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "items.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.pdf"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.update"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.delete"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "invoices.send"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.search"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.post"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "payments.create"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.get"
+        },
+        {
+          "packageId": "quickbooks",
+          "operationId": "accounts.search"
+        }
+      ]
+    },
+    {
+      "id": "auditor",
+      "description": "Company admin attributes but no Firedrill grants: the framework denies every call.",
+      "attributes": {
+        "role": "company_admin"
+      },
+      "grants": []
+    }
+  ]
+}

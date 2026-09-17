@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "response-budget",
+  "title": "A 4,000-byte response budget (workspace.limits.response_bytes): lists and reads page by encoded bytes, one oversized message answers response_too_large",
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "slack",
+      "namespace": "workspace",
+      "rowId": "team",
+      "value": {
+        "id": "T01EXAMPLE0",
+        "name": "Example Team",
+        "domain": "example-team",
+        "url": "https://example-team.slack.com/",
+        "id_sequence": 50,
+        "message_sequence": 300,
+        "limits": {
+          "response_bytes": 4000
+        }
+      }
+    }
+  ]
+}

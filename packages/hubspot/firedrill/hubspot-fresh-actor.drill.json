@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "id": "hubspot-fresh-actor",
+  "title": "An actor without identity attributes sees the seeded portal, stores zone-less datetimes as UTC and stores nothing for null values on create",
+  "targetId": "conformance-agent",
+  "scenarioId": "baseline",
+  "actorId": "fresh",
+  "task": {
+    "instruction": "Run the fresh-actor conformance flow against the synthetic HubSpot Tool and fail loudly on any unexpected status, header or body."
+  },
+  "assertions": [
+    {
+      "id": "account-get-details-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "account.get-details"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-list-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.list"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "objects-create-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.create"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "objects-get-ok",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "hubspot",
+        "operationId": "objects.get"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 1
+      }
+    },
+    {
+      "id": "notes-count",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "notes",
+      "comparison": {
+        "operator": "equals",
+        "value": 6
+      }
+    },
+    {
+      "id": "note-timestamp-utc",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "notes",
+      "rowId": "0000001001",
+      "path": [
+        "properties",
+        "hs_timestamp"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "2026-09-14T10:00:00.000Z"
+      }
+    },
+    {
+      "id": "note-null-body-not-stored",
+      "kind": "state.count",
+      "packageId": "hubspot",
+      "namespace": "notes",
+      "where": {
+        "properties": {
+          "hs_note_body": null
+        }
+      },
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "note-year-9999",
+      "kind": "state.value",
+      "packageId": "hubspot",
+      "namespace": "notes",
+      "rowId": "0000001002",
+      "path": [
+        "properties",
+        "hs_timestamp"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "9999-12-31T23:59:59.999Z"
+      }
+    }
+  ]
+}

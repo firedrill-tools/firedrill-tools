@@ -1,0 +1,2599 @@
+{
+  "schemaVersion": 1,
+  "id": "discord-conformance-world",
+  "title": "Discord Tool conformance world",
+  "virtualTimeUs": 1789401600000000,
+  "actors": [
+    {
+      "id": "bot",
+      "description": "Fieldnote, the seeded bot account; member of Northwind Makers only.",
+      "attributes": {
+        "userId": "1379036823552000007"
+      },
+      "grants": [
+        {
+          "packageId": "discord",
+          "operationId": "users.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-my-guilds"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-dm-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.create-dm"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-active-threads"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "roles.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "channels.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.create"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.edit"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.delete"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.add"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.remove"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.list-users"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create-from-message"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create"
+        }
+      ]
+    },
+    {
+      "id": "theo",
+      "description": "Theo Lindqvist, Maintainer in Northwind Makers (CREATE_PRIVATE_THREADS, MENTION_EVERYONE).",
+      "attributes": {
+        "userId": "797491121356800004"
+      },
+      "grants": [
+        {
+          "packageId": "discord",
+          "operationId": "users.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-my-guilds"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-dm-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.create-dm"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-active-threads"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "roles.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "channels.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.create"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.edit"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.delete"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.add"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.remove"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.list-users"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create-from-message"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create"
+        }
+      ]
+    },
+    {
+      "id": "maya",
+      "description": "Maya Okafor, Moderator in Northwind Makers (MANAGE_MESSAGES, MANAGE_THREADS).",
+      "attributes": {
+        "userId": "735103785369600003"
+      },
+      "grants": [
+        {
+          "packageId": "discord",
+          "operationId": "users.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-my-guilds"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-dm-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.create-dm"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-active-threads"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "roles.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "channels.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.create"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.edit"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.delete"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.add"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.remove"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.list-users"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create-from-message"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create"
+        }
+      ]
+    },
+    {
+      "id": "sam",
+      "description": "Sam Rivera, Muted in Northwind Makers (SEND_MESSAGES denied in #general and #help).",
+      "attributes": {
+        "userId": "980759976345600005"
+      },
+      "grants": [
+        {
+          "packageId": "discord",
+          "operationId": "users.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-my-guilds"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-dm-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.create-dm"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-active-threads"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "roles.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "channels.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.create"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.edit"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.delete"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.add"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.remove"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.list-users"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create-from-message"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create"
+        }
+      ]
+    },
+    {
+      "id": "lee",
+      "description": "Lee Castillo, owner of Orbit Lab and not a member of Northwind Makers.",
+      "attributes": {
+        "userId": "1073924108451840006"
+      },
+      "grants": [
+        {
+          "packageId": "discord",
+          "operationId": "users.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-my-guilds"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-dm-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.create-dm"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-active-threads"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "roles.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "channels.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.create"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.edit"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.delete"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.add"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.remove"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.list-users"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create-from-message"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create"
+        }
+      ]
+    },
+    {
+      "id": "fresh",
+      "description": "An actor without a userId attribute, as `firedrill tool add` creates: acts as meta.default_user_id (Fieldnote).",
+      "grants": [
+        {
+          "packageId": "discord",
+          "operationId": "users.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-my-guilds"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-dm-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.create-dm"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-active-threads"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "roles.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "channels.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.create"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.edit"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.delete"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.add"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.remove"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.list-users"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create-from-message"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create"
+        }
+      ]
+    },
+    {
+      "id": "ghost",
+      "description": "Claims a userId that has no account: every call answers 401.",
+      "attributes": {
+        "userId": "1289999999999999999"
+      },
+      "grants": [
+        {
+          "packageId": "discord",
+          "operationId": "users.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-my-guilds"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.list-dm-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "users.create-dm"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-channels"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guilds.list-active-threads"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "guild-members.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "roles.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "channels.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.list"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.get"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.create"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.edit"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "messages.delete"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.add"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.remove"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "reactions.list-users"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create-from-message"
+        },
+        {
+          "packageId": "discord",
+          "operationId": "threads.create"
+        }
+      ]
+    },
+    {
+      "id": "auditor",
+      "description": "Theo's identity without operation grants: every call is denied by the framework.",
+      "attributes": {
+        "userId": "797491121356800004"
+      },
+      "grants": []
+    }
+  ],
+  "state": [
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "meta",
+      "rowId": "service",
+      "value": {
+        "default_user_id": "1379036823552000007",
+        "last_snowflake": "1549064680243200037",
+        "limits": {
+          "scan_rows": 5000
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "users",
+      "rowId": "00497860529356800001",
+      "value": {
+        "id": "497860529356800001",
+        "username": "deleted_user_5f3a9c",
+        "global_name": "Deleted User",
+        "bot": false,
+        "deleted": true,
+        "dm_blocked": false,
+        "accent_color": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "users",
+      "rowId": "00555668943667200002",
+      "value": {
+        "id": "555668943667200002",
+        "username": "priya.n",
+        "global_name": "Priya Natarajan",
+        "bot": false,
+        "deleted": false,
+        "dm_blocked": false,
+        "accent_color": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "users",
+      "rowId": "00735103785369600003",
+      "value": {
+        "id": "735103785369600003",
+        "username": "maya.okafor",
+        "global_name": "Maya Okafor",
+        "bot": false,
+        "deleted": false,
+        "dm_blocked": false,
+        "accent_color": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "users",
+      "rowId": "00797491121356800004",
+      "value": {
+        "id": "797491121356800004",
+        "username": "theo.lind",
+        "global_name": "Theo Lindqvist",
+        "bot": false,
+        "deleted": false,
+        "dm_blocked": false,
+        "accent_color": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "users",
+      "rowId": "00980759976345600005",
+      "value": {
+        "id": "980759976345600005",
+        "username": "sam.rivera",
+        "global_name": "Sam Rivera",
+        "bot": false,
+        "deleted": false,
+        "dm_blocked": false,
+        "accent_color": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "users",
+      "rowId": "01073924108451840006",
+      "value": {
+        "id": "1073924108451840006",
+        "username": "lee.castillo",
+        "global_name": "Lee Castillo",
+        "bot": false,
+        "deleted": false,
+        "dm_blocked": false,
+        "accent_color": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "users",
+      "rowId": "01379036823552000007",
+      "value": {
+        "id": "1379036823552000007",
+        "username": "fieldnote",
+        "global_name": "Fieldnote",
+        "bot": true,
+        "deleted": false,
+        "dm_blocked": false,
+        "accent_color": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "users",
+      "rowId": "01544391386726400008",
+      "value": {
+        "id": "1544391386726400008",
+        "username": "rio.tanaka",
+        "global_name": "Rio Tanaka",
+        "bot": false,
+        "deleted": false,
+        "dm_blocked": false,
+        "accent_color": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "guilds",
+      "rowId": "01418959886745600009",
+      "value": {
+        "id": "1418959886745600009",
+        "name": "Northwind Makers",
+        "owner_id": "555668943667200002",
+        "description": "A maker community for hardware and firmware builds.",
+        "system_channel_id": "1418961900011520017",
+        "rules_channel_id": "1418960641720320012",
+        "public_updates_channel_id": "1418962403328000019",
+        "verification_level": 1,
+        "default_message_notifications": 1,
+        "explicit_content_filter": 2,
+        "emojis": [
+          {
+            "id": "1422915954278400022",
+            "name": "northwind_ok",
+            "animated": false,
+            "available": true,
+            "managed": false,
+            "require_colons": true,
+            "roles": []
+          },
+          {
+            "id": "1422916205936640023",
+            "name": "solder",
+            "animated": false,
+            "available": true,
+            "managed": false,
+            "require_colons": true,
+            "roles": []
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "guilds",
+      "rowId": "01434844554854400024",
+      "value": {
+        "id": "1434844554854400024",
+        "name": "Orbit Lab",
+        "owner_id": "1073924108451840006",
+        "description": null,
+        "system_channel_id": "1434844806512640025",
+        "rules_channel_id": null,
+        "public_updates_channel_id": null,
+        "verification_level": 0,
+        "default_message_notifications": 0,
+        "explicit_content_filter": 0,
+        "emojis": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "roles",
+      "rowId": "01418959886745600009:01418959886745600009",
+      "value": {
+        "id": "1418959886745600009",
+        "guild_id": "1418959886745600009",
+        "name": "@everyone",
+        "color": 0,
+        "hoist": false,
+        "position": 0,
+        "permissions": "309237713984",
+        "managed": false,
+        "mentionable": false,
+        "bot_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "roles",
+      "rowId": "01418959886745600009:01418961145036800014",
+      "value": {
+        "id": "1418961145036800014",
+        "guild_id": "1418959886745600009",
+        "name": "Moderator",
+        "color": 3447003,
+        "hoist": true,
+        "position": 4,
+        "permissions": "17179877376",
+        "managed": false,
+        "mentionable": true,
+        "bot_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "roles",
+      "rowId": "01418959886745600009:01418961396695040015",
+      "value": {
+        "id": "1418961396695040015",
+        "guild_id": "1418959886745600009",
+        "name": "Maintainer",
+        "color": 3066993,
+        "hoist": true,
+        "position": 3,
+        "permissions": "68719607808",
+        "managed": false,
+        "mentionable": true,
+        "bot_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "roles",
+      "rowId": "01418959886745600009:01418961648353280016",
+      "value": {
+        "id": "1418961648353280016",
+        "guild_id": "1418959886745600009",
+        "name": "Muted",
+        "color": 9807270,
+        "hoist": false,
+        "position": 1,
+        "permissions": "0",
+        "managed": false,
+        "mentionable": true,
+        "bot_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "roles",
+      "rowId": "01418959886745600009:01419609165004800021",
+      "value": {
+        "id": "1419609165004800021",
+        "guild_id": "1418959886745600009",
+        "name": "Fieldnote",
+        "color": 0,
+        "hoist": false,
+        "position": 2,
+        "permissions": "0",
+        "managed": true,
+        "mentionable": false,
+        "bot_id": "1379036823552000007"
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "roles",
+      "rowId": "01434844554854400024:01434844554854400024",
+      "value": {
+        "id": "1434844554854400024",
+        "guild_id": "1434844554854400024",
+        "name": "@everyone",
+        "color": 0,
+        "hoist": false,
+        "position": 0,
+        "permissions": "309237713984",
+        "managed": false,
+        "mentionable": false,
+        "bot_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "members",
+      "rowId": "01418959886745600009:00555668943667200002",
+      "value": {
+        "guild_id": "1418959886745600009",
+        "user_id": "555668943667200002",
+        "nick": null,
+        "roles": [],
+        "joined_at": "2025-09-20T14:00:00.000000+00:00",
+        "pending": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "members",
+      "rowId": "01418959886745600009:00735103785369600003",
+      "value": {
+        "guild_id": "1418959886745600009",
+        "user_id": "735103785369600003",
+        "nick": null,
+        "roles": [
+          "1418961145036800014"
+        ],
+        "joined_at": "2025-09-21T10:00:00.000000+00:00",
+        "pending": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "members",
+      "rowId": "01418959886745600009:00797491121356800004",
+      "value": {
+        "guild_id": "1418959886745600009",
+        "user_id": "797491121356800004",
+        "nick": "theo",
+        "roles": [
+          "1418961396695040015"
+        ],
+        "joined_at": "2025-09-23T18:30:00.000000+00:00",
+        "pending": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "members",
+      "rowId": "01418959886745600009:00980759976345600005",
+      "value": {
+        "guild_id": "1418959886745600009",
+        "user_id": "980759976345600005",
+        "nick": null,
+        "roles": [
+          "1418961648353280016"
+        ],
+        "joined_at": "2025-12-05T08:15:00.000000+00:00",
+        "pending": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "members",
+      "rowId": "01418959886745600009:01379036823552000007",
+      "value": {
+        "guild_id": "1418959886745600009",
+        "user_id": "1379036823552000007",
+        "nick": null,
+        "roles": [
+          "1419609165004800021"
+        ],
+        "joined_at": "2025-09-22T09:00:00.000000+00:00",
+        "pending": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "members",
+      "rowId": "01418959886745600009:01544391386726400008",
+      "value": {
+        "guild_id": "1418959886745600009",
+        "user_id": "1544391386726400008",
+        "nick": null,
+        "roles": [],
+        "joined_at": "2026-09-01T17:05:00.000000+00:00",
+        "pending": true
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "members",
+      "rowId": "01434844554854400024:00555668943667200002",
+      "value": {
+        "guild_id": "1434844554854400024",
+        "user_id": "555668943667200002",
+        "nick": null,
+        "roles": [],
+        "joined_at": "2025-11-04T09:00:00.000000+00:00",
+        "pending": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "members",
+      "rowId": "01434844554854400024:01073924108451840006",
+      "value": {
+        "guild_id": "1434844554854400024",
+        "user_id": "1073924108451840006",
+        "nick": null,
+        "roles": [],
+        "joined_at": "2025-11-03T10:00:00.000000+00:00",
+        "pending": false
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01418960138403840010",
+      "value": {
+        "id": "1418960138403840010",
+        "type": 4,
+        "guild_id": "1418959886745600009",
+        "name": "Information",
+        "position": 0,
+        "parent_id": null,
+        "topic": null,
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [],
+        "last_message_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01418960390062080011",
+      "value": {
+        "id": "1418960390062080011",
+        "type": 5,
+        "guild_id": "1418959886745600009",
+        "name": "announcements",
+        "position": 0,
+        "parent_id": "1418960138403840010",
+        "topic": "Official news from the Northwind team.",
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [
+          {
+            "id": "1418959886745600009",
+            "type": 0,
+            "allow": "0",
+            "deny": "34359740480"
+          },
+          {
+            "id": "1418961145036800014",
+            "type": 0,
+            "allow": "2048",
+            "deny": "0"
+          }
+        ],
+        "last_message_id": "1547622678528000027",
+        "default_auto_archive_duration": 4320
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01418960641720320012",
+      "value": {
+        "id": "1418960641720320012",
+        "type": 0,
+        "guild_id": "1418959886745600009",
+        "name": "rules",
+        "position": 1,
+        "parent_id": "1418960138403840010",
+        "topic": "Read before posting.",
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [
+          {
+            "id": "1418959886745600009",
+            "type": 0,
+            "allow": "0",
+            "deny": "2048"
+          }
+        ],
+        "last_message_id": null,
+        "default_auto_archive_duration": 4320
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01418960893378560013",
+      "value": {
+        "id": "1418960893378560013",
+        "type": 4,
+        "guild_id": "1418959886745600009",
+        "name": "Community",
+        "position": 1,
+        "parent_id": null,
+        "topic": null,
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [],
+        "last_message_id": null
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01418961900011520017",
+      "value": {
+        "id": "1418961900011520017",
+        "type": 0,
+        "guild_id": "1418959886745600009",
+        "name": "general",
+        "position": 0,
+        "parent_id": "1418960893378560013",
+        "topic": "Chat about builds, meetups and everything in between.",
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [
+          {
+            "id": "1418961648353280016",
+            "type": 0,
+            "allow": "0",
+            "deny": "2048"
+          }
+        ],
+        "last_message_id": "1549064680243200037",
+        "default_auto_archive_duration": 1440
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01418962151669760018",
+      "value": {
+        "id": "1418962151669760018",
+        "type": 0,
+        "guild_id": "1418959886745600009",
+        "name": "help",
+        "position": 1,
+        "parent_id": "1418960893378560013",
+        "topic": "Ask for help with hardware and firmware.",
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [
+          {
+            "id": "1418961648353280016",
+            "type": 0,
+            "allow": "0",
+            "deny": "2048"
+          }
+        ],
+        "last_message_id": "1548620503449600046",
+        "default_auto_archive_duration": 4320
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01418962403328000019",
+      "value": {
+        "id": "1418962403328000019",
+        "type": 0,
+        "guild_id": "1418959886745600009",
+        "name": "mod-log",
+        "position": 2,
+        "parent_id": "1418960893378560013",
+        "topic": "Moderator notes.",
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [
+          {
+            "id": "1418959886745600009",
+            "type": 0,
+            "allow": "0",
+            "deny": "1024"
+          },
+          {
+            "id": "1418961145036800014",
+            "type": 0,
+            "allow": "1024",
+            "deny": "0"
+          }
+        ],
+        "last_message_id": null,
+        "default_auto_archive_duration": 4320
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01418962654986240020",
+      "value": {
+        "id": "1418962654986240020",
+        "type": 2,
+        "guild_id": "1418959886745600009",
+        "name": "Lounge",
+        "position": 3,
+        "parent_id": "1418960893378560013",
+        "topic": null,
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [],
+        "last_message_id": null,
+        "bitrate": 64000,
+        "user_limit": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01434844806512640025",
+      "value": {
+        "id": "1434844806512640025",
+        "type": 0,
+        "guild_id": "1434844554854400024",
+        "name": "general",
+        "position": 0,
+        "parent_id": null,
+        "topic": null,
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [],
+        "last_message_id": "1434847071436800051",
+        "default_auto_archive_duration": 4320
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01548287056281600038",
+      "value": {
+        "id": "1548287056281600038",
+        "type": 11,
+        "guild_id": "1418959886745600009",
+        "name": "Build fails on arm64",
+        "position": null,
+        "parent_id": "1418962151669760018",
+        "topic": null,
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [],
+        "last_message_id": "1548293347737600041",
+        "owner_id": "797491121356800004",
+        "message_count": 3,
+        "total_message_sent": 3,
+        "thread_metadata": {
+          "archived": false,
+          "archive_timestamp": "2026-09-12T11:05:00.000000+00:00",
+          "auto_archive_duration": 10080,
+          "locked": false,
+          "create_timestamp": "2026-09-12T11:05:00.000000+00:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01510946006630400029",
+      "value": {
+        "id": "1510946006630400029",
+        "type": 11,
+        "guild_id": "1418959886745600009",
+        "name": "Old release checklist",
+        "position": null,
+        "parent_id": "1418961900011520017",
+        "topic": null,
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [],
+        "last_message_id": "1510947264921600047",
+        "owner_id": "555668943667200002",
+        "message_count": 1,
+        "total_message_sent": 1,
+        "thread_metadata": {
+          "archived": true,
+          "archive_timestamp": "2026-06-08T10:05:00.000000+00:00",
+          "auto_archive_duration": 10080,
+          "locked": false,
+          "create_timestamp": "2026-06-01T10:00:00.000000+00:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01548362553753600043",
+      "value": {
+        "id": "1548362553753600043",
+        "type": 11,
+        "guild_id": "1418959886745600009",
+        "name": "Duplicate: arm64 build",
+        "position": null,
+        "parent_id": "1418962151669760018",
+        "topic": null,
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [],
+        "last_message_id": "1548362805411840044",
+        "owner_id": "797491121356800004",
+        "message_count": 1,
+        "total_message_sent": 1,
+        "thread_metadata": {
+          "archived": false,
+          "archive_timestamp": "2026-09-12T16:00:00.000000+00:00",
+          "auto_archive_duration": 10080,
+          "locked": true,
+          "create_timestamp": "2026-09-12T16:00:00.000000+00:00"
+        }
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "channels",
+      "rowId": "01477953611366400048",
+      "value": {
+        "id": "1477953611366400048",
+        "type": 1,
+        "guild_id": null,
+        "name": null,
+        "position": null,
+        "parent_id": null,
+        "topic": null,
+        "nsfw": false,
+        "rate_limit_per_user": 0,
+        "permission_overwrites": [],
+        "last_message_id": "1549027434823680050",
+        "recipient_ids": [
+          "735103785369600003",
+          "1379036823552000007"
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418960390062080011:01420802025062400026",
+      "value": {
+        "id": "1420802025062400026",
+        "channel_id": "1418960390062080011",
+        "author_id": "555668943667200002",
+        "type": 0,
+        "content": "Welcome to Northwind Makers! Read #rules, then say hi in #general.",
+        "timestamp": "2025-09-25T16:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [
+          {
+            "type": "rich",
+            "title": "Community guidelines",
+            "description": "Be kind, share build logs, credit other makers.",
+            "color": 5793266,
+            "footer": {
+              "text": "Northwind Makers"
+            }
+          }
+        ],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": [
+          {
+            "key": "uf09f8e89",
+            "emoji_id": null,
+            "emoji_name": "🎉",
+            "animated": false,
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418960390062080011:01547622678528000027",
+      "value": {
+        "id": "1547622678528000027",
+        "channel_id": "1418960390062080011",
+        "author_id": "555668943667200002",
+        "type": 0,
+        "content": "Office hours move to Thursdays at 18:00 UTC starting next week.",
+        "timestamp": "2026-09-10T15:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01427012950425600028",
+      "value": {
+        "id": "1427012950425600028",
+        "channel_id": "1418961900011520017",
+        "author_id": "497860529356800001",
+        "type": 0,
+        "content": "anyone selling a spare bench power supply?",
+        "timestamp": "2025-10-12T19:20:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01544392770846720030",
+      "value": {
+        "id": "1544392770846720030",
+        "channel_id": "1418961900011520017",
+        "author_id": "1544391386726400008",
+        "type": 7,
+        "content": "",
+        "timestamp": "2026-09-01T17:05:30.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01544636753510400031",
+      "value": {
+        "id": "1544636753510400031",
+        "channel_id": "1418961900011520017",
+        "author_id": "735103785369600003",
+        "type": 0,
+        "content": "Has anyone got the new reflow profile working on the v2 boards?",
+        "timestamp": "2026-09-02T09:15:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": [
+          {
+            "key": "uf09f918d",
+            "emoji_id": null,
+            "emoji_name": "👍",
+            "animated": false,
+            "count": 3
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01544641031700480032",
+      "value": {
+        "id": "1544641031700480032",
+        "channel_id": "1418961900011520017",
+        "author_id": "797491121356800004",
+        "type": 19,
+        "content": "Yes: drop the peak to 235 °C and extend the soak by 20 s.",
+        "timestamp": "2026-09-02T09:32:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [
+          "735103785369600003"
+        ],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": {
+          "channel_id": "1418961900011520017",
+          "message_id": "1544636753510400031",
+          "guild_id": "1418959886745600009"
+        },
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01546429818470400033",
+      "value": {
+        "id": "1546429818470400033",
+        "channel_id": "1418961900011520017",
+        "author_id": "1379036823552000007",
+        "type": 0,
+        "content": "Reminder: the weekly build digest posts here every Monday.",
+        "timestamp": "2026-09-07T08:00:00.000000+00:00",
+        "edited_timestamp": "2026-09-07T08:05:00.000000+00:00",
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01547230091673600034",
+      "value": {
+        "id": "1547230091673600034",
+        "channel_id": "1418961900011520017",
+        "author_id": "555668943667200002",
+        "type": 0,
+        "content": "<@797491121356800004> and <@&1418961396695040015> could you review the soldering guide before Friday?",
+        "timestamp": "2026-09-09T13:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [
+          "797491121356800004"
+        ],
+        "mention_role_ids": [
+          "1418961396695040015"
+        ],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01547909568921600035",
+      "value": {
+        "id": "1547909568921600035",
+        "channel_id": "1418961900011520017",
+        "author_id": "980759976345600005",
+        "type": 0,
+        "content": "Logo vote: react with any emoji you like.",
+        "timestamp": "2026-09-11T10:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": [
+          {
+            "key": "uf09f9880",
+            "emoji_id": null,
+            "emoji_name": "😀",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9883",
+            "emoji_id": null,
+            "emoji_name": "😃",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9884",
+            "emoji_id": null,
+            "emoji_name": "😄",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9881",
+            "emoji_id": null,
+            "emoji_name": "😁",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9886",
+            "emoji_id": null,
+            "emoji_name": "😆",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9885",
+            "emoji_id": null,
+            "emoji_name": "😅",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9882",
+            "emoji_id": null,
+            "emoji_name": "😂",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09fa4a3",
+            "emoji_id": null,
+            "emoji_name": "🤣",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f988a",
+            "emoji_id": null,
+            "emoji_name": "😊",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9887",
+            "emoji_id": null,
+            "emoji_name": "😇",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9982",
+            "emoji_id": null,
+            "emoji_name": "🙂",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9983",
+            "emoji_id": null,
+            "emoji_name": "🙃",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9889",
+            "emoji_id": null,
+            "emoji_name": "😉",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f988c",
+            "emoji_id": null,
+            "emoji_name": "😌",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f988d",
+            "emoji_id": null,
+            "emoji_name": "😍",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09fa5b0",
+            "emoji_id": null,
+            "emoji_name": "🥰",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9898",
+            "emoji_id": null,
+            "emoji_name": "😘",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9897",
+            "emoji_id": null,
+            "emoji_name": "😗",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f9899",
+            "emoji_id": null,
+            "emoji_name": "😙",
+            "animated": false,
+            "count": 1
+          },
+          {
+            "key": "uf09f989a",
+            "emoji_id": null,
+            "emoji_name": "😚",
+            "animated": false,
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01548785339596800036",
+      "value": {
+        "id": "1548785339596800036",
+        "channel_id": "1418961900011520017",
+        "author_id": "1544391386726400008",
+        "type": 0,
+        "content": "hi all, just joined from the meetup 👋",
+        "timestamp": "2026-09-13T20:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418961900011520017:01549064680243200037",
+      "value": {
+        "id": "1549064680243200037",
+        "channel_id": "1418961900011520017",
+        "author_id": "735103785369600003",
+        "type": 0,
+        "content": "Meetup photos are up in the shared album.",
+        "timestamp": "2026-09-14T14:30:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418962151669760018:01548287056281600038",
+      "value": {
+        "id": "1548287056281600038",
+        "channel_id": "1418962151669760018",
+        "author_id": "797491121356800004",
+        "type": 0,
+        "content": "Build fails on arm64 with an undefined reference to __aarch64_have_lse_atomics",
+        "timestamp": "2026-09-12T11:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 32,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": "1548287056281600038",
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01548287056281600038:01548289572864000039",
+      "value": {
+        "id": "1548289572864000039",
+        "channel_id": "1548287056281600038",
+        "author_id": "735103785369600003",
+        "type": 0,
+        "content": "Which toolchain version are you on?",
+        "timestamp": "2026-09-12T11:10:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": 1,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01548287056281600038:01548292089446400040",
+      "value": {
+        "id": "1548292089446400040",
+        "channel_id": "1548287056281600038",
+        "author_id": "797491121356800004",
+        "type": 0,
+        "content": "gcc 14.2 from the distro packages.",
+        "timestamp": "2026-09-12T11:20:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": 2,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01548287056281600038:01548293347737600041",
+      "value": {
+        "id": "1548293347737600041",
+        "channel_id": "1548287056281600038",
+        "author_id": "1379036823552000007",
+        "type": 0,
+        "content": "Known issue: build with -mno-outline-atomics until the fix lands.",
+        "timestamp": "2026-09-12T11:25:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": 3,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418962151669760018:01548347454259200042",
+      "value": {
+        "id": "1548347454259200042",
+        "channel_id": "1418962151669760018",
+        "author_id": "735103785369600003",
+        "type": 0,
+        "content": "How do I flash the bootloader over USB?",
+        "timestamp": "2026-09-12T15:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01548362553753600043:01548362805411840044",
+      "value": {
+        "id": "1548362805411840044",
+        "channel_id": "1548362553753600043",
+        "author_id": "797491121356800004",
+        "type": 0,
+        "content": "Closing as a duplicate of Build fails on arm64.",
+        "timestamp": "2026-09-12T16:01:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": 1,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418962151669760018:01548619245158400045",
+      "value": {
+        "id": "1548619245158400045",
+        "channel_id": "1418962151669760018",
+        "author_id": "1544391386726400008",
+        "type": 0,
+        "content": "Is there a wiring diagram for the sensor board?",
+        "timestamp": "2026-09-13T09:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": [
+          {
+            "key": "c01422915954278400022",
+            "emoji_id": "1422915954278400022",
+            "emoji_name": "northwind_ok",
+            "animated": false,
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01418962151669760018:01548620503449600046",
+      "value": {
+        "id": "1548620503449600046",
+        "channel_id": "1418962151669760018",
+        "author_id": "1379036823552000007",
+        "type": 0,
+        "content": "Tip: the wiring diagrams live in the docs repo under /hardware.",
+        "timestamp": "2026-09-13T09:05:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01510946006630400029:01510947264921600047",
+      "value": {
+        "id": "1510947264921600047",
+        "channel_id": "1510946006630400029",
+        "author_id": "1379036823552000007",
+        "type": 0,
+        "content": "v1.4 shipped, closing this checklist.",
+        "timestamp": "2026-06-01T10:05:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": 1,
+        "reaction_summary": [
+          {
+            "key": "ue29c85",
+            "emoji_id": null,
+            "emoji_name": "✅",
+            "animated": false,
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01477953611366400048:01549026931507200049",
+      "value": {
+        "id": "1549026931507200049",
+        "channel_id": "1477953611366400048",
+        "author_id": "735103785369600003",
+        "type": 0,
+        "content": "Can you post the digest early this week?",
+        "timestamp": "2026-09-14T12:00:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01477953611366400048:01549027434823680050",
+      "value": {
+        "id": "1549027434823680050",
+        "channel_id": "1477953611366400048",
+        "author_id": "1379036823552000007",
+        "type": 0,
+        "content": "Sure, it will go out on Friday.",
+        "timestamp": "2026-09-14T12:02:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "messages",
+      "rowId": "01434844806512640025:01434847071436800051",
+      "value": {
+        "id": "1434847071436800051",
+        "channel_id": "1434844806512640025",
+        "author_id": "1073924108451840006",
+        "type": 0,
+        "content": "Orbit Lab kickoff notes are in the wiki.",
+        "timestamp": "2025-11-03T10:10:00.000000+00:00",
+        "edited_timestamp": null,
+        "tts": false,
+        "flags": 0,
+        "embeds": [],
+        "mention_ids": [],
+        "mention_role_ids": [],
+        "mention_everyone": false,
+        "reference": null,
+        "thread_id": null,
+        "position": null,
+        "reaction_summary": []
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418960390062080011:01420802025062400026:uf09f8e89:00735103785369600003",
+      "value": {
+        "channel_id": "1418960390062080011",
+        "message_id": "1420802025062400026",
+        "emoji_key": "uf09f8e89",
+        "user_id": "735103785369600003",
+        "created_us": 1758816600000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418960390062080011:01420802025062400026:uf09f8e89:00797491121356800004",
+      "value": {
+        "channel_id": "1418960390062080011",
+        "message_id": "1420802025062400026",
+        "emoji_key": "uf09f8e89",
+        "user_id": "797491121356800004",
+        "created_us": 1758819600000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01544636753510400031:uf09f918d:00735103785369600003",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1544636753510400031",
+        "emoji_key": "uf09f918d",
+        "user_id": "735103785369600003",
+        "created_us": 1788340560000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01544636753510400031:uf09f918d:00797491121356800004",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1544636753510400031",
+        "emoji_key": "uf09f918d",
+        "user_id": "797491121356800004",
+        "created_us": 1788341400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01544636753510400031:uf09f918d:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1544636753510400031",
+        "emoji_key": "uf09f918d",
+        "user_id": "1379036823552000007",
+        "created_us": 1788343200000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9880:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9880",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121400000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9883:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9883",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121460000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9884:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9884",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121520000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9881:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9881",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121580000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9886:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9886",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121640000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9885:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9885",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121700000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9882:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9882",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121760000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09fa4a3:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09fa4a3",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121820000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f988a:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f988a",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121880000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9887:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9887",
+        "user_id": "1379036823552000007",
+        "created_us": 1789121940000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9982:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9982",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122000000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9983:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9983",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122060000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9889:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9889",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122120000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f988c:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f988c",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122180000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f988d:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f988d",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122240000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09fa5b0:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09fa5b0",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122300000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9898:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9898",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122360000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9897:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9897",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122420000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f9899:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f9899",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122480000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418961900011520017:01547909568921600035:uf09f989a:01379036823552000007",
+      "value": {
+        "channel_id": "1418961900011520017",
+        "message_id": "1547909568921600035",
+        "emoji_key": "uf09f989a",
+        "user_id": "1379036823552000007",
+        "created_us": 1789122540000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01418962151669760018:01548619245158400045:c01422915954278400022:00797491121356800004",
+      "value": {
+        "channel_id": "1418962151669760018",
+        "message_id": "1548619245158400045",
+        "emoji_key": "c01422915954278400022",
+        "user_id": "797491121356800004",
+        "created_us": 1789290120000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "reactions",
+      "rowId": "01510946006630400029:01510947264921600047:ue29c85:00555668943667200002",
+      "value": {
+        "channel_id": "1510946006630400029",
+        "message_id": "1510947264921600047",
+        "emoji_key": "ue29c85",
+        "user_id": "555668943667200002",
+        "created_us": 1780308360000000
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "thread_members",
+      "rowId": "01548287056281600038:00797491121356800004",
+      "value": {
+        "thread_id": "1548287056281600038",
+        "user_id": "797491121356800004",
+        "join_timestamp": "2026-09-12T11:05:00.000000+00:00",
+        "flags": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "thread_members",
+      "rowId": "01548287056281600038:00735103785369600003",
+      "value": {
+        "thread_id": "1548287056281600038",
+        "user_id": "735103785369600003",
+        "join_timestamp": "2026-09-12T11:10:00.000000+00:00",
+        "flags": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "thread_members",
+      "rowId": "01548287056281600038:01379036823552000007",
+      "value": {
+        "thread_id": "1548287056281600038",
+        "user_id": "1379036823552000007",
+        "join_timestamp": "2026-09-12T11:25:00.000000+00:00",
+        "flags": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "thread_members",
+      "rowId": "01510946006630400029:00555668943667200002",
+      "value": {
+        "thread_id": "1510946006630400029",
+        "user_id": "555668943667200002",
+        "join_timestamp": "2026-06-01T10:00:00.000000+00:00",
+        "flags": 0
+      }
+    },
+    {
+      "action": "upsert",
+      "packageId": "discord",
+      "namespace": "thread_members",
+      "rowId": "01548362553753600043:00797491121356800004",
+      "value": {
+        "thread_id": "1548362553753600043",
+        "user_id": "797491121356800004",
+        "join_timestamp": "2026-09-12T16:00:00.000000+00:00",
+        "flags": 0
+      }
+    }
+  ]
+}

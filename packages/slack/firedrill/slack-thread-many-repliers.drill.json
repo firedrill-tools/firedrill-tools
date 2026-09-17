@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "slack-thread-many-repliers",
+  "title": "Replies from a 51st distinct participant are posted: reply_users stays at the first 50, reply_users_count and reply_count keep counting, and nothing fails",
+  "targetId": "conformance-agent",
+  "scenarioId": "thread-many-repliers",
+  "actorId": "member",
+  "task": {
+    "instruction": "Run the thread-many-repliers conformance flow against the synthetic Slack Tool and fail loudly on any unexpected status or body."
+  },
+  "assertions": [
+    {
+      "id": "replies-posted",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "ok"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 2
+      }
+    },
+    {
+      "id": "no-reply-refused",
+      "kind": "operation.count",
+      "operation": {
+        "packageId": "slack",
+        "operationId": "chat.post-message"
+      },
+      "outcomes": [
+        "tool_error"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 0
+      }
+    },
+    {
+      "id": "reply-count-counts-every-reply",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1789290000.000199",
+      "path": [
+        "reply_count"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 52
+      }
+    },
+    {
+      "id": "distinct-repliers-counted-once",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1789290000.000199",
+      "path": [
+        "reply_users_count"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": 51
+      }
+    },
+    {
+      "id": "reply-users-keeps-first-fifty",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1789290000.000199",
+      "path": [
+        "reply_users",
+        49
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "U0REPLY0050"
+      }
+    },
+    {
+      "id": "latest-reply-is-second-reply",
+      "kind": "state.value",
+      "packageId": "slack",
+      "namespace": "messages",
+      "rowId": "C01GENERAL1:1789290000.000199",
+      "path": [
+        "latest_reply"
+      ],
+      "comparison": {
+        "operator": "equals",
+        "value": "1789376400.000002"
+      }
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stripe Dashboard (synthetic)</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/stripe-s.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#page">Skip to content</a>
+    <div class="sandbox-banner" id="sandbox-banner" role="region" aria-label="Sandbox">
+      <span class="sandbox-pill"><span data-icon="flask" class="sandbox-pill-icon"></span><span>Sandbox</span><span class="sandbox-account" id="sandbox-label"></span></span>
+      <span class="sandbox-text" id="sandbox-text">You're testing in a sandbox. Changes you make here don't affect your live account.</span>
+      <button type="button" class="sandbox-action" id="sandbox-switch" title="Switch to live account (not simulated)">Switch to live account</button>
+    </div>
+
+    <div class="app" id="app">
+      <aside class="sidebar" id="sidebar" aria-label="Dashboard navigation">
+        <button type="button" class="account-switcher" id="account-switcher" aria-expanded="false" aria-haspopup="menu">
+          <span class="account-avatar" id="account-avatar" aria-hidden="true">·</span>
+          <span class="account-name" id="account-name">Loading…</span>
+          <span data-icon="chevron-down" class="account-chevron"></span>
+        </button>
+
+        <form class="search" id="search-form" role="search" autocomplete="off">
+          <span data-icon="search" class="search-icon"></span>
+          <label class="visually-hidden" for="search">Search</label>
+          <input id="search" type="text" placeholder="Search" spellcheck="false" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" />
+          <kbd class="search-kbd" aria-hidden="true">/</kbd>
+          <div class="search-results" id="search-results" role="listbox" hidden></div>
+        </form>
+
+        <nav class="sidenav" id="sidenav">
+          <ul class="sidenav-list">
+            <li><a class="sidenav-item" href="#/" data-route="home"><span data-icon="home" class="sidenav-icon"></span><span>Home</span></a></li>
+            <li><a class="sidenav-item" href="#/balances" data-route="balances"><span data-icon="balances" class="sidenav-icon"></span><span>Balances</span></a></li>
+            <li><a class="sidenav-item" href="#/transactions" data-route="transactions"><span data-icon="transactions" class="sidenav-icon"></span><span>Transactions</span></a></li>
+            <li><a class="sidenav-item" href="#/customers" data-route="customers"><span data-icon="customers" class="sidenav-icon"></span><span>Customers</span></a></li>
+            <li><a class="sidenav-item" href="#/products" data-route="products"><span data-icon="catalog" class="sidenav-icon"></span><span>Product catalog</span></a></li>
+          </ul>
+
+          <div class="sidenav-section">
+            <div class="sidenav-heading"><span>Shortcuts</span></div>
+            <ul class="sidenav-list" id="shortcuts-list" aria-label="Shortcuts"></ul>
+          </div>
+
+          <div class="sidenav-section">
+            <div class="sidenav-heading"><span>Products</span></div>
+            <ul class="sidenav-list">
+              <li class="sidenav-group" id="group-connect">
+                <button type="button" class="sidenav-item sidenav-toggle" aria-expanded="false" aria-controls="group-connect-list"><span data-icon="connect" class="sidenav-icon"></span><span>Connect</span><span data-icon="chevron-right" class="sidenav-caret"></span></button>
+                <ul class="sidenav-sublist" id="group-connect-list" hidden>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Connect overview">Overview</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Connected accounts">Connected accounts</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Connect transfers">Transfers</button></li>
+                </ul>
+              </li>
+              <li class="sidenav-group" id="group-payments">
+                <button type="button" class="sidenav-item sidenav-toggle" aria-expanded="false" aria-controls="group-payments-list"><span data-icon="payments" class="sidenav-icon"></span><span>Payments</span><span data-icon="chevron-right" class="sidenav-caret"></span></button>
+                <ul class="sidenav-sublist" id="group-payments-list" hidden>
+                  <li><a class="sidenav-item sidenav-subitem" href="#/payments" data-route="payments">Payments</a></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Payments analytics">Analytics</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Disputes">Disputes</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Radar">Radar</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Payment Links">Payment Links</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Terminal">Terminal</button></li>
+                  <li><a class="sidenav-item sidenav-subitem" href="#/refunds" data-route="refunds">Refunds</a></li>
+                </ul>
+              </li>
+              <li class="sidenav-group" id="group-billing">
+                <button type="button" class="sidenav-item sidenav-toggle" aria-expanded="false" aria-controls="group-billing-list"><span data-icon="subscriptions" class="sidenav-icon"></span><span>Billing</span><span data-icon="chevron-right" class="sidenav-caret"></span></button>
+                <ul class="sidenav-sublist" id="group-billing-list" hidden>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Billing overview">Overview</button></li>
+                  <li><a class="sidenav-item sidenav-subitem" href="#/subscriptions" data-route="subscriptions">Subscriptions</a></li>
+                  <li><a class="sidenav-item sidenav-subitem" href="#/invoices" data-route="invoices">Invoices</a></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Usage-based billing">Usage-based</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Revenue recovery">Revenue recovery</button></li>
+                </ul>
+              </li>
+              <li class="sidenav-group" id="group-reporting">
+                <button type="button" class="sidenav-item sidenav-toggle" aria-expanded="false" aria-controls="group-reporting-list"><span data-icon="reporting" class="sidenav-icon"></span><span>Reporting</span><span data-icon="chevron-right" class="sidenav-caret"></span></button>
+                <ul class="sidenav-sublist" id="group-reporting-list" hidden>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Reports">Reports</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Sigma">Sigma</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Revenue Recognition">Revenue Recognition</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Data management">Data management</button></li>
+                </ul>
+              </li>
+              <li class="sidenav-group" id="group-more">
+                <button type="button" class="sidenav-item sidenav-toggle" aria-expanded="false" aria-controls="group-more-list"><span data-icon="more" class="sidenav-icon"></span><span>More</span><span data-icon="chevron-right" class="sidenav-caret"></span></button>
+                <ul class="sidenav-sublist" id="group-more-list" hidden>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Workflows">Workflows</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Tax">Tax</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Identity">Identity</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Issuing">Issuing</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Financial Connections">Financial Connections</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Capital">Capital</button></li>
+                  <li><button type="button" class="sidenav-item sidenav-subitem" data-not-simulated="Climate">Climate</button></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <a class="sidenav-item" href="#/developers" data-route="developers" title="Developers"><span data-icon="developers" class="sidenav-icon"></span><span>Developers</span></a>
+          <button type="button" class="sidebar-collapse" id="sidebar-collapse" aria-label="Collapse sidebar" title="Collapse sidebar" aria-expanded="true" aria-controls="sidebar"><span data-icon="collapse" class="sidenav-icon"></span><span class="sidebar-collapse-label">Collapse</span></button>
+        </div>
+      </aside>
+      <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+      <div class="frame">
+        <header class="topbar">
+          <button type="button" class="btn btn-ghost btn-icon-only topbar-menu" id="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span data-icon="menu"></span></button>
+          <button type="button" class="btn btn-ghost btn-icon-only topbar-search" id="topbar-search" aria-label="Search" title="Search"><span data-icon="search"></span></button>
+          <div class="topbar-spacer"></div>
+          <div class="topbar-end">
+            <a class="btn btn-ghost topbar-dev" href="#/developers" data-route="developers" title="Developers"><span data-icon="developers"></span><span class="btn-label">Developers</span></a>
+            <button type="button" class="btn btn-ghost btn-icon-only topbar-icon" id="topbar-help" title="Help" aria-label="Help and keyboard shortcuts" aria-expanded="false"><span data-icon="help"></span></button>
+            <button type="button" class="btn btn-ghost btn-icon-only topbar-icon" id="topbar-apps" title="Apps" aria-label="Apps" aria-expanded="false"><span data-icon="apps"></span></button>
+            <button type="button" class="btn btn-ghost btn-icon-only topbar-icon" id="topbar-notifications" title="Notifications" aria-label="Notifications" aria-expanded="false"><span data-icon="bell"></span></button>
+            <button type="button" class="btn btn-ghost btn-icon-only topbar-icon" id="topbar-settings" title="Settings" aria-label="Settings" aria-expanded="false"><span data-icon="gear"></span></button>
+            <button type="button" class="topbar-create" id="topbar-create" aria-label="Create" title="Create" aria-expanded="false" aria-haspopup="menu"><span data-icon="plus"></span></button>
+          </div>
+        </header>
+        <div class="progress" id="progress" aria-hidden="true"></div>
+        <main class="page" id="page" tabindex="-1" aria-live="polite">
+          <div class="page-loading"><span data-icon="spinner" class="spin"></span><span>Loading your dashboard…</span></div>
+        </main>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+  </body>
+</html>
