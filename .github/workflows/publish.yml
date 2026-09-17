@@ -5,7 +5,6 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 concurrency:
   group: npm-tool-publish
@@ -41,7 +40,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_FETCH_RETRIES: 0
-          NPM_CONFIG_PROVENANCE: 'true'
         run: |
           set -euo pipefail
           [[ -n "$NODE_AUTH_TOKEN" ]] || { echo "NPM_TOKEN is not configured" >&2; exit 1; }
