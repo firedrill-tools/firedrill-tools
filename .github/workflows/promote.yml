@@ -1,0 +1,220 @@
+name: Promote verified Tool release
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+    branches:
+      - main
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  dispatch:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check promotion policy and credentials
+        id: gate
+        env:
+          PROMOTION_ENABLED: ${{ vars.FIREDRILL_COMMUNITY_PROMOTION_ENABLED }}
+          APP_ID: ${{ secrets.FIREDRILL_CI_APP_ID }}
+          APP_PRIVATE_KEY: ${{ secrets.FIREDRILL_CI_APP_PRIVATE_KEY }}
+        run: |
+          if [[ "$PROMOTION_ENABLED" != "true" ]]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Community Tool promotion is intentionally disabled. Set FIREDRILL_COMMUNITY_PROMOTION_ENABLED=true to enable it."
+            exit 0
+          fi
+          if [[ -z "$APP_ID" || -z "$APP_PRIVATE_KEY" ]]; then
+            echo "FIREDRILL_COMMUNITY_PROMOTION_ENABLED is true, but the Firedrill CI App credentials are missing" >&2
+            exit 1
+          fi
+          echo "enabled=true" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve exact successful CI artifact
+        if: steps.gate.outputs.enabled == 'true'
+        id: artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          API_URL: ${{ github.api_url }}
+          REPOSITORY: ${{ github.repository }}
+          WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}
+          COMMUNITY_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFile } from "node:fs/promises";
+
+          const { API_URL, REPOSITORY, WORKFLOW_RUN_ID, COMMUNITY_SHA, GH_TOKEN, GITHUB_OUTPUT } = process.env;
+          const fail = (message) => { throw new Error(message); };
+          if (!/^[0-9a-f]{40}$/.test(COMMUNITY_SHA ?? "")) fail("CI did not report an exact 40-character community revision");
+          if (!/^\d+$/.test(WORKFLOW_RUN_ID ?? "")) fail("workflow run id is invalid");
+          if (!GH_TOKEN || !GITHUB_OUTPUT) fail("GitHub workflow credentials are unavailable");
+          const expectedName = `firedrill-tools-${COMMUNITY_SHA}`;
+          const artifacts = [];
+          for (let page = 1; ; page += 1) {
+            const response = await fetch(`${API_URL}/repos/${REPOSITORY}/actions/runs/${WORKFLOW_RUN_ID}/artifacts?per_page=100&page=${page}`, {
+              headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${GH_TOKEN}`, "X-GitHub-Api-Version": "2022-11-28" },
+              signal: AbortSignal.timeout(30_000),
+            });
+            if (!response.ok) fail(`artifact lookup failed with HTTP ${response.status}`);
+            const body = await response.json();
+            if (!Array.isArray(body.artifacts)) fail("artifact lookup returned an invalid response");
+            artifacts.push(...body.artifacts);
+            if (body.artifacts.length < 100) break;
+          }
+          const matches = artifacts.filter((artifact) => artifact?.name === expectedName);
+          if (matches.length !== 1) fail(`expected exactly one ${expectedName} artifact, found ${matches.length}`);
+          const artifact = matches[0];
+          if (!Number.isSafeInteger(artifact.id) || artifact.id <= 0 || artifact.expired || !Number.isSafeInteger(artifact.size_in_bytes) || artifact.size_in_bytes <= 0) {
+            fail("the exact CI artifact is expired or has invalid metadata");
+          }
+          await appendFile(GITHUB_OUTPUT, `artifact_id=${artifact.id}\nartifact_name=${expectedName}\ncommunity_sha=${COMMUNITY_SHA}\nworkflow_run_id=${WORKFLOW_RUN_ID}\n`);
+          NODE
+
+      - name: Download exact successful CI artifact
+        if: steps.gate.outputs.enabled == 'true'
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: ${{ steps.artifact.outputs.artifact_name }}
+          path: ${{ runner.temp }}/community-tools
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.artifact.outputs.workflow_run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Validate catalog and immutable archives
+        if: steps.gate.outputs.enabled == 'true'
+        id: catalog
+        env:
+          ARTIFACT_DIRECTORY: ${{ runner.temp }}/community-tools
+          COMMUNITY_SHA: ${{ steps.artifact.outputs.community_sha }}
+          SOURCE_REPOSITORY: https://github.com/firedrill-tools/firedrill-tools.git
+        run: |
+          node --input-type=module <<'NODE'
+          import { createHash } from "node:crypto";
+          import { appendFile, lstat, readFile, readdir } from "node:fs/promises";
+          import { join } from "node:path";
+
+          const { ARTIFACT_DIRECTORY, COMMUNITY_SHA, SOURCE_REPOSITORY, GITHUB_OUTPUT } = process.env;
+          const fail = (message) => { throw new Error(message); };
+          const hex = (length, value) => typeof value === "string" && new RegExp(`^[0-9a-f]{${length}}$`).test(value);
+          const entries = await readdir(ARTIFACT_DIRECTORY, { withFileTypes: true });
+          if (entries.some((entry) => !entry.isFile())) fail("community artifact must contain only top-level regular files");
+          const files = entries.map((entry) => entry.name).sort();
+          for (const file of files) {
+            const stat = await lstat(join(ARTIFACT_DIRECTORY, file));
+            if (!stat.isFile() || stat.isSymbolicLink()) fail(`community artifact contains an unsafe entry: ${file}`);
+          }
+          const catalogBytes = await readFile(join(ARTIFACT_DIRECTORY, "catalog.json"));
+          let catalog;
+          try { catalog = JSON.parse(catalogBytes); } catch { fail("catalog.json is not valid JSON"); }
+          if (catalog.schemaVersion !== 1 || catalog.sourceRevision !== COMMUNITY_SHA || catalog.sourceRepository !== SOURCE_REPOSITORY || !Array.isArray(catalog.packages) || !catalog.packages.length) {
+            fail("catalog provenance or shape is invalid");
+          }
+          const expectedFiles = new Set(["catalog.json"]);
+          const names = new Set();
+          const tools = new Set();
+          const archives = new Set();
+          let priorName = "";
+          for (const item of catalog.packages) {
+            if (!item || typeof item !== "object" || Array.isArray(item)) fail("catalog contains an invalid package record");
+            if (!/^@firedrill-tools\/tool-[a-z0-9-]+$/.test(item.name ?? "") || item.name <= priorName || names.has(item.name)) fail("catalog package identities are invalid or unsorted");
+            priorName = item.name;
+            names.add(item.name);
+            if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(item.version ?? "")) fail(`${item.name} has an invalid version`);
+            if (!/^[a-z0-9][a-z0-9-]*$/.test(item.tool ?? "") || tools.has(item.tool)) fail(`${item.name} has an invalid or duplicate Tool id`);
+            tools.add(item.tool);
+            if (!/^(active|deprecated|revoked)$/.test(item.lifecycle ?? "")) fail(`${item.name} has an invalid lifecycle`);
+            if (!/^packages\/[a-z0-9-]+$/.test(item.sourceSubdirectory ?? "") || typeof item.definition !== "string" || !item.definition || item.definition.startsWith("/") || item.definition.includes("\\") || item.definition.split("/").includes("..")) {
+              fail(`${item.name} has unsafe source metadata`);
+            }
+            if (item.lifecycle === "revoked") {
+              if (["archive", "size", "sha256", "sha512", "engines"].some((field) => field in item)) fail(`${item.name} revocation tombstone carries executable bytes`);
+              continue;
+            }
+            if (!item.engines || typeof item.engines.node !== "string" || typeof item.engines.firedrill !== "string") fail(`${item.name} has invalid engine requirements`);
+            if (!/^[a-zA-Z0-9._-]+\.tgz$/.test(item.archive ?? "") || archives.has(item.archive)) fail(`${item.name} has an invalid or duplicate archive`);
+            archives.add(item.archive);
+            expectedFiles.add(item.archive);
+            if (!Number.isSafeInteger(item.size) || item.size <= 0 || !hex(64, item.sha256) || !hex(128, item.sha512)) fail(`${item.name} has invalid archive metadata`);
+            const bytes = await readFile(join(ARTIFACT_DIRECTORY, item.archive));
+            if (bytes.length !== item.size || createHash("sha256").update(bytes).digest("hex") !== item.sha256 || createHash("sha512").update(bytes).digest("hex") !== item.sha512) {
+              fail(`${item.name} archive bytes do not match catalog.json`);
+            }
+          }
+          if (JSON.stringify(files) !== JSON.stringify([...expectedFiles].sort())) fail("artifact files do not exactly match catalog.json");
+          const catalogSha256 = createHash("sha256").update(catalogBytes).digest("hex");
+          await appendFile(GITHUB_OUTPUT, `catalog_sha256=${catalogSha256}\n`);
+          NODE
+
+      - name: Mint OSS consumer token
+        if: steps.gate.outputs.enabled == 'true'
+        id: oss-token
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        with:
+          app-id: ${{ secrets.FIREDRILL_CI_APP_ID }}
+          private-key: ${{ secrets.FIREDRILL_CI_APP_PRIVATE_KEY }}
+          owner: firedrill-tools
+          repositories: firedrill
+          permission-contents: write
+
+      - name: Dispatch exact artifact to OSS consumer
+        if: steps.gate.outputs.enabled == 'true'
+        env:
+          GH_TOKEN: ${{ steps.oss-token.outputs.token }}
+          API_URL: ${{ github.api_url }}
+          TARGET_REPOSITORY: firedrill-tools/firedrill
+          COMMUNITY_SHA: ${{ steps.artifact.outputs.community_sha }}
+          WORKFLOW_RUN_ID: ${{ steps.artifact.outputs.workflow_run_id }}
+          ARTIFACT_ID: ${{ steps.artifact.outputs.artifact_id }}
+          ARTIFACT_NAME: ${{ steps.artifact.outputs.artifact_name }}
+          CATALOG_SHA256: ${{ steps.catalog.outputs.catalog_sha256 }}
+        run: |
+          node --input-type=module <<'NODE'
+          const { API_URL, TARGET_REPOSITORY, GH_TOKEN, COMMUNITY_SHA, WORKFLOW_RUN_ID, ARTIFACT_ID, ARTIFACT_NAME, CATALOG_SHA256 } = process.env;
+          const payload = { community_sha: COMMUNITY_SHA, workflow_run_id: WORKFLOW_RUN_ID, artifact_id: ARTIFACT_ID, artifact_name: ARTIFACT_NAME, catalog_sha256: CATALOG_SHA256, source_ref: "main", source_repository: "firedrill-tools/firedrill-tools", contract_version: "1" };
+          if (!/^[0-9a-f]{40}$/.test(COMMUNITY_SHA) || !/^\d+$/.test(WORKFLOW_RUN_ID) || !/^\d+$/.test(ARTIFACT_ID) || ARTIFACT_NAME !== `firedrill-tools-${COMMUNITY_SHA}` || !/^[0-9a-f]{64}$/.test(CATALOG_SHA256)) throw new Error("dispatch attestation is invalid");
+          const response = await fetch(`${API_URL}/repos/${TARGET_REPOSITORY}/dispatches`, { method: "POST", headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${GH_TOKEN}`, "Content-Type": "application/json", "X-GitHub-Api-Version": "2022-11-28" }, body: JSON.stringify({ event_type: "community-tools-updated", client_payload: payload }), signal: AbortSignal.timeout(30_000) });
+          if (response.status !== 204) throw new Error(`OSS dispatch failed with HTTP ${response.status}`);
+          NODE
+
+      - name: Mint hosted consumer token
+        if: steps.gate.outputs.enabled == 'true'
+        id: hosted-token
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        with:
+          app-id: ${{ secrets.FIREDRILL_CI_APP_ID }}
+          private-key: ${{ secrets.FIREDRILL_CI_APP_PRIVATE_KEY }}
+          owner: firedrill-tools
+          repositories: firedrill-platform
+          permission-contents: write
+
+      - name: Dispatch exact artifact to hosted consumer
+        if: steps.gate.outputs.enabled == 'true'
+        env:
+          GH_TOKEN: ${{ steps.hosted-token.outputs.token }}
+          API_URL: ${{ github.api_url }}
+          TARGET_REPOSITORY: firedrill-tools/firedrill-platform
+          COMMUNITY_SHA: ${{ steps.artifact.outputs.community_sha }}
+          WORKFLOW_RUN_ID: ${{ steps.artifact.outputs.workflow_run_id }}
+          ARTIFACT_ID: ${{ steps.artifact.outputs.artifact_id }}
+          ARTIFACT_NAME: ${{ steps.artifact.outputs.artifact_name }}
+          CATALOG_SHA256: ${{ steps.catalog.outputs.catalog_sha256 }}
+        run: |
+          node --input-type=module <<'NODE'
+          const { API_URL, TARGET_REPOSITORY, GH_TOKEN, COMMUNITY_SHA, WORKFLOW_RUN_ID, ARTIFACT_ID, ARTIFACT_NAME, CATALOG_SHA256 } = process.env;
+          const payload = { community_sha: COMMUNITY_SHA, workflow_run_id: WORKFLOW_RUN_ID, artifact_id: ARTIFACT_ID, artifact_name: ARTIFACT_NAME, catalog_sha256: CATALOG_SHA256, source_ref: "main", source_repository: "firedrill-tools/firedrill-tools", contract_version: "1" };
+          if (!/^[0-9a-f]{40}$/.test(COMMUNITY_SHA) || !/^\d+$/.test(WORKFLOW_RUN_ID) || !/^\d+$/.test(ARTIFACT_ID) || ARTIFACT_NAME !== `firedrill-tools-${COMMUNITY_SHA}` || !/^[0-9a-f]{64}$/.test(CATALOG_SHA256)) throw new Error("dispatch attestation is invalid");
+          const response = await fetch(`${API_URL}/repos/${TARGET_REPOSITORY}/dispatches`, { method: "POST", headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${GH_TOKEN}`, "Content-Type": "application/json", "X-GitHub-Api-Version": "2022-11-28" }, body: JSON.stringify({ event_type: "community-tools-updated", client_payload: payload }), signal: AbortSignal.timeout(30_000) });
+          if (response.status !== 204) throw new Error(`hosted dispatch failed with HTTP ${response.status}`);
+          NODE
+

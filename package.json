@@ -20,7 +20,7 @@
     "package:catalog": "node tooling/package-catalog.mjs",
     "portability:check": "node tooling/portable-workspace.mjs",
     "release:publish": "node tooling/publish-packages.mjs",
-    "release:publish:test": "node --test tooling/repository-url.test.mjs tooling/publish-packages.test.mjs",
+    "release:publish:test": "node --test tooling/repository-url.test.mjs tooling/publish-packages.test.mjs tooling/promotion-workflow.test.mjs",
     "release:identities:update": "node tooling/update-release-identities.mjs",
     "release:identities:verify": "node tooling/release-identities.mjs verify-current",
     "validate": "node tooling/run-community-tools.mjs validate",
