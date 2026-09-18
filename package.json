@@ -19,6 +19,7 @@
     "check": "pnpm portability:check && pnpm validate && pnpm test",
     "package:catalog": "node tooling/package-catalog.mjs",
     "portability:check": "node tooling/portable-workspace.mjs",
+    "release:publish": "node tooling/publish-packages.mjs",
     "release:identities:update": "node tooling/update-release-identities.mjs",
     "release:identities:verify": "node tooling/release-identities.mjs verify-current",
     "validate": "node tooling/run-community-tools.mjs validate",

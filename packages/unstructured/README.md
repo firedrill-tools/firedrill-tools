@@ -17,7 +17,7 @@ the state, the virtual clock and the evidence. Backend only: there is no browser
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-unstructured-0.1.3.tgz --install
+firedrill tool add ./firedrill-tools-tool-unstructured-0.1.4.tgz --install
 firedrill serve --scenario baseline --no-open
 ```
 

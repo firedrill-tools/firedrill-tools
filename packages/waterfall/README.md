@@ -13,7 +13,7 @@ there is no browser app.
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-waterfall-0.1.0.tgz --install
+firedrill tool add ./firedrill-tools-tool-waterfall-0.1.1.tgz --install
 firedrill serve
 ```
 

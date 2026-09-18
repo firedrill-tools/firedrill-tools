@@ -12,7 +12,7 @@ profile activity, connections, company pages). It calls the same operations as a
 ## Install
 
 ```sh
-firedrill tool add /path/to/firedrill-tools-tool-linkedin-0.1.0.tgz --install
+firedrill tool add /path/to/firedrill-tools-tool-linkedin-0.1.1.tgz --install
 firedrill serve
 ```
 

@@ -41,7 +41,7 @@ show invented data. Typeface: Noto Sans (SIL OFL 1.1, bundled). Logo and font so
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-datadog-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-datadog-0.1.1.tgz --install
 firedrill serve
 ```
 

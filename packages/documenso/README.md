@@ -11,7 +11,7 @@ signing page) on the same operations and state; see [Browser app](#browser-app).
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-documenso-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-documenso-0.1.1.tgz --install
 firedrill serve
 ```
 

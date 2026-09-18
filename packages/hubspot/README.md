@@ -16,7 +16,7 @@ browser app; browse state through the REST routes, the MCP aliases or the Firedr
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-hubspot-0.1.0.tgz --install   # or the npm name once published
+firedrill tool add ./firedrill-tools-tool-hubspot-0.1.1.tgz --install   # or the npm name once published
 firedrill serve --scenario baseline --no-open
 ```
 

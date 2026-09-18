@@ -13,7 +13,7 @@ Tool id `google-calendar` · package version `0.1.0` · engine `>=0.1.0 <0.2.0` 
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-google-calendar-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-google-calendar-0.1.1.tgz --install
 firedrill serve
 ```
 

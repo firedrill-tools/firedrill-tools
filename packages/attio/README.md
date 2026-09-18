@@ -10,7 +10,7 @@ It also serves a browser app that recreates the Attio web app on the same state 
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-attio-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-attio-0.1.1.tgz --install
 firedrill serve
 ```
 

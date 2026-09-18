@@ -1,0 +1,341 @@
+#!/usr/bin/env node
+import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { isAbsolute, join, resolve } from "node:path";
+
+const DEFAULT_REGISTRY = "https://registry.npmjs.org";
+const MAX_BATCH_SIZE = 10;
+const DEFAULT_BATCH_SIZE = 8;
+const DEFAULT_DELAY_MS = 30_000;
+const DEFAULT_ATTEMPTS = 8;
+
+function fail(message) {
+  throw new Error(message);
+}
+
+function option(name, fallback) {
+  const index = process.argv.indexOf(name);
+  if (index < 0) return fallback;
+  const value = process.argv[index + 1];
+  if (!value || value.startsWith("--")) fail(`${name} requires a value`);
+  return value;
+}
+
+function integerOption(name, fallback, { minimum, maximum }) {
+  const raw = option(name, String(fallback));
+  if (!/^\d+$/.test(raw)) fail(`${name} must be an integer`);
+  const value = Number(raw);
+  if (!Number.isSafeInteger(value) || value < minimum || value > maximum) {
+    fail(`${name} must be between ${minimum} and ${maximum}`);
+  }
+  return value;
+}
+
+function arguments_() {
+  const catalogDirectory = option("--catalog-dir");
+  if (!catalogDirectory) {
+    fail(
+      "usage: node tooling/publish-packages.mjs --catalog-dir <directory> " +
+        "[--offset <n>] [--limit <1-10>] [--tag <tag>] [--delay-ms <n>] " +
+        "[--max-attempts <n>] [--summary <path>] [--dry-run] [--no-provenance]",
+    );
+  }
+  const knownWithValues = new Set([
+    "--catalog-dir",
+    "--offset",
+    "--limit",
+    "--tag",
+    "--delay-ms",
+    "--max-attempts",
+    "--summary",
+  ]);
+  const knownFlags = new Set(["--dry-run", "--no-provenance"]);
+  for (let index = 2; index < process.argv.length; index += 1) {
+    const value = process.argv[index];
+    if (knownFlags.has(value)) continue;
+    if (knownWithValues.has(value)) {
+      index += 1;
+      continue;
+    }
+    fail(`unknown argument ${value}`);
+  }
+  const tag = option("--tag", "latest");
+  if (!/^[a-zA-Z][a-zA-Z0-9._-]{0,63}$/.test(tag) || /^v?\d+(?:\.\d+)*$/.test(tag)) {
+    fail("--tag must be a non-numeric npm dist-tag");
+  }
+  const summary = option("--summary");
+  return {
+    catalogDirectory: resolve(process.cwd(), catalogDirectory),
+    offset: integerOption("--offset", 0, { minimum: 0, maximum: 10_000 }),
+    limit: integerOption("--limit", DEFAULT_BATCH_SIZE, { minimum: 1, maximum: MAX_BATCH_SIZE }),
+    delayMs: integerOption("--delay-ms", DEFAULT_DELAY_MS, { minimum: 0, maximum: 300_000 }),
+    maxAttempts: integerOption("--max-attempts", DEFAULT_ATTEMPTS, { minimum: 1, maximum: 20 }),
+    tag,
+    summary: summary ? resolve(process.cwd(), summary) : undefined,
+    dryRun: process.argv.includes("--dry-run"),
+    provenance: !process.argv.includes("--no-provenance"),
+  };
+}
+
+function parseJson(path, label) {
+  let value;
+  try {
+    value = JSON.parse(readFileSync(path, "utf8"));
+  } catch (error) {
+    fail(`${label} is not valid JSON: ${error.message}`);
+  }
+  return value;
+}
+
+function digest(algorithm, bytes) {
+  return createHash(algorithm).update(bytes).digest("hex");
+}
+
+function expectedIntegrity(sha512) {
+  return `sha512-${Buffer.from(sha512, "hex").toString("base64")}`;
+}
+
+function validateCatalog(directory) {
+  const catalogPath = join(directory, "catalog.json");
+  if (!existsSync(catalogPath)) fail(`catalog is missing: ${catalogPath}`);
+  const catalog = parseJson(catalogPath, "catalog.json");
+  if (catalog.schemaVersion !== 1 || !Array.isArray(catalog.packages) || !catalog.packages.length) {
+    fail("catalog.json has an unsupported shape");
+  }
+  if (!/^[0-9a-f]{40,64}$/.test(catalog.sourceRevision ?? "")) {
+    fail("catalog.json does not identify an exact source revision");
+  }
+  if (process.env.GITHUB_SHA && catalog.sourceRevision !== process.env.GITHUB_SHA) {
+    fail("catalog.json source revision does not match the checked-out workflow revision");
+  }
+  if (process.env.GITHUB_REPOSITORY && process.env.GITHUB_REPOSITORY !== "firedrill-tools/firedrill-tools") {
+    fail("publishing is restricted to firedrill-tools/firedrill-tools");
+  }
+  if (catalog.sourceRepository !== "https://github.com/firedrill-tools/firedrill-tools.git") {
+    fail("catalog.json does not identify the canonical public Tool repository");
+  }
+  const releases = new Set();
+  const archives = new Set();
+  let priorName = "";
+  const publishable = [];
+  for (const item of catalog.packages) {
+    if (!item || typeof item !== "object" || Array.isArray(item)) fail("catalog contains an invalid package record");
+    if (!/^@firedrill-tools\/tool-[a-z0-9-]+$/.test(item.name ?? "") || item.name <= priorName) {
+      fail("catalog package names must be unique, valid, and sorted");
+    }
+    priorName = item.name;
+    if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(item.version ?? "")) {
+      fail(`${item.name} has an invalid version`);
+    }
+    const release = `${item.name}@${item.version}`;
+    if (releases.has(release)) fail(`catalog contains duplicate release ${release}`);
+    releases.add(release);
+    if (item.lifecycle === "revoked") continue;
+    if (!/^[a-zA-Z0-9._-]+\.tgz$/.test(item.archive ?? "") || archives.has(item.archive)) {
+      fail(`${release} has an invalid or duplicate archive name`);
+    }
+    const expectedArchive = `${item.name.slice(1).replace("/", "-")}-${item.version}.tgz`;
+    if (item.archive !== expectedArchive) fail(`${release} archive must be named ${expectedArchive}`);
+    archives.add(item.archive);
+    if (!Number.isSafeInteger(item.size) || item.size <= 0) fail(`${release} has an invalid archive size`);
+    if (!/^[0-9a-f]{64}$/.test(item.sha256 ?? "") || !/^[0-9a-f]{128}$/.test(item.sha512 ?? "")) {
+      fail(`${release} has invalid archive digests`);
+    }
+    const archivePath = join(directory, item.archive);
+    if (isAbsolute(item.archive) || !existsSync(archivePath)) fail(`${release} archive is missing`);
+    const bytes = readFileSync(archivePath);
+    if (
+      bytes.length !== item.size ||
+      digest("sha256", bytes) !== item.sha256 ||
+      digest("sha512", bytes) !== item.sha512
+    ) {
+      fail(`${release} archive does not match catalog.json`);
+    }
+    publishable.push({
+      ...item,
+      release,
+      archivePath,
+      integrity: expectedIntegrity(item.sha512),
+    });
+  }
+  return { catalog, publishable };
+}
+
+function registryVersionUrl(registry, name, version) {
+  const base = new URL(registry.endsWith("/") ? registry : `${registry}/`);
+  return new URL(`${encodeURIComponent(name)}/${encodeURIComponent(version)}`, base);
+}
+
+function retryDelay(response, attempt) {
+  const retryAfter = response?.headers?.get("retry-after");
+  if (retryAfter && /^\d+$/.test(retryAfter)) return Math.min(Number(retryAfter) * 1_000, 300_000);
+  return Math.min(2 ** (attempt - 1) * 5_000, 120_000);
+}
+
+async function pause(milliseconds) {
+  if (milliseconds > 0) await new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
+}
+
+async function registryState(registry, item, attempts = 5) {
+  const url = registryVersionUrl(registry, item.name, item.version);
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    let response;
+    try {
+      response = await fetch(url, {
+        headers: { Accept: "application/json" },
+        redirect: "error",
+        signal: AbortSignal.timeout(30_000),
+      });
+    } catch (error) {
+      if (attempt === attempts) {
+        fail(`registry lookup for ${item.release} failed: ${error instanceof Error ? error.message : String(error)}`);
+      }
+      await pause(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
+      continue;
+    }
+    if (response.status === 404) return { state: "missing" };
+    if (response.status === 429 || response.status >= 500) {
+      if (attempt === attempts) fail(`registry lookup for ${item.release} failed with HTTP ${response.status}`);
+      await pause(retryDelay(response, attempt));
+      continue;
+    }
+    if (!response.ok) fail(`registry lookup for ${item.release} failed with HTTP ${response.status}`);
+    const body = await response.json();
+    const integrity = body?.dist?.integrity;
+    if (typeof integrity !== "string" || !integrity) fail(`registry metadata for ${item.release} has no integrity`);
+    return integrity === item.integrity
+      ? { state: "matching", integrity }
+      : { state: "mismatch", integrity };
+  }
+  fail(`registry lookup for ${item.release} exhausted its attempts`);
+}
+
+function publish(item, options) {
+  const args = [
+    "publish",
+    item.archivePath,
+    "--access",
+    "public",
+    "--ignore-scripts",
+    "--tag",
+    options.tag,
+    "--registry",
+    DEFAULT_REGISTRY,
+  ];
+  if (options.provenance) args.push("--provenance");
+  return spawnSync("npm", args, {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+    env: {
+      ...process.env,
+      npm_config_audit: "false",
+      npm_config_fund: "false",
+      npm_config_update_notifier: "false",
+      NPM_CONFIG_FETCH_RETRIES: "0",
+    },
+  });
+}
+
+function publishWasThrottled(result) {
+  return /(?:E429|429 Too Many Requests|rate limit)/i.test(`${result.stdout ?? ""}\n${result.stderr ?? ""}`);
+}
+
+function safeFailureOutput(result) {
+  const output = `${result.stderr || result.stdout || "npm publish failed without output"}`.trim();
+  return output
+    .split("\n")
+    .filter((line) => !/(?:_authToken|npm_[A-Za-z0-9]{20,})/i.test(line))
+    .join("\n");
+}
+
+async function publishOne(item, options) {
+  const initial = await registryState(DEFAULT_REGISTRY, item);
+  if (initial.state === "matching") {
+    process.stdout.write(`skip ${item.release}: registry integrity already matches\n`);
+    return "skipped";
+  }
+  if (initial.state === "mismatch") {
+    fail(`${item.release} already exists with different bytes; versions are immutable`);
+  }
+  if (options.dryRun) {
+    process.stdout.write(`would publish ${item.release} (${item.archive})\n`);
+    return "planned";
+  }
+  for (let attempt = 1; attempt <= options.maxAttempts; attempt += 1) {
+    process.stdout.write(`publish ${item.release} (attempt ${attempt}/${options.maxAttempts})\n`);
+    const result = publish(item, options);
+    if (result.error) throw result.error;
+    if (result.status === 0) {
+      for (let lookup = 1; lookup <= 8; lookup += 1) {
+        const state = await registryState(DEFAULT_REGISTRY, item);
+        if (state.state === "matching") return "published";
+        if (state.state === "mismatch") fail(`${item.release} appeared with different bytes after publishing`);
+        await pause(Math.min(lookup * 2_000, 10_000));
+      }
+      fail(`${item.release} was accepted by npm but did not become readable with matching integrity`);
+    }
+
+    // A failed client may still have committed the upload. Query before any retry.
+    const state = await registryState(DEFAULT_REGISTRY, item);
+    if (state.state === "matching") return "published";
+    if (state.state === "mismatch") fail(`${item.release} appeared with different bytes after a failed publish`);
+    if (!publishWasThrottled(result) || attempt === options.maxAttempts) {
+      fail(`${item.release} publish failed\n${safeFailureOutput(result)}`);
+    }
+    const delay = Math.min(60_000 * attempt, 300_000);
+    process.stdout.write(`npm throttled ${item.release}; rechecked absence, waiting ${delay / 1_000}s\n`);
+    await pause(delay);
+  }
+  fail(`${item.release} exhausted its publish attempts`);
+}
+
+function writeSummary(path, summary) {
+  if (!path) return;
+  writeFileSync(path, `${JSON.stringify(summary, null, 2)}\n`, { flag: "wx" });
+}
+
+let options;
+let summary;
+try {
+  options = arguments_();
+  const { catalog, publishable } = validateCatalog(options.catalogDirectory);
+  const selected = publishable.slice(options.offset, options.offset + options.limit);
+  if (!selected.length) fail(`batch offset ${options.offset} is past the ${publishable.length} publishable packages`);
+  summary = {
+    schemaVersion: 1,
+    sourceRevision: catalog.sourceRevision,
+    dryRun: options.dryRun,
+    offset: options.offset,
+    limit: options.limit,
+    selected: selected.map((item) => item.release),
+    results: [],
+  };
+  process.stdout.write(
+    `${options.dryRun ? "checking" : "publishing"} ${selected.length} of ${publishable.length} packages ` +
+      `(offset ${options.offset}, max batch ${MAX_BATCH_SIZE})\n`,
+  );
+  for (let index = 0; index < selected.length; index += 1) {
+    const item = selected[index];
+    const outcome = await publishOne(item, options);
+    summary.results.push({ release: item.release, integrity: item.integrity, outcome });
+    if (!options.dryRun && index < selected.length - 1) await pause(options.delayMs);
+  }
+  writeSummary(options.summary, summary);
+  process.stdout.write(
+    `${options.dryRun ? "checked" : "completed"} batch ${options.offset}-${options.offset + selected.length - 1}\n`,
+  );
+} catch (error) {
+  if (options?.summary && summary) {
+    try {
+      writeSummary(options.summary, {
+        ...summary,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    } catch {
+      // The original failure is authoritative; a summary must never mask it.
+    }
+  }
+  process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+  process.exitCode = 1;
+}

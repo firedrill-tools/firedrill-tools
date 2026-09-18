@@ -10,7 +10,7 @@ Version `0.1.1`, engine `>=0.1.0 <0.2.0`, licence Apache-2.0. The package also s
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-quickbooks-0.1.1.tgz --install
+firedrill tool add ./firedrill-tools-tool-quickbooks-0.1.2.tgz --install
 ```
 
 `firedrill tool add` seeds the starter company from `starter.json` (virtual time 2026-09-15T09:00:00Z, 02:00 company time).

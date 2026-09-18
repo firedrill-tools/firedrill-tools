@@ -12,7 +12,7 @@ Tool id `slack` · package version `0.1.0` · engine `>=0.1.0 <0.2.0` · Apache-
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-slack-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-slack-0.1.1.tgz --install
 firedrill serve
 ```
 
@@ -169,7 +169,7 @@ past the end returns an empty page.
 
 Real Slack answers **HTTP 200** with `{"ok":false,"error":"…"}` for every platform error except rate limits (HTTP 429)
 and outages (5xx). This package cannot reproduce that. The framework's manifest contract for HTTP routes
-(`@firedrill-tools/contracts`, `HttpRouteContractSchema`: `response.errors[].status` is `z.number().int().min(400).max(599)`)
+(`@firedrill-run/contracts`, `HttpRouteContractSchema`: `response.errors[].status` is `z.number().int().min(400).max(599)`)
 requires every declared error of a route to map to a status between 400 and 599, and the manifest validator refuses a
 route whose error map does not cover the operation's declared errors — so a 200 cannot be declared for an error and the
 framework, which owns status codes, sends the mapped 4xx. What this package does instead: the **body** is Slack's exactly

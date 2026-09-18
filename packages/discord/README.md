@@ -11,7 +11,7 @@ operations, so a person or a browser agent can read and change the same world an
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-discord-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-discord-0.1.1.tgz --install
 firedrill serve
 ```
 

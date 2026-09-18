@@ -7,6 +7,7 @@ const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const files = ["package.json", "pnpm-lock.yaml"];
 const forbidden = [
   { pattern: /(?:^|[\s:'"])(?:file:)?\/(?:Users|home|private\/tmp)\//m, label: "machine-specific path" },
+  { pattern: /https?:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?\//m, label: "loopback registry URL" },
   { pattern: /firedrill-platform\/vendor\//, label: "hosted-repository dependency" },
 ];
 

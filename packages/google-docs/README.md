@@ -22,7 +22,7 @@ document is rendered, no notification e-mail is sent, and there are no credentia
 
 ```sh
 firedrill tool add @firedrill-tools/tool-google-docs --install     # from a registry
-firedrill tool add ./firedrill-tools-tool-google-docs-0.1.0.tgz --install   # from a local archive
+firedrill tool add ./firedrill-tools-tool-google-docs-0.1.1.tgz --install   # from a local archive
 firedrill serve --scenario baseline --no-open
 ```
 

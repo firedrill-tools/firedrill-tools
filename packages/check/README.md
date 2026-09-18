@@ -14,7 +14,7 @@ The package also ships a **browser app** â€” a recreation of the Check Console â
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-check-0.1.1.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-check-0.1.2.tgz --install
 firedrill serve
 ```
 

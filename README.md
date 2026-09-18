@@ -11,7 +11,7 @@ over the same records as their API and MCP operations.
 Install the Firedrill CLI and a Tool package in your agent project:
 
 ```sh
-npm install --save-dev @firedrill-tools/cli@next @firedrill-tools/tool-gmail
+npm install --save-dev @firedrill-run/cli@next @firedrill-tools/tool-gmail
 npx firedrill tool add @firedrill-tools/tool-gmail --install
 npx firedrill serve
 ```

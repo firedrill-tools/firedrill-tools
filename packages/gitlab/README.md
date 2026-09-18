@@ -14,7 +14,7 @@ state. See [Browser app](#browser-app).
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-gitlab-0.1.0.tgz --install   # or an npm / Git spec
+firedrill tool add ./firedrill-tools-tool-gitlab-0.1.1.tgz --install   # or an npm / Git spec
 firedrill serve
 ```
 

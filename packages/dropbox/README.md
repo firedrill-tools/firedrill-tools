@@ -11,7 +11,7 @@ This is an independently maintained Firedrill Tool package. It is not affiliated
 ## Install
 
 ```sh
-firedrill tool add /path/to/firedrill-tools-tool-dropbox-0.1.0.tgz --install
+firedrill tool add /path/to/firedrill-tools-tool-dropbox-0.1.1.tgz --install
 firedrill serve
 ```
 

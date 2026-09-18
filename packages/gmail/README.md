@@ -11,7 +11,7 @@ Tool id `gmail` · package version `0.1.1` · engine `>=0.1.0 <0.2.0` · Apache-
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-gmail-0.1.1.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-gmail-0.1.2.tgz --install
 firedrill serve
 ```
 

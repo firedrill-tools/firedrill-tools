@@ -19,7 +19,7 @@ fictional `northwind-labs.example.com`; every address ends in `.example.com`.
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-google-workspace-0.1.2.tgz --install
+firedrill tool add ./firedrill-tools-tool-google-workspace-0.1.3.tgz --install
 firedrill serve
 ```
 

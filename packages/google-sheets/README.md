@@ -21,7 +21,7 @@ rendered to a real grid, no notification e-mail is sent, and there are no creden
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-google-sheets-0.1.0.tgz --install   # from a local archive
+firedrill tool add ./firedrill-tools-tool-google-sheets-0.1.1.tgz --install   # from a local archive
 firedrill tool add @firedrill-tools/tool-google-sheets --install              # from a registry, once published
 firedrill serve --scenario baseline --no-open
 ```

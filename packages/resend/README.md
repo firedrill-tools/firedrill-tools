@@ -11,7 +11,7 @@ A browser app that recreates the Resend dashboard (Emails, Domains, API Keys, Au
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-resend-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-resend-0.1.1.tgz --install
 firedrill serve
 ```
 

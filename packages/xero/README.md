@@ -11,7 +11,7 @@ recreates the Xero web app over the same operations (see "Browser app").
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-xero-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-xero-0.1.1.tgz --install
 firedrill serve
 ```
 

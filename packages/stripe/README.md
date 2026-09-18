@@ -18,7 +18,7 @@ app**: a recreation of the Stripe Dashboard (sandbox) that drives the same opera
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-stripe-0.1.0.tgz --install   # or the npm name once published
+firedrill tool add ./firedrill-tools-tool-stripe-0.1.1.tgz --install   # or the npm name once published
 firedrill serve --scenario baseline --no-open
 ```
 
@@ -328,11 +328,11 @@ tools, are not provided.
   `automatic_async` capture behaves like `automatic`.
 - **Declined confirmations are not persisted — a framework constraint.** Stripe answers 402 *and* stores the
   attempt. A Firedrill operation either commits, and then its HTTP status is always the route's 2xx
-  `successStatus` (`@firedrill-tools/protocol-http` `src/wire.ts:423-424`; the codec's `ToolHttpResponse` has no status
-  field, `@firedrill-tools/tool-sdk` `src/types.ts:105-108`; `successStatus` is limited to 200–299,
-  `@firedrill-tools/contracts` `src/operation.ts:278`), or fails with a declared error, which the kernel turns into an
-  abort of the state transaction the handler ran in (`@firedrill-tools/world-kernel` `src/world-kernel.ts:424-433` and
-  `:794-811`; `ToolFailureOptions` has no commit option, `@firedrill-tools/tool-sdk` `src/failure.ts:6-11`). A 402 with
+  `successStatus` (`@firedrill-run/protocol-http` `src/wire.ts:423-424`; the codec's `ToolHttpResponse` has no status
+  field, `@firedrill-run/tool-sdk` `src/types.ts:105-108`; `successStatus` is limited to 200–299,
+  `@firedrill-run/contracts` `src/operation.ts:278`), or fails with a declared error, which the kernel turns into an
+  abort of the state transaction the handler ran in (`@firedrill-run/world-kernel` `src/world-kernel.ts:424-433` and
+  `:794-811`; `ToolFailureOptions` has no commit option, `@firedrill-run/tool-sdk` `src/failure.ts:6-11`). A 402 with
   persisted state is therefore not expressible, and `payment_intents.create/confirm` and `invoices.pay` declines
   roll back as described under Operations. Failed attempts are persisted only through `subscriptions.create`.
   Because the rollback also resets the id counters, a creation-time decline body (`payment_intents.create` with

@@ -16,7 +16,7 @@ Package id `github`, version `0.1.0`, engine `>=0.1.0 <0.2.0`, license Apache-2.
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-github-0.1.0.tgz --install   # or the npm name once published
+firedrill tool add ./firedrill-tools-tool-github-0.1.1.tgz --install   # or the npm name once published
 firedrill serve --scenario baseline --no-open
 ```
 

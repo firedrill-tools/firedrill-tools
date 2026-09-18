@@ -14,7 +14,7 @@ It also ships a browser app, a recreation of the Trolley merchant dashboard that
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-trolley-0.1.0.tgz --install
+firedrill tool add /absolute/path/to/firedrill-tools-tool-trolley-0.1.1.tgz --install
 firedrill serve
 ```
 

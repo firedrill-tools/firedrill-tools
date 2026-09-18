@@ -10,7 +10,7 @@ Version `0.1.0`, engine `>=0.1.0 <0.2.0`, license Apache-2.0.
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-box-0.1.0.tgz --install   # or a Git URL / local path
+firedrill tool add ./firedrill-tools-tool-box-0.1.1.tgz --install   # or a Git URL / local path
 firedrill serve
 ```
 
