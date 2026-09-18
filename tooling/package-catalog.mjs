@@ -15,6 +15,7 @@ import {
 } from "node:fs";
 import { basename, dirname, isAbsolute, join, posix, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { credentialFreeRemote } from "./repository-url.mjs";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const packagesRoot = join(repositoryRoot, "packages");
@@ -84,19 +85,6 @@ function json(path, label) {
 
 function digest(algorithm, bytes) {
   return createHash(algorithm).update(bytes).digest("hex");
-}
-
-function credentialFreeRemote(value) {
-  if (value.startsWith("git@github.com:")) return `https://github.com/${value.slice(15)}`;
-  if (value.startsWith("ssh://git@github.com/")) return `https://github.com/${value.slice(21)}`;
-  try {
-    const url = new URL(value);
-    if (url.protocol !== "https:" || url.username || url.password) fail("origin must be a credential-free HTTPS or GitHub SSH URL");
-    return url.href.replace(/\/$/, "");
-  } catch (error) {
-    if (error instanceof TypeError) fail("origin must be a credential-free HTTPS or GitHub SSH URL");
-    throw error;
-  }
 }
 
 function relativeArtifactPath(value, label) {
