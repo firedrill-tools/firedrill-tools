@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-google-workspace
+# @firedrill-tools/google-workspace
 
 A synthetic **Google Workspace developer surface** for [Firedrill](https://firedrill.run): the three "glue" APIs an
 agent reaches for when it manages people data, event subscriptions and automation for one Workspace domain.
@@ -19,7 +19,7 @@ fictional `northwind-labs.example.com`; every address ends in `.example.com`.
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-google-workspace-0.1.3.tgz --install
+firedrill tool add @firedrill-tools/google-workspace --install
 firedrill serve
 ```
 

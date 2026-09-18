@@ -4,11 +4,11 @@ import { test } from "node:test";
 import { publishBatch, publishOne, runNpmPublish } from "./publish-packages.mjs";
 
 const item = {
-  archive: "firedrill-tools-tool-example-1.0.0.tgz",
-  archivePath: "/tmp/firedrill-tools-tool-example-1.0.0.tgz",
+  archive: "firedrill-tools-example-1.0.0.tgz",
+  archivePath: "/tmp/firedrill-tools-example-1.0.0.tgz",
   integrity: "sha512-dGVzdA==",
-  name: "@firedrill-tools/tool-example",
-  release: "@firedrill-tools/tool-example@1.0.0",
+  name: "@firedrill-tools/example",
+  release: "@firedrill-tools/example@1.0.0",
   version: "1.0.0",
 };
 
@@ -112,10 +112,10 @@ test("a successful publish waits for its dist-tag and fails without repairing it
 test("an accepted upload is recorded and the batch continues to the next package", async () => {
   const secondItem = {
     ...item,
-    archive: "firedrill-tools-tool-second-1.0.0.tgz",
-    archivePath: "/tmp/firedrill-tools-tool-second-1.0.0.tgz",
-    name: "@firedrill-tools/tool-second",
-    release: "@firedrill-tools/tool-second@1.0.0",
+    archive: "firedrill-tools-second-1.0.0.tgz",
+    archivePath: "/tmp/firedrill-tools-second-1.0.0.tgz",
+    name: "@firedrill-tools/second",
+    release: "@firedrill-tools/second@1.0.0",
   };
   const states = [
     { state: "missing" },

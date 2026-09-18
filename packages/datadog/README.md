@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-datadog
+# @firedrill-tools/datadog
 
 A synthetic **Datadog organization** for [Firedrill](https://firedrill.run): monitors that are evaluated deterministically
 against synthetic metric points, the event stream, v2 metric intake and v1 timeseries queries, minimal dashboards and
@@ -41,7 +41,7 @@ show invented data. Typeface: Noto Sans (SIL OFL 1.1, bundled). Logo and font so
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-datadog-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/datadog --install
 firedrill serve
 ```
 

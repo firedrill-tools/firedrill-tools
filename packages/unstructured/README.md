@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-unstructured
+# @firedrill-tools/unstructured
 
 A synthetic **Unstructured** account for [Firedrill](https://firedrill.run) drills. It stands in for the two public
 Unstructured HTTP surfaces so an agent that partitions documents or drives ingestion workflows can be tested locally,
@@ -17,7 +17,7 @@ the state, the virtual clock and the evidence. Backend only: there is no browser
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-unstructured-0.1.4.tgz --install
+firedrill tool add @firedrill-tools/unstructured --install
 firedrill serve --scenario baseline --no-open
 ```
 

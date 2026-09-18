@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-stripe
+# @firedrill-tools/stripe
 
 A synthetic **Stripe account in test mode** for [Firedrill](https://firedrill.run): customers, synthetic card
 payment methods, PaymentIntents with the full status machine, charges, refunds, products, prices, invoice items,
@@ -18,7 +18,7 @@ app**: a recreation of the Stripe Dashboard (sandbox) that drives the same opera
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-stripe-0.1.1.tgz --install   # or the npm name once published
+firedrill tool add @firedrill-tools/stripe --install
 firedrill serve --scenario baseline --no-open
 ```
 

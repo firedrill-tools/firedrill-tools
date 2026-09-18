@@ -152,10 +152,12 @@ function sameIdentity(left, right) {
 }
 
 function packageRecord(directory, firstPack, secondPack, destination, identities, releaseIdentities, updateIdentities) {
-  const sourceSubdirectory = `packages/${basename(directory)}`;
+  const packageSlug = basename(directory);
+  const sourceSubdirectory = `packages/${packageSlug}`;
   const packageJson = json(join(directory, "package.json"), `${sourceSubdirectory}/package.json`);
-  if (typeof packageJson.name !== "string" || !/^@firedrill-tools\/tool-[a-z0-9-]+$/.test(packageJson.name)) {
-    fail(`${sourceSubdirectory} has an invalid package name`);
+  const expectedPackageName = `@firedrill-tools/${packageSlug}`;
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(packageSlug) || packageJson.name !== expectedPackageName) {
+    fail(`${sourceSubdirectory} package name must be ${expectedPackageName}`);
   }
   if (typeof packageJson.version !== "string" || !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(packageJson.version)) {
     fail(`${packageJson.name} has an invalid version`);
@@ -176,6 +178,7 @@ function packageRecord(directory, firstPack, secondPack, destination, identities
   const toolDefinition = json(definition, `${packageJson.name} Tool definition`);
   const tool = toolDefinition.manifest?.id;
   if (typeof tool !== "string" || !/^[a-z0-9][a-z0-9-]*$/.test(tool)) fail(`${packageJson.name} has an invalid Tool id`);
+  if (tool !== packageSlug) fail(`${packageJson.name} Tool id must match its package slug ${packageSlug}`);
   if (toolDefinition.manifest?.version !== packageJson.version) fail(`${packageJson.name} package and Tool versions differ`);
   const engines = { node: packageJson.engines?.node, firedrill: toolDefinition.manifest?.engine };
   if (Object.values(engines).some((value) => typeof value !== "string" || !value.trim())) {

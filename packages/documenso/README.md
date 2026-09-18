@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-documenso
+# @firedrill-tools/documenso
 
 A synthetic **Documenso** e-signature service for [Firedrill](https://firedrill.run): one organisation with two teams, served through a
 subset of the Documenso **public API v2** (`/api/v2/...`). Agents under test can create documents, add recipients and fields, send them,
@@ -11,7 +11,7 @@ signing page) on the same operations and state; see [Browser app](#browser-app).
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-documenso-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/documenso --install
 firedrill serve
 ```
 

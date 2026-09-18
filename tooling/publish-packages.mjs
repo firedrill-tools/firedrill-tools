@@ -115,11 +115,12 @@ function validateCatalog(directory) {
   }
   const releases = new Set();
   const archives = new Set();
+  const tools = new Set();
   let priorName = "";
   const publishable = [];
   for (const item of catalog.packages) {
     if (!item || typeof item !== "object" || Array.isArray(item)) fail("catalog contains an invalid package record");
-    if (!/^@firedrill-tools\/tool-[a-z0-9-]+$/.test(item.name ?? "") || item.name <= priorName) {
+    if (!/^@firedrill-tools\/[a-z0-9][a-z0-9-]*$/.test(item.name ?? "") || item.name <= priorName) {
       fail("catalog package names must be unique, valid, and sorted");
     }
     priorName = item.name;
@@ -129,6 +130,13 @@ function validateCatalog(directory) {
     const release = `${item.name}@${item.version}`;
     if (releases.has(release)) fail(`catalog contains duplicate release ${release}`);
     releases.add(release);
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(item.tool ?? "") || tools.has(item.tool)) {
+      fail(`${release} has an invalid or duplicate Tool id`);
+    }
+    tools.add(item.tool);
+    if (item.name !== `@firedrill-tools/${item.tool}`) {
+      fail(`${release} package name must match Tool id ${item.tool}`);
+    }
     if (item.lifecycle === "revoked") continue;
     if (!/^[a-zA-Z0-9._-]+\.tgz$/.test(item.archive ?? "") || archives.has(item.archive)) {
       fail(`${release} has an invalid or duplicate archive name`);

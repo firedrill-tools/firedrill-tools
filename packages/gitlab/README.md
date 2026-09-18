@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-gitlab
+# @firedrill-tools/gitlab
 
 A synthetic **GitLab** instance for [Firedrill](https://firedrill.run): a documented subset of the GitLab REST API v4
 (`/api/v4`) plus the tool names of the GitLab MCP server, backed by Firedrill-owned state. Agents that manage
@@ -14,7 +14,7 @@ state. See [Browser app](#browser-app).
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-gitlab-0.1.1.tgz --install   # or an npm / Git spec
+firedrill tool add @firedrill-tools/gitlab --install
 firedrill serve
 ```
 

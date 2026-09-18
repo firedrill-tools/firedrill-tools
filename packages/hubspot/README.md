@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-hubspot
+# @firedrill-tools/hubspot
 
 A synthetic **HubSpot CRM portal** for [Firedrill](https://firedrill.run): one fictional account holding contacts,
 companies, deals, notes and tasks, exposed through a bounded subset of the HubSpot CRM v3 Objects, Search, Owners,
@@ -16,7 +16,7 @@ browser app; browse state through the REST routes, the MCP aliases or the Firedr
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-hubspot-0.1.1.tgz --install   # or the npm name once published
+firedrill tool add @firedrill-tools/hubspot --install
 firedrill serve --scenario baseline --no-open
 ```
 

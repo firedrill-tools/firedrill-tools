@@ -28,7 +28,12 @@ function parse(bytes, label) {
     const separator = release.lastIndexOf("@");
     const packageName = release.slice(0, separator);
     const version = release.slice(separator + 1);
-    if (!/^@firedrill-(?:community|tools)\/tool-[a-z0-9-]+$/.test(packageName) || !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version)) {
+    // These legacy names are immutable published-release facts. New package
+    // sources and catalogs use @firedrill-tools/<tool-id> exclusively.
+    const historicalPackage = /^@firedrill-community\/tool-[a-z0-9-]+$/.test(packageName)
+      || /^@firedrill-tools\/tool-[a-z0-9-]+$/.test(packageName);
+    const currentPackage = /^@firedrill-tools\/[a-z0-9][a-z0-9-]*$/.test(packageName);
+    if ((!historicalPackage && !currentPackage) || !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version)) {
       fail(`${label} contains invalid release identity ${release}`);
     }
     if (!record || typeof record !== "object" || Array.isArray(record)) fail(`${label} contains an invalid record for ${release}`);

@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-google-calendar
+# @firedrill-tools/google-calendar
 
 A synthetic **Google Calendar** for [Firedrill](https://firedrill.run) drills. It simulates Google Calendar for a small set
 of synthetic Google Workspace users behind a bounded subset of the **Calendar API v3** (`/calendar/v3/…`) and exposes the nine
@@ -7,13 +7,13 @@ secondary calendars, and sees other calendars through a calendar list with an ac
 exist in the same world are mirrored onto their calendars under the same event id, exactly as Google does; nothing leaves the
 world — no invitation e-mail, no real Meet room, no Google service is ever contacted.
 
-Tool id `google-calendar` · package version `0.1.0` · engine `>=0.1.0 <0.2.0` · Apache-2.0 · backend **and** a browser app
+Tool id `google-calendar` · package version `0.1.1` · engine `>=0.1.0 <0.2.0` · Apache-2.0 · backend **and** a browser app
 (a Google Calendar-shaped web client served by `firedrill serve`, see [Browser app](#browser-app)).
 
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-google-calendar-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/google-calendar --install
 firedrill serve
 ```
 

@@ -1,6 +1,6 @@
 # LinkedIn Tool for Firedrill
 
-`@firedrill-tools/tool-linkedin` simulates **one LinkedIn member's network** as seen by an application holding that member's
+`@firedrill-tools/linkedin` simulates **one LinkedIn member's network** as seen by an application holding that member's
 OAuth token: identity, posts, comments, reactions, social counts, the organization pages the member administers and the member's
 first-degree connections. It follows LinkedIn's versioned Community Management REST API under `/rest` and the older `/v2`
 consumer endpoints that many agents still call. Everything is synthetic: nothing is ever sent to LinkedIn, and "publishing" writes a row
@@ -12,7 +12,7 @@ profile activity, connections, company pages). It calls the same operations as a
 ## Install
 
 ```sh
-firedrill tool add /path/to/firedrill-tools-tool-linkedin-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/linkedin --install
 firedrill serve
 ```
 

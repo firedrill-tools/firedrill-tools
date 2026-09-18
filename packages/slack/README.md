@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-slack
+# @firedrill-tools/slack
 
 A synthetic **Slack workspace** for [Firedrill](https://firedrill.run) drills. It simulates one workspace behind a
 bounded subset of the **Slack Web API** (`/api/<method>`, the same paths, argument names, form encoding and response
@@ -7,12 +7,12 @@ It ships a **browser app that recreates the Slack desktop client** (see Browser 
 lives in the Firedrill world: posting a message stores a row that other members of the same synthetic workspace can read.
 No Slack service is ever contacted and no real workspace can be reached.
 
-Tool id `slack` · package version `0.1.0` · engine `>=0.1.0 <0.2.0` · Apache-2.0.
+Tool id `slack` · package version `0.1.1` · engine `>=0.1.0 <0.2.0` · Apache-2.0.
 
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-slack-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/slack --install
 firedrill serve
 ```
 

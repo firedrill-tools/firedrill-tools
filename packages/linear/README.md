@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-linear
+# @firedrill-tools/linear
 
 A synthetic **Linear workspace** for [Firedrill](https://firedrill.run): one organization with several teams exposed through a subset of the Linear GraphQL API (`POST /graphql`) and through the tool names of the official Linear MCP server. Agents that read and write issues, comments, projects and labels can run against it instead of a real workspace: Firedrill owns the state, the virtual clock, faults and the evidence; nothing here contacts Linear and no notification or webhook is ever sent.
 
@@ -7,7 +7,7 @@ Backend only (no bundled UI). Browse and edit the state with the Firedrill inspe
 ## Install
 
 ```sh
-firedrill tool add <path-or-name-of-this-package> --install
+firedrill tool add @firedrill-tools/linear --install
 firedrill serve
 ```
 

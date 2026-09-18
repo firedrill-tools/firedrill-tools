@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-gmail
+# @firedrill-tools/gmail
 
 A synthetic **Gmail** for [Firedrill](https://firedrill.run) drills. It simulates one Google Workspace mail account
 per actor behind a bounded subset of the **Gmail API v1** (`/gmail/v1/users/{userId}/…`), exposes the twelve tool names of
@@ -6,12 +6,12 @@ Google's published **Gmail MCP** contract as aliases, and ships a browser mail c
 and records. Everything lives in the Firedrill world: sending stores a `SENT` copy and delivers `INBOX` copies only to
 mailboxes that exist in the same world. No Google service is ever contacted and no real mailbox can be reached.
 
-Tool id `gmail` · package version `0.1.1` · engine `>=0.1.0 <0.2.0` · Apache-2.0.
+Tool id `gmail` · package version `0.1.2` · engine `>=0.1.0 <0.2.0` · Apache-2.0.
 
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-gmail-0.1.2.tgz --install
+firedrill tool add @firedrill-tools/gmail --install
 firedrill serve
 ```
 
