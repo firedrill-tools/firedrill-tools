@@ -28,7 +28,9 @@ function runtime(states, result) {
         assert.ok(registryStates.length, "unexpected registry lookup");
         const state = registryStates.shift();
         if (state instanceof Error) throw state;
-        return state;
+        return state.state === "matching" && !("tagVersion" in state)
+          ? { ...state, tagVersion: item.version }
+          : state;
       },
       publish: () => {
         publishCalls += 1;
@@ -65,6 +67,19 @@ test("a matching preflight makes a resumed batch skip without writing", async ()
   assert.equal(harness.publishCalls(), 0);
 });
 
+test("matching bytes with the wrong dist-tag stop without writing", async () => {
+  const harness = runtime(
+    [{ state: "matching", integrity: item.integrity, tagVersion: "0.9.0" }],
+    { status: 0, stdout: "", stderr: "" },
+  );
+
+  await assert.rejects(
+    publishOne(item, options, harness.instance),
+    /latest points to 0\.9\.0; reconcile the dist-tag explicitly/,
+  );
+  assert.equal(harness.publishCalls(), 0);
+});
+
 test("a successful publish writes once and verifies matching registry bytes", async () => {
   const harness = runtime([{ state: "missing" }, { state: "matching", integrity: item.integrity }], {
     status: 0,
@@ -73,6 +88,24 @@ test("a successful publish writes once and verifies matching registry bytes", as
   });
 
   assert.equal(await publishOne(item, options, harness.instance), "published");
+  assert.equal(harness.publishCalls(), 1);
+});
+
+test("a successful publish waits for its dist-tag and fails without repairing it", async () => {
+  const states = [
+    { state: "missing" },
+    ...Array.from({ length: 8 }, () => ({
+      state: "matching",
+      integrity: item.integrity,
+      tagVersion: undefined,
+    })),
+  ];
+  const harness = runtime(states, { status: 0, stdout: "+ ok", stderr: "" });
+
+  await assert.rejects(
+    publishOne(item, options, harness.instance),
+    /accepted with matching bytes, but latest points to no version; no automatic dist-tag write was attempted/,
+  );
   assert.equal(harness.publishCalls(), 1);
 });
 
@@ -88,7 +121,7 @@ test("an accepted upload is recorded and the batch continues to the next package
     { state: "missing" },
     ...Array.from({ length: 8 }, () => ({ state: "missing" })),
     { state: "missing" },
-    { state: "matching", integrity: secondItem.integrity },
+    { state: "matching", integrity: secondItem.integrity, tagVersion: secondItem.version },
   ];
   let publishCalls = 0;
   const summary = { results: [] };
@@ -125,6 +158,22 @@ test("a failed client response reconciles matching remote bytes without retrying
   assert.equal(harness.publishCalls(), 1);
 });
 
+test("a failed client response never repairs a missing dist-tag automatically", async () => {
+  const harness = runtime(
+    [
+      { state: "missing" },
+      { state: "matching", integrity: item.integrity, tagVersion: undefined },
+    ],
+    { status: 1, stdout: "", stderr: "npm error network response was interrupted" },
+  );
+
+  await assert.rejects(
+    publishOne(item, options, harness.instance),
+    /committed with matching bytes, but latest points to no version; no automatic dist-tag write was attempted/,
+  );
+  assert.equal(harness.publishCalls(), 1);
+});
+
 test("a process error still reconciles matching remote bytes without retrying", async () => {
   const harness = runtime([{ state: "missing" }, { state: "matching", integrity: item.integrity }], {
     error: new Error("spawn npm EPIPE"),
@@ -139,7 +188,10 @@ test("a process error still reconciles matching remote bytes without retrying", 
 
 test("a thrown process failure still reconciles matching remote bytes without retrying", async () => {
   let publishCalls = 0;
-  const states = [{ state: "missing" }, { state: "matching", integrity: item.integrity }];
+  const states = [
+    { state: "missing" },
+    { state: "matching", integrity: item.integrity, tagVersion: item.version },
+  ];
   const harness = {
     registryState: async () => states.shift(),
     publish: () => {

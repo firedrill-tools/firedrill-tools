@@ -165,6 +165,11 @@ function registryVersionUrl(registry, name, version) {
   return new URL(`${encodeURIComponent(name)}/${encodeURIComponent(version)}`, base);
 }
 
+function registryPackageUrl(registry, name) {
+  const base = new URL(registry.endsWith("/") ? registry : `${registry}/`);
+  return new URL(encodeURIComponent(name), base);
+}
+
 function retryDelay(response, attempt) {
   const retryAfter = response?.headers?.get("retry-after");
   if (retryAfter && /^\d+$/.test(retryAfter)) return Math.min(Number(retryAfter) * 1_000, 300_000);
@@ -175,8 +180,9 @@ async function pause(milliseconds) {
   if (milliseconds > 0) await new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
 }
 
-async function registryState(registry, item, attempts = 5) {
+async function registryState(registry, item, tag, attempts = 5) {
   const url = registryVersionUrl(registry, item.name, item.version);
+  const packageUrl = registryPackageUrl(registry, item.name);
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     let response;
     try {
@@ -202,9 +208,37 @@ async function registryState(registry, item, attempts = 5) {
     const body = await response.json();
     const integrity = body?.dist?.integrity;
     if (typeof integrity !== "string" || !integrity) fail(`registry metadata for ${item.release} has no integrity`);
-    return integrity === item.integrity
-      ? { state: "matching", integrity }
-      : { state: "mismatch", integrity };
+    if (integrity !== item.integrity) return { state: "mismatch", integrity };
+
+    let packageResponse;
+    try {
+      packageResponse = await fetch(packageUrl, {
+        headers: { Accept: "application/json" },
+        redirect: "error",
+        signal: AbortSignal.timeout(30_000),
+      });
+    } catch (error) {
+      if (attempt === attempts) {
+        fail(
+          `registry dist-tag lookup for ${item.release} failed: ` +
+            `${error instanceof Error ? error.message : String(error)}`,
+        );
+      }
+      await pause(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
+      continue;
+    }
+    if (packageResponse.status === 429 || packageResponse.status >= 500) {
+      if (attempt === attempts) {
+        fail(`registry dist-tag lookup for ${item.release} failed with HTTP ${packageResponse.status}`);
+      }
+      await pause(retryDelay(packageResponse, attempt));
+      continue;
+    }
+    if (!packageResponse.ok) {
+      fail(`registry dist-tag lookup for ${item.release} failed with HTTP ${packageResponse.status}`);
+    }
+    const packageBody = await packageResponse.json();
+    return { state: "matching", integrity, tagVersion: packageBody?.["dist-tags"]?.[tag] };
   }
   fail(`registry lookup for ${item.release} exhausted its attempts`);
 }
@@ -260,15 +294,21 @@ function safeRerunGuidance(item) {
 }
 
 const defaultRuntime = {
-  registryState: (item) => registryState(DEFAULT_REGISTRY, item),
+  registryState: (item, tag) => registryState(DEFAULT_REGISTRY, item, tag),
   publish: runNpmPublish,
   pause,
   log: (message) => process.stdout.write(message),
 };
 
 export async function publishOne(item, options, runtime = defaultRuntime) {
-  const initial = await runtime.registryState(item);
+  const initial = await runtime.registryState(item, options.tag);
   if (initial.state === "matching") {
+    if (initial.tagVersion !== item.version) {
+      fail(
+        `${item.release} has matching registry bytes, but ${options.tag} points to ` +
+          `${initial.tagVersion ?? "no version"}; reconcile the dist-tag explicitly before resuming`,
+      );
+    }
     runtime.log(`skip ${item.release}: registry integrity already matches\n`);
     return "skipped";
   }
@@ -293,19 +333,31 @@ export async function publishOne(item, options, runtime = defaultRuntime) {
     };
   }
   if (!result.error && result.status === 0) {
+    let matchingBytesObserved = false;
+    let observedTagVersion;
     for (let lookup = 1; lookup <= 8; lookup += 1) {
       let state;
       try {
-        state = await runtime.registryState(item);
+        state = await runtime.registryState(item, options.tag);
       } catch (error) {
         fail(
           `${item.release} was accepted by npm, but registry reconciliation failed: ` +
             `${error instanceof Error ? error.message : String(error)}\n${safeRerunGuidance(item)}`,
         );
       }
-      if (state.state === "matching") return "published";
+      if (state.state === "matching") {
+        matchingBytesObserved = true;
+        observedTagVersion = state.tagVersion;
+        if (state.tagVersion === item.version) return "published";
+      }
       if (state.state === "mismatch") fail(`${item.release} appeared with different bytes after publishing`);
       if (lookup < 8) await runtime.pause(Math.min(lookup * 2_000, 10_000));
+    }
+    if (matchingBytesObserved) {
+      fail(
+        `${item.release} was accepted with matching bytes, but ${options.tag} points to ` +
+          `${observedTagVersion ?? "no version"}; no automatic dist-tag write was attempted`,
+      );
     }
     runtime.log(
       `accepted ${item.release}: npm acknowledged the upload, but exact registry bytes are not readable yet; ` +
@@ -319,7 +371,7 @@ export async function publishOne(item, options, runtime = defaultRuntime) {
   // write from this process.
   let state;
   try {
-    state = await runtime.registryState(item);
+    state = await runtime.registryState(item, options.tag);
   } catch (error) {
     fail(
       `${item.release} publish returned an error and registry reconciliation failed: ` +
@@ -328,6 +380,12 @@ export async function publishOne(item, options, runtime = defaultRuntime) {
     );
   }
   if (state.state === "matching") {
+    if (state.tagVersion !== item.version) {
+      fail(
+        `${item.release} was committed with matching bytes, but ${options.tag} points to ` +
+          `${state.tagVersion ?? "no version"}; no automatic dist-tag write was attempted`,
+      );
+    }
     runtime.log(`reconciled ${item.release}: npm committed matching bytes despite the client error\n`);
     return "reconciled";
   }
