@@ -3,12 +3,12 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { isAbsolute, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const DEFAULT_REGISTRY = "https://registry.npmjs.org";
 const MAX_BATCH_SIZE = 10;
 const DEFAULT_BATCH_SIZE = 8;
 const DEFAULT_DELAY_MS = 30_000;
-const DEFAULT_ATTEMPTS = 8;
 
 function fail(message) {
   throw new Error(message);
@@ -38,7 +38,7 @@ function arguments_() {
     fail(
       "usage: node tooling/publish-packages.mjs --catalog-dir <directory> " +
         "[--offset <n>] [--limit <1-10>] [--tag <tag>] [--delay-ms <n>] " +
-        "[--max-attempts <n>] [--summary <path>] [--dry-run] [--no-provenance]",
+        "[--summary <path>] [--dry-run] [--no-provenance]",
     );
   }
   const knownWithValues = new Set([
@@ -47,7 +47,6 @@ function arguments_() {
     "--limit",
     "--tag",
     "--delay-ms",
-    "--max-attempts",
     "--summary",
   ]);
   const knownFlags = new Set(["--dry-run", "--no-provenance"]);
@@ -70,7 +69,6 @@ function arguments_() {
     offset: integerOption("--offset", 0, { minimum: 0, maximum: 10_000 }),
     limit: integerOption("--limit", DEFAULT_BATCH_SIZE, { minimum: 1, maximum: MAX_BATCH_SIZE }),
     delayMs: integerOption("--delay-ms", DEFAULT_DELAY_MS, { minimum: 0, maximum: 300_000 }),
-    maxAttempts: integerOption("--max-attempts", DEFAULT_ATTEMPTS, { minimum: 1, maximum: 20 }),
     tag,
     summary: summary ? resolve(process.cwd(), summary) : undefined,
     dryRun: process.argv.includes("--dry-run"),
@@ -211,7 +209,7 @@ async function registryState(registry, item, attempts = 5) {
   fail(`registry lookup for ${item.release} exhausted its attempts`);
 }
 
-function publish(item, options) {
+export function runNpmPublish(item, options, spawn = spawnSync) {
   const args = [
     "publish",
     item.archivePath,
@@ -222,9 +220,10 @@ function publish(item, options) {
     options.tag,
     "--registry",
     DEFAULT_REGISTRY,
+    "--fetch-retries=0",
   ];
   if (options.provenance) args.push("--provenance");
-  return spawnSync("npm", args, {
+  return spawn("npm", args, {
     encoding: "utf8",
     stdio: ["ignore", "pipe", "pipe"],
     env: {
@@ -238,56 +237,113 @@ function publish(item, options) {
 }
 
 function publishWasThrottled(result) {
-  return /(?:E429|429 Too Many Requests|rate limit)/i.test(`${result.stdout ?? ""}\n${result.stderr ?? ""}`);
+  const processError = result.error instanceof Error ? result.error.message : "";
+  return /(?:E429|429 Too Many Requests|rate limit)/i.test(
+    `${processError}\n${result.stdout ?? ""}\n${result.stderr ?? ""}`,
+  );
 }
 
 function safeFailureOutput(result) {
-  const output = `${result.stderr || result.stdout || "npm publish failed without output"}`.trim();
+  const error = result.error instanceof Error ? `npm process error: ${result.error.message}` : "";
+  const output = `${error}\n${result.stderr || result.stdout || "npm publish failed without output"}`.trim();
   return output
     .split("\n")
     .filter((line) => !/(?:_authToken|npm_[A-Za-z0-9]{20,})/i.test(line))
     .join("\n");
 }
 
-async function publishOne(item, options) {
-  const initial = await registryState(DEFAULT_REGISTRY, item);
+function safeRerunGuidance(item) {
+  return (
+    `No second publish was attempted for ${item.release}. ` +
+    "Rerun the same batch when it is safe; registry preflight will skip the version if npm committed it."
+  );
+}
+
+const defaultRuntime = {
+  registryState: (item) => registryState(DEFAULT_REGISTRY, item),
+  publish: runNpmPublish,
+  pause,
+  log: (message) => process.stdout.write(message),
+};
+
+export async function publishOne(item, options, runtime = defaultRuntime) {
+  const initial = await runtime.registryState(item);
   if (initial.state === "matching") {
-    process.stdout.write(`skip ${item.release}: registry integrity already matches\n`);
+    runtime.log(`skip ${item.release}: registry integrity already matches\n`);
     return "skipped";
   }
   if (initial.state === "mismatch") {
     fail(`${item.release} already exists with different bytes; versions are immutable`);
   }
   if (options.dryRun) {
-    process.stdout.write(`would publish ${item.release} (${item.archive})\n`);
+    runtime.log(`would publish ${item.release} (${item.archive})\n`);
     return "planned";
   }
-  for (let attempt = 1; attempt <= options.maxAttempts; attempt += 1) {
-    process.stdout.write(`publish ${item.release} (attempt ${attempt}/${options.maxAttempts})\n`);
-    const result = publish(item, options);
-    if (result.error) throw result.error;
-    if (result.status === 0) {
-      for (let lookup = 1; lookup <= 8; lookup += 1) {
-        const state = await registryState(DEFAULT_REGISTRY, item);
-        if (state.state === "matching") return "published";
-        if (state.state === "mismatch") fail(`${item.release} appeared with different bytes after publishing`);
-        await pause(Math.min(lookup * 2_000, 10_000));
-      }
-      fail(`${item.release} was accepted by npm but did not become readable with matching integrity`);
-    }
 
-    // A failed client may still have committed the upload. Query before any retry.
-    const state = await registryState(DEFAULT_REGISTRY, item);
-    if (state.state === "matching") return "published";
-    if (state.state === "mismatch") fail(`${item.release} appeared with different bytes after a failed publish`);
-    if (!publishWasThrottled(result) || attempt === options.maxAttempts) {
-      fail(`${item.release} publish failed\n${safeFailureOutput(result)}`);
-    }
-    const delay = Math.min(60_000 * attempt, 300_000);
-    process.stdout.write(`npm throttled ${item.release}; rechecked absence, waiting ${delay / 1_000}s\n`);
-    await pause(delay);
+  runtime.log(`publish ${item.release} (single write attempt)\n`);
+  let result;
+  try {
+    result = runtime.publish(item, options);
+  } catch (error) {
+    result = {
+      error: error instanceof Error ? error : new Error(String(error)),
+      status: null,
+      stdout: "",
+      stderr: "",
+    };
   }
-  fail(`${item.release} exhausted its publish attempts`);
+  if (!result.error && result.status === 0) {
+    for (let lookup = 1; lookup <= 8; lookup += 1) {
+      let state;
+      try {
+        state = await runtime.registryState(item);
+      } catch (error) {
+        fail(
+          `${item.release} was accepted by npm, but registry reconciliation failed: ` +
+            `${error instanceof Error ? error.message : String(error)}\n${safeRerunGuidance(item)}`,
+        );
+      }
+      if (state.state === "matching") return "published";
+      if (state.state === "mismatch") fail(`${item.release} appeared with different bytes after publishing`);
+      if (lookup < 8) await runtime.pause(Math.min(lookup * 2_000, 10_000));
+    }
+    fail(
+      `${item.release} was accepted by npm but did not become readable with matching integrity.\n` +
+        safeRerunGuidance(item),
+    );
+  }
+
+  // npm can commit an upload even when its client returns an error. Reconcile
+  // the immutable version before reporting failure, and never issue a second
+  // write from this process.
+  let state;
+  try {
+    state = await runtime.registryState(item);
+  } catch (error) {
+    fail(
+      `${item.release} publish returned an error and registry reconciliation failed: ` +
+        `${error instanceof Error ? error.message : String(error)}\n` +
+        `${safeFailureOutput(result)}\n${safeRerunGuidance(item)}`,
+    );
+  }
+  if (state.state === "matching") {
+    runtime.log(`reconciled ${item.release}: npm committed matching bytes despite the client error\n`);
+    return "reconciled";
+  }
+  if (state.state === "mismatch") {
+    fail(`${item.release} appeared with different bytes after a failed publish; versions are immutable`);
+  }
+  if (publishWasThrottled(result)) {
+    fail(
+      `${item.release} was rate-limited and registry reconciliation confirms the version is absent.\n` +
+        `${safeFailureOutput(result)}\nNo second publish was attempted. ` +
+        "Rerun the same batch after npm's cooldown; registry preflight makes the rerun safe.",
+    );
+  }
+  fail(
+    `${item.release} publish failed and registry reconciliation confirms the version is absent.\n` +
+      `${safeFailureOutput(result)}\n${safeRerunGuidance(item)}`,
+  );
 }
 
 function writeSummary(path, summary) {
@@ -295,47 +351,51 @@ function writeSummary(path, summary) {
   writeFileSync(path, `${JSON.stringify(summary, null, 2)}\n`, { flag: "wx" });
 }
 
-let options;
-let summary;
-try {
-  options = arguments_();
-  const { catalog, publishable } = validateCatalog(options.catalogDirectory);
-  const selected = publishable.slice(options.offset, options.offset + options.limit);
-  if (!selected.length) fail(`batch offset ${options.offset} is past the ${publishable.length} publishable packages`);
-  summary = {
-    schemaVersion: 1,
-    sourceRevision: catalog.sourceRevision,
-    dryRun: options.dryRun,
-    offset: options.offset,
-    limit: options.limit,
-    selected: selected.map((item) => item.release),
-    results: [],
-  };
-  process.stdout.write(
-    `${options.dryRun ? "checking" : "publishing"} ${selected.length} of ${publishable.length} packages ` +
-      `(offset ${options.offset}, max batch ${MAX_BATCH_SIZE})\n`,
-  );
-  for (let index = 0; index < selected.length; index += 1) {
-    const item = selected[index];
-    const outcome = await publishOne(item, options);
-    summary.results.push({ release: item.release, integrity: item.integrity, outcome });
-    if (!options.dryRun && index < selected.length - 1) await pause(options.delayMs);
-  }
-  writeSummary(options.summary, summary);
-  process.stdout.write(
-    `${options.dryRun ? "checked" : "completed"} batch ${options.offset}-${options.offset + selected.length - 1}\n`,
-  );
-} catch (error) {
-  if (options?.summary && summary) {
-    try {
-      writeSummary(options.summary, {
-        ...summary,
-        error: error instanceof Error ? error.message : String(error),
-      });
-    } catch {
-      // The original failure is authoritative; a summary must never mask it.
+async function main() {
+  let options;
+  let summary;
+  try {
+    options = arguments_();
+    const { catalog, publishable } = validateCatalog(options.catalogDirectory);
+    const selected = publishable.slice(options.offset, options.offset + options.limit);
+    if (!selected.length) fail(`batch offset ${options.offset} is past the ${publishable.length} publishable packages`);
+    summary = {
+      schemaVersion: 1,
+      sourceRevision: catalog.sourceRevision,
+      dryRun: options.dryRun,
+      offset: options.offset,
+      limit: options.limit,
+      selected: selected.map((item) => item.release),
+      results: [],
+    };
+    process.stdout.write(
+      `${options.dryRun ? "checking" : "publishing"} ${selected.length} of ${publishable.length} packages ` +
+        `(offset ${options.offset}, max batch ${MAX_BATCH_SIZE})\n`,
+    );
+    for (let index = 0; index < selected.length; index += 1) {
+      const item = selected[index];
+      const outcome = await publishOne(item, options);
+      summary.results.push({ release: item.release, integrity: item.integrity, outcome });
+      if (!options.dryRun && index < selected.length - 1) await pause(options.delayMs);
     }
+    writeSummary(options.summary, summary);
+    process.stdout.write(
+      `${options.dryRun ? "checked" : "completed"} batch ${options.offset}-${options.offset + selected.length - 1}\n`,
+    );
+  } catch (error) {
+    if (options?.summary && summary) {
+      try {
+        writeSummary(options.summary, {
+          ...summary,
+          error: error instanceof Error ? error.message : String(error),
+        });
+      } catch {
+        // The original failure is authoritative; a summary must never mask it.
+      }
+    }
+    process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+    process.exitCode = 1;
   }
-  process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
-  process.exitCode = 1;
 }
+
+if (fileURLToPath(import.meta.url) === resolve(process.argv[1] ?? "")) await main();
