@@ -13,11 +13,7 @@
     "onlyBuiltDependencies": [
       "better-sqlite3",
       "esbuild"
-    ],
-    "overrides": {
-      "@firedrill-run/cli@0.1.0-rc.1": "npm:@firedrill-tools/cli@0.1.0-rc.1",
-      "@firedrill-run/tool-sdk@0.1.0-rc.1": "npm:@firedrill-tools/tool-sdk@0.1.0-rc.1"
-    }
+    ]
   },
   "scripts": {
     "check": "pnpm portability:check && pnpm release:publish:test && pnpm validate && pnpm test",
