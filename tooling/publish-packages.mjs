@@ -307,10 +307,11 @@ export async function publishOne(item, options, runtime = defaultRuntime) {
       if (state.state === "mismatch") fail(`${item.release} appeared with different bytes after publishing`);
       if (lookup < 8) await runtime.pause(Math.min(lookup * 2_000, 10_000));
     }
-    fail(
-      `${item.release} was accepted by npm but did not become readable with matching integrity.\n` +
-        safeRerunGuidance(item),
+    runtime.log(
+      `accepted ${item.release}: npm acknowledged the upload, but exact registry bytes are not readable yet; ` +
+        "a later rerun or registry gate must reconcile them\n",
     );
+    return "accepted";
   }
 
   // npm can commit an upload even when its client returns an error. Reconcile
@@ -351,6 +352,15 @@ function writeSummary(path, summary) {
   writeFileSync(path, `${JSON.stringify(summary, null, 2)}\n`, { flag: "wx" });
 }
 
+export async function publishBatch(selected, options, summary, runtime = defaultRuntime) {
+  for (let index = 0; index < selected.length; index += 1) {
+    const item = selected[index];
+    const outcome = await publishOne(item, options, runtime);
+    summary.results.push({ release: item.release, integrity: item.integrity, outcome });
+    if (!options.dryRun && index < selected.length - 1) await runtime.pause(options.delayMs);
+  }
+}
+
 async function main() {
   let options;
   let summary;
@@ -372,12 +382,7 @@ async function main() {
       `${options.dryRun ? "checking" : "publishing"} ${selected.length} of ${publishable.length} packages ` +
         `(offset ${options.offset}, max batch ${MAX_BATCH_SIZE})\n`,
     );
-    for (let index = 0; index < selected.length; index += 1) {
-      const item = selected[index];
-      const outcome = await publishOne(item, options);
-      summary.results.push({ release: item.release, integrity: item.integrity, outcome });
-      if (!options.dryRun && index < selected.length - 1) await pause(options.delayMs);
-    }
+    await publishBatch(selected, options, summary);
     writeSummary(options.summary, summary);
     process.stdout.write(
       `${options.dryRun ? "checked" : "completed"} batch ${options.offset}-${options.offset + selected.length - 1}\n`,

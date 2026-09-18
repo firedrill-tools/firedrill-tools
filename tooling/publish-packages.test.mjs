@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { publishOne, runNpmPublish } from "./publish-packages.mjs";
+import { publishBatch, publishOne, runNpmPublish } from "./publish-packages.mjs";
 
 const item = {
   archive: "firedrill-tools-tool-example-1.0.0.tgz",
@@ -13,6 +13,7 @@ const item = {
 };
 
 const options = {
+  delayMs: 0,
   dryRun: false,
   provenance: false,
   tag: "latest",
@@ -73,6 +74,44 @@ test("a successful publish writes once and verifies matching registry bytes", as
 
   assert.equal(await publishOne(item, options, harness.instance), "published");
   assert.equal(harness.publishCalls(), 1);
+});
+
+test("an accepted upload is recorded and the batch continues to the next package", async () => {
+  const secondItem = {
+    ...item,
+    archive: "firedrill-tools-tool-second-1.0.0.tgz",
+    archivePath: "/tmp/firedrill-tools-tool-second-1.0.0.tgz",
+    name: "@firedrill-tools/tool-second",
+    release: "@firedrill-tools/tool-second@1.0.0",
+  };
+  const states = [
+    { state: "missing" },
+    ...Array.from({ length: 8 }, () => ({ state: "missing" })),
+    { state: "missing" },
+    { state: "matching", integrity: secondItem.integrity },
+  ];
+  let publishCalls = 0;
+  const summary = { results: [] };
+  const harness = {
+    registryState: async () => {
+      assert.ok(states.length, "unexpected registry lookup");
+      return states.shift();
+    },
+    publish: () => {
+      publishCalls += 1;
+      return { status: 0, stdout: "+ ok", stderr: "" };
+    },
+    pause: async () => {},
+    log: () => {},
+  };
+
+  await publishBatch([item, secondItem], options, summary, harness);
+
+  assert.equal(publishCalls, 2);
+  assert.deepEqual(summary.results, [
+    { release: item.release, integrity: item.integrity, outcome: "accepted" },
+    { release: secondItem.release, integrity: secondItem.integrity, outcome: "published" },
+  ]);
 });
 
 test("a failed client response reconciles matching remote bytes without retrying", async () => {
