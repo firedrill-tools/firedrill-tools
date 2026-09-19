@@ -188,13 +188,16 @@ async function pause(milliseconds) {
   if (milliseconds > 0) await new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
 }
 
-async function registryState(registry, item, tag, attempts = 5) {
+export async function registryState(registry, item, tag, runtime = {}) {
+  const attempts = runtime.attempts ?? 5;
+  const fetchRegistry = runtime.fetch ?? fetch;
+  const pauseRegistry = runtime.pause ?? pause;
   const url = registryVersionUrl(registry, item.name, item.version);
   const packageUrl = registryPackageUrl(registry, item.name);
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     let response;
     try {
-      response = await fetch(url, {
+      response = await fetchRegistry(url, {
         headers: { Accept: "application/json" },
         redirect: "error",
         signal: AbortSignal.timeout(30_000),
@@ -203,13 +206,13 @@ async function registryState(registry, item, tag, attempts = 5) {
       if (attempt === attempts) {
         fail(`registry lookup for ${item.release} failed: ${error instanceof Error ? error.message : String(error)}`);
       }
-      await pause(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
+      await pauseRegistry(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
       continue;
     }
     if (response.status === 404) return { state: "missing" };
     if (response.status === 429 || response.status >= 500) {
       if (attempt === attempts) fail(`registry lookup for ${item.release} failed with HTTP ${response.status}`);
-      await pause(retryDelay(response, attempt));
+      await pauseRegistry(retryDelay(response, attempt));
       continue;
     }
     if (!response.ok) fail(`registry lookup for ${item.release} failed with HTTP ${response.status}`);
@@ -220,7 +223,7 @@ async function registryState(registry, item, tag, attempts = 5) {
 
     let packageResponse;
     try {
-      packageResponse = await fetch(packageUrl, {
+      packageResponse = await fetchRegistry(packageUrl, {
         headers: { Accept: "application/json" },
         redirect: "error",
         signal: AbortSignal.timeout(30_000),
@@ -232,14 +235,21 @@ async function registryState(registry, item, tag, attempts = 5) {
             `${error instanceof Error ? error.message : String(error)}`,
         );
       }
-      await pause(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
+      await pauseRegistry(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
+      continue;
+    }
+    if (packageResponse.status === 404) {
+      if (attempt === attempts) {
+        fail(`registry dist-tag lookup for ${item.release} failed with HTTP ${packageResponse.status}`);
+      }
+      await pauseRegistry(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
       continue;
     }
     if (packageResponse.status === 429 || packageResponse.status >= 500) {
       if (attempt === attempts) {
         fail(`registry dist-tag lookup for ${item.release} failed with HTTP ${packageResponse.status}`);
       }
-      await pause(retryDelay(packageResponse, attempt));
+      await pauseRegistry(retryDelay(packageResponse, attempt));
       continue;
     }
     if (!packageResponse.ok) {

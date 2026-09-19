@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { publishBatch, publishOne, runNpmPublish } from "./publish-packages.mjs";
+import { publishBatch, publishOne, registryState, runNpmPublish } from "./publish-packages.mjs";
 
 const item = {
   archive: "firedrill-tools-example-1.0.0.tgz",
@@ -54,6 +54,35 @@ test("runNpmPublish disables npm's internal fetch retries", () => {
   assert.equal(invocation.command, "npm");
   assert.ok(invocation.args.includes("--fetch-retries=0"));
   assert.equal(invocation.spawnOptions.env.NPM_CONFIG_FETCH_RETRIES, "0");
+});
+
+test("registry reconciliation waits for package metadata after version metadata is visible", async () => {
+  const responses = [
+    new Response(JSON.stringify({ dist: { integrity: item.integrity } }), { status: 200 }),
+    new Response("not propagated", { status: 404 }),
+    new Response(JSON.stringify({ dist: { integrity: item.integrity } }), { status: 200 }),
+    new Response(JSON.stringify({ "dist-tags": { latest: item.version } }), { status: 200 }),
+  ];
+  let pauses = 0;
+
+  const state = await registryState("https://registry.npmjs.org", item, "latest", {
+    attempts: 2,
+    fetch: async () => {
+      assert.ok(responses.length, "unexpected registry fetch");
+      return responses.shift();
+    },
+    pause: async () => {
+      pauses += 1;
+    },
+  });
+
+  assert.deepEqual(state, {
+    state: "matching",
+    integrity: item.integrity,
+    tagVersion: item.version,
+  });
+  assert.equal(pauses, 1);
+  assert.equal(responses.length, 0);
 });
 
 test("a matching preflight makes a resumed batch skip without writing", async () => {
