@@ -56,12 +56,10 @@ test("runNpmPublish disables npm's internal fetch retries", () => {
   assert.equal(invocation.spawnOptions.env.NPM_CONFIG_FETCH_RETRIES, "0");
 });
 
-test("registry reconciliation waits for package metadata after version metadata is visible", async () => {
+test("registry reconciliation reports pending tag metadata once exact version bytes are visible", async () => {
   const responses = [
     new Response(JSON.stringify({ dist: { integrity: item.integrity } }), { status: 200 }),
     new Response("not propagated", { status: 404 }),
-    new Response(JSON.stringify({ dist: { integrity: item.integrity } }), { status: 200 }),
-    new Response(JSON.stringify({ "dist-tags": { latest: item.version } }), { status: 200 }),
   ];
   let pauses = 0;
 
@@ -79,35 +77,11 @@ test("registry reconciliation waits for package metadata after version metadata 
   assert.deepEqual(state, {
     state: "matching",
     integrity: item.integrity,
-    tagVersion: item.version,
-  });
-  assert.equal(pauses, 1);
-  assert.equal(responses.length, 0);
-});
-
-test("registry reconciliation preserves matching bytes while dist-tag metadata propagates", async () => {
-  const responses = [
-    new Response(JSON.stringify({ dist: { integrity: item.integrity } }), { status: 200 }),
-    new Response("not propagated", { status: 404 }),
-    new Response(JSON.stringify({ dist: { integrity: item.integrity } }), { status: 200 }),
-    new Response("not propagated", { status: 404 }),
-  ];
-
-  const state = await registryState("https://registry.npmjs.org", item, "latest", {
-    attempts: 2,
-    fetch: async () => {
-      assert.ok(responses.length, "unexpected registry fetch");
-      return responses.shift();
-    },
-    pause: async () => {},
-  });
-
-  assert.deepEqual(state, {
-    state: "matching",
-    integrity: item.integrity,
     tagVersion: undefined,
     tagPending: true,
   });
+  assert.equal(pauses, 0);
+  assert.equal(responses.length, 0);
 });
 
 test("a matching preflight makes a resumed batch skip without writing", async () => {
