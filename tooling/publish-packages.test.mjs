@@ -85,6 +85,31 @@ test("registry reconciliation waits for package metadata after version metadata 
   assert.equal(responses.length, 0);
 });
 
+test("registry reconciliation preserves matching bytes while dist-tag metadata propagates", async () => {
+  const responses = [
+    new Response(JSON.stringify({ dist: { integrity: item.integrity } }), { status: 200 }),
+    new Response("not propagated", { status: 404 }),
+    new Response(JSON.stringify({ dist: { integrity: item.integrity } }), { status: 200 }),
+    new Response("not propagated", { status: 404 }),
+  ];
+
+  const state = await registryState("https://registry.npmjs.org", item, "latest", {
+    attempts: 2,
+    fetch: async () => {
+      assert.ok(responses.length, "unexpected registry fetch");
+      return responses.shift();
+    },
+    pause: async () => {},
+  });
+
+  assert.deepEqual(state, {
+    state: "matching",
+    integrity: item.integrity,
+    tagVersion: undefined,
+    tagPending: true,
+  });
+});
+
 test("a matching preflight makes a resumed batch skip without writing", async () => {
   const harness = runtime([{ state: "matching", integrity: item.integrity }], {
     status: 0,
@@ -109,6 +134,16 @@ test("matching bytes with the wrong dist-tag stop without writing", async () => 
   assert.equal(harness.publishCalls(), 0);
 });
 
+test("matching bytes with pending dist-tag metadata skip without writing", async () => {
+  const harness = runtime(
+    [{ state: "matching", integrity: item.integrity, tagVersion: undefined, tagPending: true }],
+    { status: 0, stdout: "", stderr: "" },
+  );
+
+  assert.equal(await publishOne(item, options, harness.instance), "skipped-pending-tag");
+  assert.equal(harness.publishCalls(), 0);
+});
+
 test("a successful publish writes once and verifies matching registry bytes", async () => {
   const harness = runtime([{ state: "missing" }, { state: "matching", integrity: item.integrity }], {
     status: 0,
@@ -120,21 +155,19 @@ test("a successful publish writes once and verifies matching registry bytes", as
   assert.equal(harness.publishCalls(), 1);
 });
 
-test("a successful publish waits for its dist-tag and fails without repairing it", async () => {
+test("a successful publish records pending dist-tag propagation without a second write", async () => {
   const states = [
     { state: "missing" },
     ...Array.from({ length: 8 }, () => ({
       state: "matching",
       integrity: item.integrity,
       tagVersion: undefined,
+      tagPending: true,
     })),
   ];
   const harness = runtime(states, { status: 0, stdout: "+ ok", stderr: "" });
 
-  await assert.rejects(
-    publishOne(item, options, harness.instance),
-    /accepted with matching bytes, but latest points to no version; no automatic dist-tag write was attempted/,
-  );
+  assert.equal(await publishOne(item, options, harness.instance), "accepted-pending-tag");
   assert.equal(harness.publishCalls(), 1);
 });
 
