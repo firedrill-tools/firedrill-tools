@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-quickbooks
+# @firedrill-tools/quickbooks
 
 A synthetic **QuickBooks Online** Tool for [Firedrill](https://firedrill.run): one fictional company (realm) exposed through a
 subset of the QuickBooks Online Accounting API v3 (`/v3/company/{realmId}/…`) and through MCP tool names used by QuickBooks MCP
@@ -10,7 +10,7 @@ Version `0.1.1`, engine `>=0.1.0 <0.2.0`, licence Apache-2.0. The package also s
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-quickbooks-0.1.2.tgz --install
+firedrill tool add @firedrill-tools/quickbooks --install
 ```
 
 `firedrill tool add` seeds the starter company from `starter.json` (virtual time 2026-09-15T09:00:00Z, 02:00 company time).

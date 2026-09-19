@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-salesforce
+# @firedrill-tools/salesforce
 
 A synthetic **Salesforce org** for [Firedrill](https://firedrill.run): one org exposed through the subset of the Salesforce Platform REST API that agents actually use — sObject rows (`/services/data/vXX.X/sobjects/…`), upsert by external id, SOQL `query`/`queryAll` with query locators, parameterized search, sObject Collections, the Composite resource, `limits`, describe, the OpenID Connect `userinfo` endpoint — plus the two data-facing tool names of Salesforce's DX MCP server (`run_soql_query`, `get_username`). Agents that read and write Accounts, Contacts, Leads, Opportunities and Tasks can run against it instead of a real org: Firedrill owns the state, the virtual clock, faults and the evidence; nothing here contacts Salesforce and no e-mail, Chatter post, workflow or trigger ever runs.
 
@@ -7,7 +7,7 @@ Backend only (no bundled UI). Browse and edit the state with the Firedrill inspe
 ## Install
 
 ```sh
-firedrill tool add <path-or-name-of-this-package> --install
+firedrill tool add @firedrill-tools/salesforce --install
 firedrill serve
 ```
 

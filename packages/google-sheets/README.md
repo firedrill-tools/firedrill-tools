@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-google-sheets
+# @firedrill-tools/google-sheets
 
 A synthetic Google Sheets service for [Firedrill](https://firedrill.run): a few in-world Google Workspace users, their
 spreadsheets, and the operations an agent performs on and around a spreadsheet — read ranges, write and append values,
@@ -21,8 +21,7 @@ rendered to a real grid, no notification e-mail is sent, and there are no creden
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-google-sheets-0.1.1.tgz --install   # from a local archive
-firedrill tool add @firedrill-tools/tool-google-sheets --install              # from a registry, once published
+firedrill tool add @firedrill-tools/google-sheets --install
 firedrill serve --scenario baseline --no-open
 ```
 

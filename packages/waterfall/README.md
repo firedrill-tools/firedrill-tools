@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-waterfall
+# @firedrill-tools/waterfall
 
 A synthetic **Waterfall** account for [Firedrill](https://firedrill.run): contact, phone and company enrichment
 jobs, Search Contact and Search Company, Job Change, Email Verification, the Account Reporter (v2) and API-key
@@ -13,7 +13,7 @@ there is no browser app.
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-waterfall-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/waterfall --install
 firedrill serve
 ```
 

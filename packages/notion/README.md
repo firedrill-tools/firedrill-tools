@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-notion
+# @firedrill-tools/notion
 
 A synthetic **Notion workspace** for [Firedrill](https://firedrill.run): one fictional workspace with a wiki page tree,
 three databases (the 2025-09-03 *database container + data source* model), blocks, comments and users, exposed through a
@@ -17,7 +17,7 @@ Package id `notion`, version `0.1.0`, engine `>=0.1.0 <0.2.0`, license Apache-2.
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-notion-0.1.1.tgz --install   # or the npm name once published
+firedrill tool add @firedrill-tools/notion --install
 firedrill serve --scenario baseline --no-open
 ```
 

@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-xero
+# @firedrill-tools/xero
 
 A synthetic **Xero Accounting API 2.0** subset for Firedrill. It simulates one fictional New Zealand organisation,
 **Kōwhai Joinery Ltd**, with its chart of accounts, tax rates, contacts, sales invoices and bills, and payments. All
@@ -11,7 +11,7 @@ recreates the Xero web app over the same operations (see "Browser app").
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-xero-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/xero --install
 firedrill serve
 ```
 

@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-jira
+# @firedrill-tools/jira
 
 A synthetic **Jira Cloud site** for [Firedrill](https://firedrill.run): one tenant exposed through the Jira Cloud platform REST API v3 (`/rest/api/3/…`), the Jira Software agile REST API 1.0 (`/rest/agile/1.0/…`), the OAuth accessible-resources lookup and the Jira tool names of the Atlassian Remote MCP Server. Agents that create, search, edit, transition and comment on issues can run against it instead of a real site: Firedrill owns the state, the virtual clock, faults and the evidence; nothing here contacts Atlassian and no notification is ever sent.
 
@@ -7,7 +7,7 @@ Backend only (no bundled UI). Browse and edit the state with the Firedrill inspe
 ## Install
 
 ```sh
-firedrill tool add <path-or-name-of-this-package> --install
+firedrill tool add @firedrill-tools/jira --install
 firedrill serve
 ```
 

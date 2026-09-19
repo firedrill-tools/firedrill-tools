@@ -127,11 +127,12 @@ jobs:
           let priorName = "";
           for (const item of catalog.packages) {
             if (!item || typeof item !== "object" || Array.isArray(item)) fail("catalog contains an invalid package record");
-            if (!/^@firedrill-tools\/tool-[a-z0-9-]+$/.test(item.name ?? "") || item.name <= priorName || names.has(item.name)) fail("catalog package identities are invalid or unsorted");
+            if (!/^@firedrill-tools\/[a-z0-9][a-z0-9-]*$/.test(item.name ?? "") || item.name <= priorName || names.has(item.name)) fail("catalog package identities are invalid or unsorted");
             priorName = item.name;
             names.add(item.name);
             if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(item.version ?? "")) fail(`${item.name} has an invalid version`);
             if (!/^[a-z0-9][a-z0-9-]*$/.test(item.tool ?? "") || tools.has(item.tool)) fail(`${item.name} has an invalid or duplicate Tool id`);
+            if (item.name !== `@firedrill-tools/${item.tool}`) fail(`${item.name} package name does not match Tool id ${item.tool}`);
             tools.add(item.tool);
             if (!/^(active|deprecated|revoked)$/.test(item.lifecycle ?? "")) fail(`${item.name} has an invalid lifecycle`);
             if (!/^packages\/[a-z0-9-]+$/.test(item.sourceSubdirectory ?? "") || typeof item.definition !== "string" || !item.definition || item.definition.startsWith("/") || item.definition.includes("\\") || item.definition.split("/").includes("..")) {
@@ -217,4 +218,3 @@ jobs:
           const response = await fetch(`${API_URL}/repos/${TARGET_REPOSITORY}/dispatches`, { method: "POST", headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${GH_TOKEN}`, "Content-Type": "application/json", "X-GitHub-Api-Version": "2022-11-28" }, body: JSON.stringify({ event_type: "community-tools-updated", client_payload: payload }), signal: AbortSignal.timeout(30_000) });
           if (response.status !== 204) throw new Error(`hosted dispatch failed with HTTP ${response.status}`);
           NODE
-

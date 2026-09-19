@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-google-drive
+# @firedrill-tools/google-drive
 
 A synthetic **Google Drive** for [Firedrill](https://firedrill.run) drills. It simulates "My Drive" for a small set of
 synthetic Google Workspace users behind a bounded subset of the **Drive API v3** (`/drive/v3/…` and `/upload/drive/v3/…`)
@@ -8,13 +8,13 @@ permissions (direct, or inherited from an ancestor folder), which is how "Shared
 plus, for text-like content, a stored body that can be read, exported, downloaded and replaced. Nothing leaves the world:
 no notification e-mail is sent, no Google service is contacted, nothing is rendered by a real Docs/Sheets engine.
 
-Tool id `google-drive` · package version `0.1.0` · engine `>=0.1.0 <0.2.0` · Apache-2.0 · **backend + browser app**
+Tool id `google-drive` · package version `0.1.1` · engine `>=0.1.0 <0.2.0` · Apache-2.0 · **backend + browser app**
 (the declaration carries `"ui": { "root": "app/site", "entry": "index.html" }`; see [Browser app](#browser-app)).
 
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-google-drive-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/google-drive --install
 firedrill serve
 ```
 

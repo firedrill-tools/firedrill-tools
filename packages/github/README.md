@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-github
+# @firedrill-tools/github
 
 A synthetic **GitHub** instance for [Firedrill](https://firedrill.run): one fictional forge holding a handful of
 repositories, exposed through a bounded subset of the GitHub REST API (`X-GitHub-Api-Version: 2022-11-28` shapes)
@@ -16,7 +16,7 @@ Package id `github`, version `0.1.0`, engine `>=0.1.0 <0.2.0`, license Apache-2.
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-github-0.1.1.tgz --install   # or the npm name once published
+firedrill tool add @firedrill-tools/github --install
 firedrill serve --scenario baseline --no-open
 ```
 

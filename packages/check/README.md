@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-check
+# @firedrill-tools/check
 
 A synthetic **Check payroll partner account (sandbox)** for [Firedrill](https://firedrill.run). An agent that runs payroll for client
 companies through Check's REST API can run against this Tool instead of the real service: companies, workplaces, employees, earning
@@ -14,7 +14,7 @@ The package also ships a **browser app** â€” a recreation of the Check Console â
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-check-0.1.2.tgz --install
+firedrill tool add @firedrill-tools/check --install
 firedrill serve
 ```
 

@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-trolley
+# @firedrill-tools/trolley
 
 A synthetic **Trolley payouts merchant account (sandbox mode)** for [Firedrill](https://firedrill.run). An agent that pays
 freelancers, creators or suppliers through Trolley's REST API v1 can run against this Tool instead of the real service:
@@ -14,7 +14,7 @@ It also ships a browser app, a recreation of the Trolley merchant dashboard that
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-trolley-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/trolley --install
 firedrill serve
 ```
 

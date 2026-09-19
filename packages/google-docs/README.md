@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-google-docs
+# @firedrill-tools/google-docs
 
 A synthetic Google Docs service for [Firedrill](https://firedrill.run): a small set of in-world Google Workspace
 users, their documents, and the operations an agent performs on and around a document — read it, create it, edit its
@@ -21,8 +21,7 @@ document is rendered, no notification e-mail is sent, and there are no credentia
 ## Install
 
 ```sh
-firedrill tool add @firedrill-tools/tool-google-docs --install     # from a registry
-firedrill tool add ./firedrill-tools-tool-google-docs-0.1.1.tgz --install   # from a local archive
+firedrill tool add @firedrill-tools/google-docs --install
 firedrill serve --scenario baseline --no-open
 ```
 

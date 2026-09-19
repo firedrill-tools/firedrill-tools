@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-unified
+# @firedrill-tools/unified
 
 A synthetic **Unified.to workspace** for [Firedrill](https://firedrill.run): one fictional workspace holding a handful of
 **synthetic connections** (each standing for an end-customer's authorised integration) and the unified **CRM** (contact,
@@ -17,7 +17,7 @@ app; browse state through the REST routes, the MCP names or the Firedrill inspec
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-unified-0.1.1.tgz --install   # or the npm name once published
+firedrill tool add @firedrill-tools/unified --install
 firedrill serve --scenario baseline --no-open
 ```
 

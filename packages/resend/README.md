@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-resend
+# @firedrill-tools/resend
 
 A synthetic **Resend** team for [Firedrill](https://firedrill.run): send and batch-send e-mails with deterministic synthetic
 delivery, manage sending domains with generated DNS records, API keys, segments and contacts — through Resend-shaped REST
@@ -11,7 +11,7 @@ A browser app that recreates the Resend dashboard (Emails, Domains, API Keys, Au
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-resend-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/resend --install
 firedrill serve
 ```
 

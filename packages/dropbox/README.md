@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-dropbox
+# @firedrill-tools/dropbox
 
 A synthetic **Dropbox** account for [Firedrill](https://firedrill.run): a stateful Tool that answers a documented subset of
 the Dropbox API v2 (`POST /2/...`) from world state. Agents under test can list and page folders, poll the change feed,
@@ -11,7 +11,7 @@ This is an independently maintained Firedrill Tool package. It is not affiliated
 ## Install
 
 ```sh
-firedrill tool add /path/to/firedrill-tools-tool-dropbox-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/dropbox --install
 firedrill serve
 ```
 

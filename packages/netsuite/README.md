@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-netsuite
+# @firedrill-tools/netsuite
 
 A synthetic **NetSuite** Tool for [Firedrill](https://firedrill.run): one fictional two-subsidiary OneWorld account exposed through a
 subset of **SuiteTalk REST Web Services** — the record service under `/services/rest/record/v1` and **SuiteQL** under
@@ -12,7 +12,7 @@ recreation of the NetSuite application shell (see *Browser app* below) that driv
 ## Install
 
 ```sh
-firedrill tool add ./firedrill-tools-tool-netsuite-0.1.2.tgz --install
+firedrill tool add @firedrill-tools/netsuite --install
 ```
 
 `firedrill tool add` seeds the starter account from `starter.json` (virtual time 2026-09-16T17:00:00Z, 09:00 account time at a fixed

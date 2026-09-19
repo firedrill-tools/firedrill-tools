@@ -1,4 +1,4 @@
-# @firedrill-tools/tool-discord
+# @firedrill-tools/discord
 
 A synthetic, stateful **Discord HTTP API v10 subset** for [Firedrill](https://firedrill.run). REST-only agents and bots can be
 pointed at it instead of the real service: guilds, channels, threads, messages, reactions, members, roles and direct messages live in
@@ -11,7 +11,7 @@ operations, so a person or a browser agent can read and change the same world an
 ## Install
 
 ```sh
-firedrill tool add /absolute/path/to/firedrill-tools-tool-discord-0.1.1.tgz --install
+firedrill tool add @firedrill-tools/discord --install
 firedrill serve
 ```
 
