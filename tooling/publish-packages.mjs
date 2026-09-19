@@ -239,11 +239,7 @@ export async function registryState(registry, item, tag, runtime = {}) {
       continue;
     }
     if (packageResponse.status === 404) {
-      if (attempt === attempts) {
-        return { state: "matching", integrity, tagVersion: undefined, tagPending: true };
-      }
-      await pauseRegistry(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
-      continue;
+      return { state: "matching", integrity, tagVersion: undefined, tagPending: true };
     }
     if (packageResponse.status === 429 || packageResponse.status >= 500) {
       if (attempt === attempts) {
