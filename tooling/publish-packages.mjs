@@ -240,7 +240,7 @@ export async function registryState(registry, item, tag, runtime = {}) {
     }
     if (packageResponse.status === 404) {
       if (attempt === attempts) {
-        fail(`registry dist-tag lookup for ${item.release} failed with HTTP ${packageResponse.status}`);
+        return { state: "matching", integrity, tagVersion: undefined, tagPending: true };
       }
       await pauseRegistry(Math.min(2 ** (attempt - 1) * 5_000, 120_000));
       continue;
@@ -321,6 +321,10 @@ const defaultRuntime = {
 export async function publishOne(item, options, runtime = defaultRuntime) {
   const initial = await runtime.registryState(item, options.tag);
   if (initial.state === "matching") {
+    if (initial.tagVersion === undefined && initial.tagPending) {
+      runtime.log(`skip ${item.release}: exact registry bytes match; ${options.tag} metadata is still propagating\n`);
+      return "skipped-pending-tag";
+    }
     if (initial.tagVersion !== item.version) {
       fail(
         `${item.release} has matching registry bytes, but ${options.tag} points to ` +
@@ -371,11 +375,17 @@ export async function publishOne(item, options, runtime = defaultRuntime) {
       if (state.state === "mismatch") fail(`${item.release} appeared with different bytes after publishing`);
       if (lookup < 8) await runtime.pause(Math.min(lookup * 2_000, 10_000));
     }
-    if (matchingBytesObserved) {
+    if (matchingBytesObserved && observedTagVersion !== undefined) {
       fail(
         `${item.release} was accepted with matching bytes, but ${options.tag} points to ` +
           `${observedTagVersion ?? "no version"}; no automatic dist-tag write was attempted`,
       );
+    }
+    if (matchingBytesObserved) {
+      runtime.log(
+        `accepted ${item.release}: exact registry bytes match; ${options.tag} metadata is still propagating\n`,
+      );
+      return "accepted-pending-tag";
     }
     runtime.log(
       `accepted ${item.release}: npm acknowledged the upload, but exact registry bytes are not readable yet; ` +
