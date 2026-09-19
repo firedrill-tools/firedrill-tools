@@ -439,7 +439,13 @@ export async function publishBatch(selected, options, summary, runtime = default
     const item = selected[index];
     const outcome = await publishOne(item, options, runtime);
     summary.results.push({ release: item.release, integrity: item.integrity, outcome });
-    if (!options.dryRun && index < selected.length - 1) await runtime.pause(options.delayMs);
+    if (
+      !options.dryRun &&
+      !outcome.startsWith("skipped") &&
+      index < selected.length - 1
+    ) {
+      await runtime.pause(options.delayMs);
+    }
   }
 }
 
