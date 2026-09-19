@@ -3,16 +3,6 @@ name: Publish Tool packages
 on:
   workflow_dispatch:
     inputs:
-      offset:
-        description: Zero-based package offset in the sorted release catalog
-        required: true
-        default: "0"
-        type: string
-      limit:
-        description: Packages in this batch (maximum 10; 8 recommended)
-        required: true
-        default: "8"
-        type: string
       tag:
         description: npm dist-tag
         required: true
@@ -58,21 +48,25 @@ jobs:
       - name: Verify reproducible release catalog
         run: pnpm package:catalog --output-dir "$RUNNER_TEMP/firedrill-tools"
 
-      - name: Require a bootstrap publishing token
+      - name: Require three publisher tokens
         if: inputs.dry_run == false
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN_PUBLISHER_A: ${{ secrets.NPM_TOKEN_PUBLISHER_A }}
+          NPM_TOKEN_PUBLISHER_B: ${{ secrets.NPM_TOKEN_PUBLISHER_B }}
+          NPM_TOKEN_PUBLISHER_C: ${{ secrets.NPM_TOKEN_PUBLISHER_C }}
         run: |
           set -euo pipefail
-          [[ -n "$NODE_AUTH_TOKEN" ]] || { echo "NPM_TOKEN is not configured" >&2; exit 1; }
+          [[ -n "$NPM_TOKEN_PUBLISHER_A" ]] || { echo "NPM_TOKEN_PUBLISHER_A is not configured" >&2; exit 1; }
+          [[ -n "$NPM_TOKEN_PUBLISHER_B" ]] || { echo "NPM_TOKEN_PUBLISHER_B is not configured" >&2; exit 1; }
+          [[ -n "$NPM_TOKEN_PUBLISHER_C" ]] || { echo "NPM_TOKEN_PUBLISHER_C is not configured" >&2; exit 1; }
 
-      - name: Publish one rate-safe, idempotent batch
+      - name: Publish all packages across three rate-safe accounts
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN_PUBLISHER_A: ${{ secrets.NPM_TOKEN_PUBLISHER_A }}
+          NPM_TOKEN_PUBLISHER_B: ${{ secrets.NPM_TOKEN_PUBLISHER_B }}
+          NPM_TOKEN_PUBLISHER_C: ${{ secrets.NPM_TOKEN_PUBLISHER_C }}
         run: >-
-          pnpm release:publish --catalog-dir "$RUNNER_TEMP/firedrill-tools"
-          --offset "${{ inputs.offset }}"
-          --limit "${{ inputs.limit }}"
+          pnpm release:publish:all --catalog-dir "$RUNNER_TEMP/firedrill-tools"
           --tag "${{ inputs.tag }}"
           --summary "$RUNNER_TEMP/npm-publish-summary.json"
           ${{ inputs.dry_run && '--dry-run' || '' }}
@@ -81,7 +75,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: npm-publish-${{ github.sha }}-${{ inputs.offset }}
+          name: npm-publish-${{ github.sha }}
           path: ${{ runner.temp }}/npm-publish-summary.json
           if-no-files-found: warn
           retention-days: 90
