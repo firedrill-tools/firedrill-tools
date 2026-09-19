@@ -183,6 +183,40 @@ test("an accepted upload is recorded and the batch continues to the next package
   ]);
 });
 
+test("a resumed batch does not rate-limit itself after read-only skips", async () => {
+  const secondItem = {
+    ...item,
+    archive: "firedrill-tools-second-1.0.0.tgz",
+    archivePath: "/tmp/firedrill-tools-second-1.0.0.tgz",
+    name: "@firedrill-tools/second",
+    release: "@firedrill-tools/second@1.0.0",
+  };
+  const states = [
+    { state: "matching", integrity: item.integrity, tagVersion: item.version },
+    { state: "matching", integrity: secondItem.integrity, tagVersion: secondItem.version },
+  ];
+  let pauses = 0;
+  let publishCalls = 0;
+  const summary = { results: [] };
+  const harness = {
+    registryState: async () => states.shift(),
+    publish: () => {
+      publishCalls += 1;
+      return { status: 0, stdout: "+ ok", stderr: "" };
+    },
+    pause: async () => {
+      pauses += 1;
+    },
+    log: () => {},
+  };
+
+  await publishBatch([item, secondItem], options, summary, harness);
+
+  assert.equal(publishCalls, 0);
+  assert.equal(pauses, 0);
+  assert.deepEqual(summary.results.map(({ outcome }) => outcome), ["skipped", "skipped"]);
+});
+
 test("a failed client response reconciles matching remote bytes without retrying", async () => {
   const harness = runtime([{ state: "missing" }, { state: "matching", integrity: item.integrity }], {
     status: 1,
